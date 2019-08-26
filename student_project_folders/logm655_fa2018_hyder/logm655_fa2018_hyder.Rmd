@@ -1,0 +1,859 @@
+---
+title: LOGM 655 Student Project Report
+author: <center><h3>Dylan Hyder</h3></center>
+date: <center><h5>`r format(Sys.Date(), '%d %b %Y')`</h5></center>
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    code_folding: 'hide'
+abstract: 'Fairy Tales span across cultures, topics, and time periods. They have simple plots which deliver a clear message. For these reasons, fairy tales are useful for text analysis. This project uses a corpus of 61 fairy tales from Charles Perrault and the Brothers Grimm to test how written sentiment in fairy tales differs across topic, story line and culture. Sentiment is quantified and compared using three lexicons: *BING*, *AFINN* and *NRC*. The results of sentiment analysis in this project indicate that written sentiment differs more across authors/ cultural versions than it does between fairy tale topics. Sentiment analysis throughout a fairy tale at a sentence level shows how cultural versions of stories have endings with different sentiment. This project conjectures that sentiment analysis across a story can be a useful technique for identifying critical sentences of emotion within a story.'
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = F,
+                      warning = F, 
+                      comment = NA)
+```
+
+<center><h1>Introduction</h1></center>
+
+<h2>Project Overview/Problem Statement</h2>
+
+Cinderella, Sleeping Beauty, Snow White -- classic stories with a tale as old as time. The origins of these and other fairy tales begin long before the Disney versions known today. Written versions of these stories are found in the publications of famous folklorists such as Charles Perrault and the Brothers Grimm [1]. These tales both entertain and intrigue academic interest for textual analysis.     
+
+Since fairy tales are tailored to children, they are well suited for text analysis. Vaz et. al. identifies that in comparison to text written for adults, fairy tales have shorter sentences, clearly defined emotions, and a plot and language easily read and understood [2]. Additionally, cultural, generational, and topic differences in fairy tale versions make it possible to research the effect of culture, time, and topic in the use of written sentiment. 
+
+Thanks to Project Gutenberg, a volunteer organization that promotes public domain ebooks, 57,000 texts are available to the public free of charge [3]. In this collection are books of Fairy Tales spanning multiple cultures, time periods, and topics. This project is scoped primarily on cultural and topic differences. Fairy Tales with cultural and topic differences were gathered from *Household Fairy Tales* by the Brothers Grimm, and *The Tales of Mother Goose* by Charles Perrault. This sample allows for comparison between French and German version of fairy tales, and an assortment of fairy tales with varying topics. Using a corpus built from these texts, this project aims to answer the following three research questions.
+
+1. Does the sentiment in fairy tales differ based on the topic/ genre of the story? 
+1. Does the sentiment in fairy tales vary over the course of the story? If so, does a common pattern of written sentiment emerge over multiple stories?
+1. Does the sentiment in versions of the same fairy tale differ between cultures?
+
+<h2>Installing/ Loading Required R Packages</h2>
+
+Fifteen packages are used for this project; they are required to follow along with the methodology and reproduce the results. The *pacman* package is used to facilitate installing and loading these necessary packages. The *pacman* package should be installed and loaded prior to proceeding.
+
+```{r InstallPackages, warning=FALSE, message=FALSE}
+pacman::p_load(XML,        
+               rvest,      
+               RCurl,      
+               rprojroot,  
+               tidytext,   
+               stringr,
+               pdftools,
+               tidyr,
+               dplyr,
+               yaml,
+               ggplot2,
+               gutenbergr,
+               xts,
+               wordcloud,
+               reshape2)
+```
+
+<center><h1>Methodology</h1></center>
+
+<h2>Word Frequency</h2>
+
+In this section word frequency is summarized by *term frequency* (tf), *inverse document frequency* (idf), and *term inverse document frequency* (tf-idf). Term frequency measures the frequency of a word within a document. This is scaled by $log_{10}$ to downweight the frequency to better measure the relevance of word frequency to the meaning of a document[4]. Thus, *term frequency* is calculated using the following equation.
+
+$$
+tf_{t,d} = \begin{cases}
+1+\log_{10}\Big(\mbox{count(t,d)}\Big)\hspace{10pt}  \mbox{if count(t,d)  > 0}\\\\
+0 \hspace{260px}\mbox{ otherwise }
+\end{cases}
+$$
+*Inverse document frequency*, is the fraction of the number of documents in a corpus and the number of documents for which a given word appears. This measures how unique a word is to a particular document by reducing the weight for commonly used words and increasing the weight for words that are less frequent in a collection of documents [4]. The equation below shows how *idf* is calculated.  
+
+$$
+\mbox{idf}(t,D) = \log\left(\frac{N}{n_{t}}\right)
+$$
+Finally, combining *tf* and *idf* results in the *term inverse document frequency* which measures "high frequency words that provide particularly important context to a single document within a group of documents" [9]. This is calculated as the product of *tf* and *idf* for a particular term (*t*) in document (*d*) for a set of documents (*D*) and results in a value between 0 (not important) and 1 (very important).
+
+$$
+\mbox{tf-idf}(t,d,D) = \mbox{tf}(t,d) \cdot \mbox{idf}(t,D)
+$$
+
+<h2>Sentiment Analysis using *tidytext*</h2>
+
+The three research questions in this project use *sentiment analysis*. Sentiment Analysis is "the task of extracting the positive or negative orientation that a writer expresses in a text" [4]. In this project sentiment of a text is quantified within the *tidyverse* ecosystem, where "text [is considered] as a combination of its individual words and the sentiment content of the whole text [is] the sum of the sentiment content of the individual words" [5]. Within the *tidy* universe, word sentiment can be classified using three different lexicons: *AFINN*, *BING*, or *NRC*. These lexicons are all limited to unigrams and use a dictionary of terms sourced and validated from modern day English. The scoring of sentiment differs between lexicons. The *AFINN* lexicon ranks sentiment on an integer between -5 (negative) and +5 (positive), the *BING* lexicon ranks words as -1 (negative), 0 (neutral), or 1 (positive), and the *NRC* lexicon further subdivides binarily ranked sentiment to categories of "positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust" [5]. The following output shows the number of sentiment associated words contained in each lexicon, and the number of sentiment associated words by category within each lexicon. 
+
+```{r SentimentByLexiconCount}
+sentiments %>% 
+    group_by(lexicon) %>%
+    summarise(noOfWords = n())
+```
+
+```{r SentimentByCategoryCount}
+sentiments %>% 
+    filter(lexicon %in% c("nrc", "bing")) %>%
+    group_by(lexicon, sentiment) %>%
+    summarise(noOfWords = n())
+
+sentiments %>% 
+    filter(lexicon %in% c("AFINN")) %>%
+    group_by(lexicon) %>%
+    count(cut_width(score, 1))
+```
+
+Since the number of sentiment associated words and the quantification of word sentiment differs by lexicon, this project compares sentiment analysis using the three available lexicons to see which works best for comparing sentiment in Fairy Tale's. Additionally, since the lexicons consist of modern day English terms it is possible that the sentiment of some words in 18th and 19th century folktales is inconsistent or not included in the lexicons used for this project. While this concern is noted, this project proceeds with the three available lexicons and recommends future incorporation of a subject specific sentiment lexicon when developed and made compatable with the *tidytext* package in *R*. 
+
+<h2>Research Questions</h2>
+
+<h3>Research Question 1: Sentiment Across Topics</h3>
+
+The first research question concerns identifying whether sentiment in fairy tales differs across topics. This requires categorizing fairy tales. This project uses the Aarne-Thompson-Uther classification system to distinguish between classes of fairy tales. The topic categories and corresponding indices within each topic are provided in the following table.
+
+\begin{array}[]
+TTopic                    & Index Range \\
+Animal Tales             & 1-299       \\
+Tales of Magic           & 300-749     \\
+Religious Tales          & 750-849     \\
+Realistic Tales          & 850-899     \\
+Tales of the Stupid Ogre & 1000-1199   \\
+Anecdotes and Jokes      & 1200-1999   \\
+Formula Tales            & 2000-2399  
+\end{array}
+
+
+Each fairy tale was manually indexed based on the classifications provided by [6] and [7]. The code below identifies the titles of fairy tales classified within each category based on the Aarne-Thompson-Uther system. Of the 61 fairy tales in the collection, 3 titles were not assigned to a category. For this project, undesignated fairy tales are excluded when comparing sentiment between topics. The following code identifies the Fairy Tales within each topic. 
+
+```{r TopicCategories}
+AnimalTales <- c(" THE WOLF AND THE SEVEN LITTLE GOATS.",
+                 " THE WONDERFUL MUSICIAN",
+                 " THE STRAW, THE COAL, AND THE BEAN",
+                 " THE MOUSE, THE BIRD, AND THE SAUSAGE",
+                 " THE BREMEN TOWN MUSICIANS",
+                 " HOW MRS FOX MARRIED AGAIN FIRST VERSION",
+                 " HOW MRS FOX MARRIED AGAIN SECOND VERSION",
+                 " MR KORBES",
+                 " OLD SULTAN",
+                 " THE DOG AND THE SPARROW"
+                 )
+
+TalesOfMagic <- c("CINDERELLA, OR THE LITTLE GLASS SLIPPER.",
+                  " THE SLEEPING BEAUTY IN THE WOODS.",
+                  " LITTLE THUMB.",
+                  " THE MASTER CAT, OR PUSS IN BOOTS.",
+                  " RIQUET WITH THE TUFT.",
+                  " BLUE BEARD.",
+                  " THE FAIRY.",
+                  " LITTLE RED RIDING-HOOD.",
+                  " SIX SOLDIERS OF FORTUNE",
+                  " THE GOOSE GIRL.",
+                  " THE RAVEN",
+                  " THE FROG PRINCE",
+                  " FAITHFUL JOHN",
+                  " THE TWELVE BROTHERS",
+                  " THE BROTHER AND SISTER",
+                  " RAPUNZEL",
+                  " THE THREE LITTLE MEN IN THE WOOD",
+                  " THE THREE SPINSTERS",
+                  " HANSEL AND GRETHEL",
+                  " THE WHITE SNAKE",
+                  " THE FISHERMAN AND HIS WIFE",
+                  " ASCHENPUTTEL",
+                  " MOTHER HULDA",
+                  " LITTLE RED CAP",
+                  " THE TABLE, THE ASS, AND THE STICK.",
+                  " TOM THUMB",
+                  " THE ELVES",
+                  " TOM THUMB'S TRAVELS",
+                  " THE ALMOND TREE",
+                  " THE SIX SWANS",
+                  " THE SLEEPING BEAUTY",
+                  " SNOW-WHITE",
+                  " THE KNAPSACK, THE HAT, AND THE HORN",
+                  " RUMPELSTILTSKIN",
+                  " THE GOLDEN BIRD",
+                   " THE QUEEN BEE",
+                  " THE GOLDEN GOOSE"
+                  )
+
+TalesOfTheStupidOgre <- c(" ROLAND")
+
+
+RealisticTales <- c(" THE ROBBER BRIDEGROOM",
+                    " KING THRUSHBEARD"
+                    )
+
+AnecdotesAndJokes <- c(" CLEVER GRETHEL",
+                       " HANS IN LUCK",
+                       " THE GALLANT TAILOR",
+                       " CLEVER ELSE",
+                       " HOW MRS FOX MARRIED AGAIN FIRST VERSION",
+                       " HOW MRS FOX MARRIED AGAIN SECOND VERSION",
+                       " FRED AND KATE",
+                       " THE LITTLE FARMER"
+                       )
+                      
+FormulaTales <- c(" THE DEATH OF THE HEN")
+
+NoCategoryTales <- c("THE RABBIT'S BRIDE",
+                     " THE VAGABONDS",
+                     " PRUDENT HANS"
+                     )
+```
+
+<h3>Research Question 2: Sentiment Throughout A Story</h3>
+
+The second research question concerns identifying whether written sentiment in fairy tales vary throughout the course of a story. The motivation for this question is based in Vladimir Propp's theory of folk tale morphology [8]. Propp, a Russian folklorist, identified 31 narrative units common across folk tales. These 31 narrative chunks were grouped into four spheres: the introduction, the body of the story, the donor sequence, and the hero's return. While not every story contains all 31 narrative chunks and perhaps the sequence of these chunks is inconsistent between stories, it motivates asking whether written sentiment is different between narrative units and if so, does a common distribution of sentiment throughout fairy tales emerge.
+
+Unfortunately, the corpus of text for this project is not tagged for Propp's 31 narrative units and it is beyond the scope of this project to attempt to create these tags. Therefore, to show the distribution of sentiment throughout each fairy tale the sentiment is computed for each sentence. Sentence sentiment is quantifed by summing word sentiment within a given sentence and then normalizing the score to account for sentence length. The distribution of sentiment in a story can then be visualized as a time series of normalized sentence sentiment scores.
+
+<h3>Research Question 3: Sentiment Across Cultures</h3>
+
+The final research question concerns identifying whether written sentiment varies between cultural versions of fairy tales. As a case study, versions of *Cinderella*, *Sleeping Beauty*, and *Little Red Riding Hood* are compared between French and German authors, Perrault and the Brothers Grimm.
+
+<center><h1>Data</h1></center>
+
+The *gutenbergr* package by David Robinson provides access to the Project Gutenberg collection from within *R*. In this project, the works from the Brothers Grimm and Charles Perrault are accessed from the function *gutenberg_download()* that downloads each eBook by referencing the Project Gutenberg ID.
+
+```{r InputData_gutenbergR, warning=FALSE, message=FALSE}
+grimm <- gutenberg_download(19068)
+Perrault <- gutenberg_download(17208)
+```
+
+After uploading the raw data, irrelevant text that is not part of the fairy tales must be removed. This includes removing introductory text at the start of the book, concluding text at the end of the book, and illustration placeholders. Additionally, it is necessary to format the text so that we can easily identify the titles of each fairy tale. The following code prepares the raw data to create the corpus of text for this project.
+
+```{r cleanText, warning=FALSE, message=FALSE}
+grimm <- grimm %>%
+  mutate(gutenberg_id = "Brothers Grimm")%>%
+  filter(row_number()>238)%>% #Remove text at beginning of book
+  filter(row_number()<10806)%>% #Remove text at end of book
+  filter(!str_detect(text, regex("^    \\[Illustration")))%>% #Remove Illustration Placeholders
+  filter(!str_detect(text, regex("^\\[Illust"))) #Remove Illustration Placeholders 
+
+replace_grimm6569 ="HOW MRS FOX MARRIED AGAIN FIRST VERSION" #Fix the name of a title
+replace_grimm6637 ="HOW MRS FOX MARRIED AGAIN SECOND VERSION" #Fix the name of a title 
+
+#Make lowercase non title lines that are capitalized
+#Make uppercase title lines that are not capitalized
+grimm$text <- c(grimm$text[1:382],toupper(grimm$text[383]),
+                grimm$text[384:705],tolower(grimm$text[706:709]),grimm$text[710:1451],
+                toupper(grimm$text[1452]), grimm$text[1453:1576], tolower(grimm$text[1577:1583]),
+                grimm$text[1584:2707],tolower(grimm$text[2708:2709]),grimm$text[2710:2839], 
+                toupper(grimm$text[2840]),grimm$text[2841:3744],toupper(grimm$text[3745]),
+                grimm$text[3746:3803],toupper(grimm$text[3804]),
+                grimm$text[3805:4868],toupper(grimm$text[4869]),
+                grimm$text[4870:4955],tolower(grimm$text[4956:4961]), grimm$text[4962:5844],
+                toupper(grimm$text[5845]), grimm$text[5846:6568],replace_grimm6569,
+                grimm$text[6570:6636], replace_grimm6637, grimm$text[6638:6834],
+                tolower(grimm$text[6835:6837]),grimm$text[6838:7242], 
+                tolower(grimm$text[7243:7244]), grimm$text[7245:7768],
+                tolower(grimm$text[7769:7773]),grimm$text[7774:8277], 
+                tolower(grimm$text[8278:8281]),grimm$text[8282:8677],
+                toupper(grimm$text[8678]),grimm$text[8679:9241],
+                tolower(grimm$text[9242:9244]),grimm$text[9245:9535],
+                toupper(grimm$text[9536]),grimm$text[9537:9695],
+                toupper(grimm$text[9696]),grimm$text[9697:10589])
+  
+Perrault <- Perrault %>%
+  mutate(gutenberg_id = "Perrault")%>%
+  filter(row_number()>139)%>% #Remove text at beginning of book
+  filter(row_number()<1867)%>% #Remove text at end of book
+  filter(!str_detect(text, regex("^    \\[Illustration")))%>%  #Remove Illustration Placeholders
+  filter(!str_detect(text, regex("^\\[Illust"))) #Remove Illustration Placeholders
+```
+
+After cleaning the data, for each eBook, the raw text is formatted as a data frame in which each observation is a line of text from the eBook. In total, there are 61 fairy tales that comprise the corpus for this project. However, in its original format, the text of each book is not separated by story. Nevertheless, preceding each story is a fully capitalized title as shown below for the first fairy tale in *Household Fairy Tales* by the Brothers Grimm. Fairy tale titles are similarly capitalized in the text for Charles Perrault. 
+```{r ShowTitleFormat, warning=FALSE, message=FALSE}
+grimm[1:6,2]
+```
+
+Utilizing *regex*, the start of each story is identified from capitalization and thereby each line of text is assigned to its corresponding story. Additionally, the cleaned text is transformed into a *tidy* data structure by making each word an observation. The sentence and paragraph in which each word appears is stored as additional variables in the dataset. This preserves the structure of the original text in varying granularity for the second research question which quantifies the written sentiment across the duration of each story. Additionally, each story is indexed according to the Aarne-Thompson-Uther classification system used for the first research question. Finally, the corpus for this project is completed by combining the fairy tales of the Brothers Grimm and Charles Perault into a single data frame. The following code executes these steps. 
+
+```{r createCorpus, warning=FALSE, message=FALSE, cache=TRUE} 
+
+FairyTaleCorpus <- bind_rows(grimm,Perrault) #Combine fairy tales into a single corpus
+FairyTaleCorpus <- FairyTaleCorpus[-c(47608:47617),]
+
+FairyTaleCorpus <- FairyTaleCorpus %>% 
+  unnest_tokens(paragraph,text,token = "paragraphs", to_lower = FALSE) %>% #Unnest text into paragraphs
+  mutate(story_title = ifelse(str_detect(paragraph, regex("^[12\\,\\.\\[\\]A-Z \\'\\-]+$")), paragraph, NA),
+         story = na.locf(story_title)) %>% # Indicate the starting location of each story
+  filter(is.na(story_title)) %>% # Remove fairy tale titles from the text
+  select(-story_title) %>% # Remove the variable story_title 
+  mutate(story_index = row_number())%>%
+  mutate(p_index = row_number())%>%
+  unnest_tokens(sentence,paragraph,token = "sentences", drop = FALSE, collapse=FALSE) %>% #Unnest text into sentences
+  mutate(s_index = row_number())%>%
+  unnest_tokens(word,sentence,token = "words", drop = FALSE, collapse=FALSE) %>% #Unnest text into words
+  mutate(class = ifelse(story %in% AnimalTales, "Animal Tales", # Index each story type
+                        ifelse(story %in% TalesOfMagic, "Tales Of Magic",
+                               ifelse(story %in% RealisticTales, "Realistic Tales",
+                                      ifelse(story %in% TalesOfTheStupidOgre, "Tales Of The Stupid Ogre",
+                                        ifelse(story %in% AnecdotesAndJokes, "Anecdotes And Jokes",
+                                             ifelse(story %in% FormulaTales, "Formula Tales","No Category")))))))
+
+### This code is used to fix the paragraph and sentence index so it restarts for each story.
+
+p_ref = 0 # Initialize paragraph reference at 0
+s_ref = 0 # Initialize sentence reference at 0
+story_ref = 1
+
+for (i in 2:nrow(FairyTaleCorpus)){ # For each observation...
+  if(FairyTaleCorpus$gutenberg_id[i]!=FairyTaleCorpus$gutenberg_id[i-1]){
+    pref = 1
+    s_ref = 0
+  }
+  if(FairyTaleCorpus$story[i]!=FairyTaleCorpus$story[i-1]){ # If you start a new story... 
+    story_ref = story_ref + 1
+    p_ref = FairyTaleCorpus$p_index[i]-1 # Mark the last paragraph index of the previous story
+    s_ref = FairyTaleCorpus$s_index[i]-1 # Mark the last sentence index of the previous story
+  }
+  
+  FairyTaleCorpus$story_index[i]=story_ref # Scale paragraph index for story
+  FairyTaleCorpus$p_index[i]=FairyTaleCorpus$p_index[i]-p_ref # Scale paragraph index for story
+  FairyTaleCorpus$s_index[i]=FairyTaleCorpus$s_index[i]-s_ref # Scale sentence index for story
+}
+
+FairyTaleCorpus <- FairyTaleCorpus %>%
+  group_by(sentence) %>%
+  mutate(SentenceTotal = sum(s_index) %/% s_index)%>%
+  ungroup()
+
+```
+
+After completing the aforementioned steps, the corpus of fairy tales, in *tidy* format, is ready for sentiment analysis. 
+
+<center><h1>Analysis</h1></center>
+
+<h2>Word Frequency</h2>
+
+Word frequency across authors, topics, and stories are explored prior to conducting sentiment analysis. This intermediate step helps to become acquainted to the data and ensure it was properly cleaned. 
+
+The following code calculates *tf*, *idf*, and *tf-idf* for the words within the corpus and visualizes the results using the `ggplot2` package. The visualization of word frequency is done across authors, topics, and fairy tales in accordance to the three levels of research questions that this project addresses. 
+
+```{r Calc_tf_idf_tf-idf, echo = FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6, fig.align='center'}
+# Calculate tf, idf, and tf-idf across authors
+author_words <- FairyTaleCorpus %>%
+        count(gutenberg_id, word, sort = TRUE) %>%
+        dplyr::anti_join(stop_words) %>%
+        ungroup()
+
+author_total_words <- author_words %>%
+        group_by(gutenberg_id) %>%
+        summarise(total = sum(n))
+
+author_words <- left_join(author_words, author_total_words)
+
+author_words <- author_words %>%
+        bind_tf_idf(word, gutenberg_id, n)
+
+# Calculate tf, idf, and tf-idf across topics
+topic_words <- FairyTaleCorpus %>%
+        count(class, word, sort = TRUE) %>%
+        dplyr::anti_join(stop_words) %>%
+        ungroup()
+
+topic_total_words <- topic_words %>%
+        group_by(class) %>%
+        summarise(total = sum(n))
+
+topic_words <- left_join(topic_words, topic_total_words)
+
+topic_words <- topic_words %>%
+        bind_tf_idf(word, class, n)
+
+# Calculate tf, idf, and tf-idf across fairy tales
+story_words <- FairyTaleCorpus %>%
+        count(story, word, sort = TRUE) %>%
+        dplyr::anti_join(stop_words) %>%
+        ungroup()
+
+story_total_words <- story_words %>%
+        group_by(story) %>%
+        summarise(total = sum(n))
+
+story_words <- left_join(story_words, story_total_words)
+
+story_words <- story_words %>%
+        bind_tf_idf(word, story, n)
+```
+
+<h3>Word Frequency By Author</h3>
+
+The following word clouds show the words which occur most frequently by author according to the *tf* and *tf-idf* scores respectively. When comparing frequent words by authors it appears as though the *tidytext* package did an adequate job removing stop words in spite of differences in language used in the era's of these fairy tales and today. In the *tf* word cloud we see some instances of frequently used words that are common between authors such  *king*, *wife*, and *time*. Words which are frequent but not common between authors are shown in the *tf-idf* word cloud and include author specific words such as *hans* and *ogre*. It appears that frequent words less common between authors are lots of character names or types. Interestingly, the word *faithful* is used frequently by the Brothers Grimm but not Perrault which might appear later when comparing sentiment across authors/ cultures. In general, the term frequency results are consistent with words that one might expect to appear frequently in fairy tales. 
+
+```{r wordcloud_author, warning=FALSE, message=FALSE, fig.width=15, fig.height=15, fig.align='center'}
+word.colors <- c("#F8766D", "#00BFC4")
+title.bg.colors <- c("#F8766D", "#00BFC4")
+author_words %>%
+   dplyr::arrange(dplyr::desc(tf)) %>%
+   dplyr::mutate(word = factor(word, 
+                               levels = rev(unique(word))),
+                 author = factor(gutenberg_id)) %>% 
+   dplyr::group_by(author) %>%
+   dplyr::top_n(15, wt = tf) %>%
+   acast(word ~ gutenberg_id, 
+         value.var = "tf", 
+         fill = 0) %>%
+   comparison.cloud(colors = word.colors,
+                    title.bg.colors = title.bg.colors,
+                    max.words = 100, 
+                    scale = c(10,1),
+                    title.size = 4)
+
+author_words %>%
+   dplyr::arrange(dplyr::desc(tf_idf)) %>%
+   dplyr::mutate(word = factor(word, 
+                               levels = rev(unique(word))),
+                 author = factor(gutenberg_id)) %>% 
+   dplyr::group_by(author) %>%
+   dplyr::top_n(15, wt = tf_idf) %>%
+   acast(word ~ gutenberg_id, 
+         value.var = "tf_idf", 
+         fill = 0) %>%
+   comparison.cloud(colors = word.colors,
+                    title.bg.colors = title.bg.colors,
+                    max.words = 100, 
+                    scale = c(10,1), 
+                    title.size = 4)
+```
+
+<h3>Word Frequency By Topic</h3>
+
+The following word clouds show the words which occur most frequently by topic according to the *tf* and *tf-idf* scores respectively. These plots continue to confirm that the *tidytext* package did an adequate job removing stop words. Additionally, words that intuitevely align to topics appear under each category. For instance, in the *tf* wordcloud under the Animal Tales category we see words such as *wolf*, *dog*, and *cat* appear and in Tales of Magic we see words appear such as *princess* and *king*. Nevertheless, other categories overlap, also showing high term frequency of a subset of these words. In the *tf-idf* wordcloud we see some of the same words appear as the *tf* wordcloud but we also see other words appear which are likely more unique to a certain topic. It is interesting to note that the term *ogre* is not frequent for *tf* or *tf-idf* in the *Tales of the Stupid Ogre* category even though it appeared frequent when calculating *tf-idf* word frequency across authors. 
+
+```{r wordcloud_topic, warning=FALSE, message=FALSE, fig.width=16, fig.height=14, fig.align='center'}
+mypalette<-brewer.pal(9,"Dark2")
+
+topic_words %>%
+   dplyr::arrange(dplyr::desc(tf)) %>%
+        dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+               topic = base::factor(class)) %>% 
+        dplyr::group_by(topic) %>%
+        dplyr::top_n(15, wt = tf) %>%
+  acast(word ~ topic, value.var = "tf", fill = 0) %>%
+  comparison.cloud(colors = mypalette,title.bg.colors = mypalette,
+                   max.words = 100)
+
+topic_words %>%
+   dplyr::arrange(dplyr::desc(tf_idf)) %>%
+        dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+               topic = base::factor(class)) %>% 
+        dplyr::group_by(topic) %>%
+        dplyr::top_n(15, wt = tf_idf) %>%
+  acast(word ~ topic, value.var = "tf_idf", fill = 0) %>%
+  comparison.cloud(colors = mypalette,title.bg.colors = mypalette,
+                   max.words = 100)
+```
+
+<h3> Word Frequency By Story </h3>
+
+Although *tf*, *idf* and *tf-idf* was calculated for all 61 stories, to visualize word frequency by story we will only plot the versions of *Cinderella*, *Sleeping Beauty* and *Little Red Riding-Hood* since these stories are analyzed in greater depth being the case study for both sentiment across stories and sentiment between cultures/ authors. Thus, the following word clouds show words across six stories (the two versions of the three fairy tales) with the highest *tf* and *tf-idf* scores respectively.
+
+Word frequency by fairy tales across this sample identifies some potential issues in the data. For starters, in the *tf-idf* wordcloud the word *grandmother* appears for the Brothers Grimm version of *Little Red Riding-Hood* while *grandmamma* and *grandmother's* appears for Perrault's version of the tale. These variations all refer to *grandmother*, however they are not identified as equivalent. Another insight is the common words unique to each version of the fairy tale *Cinderella*. In general, it appears that word frequency between stories for these three tales did not perform as well as word frequency between authors and topics. Variations of frequent words appear as unique across stories when in reality they are not unique. This project notes this concern but does not assume the tedious task of manually fixing these word variations. Standardizing variations of the same word is noted as a future research extension which would likely improve the accuracy of results.
+
+```{r wordcloud_story, warning=FALSE, message=FALSE, fig.width=25, fig.height=25, fig.align='center'}
+mypalette<-brewer.pal(6,"Dark2")
+
+story_words %>%
+  filter(story %in% c(" LITTLE RED RIDING-HOOD."," LITTLE RED CAP",
+                      "CINDERELLA, OR THE LITTLE GLASS SLIPPER.", " ASCHENPUTTEL",
+                      " THE SLEEPING BEAUTY IN THE WOODS.", " THE SLEEPING BEAUTY")) %>%
+   dplyr::arrange(dplyr::desc(tf)) %>%
+        dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+               story = base::factor(story)) %>% 
+        dplyr::group_by(story) %>%
+        dplyr::top_n(15, wt = tf) %>%
+  acast(word ~ story, value.var = "tf", fill = 0) %>%
+  comparison.cloud(colors = mypalette,title.bg.colors = mypalette,
+                   max.words = 100)
+
+story_words %>%
+  filter(story %in% c(" LITTLE RED RIDING-HOOD."," LITTLE RED CAP",
+                      "CINDERELLA, OR THE LITTLE GLASS SLIPPER.", " ASCHENPUTTEL",
+                      " THE SLEEPING BEAUTY IN THE WOODS.", " THE SLEEPING BEAUTY")) %>%
+   dplyr::arrange(dplyr::desc(tf_idf)) %>%
+        dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+               story = base::factor(story)) %>% 
+        dplyr::group_by(story) %>%
+        dplyr::top_n(15, wt = tf_idf) %>%
+  acast(word ~ story, value.var = "tf_idf", fill = 0) %>%
+  comparison.cloud(colors = mypalette,title.bg.colors = mypalette,
+                   max.words = 100)
+
+```
+
+<h2> Research Question 1: Sentiment by Topic </h2>
+
+While preparing the data, fairy tales were classified according to their Aarne-Thompson-Uther Index. Prior to using this information to find sentiment across topics it is worth noting the number of fairy tales and words within each category. The distribution of fairy tales into each of the 7 categories is summarized in the table below. 
+
+\begin{array}[]
+TTopic                    & Number of Fairy Tales \\
+Animal Tales             & 10       \\
+Tales of Magic           & 37     \\
+Religious Tales          & 0     \\
+Realistic Tales          & 2     \\
+Tales of the Stupid Ogre & 1   \\
+Anecdotes and Jokes      & 9   \\
+Formula Tales            & 1 \\
+Not Assigned             & 3 \\
+\end{array}
+
+The following output shows the number of words within each topic.
+```{r}
+table(FairyTaleCorpus$class)
+```
+
+There is a disparity between the number of fairy tales and words within each topic. This sample bias could cause errors when comparing sentiment across Aarne-Thompson-Uther topics. To mitigate some of the bias, sentiment scores by topic will be standardized to account for the total number of words within each classification.
+
+<h3> Sentiment *BING* Lexicon </h3>
+
+The following code assigns word sentiment to text using the *BING* lexicon. The sentiment by topic is quantified as the proportion of positive and negative words which appear to the total number of words within each topic. The proportion of sentiment by topic is plotted using the *ggplot2* package. 
+
+```{r bing_sentiment_topic, warning=FALSE, message=FALSE, fig.width=18, fig.height=6, fig.align='center'}
+bing_word_counts_byTopic <- FairyTaleCorpus %>%
+  filter(!class %in% "No Category") %>%
+  inner_join(get_sentiments("bing"))%>%
+  inner_join(get_sentiments("bing")) %>%
+  group_by(class) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  ungroup()%>%
+  left_join(topic_total_words)%>%
+  mutate(sentiment_proportion = n/total)
+
+bing_word_counts_byTopic %>%   
+  group_by(class, sentiment)%>%
+  summarise(sentiment_proportion = sum(sentiment_proportion)) %>%
+  ggplot(aes(sentiment, sentiment_proportion, fill = class)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~class, scales = "free_y") +
+  labs(y = "Contribution to sentiment",
+       x = NULL) +
+  coord_flip()
+``` 
+
+From the graph it appears that using *BING* sentiment lexicons, the *Formula Tales* category are proportionally the most negative and least positive.  *Animal Tales* also has a higher distribution of negative sentiment than positive sentiment. *Realistic Tales*, *Tales Of Magic*, *Anecdotes And Jokes* and *Tales of the Stupid Ogre* all appear to have a higher proportion of positive sentiment than negative sentiment. *Tales of Magic*, *Tales of the Stupid Ogre*, and *Anecdote and Joke* categories have similarly distributed positive and negative sentiment proportions.
+
+We can validate these results by viewing how each word contributed to the positive and negative sentiment score across topics. The following code generates a plot to view the top 10 words which had the most significant positive and negative contribution to sentiment. From the plot it appears that the *BING* sentiment lexicon does fairly well for quantifying sentiment across topics. The words that contribute to positive and negative sentiment are sound and there is not any apparant issues.
+
+```{r bing_sentiment_topic_byWord, warning=FALSE, message=FALSE, fig.width=18, fig.height=10, fig.align='center'}
+bing_word_counts_byTopic %>%
+  group_by(sentiment,class) %>%
+  top_n(10) %>%
+  ungroup() %>%  
+  mutate(n = ifelse(sentiment == "negative", -n, n)) %>%
+  mutate(word = reorder(word, n)) %>%
+   ggplot(aes(word, n/total, fill = sentiment)) +
+  geom_col(show.legend = TRUE) +
+  facet_wrap(~class, scales = "free_y") +
+  labs(y = "Contribution to sentiment",
+       x = NULL) +
+  coord_flip()
+```
+
+### *AFINN* Lexicon
+
+The following code assigns word sentiment to text using the *AFINN* lexicon. The sentiment by topic is quantified as the proportion of words in each factor of ranked sentiment, from -5 (negative) to 5 (positive), with respect to the total number of words within each topic. The proportion of sentiment by topic is plotted using the *ggplot2* package.
+
+```{r afinn_sentiment_topic, warning=FALSE, message=FALSE, fig.width=18, fig.height=6, fig.align='center'}
+afinn_word_counts_byTopic <- FairyTaleCorpus %>%
+  filter(!class %in% "No Category") %>%
+  inner_join(get_sentiments("afinn"))%>%
+  group_by(class) %>%
+  count(word, score, sort = TRUE) %>%
+  ungroup()%>%
+  left_join(topic_total_words)%>%
+  mutate(score_proportion = n/total)
+
+afinn_word_counts_byTopic %>%   
+  group_by(class, score)%>%
+  summarise(score_proportion = sum(score_proportion)) %>%
+  ggplot(aes(score, score_proportion, fill = class)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~class, scales = "free_y") +
+  labs(y = "Contribution to sentiment",
+       x = NULL) +
+  coord_flip()
+``` 
+
+From the graph it appears that using *AFINN* sentiment lexicons, the *Formula Tales* category have a larger proportion of strongly ranked negative sentiment compared to the other categories. Using the word contribution to sentiment scores we can see why this occurs. 
+```{r afinn_sentiment_topic_byWord, warning=FALSE, message=FALSE, fig.width=18, fig.height=40, fig.align='center'}
+afinn_word_counts_byTopic %>%
+  group_by(score,class) %>%
+  top_n(10) %>%
+  ungroup() %>%  
+  mutate(n = ifelse(score <0, -n, n)) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n/total, fill = score)) +
+  geom_col(show.legend = TRUE) +
+  facet_wrap(~class, scales = "free_y") +
+  labs(y = "Contribution to sentiment",
+       x = NULL) +
+  coord_flip()
+
+```
+It appears that the words *ass* and *cock*, which refers to a donkey and rooster respectively, are not recognized by the *AFINN* lexicon as being animals and so these word are being ranked highly negative and biasing the results for the *Formula Tales* topic. Removing instances of these words will provide a more accurate representation of sentiment scores using the *AFINN* lexicon. 
+
+```{r afinn_sentiment_topic_2, warning=FALSE, message=FALSE, fig.width=18, fig.height=6, fig.align='center'}
+afinn_word_counts_byTopic <- FairyTaleCorpus %>%
+  filter(!class %in% "No Category") %>%
+  filter(!word %in% c("ass","cock"))%>%
+  inner_join(get_sentiments("afinn"))%>%
+  group_by(class) %>%
+  count(word, score, sort = TRUE) %>%
+  ungroup()%>%
+  left_join(topic_total_words)%>%
+  mutate(score_proportion = n/total)
+
+afinn_word_counts_byTopic %>%   
+  group_by(class, score)%>%
+  summarise(score_proportion = sum(score_proportion)) %>%
+  ggplot(aes(score, score_proportion, fill = class)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~class, scales = "free_y") +
+  labs(y = "Contribution to sentiment",
+       x = NULL) +
+  coord_flip()
+``` 
+Removing these words removed the category of -5 negative words within *Formula Tales* and provides a more accurate representation of sentiment across topics using the *AFINN* lexicon. While it is nice that the *AFINN* lexicon attempts to quantify positivity or negativity of words beyond binary classification, it is likely that the scoring of sentiment is highly subjective and could bias results for words that appear in a different context than the lexicon was trained. This should be noted when using the *AFINN* lexicon in future research questions.
+
+<h3> *NRC* Lexicon </h3>
+
+The following code assigns word sentiment to text using the *NRC* lexicon. The word sentiment is classified as either anticipation, joy, positive, surprise, trust, sadness, negative, disgust, fear, and/or anger. To compare the written sentiment across topics, the proportion of words by topic within each sentiment category is calculated.  
+
+```{r nrc_sentiment_topic, warning=FALSE, message=FALSE, fig.width=18, fig.height=6, fig.align='center'}
+nrc_word_counts_byTopic <- FairyTaleCorpus %>%
+  filter(!class %in% "No Category") %>%
+  filter(!word %in% c("cock","ass")) %>%
+  inner_join(get_sentiments("nrc"))%>%
+  group_by(class) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  ungroup()%>%
+  mutate(sentiment = reorder(sentiment, n)) %>%
+  left_join(topic_total_words)
+
+nrc_word_counts_byTopic %>%
+  ggplot(aes(sentiment, n/total, fill=class))+
+  geom_col(show.legend = FALSE)+
+  facet_wrap(~class, ncol = 3, scales = "free")+
+  coord_flip()
+```
+
+From the plot above we see different proportions for expressed sentiment across topics but similar trends. For all topics the *NRC* lexicon finds a higher proportion of *positive* than *negative* words. Additionally, it appears that the *Animal Tales* category has the highest proportion of *negative* sentiment. The following code generates a plot to see which words contribute to the proportions of each sentiment by category.
+
+```{r nrc_sentiment_topic_byWord, warning=FALSE, message=FALSE, fig.width=16, fig.height=100, fig.align='center'}
+nrc_word_counts_byTopic %>%
+  group_by(sentiment,class) %>%
+  top_n(10) %>% 
+  mutate(n = ifelse(sentiment %in% c("sadness","negative","disgust",
+                                     "fear","anger"), -n, n)) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n/total, fill = sentiment)) +
+  geom_col(show.legend = TRUE) +
+  facet_wrap(~class, scales = "free_y") +
+  labs(y = "Contribution to sentiment",
+       x = NULL) +
+  coord_flip()
+```
+From the graph it appears that words can be categorized into multiple sentiment categories. Since the sentiment of a word is likely context dependent it is possible that further subdivision of word sentiment beyond positive and negative can also introduce more bias. Despite the subjectivity and possible bias, the ability to determine emotions in fairy tales by categorizing sentiment beyond a binary classification seems useful. Thus, if using this lexicon to categorize sentiment extra caution should be taken to limit the introduction of additional subjectivity and bias.  
+
+<h2> RESEARCH QUESTION 2: Sentiment Throughout Story </h2>
+
+In the first research question sentiment was aggregated across topics. Alternatively, we can aggregate sentiment over sentences within a story. By aggregating sentiment over sentences we should be able to identify critical moments of emotion throughout a story. Ideally, this analysis will reveal a common trend or pattern that exists across fairy tales. While it is possible to run this analysis for all 61 stories, a subset of six (three fairy tales of two authors), is used as case study. The fairy tales selected are each authors versions of *Cinderella*, *Snow White*, and *Little Red Riding Hood*. Viewing this subset of fairy tales will both provide insight towards sentiment change throughout a story and help towards identifying differences in versions of the fairy tales between authors/ cultures.
+
+<h3>*BING* Lexicon</h3>
+
+The following code aggregates sentiment across sentences using the *BING*, *AFINN*, and *NRC* lexicons and standardizes it based on the number of words in each sentence. For the *NRC* lexicons only the positive and negative sentiment categories are used.
+```{r calc_sentiment_story, warning=FALSE, message=FALSE, fig.width=18, fig.height=20, fig.align='center'}
+#Calculate Bing Sentiment
+story_sentiment_bing <- FairyTaleCorpus %>%
+  filter(story %in% c(" LITTLE RED RIDING-HOOD."," LITTLE RED CAP",
+                      "CINDERELLA, OR THE LITTLE GLASS SLIPPER.", " ASCHENPUTTEL",
+                      " THE SLEEPING BEAUTY IN THE WOODS.", " THE SLEEPING BEAUTY")) %>%
+  inner_join(get_sentiments("bing"))%>%
+  count(story, index = s_index, sentiment, SentenceTotal, sentence) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive-negative)/SentenceTotal) %>%
+  mutate(method = "bing")
+
+story_sentiment_bing <- story_sentiment_bing[,-(5:6)]
+
+#Calculate AFINN Sentiment
+story_sentiment_afinn <- FairyTaleCorpus %>%
+  filter(story %in% c(" LITTLE RED RIDING-HOOD."," LITTLE RED CAP",
+                      "CINDERELLA, OR THE LITTLE GLASS SLIPPER.", " ASCHENPUTTEL",
+                      " THE SLEEPING BEAUTY IN THE WOODS.", " THE SLEEPING BEAUTY")) %>%
+  inner_join(get_sentiments("afinn"))%>%
+  count(story, index = s_index, score, SentenceTotal, sentence)
+
+story_sentiment_afinn <- story_sentiment_afinn %>%
+  group_by(story,index, SentenceTotal, sentence)%>%
+  summarize(sentiment = sum(score))%>%
+  mutate(sentiment = sentiment/SentenceTotal)%>%
+  ungroup()%>%
+  mutate(method = "afinn")
+
+# Calculate NRC Sentiment
+story_sentiment_nrc <- FairyTaleCorpus %>%
+  filter(story %in% c(" LITTLE RED RIDING-HOOD."," LITTLE RED CAP",
+                      "CINDERELLA, OR THE LITTLE GLASS SLIPPER.", " ASCHENPUTTEL",
+                      " THE SLEEPING BEAUTY IN THE WOODS.", " THE SLEEPING BEAUTY")) %>%
+  inner_join(get_sentiments("nrc"))%>%
+  filter(sentiment %in% c("positive","negative"))%>%
+  count(story, index = s_index, sentiment, SentenceTotal, sentence) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive-negative)/SentenceTotal) %>%
+  mutate(method = "nrc")
+
+story_sentiment_nrc <- story_sentiment_nrc[,-(5:6)]
+
+```
+
+```{r plot_sentiment_story, warning=FALSE, message=FALSE, fig.width=25, fig.height=20, fig.align='center'}
+
+x <- rbind(story_sentiment_bing,story_sentiment_afinn, story_sentiment_nrc)
+
+
+ggplot(data = x, mapping = aes(x = index, y = sentiment, fill = method)) +
+    geom_bar(alpha = 0.8, stat = "identity", show.legend = FALSE) +
+    facet_wrap(facets = ~ story+method, ncol = 3, scales = "free_x")
+
+```
+
+Generally the sentiment trends throughout stories seems consistent across lexicons. Neverthless, it appears that the *AFINN* lexicon may be inflating the sentiment scores of some sentences compared to the *bing* and *nrc* lexicons. To view which sentences the sentiment scores are being inflated we can view the top scoring positive and negative sentences with the *AFINN* lexicon.
+
+The following code sorts the sentence sentiment and outputs the six most negative sentences according to the *AFINN* lexicon. It appears that the *AFINN* lexicon is biasing the results towards short sentences such as "cried the grandmother" and "oh no!". 
+
+```{r}
+story_sentiment_afinn %>%
+  group_by(method)%>%
+  arrange(sentiment)%>%
+  head()
+```
+
+The same issue occurs with positive sentences. The top 3 scoring sentences from the *afinn* method is just the exclamation "ha!" Based on these results I do not recommend the *AFINN* lexicon for calculating sentiment across sentences in fairy tales.
+```{r}
+story_sentiment_afinn %>%
+  arrange(desc(sentiment))%>%
+  head()
+```
+
+The *BING* and *NRC* lexicons are far superior for scoring negative sentiment across sentences. The top negative results more accurately reflect critical moments of emotion within the text.
+```{r}
+story_sentiment_bing %>%
+  arrange(sentiment)%>%
+  head()
+
+story_sentiment_nrc %>%
+  arrange(sentiment)%>%
+  head()
+
+```
+
+Reviewing the highest scoring positive words it appears that *BING* outperformed both the *AFINN* and *NRC* lexicons. The *NRC* lexicon does better than the *AFINN* lexicon for classifying positive sentiment but it still appears that short sentences without significant meaning are biased.  
+```{r}
+story_sentiment_bing %>%
+  arrange(desc(sentiment))%>%
+  head()
+
+story_sentiment_nrc %>%
+  arrange(desc(sentiment))%>%
+  head()
+```
+
+From visual inspection it seems like quantifying sentiment across sentences does fairly well to show how sentiment changes throughout a story but there are not any distinct trends that appear across multiple stories. 
+
+Interestingly, different versions of the same fairy tale end with different sentiment. Identifying the last sentence of each fairy tale can validate whether this insight has significance. 
+```{r}
+story_sentiment_bing %>%
+  group_by(story) %>%
+  filter(index == max(index)) %>%
+  arrange(story)
+```
+
+From the last sentences of these six stories we can easily identify the ending sentiment of the fairy tale and how it differs across versions of the same fairy tale. This leads to the third research question concerning how sentiment varies across cultural versions of the same story.  
+
+<h2> RESEARCH QUESTION 3: Sentiment Across Author/ Cultural Versions of Fairy Tales </h2>
+
+From the second research question we identified that in *Cinderella*, *Little Red Riding Hood* and *Sleeping Beauty* the  sentiment of the last sentence differed between versions. Interestingly, the version of the fairy tale with the most positive sentiment of the final sentence aligns with the version of the story that was adapted by Disney (i.e. Walt Disney modeled Sleeping Beauty from the Brothers Grimm version and Cinderella from Charles Perrault's version [10] and both of these versions had a final sentence with more positive sentiment then their counterparts.) This follows intuition since Disney fairy tales are known for having happy endings. From this insight, we conjecture that the concluding sentences of a fairy tale can be a good representation for the overall sentiment of a story.
+
+To further explore sentiment of fairy tales across authors/ cultures we quantify the overall sentiment of each story for the Brothers Grimm and Perrault. Given the comparison of the three lexicons from the first two research questions we limit this analysis to the *BING* lexicon which was found to be more accurate than the other two lexicons. 
+
+```{r VersionComparison, echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6, fig.align='center'}
+story_words <- FairyTaleCorpus %>%
+  filter(story %in% c(" LITTLE RED RIDING-HOOD."," LITTLE RED CAP",
+                      "CINDERELLA, OR THE LITTLE GLASS SLIPPER.", " ASCHENPUTTEL",
+                      " THE SLEEPING BEAUTY IN THE WOODS.", " THE SLEEPING BEAUTY")) %>%
+  count(gutenberg_id,story, word, sort = TRUE) %>%
+  dplyr::anti_join(stop_words) %>%
+  ungroup()
+
+story_total_words <- story_words %>%
+        group_by(story) %>%
+        summarise(total = sum(n))
+
+story_words <- left_join(story_words, story_total_words)
+
+story_words %>%
+  inner_join(get_sentiments("bing"))%>%
+  ggplot(aes(sentiment, n/total, fill=gutenberg_id))+
+  geom_col(show.legend = TRUE)+
+  facet_wrap(~story, ncol = 3, scales = "free")+
+  coord_flip()
+
+
+```
+
+From this analysis it appears as though a similar pattern in the proportion of positive and negative sentiment occurs between versions of *Little Red Riding Hood*. However, there is a difference in the sentiment proportions across versions of *Cinderella* and *Sleeping Beauty*. As expected, Charles Perrault's version of *Cinderella* is more positive than the Brothers' Grimm version. In *Sleeping Beauty* the proportion of sentiment is contrary to what was expected. The Brothers Grimm version (which was used as a template for Disney's version and had more positive sentiment in the final sentence) is overall more negative and less positive than the version by Perrault.   
+
+Quantifying the sentiment by author we see that overall, the Brothers Grimm fairy tales tend to be more negative than Charles Perrault's fairy tales which reconfirms previous findings.
+
+```{r AuthorComparison, echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6, fig.align='center'}
+author_words2 <- FairyTaleCorpus %>%
+        filter(story %in% c(" LITTLE RED RIDING-HOOD."," LITTLE RED CAP",
+                      "CINDERELLA, OR THE LITTLE GLASS SLIPPER.", " ASCHENPUTTEL",
+                      " THE SLEEPING BEAUTY IN THE WOODS.", " THE SLEEPING BEAUTY")) %>%
+        count(gutenberg_id, word, sort = TRUE) %>%
+        dplyr::anti_join(stop_words) %>%
+        ungroup()
+
+author_total_words2 <- author_words2 %>%
+        group_by(gutenberg_id) %>%
+        summarise(total = sum(n))
+
+
+
+author_words2 <- left_join(author_words2, author_total_words2)
+
+author_words2 %>%
+  inner_join(get_sentiments("bing"))%>%
+  ggplot(aes(sentiment, n/total, fill=gutenberg_id))+
+  geom_col(show.legend = TRUE)+
+  facet_wrap(~gutenberg_id, ncol = 3, scales = "free")+
+  coord_flip()
+
+
+```
+
+<center><h1>Findings and Conclusions</h1></center>
+
+Overall sentiment analysis for fairy tales proved fruitful. This project seperated text by Aarne-Thomspon-Uther categories, sentences within stories, and by author to explore how sentiment in fairy tales vary across topics, cultures, and throughout a story. Three lexicons, *AFINN*,  *BING*, and *NRC* were compared for assigning word sentiment. The results from the three research questions indicate that the *BING* sentiment lexicon produced the most accurate results. Sentiment analysis across topics identified that the proportion of sentiment between topics only varies slightly and that many topics have similar trends between positive and negative sentiment. Plotting the distribution of sentiment across sentences we found that the *BING* lexicon worked best and that we were able to identify important sentences and moments in the story with regard to emotion. Even though a common trend across stories was not seen we were able to see how sentiment varied throughout a story and found that the sentiment in a final sentence of a fairy tale differs between cultural versions. Finally, the sentiment analysis across cultures showed that the Brother's Grimm tend to be more negative than Charles Perrault and that this was apparant throughout the cultural versions of *Cinderella* and *Sleeping Beauty* but not *Little Red Riding Hood*. 
+
+<center><h1>Future Work</h1></center>
+
+There is ample opportunity to expand upon the research from this project. Based on the findings from this project we recommend the following extensions:
+
+- Incorporate topic specific sentiment lexicons that are more accurate for 18th and 19th century fairy tales.
+- Consider an alternative methodology for quantifying sentiment that is not dependent on the use of lexicons.
+- Increase the sample of text in the corpus
+- Compare sentence sentiment to document summmarization to see how well the absolute value of standardized sentiment counts can highlight key sentences.  
+
+<center><h1>References</h1></center>
+
+- [1] https://arxiv.org/pdf/1309.5909.pdf
+- [2] https://www.l2f.inesc-id.pt/w/Fairy_tale_corpus
+- [3] https://www.gutenberg.org/
+- [4] Jurafsky, Dan, and James H. Martin. Speech and Language Processing: an Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition. Prentice Hall, 2008.
+- [5] https://www.tidytextmining.com/sentiment.html
+- [6] http://www.mftd.org/index.php?action=atu
+- [7] https://www.grimmstories.com/en/grimm_fairy-tales/classification
+- [8] http://changingminds.org/disciplines/storytelling/plots/propp/propp.htm
+- [9] Major Jason Freels - Class Notes on tf-idf
+- [10] https://mythcreants.com/blog/the-origins-of-snow-white-cinderella-and-sleeping-beauty/
+
