@@ -1,0 +1,886 @@
+(Slip Opinion)
+
+OCTOBER TERM, 2017
+
+1
+
+Syllabus
+NOTE: Where it is feasible, a syllabus (headnote) will be released, as is
+being done in connection with this case, at the time the opinion is issued.
+The syllabus constitutes no part of the opinion of the Court but has been
+prepared by the Reporter of Decisions for the convenience of the reader.
+See United States v. Detroit Timber & Lumber Co., 200 U. S. 321, 337.
+
+SUPREME COURT OF THE UNITED STATES
+Syllabus
+
+U. S. BANK N. A., TRUSTEE, BY AND THROUGH
+CWCAPITAL ASSET MANAGEMENT LLC v. VILLAGE
+AT LAKERIDGE, LLC
+CERTIORARI TO THE UNITED STATES COURT OF APPEALS FOR
+THE NINTH CIRCUIT
+No. 15–1509. Argued October 31, 2017—Decided March 5, 2018
+Respondent Lakeridge is a corporate entity with a single owner, MBP
+Equity Partners. When Lakeridge filed for Chapter 11 bankruptcy, it
+had a pair of substantial debts: It owed petitioner U. S. Bank over
+$10 million and MBP another $2.76 million. Lakeridge submitted a
+reorganization plan, proposing to impair the interests of both U. S.
+Bank and MBP. U. S. Bank refused the offer, thus blocking Lakeridge’s option for reorganization through a fully consensual plan.
+See 11 U. S. C. §1129(a)(8). Lakeridge then turned to the so-called
+“cramdown” plan option for imposing a plan impairing the interests
+of a non-consenting class of creditors. See §1129(b). Among the prerequisites for judicial approval of such a plan is that another impaired class of creditors has consented to it. See §1129(a)(10). But
+crucially here, the consent of a creditor who is also an “insider” of the
+debtor does not count for that purpose. Ibid. The Bankruptcy Code’s
+definition of an insider “includes” any director, officer, or “person in
+control” of the entity. §101(31)(B)(i)–(iii). Courts have devised tests
+for identifying other, so-called “non-statutory” insiders, focusing, in
+whole or in part, on whether a person’s transactions with the debtor
+were at arm’s length.
+Here, MBP (an insider of Lakeridge) could not provide the partial
+agreement needed for a cramdown plan, and Lakeridge’s reorganization was thus impeded. MBP sought to transfer its claim against
+Lakeridge to a non-insider who could agree to the cramdown plan.
+Kathleen Bartlett, an MBP board member and Lakeridge officer, offered MBP’s claim to Robert Rabkin, a retired surgeon, for $5,000.
+Rabkin purchased the claim and consented to Lakeridge’s proposed
+
+2
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+Syllabus
+
+reorganization. U. S. Bank objected, arguing that Rabkin was a nonstatutory insider because he had a “romantic” relationship with Bartlett and the purchase was not an arm’s-length transaction. The
+Bankruptcy Court rejected U. S. Bank’s argument. The Ninth Circuit affirmed. Viewing the Bankruptcy Court’s decision as one based
+on a finding that the relevant transaction was conducted at arm’s
+length, the Ninth Circuit held that that finding was entitled to clearerror review, and could not be reversed under that deferential standard.
+Held: The Ninth Circuit was right to review the Bankruptcy Court’s
+determination for clear error (rather than de novo). At the heart of
+this case is a so-called “mixed question” of law and fact—whether the
+Bankruptcy Court’s findings of fact satisfy the legal test chosen for
+conferring non-statutory insider status. U. S. Bank contends that
+the Bankruptcy Court’s resolution of this mixed question must be reviewed de novo, while Lakeridge (joined by the Federal Government)
+argues for a clear-error standard.
+For all their differences, both parties rightly point to the same query: What is the nature of the mixed question here and which kind of
+court (bankruptcy or appellate) is better suited to resolve it? Mixed
+questions are not all alike. Some require courts to expound on the
+law, and should typically be reviewed de novo. Others immerse
+courts in case-specific factual issues, and should usually be reviewed
+with deference. In short, the standard of review for a mixed question
+depends on whether answering it entails primarily legal or factual
+work.
+Here, the Bankruptcy Court confronted the question whether the
+basic facts it had discovered (concerning Rabkin’s relationships, motivations, etc.) were sufficient to make Rabkin a non-statutory insider. Using the transactional prong of the Ninth Circuit’s legal test for
+identifying such insiders (whether the transaction was conducted at
+arm’s length, i.e., as though the two parties were strangers) the
+mixed question became: Given all the basic facts found, was Rabkin’s
+purchase of MBP’s claim conducted as if the two were strangers to
+each other? That is about as factual sounding as any mixed question
+gets. Such an inquiry primarily belongs in the court that has presided over the presentation of evidence, that has heard all the witnesses, and that has both the closest and deepest understanding of the
+record—i.e., the bankruptcy court. One can arrive at the same point
+by asking how much legal work applying the arm’s-length test requires. It is precious little—as shown by judicial opinions applying
+the familiar legal term without further elaboration. Appellate review
+of the arm’s-length issue—even if conducted de novo—will not much
+clarify legal principles or provide guidance to other courts resolving
+
+Cite as: 583 U. S. ____ (2018)
+
+3
+
+Syllabus
+other disputes. The issue is therefore one that primarily rests with a
+bankruptcy court, subject only to review for clear error. Pp. 5–11.
+814 F. 3d 993, affirmed.
+KAGAN, J., delivered the opinion for a unanimous Court. KENNEDY, J.,
+filed a concurring opinion. SOTOMAYOR, J., filed a concurring opinion,
+in which KENNEDY, THOMAS, and GORSUCH, JJ., joined.
+
+Cite as: 583 U. S. ____ (2018)
+
+1
+
+Opinion of the Court
+NOTICE: This opinion is subject to formal revision before publication in the
+preliminary print of the United States Reports. Readers are requested to
+notify the Reporter of Decisions, Supreme Court of the United States, Wash­
+ington, D. C. 20543, of any typographical or other formal errors, in order
+that corrections may be made before the preliminary print goes to press.
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1509
+_________________
+
+U.S. BANK NATIONAL ASSOCIATION, TRUSTEE, BY
+AND THROUGH CWCAPITAL ASSET MANAGEMENT
+LLC, PETITIONER v. THE VILLAGE AT
+LAKERIDGE, LLC
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[March 5, 2018]
+
+JUSTICE KAGAN delivered the opinion of the Court.
+The Bankruptcy Code places various restrictions on
+anyone who qualifies as an “insider” of a debtor. The
+statutory definition of that term lists a set of persons
+related to the debtor in particular ways. See 11 U. S. C.
+§101(31). Courts have additionally recognized as insiders
+some persons not on that list—commonly known as “non­
+statutory insiders.” The conferral of that status often
+turns on whether the person’s transactions with the debtor
+(or another of its insiders) were at arm’s length. In this
+case, we address how an appellate court should review
+that kind of determination: de novo or for clear error? We
+hold that a clear-error standard should apply.
+I
+Chapter 11 of the Bankruptcy Code enables a debtor
+company to reorganize its business under a courtapproved plan governing the distribution of assets to
+creditors. See 11 U. S. C. §1101 et seq. The plan divides
+claims against the debtor into discrete “classes” and speci­
+
+2
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+Opinion of the Court
+
+fies the “treatment” each class will receive. §1123; see
+§1122. Usually, a bankruptcy court may approve such a
+plan only if every affected class of creditors agrees to its
+terms. See §1129(a)(8). But in certain circumstances, the
+court may confirm what is known as a “cramdown” plan—
+that is, a plan impairing the interests of some nonconsenting class. See §1129(b). Among the prerequisites
+for judicial approval of a cramdown plan is that another
+impaired class of creditors has consented to it. See
+§1129(a)(10). But crucially for this case, the consent of a
+creditor who is also an “insider” of the debtor does not
+count for that purpose. See ibid. (requiring “at least one”
+impaired class to have “accepted the plan, determined with­
+out including any acceptance of the plan by any insider”).
+The Code enumerates certain insiders, but courts have
+added to that number. According to the Code’s definitional section, an insider of a corporate debtor “includes” any
+director, officer, or “person in control” of the entity.
+§§101(31)(B)(i)–(iii). Because of the word “includes” in
+that section, courts have long viewed its list of insiders as
+non-exhaustive. See §102(3) (stating as one of the Code’s
+“[r]ules of construction” that “ ‘includes’ and ‘including’ are
+not limiting”); 2 A. Resnick & H. Sommer, Collier on
+Bankruptcy ¶101.31, p. 101–142 (16th ed. 2016) (discuss­
+ing cases). Accordingly, courts have devised tests for
+identifying other, so-called “non-statutory” insiders. The
+decisions are not entirely uniform, but many focus, in
+whole or in part, on whether a person’s “transaction of
+business with the debtor is not at arm’s length.” Ibid.
+(quoting In re U. S. Medical, Inc., 531 F. 3d 1272, 1280
+(CA10 2008)).
+This case came about because the Code’s list of insiders
+placed an obstacle in the way of respondent Lakeridge’s
+attempt to reorganize under Chapter 11. Lakeridge is a
+corporate entity which, at all relevant times, had a single
+
+Cite as: 583 U. S. ____ (2018)
+
+3
+
+Opinion of the Court
+
+owner, MBP Equity Partners, and a pair of substantial
+debts. The company owed petitioner U. S. Bank over $10
+million for the balance due on a loan. And it owed MBP
+another $2.76 million. In 2011, Lakeridge filed for Chap­
+ter 11 bankruptcy. The reorganization plan it submitted
+placed its two creditors in separate classes and proposed
+to impair both of their interests. U. S. Bank refused that
+offer, thus taking a fully consensual plan off the table.
+But likewise, a cramdown plan based only on MBP’s con­
+sent could not go forward. Recall that an insider cannot
+provide the partial agreement needed for a cramdown
+plan. See supra, at 2; §1129(a)(10). And MBP was the
+consummate insider: It owned Lakeridge and so was—
+according to the Code’s definition—“in control” of the
+debtor. §101(31)(B)(iii). The path to a successful reorgan­
+ization was thus impeded, and Lakeridge was faced with
+liquidation. Unless . . .
+Unless MBP could transfer its claim against Lakeridge
+to a non-insider who would then agree to the reorganiza­
+tion plan. So that was what MBP attempted. Kathleen
+Bartlett, a member of MBP’s board and an officer of Lakeridge, approached Robert Rabkin, a retired surgeon, and
+offered to sell him MBP’s $2.76 million claim for $5,000.
+Rabkin took the deal. And as the new holder of MBP’s old
+loan, he consented to Lakeridge’s proposed reorganization.
+As long as he was not himself an insider, Rabkin’s agree­
+ment would satisfy one of the prerequisites for a
+cramdown plan. See §1129(a)(10); supra, at 2. That
+would bring Lakeridge a large step closer to reorganizing
+its business over U. S. Bank’s objection.
+Hence commenced this litigation about whether Rabkin,
+too, was an insider. U. S. Bank argued that he qualified
+as a non-statutory insider because he had a “romantic”
+relationship with Bartlett and his purchase of MBP’s loan
+“was not an arm’s-length transaction.” Motion to Desig­
+nate Claim of Robert Rabkin as an Insider Claim in No.
+
+4
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+Opinion of the Court
+
+11–51994 (Bkrtcy. Ct. Nev.), Doc. 194, p. 11 (Motion).1 At
+an evidentiary hearing, both Rabkin and Bartlett testified
+that their relationship was indeed “romantic.” App. 128,
+142–143.2 But the Bankruptcy Court still rejected U. S.
+Bank’s view that Rabkin was a non-statutory insider. See
+App. to Pet. for Cert. 66a. The court found that Rabkin
+purchased the MBP claim as a “speculative investment”
+for which he did adequate due diligence. Id., at 67a. And
+it noted that Rabkin and Bartlett, for all their dating,
+lived in separate homes and managed their finances inde­
+pendently. See id., at 66a.
+The Court of Appeals for the Ninth Circuit affirmed by a
+divided vote. According to the court, a creditor qualifies as
+a non-statutory insider if two conditions are met: “(1) the
+closeness of its relationship with the debtor is comparable
+to that of the enumerated insider classifications in [the
+Code], and (2) the relevant transaction is negotiated at
+less than arm’s length.” In re Village at Lakeridge, LLC,
+814 F. 3d 993, 1001 (2016). The majority viewed the
+Bankruptcy Court’s decision as based on a finding that the
+relevant transaction here (Rabkin’s purchase of MBP’s
+claim) “was conducted at arm’s length.” Id., at 1003, n. 15.
+That finding, the majority held, was entitled to clear-error
+review, and could not be reversed under that deferential
+——————
+1 U. S. Bank also contended that Rabkin automatically inherited
+MBP’s statutory insider status when he purchased its loan. See Mo­
+tion, p. 10 (“[A]n entity which acquires a claim steps into the shoes of
+that claimant” (internal quotation marks omitted)). We did not grant
+review of that question and therefore do not address it in this opinion.
+2 Perhaps Bartlett expressed some ambivalence on that score. The
+transcript of her direct examination reads:
+“Q. Okay. And I think the term has been a romantic relationship—
+you have a romantic relationship?
+A. I guess.
+Q. Why do you say I guess?
+A. Well, no—yes.” App. 142–143.
+One hopes Rabkin was not listening.
+
+Cite as: 583 U. S. ____ (2018)
+
+5
+
+Opinion of the Court
+
+standard. See id., at 1001–1003. Rabkin’s consent could
+therefore support the cramdown plan. See id., at 1003.
+Judge Clifton dissented. He would have applied de novo
+review, but in any event thought the Bankruptcy Court
+committed clear error in declining to classify Rabkin as an
+insider. See id., at 1006.
+This Court granted certiorari to decide a single question:
+Whether the Ninth Circuit was right to review for clear
+error (rather than de novo) the Bankruptcy Court’s deter­
+mination that Rabkin does not qualify as a non-statutory
+insider because he purchased MBP’s claim in an arm’s­
+length transaction. 580 U. S. ___ (2017).
+II
+To decide whether a particular creditor is a nonstatutory insider, a bankruptcy judge must tackle three
+kinds of issues—the first purely legal, the next purely
+factual, the last a combination of the other two. And to
+assess the judge’s decision, an appellate court must con­
+sider all its component parts, each under the appropriate
+standard of review. In this case, only the standard for the
+final, mixed question is contested. But to resolve that
+dispute, we begin by describing the unalloyed legal and
+factual questions that both kinds of courts have to address
+along the way, as well as the answers that the courts
+below provided.
+Initially, a bankruptcy court must settle on a legal test
+to determine whether someone is a non-statutory insider
+(again, a person who should be treated as an insider even
+though he is not listed in the Bankruptcy Code). But that
+choice of standard really resides with the next court: As all
+parties agree, an appellate panel reviews such a legal
+conclusion without the slightest deference. See Highmark
+Inc. v. Allcare Health Management. System, Inc., 572 U. S.
+___, ___ (2014) (slip op., at 4) (“Traditionally, decisions on
+questions of law are reviewable de novo” (internal quota­
+
+6
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+Opinion of the Court
+
+tion marks omitted)); Tr. of Oral Arg. 29–30, 33. The
+Ninth Circuit here, as noted earlier, endorsed a two-part
+test for non-statutory insider status, asking whether the
+person’s relationship with the debtor was similar to those
+of listed insiders and whether the relevant prior transac­
+tion was at “less than arm’s length.” 814 F. 3d, at 1001;
+see supra, at 4–5. And the Ninth Circuit held that the
+Bankruptcy Court had used just that standard—more
+specifically, that it had denied insider status under the
+test’s second, transactional prong. See 814 F. 3d, at 1002–
+1003, and n. 15; supra, at 4–5. We do not address the
+correctness of the Ninth Circuit’s legal test; indeed, we
+specifically rejected U. S. Bank’s request to include that
+question in our grant of certiorari. See 580 U. S. ___; Pet.
+for Cert. i. We simply take that test as a given in deciding
+the standard-of-review issue we chose to resolve.
+Along with adopting a legal standard, a bankruptcy
+court evaluating insider status must make findings of
+what we have called “basic” or “historical” fact—
+addressing questions of who did what, when or where, how
+or why. Thompson v. Keohane, 516 U. S. 99, 111 (1995).
+The set of relevant historical facts will of course depend on
+the legal test used: So under the Ninth Circuit’s test, the
+facts found may relate to the attributes of a particular
+relationship or the circumstances and terms of a prior
+transaction. By well-settled rule, such factual findings are
+reviewable only for clear error—in other words, with a
+serious thumb on the scale for the bankruptcy court. See
+Fed. Rule Civ. Proc. 52(a)(6) (clear-error standard); Fed.
+Rules Bkrtcy. Proc. 7052 and 9014(c) (applying Rule 52 to
+various bankruptcy proceedings). Accordingly, as all
+parties again agree, the Ninth Circuit was right to review
+deferentially the Bankruptcy Court’s findings about Rab­
+kin’s relationship with Bartlett (e.g., that they did not
+“cohabitate” or pay each other’s “bills or living expenses”)
+and his motives for purchasing MBP’s claim (e.g., to make
+
+Cite as: 583 U. S. ____ (2018)
+
+7
+
+Opinion of the Court
+
+a “speculative investment”). App. to Pet. for Cert. 66a–
+67a; see Tr. of Oral Arg. 8, 39.
+What remains for a bankruptcy court, after all that, is to
+determine whether the historical facts found satisfy the
+legal test chosen for conferring non-statutory insider
+status. We here arrive at the so-called “mixed question” of
+law and fact at the heart of this case. Pullman-Standard
+v. Swint, 456 U. S. 273, 289, n. 19 (1982) (A mixed ques­
+tion asks whether “the historical facts . . . satisfy the
+statutory standard, or to put it another way, whether the
+rule of law as applied to the established facts is or is not
+violated”). As already described, the Bankruptcy Court
+below had found a set of basic facts about Rabkin; and it
+had adopted a legal test for non-statutory insider status
+that requires (as one of its two prongs) a less-than-arm’s­
+length transaction. See supra, at 4, 6. As its last move,
+the court compared the one to the other—and determined
+that the facts found did not show the kind of preferential
+transaction necessary to turn a creditor into a nonstatutory insider. For that decisive determination, what
+standard of review should apply?
+The parties, after traveling so far together, part ways at
+this crucial point. U. S. Bank contends that the Bank­
+ruptcy Court’s resolution of the mixed question must be
+reviewed de novo. That is because, U. S. Bank claims,
+application of the Ninth Circuit’s “very general” standard
+to a set of basic facts requires the further elaboration of
+legal principles—a task primarily for appellate courts.
+Brief for Petitioner 35; see id., at 53 (The “open-ended
+nature of the Ninth Circuit’s standard” compels courts to
+“develop the norms and criteria they deem most appropri­
+ate” and so should be viewed as “quasi-legal”). By con­
+trast, Lakeridge (joined by the Federal Government as
+amicus curiae) thinks a clear-error standard should apply.
+In Lakeridge’s view, the ultimate law-application question
+is all “bound up with the case-specific details of the highly
+
+8
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+Opinion of the Court
+
+factual circumstances below”—and thus falls naturally
+within the domain of bankruptcy courts. Brief for Re­
+spondent 17; see Brief for United States 21 (similarly
+describing the mixed question as “fact-intensive”).
+For all their differences, both parties rightly point us to
+the same query: What is the nature of the mixed question
+here and which kind of court (bankruptcy or appellate) is
+better suited to resolve it? See Miller v. Fenton, 474 U. S.
+104, 114 (1985) (When an “issue falls somewhere between
+a pristine legal standard and a simple historical fact,” the
+standard of review often reflects which “judicial actor is
+better positioned” to make the decision).3 Mixed questions
+are not all alike. As U. S. Bank suggests, some require
+courts to expound on the law, particularly by amplifying or
+elaborating on a broad legal standard. When that is so—
+when applying the law involves developing auxiliary legal
+principles of use in other cases—appellate courts should
+typically review a decision de novo. See Salve Regina
+College v. Russell, 499 U. S. 225, 231–233 (1991) (discuss­
+ing appellate courts’ “institutional advantages” in giving
+legal guidance). But as Lakeridge replies, other mixed
+questions immerse courts in case-specific factual issues—
+compelling them to marshal and weigh evidence, make
+credibility judgments, and otherwise address what we
+have (emphatically if a tad redundantly) called “multifari­
+ous, fleeting, special, narrow facts that utterly resist
+generalization.” Pierce v. Underwood, 487 U. S. 552, 561–
+562 (1988) (internal quotation marks omitted). And when
+that is so, appellate courts should usually review a deci­
+sion with deference. See Anderson v. Bessemer City, 470
+U. S. 564, 574–576 (1985) (discussing trial courts’ “superi­
+——————
+3 In selecting standards of review, our decisions have also asked
+whether a “long history of appellate practice” supplies the answer.
+Pierce v. Underwood, 487 U. S. 552, 558 (1988). But we cannot find
+anything resembling a “historical tradition” to provide a standard for
+reviewing the mixed question here. Ibid.
+
+Cite as: 583 U. S. ____ (2018)
+
+9
+
+Opinion of the Court
+
+ority” in resolving such issues).4 In short, the standard of
+review for a mixed question all depends—on whether
+answering it entails primarily legal or factual work.
+Now again, recall the mixed question the Bankruptcy
+Court confronted in this case. See supra, at 7. At a high
+level of generality, the court needed to determine whether
+the basic facts it had discovered (concerning Rabkin’s
+relationships, motivations, and so on) were sufficient to
+make Rabkin a non-statutory insider. But the court’s use
+of the Ninth Circuit’s legal test for identifying such in­
+siders reduced that question to a more particular one:
+whether the facts found showed an arm’s-length transaction
+between Rabkin and MBP. See ibid.5 And still, we can
+further delineate that issue just by plugging in the widely
+(universally?) understood definition of an arm’s-length
+transaction: a transaction conducted as though the two
+parties were strangers. See, e.g., Black’s Law Dictionary
+1726 (10th ed. 2014). Thus the mixed question becomes:
+——————
+4 Usually
+
+but not always: In the constitutional realm, for example, the
+calculus changes. There, we have often held that the role of appellate
+courts “in marking out the limits of [a] standard through the process of
+case-by-case adjudication” favors de novo review even when answering
+a mixed question primarily involves plunging into a factual record.
+Bose Corp. v. Consumers Union of United States, Inc., 466 U. S. 485,
+503 (1984); see Ornelas v. United States, 517 U. S. 690, 697 (1996)
+(reasonable suspicion and probable cause under the Fourth Amend­
+ment); Hurley v. Irish-American Gay, Lesbian and Bisexual Group of
+Boston, Inc., 515 U. S. 557, 567 (1995) (expression under the First
+Amendment); Miller v. Fenton, 474 U. S. 104, 115–116 (1985) (voluntar­
+iness of confession under the Fourteenth Amendment’s Due Process
+Clause).
+5 A bankruptcy court applying the Ninth Circuit’s test might, in an­
+other case, reach its separate, non-transactional prong: whether “the
+closeness of [a person’s] relationship with the debtor is comparable to
+that of the enumerated insider classifications” in the Code. In re
+Village at Lakeridge, LLC, 814 F. 3d 993, 1001 (2016); see supra, at 4.
+We express no opinion on how an appellate court should review a
+bankruptcy court’s application of that differently framed standard to a
+set of established facts.
+
+10
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+Opinion of the Court
+
+Given all the basic facts found, was Rabkin’s purchase of
+MBP’s claim conducted as if the two were strangers to
+each other?
+That is about as factual sounding as any mixed question
+gets. Indeed, application of the Ninth Circuit’s arm’s­
+length legal standard really requires what we have previ­
+ously described as a “factual inference[ ] from undisputed
+basic facts.” Commissioner v. Duberstein, 363 U. S. 278,
+291 (1960) (holding that clear-error review applied to a
+decision that a particular transfer was a statutory “gift”).
+The court takes a raft of case-specific historical facts,6
+considers them as a whole, balances them one against
+another—all to make a determination that when two
+particular persons entered into a particular transaction,
+they were (or were not) acting like strangers. Just to
+describe that inquiry is to indicate where it (primarily)
+belongs: in the court that has presided over the presenta­
+tion of evidence, that has heard all the witnesses, and that
+has both the closest and the deepest understanding of the
+record—i.e., the bankruptcy court.
+And we can arrive at the same point from the opposite
+direction—by asking how much legal work applying the
+arm’s-length test requires. Precious little, in our view—as
+shown by judicial opinions addressing that concept. Our
+own decisions, arising in a range of contexts, have never
+tried to elaborate on the established idea of a transaction
+conducted as between strangers; nor, to our knowledge,
+have lower courts. See, e.g., Jones v. Harris Associates
+L. P., 559 U. S. 335, 346 (2010); Commissioner v. Wemyss,
+324 U. S. 303, 307 (1945); Pepper v. Litton, 308 U. S. 295,
+306–307 (1939). The stock judicial method is merely to
+——————
+6 Or,
+
+to use the more abundant description we quoted above, “multi­
+farious, fleeting, special, narrow facts that utterly resist generaliza­
+tion.” Pierce, 487 U. S., at 561–562 (internal quotation marks omitted);
+see supra, at 8.
+
+Cite as: 583 U. S. ____ (2018)
+
+11
+
+Opinion of the Court
+
+state the requirement of such a transaction and then to do
+the fact-intensive job of exploring whether, in a particular
+case, it occurred. See, e.g., Wemyss, 324 U. S., at 307.
+Contrary to U. S. Bank’s view, there is no apparent need
+to further develop “norms and criteria,” or to devise a
+supplemental multi-part test, in order to apply the famil­
+iar term. Brief for Petitioner 53; see Tr. of Oral Arg. 18;
+supra, at 7. So appellate review of the arm’s-length is­
+sue—even if conducted de novo—will not much clarify
+legal principles or provide guidance to other courts resolv­
+ing other disputes. And that means the issue is not of the
+kind that appellate courts should take over.7
+The Court of Appeals therefore applied the appropriate
+standard in reviewing the Bankruptcy Court’s determina­
+tion that Rabkin did not qualify as an insider because his
+transaction with MBP was conducted at arm’s length. A
+conclusion of that kind primarily rests with a bankruptcy
+court, subject only to review for clear error. We accordingly
+affirm the judgment below.
+It is so ordered.
+
+——————
+7 That conclusion still leaves some role for appellate courts in this
+area. They of course must decide whether a bankruptcy court commit­
+ted clear error in finding that a transaction was arm’s length (or not).
+(We express no view of that aspect of the Ninth Circuit’s decision
+because we did not grant certiorari on the question. See supra, at 5.)
+In addition, an appellate court must correct any legal error infecting a
+bankruptcy court’s decision. So if the bankruptcy court somehow
+misunderstood the nature of the arm’s-length query—or if it devised
+some novel multi-factor test for addressing that issue—an appellate
+court should apply de novo review. And finally, if an appellate court
+someday finds that further refinement of the arm’s-length standard is
+necessary to maintain uniformity among bankruptcy courts, it may step
+in to perform that legal function. By contrast, what it may not do is
+review independently a garden-variety decision, as here, that the
+various facts found amount to an arm’s-length (or a non-arm’s-length)
+transaction and so do not (or do) confer insider status.
+
+Cite as: 583 U. S. ____ (2018)
+
+1
+
+KENNEDY, J., concurring
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1509
+_________________
+
+U.S. BANK NATIONAL ASSOCIATION, TRUSTEE, BY
+AND THROUGH CWCAPITAL ASSET MANAGEMENT
+LLC, PETITIONER v. THE VILLAGE AT
+LAKERIDGE, LLC
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[March 5, 2018]
+
+JUSTICE KENNEDY, concurring.
+I join the opinion for the Court and the concurring opinion by JUSTICE SOTOMAYOR. In doing so, it seems appropriate to add these further comments.
+As the Court’s opinion makes clear, courts of appeals
+may continue to elaborate in more detail the legal standards that will govern whether a person or entity is a nonstatutory insider under the Bankruptcy Code. Ante, at 6,
+11, n. 7. At this stage of the doctrine’s evolution, this
+ongoing elaboration of the principles that underlie nonstatutory insider status seems necessary to ensure uniform and accurate adjudications in this area.
+In particular, courts should consider the relevance and
+meaning of the phrase “arms-length transaction” in this
+bankruptcy context. See ibid. As courts of appeals address these issues and make more specific rulings based
+on the facts and circumstances of individual cases, it may
+be that instructive, more specifically defined rules will
+develop.
+This leads to an additional point. Under the test that
+the Court of Appeals applied here, there is some room for
+doubt that the Bankruptcy Judge was correct in concluding that Rabkin was not an insider, especially without
+
+2
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+KENNEDY, J., concurring
+
+further inquiry into whether the offer Bartlett made to
+Rabkin could and should have been made to other parties
+who might have paid a higher price. See In re Village at
+Lakeridge, LLC, 814 F. 3d 993, 1006 (CA9 2016) (Clifton,
+J., concurring in part and dissenting in part) (“[E]ven if
+the clear error standard applies, the finding that Rabkin
+was not a non-statutory insider cannot survive scrutiny”).
+MBP’s failure to offer its claim more widely could be a
+strong indication that the transaction was not conducted
+at arm’s length. As the Court is careful and correct to
+note, however, certiorari was not granted on this question.
+See ante, at 11, n. 7. As a result, whether the test for nonstatutory insider status as formulated and used by courts
+in the Ninth Circuit is sufficient is not before us; and
+whether on these facts it was clear error to find that
+Rabkin was not an insider is also not before us.
+The Court’s holding should not be read as indicating
+that the non-statutory insider test as formulated by the
+Court of Appeals is the proper or complete standard to use
+in determining insider status. Today’s opinion for the
+Court properly limits its decision to the question whether
+the Court of Appeals applied the correct standard of review, and its opinion should not be read as indicating that
+a transaction is arm’s length if the transaction was negotiated simply with a close friend, without broader solicitation of other possible buyers.
+
+Cite as: 583 U. S. ____ (2018)
+
+1
+
+SOTOMAYOR, J., concurring
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1509
+_________________
+
+U.S. BANK NATIONAL ASSOCIATION, TRUSTEE, BY
+AND THROUGH CWCAPITAL ASSET MANAGEMENT
+LLC, PETITIONER v. THE VILLAGE AT
+LAKERIDGE, LLC
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[March 5, 2018]
+
+JUSTICE SOTOMAYOR, with whom JUSTICE KENNEDY,
+JUSTICE THOMAS, and JUSTICE GORSUCH join, concurring.
+The Court granted certiorari to decide “[w]hether the
+appropriate standard of review for determining nonstatutory insider status” under the Bankruptcy Code is
+de novo or clear error. Pet. for Cert. i. To answer that
+question, the Court “take[s] . . . as a given” the two-prong
+test that the Court of Appeals for the Ninth Circuit has
+adopted for determining whether a person or entity is an
+insider. Ante, at 6. I join the Court’s opinion in full because, within that context, I agree with the Court’s analysis that a determination whether a particular transaction
+was conducted at arm’s length is a mixed question of law
+and fact that should be reviewed for clear error. See ante,
+at 10–11.
+I write separately, however, because I am concerned
+that our holding eludes the more fundamental question
+whether the Ninth Circuit’s underlying test is correct. If
+that test is not the right one, our holding regarding the
+standard of review may be for naught. That is because the
+appropriate standard of review is deeply intertwined with
+the test being applied. As the Court puts it, “the standard
+of review for a mixed question all depends—on whether
+
+2
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+SOTOMAYOR, J., concurring
+
+answering it entails primarily legal or factual work.”
+Ante, at 9.
+Here, the Court identifies the Ninth Circuit as having
+affirmed on the basis of the second prong of its test, pursuant to which the Ninth Circuit concluded that the relevant transaction between Robert Rabkin and MBP Equity
+Partners was conducted at arm’s length. Ante, at 6. Because that analysis is primarily factual in nature, the
+Court rightly concludes that appellate review of the Bankruptcy Court’s decision is for clear error. Ante, at 10–11.
+However, if the proper inquiry did not turn solely on an
+arm’s-length analysis but rather involved a different
+balance of legal and factual work, the Court may have
+come to a different conclusion on the standard of review.
+The Court’s discussion of the standard of review thus
+begs the question of what the appropriate test for determining non-statutory insider status is. I do not seek to
+answer that question, as the Court expressly declined to
+grant certiorari on it. I have some concerns with the
+Ninth Circuit’s test, however, that would benefit from
+additional consideration by the lower courts.
+As the Ninth Circuit interpreted the Code, “[a] creditor
+is not a non-statutory insider unless: (1) the closeness of
+its relationship with the debtor is comparable to that of
+the enumerated insider classifications in [11 U. S. C.]
+§101(31), and (2) the relevant transaction is negotiated at
+less than arm’s length.” In re Village at Lakeridge, LLC,
+814 F. 3d 993, 1001 (2016) (emphasis added). Under this
+test, because prongs one and two are conjunctive, a court’s
+conclusion that the relevant transaction was conducted at
+arm’s length necessarily defeats a finding of non-statutory
+insider status, regardless of how close a person’s relationship with the debtor is or whether he is otherwise comparable to a statutorily enumerated insider.1
+——————
+1 Other
+
+Circuits have developed analogous rules. See, e.g., Matter of
+
+Cite as: 583 U. S. ____ (2018)
+
+3
+
+SOTOMAYOR, J., concurring
+
+It is not clear to me, however, that the Ninth Circuit has
+explained how this two-prong test is consistent with the
+plain meaning of the term “insider” as it appears in the
+Code. The concept of “insider” generally rests on the
+presumption that a person or entity alleged to be an insider is so connected with the debtor that any business conducted between them necessarily cannot be conducted at
+arm’s length. See Black’s Law Dictionary 915 (10th ed.
+2014) (defining “insider” as “[a]n entity or person who is so
+closely related to a debtor that any deal between them will
+not be considered an arm’s-length transaction and will be
+subject to close scrutiny”). Title 11 U. S. C. §101(31) defines “insider” by identifying certain individuals or entities
+who are considered insiders merely on the basis of their
+status, without regard to whether any relevant transaction is conducted at arm’s length. Such an individual is
+not under any circumstance able to vote for a reorganization plan. See §1129(a)(10).
+In contrast, under prong two of the Ninth Circuit’s test,
+an individual who is similar to, but does not fall precisely
+within, one of the categories of insiders listed in §101(31)
+will not be considered an insider and will be able to vote
+under §1129(a)(10) so long as the transaction relevant to
+the bankruptcy proceeding is determined to have been
+conducted at arm’s length. This would include, for example, a romantic partner of an insider, even one who in all
+or most respects acts like a spouse.
+Given that courts have interpreted “non-statutory insiders” as deriving from the same statutory definition as the
+enumerated insiders in §101(31), the basis for the disparate treatment of two similar individuals is not immediately
+——————
+Holloway, 955 F. 2d 1008, 1011 (CA5 1992); In re U. S. Medical, Inc.,
+531 F. 3d 1272, 1277–1278 (CA10 2008); In re Winstar Communications, Inc., 554 F. 3d 382, 396–397 (CA3 2009). But see In re Longview
+Aluminum, LLC, 657 F. 3d 507, 510 (CA7 2011).
+
+4
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+SOTOMAYOR, J., concurring
+
+apparent. Lower courts have concluded that the Code’s
+use of the term “includes” in the definition of “insider” in
+§101(31) signals that Congress contemplated that certain
+other persons or entities in addition to those listed would
+qualify as insiders. See ante, at 2. Notably, this Court has
+never addressed that issue directly, although the Court
+has held in other contexts that “the term ‘including’ is not
+one of all-embracing definition, but connotes simply an
+illustrative application of the general principle.” Federal
+Land Bank of St. Paul v. Bismarck Lumber Co., 314 U. S.
+95, 100 (1941).
+Assuming §101(31) encompasses such “non-statutory
+insiders,” the only clue we have as to which persons or
+entities fall within that category is the list of enumerated
+insiders and the presumption of lack of arm’s length that
+follows from that label. Because each of those persons or
+entities are considered insiders regardless of whether a
+particular transaction appears to have been conducted at
+arm’s length, it is not clear why the same should not be
+true of non-statutory insiders. That is, an enumerated
+“insider” does not cease being an insider just because a
+court finds that a relevant transaction was conducted at
+arm’s length. Then why should a finding that a transaction was conducted at arm’s length, without more, conclusively foreclose a finding that a person or entity is a “nonstatutory insider”?
+Of course, courts must develop some principled method
+of determining what other individuals or entities fall
+within the term “insider” other than those expressly provided. I can conceive of at least two possible legal standards that are consistent with the understanding that
+insider status inherently presumes that transactions are
+not conducted at arm’s length. First, it could be that the
+inquiry should focus solely on a comparison between the
+characteristics of the alleged non-statutory insider and the
+enumerated insiders, and if they share sufficient common-
+
+Cite as: 583 U. S. ____ (2018)
+
+5
+
+SOTOMAYOR, J., concurring
+
+alities, the alleged person or entity should be deemed an
+insider regardless of the apparent arm’s-length nature of
+any transaction. Cf. In re Longview Aluminum, LLC, 657
+F. 3d 507, 510–511 (CA7 2011) (considering only whether
+a manager of a debtor corporation was comparable to the
+enumerated insiders, regardless of whether any transaction was conducted at less-than-arm’s length).
+Second, it could be that the test should focus on a broader
+comparison that includes consideration of the circumstances surrounding any relevant transaction. If a transaction is determined to have been conducted at less-thanarm’s length, it may provide strong evidence in the context
+of the relationship as a whole that the alleged nonstatutory insider should indeed be considered an insider.
+Relatedly, if the transaction does appear to have been
+undertaken at arm’s length, that may be evidence, considered together with other aspects of the parties’ relationship, that the alleged non-statutory insider should not, in
+fact, be deemed an insider.
+Neither of these conceptions reflects the Ninth Circuit’s
+test. Rather, the Ninth Circuit considered separately
+whether Rabkin was comparable to an enumerated insider
+and whether the transaction between Rabkin and MBP
+was conducted at arm’s length. See 814 F. 3d, at 1002–
+1003. Because the Ninth Circuit concluded that the
+transaction was undertaken at arm’s length, that finding
+was dispositive of non-statutory insider status under their
+test, leading this Court, in turn, to consider the standard
+of review only with respect to that prong.
+It is conceivable, however, that if the appropriate test
+were different from the one articulated by the Ninth Circuit, such as the two examples I outlined above, the applicable standard of review would be different as well. See
+ante, at 6, 9, n. 5. To make more concrete how this may
+play out in practice, I briefly walk through how I might
+apply my two proposed tests to the facts of this case.
+
+6
+
+U. S. BANK N. A. v. VILLAGE AT LAKERIDGE, LLC
+SOTOMAYOR, J., concurring
+
+If a comparative analysis were the right test, and assuming, arguendo, that it involves more legal than factual
+work thus resulting in de novo review, certain aspects of
+Rabkin’s relationship with Kathleen Bartlett, an undisputed insider of the debtor, strike me as suggesting that
+Rabkin should have been designated as a non-statutory
+insider. Rabkin purchased the claim from MBP, but Bartlett, a member of MBP’s board, facilitated the transaction.
+Even though Rabkin and Bartlett kept separate finances
+and lived separately, they shared a “romantic” relationship, see ante, at 4; Rabkin knew that the debtor was in
+bankruptcy, 814 F. 3d, at 1003; and Bartlett approached
+only Rabkin with the offer to sell MBP’s claim, id., at
+1002. In a strict comparative analysis, Rabkin’s interactions with Bartlett and MBP suggest that he may have
+been acting comparable to an enumerated insider, for
+example, like a relative of an officer of an insider. See
+§101(31)(B)(vi).
+Even if the comparative analysis included a broader
+consideration of features of the transaction that suggest it
+was conducted at arm’s length, and assuming, arguendo,
+that de novo review would apply, it is not obvious that
+those features would outweigh the aspects of the relationship that are concerning. Even though Rabkin purportedly lacked knowledge of the cramdown plan prior to his
+purchase and considered the purchase a “small investment” not warranting due diligence, 814 F. 3d, at 1003,
+there was no evidence of negotiation over the price, id., at
+1004 (Clifton, J., dissenting), or any concrete evidence that
+MBP obtained real value in the deal aside from the prospect of Rabkin’s vote in the cramdown.2
+——————
+2 Outside the context of a determination of insider status, it is possible that the nature of a transaction is relevant to assessing the integrity of bankruptcy proceedings in other ways; for example, in assessing
+whether a vote in a reorganization plan was “not in good faith, or was
+not solicited or procured in good faith.” §1126(e). It troubles me here
+
+Cite as: 583 U. S. ____ (2018)
+
+7
+
+SOTOMAYOR, J., concurring
+
+Even if the proper test for insider status called for clear
+error review, it is possible that the facts of this case when
+considered through the lens of that test, as opposed to one
+focused solely on arm’s length, may have warranted a
+finding that Rabkin was a non-statutory insider.
+This is all to say that I hope that courts will continue to
+grapple with the role that an arm’s-length inquiry should
+play in a determination of insider status. In the event
+that the appropriate test for determining non-statutory
+insider status is different from the one that the Ninth
+Circuit applied, and involves a different balance of legal
+and factual work than the Court addresses here, it is
+possible I would view the applicable standard of review
+differently. Because I do not read the Court’s opinion as
+foreclosing that result, I join it in full.
+
+——————
+that neither the Bankruptcy Court nor the Ninth Circuit considered
+whether Rabkin’s purchase of MBP’s claim for $5,000 was for value.
+See App. to Pet. for Cert. 67a (bankruptcy order); In re Village at
+Lakeridge, LLC, 634 Fed. Appx. 619, 621 (2016). Cf. In re DBSD North
+Am., Inc., 634 F. 3d 79, 104 (CA2 2011) (stating that a transferee’s
+overpayment for claims was relevant to a good-faith determination
+under §1126(e)); §548(c) (providing that a transfer will not be considered constructively fraudulent, and will not be voidable under §548(a),
+where “a transferee . . . takes for value and in good faith”). Indeed, we
+have no concrete information about what benefit MBP received from
+the transaction aside from the prospect of Rabkin’s vote in the
+cramdown. Of course, the Ninth Circuit’s decision with respect to
+§1126(e) is not before this Court, but it again prompts a concern with
+how the courts below considered the nature of the transaction.
+
+

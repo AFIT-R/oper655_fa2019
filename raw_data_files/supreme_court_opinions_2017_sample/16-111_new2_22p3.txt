@@ -1,0 +1,2278 @@
+(Slip Opinion)
+
+OCTOBER TERM, 2017
+
+1
+
+Syllabus
+NOTE: Where it is feasible, a syllabus (headnote) will be released, as is
+being done in connection with this case, at the time the opinion is issued.
+The syllabus constitutes no part of the opinion of the Court but has been
+prepared by the Reporter of Decisions for the convenience of the reader.
+See United States v. Detroit Timber & Lumber Co., 200 U. S. 321, 337.
+
+SUPREME COURT OF THE UNITED STATES
+Syllabus
+
+MASTERPIECE CAKESHOP, LTD., ET AL. v.
+COLORADO CIVIL RIGHTS COMMISSION ET AL.
+CERTIORARI TO THE COURT OF APPEALS OF COLORADO
+No. 16–111.
+
+Argued December 5, 2017—Decided June 4, 2018
+
+Masterpiece Cakeshop, Ltd., is a Colorado bakery owned and operated
+by Jack Phillips, an expert baker and devout Christian. In 2012 he
+told a same-sex couple that he would not create a cake for their wedding celebration because of his religious opposition to same-sex marriages—marriages that Colorado did not then recognize—but that he
+would sell them other baked goods, e.g., birthday cakes. The couple
+filed a charge with the Colorado Civil Rights Commission (Commission) pursuant to the Colorado Anti-Discrimination Act (CADA),
+which prohibits, as relevant here, discrimination based on sexual orientation in a “place of business engaged in any sales to the public and
+any place offering services . . . to the public.” Under CADA’s administrative review system, the Colorado Civil Rights Division first found
+probable cause for a violation and referred the case to the Commission. The Commission then referred the case for a formal hearing before a state Administrative Law Judge (ALJ), who ruled in the couple’s favor. In so doing, the ALJ rejected Phillips’ First Amendment
+claims: that requiring him to create a cake for a same-sex wedding
+would violate his right to free speech by compelling him to exercise
+his artistic talents to express a message with which he disagreed and
+would violate his right to the free exercise of religion. Both the
+Commission and the Colorado Court of Appeals affirmed.
+Held: The Commission’s actions in this case violated the Free Exercise
+Clause. Pp. 9–18.
+(a) The laws and the Constitution can, and in some instances must,
+protect gay persons and gay couples in the exercise of their civil
+rights, but religious and philosophical objections to gay marriage are
+protected views and in some instances protected forms of expression.
+See Obergefell v. Hodges, 576 U. S. ___, ___. While it is unexceptional
+
+2
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Syllabus
+that Colorado law can protect gay persons in acquiring products and
+services on the same terms and conditions as are offered to other
+members of the public, the law must be applied in a manner that is
+neutral toward religion. To Phillips, his claim that using his artistic
+skills to make an expressive statement, a wedding endorsement in
+his own voice and of his own creation, has a significant First
+Amendment speech component and implicates his deep and sincere
+religious beliefs. His dilemma was understandable in 2012, which
+was before Colorado recognized the validity of gay marriages performed in the State and before this Court issued United States v.
+Windsor, 570 U. S. 744, or Obergefell. Given the State’s position at
+the time, there is some force to Phillips’ argument that he was not
+unreasonable in deeming his decision lawful. State law at the time
+also afforded storekeepers some latitude to decline to create specific
+messages they considered offensive. Indeed, while the instant enforcement proceedings were pending, the State Civil Rights Division
+concluded in at least three cases that a baker acted lawfully in declining to create cakes with decorations that demeaned gay persons or
+gay marriages. Phillips too was entitled to a neutral and respectful
+consideration of his claims in all the circumstances of the case.
+Pp. 9–12.
+(b) That consideration was compromised, however, by the Commission’s treatment of Phillips’ case, which showed elements of a clear
+and impermissible hostility toward the sincere religious beliefs motivating his objection. As the record shows, some of the commissioners
+at the Commission’s formal, public hearings endorsed the view that
+religious beliefs cannot legitimately be carried into the public sphere
+or commercial domain, disparaged Phillips’ faith as despicable and
+characterized it as merely rhetorical, and compared his invocation of
+his sincerely held religious beliefs to defenses of slavery and the Holocaust. No commissioners objected to the comments. Nor were they
+mentioned in the later state-court ruling or disavowed in the briefs
+filed here. The comments thus cast doubt on the fairness and impartiality of the Commission’s adjudication of Phillips’ case.
+Another indication of hostility is the different treatment of Phillips’
+case and the cases of other bakers with objections to anti-gay messages who prevailed before the Commission. The Commission ruled
+against Phillips in part on the theory that any message on the requested wedding cake would be attributed to the customer, not to the
+baker. Yet the Division did not address this point in any of the cases
+involving requests for cakes depicting anti-gay marriage symbolism.
+The Division also considered that each bakery was willing to sell other products to the prospective customers, but the Commission found
+Phillips’ willingness to do the same irrelevant. The State Court of
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+Syllabus
+Appeals’ brief discussion of this disparity of treatment does not answer Phillips’ concern that the State’s practice was to disfavor the religious basis of his objection. Pp. 12–16.
+(c) For these reasons, the Commission’s treatment of Phillips’ case
+violated the State’s duty under the First Amendment not to base laws
+or regulations on hostility to a religion or religious viewpoint. The
+government, consistent with the Constitution’s guarantee of free exercise, cannot impose regulations that are hostile to the religious beliefs of affected citizens and cannot act in a manner that passes
+judgment upon or presupposes the illegitimacy of religious beliefs
+and practices. Church of Lukumi Babalu Aye, Inc. v. Hialeah, 508
+U. S. 520. Factors relevant to the assessment of governmental neutrality include “the historical background of the decision under challenge, the specific series of events leading to the enactment or official
+policy in question, and the legislative or administrative history, including contemporaneous statements made by members of the decisionmaking body.” Id., at 540. In view of these factors, the record
+here demonstrates that the Commission’s consideration of Phillips’
+case was neither tolerant nor respectful of his religious beliefs. The
+Commission gave “every appearance,” id., at 545, of adjudicating his
+religious objection based on a negative normative “evaluation of the
+particular justification” for his objection and the religious grounds for
+it, id., at 537, but government has no role in expressing or even suggesting whether the religious ground for Phillips’ conscience-based
+objection is legitimate or illegitimate. The inference here is thus that
+Phillips’ religious objection was not considered with the neutrality
+required by the Free Exercise Clause. The State’s interest could have
+been weighed against Phillips’ sincere religious objections in a way
+consistent with the requisite religious neutrality that must be strictly
+observed. But the official expressions of hostility to religion in some
+of the commissioners’ comments were inconsistent with that requirement, and the Commission’s disparate consideration of Phillips’
+case compared to the cases of the other bakers suggests the same.
+Pp. 16–18.
+370 P. 3d 272, reversed.
+KENNEDY, J., delivered the opinion of the Court, in which ROBERTS,
+C. J., and BREYER, ALITO, KAGAN, and GORSUCH, JJ., joined. KAGAN, J.,
+filed a concurring opinion, in which BREYER, J., joined. GORSUCH, J.,
+filed a concurring opinion, in which ALITO, J., joined. THOMAS, J., filed
+an opinion concurring in part and concurring in the judgment, in which
+GORSUCH, J., joined. GINSBURG, J., filed a dissenting opinion, in which
+SOTOMAYOR, J., joined.
+
+Cite as: 584 U. S. ____ (2018)
+
+1
+
+Opinion of the Court
+NOTICE: This opinion is subject to formal revision before publication in the
+preliminary print of the United States Reports. Readers are requested to
+notify the Reporter of Decisions, Supreme Court of the United States, Washington, D. C. 20543, of any typographical or other formal errors, in order
+that corrections may be made before the preliminary print goes to press.
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 16–111
+_________________
+
+MASTERPIECE CAKESHOP, LTD., ET AL., PETITIONERS
+v. COLORADO CIVIL RIGHTS COMMISSION, ET AL.
+ON WRIT OF CERTIORARI TO THE COURT OF APPEALS OF
+COLORADO
+[June 4, 2018]
+
+JUSTICE KENNEDY delivered the opinion of the Court.
+In 2012 a same-sex couple visited Masterpiece
+Cakeshop, a bakery in Colorado, to make inquiries about
+ordering a cake for their wedding reception. The shop’s
+owner told the couple that he would not create a cake for
+their wedding because of his religious opposition to samesex marriages—marriages the State of Colorado itself did
+not recognize at that time. The couple filed a charge with
+the Colorado Civil Rights Commission alleging discrimination on the basis of sexual orientation in violation of the
+Colorado Anti-Discrimination Act.
+The Commission determined that the shop’s actions
+violated the Act and ruled in the couple’s favor. The Colorado state courts affirmed the ruling and its enforcement
+order, and this Court now must decide whether the Commission’s order violated the Constitution.
+The case presents difficult questions as to the proper
+reconciliation of at least two principles. The first is the
+authority of a State and its governmental entities to protect the rights and dignity of gay persons who are, or wish
+to be, married but who face discrimination when they seek
+
+2
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of the Court
+
+goods or services. The second is the right of all persons to
+exercise fundamental freedoms under the First Amendment, as applied to the States through the Fourteenth
+Amendment.
+The freedoms asserted here are both the freedom of
+speech and the free exercise of religion. The free speech
+aspect of this case is difficult, for few persons who have
+seen a beautiful wedding cake might have thought of its
+creation as an exercise of protected speech. This is an
+instructive example, however, of the proposition that the
+application of constitutional freedoms in new contexts can
+deepen our understanding of their meaning.
+One of the difficulties in this case is that the parties
+disagree as to the extent of the baker’s refusal to provide
+service. If a baker refused to design a special cake with
+words or images celebrating the marriage—for instance, a
+cake showing words with religious meaning—that might
+be different from a refusal to sell any cake at all. In defining whether a baker’s creation can be protected, these
+details might make a difference.
+The same difficulties arise in determining whether a
+baker has a valid free exercise claim. A baker’s refusal to
+attend the wedding to ensure that the cake is cut the right
+way, or a refusal to put certain religious words or decorations on the cake, or even a refusal to sell a cake that has
+been baked for the public generally but includes certain
+religious words or symbols on it are just three examples of
+possibilities that seem all but endless.
+Whatever the confluence of speech and free exercise
+principles might be in some cases, the Colorado Civil
+Rights Commission’s consideration of this case was inconsistent with the State’s obligation of religious neutrality.
+The reason and motive for the baker’s refusal were based
+on his sincere religious beliefs and convictions. The
+Court’s precedents make clear that the baker, in his capacity as the owner of a business serving the public, might
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+Opinion of the Court
+
+have his right to the free exercise of religion limited by
+generally applicable laws. Still, the delicate question of
+when the free exercise of his religion must yield to an
+otherwise valid exercise of state power needed to be determined in an adjudication in which religious hostility on
+the part of the State itself would not be a factor in the
+balance the State sought to reach. That requirement,
+however, was not met here. When the Colorado Civil
+Rights Commission considered this case, it did not do
+so with the religious neutrality that the Constitution
+requires.
+Given all these considerations, it is proper to hold that
+whatever the outcome of some future controversy involving facts similar to these, the Commission’s actions here
+violated the Free Exercise Clause; and its order must be
+set aside.
+I
+A
+Masterpiece Cakeshop, Ltd., is a bakery in Lakewood,
+Colorado, a suburb of Denver. The shop offers a variety of
+baked goods, ranging from everyday cookies and brownies
+to elaborate custom-designed cakes for birthday parties,
+weddings, and other events.
+Jack Phillips is an expert baker who has owned and
+operated the shop for 24 years. Phillips is a devout Christian. He has explained that his “main goal in life is to be
+obedient to” Jesus Christ and Christ’s “teachings in all
+aspects of his life.” App. 148. And he seeks to “honor God
+through his work at Masterpiece Cakeshop.” Ibid. One of
+Phillips’ religious beliefs is that “God’s intention for marriage from the beginning of history is that it is and should
+be the union of one man and one woman.” Id., at 149. To
+Phillips, creating a wedding cake for a same-sex wedding
+would be equivalent to participating in a celebration that
+is contrary to his own most deeply held beliefs.
+
+4
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of the Court
+
+Phillips met Charlie Craig and Dave Mullins when they
+entered his shop in the summer of 2012. Craig and Mullins were planning to marry. At that time, Colorado did
+not recognize same-sex marriages, so the couple planned
+to wed legally in Massachusetts and afterwards to host a
+reception for their family and friends in Denver. To prepare for their celebration, Craig and Mullins visited the
+shop and told Phillips that they were interested in ordering a cake for “our wedding.” Id., at 152 (emphasis deleted). They did not mention the design of the cake they
+envisioned.
+Phillips informed the couple that he does not “create”
+wedding cakes for same-sex weddings. Ibid. He explained, “I’ll make your birthday cakes, shower cakes, sell
+you cookies and brownies, I just don’t make cakes for same
+sex weddings.” Ibid. The couple left the shop without
+further discussion.
+The following day, Craig’s mother, who had accompanied the couple to the cakeshop and been present for their
+interaction with Phillips, telephoned to ask Phillips why
+he had declined to serve her son. Phillips explained that
+he does not create wedding cakes for same-sex weddings
+because of his religious opposition to same-sex marriage,
+and also because Colorado (at that time) did not recognize
+same-sex marriages. Id., at 153. He later explained his
+belief that “to create a wedding cake for an event that
+celebrates something that directly goes against the teachings of the Bible, would have been a personal endorsement
+and participation in the ceremony and relationship that
+they were entering into.” Ibid. (emphasis deleted).
+B
+For most of its history, Colorado has prohibited discrimination in places of public accommodation. In 1885, less
+than a decade after Colorado achieved statehood, the
+General Assembly passed “An Act to Protect All Citizens
+
+Cite as: 584 U. S. ____ (2018)
+
+5
+
+Opinion of the Court
+
+in Their Civil Rights,” which guaranteed “full and equal
+enjoyment” of certain public facilities to “all citizens,”
+“regardless of race, color or previous condition of servitude.” 1885 Colo. Sess. Laws pp. 132–133. A decade later,
+the General Assembly expanded the requirement to apply
+to “all other places of public accommodation.” 1895 Colo.
+Sess. Laws ch. 61, p. 139.
+Today, the Colorado Anti-Discrimination Act (CADA)
+carries forward the state’s tradition of prohibiting discrimination in places of public accommodation. Amended in
+2007 and 2008 to prohibit discrimination on the basis of
+sexual orientation as well as other protected characteristics, CADA in relevant part provides as follows:
+“It is a discriminatory practice and unlawful for a person, directly or indirectly, to refuse, withhold from, or
+deny to an individual or a group, because of disability,
+race, creed, color, sex, sexual orientation, marital status, national origin, or ancestry, the full and equal enjoyment of the goods, services, facilities, privileges,
+advantages, or accommodations of a place of public accommodation.”
+Colo. Rev. Stat. §24–34–601(2)(a)
+(2017).
+The Act defines “public accommodation” broadly to include
+any “place of business engaged in any sales to the public
+and any place offering services . . . to the public,” but
+excludes “a church, synagogue, mosque, or other place that
+is principally used for religious purposes.” §24–34–601(1).
+CADA establishes an administrative system for the
+resolution of discrimination claims. Complaints of discrimination in violation of CADA are addressed in the first
+instance by the Colorado Civil Rights Division. The Division investigates each claim; and if it finds probable cause
+that CADA has been violated, it will refer the matter to
+the Colorado Civil Rights Commission. The Commission,
+
+6
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of the Court
+
+in turn, decides whether to initiate a formal hearing before a state Administrative Law Judge (ALJ), who will
+hear evidence and argument before issuing a written
+decision. See §§24–34–306, 24–4–105(14). The decision of
+the ALJ may be appealed to the full Commission, a sevenmember appointed body. The Commission holds a public
+hearing and deliberative session before voting on the case.
+If the Commission determines that the evidence proves a
+CADA violation, it may impose remedial measures as
+provided by statute. See §24–34–306(9). Available remedies include, among other things, orders to cease-anddesist a discriminatory policy, to file regular compliance
+reports with the Commission, and “to take affirmative
+action, including the posting of notices setting forth the
+substantive rights of the public.” §24–34–605. Colorado
+law does not permit the Commission to assess money
+damages or fines. §§24–34–306(9), 24–34–605.
+C
+Craig and Mullins filed a discrimination complaint
+against Masterpiece Cakeshop and Phillips in September
+2012, shortly after the couple’s visit to the shop. App. 31.
+The complaint alleged that Craig and Mullins had been
+denied “full and equal service” at the bakery because of
+their sexual orientation, id., at 35, 48, and that it was
+Phillips’ “standard business practice” not to provide cakes
+for same-sex weddings, id., at 43.
+The Civil Rights Division opened an investigation. The
+investigator found that “on multiple occasions,” Phillips
+“turned away potential customers on the basis of their
+sexual orientation, stating that he could not create a cake
+for a same-sex wedding ceremony or reception” because
+his religious beliefs prohibited it and because the potential
+customers “were doing something illegal” at that time.
+Id., at 76. The investigation found that Phillips had declined to sell custom wedding cakes to about six other
+
+Cite as: 584 U. S. ____ (2018)
+
+7
+
+Opinion of the Court
+
+same-sex couples on this basis. Id., at 72. The investigator also recounted that, according to affidavits submitted
+by Craig and Mullins, Phillips’ shop had refused to sell
+cupcakes to a lesbian couple for their commitment celebration because the shop “had a policy of not selling baked
+goods to same-sex couples for this type of event.” Id., at
+73. Based on these findings, the Division found probable
+cause that Phillips violated CADA and referred the case to
+the Civil Rights Commission. Id., at 69.
+The Commission found it proper to conduct a formal
+hearing, and it sent the case to a State ALJ. Finding no
+dispute as to material facts, the ALJ entertained crossmotions for summary judgment and ruled in the couple’s
+favor. The ALJ first rejected Phillips’ argument that
+declining to make or create a wedding cake for Craig and
+Mullins did not violate Colorado law. It was undisputed
+that the shop is subject to state public accommodations
+laws. And the ALJ determined that Phillips’ actions
+constituted prohibited discrimination on the basis of sexual orientation, not simply opposition to same-sex marriage
+as Phillips contended. App. to Pet. for Cert. 68a–72a.
+Phillips raised two constitutional claims before the ALJ.
+He first asserted that applying CADA in a way that would
+require him to create a cake for a same-sex wedding would
+violate his First Amendment right to free speech by compelling him to exercise his artistic talents to express a
+message with which he disagreed. The ALJ rejected the
+contention that preparing a wedding cake is a form of
+protected speech and did not agree that creating Craig and
+Mullins’ cake would force Phillips to adhere to “an ideological point of view.” Id., at 75a. Applying CADA to the
+facts at hand, in the ALJ’s view, did not interfere with
+Phillips’ freedom of speech.
+Phillips also contended that requiring him to create
+cakes for same-sex weddings would violate his right to the
+free exercise of religion, also protected by the First
+
+8
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of the Court
+
+Amendment. Citing this Court’s precedent in Employment
+Div., Dept. of Human Resources of Ore. v. Smith, 494 U. S.
+872 (1990), the ALJ determined that CADA is a “valid and
+neutral law of general applicability” and therefore that
+applying it to Phillips in this case did not violate the Free
+Exercise Clause. Id., at 879; App. to Pet. for Cert. 82a–
+83a.
+The ALJ thus ruled against Phillips and the
+cakeshop and in favor of Craig and Mullins on both constitutional claims.
+The Commission affirmed the ALJ’s decision in full. Id.,
+at 57a. The Commission ordered Phillips to “cease and
+desist from discriminating against . . . same-sex couples by
+refusing to sell them wedding cakes or any product [they]
+would sell to heterosexual couples.” Ibid. It also ordered
+additional remedial measures, including “comprehensive
+staff training on the Public Accommodations section” of
+CADA “and changes to any and all company policies to
+comply with . . . this Order.” Id., at 58a. The Commission
+additionally required Phillips to prepare “quarterly compliance reports” for a period of two years documenting “the
+number of patrons denied service” and why, along with “a
+statement describing the remedial actions taken.” Ibid.
+Phillips appealed to the Colorado Court of Appeals,
+which affirmed the Commission’s legal determinations and
+remedial order. The court rejected the argument that the
+“Commission’s order unconstitutionally compels” Phillips
+and the shop “to convey a celebratory message about same
+sex marriage.” Craig v. Masterpiece Cakeshop, Inc., 370
+P. 3d 272, 283 (2015). The court also rejected the argument that the Commission’s order violated the Free Exercise Clause. Relying on this Court’s precedent in Smith,
+supra, at 879, the court stated that the Free Exercise
+Clause “does not relieve an individual of the obligation to
+comply with a valid and neutral law of general applicability” on the ground that following the law would interfere
+with religious practice or belief. 370 P. 3d, at 289. The
+
+Cite as: 584 U. S. ____ (2018)
+
+9
+
+Opinion of the Court
+
+court concluded that requiring Phillips to comply with the
+statute did not violate his free exercise rights. The Colorado Supreme Court declined to hear the case.
+Phillips sought review here, and this Court granted
+certiorari. 582 U. S. ___ (2017). He now renews his claims
+under the Free Speech and Free Exercise Clauses of the
+First Amendment.
+II
+A
+Our society has come to the recognition that gay persons
+and gay couples cannot be treated as social outcasts or as
+inferior in dignity and worth. For that reason the laws
+and the Constitution can, and in some instances must,
+protect them in the exercise of their civil rights. The
+exercise of their freedom on terms equal to others must be
+given great weight and respect by the courts. At the same
+time, the religious and philosophical objections to gay
+marriage are protected views and in some instances protected forms of expression. As this Court observed in
+Obergefell v. Hodges, 576 U. S. ___ (2015), “[t]he First
+Amendment ensures that religious organizations and
+persons are given proper protection as they seek to teach
+the principles that are so fulfilling and so central to their
+lives and faiths.” Id., at ___ (slip op., at 27). Nevertheless,
+while those religious and philosophical objections are
+protected, it is a general rule that such objections do not
+allow business owners and other actors in the economy
+and in society to deny protected persons equal access to
+goods and services under a neutral and generally applicable public accommodations law. See Newman v. Piggie
+Park Enterprises, Inc., 390 U. S. 400, 402, n. 5 (1968) (per
+curiam); see also Hurley v. Irish-American Gay, Lesbian
+and Bisexual Group of Boston, Inc., 515 U. S. 557, 572
+(1995) (“Provisions like these are well within the State’s
+usual power to enact when a legislature has reason to
+
+10
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of the Court
+
+believe that a given group is the target of discrimination,
+and they do not, as a general matter, violate the First or
+Fourteenth Amendments”).
+When it comes to weddings, it can be assumed that a
+member of the clergy who objects to gay marriage on
+moral and religious grounds could not be compelled to
+perform the ceremony without denial of his or her right to
+the free exercise of religion. This refusal would be well
+understood in our constitutional order as an exercise of
+religion, an exercise that gay persons could recognize and
+accept without serious diminishment to their own dignity
+and worth. Yet if that exception were not confined, then a
+long list of persons who provide goods and services for
+marriages and weddings might refuse to do so for gay
+persons, thus resulting in a community-wide stigma inconsistent with the history and dynamics of civil rights
+laws that ensure equal access to goods, services, and
+public accommodations.
+It is unexceptional that Colorado law can protect gay
+persons, just as it can protect other classes of individuals,
+in acquiring whatever products and services they choose
+on the same terms and conditions as are offered to other
+members of the public. And there are no doubt innumerable goods and services that no one could argue implicate
+the First Amendment. Petitioners conceded, moreover,
+that if a baker refused to sell any goods or any cakes for
+gay weddings, that would be a different matter and the
+State would have a strong case under this Court’s precedents that this would be a denial of goods and services
+that went beyond any protected rights of a baker who
+offers goods and services to the general public and is
+subject to a neutrally applied and generally applicable
+public accommodations law. See Tr. of Oral Arg. 4–7, 10.
+Phillips claims, however, that a narrower issue is presented. He argues that he had to use his artistic skills to
+make an expressive statement, a wedding endorsement in
+
+Cite as: 584 U. S. ____ (2018)
+
+11
+
+Opinion of the Court
+
+his own voice and of his own creation. As Phillips would
+see the case, this contention has a significant First
+Amendment speech component and implicates his deep
+and sincere religious beliefs. In this context the baker
+likely found it difficult to find a line where the customers’
+rights to goods and services became a demand for him to
+exercise the right of his own personal expression for their
+message, a message he could not express in a way consistent with his religious beliefs.
+Phillips’ dilemma was particularly understandable
+given the background of legal principles and administration of the law in Colorado at that time. His decision and
+his actions leading to the refusal of service all occurred in
+the year 2012. At that point, Colorado did not recognize
+the validity of gay marriages performed in its own State.
+See Colo. Const., Art. II, §31 (2012); 370 P. 3d, at 277. At
+the time of the events in question, this Court had not
+issued its decisions either in United States v. Windsor, 570
+U. S. 744 (2013), or Obergefell. Since the State itself did
+not allow those marriages to be performed in Colorado,
+there is some force to the argument that the baker was not
+unreasonable in deeming it lawful to decline to take an
+action that he understood to be an expression of support
+for their validity when that expression was contrary to his
+sincerely held religious beliefs, at least insofar as his
+refusal was limited to refusing to create and express a
+message in support of gay marriage, even one planned to
+take place in another State.
+At the time, state law also afforded storekeepers some
+latitude to decline to create specific messages the storekeeper considered offensive. Indeed, while enforcement
+proceedings against Phillips were ongoing, the Colorado
+Civil Rights Division itself endorsed this proposition in
+cases involving other bakers’ creation of cakes, concluding
+on at least three occasions that a baker acted lawfully in
+declining to create cakes with decorations that demeaned
+
+12
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of the Court
+
+gay persons or gay marriages. See Jack v. Gateaux, Ltd.,
+Charge No. P20140071X (Mar. 24, 2015); Jack v. Le Bakery Sensual, Inc., Charge No. P20140070X (Mar. 24, 2015);
+Jack v. Azucar Bakery, Charge No. P20140069X (Mar. 24,
+2015).
+There were, to be sure, responses to these arguments
+that the State could make when it contended for a different result in seeking the enforcement of its generally
+applicable state regulations of businesses that serve the
+public. And any decision in favor of the baker would have
+to be sufficiently constrained, lest all purveyors of goods
+and services who object to gay marriages for moral and
+religious reasons in effect be allowed to put up signs saying “no goods or services will be sold if they will be used
+for gay marriages,” something that would impose a serious
+stigma on gay persons. But, nonetheless, Phillips was
+entitled to the neutral and respectful consideration of his
+claims in all the circumstances of the case.
+B
+The neutral and respectful consideration to which Phillips was entitled was compromised here, however. The
+Civil Rights Commission’s treatment of his case has some
+elements of a clear and impermissible hostility toward the
+sincere religious beliefs that motivated his objection.
+That hostility surfaced at the Commission’s formal,
+public hearings, as shown by the record. On May 30,
+2014, the seven-member Commission convened publicly to
+consider Phillips’ case. At several points during its meeting, commissioners endorsed the view that religious beliefs
+cannot legitimately be carried into the public sphere or
+commercial domain, implying that religious beliefs and
+persons are less than fully welcome in Colorado’s business
+community. One commissioner suggested that Phillips
+can believe “what he wants to believe,” but cannot act on
+his religious beliefs “if he decides to do business in the
+
+Cite as: 584 U. S. ____ (2018)
+
+13
+
+Opinion of the Court
+
+state.” Tr. 23. A few moments later, the commissioner
+restated the same position: “[I]f a businessman wants to
+do business in the state and he’s got an issue with the—
+the law’s impacting his personal belief system, he needs to
+look at being able to compromise.” Id., at 30. Standing
+alone, these statements are susceptible of different interpretations. On the one hand, they might mean simply
+that a business cannot refuse to provide services based on
+sexual orientation, regardless of the proprietor’s personal
+views. On the other hand, they might be seen as inappropriate and dismissive comments showing lack of due
+consideration for Phillips’ free exercise rights and the
+dilemma he faced. In view of the comments that followed,
+the latter seems the more likely.
+On July 25, 2014, the Commission met again. This
+meeting, too, was conducted in public and on the record.
+On this occasion another commissioner made specific
+reference to the previous meeting’s discussion but said far
+more to disparage Phillips’ beliefs. The commissioner
+stated:
+“I would also like to reiterate what we said in the
+hearing or the last meeting. Freedom of religion and
+religion has been used to justify all kinds of discrimination throughout history, whether it be slavery,
+whether it be the holocaust, whether it be—I mean,
+we—we can list hundreds of situations where freedom
+of religion has been used to justify discrimination.
+And to me it is one of the most despicable pieces of
+rhetoric that people can use to—to use their religion
+to hurt others.” Tr. 11–12.
+To describe a man’s faith as “one of the most despicable
+pieces of rhetoric that people can use” is to disparage his
+religion in at least two distinct ways: by describing it as
+despicable, and also by characterizing it as merely rhetori-
+
+14
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of the Court
+
+cal—something insubstantial and even insincere. The
+commissioner even went so far as to compare Phillips’
+invocation of his sincerely held religious beliefs to defenses
+of slavery and the Holocaust. This sentiment is inappropriate for a Commission charged with the solemn responsibility of fair and neutral enforcement of Colorado’s antidiscrimination law—a law that protects against discrimination on the basis of religion as well as sexual orientation.
+The record shows no objection to these comments from
+other commissioners. And the later state-court ruling
+reviewing the Commission’s decision did not mention
+those comments, much less express concern with their
+content. Nor were the comments by the commissioners
+disavowed in the briefs filed in this Court. For these
+reasons, the Court cannot avoid the conclusion that these
+statements cast doubt on the fairness and impartiality of
+the Commission’s adjudication of Phillips’ case. Members
+of the Court have disagreed on the question whether
+statements made by lawmakers may properly be taken
+into account in determining whether a law intentionally
+discriminates on the basis of religion. See Church of
+Lukumi Babalu Aye, Inc. v. Hialeah, 508 U. S. 520, 540–
+542 (1993); id., at 558 (Scalia, J., concurring in part and
+concurring in judgment). In this case, however, the remarks were made in a very different context—by an adjudicatory body deciding a particular case.
+Another indication of hostility is the difference in treatment between Phillips’ case and the cases of other bakers
+who objected to a requested cake on the basis of conscience
+and prevailed before the Commission.
+As noted above, on at least three other occasions the
+Civil Rights Division considered the refusal of bakers to
+create cakes with images that conveyed disapproval of
+same-sex marriage, along with religious text. Each time,
+the Division found that the baker acted lawfully in refusing service. It made these determinations because, in the
+
+Cite as: 584 U. S. ____ (2018)
+
+15
+
+Opinion of the Court
+
+words of the Division, the requested cake included “wording and images [the baker] deemed derogatory,” Jack v.
+Gateaux, Ltd., Charge No. P20140071X, at 4; featured
+“language and images [the baker] deemed hateful,” Jack v.
+Le Bakery Sensual, Inc., Charge No. P20140070X, at 4; or
+displayed a message the baker “deemed as discriminatory,
+Jack v. Azucar Bakery, Charge No. P20140069X, at 4.
+The treatment of the conscience-based objections at
+issue in these three cases contrasts with the Commission’s
+treatment of Phillips’ objection. The Commission ruled
+against Phillips in part on the theory that any message
+the requested wedding cake would carry would be attributed to the customer, not to the baker. Yet the Division did not address this point in any of the other cases
+with respect to the cakes depicting anti-gay marriage
+symbolism. Additionally, the Division found no violation
+of CADA in the other cases in part because each bakery
+was willing to sell other products, including those depicting Christian themes, to the prospective customers. But
+the Commission dismissed Phillips’ willingness to sell
+“birthday cakes, shower cakes, [and] cookies and brownies,” App. 152, to gay and lesbian customers as irrelevant.
+The treatment of the other cases and Phillips’ case could
+reasonably be interpreted as being inconsistent as to the
+question of whether speech is involved, quite apart from
+whether the cases should ultimately be distinguished. In
+short, the Commission’s consideration of Phillips’ religious
+objection did not accord with its treatment of these other
+objections.
+Before the Colorado Court of Appeals, Phillips protested
+that this disparity in treatment reflected hostility on the
+part of the Commission toward his beliefs. He argued that
+the Commission had treated the other bakers’ consciencebased objections as legitimate, but treated his as illegitimate—thus sitting in judgment of his religious beliefs
+themselves. The Court of Appeals addressed the disparity
+
+16
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of the Court
+
+only in passing and relegated its complete analysis of the
+issue to a footnote. There, the court stated that “[t]his
+case is distinguishable from the Colorado Civil Rights
+Division’s recent findings that [the other bakeries] in
+Denver did not discriminate against a Christian patron on
+the basis of his creed” when they refused to create the
+requested cakes. 370 P. 3d, at 282, n. 8. In those cases,
+the court continued, there was no impermissible discrimination because “the Division found that the bakeries . . .
+refuse[d] the patron’s request . . . because of the offensive
+nature of the requested message.” Ibid.
+A principled rationale for the difference in treatment of
+these two instances cannot be based on the government’s
+own assessment of offensiveness. Just as “no official, high
+or petty, can prescribe what shall be orthodox in politics,
+nationalism, religion, or other matters of opinion,” West
+Virginia Bd. of Ed. v. Barnette, 319 U. S. 624, 642 (1943),
+it is not, as the Court has repeatedly held, the role of the
+State or its officials to prescribe what shall be offensive.
+See Matal v. Tam, 582 U. S. ___, ___–___ (2017) (opinion of
+ALITO, J.) (slip op., at 22–23). The Colorado court’s attempt to account for the difference in treatment elevates
+one view of what is offensive over another and itself sends
+a signal of official disapproval of Phillips’ religious beliefs.
+The court’s footnote does not, therefore, answer the
+baker’s concern that the State’s practice was to disfavor
+the religious basis of his objection.
+C
+For the reasons just described, the Commission’s treatment of Phillips’ case violated the State’s duty under the
+First Amendment not to base laws or regulations on hostility to a religion or religious viewpoint.
+In Church of Lukumi Babalu Aye, supra, the Court
+made clear that the government, if it is to respect the
+Constitution’s guarantee of free exercise, cannot impose
+
+Cite as: 584 U. S. ____ (2018)
+
+17
+
+Opinion of the Court
+
+regulations that are hostile to the religious beliefs of affected citizens and cannot act in a manner that passes
+judgment upon or presupposes the illegitimacy of religious
+beliefs and practices. The Free Exercise Clause bars even
+“subtle departures from neutrality” on matters of religion.
+Id., at 534. Here, that means the Commission was obliged
+under the Free Exercise Clause to proceed in a manner
+neutral toward and tolerant of Phillips’ religious beliefs.
+The Constitution “commits government itself to religious
+tolerance, and upon even slight suspicion that proposals
+for state intervention stem from animosity to religion or
+distrust of its practices, all officials must pause to remember their own high duty to the Constitution and to the
+rights it secures.” Id., at 547.
+Factors relevant to the assessment of governmental
+neutrality include “the historical background of the decision under challenge, the specific series of events leading
+to the enactment or official policy in question, and the
+legislative or administrative history, including contemporaneous statements made by members of the decisionmaking body.” Id., at 540. In view of these factors the record
+here demonstrates that the Commission’s consideration of
+Phillips’ case was neither tolerant nor respectful of Phillips’ religious beliefs. The Commission gave “every appearance,” id., at 545, of adjudicating Phillips’ religious
+objection based on a negative normative “evaluation of the
+particular justification” for his objection and the religious
+grounds for it. Id., at 537. It hardly requires restating
+that government has no role in deciding or even suggesting whether the religious ground for Phillips’ consciencebased objection is legitimate or illegitimate. On these
+facts, the Court must draw the inference that Phillips’
+religious objection was not considered with the neutrality
+that the Free Exercise Clause requires.
+While the issues here are difficult to resolve, it must be
+concluded that the State’s interest could have been
+
+18
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of the Court
+
+weighed against Phillips’ sincere religious objections in a
+way consistent with the requisite religious neutrality that
+must be strictly observed. The official expressions of
+hostility to religion in some of the commissioners’ comments—comments that were not disavowed at the Commission or by the State at any point in the proceedings
+that led to affirmance of the order—were inconsistent with
+what the Free Exercise Clause requires. The Commission’s disparate consideration of Phillips’ case compared to
+the cases of the other bakers suggests the same. For these
+reasons, the order must be set aside.
+III
+The Commission’s hostility was inconsistent with the
+First Amendment’s guarantee that our laws be applied in
+a manner that is neutral toward religion. Phillips was
+entitled to a neutral decisionmaker who would give full
+and fair consideration to his religious objection as he
+sought to assert it in all of the circumstances in which this
+case was presented, considered, and decided. In this case
+the adjudication concerned a context that may well be
+different going forward in the respects noted above. However later cases raising these or similar concerns are
+resolved in the future, for these reasons the rulings of the
+Commission and of the state court that enforced the
+Commission’s order must be invalidated.
+The outcome of cases like this in other circumstances
+must await further elaboration in the courts, all in the
+context of recognizing that these disputes must be resolved with tolerance, without undue disrespect to sincere
+religious beliefs, and without subjecting gay persons to
+indignities when they seek goods and services in an open
+market.
+The judgment of the Colorado Court of Appeals is reversed.
+It is so ordered.
+
+Cite as: 584 U. S. ____ (2018)
+
+1
+
+KAGAN, J., concurring
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 16–111
+_________________
+
+MASTERPIECE CAKESHOP, LTD., ET AL., PETITIONERS
+v. COLORADO CIVIL RIGHTS COMMISSION, ET AL.
+ON WRIT OF CERTIORARI TO THE COURT OF APPEALS OF
+COLORADO
+[June 4, 2018]
+
+JUSTICE KAGAN, with whom JUSTICE BREYER joins,
+concurring.
+“[I]t is a general rule that [religious and philosophical]
+objections do not allow business owners and other actors
+in the economy and in society to deny protected persons
+equal access to goods and services under a neutral and
+generally applicable public accommodations law.” Ante, at
+9. But in upholding that principle, state actors cannot
+show hostility to religious views; rather, they must give
+those views “neutral and respectful consideration.” Ante,
+at 12. I join the Court’s opinion in full because I believe
+the Colorado Civil Rights Commission did not satisfy that
+obligation. I write separately to elaborate on one of the
+bases for the Court’s holding.
+The Court partly relies on the “disparate consideration
+of Phillips’ case compared to the cases of [three] other
+bakers” who “objected to a requested cake on the basis of
+conscience.” Ante, at 14, 18. In the latter cases, a customer
+named William Jack sought “cakes with images that
+conveyed disapproval of same-sex marriage, along with
+religious text”; the bakers whom he approached refused to
+make them. Ante, at 15; see post, at 3 (GINSBURG, J.,
+dissenting) (further describing the requested cakes).
+Those bakers prevailed before the Colorado Civil Rights
+Division and Commission, while Phillips—who objected for
+
+2
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+KAGAN, J., concurring
+
+religious reasons to baking a wedding cake for a same-sex
+couple—did not. The Court finds that the legal reasoning
+of the state agencies differed in significant ways as between the Jack cases and the Phillips case. See ante, at
+15. And the Court takes especial note of the suggestion
+made by the Colorado Court of Appeals, in comparing
+those cases, that the state agencies found the message
+Jack requested “offensive [in] nature.” Ante, at 16 (internal quotation marks omitted). As the Court states, a
+“principled rationale for the difference in treatment” cannot be “based on the government’s own assessment of
+offensiveness.” Ibid.
+What makes the state agencies’ consideration yet more
+disquieting is that a proper basis for distinguishing the
+cases was available—in fact, was obvious. The Colorado
+Anti-Discrimination Act (CADA) makes it unlawful for a
+place of public accommodation to deny “the full and equal
+enjoyment” of goods and services to individuals based on
+certain characteristics, including sexual orientation and
+creed. Colo. Rev. Stat. §24–34–601(2)(a) (2017). The three
+bakers in the Jack cases did not violate that law. Jack
+requested them to make a cake (one denigrating gay people and same-sex marriage) that they would not have
+made for any customer. In refusing that request, the
+bakers did not single out Jack because of his religion, but
+instead treated him in the same way they would have
+treated anyone else—just as CADA requires. By contrast,
+the same-sex couple in this case requested a wedding cake
+that Phillips would have made for an opposite-sex couple.
+In refusing that request, Phillips contravened CADA’s
+demand that customers receive “the full and equal enjoyment” of public accommodations irrespective of their
+sexual orientation. Ibid. The different outcomes in the
+Jack cases and the Phillips case could thus have been
+justified by a plain reading and neutral application of
+Colorado law—untainted by any bias against a religious
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+KAGAN, J., concurring
+
+belief.*
+I read the Court’s opinion as fully consistent with that
+view. The Court limits its analysis to the reasoning of the
+state agencies (and Court of Appeals)—“quite apart from
+whether the [Phillips and Jack] cases should ultimately be
+distinguished.” Ante, at 15. And the Court itself recognizes
+the principle that would properly account for a difference
+in result between those cases. Colorado law, the Court
+——————
+* JUSTICE GORSUCH disagrees. In his view, the Jack cases and the
+Phillips case must be treated the same because the bakers in all those
+cases “would not sell the requested cakes to anyone.” Post, at 4. That
+description perfectly fits the Jack cases—and explains why the bakers
+there did not engage in unlawful discrimination. But it is a surprising
+characterization of the Phillips case, given that Phillips routinely sells
+wedding cakes to opposite-sex couples. JUSTICE GORSUCH can make the
+claim only because he does not think a “wedding cake” is the relevant
+product. As JUSTICE GORSUCH sees it, the product that Phillips refused
+to sell here—and would refuse to sell to anyone—was a “cake celebrating same-sex marriage.” Ibid.; see post, at 3, 6, 8–9. But that is wrong.
+The cake requested was not a special “cake celebrating same-sex
+marriage.” It was simply a wedding cake—one that (like other standard wedding cakes) is suitable for use at same-sex and opposite-sex
+weddings alike. See ante, at 4 (majority opinion) (recounting that
+Phillips did not so much as discuss the cake’s design before he refused
+to make it). And contrary to JUSTICE GORSUCH’S view, a wedding cake
+does not become something different whenever a vendor like Phillips
+invests its sale to particular customers with “religious significance.”
+Post, at 11. As this Court has long held, and reaffirms today, a vendor
+cannot escape a public accommodations law because his religion disapproves selling a product to a group of customers, whether defined by
+sexual orientation, race, sex, or other protected trait. See Newman v.
+Piggie Park Enterprises, Inc., 390 U. S. 400, 402, n. 5 (1968) (per
+curiam) (holding that a barbeque vendor must serve black customers
+even if he perceives such service as vindicating racial equality, in
+violation of his religious beliefs); ante, at 9. A vendor can choose the
+products he sells, but not the customers he serves—no matter the
+reason. Phillips sells wedding cakes. As to that product, he unlawfully
+discriminates: He sells it to opposite-sex but not to same-sex couples.
+And on that basis—which has nothing to do with Phillips’ religious
+beliefs—Colorado could have distinguished Phillips from the bakers in
+the Jack cases, who did not engage in any prohibited discrimination.
+
+4
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+KAGAN, J., concurring
+
+says, “can protect gay persons, just as it can protect other
+classes of individuals, in acquiring whatever products and
+services they choose on the same terms and conditions as
+are offered to other members of the public.” Ante, at 10.
+For that reason, Colorado can treat a baker who discriminates based on sexual orientation differently from a baker
+who does not discriminate on that or any other prohibited
+ground. But only, as the Court rightly says, if the State’s
+decisions are not infected by religious hostility or bias. I
+accordingly concur.
+
+Cite as: 584 U. S. ____ (2018)
+
+1
+
+GORSUCH, J., concurring
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 16–111
+_________________
+
+MASTERPIECE CAKESHOP, LTD., ET AL., PETITIONERS
+v. COLORADO CIVIL RIGHTS COMMISSION, ET AL.
+ON WRIT OF CERTIORARI TO THE COURT OF APPEALS OF
+COLORADO
+[June 4, 2018]
+
+JUSTICE GORSUCH, with whom JUSTICE ALITO joins,
+concurring.
+In Employment Div., Dept. of Human Resources of Ore.
+v. Smith, this Court held that a neutral and generally
+applicable law will usually survive a constitutional free
+exercise challenge. 494 U. S. 872, 878–879 (1990). Smith
+remains controversial in many quarters.
+Compare
+McConnell, The Origins and Historical Understanding of
+Free Exercise of Religion, 103 Harv. L. Rev. 1409 (1990),
+with Hamburger, A Constitutional Right of Religious
+Exemption: An Historical Perspective, 60 Geo. Wash. L.
+Rev. 915 (1992). But we know this with certainty: when
+the government fails to act neutrally toward the free
+exercise of religion, it tends to run into trouble. Then the
+government can prevail only if it satisfies strict scrutiny,
+showing that its restrictions on religion both serve a compelling interest and are narrowly tailored. Church of
+Lukumi Babalu Aye, Inc. v. Hialeah, 508 U. S. 520, 546
+(1993).
+Today’s decision respects these principles. As the Court
+explains, the Colorado Civil Rights Commission failed to
+act neutrally toward Jack Phillips’s religious faith. Maybe
+most notably, the Commission allowed three other bakers
+to refuse a customer’s request that would have required
+them to violate their secular commitments. Yet it denied
+
+2
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GORSUCH, J., concurring
+
+the same accommodation to Mr. Phillips when he refused
+a customer’s request that would have required him to
+violate his religious beliefs. Ante, at 14–16. As the Court
+also explains, the only reason the Commission seemed to
+supply for its discrimination was that it found Mr. Phillips’s religious beliefs “offensive.” Ibid. That kind of
+judgmental dismissal of a sincerely held religious belief is,
+of course, antithetical to the First Amendment and cannot
+begin to satisfy strict scrutiny. The Constitution protects
+not just popular religious exercises from the condemnation
+of civil authorities. It protects them all. Because the
+Court documents each of these points carefully and thoroughly, I am pleased to join its opinion in full.
+The only wrinkle is this. In the face of so much evidence
+suggesting hostility toward Mr. Phillips’s sincerely held
+religious beliefs, two of our colleagues have written separately to suggest that the Commission acted neutrally
+toward his faith when it treated him differently from the
+other bakers—or that it could have easily done so consistent with the First Amendment. See post, at 4–5, and
+n. 4 (GINSBURG, J., dissenting); ante, at 2–3, and n.
+(KAGAN, J., concurring). But, respectfully, I do not see
+how we might rescue the Commission from its error.
+A full view of the facts helps point the way to the problem. Start with William Jack’s case. He approached three
+bakers and asked them to prepare cakes with messages
+disapproving same-sex marriage on religious grounds.
+App. 233, 243, 252. All three bakers refused Mr. Jack’s
+request, stating that they found his request offensive to
+their secular convictions. Id., at 231, 241, 250. Mr. Jack
+responded by filing complaints with the Colorado Civil
+Rights Division. Id., at 230, 240, 249. He pointed to
+Colorado’s Anti-Discrimination Act, which prohibits discrimination against customers in public accommodations
+because of religious creed, sexual orientation, or certain
+other traits. See ibid.; Colo. Rev. Stat. §24–34–601(2)(a)
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+GORSUCH, J., concurring
+
+(2017). Mr. Jack argued that the cakes he sought reflected
+his religious beliefs and that the bakers could not refuse to
+make them just because they happened to disagree with
+his beliefs. App. 231, 241, 250. But the Division declined
+to find a violation, reasoning that the bakers didn’t deny
+Mr. Jack service because of his religious faith but because
+the cakes he sought were offensive to their own moral
+convictions. Id., at 237, 247, 255–256. As proof, the Division pointed to the fact that the bakers said they treated
+Mr. Jack as they would have anyone who requested a cake
+with similar messages, regardless of their religion. Id., at
+230–231, 240, 249. The Division pointed, as well, to the
+fact that the bakers said they were happy to provide religious persons with other cakes expressing other ideas. Id.,
+at 237, 247, 257. Mr. Jack appealed to the Colorado Civil
+Rights Commission, but the Commission summarily denied relief. App. to Pet. for Cert. 326a–331a.
+Next, take the undisputed facts of Mr. Phillips’s case.
+Charlie Craig and Dave Mullins approached Mr. Phillips
+about creating a cake to celebrate their wedding. App.
+168. Mr. Phillips explained that he could not prepare a
+cake celebrating a same-sex wedding consistent with his
+religious faith. Id., at 168–169. But Mr. Phillips offered
+to make other baked goods for the couple, including cakes
+celebrating other occasions. Ibid. Later, Mr. Phillips
+testified without contradiction that he would have refused
+to create a cake celebrating a same-sex marriage for any
+customer, regardless of his or her sexual orientation. Id.,
+at 166–167 (“I will not design and create wedding cakes
+for a same-sex wedding regardless of the sexual orientation of the customer”). And the record reveals that Mr.
+Phillips apparently refused just such a request from Mr.
+Craig’s mother. Id., at 38–40, 169. (Any suggestion that
+Mr. Phillips was willing to make a cake celebrating a
+same-sex marriage for a heterosexual customer or was not
+willing to sell other products to a homosexual customer,
+
+4
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GORSUCH, J., concurring
+
+then, would simply mistake the undisputed factual record.
+See post, at 4, n. 2 (GINSBURG, J., dissenting); ante, at 2–3,
+and n. (KAGAN, J., concurring)). Nonetheless, the Commission held that Mr. Phillips’s conduct violated the Colorado public accommodations law. App. to Pet. for Cert.
+56a–58a.
+The facts show that the two cases share all legally salient features. In both cases, the effect on the customer was
+the same: bakers refused service to persons who bore a
+statutorily protected trait (religious faith or sexual orientation). But in both cases the bakers refused service
+intending only to honor a personal conviction. To be sure,
+the bakers knew their conduct promised the effect of leaving a customer in a protected class unserved. But there’s
+no indication the bakers actually intended to refuse service because of a customer’s protected characteristic. We
+know this because all of the bakers explained without
+contradiction that they would not sell the requested cakes
+to anyone, while they would sell other cakes to members of
+the protected class (as well as to anyone else). So, for
+example, the bakers in the first case would have refused to
+sell a cake denigrating same-sex marriage to an atheist
+customer, just as the baker in the second case would have
+refused to sell a cake celebrating same-sex marriage to a
+heterosexual customer. And the bakers in the first case
+were generally happy to sell to persons of faith, just as the
+baker in the second case was generally happy to sell to gay
+persons. In both cases, it was the kind of cake, not the
+kind of customer, that mattered to the bakers.
+The distinction between intended and knowingly accepted
+effects is familiar in life and law. Often the purposeful
+pursuit of worthy commitments requires us to accept
+unwanted but entirely foreseeable side effects: so, for
+example, choosing to spend time with family means the
+foreseeable loss of time for charitable work, just as opting
+for more time in the office means knowingly forgoing time
+
+Cite as: 584 U. S. ____ (2018)
+
+5
+
+GORSUCH, J., concurring
+
+at home with loved ones. The law, too, sometimes distinguishes between intended and foreseeable effects. See,
+e.g., ALI, Model Penal Code §§1.13, 2.02(2)(a)(i) (1985); 1
+W. LaFave, Substantive Criminal Law §5.2(b), pp. 460–
+463 (3d ed. 2018). Other times, of course, the law proceeds
+differently, either conflating intent and knowledge or
+presuming intent as a matter of law from a showing of
+knowledge. See, e.g., Restatement (Second) of Torts §8A
+(1965); Radio Officers v. NLRB, 347 U. S. 17, 45 (1954).
+The problem here is that the Commission failed to act
+neutrally by applying a consistent legal rule. In Mr.
+Jack’s case, the Commission chose to distinguish carefully
+between intended and knowingly accepted effects. Even
+though the bakers knowingly denied service to someone in
+a protected class, the Commission found no violation
+because the bakers only intended to distance themselves
+from “the offensive nature of the requested message.”
+Craig v. Masterpiece Cakeshop, Inc., 370 P. 3d 272, 282,
+n. 8 (Colo. App. 2015); App. 237, 247, 256; App. to Pet. for
+Cert. 326a–331a; see also Brief for Respondent Colorado
+Civil Rights Commission 52 (“Businesses are entitled to
+reject orders for any number of reasons, including because
+they deem a particular product requested by a customer to
+be ‘offensive’ ”). Yet, in Mr. Phillips’s case, the Commission dismissed this very same argument as resting on a
+“distinction without a difference.” App. to Pet. for Cert.
+69a. It concluded instead that an “intent to disfavor” a
+protected class of persons should be “readily . . . presumed” from the knowing failure to serve someone who
+belongs to that class. Id., at 70a. In its judgment, Mr.
+Phillips’s intentions were “inextricably tied to the sexual
+orientation of the parties involved” and essentially “irrational.” Ibid.
+Nothing in the Commission’s opinions suggests any
+neutral principle to reconcile these holdings. If Mr. Phillips’s objection is “inextricably tied” to a protected class,
+
+6
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GORSUCH, J., concurring
+
+then the bakers’ objection in Mr. Jack’s case must be
+“inextricably tied” to one as well. For just as cakes celebrating same-sex weddings are (usually) requested by
+persons of a particular sexual orientation, so too are cakes
+expressing religious opposition to same-sex weddings
+(usually) requested by persons of particular religious
+faiths. In both cases the bakers’ objection would (usually)
+result in turning down customers who bear a protected
+characteristic. In the end, the Commission’s decisions
+simply reduce to this: it presumed that Mr. Phillip harbored an intent to discriminate against a protected class in
+light of the foreseeable effects of his conduct, but it declined to presume the same intent in Mr. Jack’s case even
+though the effects of the bakers’ conduct were just as
+foreseeable. Underscoring the double standard, a state
+appellate court said that “no such showing” of actual
+“animus”—or intent to discriminate against persons in a
+protected class—was even required in Mr. Phillips’s case.
+370 P. 3d, at 282.
+The Commission cannot have it both ways. The Commission cannot slide up and down the mens rea scale,
+picking a mental state standard to suit its tastes depending on its sympathies. Either actual proof of intent to
+discriminate on the basis of membership in a protected
+class is required (as the Commission held in Mr. Jack’s
+case), or it is sufficient to “presume” such intent from the
+knowing failure to serve someone in a protected class (as
+the Commission held in Mr. Phillips’s case). Perhaps the
+Commission could have chosen either course as an initial
+matter. But the one thing it can’t do is apply a more
+generous legal test to secular objections than religious
+ones. See Church of Lukumi Babalu Aye, 508 U. S., at
+543–544. That is anything but the neutral treatment of
+religion.
+The real explanation for the Commission’s discrimination soon comes clear, too—and it does anything but help
+
+Cite as: 584 U. S. ____ (2018)
+
+7
+
+GORSUCH, J., concurring
+
+its cause. This isn’t a case where the Commission selfconsciously announced a change in its legal rule in all
+public accommodation cases. Nor is this a case where the
+Commission offered some persuasive reason for its discrimination that might survive strict scrutiny. Instead, as
+the Court explains, it appears the Commission wished to
+condemn Mr. Phillips for expressing just the kind of “irrational” or “offensive . . . message” that the bakers in the
+first case refused to endorse. Ante, at 16. Many may
+agree with the Commission and consider Mr. Phillips’s
+religious beliefs irrational or offensive. Some may believe
+he misinterprets the teachings of his faith. And, to be
+sure, this Court has held same-sex marriage a matter of
+constitutional right and various States have enacted laws
+that preclude discrimination on the basis of sexual orientation. But it is also true that no bureaucratic judgment
+condemning a sincerely held religious belief as “irrational”
+or “offensive” will ever survive strict scrutiny under the
+First Amendment. In this country, the place of secular
+officials isn’t to sit in judgment of religious beliefs, but
+only to protect their free exercise. Just as it is the “proudest boast of our free speech jurisprudence” that we protect
+speech that we hate, it must be the proudest boast of our
+free exercise jurisprudence that we protect religious beliefs that we find offensive. See Matal v. Tam, 582 U. S.
+___, ___ (2017) (plurality opinion) (slip op., at 25) (citing
+United States v. Schwimmer, 279 U. S. 644, 655 (1929)
+(Holmes, J., dissenting)). Popular religious views are easy
+enough to defend. It is in protecting unpopular religious
+beliefs that we prove this country’s commitment to serving
+as a refuge for religious freedom. See Church of Lukumi
+Babalu Aye, supra, at 547; Thomas v. Review Bd. of Indiana Employment Security Div., 450 U. S. 707, 715–716
+(1981); Wisconsin v. Yoder, 406 U. S. 205, 223–224 (1972);
+Cantwell v. Connecticut, 310 U. S. 296, 308–310 (1940).
+Nor can any amount of after-the-fact maneuvering by
+
+8
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GORSUCH, J., concurring
+
+our colleagues save the Commission. It is no answer, for
+example, to observe that Mr. Jack requested a cake with
+text on it while Mr. Craig and Mr. Mullins sought a cake
+celebrating their wedding without discussing its decoration, and then suggest this distinction makes all the difference. See post, at 4–5, and n. 4 (GINSBURG, J., dissenting). It is no answer either simply to slide up a level of
+generality to redescribe Mr. Phillips’s case as involving
+only a wedding cake like any other, so the fact that Mr.
+Phillips would make one for some means he must make
+them for all. See ante, at 2–3, and n. (KAGAN, J., concurring). These arguments, too, fail to afford Mr. Phillips’s
+faith neutral respect.
+Take the first suggestion first. To suggest that cakes
+with words convey a message but cakes without words do
+not—all in order to excuse the bakers in Mr. Jack’s case
+while penalizing Mr. Phillips—is irrational. Not even the
+Commission or court of appeals purported to rely on that
+distinction. Imagine Mr. Jack asked only for a cake with a
+symbolic expression against same-sex marriage rather
+than a cake bearing words conveying the same idea.
+Surely the Commission would have approved the bakers’
+intentional wish to avoid participating in that message
+too. Nor can anyone reasonably doubt that a wedding
+cake without words conveys a message. Words or not and
+whatever the exact design, it celebrates a wedding, and if
+the wedding cake is made for a same-sex couple it celebrates a same-sex wedding. See 370 P. 3d, at 276 (stating
+that Mr. Craig and Mr. Mullins “requested that Phillips
+design and create a cake to celebrate their same-sex wedding”) (emphasis added). Like “an emblem or flag,” a cake
+for a same-sex wedding is a symbol that serves as “a short
+cut from mind to mind,” signifying approval of a specific
+“system, idea, [or] institution.” West Virginia Bd. of Ed. v.
+Barnette, 319 U. S. 624, 632 (1943). It is precisely that
+approval that Mr. Phillips intended to withhold in keeping
+
+Cite as: 584 U. S. ____ (2018)
+
+9
+
+GORSUCH, J., concurring
+
+with his religious faith. The Commission denied Mr.
+Phillips that choice, even as it afforded the bakers in Mr.
+Jack’s case the choice to refuse to advance a message they
+deemed offensive to their secular commitments. That is
+not neutral.
+Nor would it be proper for this or any court to suggest
+that a person must be forced to write words rather than
+create a symbol before his religious faith is implicated.
+Civil authorities, whether “high or petty,” bear no license
+to declare what is or should be “orthodox” when it comes to
+religious beliefs, id., at 642, or whether an adherent has
+“correctly perceived” the commands of his religion, Thomas,
+supra, at 716. Instead, it is our job to look beyond the
+formality of written words and afford legal protection to
+any sincere act of faith. See generally Hurley v. IrishAmerican Gay, Lesbian and Bisexual Group of Boston,
+Inc., 515 U. S. 557, 569 (1995) (“[T]he Constitution looks
+beyond written or spoken words as mediums of expression,” which are “not a condition of constitutional
+protection”).
+The second suggestion fares no better. Suggesting that
+this case is only about “wedding cakes”—and not a wedding cake celebrating a same-sex wedding—actually points
+up the problem. At its most general level, the cake at
+issue in Mr. Phillips’s case was just a mixture of flour and
+eggs; at its most specific level, it was a cake celebrating
+the same-sex wedding of Mr. Craig and Mr. Mullins. We
+are told here, however, to apply a sort of Goldilocks rule:
+describing the cake by its ingredients is too general; understanding it as celebrating a same-sex wedding is too
+specific; but regarding it as a generic wedding cake is just
+right. The problem is, the Commission didn’t play with
+the level of generality in Mr. Jack’s case in this way. It
+didn’t declare, for example, that because the cakes Mr.
+Jack requested were just cakes about weddings generally,
+and all such cakes were the same, the bakers had to pro-
+
+10
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GORSUCH, J., concurring
+
+duce them. Instead, the Commission accepted the bakers’
+view that the specific cakes Mr. Jack requested conveyed a
+message offensive to their convictions and allowed them to
+refuse service. Having done that there, it must do the
+same here.
+Any other conclusion would invite civil authorities to
+gerrymander their inquiries based on the parties they
+prefer. Why calibrate the level of generality in Mr. Phillips’s case at “wedding cakes” exactly—and not at, say,
+“cakes” more generally or “cakes that convey a message
+regarding same-sex marriage” more specifically?
+If
+“cakes” were the relevant level of generality, the Commission would have to order the bakers to make Mr. Jack’s
+requested cakes just as it ordered Mr. Phillips to make the
+requested cake in his case. Conversely, if “cakes that
+convey a message regarding same-sex marriage” were the
+relevant level of generality, the Commission would have to
+respect Mr. Phillips’s refusal to make the requested cake
+just as it respected the bakers’ refusal to make the cakes
+Mr. Jack requested. In short, when the same level of
+generality is applied to both cases, it is no surprise that
+the bakers have to be treated the same. Only by adjusting
+the dials just right—fine-tuning the level of generality up
+or down for each case based solely on the identity of the
+parties and the substance of their views—can you engineer the Commission’s outcome, handing a win to Mr.
+Jack’s bakers but delivering a loss to Mr. Phillips. Such
+results-driven reasoning is improper. Neither the Commission nor this Court may apply a more specific level of
+generality in Mr. Jack’s case (a cake that conveys a message regarding same-sex marriage) while applying a higher
+level of generality in Mr. Phillips’s case (a cake that
+conveys no message regarding same-sex marriage). Of
+course, under Smith a vendor cannot escape a public
+accommodations law just because his religion frowns on it.
+But for any law to comply with the First Amendment and
+
+Cite as: 584 U. S. ____ (2018)
+
+11
+
+GORSUCH, J., concurring
+
+Smith, it must be applied in a manner that treats religion
+with neutral respect. That means the government must
+apply the same level of generality across cases—and that
+did not happen here.
+There is another problem with sliding up the generality
+scale: it risks denying constitutional protection to religious
+beliefs that draw distinctions more specific than the government’s preferred level of description. To some, all
+wedding cakes may appear indistinguishable. But to Mr.
+Phillips that is not the case—his faith teaches him otherwise. And his religious beliefs are entitled to no less
+respectful treatment than the bakers’ secular beliefs in
+Mr. Jack’s case. This Court has explained these same
+points “[r]epeatedly and in many different contexts” over
+many years. Smith, 494 U. S. at 887. For example, in
+Thomas a faithful Jehovah’s Witness and steel mill worker
+agreed to help manufacture sheet steel he knew might
+find its way into armaments, but he was unwilling to work
+on a fabrication line producing tank turrets. 450 U. S., at
+711. Of course, the line Mr. Thomas drew wasn’t the same
+many others would draw and it wasn’t even the same line
+many other members of the same faith would draw. Even
+so, the Court didn’t try to suggest that making steel is just
+making steel. Or that to offend his religion the steel
+needed to be of a particular kind or shape. Instead, it
+recognized that Mr. Thomas alone was entitled to define
+the nature of his religious commitments—and that those
+commitments, as defined by the faithful adherent, not a
+bureaucrat or judge, are entitled to protection under the
+First Amendment. Id., at 714–716; see also United States
+v. Lee, 455 U. S. 252, 254–255 (1982); Smith, supra, at 887
+(collecting authorities). It is no more appropriate for the
+United States Supreme Court to tell Mr. Phillips that a
+wedding cake is just like any other—without regard to the
+religious significance his faith may attach to it—than it
+would be for the Court to suggest that for all persons
+
+12
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GORSUCH, J., concurring
+
+sacramental bread is just bread or a kippah is just a cap.
+Only one way forward now remains. Having failed to
+afford Mr. Phillips’s religious objections neutral consideration and without any compelling reason for its failure, the
+Commission must afford him the same result it afforded
+the bakers in Mr. Jack’s case. The Court recognizes this
+by reversing the judgment below and holding that the
+Commission’s order “must be set aside.” Ante, at 18.
+Maybe in some future rulemaking or case the Commission
+could adopt a new “knowing” standard for all refusals of
+service and offer neutral reasons for doing so. But, as the
+Court observes, “[h]owever later cases raising these or
+similar concerns are resolved in the future, . . . the rulings
+of the Commission and of the state court that enforced the
+Commission’s order” in this case “must be invalidated.”
+Ibid.
+Mr. Phillips has conclusively proven a First
+Amendment violation and, after almost six years facing
+unlawful civil charges, he is entitled to judgment.
+
+Cite as: 584 U. S. ____ (2018)
+
+1
+
+Opinion of THOMAS, J.
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 16–111
+_________________
+
+MASTERPIECE CAKESHOP, LTD., ET AL., PETITIONERS
+v. COLORADO CIVIL RIGHTS COMMISSION, ET AL.
+ON WRIT OF CERTIORARI TO THE COURT OF APPEALS OF
+COLORADO
+[June 4, 2018]
+
+JUSTICE THOMAS, with whom JUSTICE GORSUCH joins,
+concurring in part and concurring in the judgment.
+I agree that the Colorado Civil Rights Commission
+(Commission) violated Jack Phillips’ right to freely exer­
+cise his religion. As JUSTICE GORSUCH explains, the
+Commission treated Phillips’ case differently from a simi­
+lar case involving three other bakers, for reasons that can
+only be explained by hostility toward Phillips’ religion.
+See ante, at 2–7 (concurring opinion). The Court agrees
+that the Commission treated Phillips differently, and it
+points out that some of the Commissioners made com­
+ments disparaging Phillips’ religion. See ante, at 12–16.
+Although the Commissioners’ comments are certainly
+disturbing, the discriminatory application of Colorado’s
+public-accommodations law is enough on its own to violate
+Phillips’ rights. To the extent the Court agrees, I join its
+opinion.
+While Phillips rightly prevails on his free-exercise claim,
+I write separately to address his free-speech claim. The
+Court does not address this claim because it has some
+uncertainties about the record. See ante, at 2. Specifically,
+the parties dispute whether Phillips refused to create a
+custom wedding cake for the individual respondents, or
+whether he refused to sell them any wedding cake (includ­
+ing a premade one). But the Colorado Court of Appeals
+
+2
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of THOMAS, J.
+
+resolved this factual dispute in Phillips’ favor. The court
+described his conduct as a refusal to “design and create a
+cake to celebrate [a] same-sex wedding.” Craig v. Masterpiece Cakeshop, Inc., 370 P. 3d 272, 276 (2015); see also
+id., at 286 (“designing and selling a wedding cake”); id., at
+283 (“refusing to create a wedding cake”). And it noted
+that the Commission’s order required Phillips to sell “ ‘any
+product [he] would sell to heterosexual couples,’ ” including
+custom wedding cakes. Id., at 286 (emphasis added).
+Even after describing his conduct this way, the Court of
+Appeals concluded that Phillips’ conduct was not expres­
+sive and was not protected speech. It reasoned that an
+outside observer would think that Phillips was merely
+complying with Colorado’s public-accommodations law, not
+expressing a message, and that Phillips could post a dis­
+claimer to that effect. This reasoning flouts bedrock prin­
+ciples of our free-speech jurisprudence and would justify
+virtually any law that compels individuals to speak. It
+should not pass without comment.
+I
+The First Amendment, applicable to the States through
+the Fourteenth Amendment, prohibits state laws that
+abridge the “freedom of speech.” When interpreting this
+command, this Court has distinguished between regula­
+tions of speech and regulations of conduct. The latter
+generally do not abridge the freedom of speech, even if
+they impose “incidental burdens” on expression. Sorrell v.
+IMS Health Inc., 564 U. S. 552, 567 (2011). As the Court
+explains today, public-accommodations laws usually regu­
+late conduct. Ante, at 9–10 (citing Hurley v. IrishAmerican Gay, Lesbian and Bisexual Group of Boston,
+Inc., 515 U. S. 557, 572 (1995)). “[A]s a general matter,”
+public-accommodations laws do not “target speech” but
+instead prohibit “the act of discriminating against individ­
+uals in the provision of publicly available goods, privileges,
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+Opinion of THOMAS, J.
+
+and services.” Id., at 572 (emphasis added).
+Although public-accommodations laws generally regu­
+late conduct, particular applications of them can burden
+protected speech. When a public-accommodations law
+“ha[s] the effect of declaring . . . speech itself to be the
+public accommodation,” the First Amendment applies with
+full force. Id., at 573; accord, Boy Scouts of America v.
+Dale, 530 U. S. 640, 657–659 (2000). In Hurley, for exam­
+ple, a Massachusetts public-accommodations law prohibited “ ‘any distinction, discrimination or restriction on ac­
+count of . . . sexual orientation . . . relative to the admis­
+sion of any person to, or treatment in any place of public
+accommodation.’ ” 515 U. S., at 561 (quoting Mass. Gen.
+Laws §272:98 (1992); ellipsis in original). When this law
+required the sponsor of a St. Patrick’s Day parade to
+include a parade unit of gay, lesbian, and bisexual IrishAmericans, the Court unanimously held that the law
+violated the sponsor’s right to free speech. Parades are “a
+form of expression,” this Court explained, and the applica­
+tion of the public-accommodations law “alter[ed] the ex­
+pressive content” of the parade by forcing the sponsor to
+add a new unit. 515 U. S., at 568, 572–573. The addition
+of that unit compelled the organizer to “bear witness to the
+fact that some Irish are gay, lesbian, or bisexual”; “suggest
+. . . that people of their sexual orientation have as much
+claim to unqualified social acceptance as heterosexuals”;
+and imply that their participation “merits celebration.”
+Id., at 574. While this Court acknowledged that the unit’s
+exclusion might have been “misguided, or even hurtful,”
+ibid., it rejected the notion that governments can mandate
+“thoughts and statements acceptable to some groups or,
+indeed, all people” as the “antithesis” of free speech, id., at
+579; accord, Dale, supra, at 660–661.
+The parade in Hurley was an example of what this
+Court has termed “expressive conduct.” See 515 U. S., at
+568–569. This Court has long held that “the Constitution
+
+4
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of THOMAS, J.
+
+looks beyond written or spoken words as mediums of
+expression,” id., at 569, and that “[s]ymbolism is a primi­
+tive but effective way of communicating ideas,” West Virginia Bd. of Ed. v. Barnette, 319 U. S. 624, 632 (1943).
+Thus, a person’s “conduct may be ‘sufficiently imbued with
+elements of communication to fall within the scope of the
+First and Fourteenth Amendments.’ ” Texas v. Johnson,
+491 U. S. 397, 404 (1989). Applying this principle, the
+Court has recognized a wide array of conduct that can
+qualify as expressive, including nude dancing, burning the
+American flag, flying an upside-down American flag with
+a taped-on peace sign, wearing a military uniform, wear­
+ing a black armband, conducting a silent sit-in, refusing to
+salute the American flag, and flying a plain red flag.1
+Of course, conduct does not qualify as protected speech
+simply because “the person engaging in [it] intends thereby
+to express an idea.” United States v. O’Brien, 391 U. S.
+367, 376 (1968). To determine whether conduct is suffi­
+ciently expressive, the Court asks whether it was “intended
+to be communicative” and, “in context, would reasonably be understood by the viewer to be communicative.”
+Clark v. Community for Creative Non-Violence, 468 U. S.
+288, 294 (1984). But a “ ‘particularized message’ ” is not
+required, or else the freedom of speech “would never reach
+the unquestionably shielded painting of Jackson Pollock,
+music of Arnold Schöenberg, or Jabberwocky verse of
+Lewis Carroll.” Hurley, 515 U. S., at 569.
+Once a court concludes that conduct is expressive, the
+——————
+1 Barnes
+
+v. Glen Theatre, Inc., 501 U. S. 560, 565–566 (1991); Texas v.
+Johnson, 491 U. S. 397, 405–406 (1989); Spence v. Washington, 418
+U. S. 405, 406, 409–411 (1974) (per curiam); Schacht v. United States,
+398 U. S. 58, 62–63 (1970); Tinker v. Des Moines Independent Community School Dist., 393 U. S. 503, 505–506 (1969); Brown v. Louisiana,
+383 U. S. 131, 141–142 (1966) (opinion of Fortas, J.); West Virginia Bd.
+of Ed. v. Barnette, 319 U. S. 624, 633–634 (1943); Stromberg v. California, 283 U. S. 359, 361, 369 (1931).
+
+Cite as: 584 U. S. ____ (2018)
+
+5
+
+Opinion of THOMAS, J.
+
+Constitution limits the government’s authority to restrict
+or compel it. “[O]ne important manifestation of the principle of free speech is that one who chooses to speak may
+also decide ‘what not to say’ ” and “tailor” the content of his
+message as he sees fit. Id., at 573 (quoting Pacific Gas &
+Elec. Co. v. Public Util. Comm’n of Cal., 475 U. S. 1, 16
+(1986) (plurality opinion)). This rule “applies not only to
+expressions of value, opinion, or endorsement, but equally
+to statements of fact the speaker would rather avoid.”
+Hurley, supra, at 573. And it “makes no difference”
+whether the government is regulating the “creati[on],
+distributi[on], or consum[ption]” of the speech. Brown v.
+Entertainment Merchants Assn., 564 U. S. 786, 792, n. 1
+(2011).
+II
+A
+The conduct that the Colorado Court of Appeals ascribed
+to Phillips—creating and designing custom wedding
+cakes—is expressive. Phillips considers himself an artist.
+The logo for Masterpiece Cakeshop is an artist’s paint
+palette with a paintbrush and baker’s whisk. Behind the
+counter Phillips has a picture that depicts him as an artist
+painting on a canvas. Phillips takes exceptional care with
+each cake that he creates—sketching the design out on
+paper, choosing the color scheme, creating the frosting and
+decorations, baking and sculpting the cake, decorating it,
+and delivering it to the wedding. Examples of his creations can be seen on Masterpiece’s website.
+See
+http://masterpiececakes.com/wedding-cakes (as last visited
+June 1, 2018).
+Phillips is an active participant in the wedding celebration. He sits down with each couple for a consultation
+before he creates their custom wedding cake. He discusses
+their preferences, their personalities, and the details of
+their wedding to ensure that each cake reflects the couple
+
+6
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of THOMAS, J.
+
+who ordered it. In addition to creating and delivering the
+cake—a focal point of the wedding celebration—Phillips
+sometimes stays and interacts with the guests at the
+wedding. And the guests often recognize his creations and
+seek his bakery out afterward. Phillips also sees the
+inherent symbolism in wedding cakes. To him, a wedding
+cake inherently communicates that “a wedding has oc­
+curred, a marriage has begun, and the couple should be
+celebrated.” App. 162.
+Wedding cakes do, in fact, communicate this message.
+A tradition from Victorian England that made its way to
+America after the Civil War, “[w]edding cakes are so
+packed with symbolism that it is hard to know where to
+begin.” M. Krondl, Sweet Invention: A History of Dessert
+321 (2011) (Krondl); see also ibid. (explaining the symbol­
+ism behind the color, texture, flavor, and cutting of the
+cake). If an average person walked into a room and saw a
+white, multi-tiered cake, he would immediately know that
+he had stumbled upon a wedding. The cake is “so stand­
+ardised and inevitable a part of getting married that few
+ever think to question it.” Charsley, Interpretation and
+Custom: The Case of the Wedding Cake, 22 Man 93, 95
+(1987). Almost no wedding, no matter how spartan, is
+missing the cake. See id., at 98. “A whole series of events
+expected in the context of a wedding would be impossible
+without it: an essential photograph, the cutting, the toast,
+and the distribution of both cake and favours at the wed­
+ding and afterwards.” Ibid. Although the cake is eventu­
+ally eaten, that is not its primary purpose. See id., at 95
+(“It is not unusual to hear people declaring that they do
+not like wedding cake, meaning that they do not like to eat
+it. This includes people who are, without question, having
+such cakes for their weddings”); id., at 97 (“Nothing is
+made of the eating itself ”); Krondl 320–321 (explaining
+that wedding cakes have long been described as “inedi­
+ble”). The cake’s purpose is to mark the beginning of a
+
+Cite as: 584 U. S. ____ (2018)
+
+7
+
+Opinion of THOMAS, J.
+
+new marriage and to celebrate the couple.2
+Accordingly, Phillips’ creation of custom wedding cakes
+is expressive. The use of his artistic talents to create a
+well-recognized symbol that celebrates the beginning of a
+marriage clearly communicates a message—certainly
+more so than nude dancing, Barnes v. Glen Theatre, Inc.,
+501 U. S. 560, 565–566 (1991), or flying a plain red flag,
+Stromberg v. California, 283 U. S. 359, 369 (1931).3 By
+forcing Phillips to create custom wedding cakes for same­
+——————
+2 The
+
+Colorado Court of Appeals acknowledged that “a wedding cake,
+in some circumstances, may convey a particularized message celebrat­
+ing same-sex marriage,” depending on its “design” and whether it has
+“written inscriptions.” Craig v. Masterpiece Cakeshop, Inc., 370 P. 3d
+272, 288 (2015). But a wedding cake needs no particular design or
+written words to communicate the basic message that a wedding is
+occurring, a marriage has begun, and the couple should be celebrated.
+Wedding cakes have long varied in color, decorations, and style, but
+those differences do not prevent people from recognizing wedding cakes
+as wedding cakes. See Charsley, Interpretation and Custom: The Case
+of the Wedding Cake, 22 Man 93, 96 (1987). And regardless, the
+Commission’s order does not distinguish between plain wedding cakes
+and wedding cakes with particular designs or inscriptions; it requires
+Phillips to make any wedding cake for a same-sex wedding that he
+would make for an opposite-sex wedding.
+3 The dissent faults Phillips for not “submitting . . . evidence” that
+wedding cakes communicate a message. Post, at 2, n. 1 (opinion of
+GINSBURG, J.). But this requirement finds no support in our prece­
+dents. This Court did not insist that the parties submit evidence
+detailing the expressive nature of parades, flags, or nude dancing. See
+Hurley v. Irish-American Gay, Lesbian and Bisexual Group of Boston,
+Inc., 515 U. S. 557, 568–570 (1995); Spence, 418 U. S., at 410–411;
+Barnes, 501 U. S., at 565–566. And we do not need extensive evidence
+here to conclude that Phillips’ artistry is expressive, see Hurley, 515
+U. S., at 569, or that wedding cakes at least communicate the basic fact
+that “this is a wedding,” see id., at 573–575. Nor does it matter that
+the couple also communicates a message through the cake. More than
+one person can be engaged in protected speech at the same time. See
+id., at 569–570. And by forcing him to provide the cake, Colorado is
+requiring Phillips to be “intimately connected” with the couple’s speech,
+which is enough to implicate his First Amendment rights. See id., at
+576.
+
+8
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of THOMAS, J.
+
+sex weddings, Colorado’s public-accommodations law
+“alter[s] the expressive content” of his message. Hurley,
+515 U. S., at 572. The meaning of expressive conduct, this
+Court has explained, depends on “the context in which it
+occur[s].” Johnson, 491 U. S., at 405. Forcing Phillips to
+make custom wedding cakes for same-sex marriages re­
+quires him to, at the very least, acknowledge that samesex weddings are “weddings” and suggest that they should
+be celebrated—the precise message he believes his faith
+forbids. The First Amendment prohibits Colorado from
+requiring Phillips to “bear witness to [these] fact[s],”
+Hurley, 515 U. S., at 574, or to “affir[m] . . . a belief with
+which [he] disagrees,” id., at 573.
+B
+The Colorado Court of Appeals nevertheless concluded
+that Phillips’ conduct was “not sufficiently expressive” to
+be protected from state compulsion. 370 P. 3d, at 283. It
+noted that a reasonable observer would not view Phillips’
+conduct as “an endorsement of same-sex marriage,” but
+rather as mere “compliance” with Colorado’s publicaccommodations law. Id., at 286–287 (citing Rumsfeld v.
+Forum for Academic and Institutional Rights, Inc., 547
+U. S. 47, 64–65 (2006) (FAIR); Rosenberger v. Rector and
+Visitors of Univ. of Va., 515 U. S. 819, 841–842 (1995);
+PruneYard Shopping Center v. Robins, 447 U. S. 74, 76–78
+(1980)). It also emphasized that Masterpiece could “disas­
+sociat[e]” itself from same-sex marriage by posting a “dis­
+claimer” stating that Colorado law “requires it not to
+discriminate” or that “the provision of its services does not
+constitute an endorsement.” 370 P. 3d, at 288. This rea­
+soning is badly misguided.
+1
+The Colorado Court of Appeals was wrong to conclude
+that Phillips’ conduct was not expressive because a rea­
+
+Cite as: 584 U. S. ____ (2018)
+
+9
+
+Opinion of THOMAS, J.
+
+sonable observer would think he is merely complying with
+Colorado’s public-accommodations law. This argument
+would justify any law that compelled protected speech.
+And, this Court has never accepted it. From the begin­
+ning, this Court’s compelled-speech precedents have re­
+jected arguments that “would resolve every issue of power
+in favor of those in authority.” Barnette, 319 U. S., at 636.
+Hurley, for example, held that the application of Massa­
+chusetts’ public-accommodations law “requir[ed] [the
+organizers] to alter the expressive content of their pa­
+rade.” 515 U. S., at 572–573. It did not hold that reason­
+able observers would view the organizers as merely com­
+plying with Massachusetts’ public-accommodations law.
+The decisions that the Colorado Court of Appeals cited
+for this proposition are far afield. It cited three decisions
+where groups objected to being forced to provide a forum
+for a third party’s speech. See FAIR, supra, at 51 (law
+school refused to allow military recruiters on campus);
+Rosenberger, supra, at 822–823 (public university refused
+to provide funds to a religious student paper); PruneYard,
+supra, at 77 (shopping center refused to allow individuals
+to collect signatures on its property). In those decisions,
+this Court rejected the argument that requiring the
+groups to provide a forum for third-party speech also
+required them to endorse that speech. See FAIR, supra, at
+63–65; Rosenberger, supra, at 841–842; PruneYard, supra,
+at 85–88. But these decisions do not suggest that the
+government can force speakers to alter their own message.
+See Pacific Gas & Elec., 475 U. S., at 12 (“Notably absent
+from PruneYard was any concern that access . . . might
+affect the shopping center owner’s exercise of his own
+right to speak”); Hurley, supra, at 580 (similar).
+The Colorado Court of Appeals also noted that Master­
+piece is a “for-profit bakery” that “charges its customers.”
+370 P. 3d, at 287. But this Court has repeatedly rejected
+the notion that a speaker’s profit motive gives the gov­
+
+10
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of THOMAS, J.
+
+ernment a freer hand in compelling speech. See Pacific
+Gas & Elec., supra, at 8, 16 (collecting cases); Virginia Bd.
+of Pharmacy v. Virginia Citizens Consumer Council, Inc.,
+425 U. S. 748, 761 (1976) (deeming it “beyond serious
+dispute” that “[s]peech . . . is protected even though it is
+carried in a form that is ‘sold’ for profit”). Further, even
+assuming that most for-profit companies prioritize maxim­
+izing profits over communicating a message, that is not
+true for Masterpiece Cakeshop. Phillips routinely sacrifices profits to ensure that Masterpiece operates in a way
+that represents his Christian faith. He is not open on
+Sundays, he pays his employees a higher-than-average
+wage, and he loans them money in times of need. Phillips
+also refuses to bake cakes containing alcohol, cakes with
+racist or homophobic messages, cakes criticizing God, and
+cakes celebrating Halloween—even though Halloween is
+one of the most lucrative seasons for bakeries. These
+efforts to exercise control over the messages that Master­
+piece sends are still more evidence that Phillips’ conduct is
+expressive. See Miami Herald Publishing Co. v. Tornillo,
+418 U. S. 241, 256–258 (1974); Walker v. Texas Div., Sons
+of Confederate Veterans, Inc., 576 U. S. ___, ___ (2015)
+(slip op., at 15).
+2
+The Colorado Court of Appeals also erred by suggesting
+that Phillips could simply post a disclaimer, disassociating
+Masterpiece from any support for same-sex marriage.
+Again, this argument would justify any law compelling
+speech. And again, this Court has rejected it. We have
+described similar arguments as “beg[ging] the core ques­
+tion.” Tornillo, supra, at 256. Because the government
+cannot compel speech, it also cannot “require speakers to
+affirm in one breath that which they deny in the next.”
+Pacific Gas & Elec., 475 U. S., at 16; see also id., at 15,
+n. 11 (citing PruneYard, 447 U. S., at 99 (Powell, J., con­
+
+Cite as: 584 U. S. ____ (2018)
+
+11
+
+Opinion of THOMAS, J.
+
+curring in part and concurring in judgment)). States
+cannot put individuals to the choice of “be[ing] compelled
+to affirm someone else’s belief ” or “be[ing] forced to speak
+when [they] would prefer to remain silent.” Id., at 99.
+III
+Because Phillips’ conduct (as described by the Colorado
+Court of Appeals) was expressive, Colorado’s publicaccommodations law cannot penalize it unless the law
+withstands strict scrutiny. Although this Court some­
+times reviews regulations of expressive conduct under the
+more lenient test articulated in O’Brien,4 that test does not
+apply unless the government would have punished the
+conduct regardless of its expressive component. See, e.g.,
+Barnes, 501 U. S., at 566–572 (applying O’Brien to evalu­
+ate the application of a general nudity ban to nude danc­
+ing); Clark, 468 U. S., at 293 (applying O’Brien to evaluate
+the application of a general camping ban to a demonstra­
+tion in the park). Here, however, Colorado would not be
+punishing Phillips if he refused to create any custom
+wedding cakes; it is punishing him because he refuses to
+create custom wedding cakes that express approval of
+same-sex marriage. In cases like this one, our precedents
+demand “ ‘the most exacting scrutiny.’ ” Johnson, 491
+U. S., at 412; accord, Holder v. Humanitarian Law Project,
+561 U. S. 1, 28 (2010).
+The Court of Appeals did not address whether Colo­
+rado’s law survives strict scrutiny, and I will not do so in
+the first instance. There is an obvious flaw, however, with
+——————
+4 “[A] government regulation [of expressive conduct] is sufficiently
+justified if it is within the constitutional power of the Government; if it
+furthers an important or substantial governmental interest; if the
+governmental interest is unrelated to the suppression of free expres­
+sion; and if the incidental restriction on alleged First Amendment
+freedoms is no greater than is essential to the furtherance of that
+interest.” United States v. O’Brien, 391 U. S. 367, 377 (1968).
+
+12
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of THOMAS, J.
+
+one of the asserted justifications for Colorado’s law. Ac­
+cording to the individual respondents, Colorado can com­
+pel Phillips’ speech to prevent him from “ ‘denigrat[ing] the
+dignity’ ” of same-sex couples, “ ‘assert[ing] [their] inferiority,’ ” and subjecting them to “ ‘humiliation, frustration, and
+embarrassment.’ ” Brief for Respondents Craig et al. 39
+(quoting J. E. B. v. Alabama ex rel. T. B., 511 U. S. 127,
+142 (1994); Heart of Atlanta Motel, Inc. v. United States,
+379 U. S. 241, 292 (1964) (Goldberg, J., concurring)).
+These justifications are completely foreign to our freespeech jurisprudence.
+States cannot punish protected speech because some
+group finds it offensive, hurtful, stigmatic, unreasonable,
+or undignified. “If there is a bedrock principle underlying
+the First Amendment, it is that the government may not
+prohibit the expression of an idea simply because society
+finds the idea itself offensive or disagreeable.” Johnson,
+supra, at 414. A contrary rule would allow the govern­
+ment to stamp out virtually any speech at will. See Morse
+v. Frederick, 551 U. S. 393, 409 (2007) (“After all, much
+political and religious speech might be perceived as offen­
+sive to some”). As the Court reiterates today, “it is not . . .
+the role of the State or its officials to prescribe what shall
+be offensive.” Ante, at 16. “ ‘Indeed, if it is the speaker’s
+opinion that gives offense, that consequence is a reason for
+according it constitutional protection.’ ” Hustler Magazine,
+Inc. v. Falwell, 485 U. S. 46, 55 (1988); accord, Johnson,
+supra, at 408–409.
+If the only reason a publicaccommodations law regulates speech is “to produce a
+society free of . . . biases” against the protected groups,
+that purpose is “decidedly fatal” to the law’s constitution­
+ality, “for it amounts to nothing less than a proposal to
+limit speech in the service of orthodox expression.” Hurley, 515 U. S., at 578–579; see also United States v. Playboy Entertainment Group, Inc., 529 U. S. 803, 813 (2000)
+(“Where the designed benefit of a content-based speech
+
+Cite as: 584 U. S. ____ (2018)
+
+13
+
+Opinion of THOMAS, J.
+
+restriction is to shield the sensibilities of listeners, the
+general rule is that the right of expression prevails”). “[A]
+speech burden based on audience reactions is simply
+government hostility . . . in a different guise.” Matal v.
+Tam, 582 U. S. ___, ___ (2017) (KENNEDY, J., concurring in
+part and concurring in judgment) (slip op., at 4).
+Consider what Phillips actually said to the individual
+respondents in this case. After sitting down with them for
+a consultation, Phillips told the couple, “ ‘I’ll make your
+birthday cakes, shower cakes, sell you cookies and brown­
+ies, I just don’t make cakes for same sex weddings.’ ” App.
+168. It is hard to see how this statement stigmatizes gays
+and lesbians more than blocking them from marching in a
+city parade, dismissing them from the Boy Scouts, or
+subjecting them to signs that say “God Hates Fags”—all of
+which this Court has deemed protected by the First
+Amendment. See Hurley, supra, at 574–575; Dale, 530
+U. S., at 644; Snyder v. Phelps, 562 U. S. 443, 448 (2011).
+Moreover, it is also hard to see how Phillips’ statement is
+worse than the racist, demeaning, and even threatening
+speech toward blacks that this Court has tolerated in
+previous decisions. Concerns about “dignity” and “stigma”
+did not carry the day when this Court affirmed the right of
+white supremacists to burn a 25-foot cross, Virginia v.
+Black, 538 U. S. 343 (2003); conduct a rally on Martin
+Luther King Jr.’s birthday, Forsyth County v. Nationalist
+Movement, 505 U. S. 123 (1992); or circulate a film featur­
+ing hooded Klan members who were brandishing weapons
+and threatening to “ ‘Bury the niggers,’ ” Brandenburg v.
+Ohio, 395 U. S. 444, 446, n. 1 (1969) (per curiam).
+Nor does the fact that this Court has now decided Obergefell v. Hodges, 576 U. S. ___ (2015), somehow diminish
+Phillips’ right to free speech. “It is one thing . . . to con­
+clude that the Constitution protects a right to same-sex
+marriage; it is something else to portray everyone who
+does not share [that view] as bigoted” and unentitled to
+
+14
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+Opinion of THOMAS, J.
+
+express a different view. Id., at ___ (ROBERTS, C. J., dis­
+senting) (slip op., at 29). This Court is not an authority on
+matters of conscience, and its decisions can (and often
+should) be criticized. The First Amendment gives individ­
+uals the right to disagree about the correctness of Obergefell and the morality of same-sex marriage. Obergefell
+itself emphasized that the traditional understanding of
+marriage “long has been held—and continues to be held—
+in good faith by reasonable and sincere people here and
+throughout the world.” Id., at ___ (majority opinion) (slip
+op., at 4). If Phillips’ continued adherence to that under­
+standing makes him a minority after Obergefell, that is all
+the more reason to insist that his speech be protected. See
+Dale, supra, at 660 (“[T]he fact that [the social acceptance
+of homosexuality] may be embraced and advocated by
+increasing numbers of people is all the more reason to
+protect the First Amendment rights of those who wish to
+voice a different view”).
+*
+*
+*
+In Obergefell, I warned that the Court’s decision would
+“inevitabl[y] . . . come into conflict” with religious liberty,
+“as individuals . . . are confronted with demands to partic­
+ipate in and endorse civil marriages between same-sex
+couples.” 576 U. S., at ___ (dissenting opinion) (slip op., at
+15). This case proves that the conflict has already
+emerged. Because the Court’s decision vindicates Phillips’
+right to free exercise, it seems that religious liberty has
+lived to fight another day. But, in future cases, the free­
+dom of speech could be essential to preventing Obergefell
+from being used to “stamp out every vestige of dissent”
+and “vilify Americans who are unwilling to assent to the
+new orthodoxy.” Id., at ___ (ALITO, J., dissenting) (slip op.,
+at 6). If that freedom is to maintain its vitality, reasoning
+like the Colorado Court of Appeals’ must be rejected.
+
+Cite as: 584 U. S. ____ (2018)
+
+1
+
+GINSBURG, J., dissenting
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 16–111
+_________________
+
+MASTERPIECE CAKESHOP, LTD., ET AL., PETITIONERS
+v. COLORADO CIVIL RIGHTS COMMISSION, ET AL.
+ON WRIT OF CERTIORARI TO THE COURT OF APPEALS OF
+COLORADO
+[June 4, 2018]
+
+JUSTICE GINSBURG, with whom JUSTICE SOTOMAYOR
+joins, dissenting.
+There is much in the Court’s opinion with which I agree.
+“[I]t is a general rule that [religious and philosophical]
+objections do not allow business owners and other actors
+in the economy and in society to deny protected persons
+equal access to goods and services under a neutral and
+generally applicable public accommodations law.” Ante, at
+9. “Colorado law can protect gay persons, just as it can
+protect other classes of individuals, in acquiring whatever
+products and services they choose on the same terms and
+conditions as are offered to other members of the public.”
+Ante, at 10. “[P]urveyors of goods and services who object
+to gay marriages for moral and religious reasons [may not]
+put up signs saying ‘no goods or services will be sold if
+they will be used for gay marriages.’ ” Ante, at 12. Gay
+persons may be spared from “indignities when they seek
+goods and services in an open market.” Ante, at 18.1 I
+——————
+1 As JUSTICE THOMAS observes, the Court does not hold that wedding
+cakes are speech or expression entitled to First Amendment protection.
+See ante, at 1 (opinion concurring in part and concurring in judgment).
+Nor could it, consistent with our First Amendment precedents. JUSTICE
+THOMAS acknowledges that for conduct to constitute protected expression, the conduct must be reasonably understood by an observer to be
+communicative. Ante, at 4 (citing Clark v. Community for Creative
+
+2
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GINSBURG, J., dissenting
+
+strongly disagree, however, with the Court’s conclusion
+that Craig and Mullins should lose this case. All of the
+above-quoted statements point in the opposite direction.
+The Court concludes that “Phillips’ religious objection
+was not considered with the neutrality that the Free
+Exercise Clause requires.” Ante, at 17. This conclusion
+rests on evidence said to show the Colorado Civil Rights
+Commission’s (Commission) hostility to religion. Hostility
+is discernible, the Court maintains, from the asserted
+“disparate consideration of Phillips’ case compared to the
+cases of ” three other bakers who refused to make cakes
+requested by William Jack, an amicus here. Ante, at 18.
+The Court also finds hostility in statements made at two
+public hearings on Phillips’ appeal to the Commission.
+Ante, at 12–14. The different outcomes the Court features
+——————
+Non-Violence, 468 U. S. 288, 294 (1984)). The record in this case is
+replete with Jack Phillips’ own views on the messages he believes his
+cakes convey. See ante, at 5–6 (THOMAS, J., concurring in part and
+concurring in judgment) (describing how Phillips “considers” and “sees”
+his work). But Phillips submitted no evidence showing that an objective observer understands a wedding cake to convey a message, much
+less that the observer understands the message to be the baker’s,
+rather than the marrying couple’s. Indeed, some in the wedding
+industry could not explain what message, or whose, a wedding cake
+conveys. See Charsley, Interpretation and Custom: The Case of the
+Wedding Cake, 22 Man 93, 100–101 (1987) (no explanation of wedding
+cakes’ symbolism was forthcoming “even amongst those who might be
+expected to be the experts”); id., at 104–105 (the cake cutting tradition
+might signify “the bride and groom . . . as appropriating the cake” from
+the bride’s parents). And Phillips points to no case in which this Court
+has suggested the provision of a baked good might be expressive conduct. Cf. ante, at 7, n. 2 (THOMAS, J., concurring in part and concurring
+in judgment); Hurley v. Irish-American Gay, Lesbian, and Bisexual
+Group of Boston, Inc., 515 U. S. 557, 568–579 (1995) (citing previous
+cases recognizing parades to be expressive); Barnes v. Glen Theatre,
+Inc., 501 U. S. 560, 565 (1991) (noting precedents suggesting nude
+dancing is expressive conduct); Spence v. Washington, 418 U. S. 405,
+410 (1974) (observing the Court’s decades-long recognition of the
+symbolism of flags).
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+GINSBURG, J., dissenting
+
+do not evidence hostility to religion of the kind we have
+previously held to signal a free-exercise violation, nor do
+the comments by one or two members of one of the four
+decisionmaking entities considering this case justify reversing the judgment below.
+I
+On March 13, 2014—approximately three months after
+the ALJ ruled in favor of the same-sex couple, Craig and
+Mullins, and two months before the Commission heard
+Phillips’ appeal from that decision—William Jack visited
+three Colorado bakeries. His visits followed a similar
+pattern. He requested two cakes
+“made to resemble an open Bible. He also requested
+that each cake be decorated with Biblical verses. [He]
+requested that one of the cakes include an image of
+two groomsmen, holding hands, with a red ‘X’ over the
+image. On one cake, he requested [on] one side[,]
+. . . ‘God hates sin. Psalm 45:7’ and on the opposite
+side of the cake ‘Homosexuality is a detestable sin.
+Leviticus 18:2.’ On the second cake, [the one] with the
+image of the two groomsmen covered by a red ‘X’
+[Jack] requested [these words]: ‘God loves sinners’ and
+on the other side ‘While we were yet sinners Christ
+died for us. Romans 5:8.’ ” App. to Pet. for Cert. 319a;
+see id., at 300a, 310a.
+In contrast to Jack, Craig and Mullins simply requested a
+wedding cake: They mentioned no message or anything
+else distinguishing the cake they wanted to buy from any
+other wedding cake Phillips would have sold.
+One bakery told Jack it would make cakes in the shape
+of Bibles, but would not decorate them with the requested
+messages; the owner told Jack her bakery “does not discriminate” and “accept[s] all humans.” Id., at 301a (internal quotation marks omitted). The second bakery owner
+
+4
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GINSBURG, J., dissenting
+
+told Jack he “had done open Bibles and books many times
+and that they look amazing,” but declined to make the
+specific cakes Jack described because the baker regarded
+the messages as “hateful.” Id., at 310a (internal quotation
+marks omitted). The third bakery, according to Jack, said
+it would bake the cakes, but would not include the requested message. Id., at 319a.2
+Jack filed charges against each bakery with the Colorado Civil Rights Division (Division). The Division found no
+probable cause to support Jack’s claims of unequal treatment and denial of goods or services based on his Christian religious beliefs. Id., at 297a, 307a, 316a. In this
+regard, the Division observed that the bakeries regularly
+produced cakes and other baked goods with Christian
+symbols and had denied other customer requests for designs demeaning people whose dignity the Colorado Antidiscrimination Act (CADA) protects. See id., at 305a,
+314a, 324a. The Commission summarily affirmed the
+Division’s no-probable-cause finding. See id., at 326a–
+331a.
+The Court concludes that “the Commission’s consideration of Phillips’ religious objection did not accord with its
+treatment of [the other bakers’] objections.” Ante, at 15.
+See also ante, at 5–7 (GORSUCH, J., concurring). But the
+cases the Court aligns are hardly comparable. The bakers
+would have refused to make a cake with Jack’s requested
+message for any customer, regardless of his or her religion. And the bakers visited by Jack would have sold him
+any baked goods they would have sold anyone else. The
+bakeries’ refusal to make Jack cakes of a kind they would
+not make for any customer scarcely resembles Phillips’
+refusal to serve Craig and Mullins: Phillips would not sell
+——————
+2 The record provides no ideological explanation for the bakeries’ refusals. Cf. ante, at 1–2, 9, 11 (GORSUCH, J., concurring) (describing
+Jack’s requests as offensive to the bakers’ “secular” convictions).
+
+Cite as: 584 U. S. ____ (2018)
+
+5
+
+GINSBURG, J., dissenting
+
+to Craig and Mullins, for no reason other than their sexual
+orientation, a cake of the kind he regularly sold to others.
+When a couple contacts a bakery for a wedding cake, the
+product they are seeking is a cake celebrating their wedding—not a cake celebrating heterosexual weddings or
+same-sex weddings—and that is the service Craig and
+Mullins were denied. Cf. ante, at 3–4, 9–10 (GORSUCH, J.,
+concurring). Colorado, the Court does not gainsay, prohibits precisely the discrimination Craig and Mullins encountered. See supra, at 1. Jack, on the other hand, suffered
+no service refusal on the basis of his religion or any other
+protected characteristic. He was treated as any other
+customer would have been treated—no better, no worse.3
+The fact that Phillips might sell other cakes and cookies
+to gay and lesbian customers4 was irrelevant to the issue
+Craig and Mullins’ case presented. What matters is that
+Phillips would not provide a good or service to a same-sex
+——————
+3 JUSTICE GORSUCH argues that the situations “share all legally salient features.” Ante, at 4 (concurring opinion). But what critically
+differentiates them is the role the customer’s “statutorily protected
+trait,” ibid., played in the denial of service. Change Craig and Mullins’
+sexual orientation (or sex), and Phillips would have provided the cake.
+Change Jack’s religion, and the bakers would have been no more
+willing to comply with his request. The bakers’ objections to Jack’s
+cakes had nothing to do with “religious opposition to same-sex weddings.” Ante, at 6 (GORSUCH, J., concurring). Instead, the bakers
+simply refused to make cakes bearing statements demeaning to people
+protected by CADA. With respect to Jack’s second cake, in particular,
+where he requested an image of two groomsmen covered by a red “X”
+and the lines “God loves sinners” and “While we were yet sinners Christ
+died for us,” the bakers gave not the slightest indication that religious
+words, rather than the demeaning image, prompted the objection. See
+supra, at 3. Phillips did, therefore, discriminate because of sexual
+orientation; the other bakers did not discriminate because of religious
+belief; and the Commission properly found discrimination in one case
+but not the other. Cf. ante, at 4–6 (GORSUCH, J., concurring).
+4 But see ante, at 7 (majority opinion) (acknowledging that Phillips
+refused to sell to a lesbian couple cupcakes for a celebration of their
+union).
+
+6
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GINSBURG, J., dissenting
+
+couple that he would provide to a heterosexual couple. In
+contrast, the other bakeries’ sale of other goods to Christian customers was relevant: It shows that there were no
+goods the bakeries would sell to a non-Christian customer
+that they would refuse to sell to a Christian customer. Cf.
+ante, at 15.
+Nor was the Colorado Court of Appeals’ “difference in
+treatment of these two instances . . . based on the government’s own assessment of offensiveness.” Ante, at 16.
+Phillips declined to make a cake he found offensive where
+the offensiveness of the product was determined solely by
+the identity of the customer requesting it. The three other
+bakeries declined to make cakes where their objection to
+the product was due to the demeaning message the requested product would literally display. As the Court
+recognizes, a refusal “to design a special cake with words
+or images . . . might be different from a refusal to sell any
+cake at all.” Ante, at 2.5 The Colorado Court of Appeals
+did not distinguish Phillips and the other three bakeries
+based simply on its or the Division’s finding that messages
+——————
+5 The
+
+Court undermines this observation when later asserting that
+the treatment of Phillips, as compared with the treatment of the other
+three bakeries, “could reasonably be interpreted as being inconsistent
+as to the question of whether speech is involved.” Ante, at 15. But
+recall that, while Jack requested cakes with particular text inscribed,
+Craig and Mullins were refused the sale of any wedding cake at all.
+They were turned away before any specific cake design could be discussed. (It appears that Phillips rarely, if ever, produces wedding cakes
+with words on them—or at least does not advertise such cakes. See
+Masterpiece Cakeshop, Wedding, http://www.masterpiececakes.com/
+wedding-cakes (as last visited June 1, 2018) (gallery with 31 wedding
+cake images, none of which exhibits words).) The Division and the
+Court of Appeals could rationally and lawfully distinguish between a
+case involving disparaging text and images and a case involving a
+wedding cake of unspecified design. The distinction is not between a
+cake with text and one without, see ante, at 8–9 (GORSUCH, J., concurring); it is between a cake with a particular design and one whose form
+was never even discussed.
+
+Cite as: 584 U. S. ____ (2018)
+
+7
+
+GINSBURG, J., dissenting
+
+in the cakes Jack requested were offensive while any
+message in a cake for Craig and Mullins was not. The
+Colorado court distinguished the cases on the ground that
+Craig and Mullins were denied service based on an aspect
+of their identity that the State chose to grant vigorous
+protection from discrimination. See App. to Pet. for Cert.
+20a, n. 8 (“The Division found that the bakeries did not
+refuse [Jack’s] request because of his creed, but rather
+because of the offensive nature of the requested message. . . . [T]here was no evidence that the bakeries based
+their decisions on [Jack’s] religion . . . [whereas Phillips]
+discriminat[ed] on the basis of sexual orientation.”). I do
+not read the Court to suggest that the Colorado Legislature’s decision to include certain protected characteristics
+in CADA is an impermissible government prescription of
+what is and is not offensive. Cf. ante, at 9–10. To repeat,
+the Court affirms that “Colorado law can protect gay
+persons, just as it can protect other classes of individuals,
+in acquiring whatever products and services they choose
+on the same terms and conditions as are offered to other
+members of the public.” Ante, at 10.
+II
+Statements made at the Commission’s public hearings
+on Phillips’ case provide no firmer support for the Court’s
+holding today. Whatever one may think of the statements
+in historical context, I see no reason why the comments of
+one or two Commissioners should be taken to overcome
+Phillips’ refusal to sell a wedding cake to Craig and Mullins. The proceedings involved several layers of independent decisionmaking, of which the Commission was but one.
+See App. to Pet. for Cert. 5a–6a. First, the Division had to
+find probable cause that Phillips violated CADA. Second,
+the ALJ entertained the parties’ cross-motions for summary judgment. Third, the Commission heard Phillips’
+appeal. Fourth, after the Commission’s ruling, the Colo-
+
+8
+
+MASTERPIECE CAKESHOP, LTD. v. COLORADO
+CIVIL RIGHTS COMM’N
+GINSBURG, J., dissenting
+
+rado Court of Appeals considered the case de novo. What
+prejudice infected the determinations of the adjudicators
+in the case before and after the Commission? The Court
+does not say. Phillips’ case is thus far removed from the
+only precedent upon which the Court relies, Church of
+Lukumi Babalu Aye, Inc. v. Hialeah, 508 U. S. 520 (1993),
+where the government action that violated a principle of
+religious neutrality implicated a sole decisionmaking body,
+the city council, see id., at 526–528.
+*
+*
+*
+For the reasons stated, sensible application of CADA to
+a refusal to sell any wedding cake to a gay couple should
+occasion affirmance of the Colorado Court of Appeals’
+judgment. I would so rule.
+
+

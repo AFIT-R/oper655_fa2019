@@ -1,0 +1,3849 @@
+(Slip Opinion)
+
+OCTOBER TERM, 2017
+
+1
+
+Syllabus
+NOTE: Where it is feasible, a syllabus (headnote) will be released, as is
+being done in connection with this case, at the time the opinion is issued.
+The syllabus constitutes no part of the opinion of the Court but has been
+prepared by the Reporter of Decisions for the convenience of the reader.
+See United States v. Detroit Timber & Lumber Co., 200 U. S. 321, 337.
+
+SUPREME COURT OF THE UNITED STATES
+Syllabus
+
+SESSIONS, ATTORNEY GENERAL v. DIMAYA
+CERTIORARI TO THE UNITED STATES COURT OF APPEALS FOR
+THE NINTH CIRCUIT
+No. 15–1498. Argued January 17, 2017—Reargued October 2, 2017—
+Decided April 17, 2018
+The Immigration and Nationality Act (INA) virtually guarantees that
+any alien convicted of an “aggravated felony” after entering the United States will be deported. See 8 U. S. C. §§1227(a)(2)(A)(iii),
+1229b(a)(3), (b)(1)(C). An aggravated felony includes “a crime of violence (as defined in [18 U. S. C. §16] . . . ) for which the term of imprisonment [is] at least one year.” §1101(a)(43)(f). Section 16’s definition of a crime of violence is divided into two clauses—often
+referred to as the elements clause, §16(a), and the residual clause,
+§16(b). The residual clause, the provision at issue here, defines a
+“crime of violence” as “any other offense that is a felony and that, by
+its nature, involves a substantial risk that physical force against the
+person or property of another may be used in the course of committing the offense.” To decide whether a person’s conviction falls within
+the scope of that clause, courts apply the categorical approach. This
+approach has courts ask not whether “the particular facts” underlying a conviction created a substantial risk, Leocal v. Ashcroft, 543
+U. S. 1, 7, nor whether the statutory elements of a crime require the
+creation of such a risk in each and every case, but whether “the ordinary case” of an offense poses the requisite risk, James v. United
+States, 550 U. S. 192, 208.
+Respondent James Dimaya is a lawful permanent resident of the
+United States with two convictions for first-degree burglary under
+California law. After his second offense, the Government sought to
+deport him as an aggravated felon. An Immigration Judge and the
+Board of Immigration Appeals held that California first-degree burglary is a “crime of violence” under §16(b). While Dimaya’s appeal
+was pending in the Ninth Circuit, this Court held that a similar re-
+
+2
+
+SESSIONS v. DIMAYA
+Syllabus
+sidual clause in the Armed Career Criminal Act (ACCA)—defining
+“violent felony” as any felony that “otherwise involves conduct that
+presents a serious potential risk of physical injury to another,” 18
+U. S. C. §924(e)(2)(B)—was unconstitutionally “void for vagueness”
+under the Fifth Amendment’s Due Process Clause. Johnson v. United States, 576 U. S. ___, ___. Relying on Johnson, the Ninth Circuit
+held that §16(b), as incorporated into the INA, was also unconstitutionally vague.
+
+Held: The judgment is affirmed.
+803 F. 3d 1110, affirmed.
+JUSTICE KAGAN delivered the opinion of the Court with respect to
+Parts I, III, IV–B, and V, concluding that §16’s residual clause is unconstitutionally vague. Pp. 6–11, 16–25.
+(a) A straightforward application of Johnson effectively resolves
+this case. Section 16(b) has the same two features as ACCA’s residual clause—an ordinary-case requirement and an ill-defined risk
+threshold—combined in the same constitutionally problematic way.
+To begin, ACCA’s residual clause created “grave uncertainty about
+how to estimate the risk posed by a crime” because it “tie[d] the judicial assessment of risk” to a speculative hypothesis about the crime’s
+“ordinary case,” but provided no guidance on how to figure out what
+that ordinary case was. 576 U. S., at ___. Compounding that uncertainty, ACCA’s residual clause layered an imprecise “serious potential risk” standard on top of the requisite “ordinary case” inquiry.
+The combination of “indeterminacy about how to measure the risk
+posed by a crime [and] indeterminacy about how much risk it takes
+for the crime to qualify as a violent felony,” id., at ___, resulted in
+“more unpredictability and arbitrariness than the Due Process
+Clause tolerates,” id., at ___. Section 16(b) suffers from those same
+two flaws. Like ACCA’s residual clause, §16(b) calls for a court to
+identify a crime’s “ordinary case” in order to measure the crime’s risk
+but “offers no reliable way” to discern what the ordinary version of
+any offense looks like. Id., at ___. And its “substantial risk” threshold is no more determinate than ACCA’s “serious potential risk”
+standard. Thus, the same “[t]wo features” that “conspire[d] to make”
+ACCA’s residual clause unconstitutionally vague also exist in §16(b),
+with the same result. Id., at ___. Pp. 6–11.
+(b) The Government identifies three textual discrepancies between
+ACCA’s residual clause and §16(b) that it claims make §16(b) easier
+to apply and thus cure the constitutional infirmity. None, however,
+relates to the pair of features that Johnson found to produce impermissible vagueness or otherwise makes the statutory inquiry more
+determinate. Pp. 16–24.
+(1) First, the Government argues that §16(b)’s express require-
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+Syllabus
+ment (absent from ACCA) that the risk arise from acts taken “in the
+course of committing the offense,” serves as a “temporal restriction”—
+in other words, a court applying §16(b) may not “consider risks arising after” the offense’s commission is over. Brief for Petitioner 31.
+But this is not a meaningful limitation: In the ordinary case of any offense, the riskiness of a crime arises from events occurring during its
+commission, not events occurring later. So with or without the temporal language, a court applying the ordinary case approach, whether
+in §16’s or ACCA’s residual clause, would do the same thing—ask
+what usually happens when a crime is committed. The phrase “in
+the course of” makes no difference as to either outcome or clarity and
+cannot cure the statutory indeterminacy Johnson described.
+Second, the Government says that the §16(b) inquiry, which focuses on the risk of “physical force,” “trains solely” on the conduct typically involved in a crime. Brief for Petitioner 36. In contrast,
+ACCA’s residual clause asked about the risk of “physical injury,”
+requiring a second inquiry into a speculative “chain of causation that
+could possibly result in a victim’s injury.” Ibid. However, this Court
+has made clear that “physical force” means “force capable of causing
+physical pain or injury.” Johnson v. United States, 559 U. S. 133,
+140. So under §16(b) too, a court must not only identify the conduct
+typically involved in a crime, but also gauge its potential consequences. Thus, the force/injury distinction does not clarify a court’s analysis of whether a crime qualifies as violent.
+Third, the Government notes that §16(b) avoids the vagueness of
+ACCA’s residual clause because it is not preceded by a “confusing list
+of exemplar crimes.” Brief for Petitioner 38. Those enumerated
+crimes were in fact too varied to assist this Court in giving ACCA’s
+residual clause meaning. But to say that they failed to resolve the
+clause’s vagueness is hardly to say they caused the problem. Pp. 16–
+21.
+(2) The Government also relies on judicial experience with
+§16(b), arguing that because it has divided lower courts less often
+and resulted in only one certiorari grant, it must be clearer than its
+ACCA counterpart. But in fact, a host of issues respecting §16(b)’s
+application to specific crimes divide the federal appellate courts. And
+while this Court has only heard oral arguments in two §16(b) cases,
+this Court vacated the judgments in a number of other §16(b) cases,
+remanding them for further consideration in light of ACCA decisions.
+Pp. 21–24.
+JUSTICE KAGAN, joined by JUSTICE GINSBURG, JUSTICE BREYER, and
+JUSTICE SOTOMAYOR, concluded in Parts II and IV–A:
+(a) The Government argues that a more permissive form of the
+void-for-vagueness doctrine applies than the one Johnson employed
+
+4
+
+SESSIONS v. DIMAYA
+Syllabus
+because the removal of an alien is a civil matter rather than a criminal case. This Court’s precedent forecloses that argument. In Jordan v. De George, 341 U. S. 223, the Court considered what vagueness standard applied in removal cases and concluded that, “in view
+of the grave nature of deportation,” the most exacting vagueness
+standard must apply. Id., at 231. Nothing in the ensuing years calls
+that reasoning into question. This Court has reiterated that deportation is “a particularly severe penalty,” which may be of greater concern to a convicted alien than “any potential jail sentence.” Jae Lee v.
+United States, 582 U. S. ___, ___. Pp. 4–6.
+(b) Section 16(b) demands a categorical, ordinary-case approach.
+For reasons expressed in Johnson, that approach cannot be abandoned in favor of a conduct-based approach, which asks about the
+specific way in which a defendant committed a crime. To begin, the
+Government once again “has not asked [the Court] to abandon the
+categorical approach in residual-clause cases,” suggesting the factbased approach is an untenable interpretation of §16(b). 576 U. S., at
+___. Moreover, a fact-based approach would generate constitutional
+questions. In any event, §16(b)’s text demands a categorical approach. This Court’s decisions have consistently understood language in the residual clauses of both ACCA and §16 to refer to “the
+statute of conviction, not to the facts of each defendant’s conduct.”
+Taylor v. United States, 495 U. S. 575, 601. And the words “by its nature” in §16(b) even more clearly compel an inquiry into an offense’s
+normal and characteristic quality—that is, what the offense ordinarily entails. Finally, given the daunting difficulties of accurately “reconstruct[ing],” often many years later, “the conduct underlying [a]
+conviction,” the conduct-based approach’s “utter impracticability”—
+and associated inequities—is as great in §16(b) as in ACCA. Johnson, 576 U. S., at ___. Pp. 12–15.
+JUSTICE GORSUCH, agreeing that the Immigration and Nationality
+Act provision at hand is unconstitutionally vague for the reasons
+identified in Johnson v. United States, 576 U. S. ___, concluded that
+the void for vagueness doctrine, at least properly conceived, serves as
+a faithful expression of ancient due process and separation of powers
+principles the Framers recognized as vital to ordered liberty under
+the Constitution. The Government’s argument that a less-than-fairnotice standard should apply where (as here) a person faces only civil, not criminal, consequences from a statute’s operation is unavailing. In the criminal context, the law generally must afford “ordinary
+people . . . fair notice of the conduct it punishes,” id., at ___, and it is
+hard to see how the Due Process Clause might often require any less
+than that in the civil context. Nor is there any good reason to single
+out civil deportation for assessment under the fair notice standard
+
+Cite as: 584 U. S. ____ (2018)
+
+5
+
+Syllabus
+because of the special gravity of its penalty when so many civil laws
+impose so many similarly severe sanctions. Alternative approaches
+that do not concede the propriety of the categorical ordinary case
+analysis are more properly addressed in another case, involving either the Immigration and Nationality Act or another statute, where
+the parties have a chance to be heard. Pp. 1–19.
+KAGAN, J., announced the judgment of the Court and delivered the
+opinion of the Court with respect to Parts I, III, IV–B, and V, in which
+GINSBURG, BREYER, SOTOMAYOR, and GORSUCH, JJ., joined, and an opinion with respect to Parts II and IV–A, in which GINSBURG, BREYER, and
+SOTOMAYOR, JJ., joined. GORSUCH, J., filed an opinion concurring in
+part and concurring in the judgment. ROBERTS, C. J., filed a dissenting
+opinion, in which KENNEDY, THOMAS, and ALITO, JJ., joined. THOMAS,
+J., filed a dissenting opinion, in which KENNEDY and ALITO, JJ., joined
+as to Parts I–C–2, II–A–1, and II–B.
+
+Cite as: 584 U. S. ____ (2018)
+
+1
+
+Opinion of the Court
+NOTICE: This opinion is subject to formal revision before publication in the
+preliminary print of the United States Reports. Readers are requested to
+notify the Reporter of Decisions, Supreme Court of the United States, Washington, D. C. 20543, of any typographical or other formal errors, in order
+that corrections may be made before the preliminary print goes to press.
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1498
+_________________
+
+JEFFERSON B. SESSIONS, III, ATTORNEY GENERAL,
+PETITIONER v. JAMES GARCIA DIMAYA
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[April 17, 2018]
+
+JUSTICE KAGAN announced the judgment of the Court
+and delivered the opinion of the Court with respect to
+Parts I, III, IV–B, and V, and an opinion with respect to
+Parts II and IV–A, in which JUSTICE GINSBURG, JUSTICE
+BREYER, and JUSTICE SOTOMAYOR join.
+Three Terms ago, in Johnson v. United States, this
+Court held that part of a federal law’s definition of “violent
+felony” was impermissibly vague. See 576 U. S. ___
+(2015). The question in this case is whether a similarly
+worded clause in a statute’s definition of “crime of violence” suffers from the same constitutional defect. Adhering to our analysis in Johnson, we hold that it does.
+I
+The Immigration and Nationality Act (INA) renders
+deportable any alien convicted of an “aggravated felony”
+after entering the United States.
+8 U. S. C.
+§1227(a)(2)(A)(iii). Such an alien is also ineligible for
+cancellation of removal, a form of discretionary relief
+allowing some deportable aliens to remain in the country.
+See §§1229b(a)(3), (b)(1)(C). Accordingly, removal is a
+virtual certainty for an alien found to have an aggravated
+
+2
+
+SESSIONS v. DIMAYA
+Opinion of the Court
+
+felony conviction, no matter how long he has previously
+resided here.
+The INA defines “aggravated felony” by listing numerous offenses and types of offenses, often with crossreferences to federal criminal statutes. §1101(a)(43); see
+Luna Torres v. Lynch, 578 U. S. ___, ___ (2016) (slip op., at
+2). According to one item on that long list, an aggravated
+felony includes “a crime of violence (as defined in section
+16 of title 18 . . . ) for which the term of imprisonment [is]
+at least one year.” §1101(a)(43)(F). The specified statute,
+18 U. S. C. §16, provides the federal criminal code’s definition of “crime of violence.” Its two parts, often known as
+the elements clause and the residual clause, cover:
+“(a) an offense that has as an element the use, attempted use, or threatened use of physical force
+against the person or property of another, or
+“(b) any other offense that is a felony and that, by
+its nature, involves a substantial risk that physical
+force against the person or property of another may be
+used in the course of committing the offense.”
+Section 16(b), the residual clause, is the part of the statute
+at issue in this case.
+To decide whether a person’s conviction “falls within the
+ambit” of that clause, courts use a distinctive form of what
+we have called the categorical approach. Leocal v. Ashcroft, 543 U. S. 1, 7 (2004). The question, we have explained, is not whether “the particular facts” underlying a
+conviction posed the substantial risk that §16(b) demands.
+Ibid. Neither is the question whether the statutory elements of a crime require (or entail) the creation of such a
+risk in each case that the crime covers.1 The §16(b) in——————
+1 The
+
+analysis thus differs from the form of categorical approach used
+to determine whether a prior conviction is for a particular listed offense
+(say, murder or arson). In that context, courts ask what the elements of
+a given crime always require—in effect, what is legally necessary for a
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+Opinion of the Court
+
+quiry instead turns on the “nature of the offense” generally speaking. Ibid. (referring to §16(b)’s “by its nature”
+language). More precisely, §16(b) requires a court to ask
+whether “the ordinary case” of an offense poses the requisite risk. James v. United States, 550 U. S. 192, 208
+(2007); see infra, at 7.
+In the case before us, Immigration Judges employed
+that analysis to conclude that respondent James Dimaya
+is deportable as an aggravated felon. A native of the
+Philippines, Dimaya has resided lawfully in the United
+States since 1992. But he has not always acted lawfully
+during that time. Twice, Dimaya was convicted of firstdegree burglary under California law. See Cal. Penal
+Code Ann. §§459, 460(a). Following his second offense, the
+Government initiated a removal proceeding against him.
+Both an Immigration Judge and the Board of Immigration
+Appeals held that California first-degree burglary is a
+“crime of violence” under §16(b). “[B]y its nature,” the
+Board reasoned, the offense “carries a substantial risk of
+the use of force.” App. to Pet. for Cert. 46a. Dimaya
+sought review in the Court of Appeals for the Ninth
+Circuit.
+While his appeal was pending, this Court held unconstitutional part of the definition of “violent felony” in the
+Armed Career Criminal Act (ACCA), 18 U. S. C. §924(e).
+ACCA prescribes a 15-year mandatory minimum sentence
+if a person convicted of being a felon in possession of a
+firearm has three prior convictions for a “violent felony.”
+§924(e)(1). The definition of that statutory term goes as
+follows:
+“any crime punishable by imprisonment for a term exceeding one year . . . that—
+“(i) has as an element the use, attempted use, or
+——————
+conviction. See, e.g., Descamps v. United States, 570 U. S. 254, 260–261
+(2013); Moncrieffe v. Holder, 569 U. S. 184, 190–191 (2013).
+
+4
+
+SESSIONS v. DIMAYA
+the
+Court
+AGAN
+, J.
+Opinion of K
+
+threatened use of physical force against the person of
+another; or
+“(ii) is burglary, arson, or extortion, involves use of
+explosives, or otherwise involves conduct that presents
+a serious potential risk of physical injury to another.”
+§924(e)(2)(B) (emphasis added).
+The italicized portion of that definition (like the similar
+language of §16(b)) came to be known as the statute’s
+residual clause. In Johnson v. United States, the Court
+declared that clause “void for vagueness” under the Fifth
+Amendment’s Due Process Clause. 576 U. S., at ___–___
+(slip op., at 13–14).
+Relying on Johnson, the Ninth Circuit held that §16(b),
+as incorporated into the INA, was also unconstitutionally
+vague, and accordingly ruled in Dimaya’s favor. See Dimaya v. Lynch, 803 F. 3d 1110, 1120 (2015). Two other
+Circuits reached the same conclusion, but a third distinguished ACCA’s residual clause from §16’s.2 We granted
+certiorari to resolve the conflict. Lynch v. Dimaya, 579
+U. S. ___ (2016).
+II
+“The prohibition of vagueness in criminal statutes,” our
+decision in Johnson explained, is an “essential” of due
+process, required by both “ordinary notions of fair play and
+the settled rules of law.” 576 U. S., at ___ (slip op., at 4)
+(quoting Connally v. General Constr. Co., 269 U. S. 385,
+391 (1926)). The void-for-vagueness doctrine, as we have
+called it, guarantees that ordinary people have “fair notice” of the conduct a statute proscribes. Papachristou v.
+Jacksonville, 405 U. S. 156, 162 (1972). And the doctrine
+——————
+2 Compare
+
+Shuti v. Lynch, 828 F. 3d 440 (CA6 2016) (finding §16(b)
+unconstitutionally vague); United States v. Vivas-Ceja, 808 F. 3d 719
+(CA7 2015) (same), with United States v. Gonzalez-Longoria, 831 F. 3d
+670 (CA5 2016) (en banc) (upholding §16(b)).
+
+Cite as: 584 U. S. ____ (2018)
+
+5
+
+the
+Court
+AGAN
+, J.
+Opinion of K
+
+guards against arbitrary or discriminatory law enforcement by insisting that a statute provide standards to
+govern the actions of police officers, prosecutors, juries,
+and judges. See Kolender v. Lawson, 461 U. S. 352, 357–
+358 (1983). In that sense, the doctrine is a corollary of the
+separation of powers—requiring that Congress, rather
+than the executive or judicial branch, define what conduct
+is sanctionable and what is not. Cf. id., at 358, n. 7 (“[I]f
+the legislature could set a net large enough to catch all
+possible offenders, and leave it to the courts to step inside
+and say who could be rightfully detained, [it would] substitute the judicial for the legislative department” (internal
+quotation marks omitted)).
+The Government argues that a less searching form of
+the void-for-vagueness doctrine applies here than in Johnson because this is not a criminal case. See Brief for Petitioner 13–15. As the Government notes, this Court has
+stated that “[t]he degree of vagueness that the Constitution [allows] depends in part on the nature of the enactment”: In particular, the Court has “expressed greater
+tolerance of enactments with civil rather than criminal
+penalties because the consequences of imprecision are
+qualitatively less severe.” Hoffman Estates v. Flipside,
+Hoffman Estates, Inc., 455 U. S. 489, 498–499 (1982). The
+removal of an alien is a civil matter. See Arizona v. United
+States, 567 U. S. 387, 396 (2012). Hence, the Government claims, the need for clarity is not so strong; even a
+law too vague to support a conviction or sentence may be
+good enough to sustain a deportation order. See Brief for
+Petitioner 25–26.
+But this Court’s precedent forecloses that argument,
+because we long ago held that the most exacting vagueness standard should apply in removal cases. In Jordan v.
+De George, we considered whether a provision of immigration law making an alien deportable if convicted of a
+“crime involving moral turpitude” was “sufficiently defi-
+
+6
+
+SESSIONS v. DIMAYA
+Opinion of the Court
+
+nite.” 341 U. S. 223, 229 (1951). That provision, we noted,
+“is not a criminal statute” (as §16(b) actually is). Id., at
+231; supra, at 1–2. Still, we chose to test (and ultimately
+uphold) it “under the established criteria of the ‘void for
+vagueness’ doctrine” applicable to criminal laws. 341
+U. S., at 231. That approach was demanded, we explained, “in view of the grave nature of deportation,”
+ibid.—a “drastic measure,” often amounting to lifelong
+“banishment or exile,” ibid. (quoting Fong Haw Tan v.
+Phelan, 333 U. S. 6, 10 (1948)).
+Nothing in the ensuing years calls that reasoning into
+question. To the contrary, this Court has reiterated that
+deportation is “a particularly severe penalty,” which may
+be of greater concern to a convicted alien than “any potential jail sentence.” Jae Lee v. United States, 582 U. S. ___,
+___ (2017) (slip op., at 11) (quoting Padilla v. Kentucky,
+559 U. S. 356, 365, 368 (2010)). And we have observed
+that as federal immigration law increasingly hinged deportation orders on prior convictions, removal proceedings
+became ever more “intimately related to the criminal
+process.” Chaidez v. United States, 568 U. S. 342, 352
+(2013) (quoting Padilla, 559 U. S., at 365). What follows,
+as Jordan recognized, is the use of the same standard in
+the two settings.
+For that reason, the Government cannot take refuge in a
+more permissive form of the void-for-vagueness doctrine
+than the one Johnson employed. To salvage §16’s residual
+clause, even for use in immigration hearings, the Government must instead persuade us that it is materially
+clearer than its now-invalidated ACCA counterpart.
+That is the issue we next address, as guided by Johnson’s
+analysis.
+III
+Johnson is a straightforward decision, with equally
+straightforward application here. Its principal section
+
+Cite as: 584 U. S. ____ (2018)
+
+7
+
+Opinion of the Court
+
+begins as follows: “Two features of [ACCA’s] residual
+clause conspire to make it unconstitutionally vague.” 576
+U. S., at ___ (slip op., at 5). The opinion then identifies
+each of those features and explains how their joinder
+produced “hopeless indeterminacy,” inconsistent with due
+process. Id., at ___ (slip op., at 7). And with that reasoning, Johnson effectively resolved the case now before us.
+For §16’s residual clause has the same two features as
+ACCA’s, combined in the same constitutionally problematic way. Consider those two, just as Johnson described
+them:
+“In the first place,” Johnson explained, ACCA’s residual
+clause created “grave uncertainty about how to estimate
+the risk posed by a crime” because it “tie[d] the judicial
+assessment of risk” to a hypothesis about the crime’s
+“ordinary case.” Id., at ___ (slip op., at 5). Under the
+clause, a court focused on neither the “real-world facts”
+nor the bare “statutory elements” of an offense. Ibid.
+Instead, a court was supposed to “imagine” an “idealized
+ordinary case of the crime”—or otherwise put, the court
+had to identify the “kind of conduct the ‘ordinary case’ of a
+crime involves.” Ibid. But how, Johnson asked, should a
+court figure that out? By using a “statistical analysis of
+the state reporter? A survey? Expert evidence? Google?
+Gut instinct?” Ibid. (internal quotation marks omitted).
+ACCA provided no guidance, rendering judicial accounts of
+the “ordinary case” wholly “speculative.” Ibid. Johnson
+gave as its prime example the crime of attempted burglary. One judge, contemplating the “ordinary case,” would
+imagine the “violent encounter” apt to ensue when a
+“would-be burglar [was] spotted by a police officer [or]
+private security guard.” Id., at ___–___ (slip op., at 5–6).
+Another judge would conclude that “any confrontation”
+was more “likely to consist of [an observer’s] yelling ‘Who’s
+there?’ . . . and the burglar’s running away.” Id., at ___
+(slip op., at 6). But how could either judge really know?
+
+8
+
+SESSIONS v. DIMAYA
+Opinion of the Court
+
+“The residual clause,” Johnson summarized, “offer[ed] no
+reliable way” to discern what the ordinary version of any
+offense looked like. Ibid. And without that, no one could
+tell how much risk the offense generally posed.
+Compounding that first uncertainty, Johnson continued,
+was a second: ACCA’s residual clause left unclear what
+threshold level of risk made any given crime a “violent
+felony.” See ibid. The Court emphasized that this feature
+alone would not have violated the void-for-vagueness
+doctrine: Many perfectly constitutional statutes use imprecise terms like “serious potential risk” (as in ACCA’s
+residual clause) or “substantial risk” (as in §16’s). The
+problem came from layering such a standard on top of the
+requisite “ordinary case” inquiry. As the Court explained:
+“[W]e do not doubt the constitutionality of laws that
+call for the application of a qualitative standard such
+as ‘substantial risk’ to real-world conduct; the law is
+full of instances where a man’s fate depends on his estimating rightly . . . some matter of degree[.] The residual clause, however, requires application of the ‘serious potential risk’ standard to an idealized ordinary
+case of the crime. Because the elements necessary to
+determine the imaginary ideal are uncertain[,] this
+abstract inquiry offers significantly less predictability
+than one that deals with the actual . . . facts.” Id., at
+___ (slip op., at 12) (some internal quotation marks,
+citations, and alterations omitted).
+So much less predictability, in fact, that ACCA’s residual
+clause could not pass constitutional muster. As the Court
+again put the point, in the punch line of its decision: “By
+combining indeterminacy about how to measure the risk
+posed by a crime with indeterminacy about how much risk
+it takes for the crime to qualify as a violent felony, the
+residual clause” violates the guarantee of due process. Id.,
+
+Cite as: 584 U. S. ____ (2018)
+
+9
+
+Opinion of the Court
+
+at ___ (slip op., at 6).3
+Section 16’s residual clause violates that promise in just
+the same way. To begin where Johnson did, §16(b) also
+calls for a court to identify a crime’s “ordinary case” in
+order to measure the crime’s risk. The Government explicitly acknowledges that point here. See Brief for Petitioner
+11 (“Section 16(b), like [ACCA’s] residual clause, requires
+a court to assess the risk posed by the ordinary case of a
+particular offense”). And indeed, the Government’s briefing in Johnson warned us about that likeness, observing
+that §16(b) would be “equally susceptible to [an] objection”
+that focused on the problems of positing a crime’s ordinary
+case. Supp. Brief for Respondent, O. T. 2014, No. 13–
+7120, pp. 22–23. Nothing in §16(b) helps courts to perform
+that task, just as nothing in ACCA did. We can as well
+repeat here what we asked in Johnson: How does one go
+about divining the conduct entailed in a crime’s ordinary
+case? Statistical analyses? Surveys? Experts? Google?
+Gut instinct? See Johnson, 576 U. S., at ___ (slip op., at
+5); supra, at 7; post, at 16–17 (GORSUCH, J., concurring in
+——————
+3 Johnson
+
+also anticipated and rejected a significant aspect of JUSTICE
+THOMAS’s dissent in this case. According to JUSTICE THOMAS, a court
+may not invalidate a statute for vagueness if it is clear in any of its
+applications—as he thinks is true of completed burglary, which is the
+offense Dimaya committed. See post, at 16–20. But as an initial
+matter, Johnson explained that supposedly easy applications of the
+residual clause might not be “so easy after all.” 576 U. S., at ___–___
+(slip op., at 10–11). The crime of completed burglary at issue here
+illustrates that point forcefully. See id., at ___ (slip op., at 6) (asking
+whether “an ordinary burglar invade[s] an occupied home by night or
+an unoccupied home by day”); Dimaya v. Lynch, 803 F. 3d 1110, 1116,
+n. 7 (CA9 2015) (noting that only about seven percent of burglaries
+actually involve violence); Cal. Penal Code Ann. §§459, 460 (West 2010)
+(sweeping so broadly as to cover even dishonest door-to-door salesmen).
+And still more fundamentally, Johnson made clear that our decisions
+“squarely contradict the theory that a vague provision is constitutional
+merely because there is some conduct that clearly falls within the
+provision’s grasp.” 576 U. S., at ___ (slip op., at 11).
+
+10
+
+SESSIONS v. DIMAYA
+Opinion of the Court
+
+part and concurring in judgment). And we can as well
+reiterate Johnson’s example: In the ordinary case of attempted burglary, is the would-be culprit spotted and
+confronted, or scared off by a yell? See post, at 16 (opinion
+of GORSUCH, J.) (offering other knotty examples). Once
+again, the questions have no good answers; the “ordinary
+case” remains, as Johnson described it, an excessively
+“speculative,” essentially inscrutable thing. 576 U. S.,
+at ___ (slip op., at 5); accord post, at 27 (THOMAS, J.,
+dissenting).4
+And §16(b) also possesses the second fatal feature of
+ACCA’s residual clause: uncertainty about the level of risk
+that makes a crime “violent.” In ACCA, that threshold
+was “serious potential risk”; in §16(b), it is “substantial
+risk.” See supra, at 2, 4. But the Government does not
+argue that the latter formulation is any more determinate
+than the former, and for good reason. As THE CHIEF
+JUSTICE’s valiant attempt to do so shows, that would be
+slicing the baloney mighty thin. See post, at 5–6 (dissenting opinion). And indeed, Johnson as much as equated the
+two phrases: Return to the block quote above, and note
+how Johnson—as though anticipating this case—refers to
+them interchangeably, as alike examples of imprecise
+“qualitative standard[s].” See supra, at 8; 576 U. S., at ___
+(slip op., at 12). Once again, the point is not that such a
+non-numeric standard is alone problematic: In Johnson’s
+words, “we do not doubt” the constitutionality of applying
+——————
+4 THE CHIEF JUSTICE’s dissent makes light of the difficulty of identifying a crime’s ordinary case. In a single footnote, THE CHIEF JUSTICE
+portrays that task as no big deal: Just eliminate the “atypical” cases,
+and (presto!) the crime’s nature and risk are revealed. See post, at 5,
+n. 1. That rosy view—at complete odds with Johnson—underlies his
+whole dissent (and especially, his analysis of how §16(b) applies to
+particular offenses, see post, at 7–10). In effect, THE CHIEF JUSTICE is
+able to conclude that §16(b) can survive Johnson only by refusing to
+acknowledge one of the two core insights of that decision.
+
+Cite as: 584 U. S. ____ (2018)
+
+11
+
+Opinion of the Court
+
+§16(b)’s “substantial risk [standard] to real-world conduct.” Id., at ___ (slip op., at 12) (internal quotation marks
+omitted). The difficulty comes, in §16’s residual clause
+just as in ACCA’s, from applying such a standard to “a
+judge-imagined abstraction”—i.e., “an idealized ordinary
+case of the crime.” Id., at ___, ___ (slip op., at 6, 12). It is
+then that the standard ceases to work in a way consistent
+with due process.
+In sum, §16(b) has the same “[t]wo features” that “conspire[d] to make [ACCA’s residual clause] unconstitutionally vague.” Id., at ___ (slip op., at 5). It too “requires a
+court to picture the kind of conduct that the crime involves
+in ‘the ordinary case,’ and to judge whether that abstraction presents” some not-well-specified-yet-sufficientlylarge degree of risk. Id., at ___ (slip op., at 4). The result
+is that §16(b) produces, just as ACCA’s residual clause did,
+“more unpredictability and arbitrariness than the Due
+Process Clause tolerates.” Id., at ___ (slip op., at 6).
+IV
+The Government and dissents offer two fundamentally
+different accounts of how §16(b) can escape unscathed
+from our decision in Johnson. JUSTICE THOMAS accepts
+that the ordinary-case inquiry makes §16(b) “impossible to
+apply.” Post, at 27. His solution is to overthrow our historic understanding of the statute: We should now read
+§16(b), he says, to ask about the risk posed by a particular
+defendant’s particular conduct. In contrast, the Government, joined by THE CHIEF JUSTICE, accepts that §16(b),
+as long interpreted, demands a categorical approach,
+rather than a case-specific one. They argue only that
+“distinctive textual features” of §16’s residual clause make
+applying it “more predictable” than its ACCA counterpart. Brief for Petitioner 28, 29. We disagree with both
+arguments.
+
+12
+
+SESSIONS v. DIMAYA
+the
+Court
+AGAN
+, J.
+Opinion of K
+
+A
+The essentials of JUSTICE THOMAS’s position go as follows. Section 16(b), he says, cannot have one meaning,
+but could have one of two others. See post, at 27. The
+provision cannot demand an inquiry merely into the elements of a crime, because that is the province of §16(a).
+See supra, at 2 (setting out §16(a)’s text). But that still
+leaves a pair of options: the categorical, ordinary-case
+approach and the “underlying-conduct approach,” which
+asks about the specific way in which a defendant committed a crime. Post, at 25. According to JUSTICE THOMAS,
+each option is textually viable (although he gives a slight
+nod to the latter based on §16(b)’s use of the word “involves”). See post, at 24–26. What tips the scales is that
+only one—the conduct approach—is at all “workable.”
+Post, at 27. The difficulties of the ordinary-case inquiry,
+JUSTICE THOMAS rightly observes, underlie this Court’s
+view that §16(b) is too vague. So abandon that inquiry,
+JUSTICE THOMAS urges. After all, he reasons, it is the
+Court’s “plain duty,” under the constitutional avoidance
+canon, to adopt any reasonable construction of a statute
+that escapes constitutional problems. Post, at 28–29
+(quoting United States ex rel. Attorney General v. Delaware & Hudson Co., 213 U. S. 366, 407 (1909)).
+For anyone who has read Johnson, that argument will
+ring a bell. The dissent there issued the same invitation,
+based on much the same reasoning, to jettison the categorical approach in residual-clause cases. 576 U. S., at ___–
+___ (slip op., at 9–13) (opinion of ALITO, J.). The Court
+declined to do so. It first noted that the Government had
+not asked us to switch to a fact-based inquiry. It then
+observed that the Court “had good reasons” for originally
+adopting the categorical approach, based partly on ACCA’s
+text (which, by the way, uses the word “involves” identically) and partly on the “utter impracticability” of the alternative. Id., at ___ (slip op., at 13) (majority opinion). “The
+
+Cite as: 584 U. S. ____ (2018)
+
+13
+
+the
+Court
+AGAN
+, J.
+Opinion of K
+
+only plausible interpretation” of ACCA’s residual clause,
+we concluded, “requires use of the categorical approach”—
+even if that approach could not in the end satisfy constitutional standards. Ibid. (internal quotation marks and
+alteration omitted).
+The same is true here—except more so. To begin where
+Johnson did, the Government once again “has not asked
+us to abandon the categorical approach in residual-clause
+cases.” Ibid. To the contrary, and as already noted, the
+Government has conceded at every step the correctness of
+that statutory construction. See supra, at 9. And this
+time, the Government’s decision is even more noteworthy
+than before—precisely because the Johnson dissent laid
+out the opposite view, presenting it in prepackaged form
+for the Government to take off the shelf and use in the
+§16(b) context. Of course, we are not foreclosed from going
+down JUSTICE THOMAS’s path just because the Government has not done so. But we find it significant that the
+Government cannot bring itself to say that the fact-based
+approach JUSTICE THOMAS proposes is a tenable interpretation of §16’s residual clause.
+Perhaps one reason for the Government’s reluctance is
+that such an approach would generate its own constitutional questions. As JUSTICE THOMAS relates, post, at 22,
+28, this Court adopted the categorical approach in part to
+“avoid[ ] the Sixth Amendment concerns that would arise
+from sentencing courts’ making findings of fact that
+properly belong to juries.” Descamps v. United States, 570
+U. S. 254, 267 (2013). JUSTICE THOMAS thinks that issue
+need not detain us here because “the right of trial by jury
+ha[s] no application in a removal proceeding.” Post, at 28
+(internal quotation marks omitted). But although this
+particular case involves removal, §16(b) is a criminal
+statute, with criminal sentencing consequences.
+See
+supra, at 2. And this Court has held (it could hardly have
+done otherwise) that “we must interpret the statute con-
+
+14
+
+SESSIONS v. DIMAYA
+the
+Court
+AGAN
+, J.
+Opinion of K
+
+sistently, whether we encounter its application in a criminal or noncriminal context.” Leocal, 543 U. S., at 12, n. 8.
+So JUSTICE THOMAS’s suggestion would merely ping-pong
+us from one constitutional issue to another. And that
+means the avoidance canon cannot serve, as he would like,
+as the interpretive tie breaker.
+In any event, §16(b)’s text creates no draw: Best read, it
+demands a categorical approach. Our decisions have
+consistently understood language in the residual clauses
+of both ACCA and §16 to refer to “the statute of conviction,
+not to the facts of each defendant’s conduct.” Taylor v.
+United States, 495 U. S. 575, 601 (1990); see Leocal, 543
+U. S., at 7 (Section 16 “directs our focus to the ‘offense’ of
+conviction . . . rather than to the particular facts”). Simple
+references to a “conviction,” “felony,” or “offense,” we have
+stated, are “read naturally” to denote the “crime as generally committed.” Nijhawan v. Holder, 557 U. S. 29, 34
+(2009); see Leocal, 543 U. S., at 7; Johnson, 576 U. S., at
+___ (slip op., at 13). And the words “by its nature” in
+§16(b) make that meaning all the clearer. The statute,
+recall, directs courts to consider whether an offense, by its
+nature, poses the requisite risk of force. An offense’s
+“nature” means its “normal and characteristic quality.”
+Webster’s Third New International Dictionary 1507
+(2002). So §16(b) tells courts to figure out what an offense
+normally—or, as we have repeatedly said, “ordinarily”—
+entails, not what happened to occur on one occasion. And
+the same conclusion follows if we pay attention to language that is missing from §16(b). As we have observed in
+the ACCA context, the absence of terms alluding to a
+crime’s circumstances, or its commission, makes a factbased interpretation an uncomfortable fit. See Descamps,
+570 U. S., at 267. If Congress had wanted judges to look
+into a felon’s actual conduct, “it presumably would have
+said so; other statutes, in other contexts, speak in just that
+
+Cite as: 584 U. S. ____ (2018)
+
+15
+
+the
+Court
+AGAN
+, J.
+Opinion of K
+
+way.” Id., at 267–268.5 The upshot of all this textual
+evidence is that §16’s residual clause—like ACCA’s, except
+still more plainly—has no “plausible” fact-based reading.
+Johnson, 576 U. S., at ___ (slip op., at 13).
+And finally, the “utter impracticability”—and associated
+inequities—of such an interpretation is as great in the one
+statute as in the other. Ibid. This Court has often described the daunting difficulties of accurately “reconstruct[ing],” often many years later, “the conduct underlying [a] conviction.” Ibid.; Descamps, 570 U. S., at 270;
+Taylor, 495 U. S., at 601–602. According to JUSTICE
+THOMAS, we need not worry here because immigration
+judges have some special factfinding talent, or at least
+experience, that would mitigate the risk of error attaching
+to that endeavor in federal courts. See post, at 30. But we
+cannot see putting so much weight on the superior factfinding prowess of (notoriously overburdened) immigration
+judges. And as we have said before, §16(b) is a criminal
+statute with applications outside the immigration context.
+See supra, at 2, 13. Once again, then, we have no ground
+for discovering a novel interpretation of §16(b) that would
+remove us from the dictates of Johnson.
+——————
+5 For
+
+example, in United States v. Hayes, 555 U. S. 415 (2009), this
+Court held that a firearms statute referring to former crimes as “committed by” specified persons requires courts to consider underlying
+facts. Id., at 421. And in Nijhawan v. Holder, 557 U. S. 29 (2009), the
+Court similarly adopted a non-categorical interpretation of one of the
+aggravated felonies listed in the INA because of the phrase, appended
+to the named offense, “in which the loss to the victim or victims exceeds
+$10,000.” Id., at 34, 36 (emphasis deleted). JUSTICE THOMAS suggests
+that Nijhawan rejected the relevance of our ACCA precedents in
+interpreting the INA’s aggravated-felony list—including its incorporation of §16(b). Post, at 29–30. But that misreads the decision. In
+Nijhawan, we considered an item on the INA’s list that looks nothing
+like ACCA, and we concluded—no surprise here—that our ACCA
+decisions did not offer a useful guide. As to items on the INA’s list that
+do mirror ACCA, the opposite conclusion of course follows.
+
+16
+
+SESSIONS v. DIMAYA
+Opinion of the Court
+
+B
+Agreeing that is so, the Government (joined by THE
+CHIEF JUSTICE) takes a narrower path to the same desired
+result. It points to three textual discrepancies between
+ACCA’s residual clause and §16(b), and argues that they
+make §16(b) significantly easier to apply. But each turns
+out to be the proverbial distinction without a difference.
+None relates to the pair of features—the ordinary-case
+inquiry and a hazy risk threshold—that Johnson found to
+produce impermissible vagueness. And none otherwise
+affects the determinacy of the statutory inquiry into
+whether a prior conviction is for a violent crime. That is
+why, contrary to the Government’s final argument, the
+experience of applying both statutes has generated confusion and division among lower courts.
+1
+The Government first—and foremost—relies on §16(b)’s
+express requirement (absent from ACCA) that the risk
+arise from acts taken “in the course of committing the
+offense.” Brief for Petitioner 31. (THE CHIEF JUSTICE’s
+dissent echoes much of this argument. See post, at 6–7.)
+Because of that “temporal restriction,” a court applying
+§16(b) may not “consider risks arising after” the offense’s
+commission is over. Ibid. In the Government’s view,
+§16(b)’s text thereby demands a “significantly more focused inquiry” than did ACCA’s residual clause. Id., at 32.
+To assess that claim, start with the meaning of §16(b)’s
+“in the course of ” language. That phrase, understood in
+the normal way, includes the conduct occurring throughout a crime’s commission—not just the conduct sufficient
+to satisfy the offense’s formal elements. The Government
+agrees with that construction, explaining that the words
+“in the course of ” sweep in everything that happens while
+a crime continues. See Tr. of Oral Arg. 57–58 (Oct. 2,
+2017) (illustrating that idea with reference to conspiracy,
+
+Cite as: 584 U. S. ____ (2018)
+
+17
+
+Opinion of the Court
+
+burglary, kidnapping, and escape from prison). So, for
+example, conspiracy may be a crime of violence under
+§16(b) because of the risk of force while the conspiracy is
+ongoing (i.e., “in the course of ” the conspiracy); it is irrelevant that conspiracy’s elements are met as soon as the
+participants have made an agreement. See ibid.; United
+States v. Doe, 49 F. 3d 859, 866 (CA2 1995). Similarly,
+and closer to home, burglary may be a crime of violence
+under §16(b) because of the prospects of an encounter
+while the burglar remains in a building (i.e., “in the course
+of ” the burglary); it does not matter that the elements of
+the crime are met at the precise moment of his entry. See
+Tr. of Oral Arg. 57–58 (Oct. 2, 2017); James, 550 U. S., at
+203. In other words, a court applying §16(b) gets to consider everything that is likely to take place for as long as a
+crime is being committed.
+Because that is so, §16(b)’s “in the course of ” language
+does little to narrow or focus the statutory inquiry. All
+that the phrase excludes is a court’s ability to consider the
+risk that force will be used after the crime has entirely
+concluded—so, for example, after the conspiracy has dissolved or the burglar has left the building. We can construct law-school-type hypotheticals fitting that fact pattern—say, a burglar who constructs a booby trap that
+later knocks out the homeowner. But such imaginative
+forays cannot realistically affect a court’s view of the
+ordinary case of a crime, which is all that matters under
+the statute. See supra, at 2–3, 7. In the ordinary case, the
+riskiness of a crime arises from events occurring during its
+commission, not events occurring later. So with or without §16(b)’s explicit temporal language, a court applying
+the section would do the same thing—ask what usually
+happens when a crime goes down.
+And that is just what courts did when applying ACCA’s
+residual clause—and for the same reason. True, that
+clause lacked an express temporal limit. But not a single
+
+18
+
+SESSIONS v. DIMAYA
+Opinion of the Court
+
+one of this Court’s ACCA decisions turned on conduct that
+might occur after a crime’s commission; instead, each
+hinged on the risk arising from events that could happen
+while the crime was ongoing. See, e.g., Sykes v. United
+States, 564 U. S. 1, 10 (2011) (assessing the risks attached
+to the “confrontations that initiate and terminate” vehicle
+flight, along with “intervening” events); Chambers v.
+United States, 555 U. S. 122, 128 (2009) (rejecting the
+Government’s argument that violent incidents “occur[ring]
+long after” a person unlawfully failed to report to prison
+rendered that crime a violent felony). Nor could those
+decisions have done otherwise, given the statute’s concern
+with the ordinary (rather than the outlandish) case. Once
+again, the riskiness of a crime in the ordinary case depends on the acts taken during—not after—its commission. Thus, the analyses under ACCA’s residual clause
+and §16(b) coincide.
+The upshot is that the phrase “in the course of ” makes
+no difference as to either outcome or clarity. Every offense
+that could have fallen within ACCA’s residual clause
+might equally fall within §16(b). And the difficulty of
+deciding whether it does so remains just as intractable.
+Indeed, we cannot think of a single federal crime whose
+treatment becomes more obvious under §16(b) than under
+ACCA because of the words “in the course of.”6 The
+——————
+6 In response to repeated questioning at two oral arguments, the Government proposed one (and only one) such crime—but we disagree that
+§16(b)’s temporal language would aid in its analysis. According to the
+Government, possession of a short-barreled shotgun could count as
+violent under ACCA but not under §16(b) because shooting the gun is
+“not in the course of committing the crime of possession.” Tr. of Oral
+Arg. 59–60 (Oct. 2, 2017); see Tr. of Oral Arg. 6–7 (Jan. 17, 2017); Brief
+for Petitioner 32–34. That is just wrong: When a criminal shoots a gun,
+he does so while (“in the course of ”) possessing it (except perhaps in
+some physics-defying fantasy world). What makes the offense difficult
+to classify as violent is something different: that while some people use
+the short-barreled shotguns they possess to commit murder, others
+
+Cite as: 584 U. S. ____ (2018)
+
+19
+
+Opinion of the Court
+
+phrase, then, cannot cure the statutory indeterminacy
+Johnson described.
+Second, the Government (and again, THE CHIEF
+JUSTICE’s dissent, see post, at 6) observes that §16(b)
+focuses on the risk of “physical force” whereas ACCA’s
+residual clause asked about the risk of “physical injury.”
+The §16(b) inquiry, the Government says, “trains solely”
+on the conduct typically involved in a crime. Brief for
+Petitioner 36. By contrast, the Government continues,
+ACCA’s residual clause required a second inquiry: After
+describing the ordinary criminal’s conduct, a court had to
+“speculate about a chain of causation that could possibly
+result in a victim’s injury.” Ibid. The Government’s conclusion is that the §16(b) inquiry is “more specific.” Ibid.
+But once more, we struggle to see how that statutory
+distinction would matter. To begin with, the first of the
+Government’s two steps—defining the conduct in the
+ordinary case—is almost always the difficult part. Once
+that is accomplished, the assessment of consequences
+tends to follow as a matter of course. So, for example, if a
+crime is likely enough to lead to a shooting, it will also be
+likely enough to lead to an injury. And still more important, §16(b) involves two steps as well—and essentially
+the same ones. In interpreting statutes like §16(b), this
+Court has made clear that “physical force” means “force
+——————
+merely store them in a nearby firearms cabinet—and it is hard to settle
+which is the more likely scenario. Compare Johnson, 576 U. S., at ___–
+___ (slip op., at 19–20) (ALITO, J., dissenting) (“It is fanciful to assume
+that a person who [unlawfully possesses] a notoriously dangerous
+weapon is unlikely to use that weapon in violent ways”), with id., at ___
+(slip op., at 4) (THOMAS, J., concurring) (Unlawful possession of a shortbarreled shotgun “takes place in a variety of ways . . . many, perhaps
+most, of which do not involve likely accompanying violence” (internal
+quotation marks omitted)). But contrary to THE CHIEF JUSTICE’s
+suggestion, see post, at 7–8 (which, again, is tied to his disregard of the
+ordinary-case inquiry, see supra, at 10, n. 4), that issue must be settled
+no less under §16(b) than under ACCA.
+
+20
+
+SESSIONS v. DIMAYA
+Opinion of the Court
+
+capable of causing physical pain or injury.” Johnson v.
+United States, 559 U. S. 133, 140 (2010) (defining the term
+for purposes of deciding what counts as a “violent” crime).
+So under §16(b) too, a court must not only identify the
+conduct typically involved in a crime, but also gauge its
+potential consequences. Or said a bit differently, evaluating the risk of “physical force” itself entails considering the
+risk of “physical injury.”
+For those reasons, the
+force/injury distinction is unlikely to affect a court’s analysis of whether a crime qualifies as violent. All the same
+crimes might—or, then again, might not—satisfy both
+requirements.
+Accordingly, this variance in wording
+cannot make ACCA’s residual clause vague and §16(b) not.
+Third, the Government briefly notes that §16(b), unlike
+ACCA’s residual clause, is not preceded by a “confusing
+list of exemplar crimes.” Brief for Petitioner 38. (THE
+CHIEF JUSTICE’s dissent reiterates this argument, with
+some additional references to our caselaw. See post, at
+10–12.) Here, the Government is referring to the offenses
+ACCA designated as violent felonies independently of the
+residual clause (i.e., burglary, arson, extortion, and use of
+explosives). See supra, at 4. According to the Government, those crimes provided “contradictory and opaque
+indications” of what non-specified offenses should also
+count as violent. Brief for Petitioner 38. Because §16(b)
+lacks any such enumerated crimes, the Government concludes, it avoids the vagueness of ACCA’s residual clause.
+We readily accept a part of that argument. This Court
+for several years looked to ACCA’s listed crimes for help in
+giving the residual clause meaning. See, e.g., Begay v.
+United States, 553 U. S. 137, 142 (2008); James, 550 U. S.,
+at 203. But to no avail. As the Government relates (and
+Johnson explained), the enumerated crimes were themselves too varied to provide such assistance. See Brief for
+Petitioner 38–40; 576 U. S., at ___ (slip op., at 12). Trying
+to reconcile them with each other, and then compare them
+
+Cite as: 584 U. S. ____ (2018)
+
+21
+
+Opinion of the Court
+
+to whatever unlisted crime was at issue, drove many a
+judge a little batty. And more to the point, the endeavor
+failed to bring any certainty to the residual clause’s application. See Brief for Petitioner 38–40.
+But the Government’s conclusion does not follow. To
+say that ACCA’s listed crimes failed to resolve the residual
+clause’s vagueness is hardly to say they caused the problem. Had they done so, Johnson would not have needed to
+strike down the clause. It could simply have instructed
+courts to give up on trying to interpret the clause by reference to the enumerated offenses. (Contrary to THE CHIEF
+JUSTICE’s suggestion, see post, at 12, discarding an interpretive tool once it is found not to actually aid in interpretation hardly “expand[s]” the scope of a statute.) That
+Johnson went so much further—invalidating a statutory
+provision rather than construing it independently of another—demonstrates that the list of crimes was not the
+culprit. And indeed, Johnson explicitly said as much. As
+described earlier, Johnson found the residual clause’s
+vagueness to reside in just “two” of its features: the
+ordinary-case requirement and a fuzzy risk standard. See
+576 U. S., at ___–___ (slip op., at 5–6); supra, at 7–8.
+Strip away the enumerated crimes—as Congress did in
+§16(b)—and those dual flaws yet remain. And ditto the
+textual indeterminacy that flows from them.
+2
+Faced with the two clauses’ linguistic similarity, the
+Government relies significantly on an argument rooted in
+judicial experience. Our opinion in Johnson, the Government notes, spoke of the longstanding “trouble” that this
+Court and others had in “making sense of [ACCA’s] residual clause.” 576 U. S., at ___ (slip op., at 9); see Brief for
+Petitioner 45. According to the Government, §16(b) has
+not produced “comparable difficulties.” Id., at 46. Lower
+courts, the Government claims, have divided less often
+
+22
+
+SESSIONS v. DIMAYA
+Opinion of the Court
+
+about the provision’s meaning, and as a result this Court
+granted certiorari on “only a single Section 16(b) case”
+before this one. Ibid.7 “The most likely explanation,” the
+Government concludes, is that “Section 16(b) is clearer”
+than its ACCA counterpart. Id., at 47.
+But in fact, a host of issues respecting §16(b)’s application to specific crimes divide the federal appellate courts.
+Does car burglary qualify as a violent felony under §16(b)?
+Some courts say yes, another says no.8 What of statutory
+rape? Once again, the Circuits part ways.9 How about
+evading arrest? The decisions point in different directions.10 Residential trespass? The same is true.11 Those
+examples do not exhaust the current catalogue of Circuit
+conflicts concerning §16(b)’s application. See Brief for
+——————
+7 And,
+
+THE CHIEF JUSTICE emphasizes, we decided that one unanimously! See post, at 3 (discussing Leocal v. Ashcroft, 543 U. S. 1
+(2004)). But one simple application does not a clear statute make. As
+we put the point in Johnson: Our decisions “squarely contradict the
+theory that a vague provision is constitutional merely because there is
+some conduct that clearly falls within the provision’s grasp.” 576 U. S.,
+at ___ (slip op., at 11); see supra, at 9, n. 4.
+8 Compare Escudero-Arciniega v. Holder, 702 F. 3d 781, 784–785
+(CA5 2012) (per curiam) (yes, it does), and United States v. GuzmanLanderos, 207 F. 3d 1034, 1035 (CA8 2000) (per curiam) (same), with
+Sareang Ye v. INS, 214 F. 3d 1128, 1133–1134 (CA9 2000) (no, it does
+not).
+9 Compare Aguiar v. Gonzales, 438 F. 3d 86, 89–90 (CA1 2006) (statutory rape involves a substantial risk of force); Chery v. Ashcroft, 347
+F. 3d 404, 408–409 (CA2 2003) (same); and United States v. VelazquezOvera, 100 F. 3d 418, 422 (CA5 1996) (same), with Valencia v. Gonzales, 439 F. 3d 1046, 1052 (CA9 2006) (statutory rape does not involve
+such a risk).
+10 Compare Dixon v. Attorney Gen., 768 F. 3d 1339, 1343–1346 (CA11
+2014) (holding that one such statute falls under §16(b)), with FloresLopez v. Holder, 685 F. 3d 857, 863–865 (CA9 2012) (holding that
+another does not).
+11 Compare United States v. Venegas-Ornelas, 348 F. 3d 1273, 1277–
+1278 (CA10 2003) (residential trespass is a crime of violence), with
+Zivkovic v. Holder, 724 F. 3d 894, 906 (CA7 2013) (it is not).
+
+Cite as: 584 U. S. ____ (2018)
+
+23
+
+Opinion of the Court
+
+National Immigration Project of the National Lawyers
+Guild et al. as Amici Curiae 7–18 (citing divided appellate
+decisions as to the unauthorized use of a vehicle, firearms
+possession, and abduction). And that roster would just
+expand with time, mainly because, as Johnson explained,
+precious few crimes (of the thousands that fill the statute
+books) have an obvious, non-speculative—and therefore
+undisputed—“ordinary case.” See 576 U. S., at ___–___
+(slip op., at 5–6).
+Nor does this Court’s prior handling of §16(b) cases
+support the Government’s argument. To be sure, we have
+heard oral argument in only two cases arising from §16(b)
+(including this one), as compared with five involving
+ACCA’s residual clause (including Johnson).12 But while
+some of those ACCA suits were pending before us, we
+received a number of petitions for certiorari presenting
+related issues in the §16(b) context. And after issuing the
+relevant ACCA decisions, we vacated the judgments in
+those §16(b) cases and remanded them for further consideration.13 That we disposed of the ACCA and §16(b) peti——————
+12 From
+
+all we can tell—and all the Government has told us, see Brief
+for Petitioner 45–52—lower courts have also decided many fewer cases
+involving §16(b) than ACCA’s residual clause. That disparity likely
+reflects the Government’s lesser need to rely on §16(b). That provision
+is mainly employed (as here) in the immigration context, to establish an
+“aggravated felony” requiring deportation. See supra, at 2. But immigration law offers many other ways to achieve that result. The INA
+lists 80 or so crimes that count as aggravated felonies; only if a conviction is not for one of those specified offenses need the Government
+resort to §16(b) (or another catch-all provision). See Luna Torres v.
+Lynch, 578 U. S. ___, ___ (2016) (slip op., at 2). By contrast, ACCA
+enumerates only four crimes as a basis for enhancing sentences; the
+Government therefore had reason to use the statute’s residual clause
+more often.
+13 See, e.g., Amendariz-Moreno v. United States, 555 U. S. 1133 (2009)
+(vacating and remanding for reconsideration in light of Begay v. United
+States, 553 U. S. 137 (2008), and Chambers v. United States, 555 U. S.
+122 (2009)); Castillo-Lucio v. United States, 555 U. S. 1133 (2009)
+
+24
+
+SESSIONS v. DIMAYA
+Opinion of the Court
+
+tions in that order, rather than its opposite, provides no
+reason to disregard the indeterminacy that §16(b) shares
+with ACCA’s residual clause.
+And of course, this Court’s experience in deciding ACCA
+cases only supports the conclusion that §16(b) is too vague.
+For that record reveals that a statute with all the same
+hallmarks as §16(b) could not be applied with the predictability the Constitution demands. See id., at ___–___ (slip
+op., at 6–9); supra, at 6–9. The Government would condemn us to repeat the past—to rerun the old ACCA tape,
+as though we remembered nothing from its first showing.
+But why should we disregard a lesson so hard learned?
+“Insanity,” Justice Scalia wrote in the last ACCA residual
+clause case before Johnson, “is doing the same thing over
+and over again, but expecting different results.” Sykes,
+564 U. S., at 28 (dissenting opinion). We abandoned that
+lunatic practice in Johnson and see no reason to start it
+again.
+V
+Johnson tells us how to resolve this case. That decision
+held that “[t]wo features of [ACCA’s] residual clause conspire[d] to make it unconstitutionally vague.” 576 U. S.,
+at ___ (slip op., at 5). Because the clause had both an
+ordinary-case requirement and an ill-defined risk threshold, it necessarily “devolv[ed] into guesswork and intuition,” invited arbitrary enforcement, and failed to provide
+fair notice. Id., at ___ (slip op., at 8). Section 16(b) possesses the exact same two features. And none of the minor
+linguistic disparities in the statutes makes any real difference. So just like ACCA’s residual clause, §16(b) “produces more unpredictability and arbitrariness than the Due
+Process Clause tolerates.” Id., at ___ (slip op., at 6). We
+——————
+(same); Addo v. Mukasey, 555 U. S. 1132 (2009) (vacating and remanding in light of Chambers); Serna-Guerra v. Holder, 556 U. S 1279 (2009)
+(same); Reyes-Figueroa v. United States, 555 U. S. 1132 (2009) (same).
+
+Cite as: 584 U. S. ____ (2018)
+
+25
+
+Opinion of the Court
+
+accordingly affirm the judgment of the Court of Appeals.
+It is so ordered.
+
+Cite as: 584 U. S. ____ (2018)
+
+1
+
+ORSUCHof
+, J.,
+concurring
+G
+, J.
+Opinion
+GORSUCH
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1498
+_________________
+
+JEFFERSON B. SESSIONS, III, ATTORNEY GENERAL,
+PETITIONER v. JAMES GARCIA DIMAYA
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[April 17, 2018]
+
+JUSTICE GORSUCH, concurring in part and concurring in
+the judgment.
+Vague laws invite arbitrary power. Before the Revolu­
+tion, the crime of treason in English law was so capa­
+ciously construed that the mere expression of disfavored
+opinions could invite transportation or death. The founders
+cited the crown’s abuse of “pretended” crimes like this as
+one of their reasons for revolution. See Declaration of
+Independence ¶21. Today’s vague laws may not be as
+invidious, but they can invite the exercise of arbitrary
+power all the same—by leaving the people in the dark
+about what the law demands and allowing prosecutors and
+courts to make it up.
+The law before us today is such a law. Before holding a
+lawful permanent resident alien like James Dimaya sub­
+ject to removal for having committed a crime, the Immi­
+gration and Nationality Act requires a judge to determine
+that the ordinary case of the alien’s crime of conviction
+involves a substantial risk that physical force may be
+used. But what does that mean? Just take the crime at
+issue in this case, California burglary, which applies to
+everyone from armed home intruders to door-to-door
+salesmen peddling shady products. How, on that vast
+spectrum, is anyone supposed to locate the ordinary case
+and say whether it includes a substantial risk of physical
+force? The truth is, no one knows. The law’s silence
+
+2
+
+SESSIONS v. DIMAYA
+Opinion of GORSUCH, J.
+
+leaves judges to their intuitions and the people to their
+fate. In my judgment, the Constitution demands more.
+*
+I begin with a foundational question. Writing for the
+Court in Johnson v. United States, 576 U. S. ___ (2015),
+Justice Scalia held the residual clause of the Armed Ca­
+reer Criminal Act void for vagueness because it invited
+“more unpredictability and arbitrariness” than the Consti­
+tution allows. Id., at ___ (slip op., at 6). Because the
+residual clause in the statute now before us uses almost
+exactly the same language as the residual clause in Johnson, respect for precedent alone would seem to suggest
+that both clauses should suffer the same judgment.
+But first in Johnson and now again today JUSTICE
+THOMAS has questioned whether our vagueness doctrine
+can fairly claim roots in the Constitution as originally
+understood. See, e.g., post, at 2–6 (dissenting opinion);
+Johnson, supra, at ___–___ (opinion concurring in judg­
+ment) (slip op., at 6–18). For its part, the Court has yet to
+offer a reply. I believe our colleague’s challenge is a seri­
+ous and thoughtful one that merits careful attention. At
+day’s end, though, it is a challenge to which I find myself unable to subscribe. Respectfully, I am persuaded instead that void for vagueness doctrine, at least properly
+conceived, serves as a faithful expression of ancient due
+process and separation of powers principles the
+framers recognized as vital to ordered liberty under our
+Constitution.
+Consider first the doctrine’s due process underpinnings.
+The Fifth and Fourteenth Amendments guarantee that
+“life, liberty, or property” may not be taken “without due
+process of law.” That means the government generally
+may not deprive a person of those rights without affording
+him the benefit of (at least) those “customary procedures
+to which freemen were entitled by the old law of England.”
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+Opinion of GORSUCH, J.
+
+Pacific Mut. Life Ins. Co. v. Haslip, 499 U. S. 1, 28 (1991)
+(Scalia, J., concurring in judgment) (internal quotation
+marks omitted). Admittedly, some have suggested that
+the Due Process Clause does less work than this, allowing
+the government to deprive people of their liberty through
+whatever procedures (or lack of them) the government’s
+current laws may tolerate. Post, at 3, n. 1 (opinion of
+THOMAS, J.) (collecting authorities). But in my view the
+weight of the historical evidence shows that the clause
+sought to ensure that the people’s rights are never any
+less secure against governmental invasion than they were
+at common law. Lord Coke took this view of the English
+due process guarantee. 1 E. Coke, The Second Part of the
+Institutes of the Laws of England 50 (1797). John
+Rutledge, our second Chief Justice, explained that Coke’s
+teachings were carefully studied and widely adopted by
+the framers, becoming “ ‘almost the foundations of our
+law.’ ” Klopfer v. North Carolina, 386 U. S. 213, 225
+(1967). And many more students of the Constitution
+besides—from Justice Story to Justice Scalia—have
+agreed that this view best represents the original under­
+standing of our own Due Process Clause. See, e.g., Murray’s Lessee v. Hoboken Land & Improvement Co., 18 How.
+272, 277 (1856); 3 J. Story, Commentaries on the Consti­
+tution of the United States §1783, p. 661 (1833); Pacific
+Mut., supra, at 28–29 (opinion of Scalia, J.); Eberle, Proce­
+dural Due Process: The Original Understanding, 4 Const.
+Comment. 339, 341 (1987).
+Perhaps the most basic of due process’s customary
+protections is the demand of fair notice. See Connally v.
+General Constr. Co., 269 U. S. 385, 391 (1926); see also
+Note, Textualism as Fair Notice, 123 Harv. L. Rev. 542,
+543 (2009) (“From the inception of Western culture, fair
+notice has been recognized as an essential element of the
+rule of law”). Criminal indictments at common law had to
+provide “precise and sufficient certainty” about the charges
+
+4
+
+SESSIONS v. DIMAYA
+Opinion of GORSUCH, J.
+
+involved. 4 W. Blackstone, Commentaries on the Laws
+of England 301 (1769) (Blackstone). Unless an “offence
+[was] set forth with clearness and certainty,” the indict­
+ment risked being held void in court. Id., at 302 (empha­
+sis deleted); 2 W. Hawkins, Pleas of the Crown, ch. 25,
+§§99, 100, pp. 244–245 (2d ed. 1726) (“[I]t seems to have
+been anciently the common practice, where an indictment
+appeared to be [in]sufficient, either for its uncertainty or
+the want of proper legal words, not to put the defendant to
+answer it”).
+The same held true in civil cases affecting a person’s
+life, liberty, or property. A civil suit began by obtaining a
+writ—a detailed and specific form of action asking for
+particular relief. Bellia, Article III and the Cause of Ac­
+tion, 89 Iowa L. Rev. 777, 784–786 (2004); Subrin, How
+Equity Conquered Common Law: The Federal Rules of
+Civil Procedure in Historical Perspective, 135 U. Pa. L.
+Rev. 909, 914–915 (1987). Because the various civil writs
+were clearly defined, English subjects served with one
+would know with particularity what legal requirement
+they were alleged to have violated and, accordingly, what
+would be at issue in court. Id., at 917; Moffitt, Pleadings
+in the Age of Settlement, 80 Ind. L. J. 727, 731 (2005).
+And a writ risked being held defective if it didn’t provide
+fair notice. Goldington v. Bassingburn, Y. B. Trin. 3 Edw.
+II, f. 27b (1310) (explaining that it was “the law of the
+land” that “no one [could] be taken by surprise” by having
+to “answer in court for what [one] has not been warned to
+answer”).
+The requirement of fair notice applied to statutes too.
+Blackstone illustrated the point with a case involving a
+statute that made “stealing sheep, or other cattle” a felony. 1 Blackstone 88 (emphasis deleted). Because the term
+“cattle” embraced a good deal more then than it does now
+(including wild animals, no less), the court held the stat­
+ute failed to provide adequate notice about what it did and
+
+Cite as: 584 U. S. ____ (2018)
+
+5
+
+Opinion of GORSUCH, J.
+
+did not cover—and so the court treated the term “cattle” as
+a nullity. Ibid. All of which, Blackstone added, had the
+salutary effect of inducing the legislature to reenter the
+field and make itself clear by passing a new law extending
+the statute to “bulls, cows, oxen,” and more “by name.”
+Ibid.
+This tradition of courts refusing to apply vague statutes
+finds parallels in early American practice as well. In The
+Enterprise, 8 F. Cas. 732 (No. 4,499) (CC NY 1810), for
+example, Justice Livingston found that a statute setting
+the circumstances in which a ship may enter a port during
+an embargo was too vague to be applied, concluding that
+“the court had better pass” the statutory terms by “as
+unintelligible and useless” rather than “put on them, at
+great uncertainty, a very harsh signification, and one
+which the legislature may never have designed.” Id., at
+735. In United States v. Sharp, 27 F. Cas. 1041 (No.
+16,264) (CC Pa. 1815), Justice Washington confronted a
+statute which prohibited seamen from making a “revolt.”
+Id., at 1043. But he was unable to determine the meaning
+of this provision “by any authority . . . either in the com­
+mon, admiralty, or civil law.” Ibid. As a result, he de­
+clined to “recommend to the jury, to find the prisoners
+guilty of making, or endeavouring to make a revolt, how­
+ever strong the evidence may be.” Ibid.1
+——————
+1 Many state courts also held vague laws ineffectual. See, e.g., State
+v. Mann, 2 Ore. 238, 240–241 (1867) (holding statute that prohibited
+“gambling devices” was “void” because “the term has no settled and
+definite meaning”); Drake v. Drake, 15 N. C. 110, 115 (1833) (explaining
+that “if the terms in which [a statute] is couched be so vague as to
+convey no definite meaning to those whose duty it is to execute it . . . it
+is necessarily inoperative”); McConvill v. Mayor and Aldermen of Jersey
+City, 39 N. J. L. 38, 44 (1876) (holding that an ordinance was “bad for
+vagueness and uncertainty in the thing forbidden”); State v. Boon, 1
+N. C. 103, 105 (1801) (refusing to apply a statute because “no punish­
+ment whatever can be inflicted; without using a discretion and indulg­
+ing a latitude, which in criminal cases ought never to be allowed a
+
+6
+
+SESSIONS v. DIMAYA
+Opinion of GORSUCH, J.
+
+Nor was the concern with vague laws confined to the
+most serious offenses like capital crimes. Courts refused
+to apply vague laws in criminal cases involving relatively
+modest penalties. See, e.g., McJunkins v. State, 10 Ind.
+140, 145 (1858). They applied the doctrine in civil cases
+too. See, e.g., Drake v. Drake, 15 N. C. 110, 115 (1833);
+Commonwealth v. Bank of Pennsylvania, 3 Watts & Serg.
+173, 177 (Pa. 1842). As one court put it, “all laws” “ought
+to be expressed in such a manner as that its meaning may
+be unambiguous, and in such language as may be readily
+understood by those upon whom it is to operate.”
+McConvill v. Mayor and Aldermen of Jersey City, 39
+N. J. L. 38, 42 (1876). “ ‘It is impossible . . . to dissent from
+the doctrine of Lord Coke, that acts of parliament ought to
+be plainly and clearly, and not cunningly and darkly
+penned, especially in penal matters.’ ” Id., at 42–43.
+These early cases, admittedly, often spoke in terms of
+construing vague laws strictly rather than declaring them
+void. See, e.g., post, at 4–5 (opinion of THOMAS, J.); Johnson, 576 U. S., at ___–___ (opinion of THOMAS, J.) (slip op.,
+at 8–10). But in substance void the law is often exactly
+——————
+Judge”); Ex parte Jackson, 45 Ark. 158, 164 (1885) (declaring a statutory
+prohibition on acts “injurious to the public morals” to be “vague” and
+“simply null” (emphasis deleted)); McJunkins v. State, 10 Ind. 140, 145
+(1858) (“It would therefore appear that the term public indecency has
+no fixed legal meaning—is vague and indefinite, and cannot in itself
+imply a definite offense”); Jennings v. State, 16 Ind. 335, 336 (1861)
+(“We are of opinion that for want of a proper definition, no act is made
+criminal by the terms ‘public indecency,’ employed in the statute”);
+Commonwealth v. Bank of Pennsylvania, 3 Watts & Serg. 173, 177 (Pa.
+1842) (holding “the language of [shareholder election] legislation so
+devoid of certainty” that “no valid election [could have] been held, and
+that none can be held without further legislation”); Cheezem v. State, 2
+Ind. 149, 150 (1850) (finding statute to “contai[n] no prohibition of any
+kind whatever” and thus declaring it “a nullity”); see also Note, Statu­
+tory Standards of Personal Conduct: Indefiniteness and Uncertainty as
+Violations of Due Process, 38 Harv. L. Rev. 963, 964, n. 4 (1925) (col­
+lecting cases).
+
+Cite as: 584 U. S. ____ (2018)
+
+7
+
+Opinion of GORSUCH, J.
+
+what these courts did: rather than try to construe or in­
+terpret the statute before them, judges frequently held the
+law simply too vague to apply. Blackstone, for example,
+did not suggest the court in his illustration should have
+given a narrowing construction to the term “cattle,” but
+argued against giving it any effect at all. 1 Blackstone 88;
+see also Scalia, Assorted Canards of Contemporary Legal
+Analysis, 40 Case W. Res. L. Rev. 581, 582 (1989) (“I doubt
+. . . that any modern court would go to the lengths de­
+scribed by Blackstone in its application of the rule that
+penal statutes are to be strictly construed”); Note, Indefi­
+nite Criteria of Definiteness in Statutes, 45 Harv. L. Rev.
+160, n. 3 (1931) (explaining that “since strict construction,
+in effect, nullified ambiguous provisions, it was but a short
+step to declaring them void ab initio”); supra, at 5, n. 1
+(state courts holding vague statutory terms “void” or
+“null”).
+What history suggests, the structure of the Constitution
+confirms. Many of the Constitution’s other provisions
+presuppose and depend on the existence of reasonably
+clear laws. Take the Fourth Amendment’s requirement
+that arrest warrants must be supported by probable cause,
+and consider what would be left of that requirement if the
+alleged crime had no meaningful boundaries. Or take the
+Sixth Amendment’s mandate that a defendant must be
+informed of the accusations against him and allowed to
+bring witnesses in his defense, and consider what use
+those rights would be if the charged crime was so vague
+the defendant couldn’t tell what he’s alleged to have done
+and what sort of witnesses he might need to rebut that
+charge. Without an assurance that the laws supply fair
+notice, so much else of the Constitution risks becoming
+only a “parchment barrie[r]” against arbitrary power.
+The Federalist No. 48, p. 308 (C. Rossiter ed. 1961) (J.
+Madison).
+Although today’s vagueness doctrine owes much to the
+
+8
+
+SESSIONS v. DIMAYA
+Opinion of GORSUCH, J.
+
+guarantee of fair notice embodied in the Due Process
+Clause, it would be a mistake to overlook the doctrine’s
+equal debt to the separation of powers. The Constitution
+assigns “[a]ll legislative Powers” in our federal govern­
+ment to Congress. Art. I, §1. It is for the people, through
+their elected representatives, to choose the rules that will
+govern their future conduct. See The Federalist No. 78, at
+465 (A. Hamilton) (“The legislature . . . prescribes the
+rules by which the duties and rights of every citizen are to
+be regulated”). Meanwhile, the Constitution assigns to
+judges the “judicial Power” to decide “Cases” and “Contro­
+versies.” Art. III, §2. That power does not license judges
+to craft new laws to govern future conduct, but only to
+“discer[n] the course prescribed by law” as it currently
+exists and to “follow it” in resolving disputes between the
+people over past events. Osborn v. Bank of United States,
+9 Wheat. 738, 866 (1824).
+From this division of duties, it comes clear that legisla­
+tors may not “abdicate their responsibilities for setting the
+standards of the criminal law,” Smith v. Goguen, 415 U. S.
+566, 575 (1974), by leaving to judges the power to decide
+“the various crimes includable in [a] vague phrase,” Jordan v. De George, 341 U. S. 223, 242 (1951) (Jackson, J.,
+dissenting). For “if the legislature could set a net large
+enough to catch all possible offenders, and leave it to the
+courts to step inside and say who could be rightfully de­
+tained, and who should be set at large[,] [t]his would, to
+some extent, substitute the judicial for the legislative
+department of government.” Kolender v. Lawson, 461
+U. S. 352, 358, n. 7 (1983) (internal quotation marks omit­
+ted). Nor is the worry only that vague laws risk allowing
+judges to assume legislative power. Vague laws also
+threaten to transfer legislative power to police and prose­
+cutors, leaving to them the job of shaping a vague statute’s
+contours through their enforcement decisions.
+See
+Grayned v. City of Rockford, 408 U. S. 104, 108–109 (1972)
+
+Cite as: 584 U. S. ____ (2018)
+
+9
+
+Opinion of GORSUCH, J.
+
+(“A vague law impermissibly delegates basic policy mat­
+ters to policemen, judges, and juries for resolution on an
+ad hoc and subjective basis”).
+These structural worries are more than just formal ones.
+Under the Constitution, the adoption of new laws restrict­
+ing liberty is supposed to be a hard business, the product
+of an open and public debate among a large and diverse
+number of elected representatives. Allowing the legisla­
+ture to hand off the job of lawmaking risks substituting
+this design for one where legislation is made easy, with a
+mere handful of unelected judges and prosecutors free to
+“condem[n] all that [they] personally disapprove and for no
+better reason than [they] disapprove it.” Jordan, supra, at
+242 (Jackson, J., dissenting). Nor do judges and prosecu­
+tors act in the open and accountable forum of a legislature,
+but in the comparatively obscure confines of cases and
+controversies. See, e.g., A. Bickel, The Least Dangerous
+Branch: The Supreme Court at the Bar of Politics 151
+(1962) (“A vague statute delegates to administrators,
+prosecutors, juries, and judges the authority of ad hoc
+decision, which is in its nature difficult if not impossible to
+hold to account, because of its narrow impact”). For just
+these reasons, Hamilton warned, while “liberty can have
+nothing to fear from the judiciary alone,” it has “every
+thing to fear from” the union of the judicial and legislative
+powers. The Federalist No. 78, at 466. No doubt, too, for
+reasons like these this Court has held “that the more
+important aspect of vagueness doctrine ‘is not actual
+notice, but . . . the requirement that a legislature establish
+minimal guidelines to govern law enforcement’ ” and keep
+the separate branches within their proper spheres.
+Kolender, supra, at 358 (quoting Goguen, supra, at 575
+(emphasis added)).
+*
+Persuaded that vagueness doctrine enjoys a secure
+
+10
+
+SESSIONS v. DIMAYA
+Opinion of GORSUCH, J.
+
+footing in the original understanding of the Constitution,
+the next question I confront concerns the standard of
+review. What degree of imprecision should this Court
+tolerate in a statute before declaring it unconstitutionally
+vague? For its part, the government argues that where
+(as here) a person faces only civil, not criminal, conse­
+quences from a statute’s operation, we should declare the
+law unconstitutional only if it is “unintelligible.” But in
+the criminal context this Court has generally insisted that
+the law must afford “ordinary people . . . fair notice of the
+conduct it punishes.” Johnson, 576 U. S., at ___ (slip op.,
+at 3). And I cannot see how the Due Process Clause might
+often require any less than that in the civil context either.
+Fair notice of the law’s demands, as we’ve seen, is “the
+first essential of due process.” Connally, 269 U. S., at 391.
+And as we’ve seen, too, the Constitution sought to pre­
+serve a common law tradition that usually aimed to en­
+sure fair notice before any deprivation of life, liberty, or
+property could take place, whether under the banner of
+the criminal or the civil law. See supra, at 2–7.
+First principles aside, the government suggests that at
+least this Court’s precedents support adopting a less-than­
+fair-notice standard for civil cases. But even that much I
+do not see. This Court has already expressly held that a
+“stringent vagueness test” should apply to at least some
+civil laws—those abridging basic First Amendment free­
+doms. Hoffman Estates v. Flipside, Hoffman Estates, Inc.,
+455 U. S. 489, 499 (1982). This Court has made clear, too,
+that due process protections against vague laws are “not to
+be avoided by the simple label a State chooses to fasten
+upon its conduct or its statute.” Giaccio v. Pennsylvania,
+382 U. S. 399, 402 (1966). So the happenstance that a law
+is found in the civil or criminal part of the statute books
+cannot be dispositive. To be sure, this Court has also said
+that what qualifies as fair notice depends “in part on the
+nature of the enactment.” Hoffman Estates, 455 U. S., at
+
+Cite as: 584 U. S. ____ (2018)
+
+11
+
+Opinion of GORSUCH, J.
+
+498. And the Court has sometimes “expressed greater
+tolerance of enactments with civil rather than criminal
+penalties because the consequences of imprecision are
+qualitatively less severe.” Id., at 498–499. But to
+acknowledge these truisms does nothing to prove that civil
+laws must always be subject to the government’s emaci­
+ated form of review.
+In fact, if the severity of the consequences counts when
+deciding the standard of review, shouldn’t we also take
+account of the fact that today’s civil laws regularly impose
+penalties far more severe than those found in many crimi­
+nal statutes? Ours is a world filled with more and more
+civil laws bearing more and more extravagant punish­
+ments.
+Today’s “civil” penalties include confiscatory
+rather than compensatory fines, forfeiture provisions that
+allow homes to be taken, remedies that strip persons of
+their professional licenses and livelihoods, and the power
+to commit persons against their will indefinitely. Some of
+these penalties are routinely imposed and are routinely
+graver than those associated with misdemeanor crimes—
+and often harsher than the punishment for felonies. And
+not only are “punitive civil sanctions . . . rapidly expand­
+ing,” they are “sometimes more severely punitive than the
+parallel criminal sanctions for the same conduct.” Mann,
+Punitive Civil Sanctions: The Middleground Between
+Criminal and Civil Law, 101 Yale L. J. 1795, 1798 (1992)
+(emphasis added). Given all this, any suggestion that
+criminal cases warrant a heightened standard of review
+does more to persuade me that the criminal standard
+should be set above our precedent’s current threshold than
+to suggest the civil standard should be buried below it.
+Retreating to a more modest line of argument, the gov­
+ernment emphasizes that this case arises in the immigra­
+tion context and so implicates matters of foreign relations
+where the Executive enjoys considerable constitutional
+authority. But to acknowledge that the President has
+
+12
+
+SESSIONS v. DIMAYA
+Opinion of GORSUCH, J.
+
+broad authority to act in this general area supplies no
+justification for allowing judges to give content to an im­
+permissibly vague law.
+Alternatively still, JUSTICE THOMAS suggests that, at
+least at the time of the founding, aliens present in this
+country may not have been understood as possessing any
+rights under the Due Process Clause. For support, he
+points to the Alien Friends Act of 1798. An Act Concern­
+ing Aliens §1, 1 Stat. 571; post, at 6–12 (opinion of
+THOMAS, J.). But the Alien Friends Act—better known as
+the “Alien” part of the Alien and Sedition Acts—is one of
+the most notorious laws in our country’s history. It was
+understood as a temporary war measure, not one that the
+legislature would endorse in a time of tranquility. See,
+e.g., Fehlings, Storm on the Constitution: The First Depor­
+tation Law, 10 Tulsa J. Comp. & Int’l L. 63, 70–71 (2002).
+Yet even then it was widely condemned as unconstitution­
+al by Madison and many others. It also went unenforced,
+may have cost the Federalist Party its existence, and
+lapsed a mere two years after its enactment. With this
+fuller view, it seems doubtful the Act tells us a great deal
+about aliens’ due process rights at the founding.2
+——————
+2 See, e.g., Virginia Resolutions in 4 Debates on the Federal Constitu­
+tion 528 (J. Elliot ed. 1836) (explaining that the Act, “by uniting legisla­
+tive and judicial powers to those of executive, subverts . . . the particu­
+lar organization, and positive provisions of the federal constitution”);
+Madison’s Report on the Virginia Resolutions (Jan. 7, 1800) in 17
+Papers of James Madison 318 (D. Mattern ed. 1991) (Madison’s Report)
+(contending that the Act violated “the only preventive justice known to
+American jurisprudence,” because “[t]he ground of suspicion is to be
+judged of, not by any judicial authority, but by the executive magistrate
+alone”); L. Canfield & H. Wilder, The Making of Modern America 158
+(H. Anderson et al. eds. 1952) (“People all over the country protested
+against the Alien and Sedition Acts”); M. Baseler, “Asylum for Man­
+kind”: America, 1607–1800, p. 287 (1998) (“The election of 1800 was a
+referendum on—and a repudiation of—the Federalist ‘doctrines’ enun­
+ciated in the debates” over, among other things, the Alien Friends Act);
+Moore, Aliens and the Constitution, 88 N. Y. U. L. Rev. 801, 865, n. 300
+
+Cite as: 584 U. S. ____ (2018)
+
+13
+
+Opinion of GORSUCH, J.
+
+Besides, none of this much matters. Whether Madison
+or his adversaries had the better of the debate over the
+constitutionality of the Alien Friends Act, Congress is
+surely free to extend existing forms of liberty to new classes
+of persons—liberty that the government may then take
+only after affording due process. See, e.g., Sandin v. Conner, 515 U. S. 472, 477–478 (1995); Easterbrook, Sub­
+stance and Due Process, 1982 S. Ct. Rev. 85, 88 (“If . . . the
+constitution, statute, or regulation creates a liberty or
+property interest, then the second step—determining
+‘what process is due’—comes into play”). Madison made
+this very point, suggesting an alien’s admission in this
+country could in some circumstances be analogous to “the
+grant of land to an individual,” which “may be of favor not
+of right; but the moment the grant is made, the favor
+becomes a right, and must be forfeited before it can be
+taken away.” Madison’s Report 319. And, of course, that’s
+exactly what Congress eventually chose to do here. Dec­
+ades ago, it enacted a law affording Mr. Dimaya lawful
+permanent residency in this country, extending to him a
+statutory liberty interest others traditionally have enjoyed
+——————
+(2013) (“The Aliens Act and Sedition Act were met with widespread
+criticism”); Lindsay, Immigration, Sovereignty, and the Constitution of
+Foreignness, 45 Conn. L. Rev. 743, 759 (2013) (“[T]he [Alien Friends]
+Act proved wildly unpopular among the American public, and contrib­
+uted to the Republican electoral triumph in 1800 and the subsequent
+demise of the Federalist Party”). Whether the law was unenforced or,
+at most, enforced only once, the literature is not quite clear. Compare
+Sidak, War, Liberty, and Enemy Aliens, 67 N. Y. U. L. Rev. 1402, 1406
+(1992) (explaining the Act was never enforced); Cole, Enemy Aliens, 54
+Stan. L. Rev. 953, 989 (2002) (same); Klein & Wittes, Preventative
+Detention in American Theory and Practice, 2 Harv. Nat’l Sec. J. 85,
+102, n. 71 (2011) (same); Rosenfeld, Deportation Proceedings and Due
+Process of Law, 26 Colum. Hum. Rts. L. Rev. 713, 726, 733 (1995)
+(same); with Fehlings, Storm on the Constitution: The First Deporta­
+tion Law, 10 Tulsa J. Comp. & Int’l L. 63, 109 (2002) (stating that the
+Act was enforced once, on someone who was planning on leaving the
+country in a few months anyway).
+
+14
+
+SESSIONS v. DIMAYA
+Opinion of GORSUCH, J.
+
+to remain in and move about the country free from physi­
+cal imprisonment and restraint. See Dimaya v. Lynch,
+803 F. 3d 1110, 1111 (CA9 2015); 8 U. S. C. §§1101(20),
+1255. No one suggests Congress had to enact statutes of
+this sort. And exactly what processes must attend the
+deprivation of a statutorily afforded liberty interest like
+this may pose serious and debatable questions. Cf. Murray’s Lessee, 18 How., at 277 (approving summary proce­
+dures in another context). But however summary those
+procedures might be, it’s hard to fathom why fair notice of
+the law—the most venerable of due process’s requirements—would not be among them. Connally, 269 U. S., at
+391.3
+——————
+3 This Court already and long ago held that due process requires af­
+fording aliens the “opportunity, at some time, to be heard” before some
+lawful authority in advance of removal—and it’s unclear how that
+opportunity might be meaningful without fair notice of the law’s
+demands. The Japanese Immigrant Case, 189 U. S. 86, 101 (1903). Nor
+do the cases JUSTICE THOMAS cites hold that a statutory right to lawful
+permanent residency in this country can be withdrawn without due
+process. Post, at 11 (dissenting opinion). Rather, each merely holds
+that the particular statutory removal procedures under attack com­
+ported with due process. See Harisiades v. Shaughnessy, 342 U. S. 580,
+584–585 (1952) (rejecting argument that an “alien is entitled to consti­
+tutional [due process] protection . . . to the same extent as the citizen”
+before removal (emphasis added)); United States ex rel. Turner v.
+Williams, 194 U. S. 279, 289–290 (1904) (deporting an alien found to be
+in violation of a constitutionally valid law doesn’t violate due process);
+Fong Yue Ting v. United States, 149 U. S. 698, 730 (1893) (deporting an
+alien who hasn’t “complied with the conditions” required to stay in the
+country doesn’t violate due process). Even when it came to judicially
+unenforceable privileges in the past, “executive officials had to respect
+statutory privileges that had been granted to private individuals and
+that Congress had not authorized the officials to abrogate.” Nelson,
+Adjudication in the Political Branches, 107 Colum. L. Rev. 559, 581
+(2007) (emphasis deleted). So in a case like ours it would’ve been
+incumbent on any executive official to determine that the alien commit­
+ted a qualifying crime and statutory vagueness could pose a disabling
+problem even there.
+
+Cite as: 584 U. S. ____ (2018)
+
+15
+
+Opinion of GORSUCH, J.
+
+Today, a plurality of the Court agrees that we should
+reject the government’s plea for a feeble standard of re­
+view, but for a different reason. Ante, at 5–6. My col­
+leagues suggest the law before us should be assessed
+under the fair notice standard because of the special gravity of its civil deportation penalty. But, grave as that
+penalty may be, I cannot see why we would single it out
+for special treatment when (again) so many civil laws
+today impose so many similarly severe sanctions. Why,
+for example, would due process require Congress to speak
+more clearly when it seeks to deport a lawfully resident
+alien than when it wishes to subject a citizen to indefinite
+civil commitment, strip him of a business license essential
+to his family’s living, or confiscate his home? I can think
+of no good answer.
+*
+With the fair notice standard now in hand, all that
+remains is to ask how it applies to the case before us. And
+here at least the answer comes readily for me: to the
+extent it requires an “ordinary case” analysis, the portion
+of the Immigration and Nationality Act before us fails the
+fair notice test for the reasons Justice Scalia identified in
+Johnson and the Court recounts today.
+Just like the statute in Johnson, the statute here in­
+structs courts to impose special penalties on individuals
+previously “convicted of” a “crime of violence.” 8 U. S. C.
+§§1227(a)(2)(A)(iii), 1101(a)(43)(F). Just like the statute in
+Johnson, the statute here fails to specify which crimes
+qualify for that label. Instead, and again like the statute
+in Johnson, the statute here seems to require a judge to
+guess about the ordinary case of the crime of conviction
+and then guess whether a “substantial risk” of “physical
+force” attends its commission. 18 U. S. C. §16(b); Johnson,
+576 U. S., at ___–___ (slip op., at 4–5). Johnson held that
+a law that asks so much of courts while offering them so
+
+16
+
+SESSIONS v. DIMAYA
+Opinion of GORSUCH, J.
+
+little by way of guidance is unconstitutionally vague. And
+I do not see how we might reach a different judgment
+here.
+Any lingering doubt is resolved for me by taking account
+of just some of the questions judges trying to apply the
+statute using an ordinary case analysis would have to
+confront. Does a conviction for witness tampering ordinar­
+ily involve a threat to the kneecaps or just the promise of a
+bribe? Does a conviction for kidnapping ordinarily involve
+throwing someone into a car trunk or a noncustodial par­
+ent picking up a child from daycare? These questions do
+not suggest obvious answers. Is the court supposed to
+hold evidentiary hearings to sort them out, entertaining
+experts with competing narratives and statistics, before
+deciding what the ordinary case of a given crime looks like
+and how much risk of violence it poses? What is the judge
+to do if there aren’t any reliable statistics available?
+Should (or must) the judge predict the effects of new tech­
+nology on what qualifies as the ordinary case? After all,
+surely the risk of injury calculus for crimes like larceny
+can be expected to change as more thefts are committed by
+computer rather than by gunpoint. Or instead of requir­
+ing real evidence, does the statute mean to just leave it all
+to a judicial hunch? And on top of all that may be the
+most difficult question yet: at what level of generality is
+the inquiry supposed to take place? Is a court supposed to
+pass on the ordinary case of burglary in the relevant
+neighborhood or county, or should it focus on statewide or
+even national experience? How is a judge to know? How
+are the people to know?
+The implacable fact is that this isn’t your everyday
+ambiguous statute. It leaves the people to guess about
+what the law demands—and leaves judges to make it up.
+You cannot discern answers to any of the questions this
+law begets by resorting to the traditional canons of statu­
+tory interpretation. No amount of staring at the statute’s
+
+Cite as: 584 U. S. ____ (2018)
+
+17
+
+Opinion of GORSUCH, J.
+
+text, structure, or history will yield a clue. Nor does the
+statute call for the application of some preexisting body of
+law familiar to the judicial power. The statute doesn’t
+even ask for application of common experience. Choice,
+pure and raw, is required. Will, not judgment, dictates the
+result.
+*
+Having said this much, it is important to acknowledge
+some limits on today’s holding too. I have proceeded on
+the premise that the Immigration and Nationality Act, as
+it incorporates §16(b) of the criminal code, commands
+courts to determine the risk of violence attending the
+ordinary case of conviction for a particular crime. I have
+done so because no party before us has argued for a differ­
+ent way to read these statutes in combination; because our
+precedent seemingly requires this approach; and because
+the government itself has conceded (repeatedly) that the
+law compels it. Johnson, supra, at ___ (slip op., at 13);
+Taylor v. United States, 495 U. S. 575, 600 (1990); Brief for
+Petitioner 11, 30, 32, 36, 40, 47 (conceding that an ordi­
+nary case analysis is required).
+But any more than that I would not venture. In re­
+sponse to the problems engendered by the ordinary case
+analysis, JUSTICE THOMAS suggests that we should over­
+look the government’s concession about the propriety of
+that approach; reconsider our precedents endorsing it; and
+read the statute as requiring us to focus on the facts of the
+alien’s crime as committed rather than as the facts appear
+in the ordinary case of conviction. Post, at 20–32. But
+normally courts do not rescue parties from their conces­
+sions, maybe least of all concessions from a party as able
+to protect its interests as the federal government. And
+normally, too, the crucible of adversarial testing is crucial
+to sound judicial decisionmaking. We rely on it to “yield
+insights (or reveal pitfalls) we cannot muster guided only
+
+18
+
+SESSIONS v. DIMAYA
+Opinion of GORSUCH, J.
+
+by our own lights.” Maslenjak v. United States, 582 U. S.
+___, ___ (2017) (GORSUCH, J., concurring in part and con­
+curring in judgment) (slip op., at 2).
+While sometimes we may or even must forgo the adver­
+sarial process, I do not see the case for doing so today.
+Maybe especially because I am not sure JUSTICE THOMAS’s
+is the only available alternative reading of the statute we
+would have to consider, even if we did reject the govern­
+ment’s concession and wipe the precedential slate clean.
+We might also have to consider an interpretation that
+would have courts ask not whether the alien’s crime of
+conviction ordinarily involves a risk of physical force, or
+whether the defendant’s particular crime involved such a
+risk, but whether the defendant’s crime of conviction
+always does so. After all, the language before us requires
+a conviction for an “offense . . . that, by its nature, involves
+a substantial risk of physical force.” 18 U. S. C. §16(b)
+(emphasis added). Plausibly, anyway, the word “nature”
+might refer to an inevitable characteristic of the offense;
+one that would present itself automatically, whenever the
+statute is violated. See 10 Oxford English Dictionary 247
+(2d ed. 1989). While I remain open to different arguments
+about our precedent and the proper reading of language
+like this, I would address them in another case, whether
+involving the INA or a different statute, where the parties
+have a chance to be heard and we might benefit from their
+learning.
+It’s important to note the narrowness of our decision
+today in another respect too. Vagueness doctrine repre­
+sents a procedural, not a substantive, demand. It does not
+forbid the legislature from acting toward any end it wishes,
+but only requires it to act with enough clarity that
+reasonable people can know what is required of them and
+judges can apply the law consistent with their limited
+office. Our history surely bears examples of the judicial
+misuse of the so-called “substantive component” of due
+
+Cite as: 584 U. S. ____ (2018)
+
+19
+
+Opinion of GORSUCH, J.
+
+process to dictate policy on matters that belonged to the
+people to decide. But concerns with substantive due pro­
+cess should not lead us to react by withdrawing an ancient
+procedural protection compelled by the original meaning of
+the Constitution.
+Today’s decision sweeps narrowly in yet one more way.
+By any fair estimate, Congress has largely satisfied the
+procedural demand of fair notice even in the INA provision
+before us. The statute lists a number of specific crimes
+that can lead to a lawful resident’s removal—for example,
+murder, rape, and sexual abuse of a minor. 8 U. S. C.
+§1101(a)(43)(A). Our ruling today does not touch this list.
+We address only the statute’s “residual clause” where
+Congress ended its own list and asked us to begin writing
+our own. Just as Blackstone’s legislature passed a revised
+statute clarifying that “cattle” covers bulls and oxen,
+Congress remains free at any time to add more crimes to
+its list. It remains free, as well, to write a new residual
+clause that affords the fair notice lacking here. Congress
+might, for example, say that a conviction for any felony
+carrying a prison sentence of a specified length opens an
+alien to removal. Congress has done almost exactly this in
+other laws. See, e.g., 18 U. S. C. §922(g). What was done
+there could be done here.
+But those laws are not this law. And while the statute
+before us doesn’t rise to the level of threatening death for
+“pretended offences” of treason, no one should be surprised
+that the Constitution looks unkindly on any law so vague
+that reasonable people cannot understand its terms and
+judges do not know where to begin in applying it. A gov­
+ernment of laws and not of men can never tolerate that
+arbitrary power. And, in my judgment, that foundational
+principle dictates today’s result. Because I understand
+them to be consistent with what I have said here, I join
+Parts I, III, IV–B, and V of the Court’s opinion and concur
+in the judgment.
+
+Cite as: 584 U. S. ____ (2018)
+
+1
+
+ROBERTS, C. J., dissenting
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1498
+_________________
+
+JEFFERSON B. SESSIONS, III, ATTORNEY GENERAL,
+PETITIONER v. JAMES GARCIA DIMAYA
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[April 17, 2018]
+
+CHIEF JUSTICE ROBERTS, with whom JUSTICE KENNEDY,
+JUSTICE THOMAS, and JUSTICE ALITO join, dissenting.
+In Johnson v. United States, we concluded that the
+residual clause of the Armed Career Criminal Act was
+unconstitutionally vague, given the “indeterminacy of the
+wide-ranging inquiry” it required. 576 U. S. ___, ___
+(2015) (slip op., at 5). Today, the Court relies wholly on
+Johnson—but only some of Johnson—to strike down another provision, 18 U. S. C. §16(b). Because §16(b) does
+not give rise to the concerns that drove the Court’s decision in Johnson, I respectfully dissent.
+I
+The term “crime of violence” appears repeatedly
+throughout the Federal Criminal Code. Section 16 of Title
+18 defines it to mean:
+“(a) an offense that has as an element the use, attempted use, or threatened use of physical force
+against the person or property of another, or
+“(b) any other offense that is a felony and that, by its
+nature, involves a substantial risk that physical force
+against the person or property of another may be used
+in the course of committing the offense.”
+This definition of “crime of violence” is also incorporated in
+
+2
+
+SESSIONS v. DIMAYA
+ROBERTS, C. J., dissenting
+
+the definition of “aggravated felony” in the Immigration
+and Nationality Act. 8 U. S. C. §1101(a)(43)(F) (“aggravated felony” includes “a crime of violence (as defined in
+section 16 of title 18, but not including a purely political
+offense) for which the term of imprisonment [is] at least
+one year” (footnote omitted)). A conviction for an aggravated felony carries serious consequences under the immigration laws. It can serve as the basis for an alien’s removal from the United States, and can preclude
+cancellation of removal by the Attorney General.
+§§1227(a)(2)(A)(iii), 1229b(a)(3).
+Those consequences came to pass in respondent James
+Dimaya’s case. An Immigration Judge and the Board of
+Immigration Appeals interpreted §16(b) to cover Dimaya’s
+two prior convictions for first-degree residential burglary
+under California law, subjecting him to removal. To stave
+off that result, Dimaya argued that the language of §16(b)
+was void for vagueness under the Due Process Clause of
+the Fifth Amendment.
+The parties begin by disputing whether a criminal or
+more relaxed civil vagueness standard should apply in
+resolving Dimaya’s challenge. A plurality of the Court
+rejects the Government’s argument in favor of a civil
+standard, because of the “grave nature of deportation,”
+Jordan v. De George, 341 U. S. 223, 231 (1951); see ante,
+at 6 (plurality opinion); JUSTICE GORSUCH does so for
+broader reasons, see ante, at 10–15 (GORSUCH, J., concurring in part and concurring in judgment). I see no need to
+resolve which standard applies, because I would hold that
+§16(b) is not unconstitutionally vague even under the
+standard applicable to criminal laws.
+II
+This is not our first encounter with §16(b). In Leocal v.
+Ashcroft, 543 U. S. 1 (2004), we were asked to decide
+whether either subsection of §16 covers a particular cate-
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+ROBERTS, C. J., dissenting
+
+gory of state crimes, specifically DUI offenses involving no
+more than negligent conduct. 543 U. S., at 6. Far from
+finding §16(b) “hopeless[ly] indetermina[te],” Johnson, 576
+U. S., at ___ (slip op., at 7), we considered the provision
+clear and unremarkable: “while §16(b) is broader than
+§16(a) in the sense that physical force need not actually be
+applied,” the provision “simply covers offenses that naturally involve a person acting in disregard of the risk that
+physical force might be used against another in committing an offense,” Leocal, 543 U. S., at 10–11. Applying
+that standard to the state offense at issue, we concluded—
+unanimously—that §16(b) “cannot be read to include [a]
+conviction for DUI causing serious bodily injury under
+Florida law.” Id., at 11.
+Leocal thus provides a model for how courts should
+assess whether a particular crime “by its nature” involves
+a risk of the use of physical force. At the outset, our opinion set forth the elements of the Florida DUI statute,
+which made it a felony “for a person to operate a vehicle
+while under the influence and, ‘by reason of such operation, caus[e] . . . [s]erious bodily injury to another.’ ” 543
+U. S., at 7. Our §16(b) analysis, in turn, focused on those
+specific elements in concluding that a Florida offender’s
+acts would not naturally give rise to the requisite risk of
+force “in the course of committing the offense.” Id., at 11.
+“In no ‘ordinary or natural’ sense,” we explained, “can it be
+said that a person risks having to ‘use’ physical force
+against another person in the course of operating a vehicle
+while intoxicated and causing injury.” Ibid.
+The Court holds that the same provision we had no
+trouble applying in Leocal is in fact incapable of reasoned
+application. The sole justification for this turnabout is the
+resemblance between the language of §16(b) and the language of the residual clause of the Armed Career Criminal
+Act (ACCA) that was at issue in Johnson. The latter
+provision defined a “violent felony” to include “any crime
+
+4
+
+SESSIONS v. DIMAYA
+ROBERTS, C. J., dissenting
+
+punishable by imprisonment for a term exceeding one
+year . . . that . . . is burglary, arson, or extortion, involves
+use of explosives, or otherwise involves conduct that pre­
+sents a serious potential risk of physical injury to another.”
+18 U. S. C. §924(e)(2)(B)(ii) (emphasis added).
+In Johnson, we concluded that the ACCA residual
+clause (the “or otherwise” language) gave rise to two forms
+of intractable uncertainty, which “conspire[d]” to render
+the provision unconstitutionally vague. 576 U. S., at ___
+(slip op., at 5). First, the residual clause asked courts to
+gauge the “potential risk” of “physical injury” posed by the
+conduct involved in the crime. Ibid. That inquiry, we
+determined, entailed not only an evaluation of the “criminal’s behavior,” but also required courts to consider “how
+the idealized ordinary case of the crime subsequently
+plays out.” Ibid. Second, the residual clause obligated
+courts to compare that risk to an indeterminate standard—one that was inextricably linked to the provision’s
+four enumerated crimes, which presented differing kinds
+and degrees of risk. Id., at ___ (slip op., at 6). This murky
+confluence of features, each of which “may [have been]
+tolerable in isolation,” together “ma[de] a task for us
+which at best could be only guesswork.” Id., at ___ (slip
+op., at 10).
+Section 16(b) does not present the same ambiguities.
+The two provisions do correspond to some extent. Under
+our decisions, both ask the sentencing court to consider
+whether a particular offense, defined without regard to the
+facts of the conviction, poses a specified risk. And, relevant to both statutes, we have explained that in deciding
+whether statutory elements inherently produce a risk, a
+court must take into account how those elements will
+ordinarily be fulfilled. See James v. United States, 550
+U. S. 192, 208 (2007) (this categorical inquiry asks
+“whether the conduct encompassed by the elements of the
+
+Cite as: 584 U. S. ____ (2018)
+
+5
+
+ROBERTS, C. J., dissenting
+
+offense, in the ordinary case, presents” the requisite risk).1
+In the Court’s view, that effectively resolves this case. But
+the Court too readily dismisses the significant textual
+distinctions between §16(b) and the ACCA residual clause.
+See also ante, at 2 (opinion of GORSUCH, J.). Those differences undermine the conclusion that §16(b) shares each
+of the “dual flaws” of that clause. Ante, at 21 (majority
+opinion).
+To begin, §16(b) yields far less uncertainty “about how
+to estimate the risk posed by a crime.” Johnson, 576 U. S.,
+at ___ (slip op., at 5). There are three material differences
+between §16(b) and the ACCA residual clause in this
+respect. First, the ACCA clause directed the reader to
+consider whether the offender’s conduct presented a “po­
+tential risk” of injury. Forced to give meaning to that
+befuddling choice of phrase—which layered one indeterminate term on top of another—we understood the word
+“potential” to signify that “Congress intended to encompass possibilities even more contingent or remote than “a
+simple ‘risk.’ ” James, 550 U. S., at 207–208. As we explained in Johnson, that made for a “speculative” inquiry
+“detached from statutory elements.” 576 U. S., at ___ (slip
+op., at 5). In other words, the offense elements could not
+constrain the risk inquiry in the manner they do here. See
+——————
+1 All this “ordinary case” caveat means is that while “[o]ne can always
+hypothesize unusual cases in which even a prototypically violent crime
+might not present a genuine risk,” courts should exclude those atypical
+cases in assessing whether the offense qualifies. James, 550 U. S., at
+208. As we have explained, under that approach, it is not the case that
+“every conceivable factual offense covered by a statute” must pose the
+requisite risk “before the offense can be deemed” a crime of violence.
+Ibid. But the same is true of the categorical approach generally. See
+ibid. (using the terms just quoted to characterize both the ordinary case
+approach and the categorical approach for enumerated offenses set
+forth in Taylor v. United States, 495 U. S. 575 (1990)); Moncrieffe v.
+Holder, 569 U. S. 184, 191 (2013); Gonzales v. Duenas-Alvarez, 549
+U. S. 183, 193 (2007).
+
+6
+
+SESSIONS v. DIMAYA
+ROBERTS, C. J., dissenting
+
+Leocal, 543 U. S., at 11. The “serious potential risk”
+standard also forced courts to assess in an expansive way
+the “collateral consequences” of the perpetrator’s acts. For
+example, courts had to take into account the concern that
+others might cause injury in attempting to apprehend the
+offender. See Sykes v. United States, 564 U. S. 1, 8–9
+(2011). Section 16(b), on the other hand, asks about “risk”
+alone, a familiar concept of everyday life. It therefore calls
+for a commonsense inquiry that does not compel a court to
+venture beyond the offense elements to consider contingent and remote possibilities.
+Second, §16(b) focuses exclusively on the risk that the
+offender will “use[ ]” “physical force” “against” another
+person or another person’s property. Thus, unlike the
+ACCA residual clause, “§16(b) plainly does not encompass
+all offenses which create a ‘substantial risk’ that injury
+will result from a person’s conduct.” Leocal, 543 U. S., at
+10, n. 7 (emphasis added). The point is not that an inquiry
+into the risk of “physical force” is markedly more determinate than an inquiry into the risk of “physical injury.” But
+see ante, at 19–20. The difference is that §16(b) asks
+about the risk that the offender himself will actively em­
+ploy force against person or property. That language does
+not sweep in all instances in which the offender’s acts, or
+another person’s reaction, might result in unintended or
+negligent harm.
+Third, §16(b) has a temporal limit that the ACCA residual clause lacked: The “substantial risk” of force must
+arise “in the course of committing the offense.” Properly
+interpreted, this means the statute requires a substantial
+risk that the perpetrator will use force while carrying out
+the crime. See Leocal, 543 U. S., at 10 (“The reckless
+disregard in §16 relates . . . to the risk that the use of
+physical force against another might be required in committing a crime.”). The provision thereby excludes more
+attenuated harms that might arise following the comple-
+
+Cite as: 584 U. S. ____ (2018)
+
+7
+
+ROBERTS, C. J., dissenting
+
+tion of the crime. The ACCA residual clause, by contrast,
+contained no similar language restricting its scope. And
+the absence of such a limit, coupled with the reference to
+“potential” risks, gave courts free rein to classify an offense as a violent felony based on injuries that might occur
+after the offense was over and done. See, e.g., United
+States v. Benton, 639 F. 3d 723, 732 (CA6 2011) (finding
+that “solicitation to commit aggravated assault” qualified
+under the ACCA residual clause on the theory that the
+solicited individual might subsequently carry out the
+requested act).
+Why does any of this matter? Because it mattered in
+Johnson. More precisely, the expansive language in the
+ACCA residual clause contributed to our determination
+that the clause gave rise to “grave uncertainty about how
+to estimate the risk posed by a crime.” 576 U. S., at ___
+(slip op., at 5). “Critically,” we said—a word that tends to
+mean something—“picturing the criminal’s behavior is not
+enough.” Ibid. (emphasis added). Instead, measuring
+“potential risk” “seemingly require[d] the judge to imagine
+how the idealized ordinary case of the crime subsequently
+plays out.” Ibid. (emphasis added). Not so here. In applying §16(b), considering “the criminal’s behavior” is enough.
+Those three distinctions—the unadorned reference to
+“risk,” the focus on the offender’s own active employment
+of force, and the “in the course of committing” limitation—
+also mean that many hard cases under ACCA are easier
+under §16(b). Take the firearm possession crime from
+Johnson itself, which had as its constituent elements
+(1) unlawfully (2) possessing (3) a short-barreled shotgun.
+None of those elements, “by its nature,” carries “a substantial risk” that the possessor will use force against
+another “in the course of committing the offense.” Nothing
+inherent in the act of firearm possession, even when it is
+unlawful, gives rise to a substantial risk that the owner
+will then shoot someone. See United States v. Serafin, 562
+
+8
+
+SESSIONS v. DIMAYA
+ROBERTS, C. J., dissenting
+
+F. 3d 1105, 1113 (CA10 2009) (recognizing that “Leocal
+instructs [a court] to focus not on whether possession will
+likely result in violence, but instead whether one possessing an unregistered weapon necessarily risks the need
+to employ force to commit possession”).2 Yet shortbarreled shotgun possession presented a closer question
+under the ACCA residual clause, because the “serious
+potential risk” language seemingly directed us to consider
+“the circumstances and conduct that ordinarily attend the
+offense,” in addition to the offense itself. Johnson, 576
+U. S., at ___ (ALITO, J., dissenting) (slip op., at 17); see id.,
+at ___–___ (slip op., at 19–20) (reasoning that the crime
+must qualify because “a person who chooses to break the
+law and risk the heavy criminal penalty incurred by possessing a notoriously dangerous weapon is [likely] to use
+that weapon in violent ways”).
+Failure to report to a penal institution, the subject of
+Chambers v. United States, 555 U. S. 122 (2009), is another
+crime “whose treatment becomes more obvious under
+§16(b) than under ACCA,” ante, at 18. In Chambers, the
+——————
+2 The
+
+Court protests that this straightforward analysis fails to take
+account of the crime’s ordinary case. Ante, at 18–19, n. 6. But the fact
+that the element of “possession” may “take[ ] place in a variety of
+ways”—for instance, one may possess a firearm “in a closet, in a storeroom, in a car, in a pocket,” “unloaded, disassembled, or locked away,”
+Johnson, 576 U. S., at ___ (THOMAS, J., concurring in judgment) (slip
+op., at 4)—matters very little. That is because none of the alternative
+ways of satisfying that element produce a substantial risk that the
+possessor will use physical force against the person or property of
+another. And no one would say that a person “possesses” a gun by
+firing it or threatening someone with it. Cf. id., at ___ (opinion of
+THOMAS, J.) (slip op., at 5) (“[T]he risk that the Government identifies
+arises not from the act of possessing the weapon, but from the act of
+using it.”). The Court’s insistence that this offense is nonetheless
+“difficult to classify” under §16(b), ante, at 18, n. 6, is surprising in light
+of our assessment, just two Terms ago, that §16 does not cover “felonin-possession laws and other firearms offenses,” Luna Torres v. Lynch,
+578 U. S. ___, ___ (2016) (slip op., at 13).
+
+Cite as: 584 U. S. ____ (2018)
+
+9
+
+ROBERTS, C. J., dissenting
+
+Government argued that the requisite risk of injury arises
+not necessarily at the time the offender fails to report to
+prison, but instead later, when an officer attempts to
+recapture the fugitive. 555 U. S., at 128. The majority is
+correct that we ultimately “reject[ed]” the Government’s
+contention. Ante, at 18. But we did so after “assum[ing]
+for argument’s sake” its premise—that is, “the relevance of
+violence that may occur long after an offender fails to
+report.” 555 U. S., at 128; see id., at 129 (looking at 160
+cases of “failure to report” and observing that “none at all
+involved violence . . . during the commission of the offense
+itself, [nor] during the offender’s later apprehension”).
+The “in the course of committing the offense” language in
+§16(b) helpfully forecloses that debate.
+DUI offenses are yet another example. Because §16(b)
+asks about the risk that the offender will “use[ ]” “physical
+force,” we readily concluded in Leocal that the subsection
+does not cover offenses where the danger arises from the
+offender’s negligent or accidental conduct, including drunk
+driving. 543 U. S., at 11. Applying the ACCA residual
+clause proved more trying. When asked to decide whether
+the clause covered drunk driving offenses, a majority of
+the Court concluded that the answer was no. Begay v.
+United States, 553 U. S. 137 (2008). Our decision was
+based, however, on the inference that the clause must
+cover only “purposeful, ‘violent,’ and ‘aggressive’ conduct”—a test derived not from the “conduct that presents a
+serious potential risk of physical injury” language, but
+instead by reference to (what we guessed to be) the unifying characteristics of the enumerated offenses. Id., at
+144–145. Four Members of the Court criticized that test,
+see id., at 150–153 (Scalia, J., concurring in judgment);
+id., at 158–160, 162–163 (ALITO, J., dissenting), though
+they themselves disagreed about whether DUIs were
+covered, see id., at 153–154 (opinion of Scalia, J.); id., at
+156–158 (opinion of ALITO, J.). And the Court distanced
+
+10
+
+SESSIONS v. DIMAYA
+ROBERTS, C. J., dissenting
+
+itself from the Begay requirement only a few years later
+when confronting the crime of vehicular flight. See Sykes,
+564 U. S., at 12–13; Johnson, 576 U. S., at ___–___ (slip
+op., at 8–9).
+Which brings me to the second part of the Court’s analysis: its objection that §16(b), like the ACCA residual
+clause, leaves “uncertainty about the level of risk that
+makes a crime ‘violent.’ ” Ante, at 10. The “substantial
+risk” standard in §16(b) is significantly less confusing
+because it is not tied to a disjointed list of paradigm offenses. Recall that the ACCA provision defined a “violent
+felony” to include a crime that “is burglary, arson, or
+extortion, involves use of explosives, or otherwise involves
+conduct that presents a serious potential risk of physical
+injury to another.” 18 U. S. C. §924(e)(2)(B)(ii) (emphasis
+added). As our Court recognized early on, that “otherwise”
+told the reader to understand the “serious potential risk of
+physical injury” standard by way of the four enumerated
+crimes. James, 550 U. S., at 203. But how, exactly? That
+question dogged our residual clause cases for years, until
+we said no más in Johnson.
+In our first foray, James, we resolved the case by asking
+whether the risk posed by the crime of attempted burglary
+was “comparable to that posed by its closest analog among
+the enumerated offenses,” which was completed burglary.
+550 U. S., at 203. While that rule “[took] care of attempted
+burglary,” it “offer[ed] no help at all with respect to the
+vast majority of offenses, which have no apparent analog
+among the enumerated crimes.” Johnson, 576 U. S., at ___
+(slip op., at 7). The James dissent, for its part, would have
+determined the requisite degree of risk from the least
+dangerous of the enumerated crimes, and compared the
+offense to that. 550 U. S., at 218–219 (opinion of Scalia,
+J.). But that approach also proved to be harder than it
+sounded. See id., at 219–227.
+After James came Begay, in which we concluded that
+
+Cite as: 584 U. S. ____ (2018)
+
+11
+
+ROBERTS, C. J., dissenting
+
+the enumerated offenses served as an independent limitation on the kind of crime that could qualify. 553 U. S., at
+142; see Chambers, 555 U. S., at 128 (applying the Begay
+standard). As discussed, that test was short lived (though
+we did not purport to wholly repudiate it). See Sykes, 564
+U. S., at 13. Finally, in Sykes—our penultimate residual
+clause case—we acknowledged the prior use of the closestanalog test in James, but instead focused on whether the
+risk posed by vehicular flight was “similar in degree of
+danger” to the listed offenses of arson and burglary. 564
+U. S., at 8–10. As a result, Justice Scalia’s dissent characterized the Sykes majority as applying the test from his
+prior dissent in James, not James itself. See 564 U. S., at
+29–30, 33. This series of precedents laid bare our “repeated
+inability to craft a principled test out of the statutory
+text,” id., at 34 (opinion of Scalia, J.), as the Court ultimately acknowledged in Johnson, 576 U. S., at ___ (slip
+op., at 7).
+The enumerated offenses, and our Court’s failed attempts to make sense of them, were essential to Johnson’s
+conclusion that the residual clause “leaves uncertainty
+about how much risk it takes for a crime to qualify as a
+violent felony.” Id., at ___ (slip op., at 6). As Johnson
+explained, the issue was not that the statute employed a
+fuzzy standard. That kind of thing appears in the statute
+books all the time. Id., at ___, ___ (slip op., at 6, 12). In
+the majority’s retelling today, the difficulty inhered solely
+in the fact that the statute paired such a standard with
+the ordinary case inquiry. See ante, at 8, 10–11, 21. But
+that account sidesteps much of Johnson’s reasoning. See
+576 U. S., at ___–___, ___, ___–___, ___ (slip op., at 4–5, 6,
+7–9, 12). Our opinion emphasized that the word “otherwise” “force[d]” courts to interpret the amorphous standard “in light of ” the four enumerated crimes, which are
+“not much more similar to one another in kind than in
+degree of risk posed.” Id., at ___, ___ (slip op., at 6, 8). Or,
+
+12
+
+SESSIONS v. DIMAYA
+ROBERTS, C. J., dissenting
+
+as Johnson put it more vividly, “[t]he phrase ‘shades of
+red,’ standing alone, does not generate confusion or unpredictability; but the phrase ‘fire-engine red, light pink,
+maroon, navy blue, or colors that otherwise involve shades
+of red’ assuredly does so.” Id., at ___ (slip op., at 12).
+Indeed, the author of Johnson had previously, and repeatedly, described this feature of the residual clause as the
+“crucial . . . respect” in which the law was problematic.
+See James, 550 U. S., at 230, n. 7 (opinion of Scalia, J.);
+Sykes, 564 U. S., at 35 (opinion of Scalia, J.).
+With §16(b), by contrast, a court need simply consider
+the meaning of the word “substantial”—a word our Court
+has interpreted and applied innumerable times across a
+wide variety of contexts.3 The court does not need to give
+that familiar word content by reference to four different
+offenses with varying amounts and kinds of risk.
+In its effort to recast a considerable portion of Johnson
+as dicta, the majority speculates that if the enumerated
+offenses had truly mattered to the outcome, the Court
+would have told lower courts to “give up on trying to interpret the clause by reference to” those offenses, rather than
+striking down the provision entirely. Ante, at 21. No
+litigant in Johnson suggested that solution, which is not
+surprising. Such judicial redrafting could have expanded
+the reach of the criminal provision—surely a job for Con——————
+3 To name a round dozen: Ayestas v. Davis, 584 U. S. ___, ___ (2018)
+(slip op., at 16); Life Technologies Corp. v. Promega Corp., 580 U. S. ___,
+___–___ (2017) (slip op., at 5–8); Virginia v. Hicks, 539 U. S. 113, 119–
+120, 122–124 (2003); Toyota Motor Mfg., Ky., Inc. v. Williams, 534 U. S.
+184, 196–198 (2002); Slack v. McDaniel, 529 U. S. 473, 483–484 (2000);
+Gentile v. State Bar of Nev., 501 U. S. 1030, 1075–1076 (1991); Cage v.
+Louisiana, 498 U. S. 39, 41 (1990) (per curiam); Steadman v. SEC, 450
+U. S. 91, 98 (1981); Palermo v. United States, 360 U. S. 343, 351–353
+(1959); United States v. E. I. du Pont de Nemours & Co., 353 U. S. 586,
+593–596 (1957); Levinson v. Spector Motor Service, 330 U. S. 649, 670–
+671 (1947); Consolidated Edison Co. v. NLRB, 305 U. S. 197, 229
+(1938).
+
+Cite as: 584 U. S. ____ (2018)
+
+13
+
+ROBERTS, C. J., dissenting
+
+gress alone.
+In any event, I doubt the majority’s proposal would have
+done the trick. And that is because the result in Johnson
+did not follow from the presence of one frustrating textual
+feature or another. Quite the opposite: The decision emphasized that it was the “sum” of the “uncertainties” in the
+ACCA residual clause, confirmed by years of experience,
+that “convince[d]” us the provision was beyond salvage.
+Johnson, 576 U. S., at ___ (slip op., at 10). Those failings
+do not characterize the provision at issue here.
+III
+The more constrained inquiry required under §16(b)—
+which asks only whether the offense elements naturally
+carry with them a risk that the offender will use force in
+committing the offense—does not itself engender “grave
+uncertainty about how to estimate the risk posed by a
+crime.” And the provision’s use of a commonplace substantial risk standard—one not tied to a list of crimes that
+lack a unifying feature—does not give rise to intolerable
+“uncertainty about how much risk it takes for a crime to
+qualify.” That should be enough to reject Dimaya’s facial
+vagueness challenge.4
+Because I would rely on those distinctions to uphold
+——————
+4 The Court also finds it probative that “a host of issues” respecting
+§16(b) “divide” the lower courts. Ante, at 22. Yet the Court does little
+to explain how those alleged conflicts vindicate its particular concern
+about the provision (namely, the ordinary case inquiry). And as the
+Government illustrates, many of those divergent results likely can be
+chalked up to material differences in the state offense statutes at issue.
+Compare Escudero-Arciniega v. Holder, 702 F. 3d 781, 783–785 (CA5
+2012) (per curiam) (reasoning that New Mexico car burglary “requires
+that the criminal lack authorization to enter the vehicle—a requirement alone which will most often ensure some force [against property]
+is used”), with Sareang Ye v. INS, 214 F. 3d 1128, 1134 (CA9 2000)
+(finding it relevant that California car burglary does not require unlawful or unprivileged entry); see Reply Brief 17–20, and nn. 5–6.
+
+14
+
+SESSIONS v. DIMAYA
+ROBERTS, C. J., dissenting
+
+§16(b), the Court reproaches me for not giving sufficient
+weight to a “core insight” of Johnson. Ante, at 10, n. 4; see
+ante, at 15 (opinion of GORSUCH, J.) (arguing that §16(b)
+runs afoul of Johnson “to the extent [§16(b)] requires an
+‘ordinary case’ analysis”). But the fact that the ACCA
+residual clause required the ordinary case approach was
+not itself sufficient to doom the law. We instead took
+pains to clarify that our opinion should not be read to
+impart such an absolute rule. See Johnson, 576 U. S., at
+___ (slip op., at 10). I would adhere to that careful holding
+and not reflexively extend the decision to a different statute whose reach is, on the whole, far more clear.
+The Court does the opposite, and the ramifications of
+that decision are significant. First, of course, today’s
+holding invalidates a provision of the Immigration and
+Nationality Act—part of the definition of “aggravated
+felony”—on which the Government relies to “ensure that
+dangerous criminal aliens are removed from the United
+States.” Brief for United States 54. Contrary to the
+Court’s back-of-the-envelope assessment, see ante, at 23,
+n. 12, the Government explains that the definition is
+“critical” for “numerous” immigration provisions. Brief for
+United States 12.
+In addition, §16 serves as the universal definition of
+“crime of violence” for all of Title 18 of the United States
+Code. Its language is incorporated into many procedural
+and substantive provisions of criminal law, including
+provisions concerning racketeering, money laundering,
+domestic violence, using a child to commit a violent crime,
+and distributing information about the making or use of
+explosives. See 18 U. S. C. §§25(a)(1), 842(p)(2), 1952(a),
+1956(c)(7)(B)(ii), 1959(a)(4), 2261(a), 3561(b). Of special
+concern, §16 is replicated in the definition of “crime of
+violence” applicable to §924(c), which prohibits using or
+carrying a firearm “during and in relation to any crime of
+violence,” or possessing a firearm “in furtherance of any
+
+Cite as: 584 U. S. ____ (2018)
+
+15
+
+ROBERTS, C. J., dissenting
+
+such crime.” §§924(c)(1)(A), (c)(3). Though I express no
+view on whether §924(c) can be distinguished from the
+provision we consider here, the Court’s holding calls into
+question convictions under what the Government warns
+us is an “oft-prosecuted offense.”
+Brief for United
+States 12.
+Because Johnson does not compel today’s result, I
+respectfully dissent.
+
+Cite as: 584 U. S. ____ (2018)
+
+1
+
+THOMAS, J., dissenting
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1498
+_________________
+
+JEFFERSON B. SESSIONS, III, ATTORNEY GENERAL,
+PETITIONER v. JAMES GARCIA DIMAYA
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[April 17, 2018]
+
+JUSTICE THOMAS, with whom JUSTICE KENNEDY and
+JUSTICE ALITO join as to Parts I–C–2, II–A–1, and II–B,
+dissenting.
+I agree with THE CHIEF JUSTICE that 18 U. S. C. §16(b),
+as incorporated by the Immigration and Nationality Act
+(INA), is not unconstitutionally vague. Section 16(b) lacks
+many of the features that caused this Court to invalidate
+the residual clause of the Armed Career Criminal Act
+(ACCA) in Johnson v. United States, 576 U. S. ___ (2015).
+ACCA’s residual clause—a provision that this Court had
+applied four times before Johnson—was not unconstitu­
+tionally vague either. See id., at ___ (THOMAS, J., concur­
+ring in judgment) (slip op., at 1); id., at ___–___ (ALITO, J.,
+dissenting) (slip op., at 13–17). But if the Court insists on
+adhering to Johnson, it should at least take Johnson at its
+word that the residual clause was vague due to the “ ‘sum’ ”
+of its specific features. Id., at ___ (majority opinion) (slip
+op., at 10). By ignoring this limitation, the Court jettisons
+Johnson’s assurance that its holding would not jeopardize
+“dozens of federal and state criminal laws.” Id., at ___
+(slip op., at 12).
+While THE CHIEF JUSTICE persuasively explains why
+respondent cannot prevail under our precedents, I write
+separately to make two additional points. First, I continue
+to doubt that our practice of striking down statutes as
+
+2
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+unconstitutionally vague is consistent with the original
+meaning of the Due Process Clause. See id., at ___–___
+(opinion of THOMAS, J.) (slip op., at 7–18). Second, if the
+Court thinks that §16(b) is unconstitutionally vague be­
+cause of the “categorical approach,” see ante, at 6–11, then
+the Court should abandon that approach—not insist on
+reading it into statutes and then strike them down. Ac­
+cordingly, I respectfully dissent.
+I
+I continue to harbor doubts about whether the vague­
+ness doctrine can be squared with the original meaning of
+the Due Process Clause—and those doubts are only ampli­
+fied in the removal context. I am also skeptical that the
+vagueness doctrine can be justified as a way to prevent
+delegations of core legislative power in this context. But I
+need not resolve these questions because, if the vagueness
+doctrine has any basis in the Due Process Clause, it must
+be limited to cases in which the statute is unconstitution­
+ally vague as applied to the person challenging it. That is
+not the case for respondent, whose prior convictions for
+first-degree residential burglary in California fall comfort­
+ably within the scope of §16(b).
+A
+The Fifth Amendment’s Due Process Clause provides
+that no person shall be “deprived of life, liberty, or property, without due process of law.” Section 16(b), as incorpo­
+rated by the INA, cannot violate this Clause unless the
+following propositions are true: The Due Process Clause
+requires federal statutes to provide certain minimal pro­
+cedures, the vagueness doctrine is one of those procedures,
+and the vagueness doctrine applies to statutes governing
+the removal of aliens. Although I need not resolve any of
+these propositions today, each one is questionable. I will
+address them in turn.
+
+Cite as: 584 U. S. ____ (2018)
+
+3
+
+THOMAS, J., dissenting
+
+1
+First, the vagueness doctrine is not legitimate unless
+the “law of the land” view of due process is incorrect.
+Under that view, due process “require[s] only that our
+Government . . . proceed . . . according to written constitu­
+tional and statutory provision[s] before depriving someone
+of life, liberty, or property.” Nelson v. Colorado, 581 U. S.
+___, ___, n. 1 (2017) (THOMAS, J., dissenting) (slip op., at 2,
+n. 1) (internal quotation marks omitted). More than a half
+century after the founding, the Court rejected this view of
+due process in Murray’s Lessee v. Hoboken Land & Improvement Co., 18 How. 272 (1856). See id., at 276 (hold­
+ing that the Due Process Clause “is a restraint on the
+legislative as well as on the executive and judicial powers
+of the government”). But the textual and historical sup­
+port for the law-of-the-land view is not insubstantial.1
+2
+Even under Murray’s Lessee, the vagueness doctrine is
+legitimate only if it is a “settled usag[e] and mod[e] of
+proceeding existing in the common and statute law of
+England, before the emigration of our ancestors.” Id., at
+277. That proposition is dubious. Until the end of the
+19th century, “there is little indication that anyone . . .
+believed that courts had the power under the Due Process
+Claus[e] to nullify statutes on [vagueness] ground[s].”
+Johnson, supra, at ___ (opinion of THOMAS, J.) (slip op., at
+——————
+1 See,
+
+e.g., In re Winship, 397 U. S. 358, 382–384 (1970) (Black, J.,
+dissenting); Rosenkranz, The Objects of the Constitution, 63 Stan.
+L. Rev. 1005, 1041–1043 (2011); Berger, “Law of the Land” Reconsid­
+ered, 74 Nw. U. L. Rev. 1, 2–17 (1979); Corwin, The Doctrine of Due
+Process of Law Before the Civil War, 24 Harv. L. Rev. 366, 368–373
+(1911); see also 4 The Papers of Alexander Hamilton 35 (Syrett &
+Cooke eds. 1962) (“The words ‘due process’ have a precise technical
+import, and . . . can never be referred to an act of legislature”).
+
+4
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+11). That is not because Americans were unfamiliar with
+vague laws. Rather, early American courts, like their
+English predecessors, addressed vague laws through
+statutory construction instead of constitutional law. See
+Note, Void for Vagueness: An Escape From Statutory
+Interpretation, 23 Ind. L. J. 272, 274–279 (1948). They
+invoked the rule of lenity and declined to apply vague
+penal statutes on a case-by-case basis. See Johnson, 576
+U. S., at ___–___ (opinion of THOMAS, J.) (slip op., at 7–10);
+e.g., ante, at 5–6, and n. 1 (GORSUCH, J., concurring in part
+and concurring in judgment) (collecting cases).2 The mod­
+ern vagueness doctrine, which claims the judicial author­
+ity to “strike down” vague legislation on its face, did not
+emerge until the turn of the 20th century. See Johnson,
+576 U. S., at ___–___ (opinion of THOMAS, J.) (slip op., at
+11–13).
+The difference between the traditional rule of lenity and
+——————
+2 Before the 19th century, when virtually all felonies were punishable
+by death, English courts would sometimes go to extremes to find a
+reason to invoke the rule of lenity. See Hall, Strict or Liberal Construc­
+tion of Penal Statutes, 48 Harv. L. Rev. 748, 751 (1935); e.g., ante, at 4–
+7 (GORSUCH, J., concurring in part and concurring in judgment) (citing
+Blackstone’s discussion of a case about “cattle”). As the death penalty
+became less common, courts on this side of the Atlantic tempered the
+rule of lenity, clarifying that the rule requires an “ambiguity” in the
+text and cannot be used “to defeat the obvious intention of the legisla­
+ture.” United States v. Wiltberger, 5 Wheat. 76 (1820) (Marshall, C. J.).
+Early American courts also declined to apply nonpenal statutes that
+were “unintelligible.” Johnson v. United States, 576 U. S. ___, ___, n. 3
+(2014) (THOMAS, J., concurring in judgment) (slip op., at 10, n. 3); e.g.,
+ante, at 5–6, and n. 1 (opinion of GORSUCH, J.) (collecting cases). Like
+lenity, however, this practice reflected a principle of statutory construc­
+tion that was much narrower than the modern constitutional vagueness
+doctrine. Unintelligible statutes were considered inoperative because
+they were impossible to apply to individual cases, not because they
+were unconstitutional for failing to provide “fair notice.” See Johnson,
+576 U. S., at ___, n. 3 (opinion of THOMAS, J.) (slip op., at 10, n. 3).
+
+Cite as: 584 U. S. ____ (2018)
+
+5
+
+THOMAS, J., dissenting
+
+the modern vagueness doctrine is not merely semantic.
+Most obviously, lenity is a tool of statutory construction,
+which means States can abrogate it—and many have.
+Hall, Strict or Liberal Construction of Penal Statutes, 48
+Harv. L. Rev. 748, 752–754 (1935); see also Scalia, Assorted
+Canards of Contemporary Legal Analysis, 40 Case W.
+Res. L. Rev. 581, 583 (1989) (“Arizona, by the way, seems
+to have preserved a fair and free society without adopting
+the rule that criminal statutes are to be strictly construed”
+(citing Ariz. Rev. Stat. §1-211C (1989))). The vagueness
+doctrine, by contrast, is a rule of constitutional law that
+States cannot alter or abolish. Lenity, moreover, applies
+only to “penal” statutes, 1 Blackstone, Commentaries on
+the Laws of England 88 (1765), but the vagueness doctrine
+extends to all regulations of individual conduct, both penal
+and nonpenal, Johnson, 576 U. S., at ___ (opinion of
+THOMAS, J.) (slip op., at 6); see also Note, Indefinite Crite­
+ria of Definiteness in Statutes, 45 Harv. L. Rev. 160, 163
+(1931) (explaining that the modern vagueness doctrine
+was not merely an “extension of the rule of strict construc­
+tion of penal statutes” because it “expressly include[s] civil
+statutes within its scope,” reflecting a “regrettable disre­
+gard” for legislatures).3 In short, early American courts
+were not applying the modern vagueness doctrine by
+another name. They were engaged in a fundamentally
+different enterprise.
+Tellingly, the modern vagueness doctrine emerged at a
+time when this Court was actively interpreting the Due
+——————
+3 This distinction between penal and nonpenal statutes would be
+decisive here because, traditionally, civil deportation laws were not
+considered penal. See Bugajewitz v. Adams, 228 U. S. 585, 591 (1913);
+Fong Yue Ting v. United States, 149 U. S. 698, 709, 730 (1893). Although this Court has applied a kind of strict construction to civil
+deportation laws, that practice did not emerge until the mid-20th
+century. See Fong Haw Tan v. Phelan, 333 U. S. 6, 10 (1948).
+
+6
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+Process Clause to strike down democratically enacted
+laws—first in the name of the “liberty of contract,” then in
+the name of the “right to privacy.” See Johnson, 576 U. S.,
+at ___–___ (opinion of THOMAS, J.) (slip op., at 13–16).
+That the vagueness doctrine “develop[ed] on the federal
+level concurrently with the growth of the tool of substan­
+tive due process” does not seem like a coincidence. Note,
+23 Ind. L. J., at 278. Like substantive due process, the
+vagueness doctrine provides courts with “open-ended
+authority to oversee [legislative] choices.” Kolender v.
+Lawson, 461 U. S. 352, 374 (1983) (White, J., dissenting).
+This Court, for example, has used the vagueness doctrine
+to invalidate antiloitering laws, even though those laws
+predate the Declaration of Independence. See Johnson,
+supra, at ___ (opinion of THOMAS, J.) (slip op., at 7) (dis­
+cussing Chicago v. Morales, 527 U. S. 41 (1999)).
+This Court also has a bad habit of invoking the Due
+Process Clause to constitutionalize rules that were tradi­
+tionally left to the democratic process. See, e.g., Williams
+v. Pennsylvania, 579 U. S. ___ (2016); BMW of North
+America, Inc. v. Gore, 517 U. S. 559 (1996); Foucha v.
+Louisiana, 504 U. S. 71 (1992); cf. Montgomery v. Louisiana, 577 U. S. ___ (2016). If vagueness is another example
+of this practice, then that is all the more reason to doubt
+its legitimacy.
+3
+Even assuming the Due Process Clause prohibits vague
+laws, this prohibition might not apply to laws governing
+the removal of aliens. Cf. Johnson, 576 U. S., at ___, n. 7
+(opinion of THOMAS, J.) (slip op., at 17, n. 7) (stressing the
+need for specificity when assessing alleged due process
+rights). The Founders were familiar with English law,
+where “ ‘the only question that ha[d] ever been made in
+regard to the power to expel aliens [was] whether it could
+be exercised by the King without the consent of Parlia­
+
+Cite as: 584 U. S. ____ (2018)
+
+7
+
+THOMAS, J., dissenting
+
+ment.’ ”
+Demore v. Kim, 538 U. S. 510, 538 (2003)
+(O’Connor, J., concurring in part and concurring in judg­
+ment) (quoting Fong Yue Ting v. United States, 149 U. S.
+698, 709 (1893)). And, in this country, the notion that the
+Due Process Clause governed the removal of aliens was
+not announced until the 20th century.
+Less than a decade after the ratification of the Bill of
+Rights, the founding generation had an extensive debate
+about the relationship between the Constitution and
+federal removal statutes. In 1798, the Fifth Congress
+enacted the Alien Acts. One of those Acts, the Alien
+Friends Act, gave the President unfettered discretion to
+expel any aliens “he shall judge dangerous to the peace
+and safety of the United States, or shall have reasonable
+grounds to suspect are concerned in any treasonable or
+secret machinations against the government thereof.” An
+Act Concerning Aliens §1, 1 Stat. 571. This statute was
+modeled after the Aliens Act 1793 in England, which
+similarly gave the King unfettered discretion to expel
+aliens as he “shall think necessary for the publick Secur­
+ity.” 33 Geo. III, ch. 4, §18, in 39 Eng. Stat. at Large 16.
+Both the Fifth Congress and the States thoroughly debated the Alien Friends Act. Virginia and Kentucky enacted
+resolutions (anonymously drafted by Madison and Jeffer­
+son) opposing the Act, while 10 States enacted counterresolutions condemning the views of Virginia and Ken­
+tucky. See Fehlings, Storm on the Constitution: The First
+Deportation Law, 10 Tulsa J. Comp. & Int’l L. 63, 85, 103
+(2002).
+The Jeffersonian Democratic-Republicans, who viewed
+the Alien Friends Act as a threat to their party and the
+institution of slavery,4 raised a number of constitutional
+——————
+4 The Jeffersonian Democratic-Republicans who opposed the Alien
+Friends Act primarily represented slave States, and their party’s
+
+8
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+objections. Some of the Jeffersonians argued that the
+Alien Friends Act violated the Fifth Amendment’s Due
+Process Clause. They complained that the Act failed to
+provide aliens with all the accouterments of a criminal
+trial. See, e.g., Kentucky Resolutions ¶6, in 4 The Debates
+in the Several Conventions on the Adoption of the Federal
+Constitution 541–542 (J. Elliot ed. 1836) (Elliot’s Debates);
+8 Annals of Cong. 1982–1983 (1798) (statement of Rep.
+Gallatin); Madison’s Report on the Virginia Resolutions
+(Jan. 7, 1800), in 6 Writings of James Madison 361–362
+(G. Hunt ed. 1906) (Madison’s Report).5
+The Federalists gave two primary responses to this due
+process argument. First, the Federalists argued that the
+rights of aliens were governed by the law of nations, not
+the Constitution. See, e.g., Randolph, Debate on Virginia
+Resolutions, in The Virginia Report of 1799–1800, pp. 34–
+35 (1850) (Virginia Debates) (statement of George K.
+Taylor) (arguing that aliens “were not a party to the [Con­
+stitution]” and that “cases between the government and
+——————
+political strength came from the South. See Fehlings, Storm on the
+Constitution: The First Deportation Law, 10 Tulsa J. Comp. & Int’l L.
+63, 84 (2002). The Jeffersonians opposed any federal control over
+immigration, which their constituents feared would be used to pre-empt
+State laws that prohibited the entry of free blacks. Id., at 84–85; see
+also Berns, Freedom of the Press and the Alien and Sedition Laws: A
+Reappraisal, 1970 S. Ct. Rev. 109, 116 (“Whether pro- or anti-slavery,
+most southerners, including Jefferson and Madison . . . were united
+behind a policy of denying to the national government any competence
+to deal with the question of slavery”). The fear was that “mobile free
+Negroes would intermingle with slaves, encourage them to run away,
+and foment insurrection.” I. Berlin, Slaves Without Masters 92 (1974).
+5 The Jeffersonians also argued that the Alien Friends Act violated
+due process because, if aliens disobeyed the President’s orders to leave
+the country, they could be convicted of a crime and imprisoned without
+a trial. See, e.g., Kentucky Resolutions ¶6, 4 Elliot’s Debates 541. That
+charge was false. The Alien Friends Act gave federal courts jurisdiction
+over alleged violations of the President’s orders. See §4, 1 Stat. 571.
+
+Cite as: 584 U. S. ____ (2018)
+
+9
+
+THOMAS, J., dissenting
+
+aliens . . . arise under the law of nations”); id., at 100
+(statement of William Cowan) (identifying the source of
+rights “as to citizens, the Constitution; as to aliens, the
+law of nations”); A. Addison, A Charge to the Grand Juries
+of the County Courts of the Fifth Circuit of the State of
+Pennsylvania 18 (1799) (Charge to the Grand Juries)
+(“[T]he Constitution leaves aliens, as in other countries, to
+the protection of the general principles of the law of na­
+tions”); Answer to the Resolutions of the State of Ken­
+tucky, Oct. 29, 1799, in 4 Records of the Governor and
+Council of the State of Vermont 528 (1876) (denying “that
+aliens had any rights among us, except what they derived
+from the law of nations, and rights of hospitality”). The
+law of nations imposed no enforceable limits on a nation’s
+power to remove aliens. See, e.g., 1 E. de Vattel, Law of
+Nations, §§230–231, pp. 108–109 (J. Chitty et al. transl.
+and ed. 1883).
+Second, the Federalists responded that the expulsion of
+aliens “did not touch life, liberty, or property.” Virginia
+Debates 34. The founding generation understood the
+phrase “life, liberty, or property” to refer to a relatively
+narrow set of core private rights that did not depend on
+the will of the government. See Wellness Int’l Network,
+Ltd. v. Sharif, 575 U. S. ___, ___–___ (2015) (THOMAS, J.,
+dissenting) (slip op., at 9–10); Nelson, Adjudication in the
+Political Branches, 107 Colum. L. Rev. 559, 566–568
+(2007) (Nelson).
+Quasi-private rights—“privileges” or
+“franchises” bestowed by the government on individuals—
+did not qualify and could be taken away without judicial
+process. See B&B Hardware, Inc. v. Hargis Industries,
+Inc., 575 U. S. ___, ___ (2015) (THOMAS, J., dissenting)
+(slip op., at 12); Nelson 567–569. The Federalists argued
+that an alien’s right to reside in this country was one such
+privilege. See, e.g., Virginia Debates 34 (arguing that
+“ordering away an alien . . . was not a matter of right, but
+of favour,” which did not require a jury trial); Report of the
+
+10
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+Select Committee of the House of Representatives, Made
+to the House of Representatives on Feb. 21, 1799, 9 Annals
+of Cong. 2987 (1799) (stating that aliens “remain in the
+country . . . merely as matter of favor and permission” and
+can be removed at any time without a criminal trial);
+Charge to the Grand Juries 11–13 (similar). According to
+the Minority Address of the Virginia Legislature (anony­
+mously drafted by John Marshall), “[T]he right of remain­
+ing in our country is vested in no alien; he enters and
+remains by the courtesy of the sovereign power, and that
+courtesy may at pleasure be withdrawn” without judicial
+process. Address of the Minority in the Virginia Legisla­
+ture to the People of that State 9–10 (1799) (Virginia
+Minority Address).
+Unlike “a grant of land,” the
+“[a]dmission of an alien to residence . . . is revocable, like a
+permission.” A. Addison, Analysis of the Report of the
+Committee of the Virginia Assembly 23 (1800). Removing
+a resident alien from the country did not affect “life, lib­
+erty, or property,” the Federalists argued, until the alien
+became a naturalized citizen. See id., at 23–24; Charge to
+the Grand Juries 11–13. That the alien’s permanent
+residence was conferred by statute would not have made a
+difference. See Nelson 571, 580–582; Teva Pharmaceuticals USA, Inc. v. Sandoz, Inc., 574 U. S. ___, ___, n. 2
+(2015) (THOMAS, J., dissenting) (slip op., at 9, n. 2).
+After the Alien Friends Act lapsed in 1800, Congress did
+not enact another removal statute for nearly a century.
+The States enacted their own removal statutes during this
+period, see G. Neuman, Strangers to the Constitution 19–
+43 (1996), and I am aware of no decision questioning the
+legality of these statutes under State due-process or law­
+of-the-land provisions. Beginning in the late 19th century,
+the Federal Government reinserted itself into the regula­
+tion of immigration. When this Court was presented with
+constitutional challenges to Congress’ removal laws, it
+initially rejected them for many of the same reasons that
+
+Cite as: 584 U. S. ____ (2018)
+
+11
+
+THOMAS, J., dissenting
+
+Marshall and the Federalists had cited in defense of the
+Alien Friends Act. Although the Court rejected the Feder­
+alists’ argument that resident aliens do not enjoy constitu­
+tional rights, see Wong Wing v. United States, 163 U. S.
+228, 238 (1896), it agreed that civil deportation statutes do
+not implicate “life, liberty, or property,” see, e.g., Harisiades v. Shaughnessy, 342 U. S. 580, 584–585 (1952) (“[T]hat
+admission for permanent residence confers a ‘vested right’
+on the alien [is] not founded in precedents of this Court”);
+United States ex rel. Turner v. Williams, 194 U. S. 279,
+290 (1904) (“[T]he deportation of an alien who is found to
+be here in violation of law is not a deprivation of liberty
+without due process of law”); Fong Yue Ting, 149 U. S., at
+730 (“[Deportation] is but a method of enforcing the return
+to his own country of an alien who has not complied with
+[statutory] conditions . . . . He has not, therefore, been
+deprived of life, liberty, or property without due process of
+law”); id., at 713–715 (similar). Consistent with this
+understanding, “federal immigration laws from 1891 until
+1952 made no express provision for judicial review.”
+Demore, 538 U. S., at 538 (opinion of O’Connor, J.).
+It was not until the 20th century that this Court held
+that nonpenal removal statutes could violate the Due
+Process Clause. See Wong Yang Sung v. McGrath, 339
+U. S. 33, 49 (1950). That ruling opened the door for the
+Court to apply the then-nascent vagueness doctrine to
+immigration statutes. But the Court upheld vague stand­
+ards in immigration laws that it likely would not have
+tolerated in criminal statutes. See, e.g., Boutilier v. INS,
+387 U. S. 118, 122 (1967) (“ ‘psychopathic personality’ ”);
+Jordan v. De George, 341 U. S. 223, 232 (1951) (“ ‘crime
+involving moral turpitude’ ”); cf. Mahler, supra, at 40
+(“ ‘undesirable residents’ ”). Until today, this Court has
+never held that an immigration statute is unconstitution­
+ally vague.
+Thus, for more than a century after the founding, it was,
+
+12
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+at best, unclear whether federal removal statutes could
+violate the Due Process Clause. And until today, this
+Court had never deemed a federal removal statute void for
+vagueness. Given this history, it is difficult to conclude
+that a ban on vague removal statutes is a “settled usag[e]
+and mod[e] of proceeding existing in the common and
+statute law of England, before the emigration of our ances­
+tors” protected by the Fifth Amendment’s Due Process
+Clause. Murray’s Lessee, 18 How., at 277.
+B
+Instead of a longstanding procedure under Murray’s
+Lessee, perhaps the vagueness doctrine is really a way to
+enforce the separation of powers—specifically, the doctrine
+of nondelegation. See Chapman & McConnell, Due Pro­
+cess as Separation of Powers, 121 Yale L. J. 1672, 1806
+(2012) (“Vague statutes have the effect of delegating law­
+making authority to the executive”). Madison raised a
+similar objection to the Alien Friends Act, arguing that its
+expansive language effectively allowed the President to
+exercise legislative (and judicial) power. See Madison’s
+Report 369–371. And this Court’s precedents have occa­
+sionally described the vagueness doctrine in terms of
+nondelegation. See, e.g., Grayned v. City of Rockford, 408
+U. S. 104, 108–109 (1972) (“A vague law impermissibly
+delegates basic policy matters”). But they have not been
+consistent on this front. See, e.g., Aptheker v. Secretary of
+State, 378 U. S. 500, 516 (1964) (“ ‘The objectionable quality of vagueness . . . does not depend upon . . . unchanneled
+delegation of legislative powers’ ”); Maynard v. Cartwright,
+486 U. S. 356, 361 (1988) (“Objections to vagueness under
+the Due Process Clause rest on the lack of notice”).
+I agree that the Constitution prohibits Congress from
+delegating core legislative power to another branch. See
+Department of Transportation v. Association of American
+Railroads, 575 U. S. ___, ___ (2015) (AAR) (THOMAS, J.,
+
+Cite as: 584 U. S. ____ (2018)
+
+13
+
+THOMAS, J., dissenting
+
+concurring in judgment) (slip op., at 3) (“Congress improp­
+erly ‘delegates’ legislative power when it authorizes an
+entity other than itself to make a determination that
+requires an exercise of legislative power”); accord, Whitman v. American Trucking Assns., Inc., 531 U. S. 457, 487
+(2001) (THOMAS, J., concurring). But I locate that princi­
+ple in the Vesting Clauses of Articles I, II, and III—not in
+the Due Process Clause. AAR, supra, at ___–___ (opinion
+of THOMAS, J.) (slip op., at 2–3); see also Hampton v. Mow
+Sun Wong, 426 U. S. 88, 123 (1976) (Rehnquist, J., dis­
+senting) (“[T]hat there was an improper delegation of
+authority . . . has not previously been thought to depend
+upon the procedural requirements of the Due Process
+Clause”). In my view, impermissible delegations of legis­
+lative power violate this principle, not just delegations
+that deprive individuals of “life, liberty, or property,”
+Amdt. 5.
+Respondent does not argue that §16(b), as incorporated
+by the INA, is an impermissible delegation of power. See
+Brief for Respondent 50 (stating that “there is no delega­
+tion question” in this case). I would not reach that ques­
+tion here, because this case can be resolved on narrower
+grounds. See Part I–C, infra. But at first blush, it is not
+at all obvious that the nondelegation doctrine would jus­
+tify wholesale invalidation of §16(b).
+If §16(b) delegates power in this context, it delegates
+power primarily to the Executive Branch entities that
+administer the INA—namely, the Attorney General, im­
+migration judges, and the Board of Immigration Appeals
+(BIA). But Congress does not “delegate” when it merely
+authorizes the Executive Branch to exercise a power that
+it already has. See AAR, supra, at ___ (opinion of
+THOMAS, J.) (slip op., at 3). And there is some foundingera evidence that “the executive Power,” Art. II, §1, in­
+cludes the power to deport aliens.
+Blackstone—one of the political philosophers whose
+
+14
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+writings on executive power were “most familiar to the
+Framers,” Prakash & Ramsey, The Executive Power Over
+Foreign Affairs, 111 Yale L. J. 231, 253 (2001)—described
+the power to deport aliens as executive and located it with
+the King. Alien friends, Blackstone explained, are “liable
+to be sent home whenever the king sees occasion.” 1
+Commentaries on the Laws of England 252 (1765). When
+our Constitution was ratified, moreover, “[e]minent Eng­
+lish judges, sitting in the Judicial Committee of the Privy
+Council, ha[d] gone very far in supporting the . . . expul­
+sion, by the executive authority of a colony, of aliens.”
+Demore, 538 U. S., at 538 (opinion of O’Connor, J.) (quot­
+ing Fong Yue Ting, 149 U. S., at 709). Some of the Feder­
+alists defending the Alien Friends Act similarly argued
+that the President had the power to remove aliens. See,
+e.g., Virginia Debates 35 (statement of George K. Taylor)
+(arguing that the power to remove aliens is “most properly
+entrusted” with the President, since “[h]e, by the Constitu­
+tion, was bound to execute the laws” and is “the executive
+officer, with whom all persons and bodies whatever were
+accustomed to communicate”); Virginia Minority Address
+9 (arguing that the removal of aliens “is a measure of
+general safety, in its nature political and not forensic, the
+execution of which is properly trusted to the department
+which represents the nation in all its interior relations”);
+Charge to the Grand Juries 29–30 (“As a measure of na­
+tional defence, this discretion, of expulsion or indulgence,
+seems properly vested in the branch of the government
+peculiarly charged with the direction of the executive
+powers, and of our foreign relations. There is in it a mix­
+ture of external policy, and of the law of nations, that
+justifies this disposition”). More recently, this Court
+recognized that “[r]emoval decisions” implicate “our cus­
+tomary policy of deference to the President in matters of
+foreign affairs” because they touch on “our relations with
+foreign powers and require consideration of changing
+
+Cite as: 584 U. S. ____ (2018)
+
+15
+
+THOMAS, J., dissenting
+
+political and economic circumstances.” Jama v. Immigration and Customs Enforcement, 543 U. S. 335, 348 (2005)
+(internal quotation marks omitted). Taken together, this
+evidence makes it difficult to confidently conclude that the
+INA, through §16(b), delegates core legislative power to
+the Executive.
+Instead of the Executive, perhaps §16(b) impermissibly
+delegates power to the Judiciary, since the Courts of Ap­
+peals often review the BIA’s application of §16(b). I as­
+sume that, at some point, a statute could be so devoid of
+content that a court tasked with interpreting it “would
+simply be making up a law—that is, exercising legislative
+power.” Lawson, Delegation and Original Meaning, 88 Va.
+L. Rev. 327, 339 (2002); see id., at 339–340 (providing
+examples such as a gibberish-filled statute or a statute
+that requires “ ‘goodness and niceness’ ”). But I am not
+confident that our modern vagueness doctrine—which
+focuses on whether regulations of individual conduct
+provide “fair warning,” are “clearly defined,” and do not
+encourage “arbitrary and discriminatory enforcement,”
+Grayned, 408 U. S., at 108; Kolender, 461 U. S., at 357—
+accurately demarcates the line between legislative and
+judicial power. The Founders understood that the inter­
+pretation of legal texts, even vague ones, remained an
+exercise of core judicial power. See Perez v. Mortgage
+Bankers Assn., 575 U. S. ___, ___–___ (2015) (THOMAS, J.,
+concurring in judgment) (slip op., at 8–9); Hamburger, The
+Constitution’s Accommodation of Social Change, 88 Mich.
+L. Rev. 239, 303–310 (1989). Courts were expected to
+clarify the meaning of such texts over time as they applied
+their terms to specific cases. See id., at 309–310; Nelson,
+Originalism and Interpretive Conventions, 70 U. Chi. L.
+Rev. 519, 526 (2003). Although early American courts
+declined to apply vague or unintelligible statutes as ap­
+propriate in individual cases, they did not wholesale inval­
+idate them as unconstitutional delegations of legislative
+
+16
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+power. See Johnson, 576 U. S., at ___–___, and n. 3 (opin­
+ion of THOMAS, J.) (slip op., at 10–11, and n. 3).
+C
+1
+I need not resolve these historical questions today, as
+this case can be decided on narrower grounds. If the
+vagueness doctrine has any basis in the original meaning
+of the Due Process Clause, it must be limited to case-by­
+case challenges to particular applications of a statute.
+That is what early American courts did when they applied
+the rule of lenity. See id., at ___ (slip op., at 10). And that
+is how early American courts addressed constitutional
+challenges to statutes more generally. See ibid. (“[T]here
+is good evidence that [antebellum] courts . . . understood
+judicial review to consist ‘of a refusal to give a statute
+effect as operative law in resolving a case,’ a notion quite
+distinct from our modern practice of ‘ “strik[ing] down”
+legislation’ ” (quoting Walsh, Partial Unconstitutionality,
+85 N. Y. U. L. Rev. 738, 756 (2010)).
+2
+This Court’s precedents likewise recognize that, outside
+the First Amendment context, a challenger must prove
+that the statute is vague as applied to him. See Holder v.
+Humanitarian Law Project, 561 U. S. 1, 18–19 (2010);
+United States v. Williams, 553 U. S. 285, 304 (2008);
+Maynard, 486 U. S., at 361; Hoffman Estates v. Flipside,
+Hoffman Estates, Inc., 455 U. S. 489, 495, and n. 7 (1982)
+(collecting cases). Johnson did not overrule these prece­
+dents. While Johnson weakened the principle that a facial
+challenge requires a statute to be vague “in all applica­
+tions,” 576 U. S., at ___ (slip op., at 11) (emphasis added),
+it did not address whether a statute must be vague as
+applied to the person challenging it. That question did not
+arise because the Court concluded that ACCA’s residual
+
+Cite as: 584 U. S. ____ (2018)
+
+17
+
+THOMAS, J., dissenting
+
+clause was vague as applied to the crime at issue there:
+unlawful possession of a short-barreled shotgun. See id.,
+at ___ (slip op., at 9).
+In my view, §16(b) is not vague as applied to respond­
+ent. When respondent committed his burglaries in 2007
+and 2009, he was “sufficiently forewarned . . . that the
+statutory consequence . . . is deportation.” De George, 341
+U. S., at 232. At the time, courts had “unanimous[ly]”
+concluded that residential burglary is a crime of violence,
+and not “a single opinion . . . ha[d] held that [it] is not.”
+United States v. M. C. E., 232 F. 3d 1252, 1255–1256 (CA9
+2000); see also United States v. Davis, 881 F. 2d 973, 976
+(CA11 1989) (explaining that treating residential burglary
+as a crime of violence was “[i]n accord with common law
+tradition and the settled law of the federal circuits”).
+Residential burglary “ha[d] been considered a violent
+offense for hundreds of years . . . because of the potential
+for mayhem if burglar encounters resident.” United States
+v. Pinto, 875 F. 2d 143, 144 (CA7 1989). The Model Penal
+Code had recognized that risk, see ALI, Model Penal Code
+§221.1, Comment 3(c), p. 75 (1980); the Sentencing Com­
+mission had recognized that risk; see United States Sen­
+tencing Commission, Guidelines Manual §4B1.2(a)(2)
+(Nov. 2006); and this Court had repeatedly recognized that
+risk, see, e.g., James v. United States, 550 U. S. 192, 203
+(2007); Taylor v. United States, 495 U. S. 575, 588 (1990).
+In Leocal v. Ashcroft, 543 U. S. 1 (2004), this Court unan­
+imously agreed that burglary is the “classic example” of a
+crime of violence under §16(b), because it “involves a
+substantial risk that the burglar will use force against a
+victim in completing the crime.” Id., at 10.
+That same risk is present with respect to respondent’s
+statute of conviction—first-degree residential burglary,
+Cal. Penal Code Ann. §§459, 460(a) (West 1999). The
+California Supreme Court has explained that the State’s
+burglary laws recognize “the dangers to personal safety
+
+18
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+created by the usual burglary situation.” People v. Davis,
+18 Cal. 4th 712, 721, 958 P. 2d 1083, 1089 (1998) (empha­
+sis added). “ ‘[T]he fact that a building is used as a home
+. . . increases such danger,’ ” which is why California ele­
+vates residential burglary to a first-degree offense. People
+v. Rodriguez, 122 Cal. App. 4th 121, 133, 18 Cal. Rptr. 3d
+550, 558 (2004); see also People v. Wilson, 208 Cal. App. 3d
+611, 615, 256 Cal. Rptr. 422, 425 (1989) (“[T]he higher
+degree . . . is intended to prevent those situations which
+are most dangerous, most likely to cause personal injury”
+(emphasis deleted)). Although unlawful entry is not an
+element of the offense, courts “unanimous[ly]” agree that
+the offense still involves a substantial risk of physical
+force. United States v. Avila, 770 F. 3d 1100, 1106 (CA4
+2014); accord, United States v. Maldonado, 696 F. 3d 1095,
+1102, 1104 (CA10 2012); United States v. Scanlan, 667
+F. 3d 896, 900 (CA7 2012); United States v. Echeverria–
+Gomez, 627 F. 3d 971, 976 (CA5 2010); United States v.
+Becker, 919 F. 2d 568, 573 (CA9 1990). First-degree resi­
+dential burglary requires entry into an inhabited dwelling,
+with the intent to commit a felony, against the will of the
+homeowner—the key elements that create the risk of
+violence. See United States v. Park, 649 F. 3d 1175, 1178–
+1180 (CA9 2011); Avila, supra, at 1106–1107; Becker,
+supra, at 571, n. 5. As this Court has explained, “[t]he
+main risk of burglary arises not from the simple physical
+act of wrongfully entering onto another’s property, but
+rather from the possibility of a face-to-face confrontation
+between the burglar and a third party.” James, supra, at
+203.
+Drawing on Johnson and the decision below, the Court
+suggests that residential burglary might not be a crime of
+violence because “ ‘only about seven percent of burglaries
+actually involve violence.’ ” Ante, at 9, n. 3 (citing Dimaya
+v. Lynch, 803 F. 3d 1110, 1116, n. 7 (CA9 2015)); see Bu­
+reau of Justice Statistics, S. Catalano, National Crime
+
+Cite as: 584 U. S. ____ (2018)
+
+19
+
+THOMAS, J., dissenting
+
+Victimization Survey: Victimization During Household
+Burglary 1 (Sept. 2010), https://www.bjs.gov/content/pub/
+pdf/vdhb.pdf (as last visited Apr. 13, 2018). But this
+statistic—which measures actual violence against a mem­
+ber of the household, see id., at 1, 12—is woefully underin­
+clusive. It excludes other potential victims besides house­
+hold members—for example, “a police officer, or a
+bystande[r] who comes to investigate,” James, supra, at
+203. And §16(b) requires only a risk of physical force, not
+actual physical force, and that risk would seem to be
+present whenever someone is home during the burglary.
+Further, Johnson is not conclusive because, unlike ACCA’s
+residual clause, §16(b) covers offenses that involve a sub­
+stantial risk of physical force “against the person or property of another.” (Emphasis added.) Surely the ordinary
+case of residential burglary involves at least one of these
+risks. According to the statistics referenced by the Court,
+most burglaries involve either a forcible entry (e.g., break­
+ing a window or slashing a door screen), an attempted
+forcible entry, or an unlawful entry when someone is
+home. See Bureau of Justice Statistics, supra, at 2 (Table
+1). Thus, under any metric, respondent’s convictions for
+first-degree residential burglary are crimes of violence
+under §16(b).
+3
+Finally, if facial vagueness challenges are ever appro­
+priate, I adhere to my view that a law is not facially vague
+“ ‘[i]f any fool would know that a particular category of
+conduct would be within the reach of the statute, if there
+is an unmistakable core that a reasonable person would
+know is forbidden by the law.’ ” Morales, 527 U. S., at 112
+(THOMAS, J., dissenting) (quoting Kolender, 461 U. S., at
+370–371 (White, J., dissenting)). The residual clause of
+ACCA had such a core. See Johnson, 576 U. S., at ___
+(slip op., at 10); id., at ___–___ (ALITO, J., dissenting) (slip
+
+20
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+op., at 14–15). And §16(b) has an even wider core, as THE
+CHIEF JUSTICE explains. Thus, the Court should not have
+invalidated §16(b), either on its face or as applied to
+respondent.
+II
+Even taking the vagueness doctrine and Johnson at face
+value, I disagree with the Court’s decision to invalidate
+§16(b). The sole reason that the Court deems §16(b) un­
+constitutionally vague is because it reads the statute as
+incorporating the categorical approach—specifically, the
+“ordinary case” approach from ACCA’s residual clause.
+Although the Court mentions “[t]wo features” of §16(b)
+that make it vague—the ordinary-case approach and an
+imprecise risk standard—the Court admits that the sec­
+ond feature is problematic only in combination with the
+first. Ante, at 8. Without the ordinary-case approach, the
+Court “do[es] not doubt” the constitutionality of §16(b).
+Ante, at 10.
+But if the categorical approach renders §16(b) unconsti­
+tutionally vague, then constitutional avoidance requires
+us to make a reasonable effort to avoid that interpretation.
+And a reasonable alternative interpretation is available:
+Instead of asking whether the ordinary case of an alien’s
+offense presents a substantial risk of physical force, courts
+should ask whether the alien’s actual underlying conduct
+presents a substantial risk of physical force. I will briefly
+discuss the origins of the categorical approach and then
+explain why the Court should abandon it for §16(b).
+A
+1
+The categorical approach originated with Justice
+Blackmun’s opinion for the Court in Taylor v. United
+States, 495 U. S. 575 (1990). The question in Taylor was
+whether ACCA’s reference to “burglary” meant burglary
+
+Cite as: 584 U. S. ____ (2018)
+
+21
+
+THOMAS, J., dissenting
+
+as defined by state law or burglary in the generic sense.
+After “devoting 10 pages of [its] opinion to legislative
+history,” id., at 603 (Scalia, J., concurring in part and
+concurring in judgment), and finding that Congress had
+made “an inadvertent casualty in [the] complex drafting
+process,” id., at 589–590 (majority opinion), the Court
+concluded that ACCA referred to burglary in the generic
+sense, id., at 598. The Court then addressed how the
+Government would prove that a defendant was convicted
+of generic burglary, as opposed to another offense. Id., at
+599–602. Taylor rejected the notion that the Government
+could introduce evidence about the “particular facts” of the
+defendant’s underlying crime. Id., at 600. Instead, the
+Court adopted a “categorical approach,” which focused
+primarily on the “statutory definition of the prior offense.”
+Id., at 602.
+Although Taylor was interpreting one of ACCA’s enu­
+merated offenses, this Court later extended the categorical
+approach to ACCA’s residual clause. See James, 550
+U. S., at 208. That extension required some reworking.
+Because ACCA’s enumerated-offenses clause asks whether
+a prior conviction “is burglary, arson, or extortion,” 18
+U. S. C. §924(e)(2)(B)(ii), Taylor instructed courts to focus
+on the definition of the underlying crime. The residual
+clause, by contrast, asks whether a prior conviction “in­
+volves conduct that presents a serious potential risk of
+physical injury to another.” §924(e)(2)(B)(ii). Thus, the
+Court held that the categorical approach for the residual
+clause asks “whether the conduct encompassed by the
+elements of the offense, in the ordinary case, presents a
+serious potential risk of injury to another.” James, supra,
+at 208 (emphasis added). This “ordinary case” approach
+allowed courts to apply the residual clause without inquir­
+ing into the individual facts of the defendant’s prior crime.
+Taylor gave a few reasons why the categorical approach
+was the correct reading of ACCA, see 495 U. S., at 600–
+
+22
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+601, but the “heart of the decision” was the Court’s con­
+cern with limiting the amount of evidence that the parties
+could introduce at sentencing. Shepard v. United States,
+544 U. S. 13, 23 (2005). Specifically, the Court was wor­
+ried about potential violations of the Sixth Amendment. If
+the parties could introduce evidence about the defendant’s
+underlying conduct, then sentencing proceedings might
+devolve into a full-blown minitrial, with factfinding by the
+judge instead of the jury. See id., at 24–26; Taylor, supra,
+at 601. While this Court’s decision in Almendarez-Torres
+v. United States, 523 U. S. 224 (1998), allows judges to
+find facts about a defendant’s prior convictions, a fullblown minitrial would look “too much like” the kind of
+factfinding that the Sixth Amendment requires the jury to
+conduct. Shepard, 544 U. S., at 25. By construing ACCA
+to require a categorical approach, then, the Court was
+following “[t]he rule of reading statutes to avoid serious
+risks of unconstitutionality.” Ibid.
+2
+I disagreed with the Court’s decision to extend the
+categorical approach to ACCA’s residual clause. See
+James, 550 U. S., at 231–232 (dissenting opinion). The
+categorical approach was an “ ‘unnecessary exercise,’ ” I
+explained, because it created the same Sixth Amendment
+problem that it tried to avoid. Id., at 231. Absent waiver,
+a defendant has the right to have a jury find “every fact
+that is by law a basis for imposing or increasing punish­
+ment,” including the fact of a prior conviction. Apprendi v.
+New Jersey, 530 U. S. 466, 501 (2000) (THOMAS, J., concur­
+ring). The exception recognized in Almendarez-Torres for
+prior convictions is an aberration, has been seriously
+undermined by subsequent precedents, and should be
+reconsidered. See Mathis v. United States, 579 U. S. ___,
+___ (2016) (THOMAS, J., concurring) (slip op., at 1); Shepard, supra, at 27–28 (THOMAS, J., concurring in part and
+
+Cite as: 584 U. S. ____ (2018)
+
+23
+
+THOMAS, J., dissenting
+
+concurring in judgment). In my view, if the Government
+wants to enhance a defendant’s sentence based on his
+prior convictions, it must put those convictions in the
+indictment and prove them to a jury beyond a reasonable
+doubt.6
+B
+My objection aside, the ordinary-case approach soon
+created problems of its own. The Court’s attempt to avoid
+the Scylla of the Sixth Amendment steered it straight into
+the Charybdis of the Fifth. The ordinary-case approach
+that was created to honor the individual right to a jury is
+now, according to the Court, so vague that it deprives
+individuals of due process.
+I see no good reason for the Court to persist in reading
+the ordinary-case approach into §16(b). The text of §16(b)
+does not mandate the ordinary-case approach, the con­
+cerns that led this Court to adopt it do not apply here, and
+there are no prudential reasons for retaining it. In my
+view, we should abandon the categorical approach for
+§16(b).
+1
+The text of §16(b) does not require a categorical ap­
+proach. The INA declares an alien deportable if he is
+——————
+6 The Sixth Amendment is, thus, not a reason to maintain the cate­
+gorical approach in criminal cases. Contra, ante, at 13–14 (plurality
+opinion). Even if it were, the Sixth Amendment does not apply in
+immigration cases like this one. See Part II–B–2, infra. The plurality
+contends that, if it must contort the text of §16(b) to avoid a Sixth
+Amendment problem in criminal cases, then it must also contort the
+text of §16(b) in immigration cases, even though the Sixth Amendment
+problem does not arise in the immigration context. See ante, at 13–14,
+15. But, as I have explained elsewhere, this “lowest common denomi­
+nator” approach to constitutional avoidance is both ahistorical and
+illogical. See Clark v. Martinez, 543 U. S. 371, 395–401 (2005) (dissent­
+ing opinion).
+
+24
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+“convicted of an aggravated felony” after he is admitted to
+the United States. 8 U. S. C. §1227(a)(2)(A)(iii). Aggra­
+vated felonies include “crime[s] of violence” as defined in
+§16. §1101(a)(43)(F). Section 16, in turn, defines crimes of
+violence as follows:
+“(a) an offense that has as an element the use, at­
+tempted use, or threatened use of physical force
+against the person or property of another, or
+“(b) any other offense that is a felony and that, by
+its nature, involves a substantial risk that physical
+force against the person or property of another may be
+used in the course of committing the offense.”
+At first glance, §16(b) is not clear about the precise
+question it poses. On the one hand, the statute might
+refer to the metaphysical “nature” of the offense and ask
+whether it ordinarily involves a substantial risk of physi­
+cal force. On the other hand, the statute might refer to
+the underlying facts of the offense that the offender com­
+mitted; the words “by its nature,” “substantial risk,” and
+“may” would mean only that an offender who engages in
+risky conduct cannot benefit from the fortuitous fact that
+physical force was not actually used during his offense.
+The text can bear either interpretation. See Nijhawan v.
+Holder, 557 U. S. 29, 33–34 (2009) (“[I]n ordinary speech
+words such as ‘crime,’ ‘felony,’ ‘offense,’ and the like some­
+times refer to a generic crime . . . and sometimes refer to
+the specific acts in which an offender engaged on a specific
+occasion”). It is entirely natural to use words like “nature”
+and “offense” to refer to an offender’s actual underlying
+conduct.7
+——————
+7 See,
+
+e.g., 18 U. S. C. §3553(a)(2) (directing sentencing judges to con­
+sider “the nature and circumstances of the offense”); Schware v. Board
+of Bar Examiners of N. M., 353 U. S. 232, 242–243 (1957) (describing
+“the nature of the offense” committed by a bar applicant as “recruiting
+
+Cite as: 584 U. S. ____ (2018)
+
+25
+
+THOMAS, J., dissenting
+
+Although both interpretations are linguistically possi­
+ble, several factors indicate that the underlying-conduct
+approach is the better one. To begin, §16(b) asks whether
+an offense “involves” a substantial risk of force. The word
+“involves” suggests that the offense must necessarily
+include a substantial risk of force. See The New Oxford
+Dictionary of English 962 (2001) (“include (something) as a
+necessary part or result”); Random House Dictionary of
+the English Language 1005 (2d ed. 1987) (“1. to include as
+——————
+persons to go overseas to aid the Loyalists in the Spanish Civil War”);
+TXO Production Corp. v. Alliance Resources Corp., 509 U. S. 443, 482
+(1993) (O’Connor, J., dissenting) (describing “the nature of the offense
+at issue” as not “involving grave physical injury” but rather as a “busi­
+ness dispute between two companies in the oil and gas industry”);
+United States v. Broce, 488 U. S. 563, 585–587 (1989) (Blackmun, J.,
+dissenting) (describing “the nature of the charged offense” in terms of
+the specific facts alleged in the indictment); People v. Golba, 273 Mich.
+App. 603, 611, 729 N. W. 2d 916, 922 (2007) (“[T]he underlying factual
+basis for a conviction governs whether the offense ‘by its nature consti­
+tutes a sexual offense against an individual who is less than 18 years of
+age.’ ” (quoting Mich. Comp. Laws §28.722(e)(xi) (2006))); A Fix for
+Animal Abusers, Boston Herald, Nov. 22, 2017, p. 16 (“prosecutors were
+so horrified at the nature of his offense—his torture of a neighbor’s
+dog”); P. Ward, Attorney of Convicted Ex-Official Accuses Case’s Judge,
+Pittsburgh Post-Gazette, Nov. 10, 2015, p. B1 (identifying the “nature
+of his offense” as “taking money from an elderly, widowed client, and
+giving it to campaign funds”); Cross-Burning–Article Painted an
+Inaccurate Picture of Young Man in Question, Seattle Times, Aug. 12,
+1991, p. A9 (“[The defendant] took no steps to prevent the cross that
+was burned from being constructed on his family’s premises and later
+. . . assisted in concealing a second cross . . . . This was the nature of
+his offense”); N. Libman, A Parole/Probation Officer Talks With Norma
+Libman, Chicago Tribune, May 29, 1988, p. I31 (describing “the nature
+of the offense” as “not serious” if “there was no definitive threat on life”
+or if “the dollar- and cents- amount was not great”); E. Walsh, District–
+U. S. Argument Delays Warrant for Escapee’s Arrest, Washington Post,
+May 29, 1986, p. C1 (describing “the nature of Murray’s alleged of­
+fenses” as “point[ing] at two officers a gun that was later found to contain one round of ammunition”).
+
+26
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+a necessary circumstance, condition, or consequence”);
+Oxford American Dictionary 349 (1980) (“1. to contain
+within itself, to make necessary as a condition or result”).
+That condition is always satisfied if the Government must
+prove that the alien’s underlying conduct involves a sub­
+stantial risk of force, but it is not always satisfied if the
+Government need only prove that the “ordinary case”
+involves such a risk. See Johnson, 576 U. S., at ___
+(ALITO, J., dissenting) (slip op., at 12). Tellingly, the other
+aggravated felonies in the INA that use the word “in­
+volves” employ the underlying-conduct approach. See 8
+U. S. C. §1101(a)(43)(M)(i) (“an offense that involves fraud
+or deceit in which the loss to the victim or victims exceeds
+$10,000”); §1101(h)(3) (“any crime of reckless driving or of
+driving while intoxicated or under the influence of alcohol
+or of prohibited substances if such crime involves personal
+injury to another”). As do the similarly worded provisions
+of the Comprehensive Crime Control Act of 1984, the bill
+that contained §16(b). See, e.g., 98 Stat. 2059 (elevating
+the burden of proof for the release of “a person found not
+guilty only by reason of insanity of an offense involving
+bodily injury to, or serious damage to the property of,
+another person, or involving a substantial risk of such
+injury or damage”); id., at 2068 (establishing the sentence
+for drug offenses “involving” specific quantities and types
+of drugs); id., at 2137 (defining violent crimes in aid of
+racketeering to include “attempting or conspiring to com­
+mit a crime involving maiming, assault with a dangerous
+weapon, or assault resulting in serious bodily injury”).
+A comparison of §16(b) and §16(a) further highlights
+why the former likely adopts an underlying-conduct ap­
+proach. Section 16(a) covers offenses that have the use,
+attempted use, or threatened use of physical force “as an
+element.” Because §16(b) covers “other” offenses and is
+separated from §16(a) by the disjunctive word “or,” the
+natural inference is that §16(b) asks a different question.
+
+Cite as: 584 U. S. ____ (2018)
+
+27
+
+THOMAS, J., dissenting
+
+In other words, §16(b) must require immigration judges to
+look beyond the elements of an offense to determine
+whether it involves a substantial risk of physical force.
+But if the elements are insufficient, where else should
+immigration judges look to determine the riskiness of an
+offense? Two options are possible, only one of which is
+workable.
+The first option is to consult the underlying facts of the
+alien’s crime and then assess its riskiness. This approach
+would provide a definitive answer in every case. And
+courts are already familiar with this kind of inquiry. Cf.
+Johnson, supra, at ___ (slip op., at 12) (noting that “doz­
+ens” of similarly worded laws ask courts to assess “the
+riskiness of conduct in which an individual defendant
+engages on a particular occasion”). Nothing suggests that
+Congress imposed a more limited inquiry when it enacted
+§16(b) in 1984. At the time, Congress had not yet enacted
+ACCA’s residual clause, this Court had not yet created the
+categorical approach, and this Court had not yet recog­
+nized a Sixth Amendment limit on judicial factfinding at
+sentencing, see Chambers v. United States, 555 U. S. 122,
+132 (2009) (ALITO, J., concurring in judgment).
+The second option is to imagine the “ordinary case” of
+the alien’s crime and then assess the riskiness of that
+hypothetical offense. But the phrase “ordinary case” does
+not appear in the statute. And imagining the ordinary
+case, the Court reminds us, is “hopeless[ly] indetermi­
+na[te],” “wholly ‘speculative,’ ” and mere “guesswork.”
+Ante, at 7, 24 (quoting Johnson, supra, at ___–___ (slip op.,
+at 5, 7)); see also Chambers, supra, at 133 (opinion of
+ALITO, J.) (observing that the categorical approach is
+“nearly impossible to apply consistently”). Because courts
+disfavor interpretations that make a statute impossible to
+apply, see A. Scalia & B. Garner, Reading Law 63 (2012),
+this Court should reject the ordinary-case approach for
+§16(b) and adopt the underlying-facts approach instead.
+
+28
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+See Johnson, supra, at ___ (ALITO, J., dissenting) (slip op.,
+at 10) (“When another interpretation is ready at hand,
+why should we assume that Congress gave the clause a
+meaning that is impossible—or even, exceedingly diffi­
+cult—to apply”).
+2
+That the categorical approach is not the better reading
+of §16(b) should not be surprising, since the categorical
+approach was never really about the best reading of the
+text. As explained, this Court adopted that approach to
+avoid a potential Sixth Amendment problem with sentenc­
+ing judges conducting minitrials to determine a defend­
+ant’s past conduct. But even assuming the categorical
+approach solved this Sixth Amendment problem in crimi­
+nal cases, no such problem arises in immigration cases.
+“[T]he provisions of the Constitution securing the right of
+trial by jury have no application” in a removal proceeding.
+Turner, 194 U. S., at 290. And, in criminal cases, the
+underlying-conduct approach would be perfectly constitu­
+tional if the Government included the defendant’s prior
+conduct in the indictment, tried it to a jury, and proved it
+beyond a reasonable doubt. See Johnson, 576 U. S., at ___
+(ALITO, J., dissenting) (slip op., at 12). Nothing in §16(b)
+prohibits the Government from proceeding this way, so the
+plurality is wrong to suggest that the underlying-conduct
+approach would necessarily “ping-pong us from one consti­
+tutional issue to another.” Ante, at 14.
+If constitutional avoidance applies here at all, it re­
+quires us to reject the categorical approach for §16(b).
+According to the Court, the categorical approach is uncon­
+stitutionally vague. And, all agree that the underlyingconduct approach would not be. See Johnson, 576 U. S., at
+___ (majority opinion) (slip op., at 12) (“[W]e do not doubt
+the constitutionality of laws that call for the application of
+a qualitative standard such as ‘substantial risk’ to real­
+
+Cite as: 584 U. S. ____ (2018)
+
+29
+
+THOMAS, J., dissenting
+
+world conduct”). Thus, if the underlying-conduct approach
+is a “reasonabl[e]” interpretation of §16(b), it is our “plain
+duty” to adopt it. United States ex rel. Attorney General v.
+Delaware & Hudson Co., 213 U. S. 366, 407 (1909). And it
+is reasonable, as explained above.
+In Johnson, the Court declined to adopt the underlyingconduct approach for ACCA’s residual clause. See 576
+U. S., at ___–___ (slip op., at 12–13). The Court concluded
+that the categorical approach was the only reasonable
+reading of ACCA because the residual clause uses the
+word “convictions.” Id., at ___ (slip op., at 13). The Court
+also stressed the “utter impracticability of requiring a
+sentencing court to reconstruct, long after the original
+conviction, the conduct underlying that conviction.” Ibid.
+Neither of these arguments is persuasive with respect to
+the INA. Moreover, this Court has already rejected them.
+In Nijhawan, this Court unanimously concluded that one
+of the aggravated felonies in the INA—“an offense that . . .
+involves fraud or deceit in which the loss to the victim or
+victims exceeds $10,000,” §1101(a)(43)(M)(i)—applies the
+underlying-conduct approach, not the categorical ap­
+proach. 557 U. S., at 32. Although the INA also refers to
+“convict[ions],” §1227(a)(2)(A)(iii), the Court was not
+swayed by that argument. The word “convict[ion]” means
+only that the defendant’s underlying conduct must “ ‘be
+tied to the specific counts covered by the conviction,’ ” not
+“acquitted or dismissed counts or general conduct.” Id., at
+42. As for the supposed practical problems with proving
+an alien’s prior conduct, the Court did not find that argu­
+ment persuasive either. “[T]he ‘sole purpose’ of the ‘ag­
+gravated felony’ inquiry,” the Court explained, “ ‘is to
+ascertain the nature of a prior conviction; it is not an
+invitation to relitigate the conviction itself.’ ” Ibid. And
+because the INA places the burden on the Government to
+prove an alien’s conduct by clear and convincing evidence,
+§1229a(c)(3)(A), “uncertainties caused by the passage of
+
+30
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+time are likely to count in the alien’s favor,” id., at 42.
+There are additional reasons why the practical problems
+identified in Johnson should not matter for §16(b)—even
+assuming they should have mattered for ACCA’s residual
+clause, see Lewis v. Chicago, 560 U. S. 205, 217 (2010)
+(“[I]t is not our task to assess the consequences of each
+approach and adopt the one that produces the least mis­
+chief. Our charge is to give effect to the law Congress
+enacted”). In a removal proceeding, any difficulties with
+identifying an alien’s past conduct will fall on immigration
+judges, not federal courts. But those judges are already
+accustomed to finding facts about the conduct underlying
+an alien’s prior convictions, since some of the INA’s aggra­
+vated felonies employ the underlying-conduct approach.
+The BIA has instructed immigration judges to determine
+such conduct based on “any evidence admissible in removal proceedings,” not just the elements of the offense or the
+record of conviction. See Matter of Babaisakov, 24 I. & N.
+Dec. 306, 307 (2007). No one has submitted any evidence
+that the BIA’s approach has been “utter[ly] impracti­
+cab[le]” or “daunting[ly] difficul[t]” in practice. Ante, at
+15. And even if it were, “how much time the agency wants
+to devote to the resolution of particular issues is . . . a
+question for the agency itself.” Ali v. Mukasey, 521 F. 3d
+737, 741 (CA7 2008). Hypothetical burdens on the BIA
+should not influence how this Court interprets §16(b).
+In short, we should not blithely assume that the reasons
+why this Court adopted the categorical approach for
+ACCA’s residual clause also apply to the INA’s list of
+aggravated felonies. As Nijhawan explained, “the ‘aggra­
+vated felony’ statute, unlike ACCA, contains some lan­
+guage that refers to generic crimes and some language
+that almost certainly refers to the specific circumstances
+in which a crime was committed.” 557 U. S., at 38. “The
+question” in each case is “to which category [the aggravated felony] belongs.” Ibid. As I have explained, §16(b)
+
+Cite as: 584 U. S. ____ (2018)
+
+31
+
+THOMAS, J., dissenting
+
+belongs in the underlying-conduct category. Because that
+is the better reading of §16(b)’s text—or at least a reason­
+able reading—the Court should have adopted it here.
+3
+I see no prudential reason for maintaining the categori­
+cal approach for §16(b). The Court notes that the Gov­
+ernment “explicitly acknowledges” that §16(b) employs the
+categorical approach. Ante, at 9. But we cannot permit
+the Government’s concessions to dictate how we interpret
+a statute, much less cause us to invalidate a statute en­
+acted by a coordinate branch. See United States Nat.
+Bank of Ore. v. Independent Ins. Agents of America, Inc.,
+508 U. S. 439, 446–447 (1993); Young v. United States, 315
+U. S. 257, 258–259 (1942). This Court’s “traditional prac­
+tice” is to “refus[e] to decide constitutional questions”
+when other grounds of decision are available, “whether or
+not they have been properly raised before us by the par­
+ties.” Neese v. Southern R. Co., 350 U. S. 77, 78 (1955)
+(per curiam); see also Vermeule, Saving Constructions, 85
+Geo. L. J. 1945, 1948–1949 (1997) (explaining that courts
+commonly “decide an antecedent statutory issue, even one
+waived by the parties, if its resolution could preclude a
+constitutional claim”). This Court has raised potential
+saving constructions “on our own motion” when they could
+avoid a ruling on constitutional vagueness grounds, even
+in cases where the Government was a party. United
+States v. L. Cohen Grocery Co., 255 U. S. 81, 88 (1921).
+We should have followed that established practice here.
+Nor should stare decisis prevent us from rejecting the
+categorical approach for §16(b). This Court has never held
+that §16(b) incorporates the ordinary-case approach.
+Although Leocal held that §16(b) incorporates a version of
+the categorical approach, the Court must not feel bound by
+that decision, as it largely overrules it today. See ante, at
+22, n. 7. Surely the Court cannot credibly invoke stare
+
+32
+
+SESSIONS v. DIMAYA
+THOMAS, J., dissenting
+
+decisis to defend the categorical approach—the same
+approach it says only a “lunatic” would continue to apply.
+Ante, at 24. If the Court views the categorical approach
+that way—the same way Johnson viewed it—then it must
+also agree that “[s]tanding by [the categorical approach]
+would undermine, rather than promote, the goals that
+stare decisis is meant to serve.” 576 U. S., at ___ (slip op.,
+at 15). That is especially true if the Court’s decision leads
+to the invalidation of scores of similarly worded state and
+federal statutes, which seems even more likely after today
+than it did after Johnson. Instead of adhering to an inter­
+pretation that it thinks unconstitutional and then using
+that interpretation to strike down another statute, the
+Court should have taken this opportunity to abandon the
+categorical approach for §16(b) once and for all.
+*
+*
+*
+The Court’s decision today is triply flawed. It unneces­
+sarily extends our incorrect decision in Johnson. It uses a
+constitutional doctrine with dubious origins to invalidate
+yet another statute (while calling into question countless
+more). And it does all this in the name of a statutory
+interpretation that we should have discarded long ago.
+Because I cannot follow the Court down any of these rab­
+bit holes, I respectfully dissent.
+
+
