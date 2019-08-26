@@ -1,0 +1,17 @@
+---
+title: "LOGM 655 In-Class activity"
+subtitle: "Sentiment Analysis"
+author: "Your name"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output: 
+  html_document:
+    code_folding: 'hide'
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = F,
+                      warning = F, 
+                      comment = NA)
+```
+

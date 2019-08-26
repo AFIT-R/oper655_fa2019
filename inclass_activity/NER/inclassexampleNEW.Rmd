@@ -1,0 +1,296 @@
+---
+title: "LOGM 655 - Examples"
+subtitle: "Named Entity Recognition"
+author: "MAJ Bryan Kolano, 2d Lt Nate Beveridge, 2d Lt Zachary Kane"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output: 
+  html_document:
+    code_folding: 'hide'
+    
+---
+
+# Named Entity Recognition using openNLP
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = F,
+                      warning = F, 
+                      comment = NA)
+
+```
+
+In order for openNLP to work, you must first download the following package
+```{r , results='hide'}
+
+# install.packages("openNLPmodels.en", repos = "http://datacube.wu.ac.at/",type = "source")
+```
+Next, load the following packages, or call them from the library.
+```{r}
+
+#pacman::p_install(c("openNLP","coreNLP","readr","NLP","monkeylearn","magrittr"))
+
+# Or if you already have them installed, just load the libraries
+
+library(openNLP)
+library(NLP)
+library(coreNLP)
+library(monkeylearn)
+library(readr)
+library(magrittr)
+
+library(rJava)
+```
+
+
+Now that the packages are loaded, we need to insert the text documents
+
+```{r, results='hide'}
+
+rem <- readr::read_file("Remington.txt")
+title <- c()
+for (i in 1:4){
+  j=1989
+  title[i] <- paste("Bush_",j,".txt", sep = "")
+  title <- c(title)
+  j <- j + 1
+}
+
+title2 <- c()
+for (i in 1:4){
+  k=2001
+    title2[i] <- paste("Bush_",k,".txt", sep = "")
+  title2 <- c(title2)
+  k <- k + 1
+}
+
+
+all <- c(title,title2)
+speech <- c()
+for (i in seq_along(all)){
+  
+  speech[i] <- read_file(all[i])
+  i <- i + 1
+}
+
+
+
+```
+
+
+
+# Named Entity Recognition using coreNLP
+
+
+```{r}
+
+
+```
+
+
+
+
+
+# Challenges of Named Entity Recognition
+
+The NER pieces of the different NLP packages worked fairly well for the State of the Union Addresses.  However, using the article from class on Monday, problems arose when attempting to identify persons, locations, and organizations.
+
+```{r}
+#first set the document as one string
+s <- as.String(rem)
+
+```
+
+Next, we need to use the maximum entropy functions in openNLP to annotate the Remington document.
+
+```{r}
+sent_token_annotator <- Maxent_Sent_Token_Annotator()
+word_token_annotator <- Maxent_Word_Token_Annotator()
+
+a2 <- annotate(s, list(sent_token_annotator, word_token_annotator))
+```
+
+Let's first look at the person entities
+```{r}
+## Entity recognition for persons.
+entity_annotator <- Maxent_Entity_Annotator()
+annotate(s, entity_annotator, a2)
+## Directly:
+entity_annotator(s, a2)
+## And slice ...
+s[entity_annotator(s, a2)]
+```
+
+Next, the location entities
+```{r}
+#Entity recognition for locations
+entity_annotator_location <- Maxent_Entity_Annotator(kind = "location")
+annotate(s, entity_annotator_location, a2)
+## Directly:
+entity_annotator_location(s, a2)
+## And slice ...
+s[entity_annotator_location(s, a2)]
+
+```
+
+Next, the organization entities
+```{r}
+#Entity Recognition for Organizations
+entity_annotator_org <- Maxent_Entity_Annotator(kind = "organization")
+annotate(s, entity_annotator_org, a2)
+## Directly:
+entity_annotator_org(s, a2)
+## And slice ...
+s[entity_annotator_org(s, a2)]
+```
+
+Finally, the date entities
+```{r}
+#Entity Recognition for dates
+entity_annotator_date <- Maxent_Entity_Annotator(kind = "date")
+annotate(s, entity_annotator_date, a2)
+## Directly:
+entity_annotator_date(s, a2)
+## And slice ...
+s[entity_annotator_date(s, a2)]
+```
+
+# openNLP on State of the Union Address
+Next, the team used the openNLP NER capability in a slight different manner to see how well it could do on multiple State of the Union Addresses.
+
+
+Reading in all the text documents below as follows:
+```{r}
+text_bush_1989<-readr::read_file("Bush_1989.txt")
+text_bush_1989<-as.String(text_bush_1989)
+text_bush_1990<-readr::read_file("Bush_1990.txt")
+text_bush_1990<-as.String(text_bush_1990)
+text_bush_1991<-readr::read_file("Bush_1991.txt")
+text_bush_1991<-as.String(text_bush_1991)
+text_bush_1992<-readr::read_file("Bush_1992.txt")
+text_bush_1992<-as.String(text_bush_1992)
+text_bush_2001<-readr::read_file("Bush_2001.txt")
+text_bush_2001<-as.String(text_bush_2001)
+text_bush_2002<-readr::read_file("Bush_2002.txt")
+text_bush_2002<-as.String(text_bush_2002)
+text_bush_2003<-readr::read_file("Bush_2003.txt")
+text_bush_2003<-as.String(text_bush_2003)
+text_bush_2004<-readr::read_file("Bush_2004.txt")
+text_bush_2004<-as.String(text_bush_2004)
+```
+
+Now we define the annotators we will need.
+```{r echo=TRUE}
+# the first two are the same ones used in POS tagging
+
+sent_token_annotator<-Maxent_Sent_Token_Annotator()
+word_token_annotator<-Maxent_Word_Token_Annotator()
+
+# these next six allow for extraction of the specific entity types
+
+person_entity_annotator<-Maxent_Entity_Annotator(kind="person")
+organization_entity_annotator<-Maxent_Entity_Annotator(kind="organization")
+money_entity_annotator<-Maxent_Entity_Annotator(kind="money")
+location_entity_annotator<-Maxent_Entity_Annotator(kind="location")
+percentage_entity_annotator<-Maxent_Entity_Annotator(kind="percentage")
+date_entity_annotator<-Maxent_Entity_Annotator(kind="date")
+
+# we can now bundle them into one list
+annotators_all<-list(person_entity_annotator,organization_entity_annotator,money_entity_annotator,location_entity_annotator,percentage_entity_annotator,date_entity_annotator)
+
+```
+
+In order to annotate entities we need to run the sentence and word token annotators on our text.
+```{r echo=TRUE}
+tokenized_text_bush_1989<-annotate(text_bush_1989, list(sent_token_annotator, word_token_annotator))
+tokenized_text_bush_1990<-annotate(text_bush_1990, list(sent_token_annotator, word_token_annotator))
+tokenized_text_bush_1991<-annotate(text_bush_1991, list(sent_token_annotator, word_token_annotator))
+tokenized_text_bush_1992<-annotate(text_bush_1992, list(sent_token_annotator, word_token_annotator))
+tokenized_text_bush_2001<-annotate(text_bush_2001, list(sent_token_annotator, word_token_annotator))
+tokenized_text_bush_2002<-annotate(text_bush_2002, list(sent_token_annotator, word_token_annotator))
+tokenized_text_bush_2003<-annotate(text_bush_2003, list(sent_token_annotator, word_token_annotator))
+tokenized_text_bush_2004<-annotate(text_bush_2004, list(sent_token_annotator, word_token_annotator))
+```
+
+Now construct the entity annotators for each text.
+```{r echo=TRUE}
+entity_annotations_bush_1989<-annotate(text_bush_1989,annotators_all, tokenized_text_bush_1989)
+entity_annotations_bush_1990<-annotate(text_bush_1990,annotators_all, tokenized_text_bush_1990)
+entity_annotations_bush_1991<-annotate(text_bush_1991,annotators_all, tokenized_text_bush_1991)
+entity_annotations_bush_1992<-annotate(text_bush_1992,annotators_all, tokenized_text_bush_1992)
+entity_annotations_bush_2001<-annotate(text_bush_2001,annotators_all, tokenized_text_bush_2001)
+entity_annotations_bush_2002<-annotate(text_bush_2002,annotators_all, tokenized_text_bush_2002)
+entity_annotations_bush_2003<-annotate(text_bush_2003,annotators_all, tokenized_text_bush_2003)
+entity_annotations_bush_2004<-annotate(text_bush_2004,annotators_all, tokenized_text_bush_2004)
+```
+
+We are now able to examine some of the functionality of the named entity recognizer. Lets look at President Bush's 1989 SOTU Address.
+```{r echo=TRUE}
+entity_annotations_bush_1989[5821:5927]
+
+# the information can be visualized differently by doing the following:
+
+tail(text_bush_1989[entity_annotations_bush_1989])
+```
+
+As is probably obvious, there are better and more convenient ways to visualize the output. The function defined below was taken from the internet and seemed to be used ubiquitously in conjunction with openNLP for this purpose.
+```{r echo=TRUE}
+entities_by_type<-function(annotated_text_doc, kind){
+  text_content<-annotated_text_doc$content
+  annotation_data<-annotations(annotated_text_doc)[[1]]
+  if(hasArg(kind)){
+    data_with_features<- sapply(annotation_data$features, `[[`, "kind")
+    text_content[annotation_data[data_with_features ==kind]]
+  } else{
+    text_content[annotation_data[annotation_data$type=="entity"]]
+    }
+  
+}
+```
+
+The function requires the use of AnnotedPlainTextDocument to format one of the function parameters and is done below as shown.
+```{r echo=TRUE}
+entity_annotations_txt_bush_1989<-AnnotatedPlainTextDocument(text_bush_1989, entity_annotations_bush_1989)
+entity_annotations_txt_bush_1990<-AnnotatedPlainTextDocument(text_bush_1990, entity_annotations_bush_1990)
+entity_annotations_txt_bush_1991<-AnnotatedPlainTextDocument(text_bush_1991, entity_annotations_bush_1991)
+entity_annotations_txt_bush_1992<-AnnotatedPlainTextDocument(text_bush_1992, entity_annotations_bush_1992)
+entity_annotations_txt_bush_2001<-AnnotatedPlainTextDocument(text_bush_2001, entity_annotations_bush_2001)
+entity_annotations_txt_bush_2002<-AnnotatedPlainTextDocument(text_bush_2002, entity_annotations_bush_2002)
+entity_annotations_txt_bush_2003<-AnnotatedPlainTextDocument(text_bush_2003, entity_annotations_bush_2003)
+entity_annotations_txt_bush_2004<-AnnotatedPlainTextDocument(text_bush_2004, entity_annotations_bush_2004)
+```
+
+The function can now be used on any of our texts to extract the specific entity types the user desires. The parameters are one of objects created above using AnnotatedPlainTextDocument, and a type of entity. The possibilites are "person", "date", "organization", "percentage", "location", and "money".
+```{r echo=TRUE, include=TRUE}
+entities_by_type(entity_annotations_txt_bush_1989, kind="person")
+
+entities_by_type(entity_annotations_txt_bush_1989, kind="organization")
+
+entities_by_type(entity_annotations_txt_bush_1989, kind="date")
+
+entities_by_type(entity_annotations_txt_bush_1989, kind="percentage")
+
+entities_by_type(entity_annotations_txt_bush_1989, kind="location")
+
+entities_by_type(entity_annotations_txt_bush_1989, kind="money")
+```
+
+The information can also be displayed in a table to show frequency.
+```{r echo=TRUE}
+table(entities_by_type(entity_annotations_txt_bush_1989, kind="person"))
+
+table(entities_by_type(entity_annotations_txt_bush_1989, kind="organization"))
+
+table(entities_by_type(entity_annotations_txt_bush_1989, kind="date"))
+
+table(entities_by_type(entity_annotations_txt_bush_1989, kind="percentage"))
+
+table(entities_by_type(entity_annotations_txt_bush_1989, kind="location"))
+
+table(entities_by_type(entity_annotations_txt_bush_1989, kind="money"))
+```
+
+
+
+Using the function on other speeches can highlight differences in the type of entities mentioned across presidencies and times.
+```{r echo=TRUE}
+table(entities_by_type(entity_annotations_txt_bush_2001, kind="organization"))
+```
