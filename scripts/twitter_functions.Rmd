@@ -1,0 +1,113 @@
+---
+title: "Naive Bayes Twitter"
+author: "advancedstats team 1"
+date: "10/29/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+pacman::p_load(twitteR,
+               httr,
+               lubridate,
+               ggmap)
+```
+
+```{r}
+# You'll need to get your own keys by 
+# creating a Twitter developer account
+twitter_consumer_key    <- jkf::key_chain('twitter.api')
+twitter_consumer_secret <- jkf::key_chain('twitter.api.secret')
+twitter_access_token    <- jkf::key_chain('twitter.token')
+twitter_access_secret   <- jkf::key_chain('twitter.token.secret')
+
+setup_twitter_oauth(consumer_key    = twitter_consumer_key,
+                    consumer_secret = twitter_consumer_secret,
+                    access_token    = twitter_access_token,
+                    access_secret   = twitter_access_secret)
+```
+
+```{r}
+get_tweets <- function(text = '#trump',
+                       location = NULL,
+                       dist = NULL,
+                       units = NULL,...) {
+
+   lat_long_dist <- NULL
+   locale <- NULL
+  
+if(!(is.null(location) | missing(location))) {
+  
+   lat_long <- ggmap::geocode(location, source = 'google')
+   
+   if(is.null(dist)  | missing(dist))  dist  = '20'
+   if(is.null(units) | missing(units)) units = 'mi'
+   
+   lat_long_dist <- glue::glue("{lat_long[2]},{lat_long[1]},{dist}{units}")
+   
+   locale = 'ja'
+   
+}
+
+tweets <- twitteR::searchTwitter(searchString = text, 
+                                 geocode = lat_long_dist,
+                                 locale = locale,...)
+
+# Convert List of tweets to data.frame
+tweet_df <- twitteR::twListToDF(tweets)
+
+return(tweet_df)
+                       
+}
+```
+
+Check function
+
+```{r}
+tweet_df <- get_tweets(text = '#trump',
+                       location = 'Dayton, OH',
+                       dist = 50,
+                       units = 'mi')
+View(tweet_df)
+```
+
+```{r, eval=FALSE}
+# look up tweet from tweet_df
+check_tweet <- function(tweet) {
+
+  id <- tweet$id
+browseURL(paste0('https://twitter.com/statuses/',id))
+          
+}
+
+# test function
+check_tweet(tweet = tweet_df[2,])
+```
+
+This function is not finished
+
+```{r}
+getTimeOfTweets <- function(hashtag, 
+                            numberToScrape, 
+                            dateTo, 
+                            dateFrom, 
+                            max = NULL) {
+  
+  
+  tweets <- searchTwitter(hashtag, n=numberToScrape, lang="en", since = dateTo, until = dateFrom, maxID = max)
+  tweetsDF <- twListToDF(tweets)
+  tweetCreated <- ymd_hms(tweetsDF$created)
+  ESTTweetCreated <- with_tz(tweetCreated, tzone = "America/New_York")
+  tweetDFOut <- data.frame(tweetCreated, 
+                           ESTTweetCreated, 
+                           tweetsDF$text, 
+                           tweetsDF$id,
+                           stringsAsFactors=FALSE)
+  
+}
+```
