@@ -1,0 +1,105 @@
+---
+title: "Lesson: Part-of-Speech Tagging"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Parts of Speech (PoS)
+- Ryan
+
+***
+# PoS Tagging
+
+**What is it?**
+"Part-of-speech tagging is the process of assigning a part-of-speech marker to each word in an input text" (Jurafsky, 156). 
+
+**Why is it useful?**
+- Information Extraction/ Retrieval
+- Phrase Identification
+- Named Entity Recognition
+- Word Sense Disambiguation
+- Text to speech (how should a word sound)?
+
+\vspace{14cm}
+
+**Why is it challenging?** 
+The challenge in POS-tagging is the ambiguity in words. "The goal of POS-tagging is to *resolve* the ambiguities, choosing the proper tag for the context" (Jurafsky, 156). Ambiguous words account for only 14-15% of the vocabulary, but since they are common words 55-67% of word tokens in running text are ambiguous (Jurafsky, 156). 
+
+Examples of ambiguous frequent words: *that*, *back*, *down*, *put*, and *set*\
+
+-- The **calm** lasted for three days. (Noun)
+-- **Calm** words show quiet minds (Adjective)
+-- **Calm** your angry friend. (Verb)
+
+\vspace{14cm}
+
+**How are words disambiguated?**\
+- Probability; each part-of-speech tag isn't equally likely.\
+- Set of rules;
+
+- Most Frequent Class Baseline: for each ambiguous word, choose the tag which is *most frequent* in the training corpus.\
+- Aside from the *baseline* we will discuss 4 other methods for POS tagging: Hidden Markov Models, Maximum Entropy Markov Models, Conditional Random Fields, and Rule Based System.\ 
+
+\vspace{14cm}
+
+Accuracy: measure of the performance of part-of-speech taggers (percentage of tags correctly labeled).
+
+***
+## PoS Tagging Tools
+
+### Part-of-Speech Tagset's
+A key component to tagging text for part-of-speech is the tagset used to label corpora. Several tagset's exist, however the **Penn Treebank** is most common and is sufficient for the purposes of this lesson. Standard notation is to place the tag after each word, deliminated by a slash.\ 
+
+![](~\images\Penn Treebank.PNG)\
+
+\vspace{12pt}
+
+### Tagged Corpora
+Corpora labeled with parts-of-speech are crucial training (and testing) sets for statistical tagging algorithms. For English text, there are three tagged corpora that are typically used for training and testing part-of-speech taggers. 
+
+- **Brown corpus**: 1 million words sampled from 500 written texts from different genres published in the U.S. in 1961.
+- **WSJ corpus**: 1 million words published in the Wall Street Journal in 1989.
+- **Switchboard corpus**: 2 million words of telephone conversations from 1990-1991.
+
+\vspace{12pt}
+
+*For more information on labeled corpora check out:* http://www.helsinki.fi/varieng/CoRD/corpora/index.html
+
+![](~\images\text ambiguity.PNG)\
+
+\vspace{14cm}
+
+The tagged corpora were created by running an automatic part-of-speech tagger on the texts and then human annotators **hand-corrected** each tag. Minor differences exist between the tagsets used by the corpora. This is worth noting and has the potential to vary part-of-speech tags when applying different tagged corpora. *(We will explore this further on Thursday.)*
+
+
+# Maximum Entropy Markov Models (MEMM)
+
+One of the limitations of HMM is that it needs *massaging* to deal with unknown words, backoff, suffixes, and such. Maximum Entropy Markov Models (MEMM) deal with this issue by cleanly adding arbitrary features directly into the model.
+
+**How is this done?**
+- A logistic regression model
+- A logistic regression can be a discriminative sequence model by running it on successive words and allowing the previous output to be a feature for the current instance.
+
+Lets see how this works...(Jurafsky, 168)
+
+
+
+- HMMs compute likelihood (observation word conditioned on tags) but MEMMs compute posterior (tags conditioned on observation words).
+
+![](~\images\schematic HMM vs MEMM.PNG)\
+
+- The reason to use a discriminative sequence model is that it's easier to incorporate a lots of features.
+
+![](~\images\MEMM network1.PNG)\
+
+![](~\images\hmm-memm-crf.jpg)\
+
+# Example
+First lets install the necessary packages for this example.
