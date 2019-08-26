@@ -1,0 +1,98 @@
+## Text Mining - Term vs. Document Frequency
+
+### Working with $tf_idf$ 
+
+So far we've identified the frequency of individual terms within a document.  However, it's also important to understand the importance that each word provides within an individual document and across a corpus of documents.  In the previous section we saw computed a crude measure of *term frequency* $(tf_{t,d})$ that identifies how frequently term $t$ occurs in document $d$.  Formally, the term frequency measure is expressed as
+
+$$
+tf_{t,d} = \begin{cases}
+1+\log_{10}\Big(\mbox{count(t,d)}\Big)\hspace{10pt}  \mbox{if count(t,d)  > 0}\\\\
+0 \hspace{260px}\mbox{ otherwise }
+\end{cases}
+$$
+
+Another approach is to use what is called a term's *inverse document frequency* (idf), which decreases the weight for commonly used words and increases the weight for words that are not used very much in a collection of documents.  The idf is defined as:
+
+$$
+\mbox{idf}(t,D) = \log\left(\frac{N}{n_{t}}\right)
+$$
+
+where the idf of a given term (*t*) in a set of documents (*D*) is a function of the total number of documents being assessed (*N*) and the number of documents where the term *t* appears ($$n_t$$).
+
+In addition, we can combine tf and idf statistics into a single tf-idf statistic, which computes the frequency of a term adjusted for how rarely it is used. Since the ratio inside the idf's log function is always greater than or equal to 1, the value of idf (and tf-idf) is greater than or equal to 0. As a term appears in more documents, the ratio inside the logarithm approaches 1, bringing the idf and tf-idf closer to 0.  tf-idf is defined as
+
+$$
+\mbox{tf-idf}(t,d,D) = \mbox{tf}(t,d) \cdot \mbox{idf}(t,D)
+$$
+
+where tf-idf for a particular term (*t*) in document (*d*) for a set of documents (*D*) is simply the product of that term's *tf* and *idf* statistics.  This tutorial will walk you through the process of computing these values so that you can identify high frequency words that provide particularly important context to a single document within a group of documents.
+
+### Term Frequencies {#tf}
+
+To compute term frequencies we need to have our data in a tidy format.  The following converts all seven Harry Potter novels into a tibble that has each word by chapter by book.  See the [tidy text tutorial](tidy_text) for more details.
+
+From this cleaned up text we can compute the term frequency for each word.  Lets do this for  computing term frequencies by book and across the entire Harry Potter series:
+
+```{r}
+book_words <- hp_tidy %>%
+        count(book, word, sort = TRUE) %>%
+        dplyr::anti_join(stop_words) %>%
+        ungroup()
+
+series_words <- book_words %>%
+        group_by(book) %>%
+        summarise(total = sum(n))
+
+book_words <- left_join(book_words, series_words)
+
+book_words
+```
+
+Here we'll look at the distribution of `n/total`.  Since the distribution is so clustered around 0 I add `scale_x_log10()` to spread it out.  Even so we see the long right tails for thos extremely common words.
+
+```{r}
+book_words %>%
+        mutate(ratio = n / total) %>%
+        ggplot(aes(ratio, fill = book)) +
+        geom_histogram(show.legend = FALSE) +
+        scale_x_log10() +
+        facet_wrap(~ book, ncol = 2)
+```
+
+### Inverse Document Frequency and tf-idf {#idf}
+
+The idea of tf-idf is to find the important words for the content of each document by decreasing the weight for commonly used words and increasing the weight for words that are not used very much in a collection or corpus of documents, in this case, the Harry Potter series. Calculating tf-idf attempts to find the words that are important (i.e., common) in a text, but not too common.  Or put another way, tf-idf helps to find the important words that can provide specific document context.  We can easily compute the idf and tf-idf using the `bind_tf_idf` function provided by the `tidytext` package.
+
+```{r}
+book_words <- book_words %>%
+        bind_tf_idf(word, book, n)
+
+book_words
+```
+
+We can look at the words that have the highest tf-idf values.  Here we see mainly names for characters in each book that are unique to that book, and therefore used often, but are absent or nearly absent in the other books.
+
+```{r}
+book_words %>%
+        dplyr::arrange(dplyr::desc(tf_idf))
+```
+
+To understand the most common *contextual* words in each book we can take a look at the top 15 terms with the highest tf-idf.
+
+```{r, fig.width=8, fig.height=12}
+book_words %>%
+        dplyr::arrange(dplyr::desc(tf_idf)) %>%
+        dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+               book = base::factor(book, levels = titles)) %>% 
+        dplyr::group_by(book) %>%
+        dplyr::top_n(15, wt = tf_idf) %>%
+        dplyr::ungroup() %>%
+        ggplot(aes(word, tf_idf, fill = book)) +
+        geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+        labs(title = "Highest tf-idf words in the Harry Potter series",
+             x = NULL, y = "tf-idf") +
+        facet_wrap(~book, ncol = 2, scales = "free") +
+        coord_flip()
+```
+
+As you can see most of these high ranking tf-idf words are nouns that provide specific context around the the most common characters in each individual book.

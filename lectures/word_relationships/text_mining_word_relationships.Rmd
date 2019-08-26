@@ -1,0 +1,216 @@
+## Text Mining&#58; Word Relationships
+
+So far, we've analyzed the Harry Potter series by understanding the frequency and distribution of words across the corpus.  However, we often want to understand the relationship between words in a corpus.  What sequences of words are common across our text?  Given a sequence of words, what word is most likely to follow?  What words have the strongest relationship with each other?
+
+### n-gram Analysis {#ngram}
+
+As we saw in the previous sections we can use the `unnest_tokens()` function from the `tidytext` package to break up our text by words, paragraphs, etc.  We can also use `unnest` to break up our text by "tokens", aka - a consecutive sequence of words.  These are commonly referred to as *n*-grams where a bi-gram is a pair of two consecutive words, a tri-gram is a group of three consecutive words, etc.  
+
+Here, we follow the same process to prepare our text as we have in the previous three tutorials; however, notice that in the `unnest` function I apply a `token` argument to state we want *n*-grams and the `n = 2` tells it we want bi-grams.
+
+```{r}
+hp_tidy_2 <- tibble()
+
+for(i in seq_along(titles)) {
+        
+        clean <- tibble(chapter = seq_along(books[[i]]),
+                        text = books[[i]]) %>%
+             unnest_tokens(bigram, text, token = "ngrams", n = 2) %>%
+             mutate(book = titles[i]) %>%
+             select(book, everything())
+
+        hp_tidy_2 <- rbind(hp_tidy_2, clean)
+}
+
+# set factor to keep books in order of publication
+hp_tidy_2$book <- factor(hp_tidy_2$book, levels = rev(titles))
+
+hp_tidy_2
+```
+
+Our output is similar to what we had in the previous tutorials; however, note that our bi-grams have groups of two words.  Also, note how there is some repetition, or overlapping.  The sentence "The boy who lived" is broken up into 3 bi-grams:
+
+- "the boy"
+- "boy who"
+- "who lived"
+
+This is done for the entire Harry Potter series and captures all the sequences of two consecutive words.  We can now perform common frequency analysis procedures.  First, let's look at the most common bi-grams across the entire Harry Potter series:
+
+```{r,}
+hp_tidy_2 %>%
+        count(bigram, sort = TRUE)
+```
+
+With the exception of "said harry" the most common bi-grams include very common words that do not provide much context.  We can filter out these common *stop* words to find the most common bi-grams that provide context.  The results show pairs of words that are far more contextual than our previous set.
+
+```{r}
+hp_tidy_2 %>%
+        separate(bigram, c("word1", "word2"), sep = " ") %>%
+        filter(!word1 %in% stop_words$word,
+               !word2 %in% stop_words$word) %>%
+        count(word1, word2, sort = TRUE)
+```
+
+Similar to the previous text mining tutorials we can visualize the top 10 bi-grams for each book. 
+
+```{r, fig.height=12}
+hp_tidy_2 %>%
+        separate(bigram, c("word1", "word2"), sep = " ") %>%
+        filter(!word1 %in% stop_words$word,
+               !word2 %in% stop_words$word) %>%
+        count(book, word1, word2, sort = TRUE) %>%
+        unite("bigram", c(word1, word2), sep = " ") %>%
+        group_by(book) %>%
+        top_n(10) %>%
+        ungroup() %>%
+        mutate(book = factor(book) %>% forcats::fct_rev()) %>%
+        ggplot(aes(drlib::reorder_within(bigram, n, book), n, fill = book)) +
+        geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+        drlib::scale_x_reordered() +
+        facet_wrap(~ book, ncol = 2, scales = "free") +
+        coord_flip()
+```
+
+### Analyzing n-grams {#analyze}
+
+We can also follow a similar process as performed in the [term vs. document frequency](tf-idf_analysis) tutorial to identify the tf-idf of *n*-grams (or bi-grams in our ongoing example).
+
+```{r}
+(bigram_tf_idf <- hp_tidy_2 %>%
+        count(book, bigram, sort = TRUE) %>%
+        bind_tf_idf(bigram, book, n) %>%
+        arrange(desc(tf_idf)))
+```
+
+And we can visualize the bigrams with the highest tf_idf for each book:
+
+```{r, fig.height=12}
+bigram_tf_idf %>%
+        group_by(book) %>%
+        top_n(15, wt = tf_idf) %>%
+        ungroup() %>%
+        mutate(book = factor(book) %>% forcats::fct_rev()) %>%
+        ggplot(aes(drlib::reorder_within(bigram, tf_idf, book), tf_idf, fill = book)) +
+        geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+        labs(title = "Highest tf-idf bi-grams in the Harry Potter series",
+             x = NULL, y = "tf-idf") +
+        drlib::scale_x_reordered() +
+        facet_wrap(~book, ncol = 2, scales = "free") +
+        coord_flip()
+```
+
+### Visualizing n-gram Networks {#visualize}
+
+So far we've been visualizing the top *n*-grams; however, this doesn't give us much insight into multiple relationships that exist among words.  To get a better understanding of the numerous relationships that can exist we can use a network graph.  First, we'll set up the network structure using the `igraph` package.  Here we'll only focus on context words and look at bi-grams that have at least 20 occurrences across the entire Harry Potter series.
+
+```{r}
+library(igraph)
+
+bigram_graph <- hp_tidy_2 %>%
+        separate(bigram, c("word1", "word2"), sep = " ") %>%
+        filter(!word1 %in% stop_words$word,
+               !word2 %in% stop_words$word) %>%
+        count(word1, word2, sort = TRUE) %>%
+        unite("bigram", c(word1, word2), sep = " ") %>%
+        filter(n > 20) %>%
+        graph_from_data_frame()
+```
+
+Now to visualize our network we'll leverage the `ggraph` package which converts an igraph object to a ggplot-like graphich.
+
+```{r, fig.height=8}
+library(ggraph)
+set.seed(123)
+
+a <- grid::arrow(type = "closed", length = unit(.15, "inches"))
+
+ggraph(bigram_graph, layout = "fr") +
+        geom_edge_link() +
+        geom_node_point(color = "lightblue", size = 5) +
+        geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+        theme_void()
+```
+
+Here we can see clusters of word networks most commonly used together. 
+
+### Word Correlation {#corr}
+
+In addition to understanding what words occur within sections, chapters, and books, we may also want to understand which pairs of words co-appear within sections, chapters, and books.  Here we'll focus on the `philosophers_stone` book.
+
+```{r}
+ps_words <- tibble(chapter = seq_along(philosophers_stone),
+                  text = philosophers_stone) %>%
+        unnest_tokens(word, text) %>%
+        filter(!word %in% stop_words$word)
+```
+
+We can leverage the `widyr` package to count common pairs of words co-appearing within the same chapter:
+
+```{r}
+word_pairs <- ps_words %>%
+        widyr::pairwise_count(word, chapter, sort = TRUE)
+```
+
+The output provids the pairs of words as two variables (`item1` and `item2`).  This allows us to perform normal text mining activities like looking for what words most often follow "harry"
+
+```{r}
+word_pairs %>% 
+        filter(item1 == "harry")
+```
+
+However, the most common co-appearing words only tells us part of the story.  We may also want to know how often words appear together relative to how often they appear separately, or the *correlation* among words.  Regarding text, correlation among words is measured in a binary form - either the words appear together or they do not. A common measure for such binary correlation is the [phi coefficient](https://en.wikipedia.org/wiki/Phi_coefficient). 
+
+Consider the following table:
+
+```{r}
+`Has word Y` <- c('$$n_{11}$$','$$n_{01}$$','$$n_{\\cdot 1}$$')
+`No word Y`  <- c('$$n_{10}$$','$$n_{00}$$','$$n_{\\cdot 0}$$')
+Total        <- c('$$n_{1\\cdot}$$','$$n_{0\\cdot}$$','n')
+tabl <- data.frame(`Has word Y`,`No word Y`, Total)
+rownames(tabl) <- c('Has word X','No word X', 'Total')
+
+knitr::kable(tabl)
+```
+
+For example, $n_{11}$ represents the number of documents where both word X and word Y appear, $n_{00}$ the number where neither appears, and $n_{10}$ and $n_{01}$ the cases where one appears without the other. In terms of this table, the phi coefficient is:
+
+$$
+\phi=\frac{n_{11}n_{00}-n_{10}n_{01}}{\sqrt{n_{1\cdot}n_{0\cdot}n_{\cdot0}n_{\cdot1}}}
+$$
+
+The `pairwise_cor()` function in widyr lets us find the correlation between words based on how often they appear in the same section. Its syntax is similar to `pairwise_count()`.
+
+```{r}
+word_cor <- ps_words %>%
+   group_by(word) %>%
+   filter(n() >= 20) %>%
+   pairwise_cor(word, chapter) %>%
+   filter(!is.na(correlation))
+```
+
+Similar to before we can now assess correlation for words of interest.  For instance, what is the highest correlated words that appears with "potter"?  Interestingly, it isn't "harry".
+
+```{r}
+word_cor %>%
+  filter(item1 == "potter") %>%
+  arrange(desc(correlation))
+```
+
+Similar to how we used ggraph to visualize bigrams, we can use it to visualize the correlations within word clusters. Here we look networks of words where the correlation is fairly high (> .65).  We can see several clusters pop out.  For instance, in the bottom right of the plot a cluster shows that "dursley", "dudley", "vernon", "aunt", "uncle", "petunia", "wizard", and a few others are more likely to appear together than not.  This type of graph provides a great starting point to find content relationships within text.
+
+```{r, fig.height=8}
+set.seed(123)
+
+ps_words %>%
+  group_by(word) %>%
+  filter(n() >= 20) %>%
+  pairwise_cor(word, chapter) %>%
+  filter(!is.na(correlation),
+         correlation > .65) %>%
+  graph_from_data_frame() %>%
+  ggraph(layout = "fr") +
+  geom_edge_link(aes(edge_alpha = correlation), show.legend = FALSE) +
+  geom_node_point(color = "lightblue", size = 5) +
+  geom_node_text(aes(label = name), repel = TRUE) +
+  theme_void()
+```

@@ -1,0 +1,268 @@
+## Basic Text Mining and Visualization
+
+### Using the `tidytext` package
+
+In this section, we analyzing text using the __*tidy text*__ format: a table with one-token-per-document-per-row, such as is constructed by the `unnest_tokens` function. This allows us to efficiently pipe our analysis directly into the popular suite of 'tidyverse' tools such as to explore and visualize text data. Although we can do some simple regex analysis on this character vector, to properly analyze this text using `tidytext` we'll want to turn it into a `data.frame` or `tibble`.  To do this on the `philosophers_stone` novel we could perform the following:
+
+#### Tokenization
+
+```{r}
+text_tb <- tibble::tibble(chapter = base::seq_along(philosophers_stone),
+                          text = philosophers_stone)
+
+text_tb
+```
+
+This creates a 2-column tibble. The second column contains the full text for each chapter; however, this isn't very conducive to future analyses. A better option would be to 'unnest' the documents by each token. A token is any subdivision of the text that is meaningful to us, thus a token could be a word (uni-gram), a bi-gram, a tri-gram, a line, or a sentence.  We can unnest the text of `philosophers_stone` using each word as a token using the code below:
+
+```{r}
+text_tb %>%
+        tidytext::unnest_tokens(word, text, token = 'words')
+      # tidytext::unnest_tokens(bigram  , text, token = 'ngrams', n = 2)
+      # tidytext::unnest_tokens(sentence, text, token = 'sentences')
+```
+
+Now we've split up the entire `philosophers_stone` text into a tibble that provides each word in each chapter.  Its important to note that the `unnest_token` function does the following:
+
+- splits the text into tokens
+- strips all punctuation
+- converts each word to lowercase for easy comparability (use the `to_lower = FALSE` argument to turn this off)
+
+However, what if we want to analyze text across all seven novels?  To do this we can perform the same steps by looping through each novel and then combining them. 
+
+```{r}
+titles <- c("Philosopher's Stone", 
+            "Chamber of Secrets", 
+            "Prisoner of Azkaban",
+            "Goblet of Fire", 
+            "Order of the Phoenix", 
+            "Half-Blood Prince",
+            "Deathly Hallows")
+
+books <- list(philosophers_stone, 
+              chamber_of_secrets, 
+              prisoner_of_azkaban,
+              goblet_of_fire, 
+              order_of_the_phoenix, 
+              half_blood_prince,
+              deathly_hallows)
+  
+hp_tidy <- tibble::tibble()
+
+for(i in seq_along(titles)) {
+        
+        clean <- tibble::tibble(chapter = base::seq_along(books[[i]]),
+                                text = books[[i]]) %>%
+             tidytext::unnest_tokens(word, text) %>%
+             dplyr::mutate(book = titles[i]) %>%
+             dplyr::select(book, dplyr::everything())
+
+        hp_tidy <- base::rbind(hp_tidy, clean)
+}
+
+# set factor to keep books in order of publication
+hp_tidy$book <- base::factor(hp_tidy$book, levels = base::rev(titles))
+
+hp_tidy
+```
+
+We now have a tidy tibble with every individual word by chapter and by book and can begin performing some simple analyses
+
+#### Word Frequency with `tidytext`
+
+The simplest word frequency analysis is assessing the most common words in text.  We can use `count` to assess the most common words across all the text in the Harry Potter series.
+
+```{r}
+hp_tidy %>%
+        dplyr::count(word, sort = TRUE)
+```
+
+One thing you will notice is that a lot of the most common words are not very informative (i.e. *the, and, to, of, a, he, ...*).  These are considered __stop__ words.  Most of the time we want our text mining to identify words that provide context (i.e. *harry, dumbledore, granger, afraid,* etc.).  Thus, we can remove the stop words from our tibble with `anti_join` and the built-in `stop_words` data set provided by `tidytext`.  Now we start to see characters and other nouns, verbs, and adjectives that we would expect to be common in this series.
+
+```{r}
+hp_tidy %>%
+        dplyr::anti_join(stop_words) %>%
+        dplyr::count(word, sort = TRUE)
+```
+
+We can perform this same assessment but grouped by book or even each chapter within each book.
+
+```{r}
+# top 10 most common words in each book
+hp_tidy %>%
+        dplyr::anti_join(stop_words) %>%
+        dplyr::group_by(book) %>%
+        dplyr::count(word, sort = TRUE) %>%
+        dplyr::top_n(10)
+```
+
+We can visualize this with the `ggplot2` package
+
+```{r, fig.width=8, fig.height=16, fig.align='center'}
+# top 10 most common words in each book
+hp_tidy %>%
+        anti_join(stop_words) %>%
+        group_by(book) %>%
+        count(word, sort = TRUE) %>%
+        top_n(10) %>%
+        ungroup() %>%
+        mutate(book = base::factor(book, levels = titles),
+               text_order = base::nrow(.):1) %>%
+## Pipe output directly to ggplot
+        ggplot(aes(reorder(word, text_order), n, fill = book)) +
+          geom_bar(stat = "identity") +
+          facet_wrap(~ book, scales = "free_y") +
+          labs(x = "NULL", y = "Frequency") +
+          coord_flip() +
+          theme(legend.position="none")
+```
+
+Now, let’s calculate the frequency for each word across the entire Harry Potter series versus within each book. This will allow us to compare strong deviations of word frequency within each book as compared to across the entire series.
+
+```{r}
+# calculate percent of word use across all novels
+potter_pct <- hp_tidy %>%
+        dplyr::anti_join(stop_words) %>%
+        dplyr::count(word) %>%
+        dplyr::transmute(word, all_words = n / sum(n))
+
+# calculate percent of word use within each novel
+frequency <- hp_tidy %>%
+        dplyr::anti_join(stop_words) %>%
+        dplyr::count(book, word) %>%
+        dplyr::mutate(book_words = n / sum(n)) %>%
+        dplyr::left_join(potter_pct) %>%
+        dplyr::arrange(dplyr::desc(book_words)) %>%
+        dplyr::ungroup()
+        
+frequency
+```
+
+We can visualize this again with `ggplot2` as shown below
+
+```{r, fig.width=8, fig.height=16, fig.align='center'}
+ggplot(frequency, 
+       aes(x = book_words, 
+           y = all_words, 
+           color = abs(all_words - book_words))) +
+        geom_abline(color = "gray40", lty = 2) +
+        geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+        geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+        scale_x_log10(labels = scales::percent_format()) +
+        scale_y_log10(labels = scales::percent_format()) +
+        scale_color_gradient(limits = c(0, 0.001), 
+                             low = "darkslategray4", 
+                             high = "gray75") +
+        facet_wrap(~ book, ncol = 2) +
+        theme(legend.position="none") +
+        labs(y = "Harry Potter Series", x = NULL)
+```
+
+Words that are close to the line in these plots have similar frequencies across all the novels. For example, words such as "harry", "ron", "dumbledore" are fairly common and used with similar frequencies across most of the books. Words that are far from the line are words that are found more in one set of texts than another. Furthermore, words standing out above the line are common across the series but not within that book; whereas words below the line are common in that particular book but not across the series. For example, "cedric" stands out above the line in the Half-Blood Prince.  This means that "cedric" is fairly common across the entire Harry Potter series but is not used as much in Half-Blood Prince.  In contrast, a word below the line such as "quirrell" in the Philosopher's Stone suggests this word is common in this novel but far less common across the series.
+
+Let’s quantify how similar and different these sets of word frequencies are using a correlation test. How correlated are the word frequencies between the entire series and each book?
+
+```{r}
+frequency %>%
+        dplyr::group_by(book) %>%
+        dplyr::summarize(correlation = stats::cor(book_words, all_words),
+                         p_value = stats::cor.test(book_words,
+                                                   all_words)$p.value)
+```
+
+The high correlations, which are all statistically significant (p-values < 0.0001), suggests that the relationship between the word frequencies is highly similar across the entire Harry Potter series.
+
+### Using the `tm` Package
+
+Text analysis requires working with a variety of tools, many of which have inputs and outputs that aren’t in a tidy form. This section borrows from Chapter 5 of [Text Mining with R](http://tidytextmining.com) to show how to convert between a tidy text data frame and sparse document-term matrices, as well as how to tidy a Corpus object containing document metadata.
+
+One of the most common structures that text mining packages work with is the [document-term matrix](https://en.wikipedia.org/wiki/Document-term_matrix) (or DTM). This is a matrix where:
+
+- each row represents one document (such as a book or article),
+- each column represents one term, and
+- each value (typically) contains the number of appearances of that term in that document.
+
+Since most pairings of document and term do not occur (they have the value zero), DTMs are usually implemented as sparse matrices. These objects can be treated as though they were matrices (for example, accessing particular rows and columns), but are stored in a more efficient format. We’ll discuss several implementations of these matrices in this tutorial.
+
+Perhaps the most widely used implementation of DTMs in R is the `DocumentTermMatrix` object class in the `tm` package. Many available text mining datasets are provided in this format.  Here, we convert the seven books into a `DocumentTermMatrix`:
+
+```{r}
+hp_dtm <- tm::VectorSource(books) %>%
+  tm::VCorpus() %>%
+  tm::DocumentTermMatrix(control = base::list(removePunctuation = TRUE,
+                                              removeNumbers = TRUE,
+                                              stopwords = tidytext::stop_words[,2],
+                                              tokenize = 'MC',
+                                              weighting =
+                                         function(x)
+                                         weightTfIdf(x, normalize =
+                                                     !FALSE)))
+
+tm::inspect(hp_dtm)
+```
+
+We see that this DTM-class object contains 7 documents along the rows and terms (distinct words) along the columns. Notice that this DTM is 73% sparse (73% of document-word pairs are zero). We could access the terms in the document with the `Terms()` function.
+
+```{r}
+terms <- tm::Terms(hp_dtm)
+utils::head(terms, 50)
+```
+
+DTM objects cannot be used directly with tidy tools, just as tidy data frames cannot be used as input for most text mining packages. Thus, the `tidytext` package provides two functions that convert between the two formats. If we wanted to analyze this data with tidy tools, we would first need to turn it into a data frame with one-token-per-document-per-row. The `broom` package introduced the `tidy()` function, which takes a non-tidy object and turns it into a tidy data frame. The `tidytext` package implements this method for DocumentTermMatrix objects.
+
+```{r}
+(hp_tidy_tm <- tidytext::tidy(hp_dtm))
+```
+
+Notice that we now have a tidy three-column data frame, with variables *document*, *term*, and *count*.  This form is convenient for analysis with the `dplyr`, `tidytext` and `ggplot2` packages. Note also that the `tidytext` package contains several other methods for tidying objects of other classes as shown below.
+
+```{r}
+tt_funcs <- base::ls(base::getNamespace("tidytext"), 
+                     all.names = TRUE)
+
+base::grep(pattern = '^tidy.', tt_funcs, value = T)
+```
+
+Likewise, we can use the `cast` method, which provides three functions for converting a tidy text object to an object to another class that may be useful with other packages. This casting process allows for reading, filtering, and processing to be done using `dplyr` and other `tidyverse` tools, after which the data can be converted into an object that can be use by other machine learning tools. Examples of these cast functions are shown below
+
+```{r}
+# cast tidy data to a DFM object 
+# for use with the quanteda package
+hp_tidy_tm %>%
+  cast_dfm(term, document, count)
+
+# cast tidy data to a DocumentTermMatrix 
+# object for use with the `tm` package
+hp_tidy_tm %>%
+  cast_dtm(term, document, count)
+
+# cast tidy data to a TermDocumentMatrix 
+# object for use with the `tm` package
+hp_tidy_tm %>%
+  cast_tdm(term, document, count)
+
+# cast tidy data to a sparse matrix
+# uses the Matrix package
+hp_tidy_tm %>%
+  cast_sparse(term, document, count) %>%
+  dim
+```
+
+### Using the `text2vec` Package
+
+```{r}
+t2v_tokens = books   %>% 
+             tolower %>% 
+             tokenizers::tokenize_words()
+
+t2v_itoken = text2vec::itoken(t2v_tokens, 
+                              progressbar = FALSE)
+
+(t2v_vocab = text2vec::create_vocabulary(t2v_itoken,
+                                         stopwords = tidytext::stop_words[[1]]))
+
+t2v_dtm = create_dtm(t2v_itoken, hash_vectorizer())
+model_tfidf = TfIdf$new()
+dtm_tfidf = model_tfidf$fit_transform(t2v_dtm)
+```
+

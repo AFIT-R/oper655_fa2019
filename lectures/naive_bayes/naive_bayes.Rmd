@@ -1,0 +1,309 @@
+---
+title: "Text Classification with Naive Bayes"
+output: 
+  html_document:
+    css: '../css/logm655.css'
+    toc: yes
+    toc_float: yes
+    df_print: 'paged'
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = F,
+                      message = F,
+                      comment = NA)
+```
+
+# Overview
+
+If you Google `text classification R examples` or something like that, you'll find several example tutorials that reference a data set of 'SPAM vs. HAM' text messages.  This tutorial summarizes these other documents (and might even add something to them).  
+
+## Necessary packages
+
+The following packages will be used in this document:
+
+```{r}
+pacman::p_load(caret,
+               tidyverse,
+               tm,
+               klaR,
+               MASS,
+               gmodels,
+               e1071,
+               gmodels,
+               NLP,
+               rsample)
+```
+
+## The dataset
+
+The data can be accessed from the url: [**http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/**](http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/) and are stored as a .zip archive.  You could use your fingers to click on the link shown on this page to download the zip archive, then unzip archive to extrat the files and finally load them into R - how tedious!  But why do that when we could let R do it all for us using the code shown below? 
+
+```{r, cache=TRUE}
+td <- tempdir()
+
+zip_url <- "http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/smsspamcollection.zip"
+
+zip_file <- file.path(td,'smsspamcollection.zip')
+
+download.file(url = zip_url,
+              destfile = zip_file,
+              method = "curl")
+
+# unzip file and read data from table inside
+(sms_raw <- read.table(unz(zip_file, filename = 'SMSSpamCollection.txt'),
+                      header = FALSE, 
+                      sep = "\t", 
+                      quote = "", 
+                      stringsAsFactors = FALSE))
+```
+
+What did that code just do, you ask? Well it did the following
+
+- Created a temporary directory named `td`
+- Created a path to a file in `td`
+- Downloaded the zip archive from the site linked above
+- Saved the archive to our newly named file in `td`
+- Unziped the archive and read the data from the embedded `.txt` file
+- Saved the data into the current R session as an object named `sms_raw`
+
+### Cleaning the data
+
+Observing the the dataset, we see that it contains `r nrow(sms_raw)` text messages and `r ncol(sms_raw)` columns. The first column contains a text string indicating the type of message (either 'spam' or 'ham'), the second column contains the actual message text. Before going forward, we need to process the data to make things easier. First, let's change the column names to something that's easy to remember and easy to call in subsequent functions. 
+
+```{r}
+colnames(sms_raw) <- c("type", "text")
+```
+
+Second, let's convert the `type` column to factors.
+
+```{r}
+sms_raw$type <- factor(sms_raw$type)
+```
+
+Next, we need to reformat and clean the data by performing the following steps.
+
+#### 1. Converting the data into a `corpus`-class object
+
+```{r}
+sms_corpus <- tm::Corpus(tm::VectorSource(sms_raw$text))
+```
+
+#### 2. Cleaning the corpus to remove stopwords, punctuation, etc.
+
+```{r}
+(sms_corpus_clean <- sms_corpus                          %>%
+    tm::tm_map(tm::content_transformer(tolower))        %>% 
+    tm::tm_map(removeNumbers)                           %>%
+    tm::tm_map(removeWords, tm::stopwords(kind = "en")) %>%
+    tm::tm_map(removePunctuation)                       %>%
+    tm::tm_map(stripWhitespace))
+```
+
+#### 3. Converting the cleaned corpus to `DocumentTermMatrix`-class object
+
+```{r}
+(sms_dtm <- DocumentTermMatrix(sms_corpus_clean))
+```
+
+#### 4. Partitioning our data into a training data set and a testing data set 
+
+Next, we need to partition the dataset into two subsets - a training subset and a testing subset.  We'll use the training set to train our Naive Bayes model and then apply that trained model to the testing subset to see how well it can predict the type each message. It's common to partition the data using a 70/30 split, where 70% is the data are used for training and 30% are used for testing/prediction.  There are a number of ways to accomplish this partitioning, here's one using `base` R functions.
+
+```{r}
+# Set a seed for a pseudorandom number generator
+set.seed(12358)
+train_rows <- sample(nrow(sms_raw), size = 0.7 * nrow(sms_raw))
+(sms_train <- sms_raw[ train_rows,])
+(sms_test  <- sms_raw[-train_rows,])
+```
+
+Note that these samples were created randomly. However, because we used the same seed value, your samples `sms_train` and `sms_test` should be the same as mine.  The next method uses the `rsample` package to create samples `sms_train2` and `sms_test2`. Unlike the partition created using the base R functions, the samples you create may not be the same as those shown here.
+
+```{r}
+samp <- rsample::initial_split(data = sms_raw,
+                               prop = 0.7)
+
+(sms_train2 <- rsample::training(samp))
+(sms_test2  <- rsample::testing(samp))
+```
+
+Finally, a third alternative involves the `caret` package. 
+
+```{r}
+train_rows2 <- caret::createDataPartition(sms_raw$type, 
+                                          p = 0.7, 
+                                          list = F)
+
+(sms_train3 <- sms_raw[ train_rows2,])
+(sms_test3  <- sms_raw[-train_rows2,])
+```
+
+Regardless of the method used, we ideally want the proportion of spam and ham messages in our testing and training partitions to be as close as possible to the proportion found in the full data set.  The table below shows the proportion of ham messages contained each each partition.
+
+```{r}
+freq_table <- function(vec) {
+  
+    tab <- round(100 * prop.table( table(vec) ), 3)
+    
+    return( c( tab[[1]], tab[[2]] ))
+  
+}
+
+df <- data.frame(original = freq_table(sms_raw$type   )[1],
+                 train1   = freq_table(sms_train$type )[1],
+                 test1    = freq_table(sms_train$type )[1],
+                 train2   = freq_table(sms_train2$type)[1],
+                 test2    = freq_table(sms_test2$type )[1],
+                 train3   = freq_table(sms_train3$type)[1],
+                 test3    = freq_table(sms_test3$type )[1])
+
+colnames(df) <- c('original',
+                  'Base - train',
+                  'Base - test',
+                  'rsample - train',
+                  'rsample - test',
+                  'caret - train',
+                  'caret - test')
+
+knitr::kable(df, 
+             digits = 3, 
+             align = 'c',
+             caption = 'Proportion of SMS messages classified as "ham" in each partition')
+```
+
+Observing the values in the table, we see that the partition created using `caret::createDataPartition()` returns values that most closely match those of the original data set.  Thus, we'll use this partition moving forward to partition our corpus and our document term matrix, as shown below.
+
+```{r}
+(sms_corpus_clean_train <- sms_corpus_clean[train_rows2])
+(sms_corpus_clean_test  <- sms_corpus_clean[-train_rows2])
+(sms_dtm_train          <- sms_dtm[ train_rows2,])
+(sms_dtm_test           <- sms_dtm[-train_rows2,])
+```
+
+Following the strategy used in the book, we will pick terms that appear at least 5 times in the training document term matrix. To do this, we first create a dictionary of terms (using the function `findFreqTerms`) that we will use to filter the cleaned up training and testing corpora.
+
+As a final step before using these sets, we will convert the numeric entries in the term matrices into factors that indicate whether the term is present or not. For this, we’ll use a slightly modified version of the `convert_counts` function that appear in the book, and `apply` it to each column in the matrices.
+
+```{r}
+sms_dict <- tm::findFreqTerms(sms_dtm_train, lowfreq = 5)
+
+sms_train <- tm::DocumentTermMatrix(sms_corpus_clean_train,
+                                    list(dictionary = sms_dict))
+
+sms_test  <- tm::DocumentTermMatrix(sms_corpus_clean_test,
+                                    list(dictionary = sms_dict))
+
+# modified sligtly fron the code in the book
+convert_counts <- function(x) {
+  
+    x <- ifelse(x > 0, 1, 0)
+    x <- factor(x, 
+                levels = c(0, 1), 
+                labels = c("Absent", "Present"))
+}
+
+sms_train <- sms_train %>% apply(MARGIN = 2, FUN = convert_counts)
+sms_test  <- sms_test  %>% apply(MARGIN = 2, FUN = convert_counts)
+```
+
+## Training the prediction models
+
+We will now use Naive Bayes to train a four prediction models. The first set of two models will use the `caret` package.  Both models will be generated using 10-fold cross validation, with the default parameters. The difference between these two models will be that the first model does not use the Laplace correction and let's the training procedure figure out whether to user or not a kernel density estimate, while the second one fixes Laplace parameter to one `(fL = 1)` and explicitly forbids the use of a kernel density estimate `(useKernel = FALSE)`. The second set of two models will use the `e1071` package.
+
+We'll now use these two models to predict the appropriate classification of the terms in the test set. In each case we will estimate how good is the prediction using the `confusionMatrix` function. We will consider a positive result when a message is identified as (or predicted to be) SPAM.
+
+### Using the `caret` package
+
+```{r, cache=TRUE, eval=!FALSE}
+ctrl <- caret::trainControl(method="cv", 10)
+
+set.seed(12358)
+
+(sms_model1 <- caret::train(sms_train, 
+                            sms_train3$type, 
+                            method = "nb",
+                            trControl = ctrl))
+
+sms_predict1 <- predict(sms_model1, sms_test)
+
+(cm1 <- confusionMatrix(sms_predict1, 
+                        sms_test3$type, 
+                        positive = "spam"))
+
+gmodels::CrossTable(sms_predict1, 
+                    sms_test3$type, 
+                    prop.chisq = FALSE, 
+                    prop.t = FALSE, 
+                    prop.r = FALSE,
+                    dnn = c('predicted', 'actual'))
+```
+
+```{r, cache=TRUE, eval=!FALSE}
+set.seed(12358)
+(sms_model2 <- caret::train(sms_train, 
+                            sms_train3$type, 
+                            method = "nb", 
+                            tuneGrid = data.frame(fL = 1, 
+                                                  usekernel = T,
+                                                  adjust = 1),
+                            trControl = ctrl))
+
+sms_predict2 <- predict(sms_model2, sms_test)
+
+(cm2 <- confusionMatrix(sms_predict2, 
+                        sms_test3$type, 
+                        positive = "spam"))
+
+gmodels::CrossTable(sms_predict2, 
+                    sms_test3$type, 
+                    prop.chisq = FALSE, 
+                    prop.t = FALSE, 
+                    prop.r = FALSE,
+                    dnn = c('predicted', 'actual'))
+```
+
+### Using the `e1071` package
+
+This first model uses Laplace smoothing with a fixed value of 1
+
+```{r, cache=TRUE, eval=!FALSE}
+(sms_model3 <- e1071::naiveBayes(sms_train, 
+                                 sms_train3$type, 
+                                 laplace = 1))
+
+sms_predict3 <- predict(sms_model3, sms_test)
+
+(cm3 <- confusionMatrix(sms_predict3, 
+                        sms_test3$type, 
+                        positive = "spam"))
+
+gmodels::CrossTable(sms_predict3, 
+                    sms_test3$type, 
+                    prop.chisq = FALSE, 
+                    prop.t = FALSE, 
+                    prop.r = FALSE,
+                    dnn = c('predicted', 'actual'))
+```
+
+This second model does not use Laplace smoothing.
+
+```{r, cache=TRUE, eval=!FALSE}
+(sms_model4 <- e1071::naiveBayes(sms_train, 
+                                 sms_train3$type, 
+                                 laplace = 0))
+
+sms_predict4 <- predict(sms_model4, sms_test)
+
+(cm3 <- confusionMatrix(sms_predict4, 
+                        sms_test3$type, 
+                        positive = "spam"))
+
+gmodels::CrossTable(sms_predict4, 
+                    sms_test3$type, 
+                    prop.chisq = FALSE, 
+                    prop.t = FALSE, 
+                    prop.r = FALSE,
+                    dnn = c('predicted', 'actual'))
+```
