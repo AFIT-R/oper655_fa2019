@@ -1,5 +1,5 @@
 ---
-title: "LOGM 655 Student Project Report"
+title: "OPER 655 Student Project Report"
 author: "Your name"
 date: "`r format(Sys.Date(), '%d %b %Y')`"
 output: 
