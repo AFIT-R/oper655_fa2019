@@ -1,8 +1,8 @@
 ---
-title: 'LOGM 655 - Text Mining'
-author: '<h3>Course Syllabus - Fall 2018</h3>'
-date: '<h3>MW 1200-1330 Bldg. 640 Rm. 326 (3.0 Credit Hours)</h3>'
-output: word_document
+title: 'OPER 655 - Text Mining'
+author: '<h3>Course Syllabus - Fall 2019</h3>'
+date: '<h3>TF 1500-1700 Bldg. 640 Rm. 326 (4.0 Credit Hours)</h3>'
+output: pdf_document
 ---
 
 ```{r, echo=FALSE}
@@ -12,18 +12,20 @@ root <- find_root(rprojroot::is_rstudio_project)
 
 ## Welcome!
 
-Text mining, or natural language processing (NLP) is the organization, classification, labeling and extraction of information from structured and unstructured text data. In these days of more information readily available through the internet, analysts and decision makers find themselves overloaded with data.  Text mining is an application which can help analysts glean necessary information either for general understanding about a corpus of text documents, or for putting text into a form useful for the application of alternative analysis techniques.
+Text Mining is the organization, classification, labeling and extraction of information from structured and unstructured text data. With so much information readily available through the internet, analysts and decision makers often find themselves overloaded with data.  Text mining describes a set of tools which can help analysts glean necessary information either for general understanding about a corpus of text documents, or for putting text into a form useful for the application of alternative analysis techniques.
 
-This course will introduce students to this rapidly growing field and equip them with some of its basic principles and tools as well as its general mindset.  Students will learn concepts, techniques and tools they need to deal with text mining practice in a Joint military context.
+This course introduces students to this rapidly growing field and equips them with some of its basic principles and tools as well as its general mindset.  Students will learn concepts, techniques and tools they need to deal with text mining practice in a joint military context.
 
 ## Course Learning Objectives
 
-The primary objective of this course is to help students understand and implement the techniques/processes of text mining to make better decisions. More specifically, at the completion of the course, students should be able to:
+The objective of this course is to help students build an automated text analysis data pipeline that implements the techniques/processes of text mining for the purposes of making better decisions. More specifically, at the completion of the course, students should be able to:
 
-- Understanding when, where, and how to perform text mining to appropriate problems and data sets.
-- Code and understand code using relevant R packages in text mining.
+- Understand when, where, and how to perform text mining to appropriate problems and data sets.
 - Lead and work within a group of researchers analyzing a specific text mining problem.
 - Use software to analyze text data and communicate the results of their analyses.
+- Review code using relevant R and/or python packages in text mining.
+
+In this year's course the pipeline will be constructed using the [**1.4 million cell phone reviews: ratings and reviews for all brands of cell phones**](https://www.kaggle.com/masaladata/14-million-cell-phone-reviews/version/1#_=_) dataset.  The idea for the course will be to build a pipeline based
 
 ## Pre-requisites & Co-requisites
 
@@ -31,7 +33,7 @@ Unless otherwise waived by the course instructor, students are required to have 
 
 - None
 
-Requests to waive these required courses must be made in accordance with AFIT EN policy guidelines and must be approved by the course instructor.  Waivers my be approved for students that have has successfully completed a similar courses or if special arrangements are made to meet AFIT requirements.
+Requests to waive these required courses must be made in accordance with AFIT/EN policy guidelines and must be approved by the course instructor.  Waivers my be approved for students that have has successfully completed a similar courses or if special arrangements are made to meet AFIT requirements.
 
 ## Instructor and Contact Information
 
@@ -45,7 +47,7 @@ Requests to waive these required courses must be made in accordance with AFIT EN
 
 ## Course Resources (Required & Optional)
 
-There is no required text for this course however, there are a number of freely available resources that I will refer to throughout the quarter. These resources are listed below (with links provided).  Other references will be provided using the course [**Github Page**](https://github.com/afit-r/logm655)
+There is no required text for this course however, there are a number of freely available resources that I will reference throughout the quarter. These resources are listed below (with links provided).  Other references will be provided using the course [**Github Page**](https://github.com/afit-r/oper655_fa2019)
 
 - [**Daniel Jurafsky**](https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf)<br> Online textbook for Dan Jurafsky's NLP course at Stanford
 
@@ -59,8 +61,8 @@ There is no required text for this course however, there are a number of freely 
 
 Your final course grade will be determined according to the following requirements and their respective weights. These deliverables are described at the bottom of this syllabus.
 
-- 40% [Group Activities](logm655_group_activities)
-- 60% [Project](logm655_term_project)
+- 40% [Group Activities](oper655_group_activities)
+- 60% [Project](oper655_term_project)
 
 In this course, grades will be assigned according to the values shown in the table below.  The following sections detail the requirements of each graded deliverable.
 
@@ -83,7 +85,7 @@ Information about course requirements distributed and collected using GitHub.  T
 
 > Tip: Don't use your `awesome.student@afit.edu` email address to create your account. Use an email address that you'll have access to after you graduate. If desired, you can add your AFIT address as a secondary email.
 
-After you've created your account on GitHub, click [**HERE**](https://github.com/afit-r/logm655/issues/1) to access the course "Roll Call".  Read and follow the instructions to post your comment so I know that you've successfully created an account.
+After you've created your account on GitHub, click [**HERE**](https://github.com/afit-r/oper655_fa2019/issues/1) to access the course "Roll Call".  Read and follow the instructions to post your comment so I know that you've successfully created an account.
 
 ## Software/Computer Programming
 
@@ -91,10 +93,11 @@ A key component of this course involves developing the skills and knowledge to c
 
 I realize that some of you may be new to coding or may have never coded before. Don't worry, you don't need an extensive background in R, \LaTeX, or HTML to be successful in this course. Each week I'll provide you with LOTS of code examples that you can copy/paste to help you get more familiar with the software.  Also, many  created several demo presentations to get you up to speed and I'm always willing to help out when needed.  The first link provided for Week 1 in the schedule below walks you through the process of getting the R/RStudio tool-chain installed and ready for the course. 
 
-Each of these tools listed below will be used this quarter:
+Each of the following tools will be used this quarter:
 
 + R Project for Statistical Computing
 + RStudio IDE
++ Python (via Anaconda)
 + Git/Github
 + LaTeX/Mathjax
 + Pandoc Markdown
@@ -106,29 +109,27 @@ The course schedule below is **TENTATIVE** and is therefore subject to change.  
 
 | Week    | Dates      | Lesson Description                     | Learning Material     | Presenter     |
 |:-------:|:----------:|:--------------------------------------:|:---------------------:|:-------------:|
-| **1**   |10/01-10/05 | Course Intro/Software Intro            | DataCamp & Github     | Maj Freels    |
-| **2**   |10/08-10/12 | Extracting Data from Documents         |                       | Maj Freels    |
-| **3**   |10/15-10/19 | Regular expressions & text parsing     |                       | Maj Freels    |
-| **4**   |10/22-10/26 | Methods for word relationship analysis |                       | Maj Freels    |
-| **5**   |10/28-11/02 | Sentiment analysis                     |                       | Maj Freels    |
-| **6**   |11/05-11/09 | Topic modeling                         | Student Led           | Student Group |
-| **7**   |11/12-11/16 | Parts of speech tagging                | Student Led           | Student Group |
-| **8**   |11/19-11/23 | Document summarization                 | Student Led           | Student Group |
-| **9**   |11/26-11/30 | Named entity recognition               | Student Led           | Student Group |
-| **10**  |12/03-12/07 | In class project work                  | None                  | Maj. Freels   |
-| **11**  |12/10-12/13 | Student project reports                | None                  | Student Group |
-
-
+| **1**   |09/30-10/04 | Course intro/Software intro            | DataCamp & Github     | Maj Freels    |
+| **2**   |10/07-10/11 | Extracting data from documents         |                       | Maj Freels    |
+| **3**   |10/14-10/18 | Regular expressions & text parsing     |                       | Maj Freels    |
+| **4**   |10/21-10/25 | Methods for word relationship analysis |                       | Maj Freels    |
+| **5**   |10/27-11/01 | Topic modeling                         |                       | Maj Freels    |
+| **6**   |11/04-11/08 | Parts of speech tagging                |                       | Maj Freels    |
+| **7**   |11/11-11/15 | Sentiment analysis                     | Student Led           | Student Group |
+| **8**   |11/18-11/22 | Document summarization                 | Student Led           | Student Group |
+| **9**   |11/25-11/29 | Named entity recognition               | Student Led           | Student Group |
+| **10**  |12/02-12/06 | In class project work                  | None                  | Maj. Freels   |
+| **11**  |12/09-12/12 | Student project reports                | None                  | Student Group |
 
 ### Other Noteworthy Dates
 
 In addition to the course schedule, you should take note of the following dates.
 
-- 08 Oct - Columbus Day (No Classes)
-- 12 Nov - Veteran's Day (No Classes)
-- 22 Nov - Thanksgiving Day (No Classes)
-- 23 Nov - AETC Family Day (Classes will meet - TBD)
-- 07 Dec - Fall Quarter Classes End
+- 14 Oct - Columbus Day (No Classes)
+- 11 Nov - Veteran's Day (No Classes)
+- 28 Nov - Thanksgiving Day (No Classes)
+- 29 Nov - AETC Family Day (Classes will meet - TBD)
+- 09 Dec - Fall Quarter Classes End
 - 10 Dec - Final Exam Week Begins
 - 13 Sep - Final Exam Week Ends
 
@@ -152,7 +153,7 @@ AFIT and the Graduate School of Engineering and Management affirm the right of e
 
 As __AFIT graduates__, you should be expected to know how to approach and solve real-world problems AND present your results in a meaningful way so that decision makers can make defensible decisions.  
 
-As __AFIT instructors__, we do a disservice to our students by not teaching new and improved ways to produce and share your results.  Further, we do a disservice by teaching you to solve problems using tools that you won't have access to after leaving AFIT.  Therefore, I re-built this course using the R/RStudio tool-chain to help you produce better results...faster.
+As __AFIT instructors__, we do a disservice to our students by not teaching new and improved ways to produce and share your results.  Further, we do a disservice by teaching you to solve problems using tools that you won't have access to after leaving AFIT.  Therefore, I re-built this course using the R/Python/RStudio tool-chain to help you produce better results...faster.
 
 ### Challenge your instructor
 
@@ -166,8 +167,7 @@ Many data science projects cannot be completed by one person - especially if the
 
 For both of these activities students will be separated into four teams - the number of students in each team will depend on the number of students registered for the course. Each team will address one of the following text mining goals:
 
-- Topic modeling
-- Parts of speech tagging
+- Sentiment analysis
 - Document summarization
 - Named entity recognition
 
@@ -181,30 +181,28 @@ __This activity is worth 20% of your overall course grade.__ Student grades for 
 	
 #### Activity #2 R Programming Tutorial (20 pts):
 
-During the second class meeting of their assigned week, teams will give a tutorial on how to use the R programming language to implement the text mining methods and accomplish the goal.  There are a number of excellent resources to help with this project.
+During the second class meeting of their assigned week, teams will give a tutorial on how to use the R programming language to implement the assigned text mining method on the cell phone dataset.  There are a number of excellent resources to help with this project.
 
 - [**Stack Overflow**](https://stackoverflow.com/search?q=natural+language+processing+R)
 - [**CRAN Task View: Natural language Processing**](https://cran.r-project.org/web/views/NaturalLanguageProcessing.html)
 - [**Github**](https://github.com/search?q=natural+language+processing)
 - [**Kaggle Kernels**](https://www.kaggle.com/kernels)
 
-Students will cite all sources from which they obtained any examples or data used in their tutorial and will clearly indicate which packages they used obtain their results. 
+Students will cite all sources from which they obtained any examples used in their tutorial and will clearly indicate which packages they used obtain their results. 
 
 __This activity is worth 20% of your overall course grade.__ Student grades for this activity will be graded based on (1) completion of the assignment, and (2) the degree to which each student contributed to the team in completing this activity. I will assign this value based a survey each student will fill out to describe the level of participation for each member of the team.  The survey will be used to distribute the grade appropriately as demonstrated by your effort towards assisting the group accomplish the assignment.  Survey scores will be based on a scale from 1 to 5, where a '5' means that the student was very involved in the effort and made important contributions a '1' means that a student was not involved and made few (if any) contributions.
 
 The group assignments are as shown in the table below
 
 ```{r echo=FALSE}
-POS <- c('Walton','Hyder',NA,NA)
-NER <- c('Beveridge', 'Kane', 'Kolano',NA)
-TM  <- c('Kline', 'Westerman','St. Peter',NA)
-DS  <- c('Speranza','Kilgore','Buck', 'Gold') 
+NER <- c(NA,NA,NA)
+SA  <- c(NA,NA,NA)
+DS  <- c(NA,NA,NA) 
 
-DAT <- data.frame(POS, NER, TM, DS)
+DAT <- data.frame(NER, SA, DS)
 
-colnames(DAT) <- c('Parts of Speech Tagging',
-                   'Named Entity Recognition',
-                   'Topic Modeling',
+colnames(DAT) <- c('Named Entity Recognition',
+                   'Sentiment Analysis',
                    'Document Summarization')
 
 knitr::kable(DAT, row.names = NA, align = 'cccc')
@@ -212,13 +210,13 @@ knitr::kable(DAT, row.names = NA, align = 'cccc')
 
 ## Final project
 
-This course requires completion of an <u>individual</u> project that implements one or more of the the methods presented in the class.  The intent of the project is to apply one or multiple concepts learned within the class to an actual data set in order to perform knowledge discovery.  __The project must be approved by Maj Freels, NLT 19 October 2018.__  Students may use an application within their thesis project for work within this class.  The data set used for this project can be either pre-formatted text or something in textual form.  At a bare minimum, the text should include more than 5,000 words and should be in English.  While these requirements are minimums, the intent is that the problem is analyzed according to the concepts presented in this course and that the results are articulated in a clear manner. 
+This course requires completion of an <u>individual</u> project that applies the data pipeline developed in the class.  The intent of the project is to apply one or multiple concepts learned within the class to an actual data set in order to perform knowledge discovery.  __The dataset must be approved by Major Freels, NLT 21 October 2019.__  Students may use an application within their thesis project for work within this class.  The data set used for this project can be either pre-formatted text or something in textual form.  At a bare minimum, the text should include more than 5,000 words and should be in English.  While these requirements are minimums, the intent is that the problem is analyzed according to the concepts presented in this course and that the results are articulated in a clear manner. 
  
 ### Deliverables
 
 This project is worth __60% of your total grade__ for this class.  You will provide two deliverables.
 
-1. __Project IPR - Due Friday, 3 November (10 pts)__ -   This should be a focused 4-5 slide presentation (no more than 5 slides).  The goal of these slides is to describe what you are doing, why and where you are in your analysis.  You will not present this presentation; make sure the slides can speak for themselves (no use of notes in powerpoint – just the slides).  At a minimum, the slides should include the following:
+1. __Project IPR - Due Monday, 3 November (10 pts)__ -   This should be a focused 4-5 slide presentation (no more than 5 slides).  The goal of this presentation is to describe what task you are doing and where you are in your analysis.  You will not present this presentation; make sure the slides can speak for themselves (no use of notes in powerpoint – just the slides).  At a minimum, the slides should include the following:
 
 - Title Slide
 - Purpose 
@@ -231,7 +229,7 @@ This project is worth __60% of your total grade__ for this class.  You will prov
    -	Work not used in any other class previously
 -	Discuss Next Steps
 
-2. __Project Report - Due Friday, 8 December (50 pts)__ - For this part of the project assignment, provide a written report describing your analysis of your text and how it informs on the problem laid out in your project proposal.  Focus on insights, trends and analysis. This is where you are allowed to put the work you’ve done, but remember this document should flow.    This document (not including appendices) should be no longer than 20 pages (single spaced), with any charts/graphs relevant to the discussion imbedded and referenced in the body of the document.  Bulky or large figures or charts and examples of your code should be put into the appendix(cies).  The format of the report should have at least the following headings: 
+2. __Project Report - Due Friday, 6 December (50 pts)__ - For this part of the project assignment, provide a written report describing your analysis of your text and how it informs on the problem laid out in your project proposal.  Focus on insights, trends and analysis. This is where you are allowed to put the work you’ve done, but remember this document should flow.    This document (not including appendices) should be no longer than 20 pages (single spaced), with any charts/graphs relevant to the discussion imbedded and referenced in the body of the document.  Bulky or large figures or charts and examples of your code should be put into the appendix(cies).  The format of the report should have at least the following headings: 
 
 - Abstract
 - Problem Background (ending with a clear statement of the problem)
