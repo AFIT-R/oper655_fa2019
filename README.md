@@ -7,7 +7,7 @@ Course Syllabus - Fall 2019
 </h3>
 <h3>
 
-TF 1500-1700 Bldg. 640 Rm. 326 (4.0 Credit Hours)
+TF 1500-1700 Bldg. 646 Rm. 214 (4.0 Credit Hours)
 
 </h3>
 
@@ -70,7 +70,7 @@ requirements.
   - Email: [**auburngrads@live.com**](mailto:auburngrads@live.com)
   - Phone: (937) 255-3636 ext. 4676
   - Cell: (937) 430-6619
-  - Office: Bldg. 640, Rm. 205B
+  - Office: Bldg. 641, Rm. 245B
   - Office hours: By appointment
 
 ## Course Resources (Required & Optional)
@@ -104,8 +104,8 @@ Your final course grade will be determined according to the following
 requirements and their respective weights. These deliverables are
 described at the bottom of this syllabus.
 
-  - 40% [Group Activities](oper655_group_activities)
-  - 60% [Project](oper655_term_project)
+  - 40% [**Group Activities**](oper655_group_activities)
+  - 60% [**Project**](oper655_term_project)
 
 In this course, grades will be assigned according to the values shown in
 the table below. The following sections detail the requirements of each
