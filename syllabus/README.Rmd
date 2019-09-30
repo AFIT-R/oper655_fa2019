@@ -2,7 +2,7 @@
 title: 'OPER 655 - Text Mining'
 author: '<h3>Course Syllabus - Fall 2019</h3>'
 date: '<h3>TF 1500-1700 Bldg. 640 Rm. 326 (4.0 Credit Hours)</h3>'
-output: html_document
+output: github_document
 ---
 
 ```{r, echo=FALSE}
