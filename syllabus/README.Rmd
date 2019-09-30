@@ -2,7 +2,7 @@
 title: 'OPER 655 - Text Mining'
 author: '<h3>Course Syllabus - Fall 2019</h3>'
 date: '<h3>TF 1500-1700 Bldg. 640 Rm. 326 (4.0 Credit Hours)</h3>'
-output: pdf_document
+output: html_document
 ---
 
 ```{r, echo=FALSE}
@@ -25,7 +25,7 @@ The objective of this course is to help students build an automated text analysi
 - Use software to analyze text data and communicate the results of their analyses.
 - Review code using relevant R and/or python packages in text mining.
 
-In this year's course the pipeline will be constructed using the [**1.4 million cell phone reviews: ratings and reviews for all brands of cell phones**](https://www.kaggle.com/masaladata/14-million-cell-phone-reviews/version/1#_=_) dataset.  The idea for the course will be to build a pipeline based
+In this year's course the pipeline will be constructed using the [**1.4 million cell phone reviews: ratings and reviews for all brands of cell phones**](https://www.kaggle.com/masaladata/14-million-cell-phone-reviews/version/1#_=_) dataset.  The idea for will be to build a text analysis pipeline composed of modules that can be used to implement specific methods to a dataset in whatever sequence is required to achieve some desired result(s).
 
 ## Pre-requisites & Co-requisites
 
@@ -220,14 +220,14 @@ This project is worth __60% of your total grade__ for this class.  You will prov
 
 - Title Slide
 - Purpose 
-    - What are you doing?
-    -	Why?
--	Background
-    -	Context into your analysis
-    - Insight into your topic with rudimentary analysis
--	Interim Analysis
-   -	Work not used in any other class previously
--	Discuss Next Steps
+  - What are you doing?
+  - Why?
+- Background
+  - Context into your analysis
+  - Insight into your topic with rudimentary analysis
+- Interim Analysis
+  - Work not used in any other class previously
+- Discuss Next Steps
 
 2. __Project Report - Due Friday, 6 December (50 pts)__ - For this part of the project assignment, white a short description of your text analysis, including how it informs on the problem laid out in your project proposal.  Focus on insights, trends and analysis. This is where you are allowed to put the work you’ve done, but remember this document should flow.  Your document should include any charts/graphs relevant to the discussion imbedded and referenced in the body of the document.  Bulky or large figures or charts and examples of your code should be put into the appendix(cies).  The format of the report should have at least the following headings: 
 
