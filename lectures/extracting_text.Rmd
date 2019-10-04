@@ -13,34 +13,151 @@ output:
 knitr::opts_chunk$set(echo = TRUE, comment = NA)
 ```
 
-
 ## Overview
 
-This document walks through the process of extracting text data from documents.  It is assumed that the documents from which the data will be extracted are saved using on of the following formats:
+It is not uncommon in text analysis for you to need to extract data from a volume of documents stored in multiple different formats.  For example, you need need to extract & merge text from a documents where one or more have been saved as the following file types:
 
-1. Plain text - i.e. notepad `.txt` files or a similar format
-2. Word Document
-3. PDF document - saved as an actual file and NOT as a scanned image
+- MS Word (.doc/.docx)
+- Portable document format (.pdf) 
+- Images of documents saved as a PDF (.pdf)
+- Raw text files (.txt)
+- Tabular data (.csv/.xls/.xlsx)
 
-There are a number of R packages and/or 3^rd^ party tools that can be used for this purpose.  I'll demo these tools by extracting the text from the `supreme_court_opinions_2017_sample` folder, note that all of these files are saved using the PDF format.
+This document walks through the process of extracting raw, unstructured text data from these different types of document formats.  There are a number of R packages and/or 3^rd^ party tools that can be used for this purpose.  We'll demo each of these tools on various datasets.  Typically, the text data you extract from a document will be stored in R as a character-class vector -- a vector object in which each element is a character string. However, it will be important to understand how the text is assigned to an element of this vector.  In some cases, each element will contain a single line of text, in others each element may contain an entire page.  In the extreme case, each element may contain the entire document.  In future lectures we'll look at how to manipulate the character vector from the raw form in which it was extracted into a form that is more desireable for analysis.
 
-## Extracting textual data from PDF documents
-
-The documents from which the text will be extracted are the United States Supreme Court Opinions from 2017.  This documents can be accessed from [**here**](https://www.supremecourt.gov/opinions/slipopinion/17).  There are a total of 85 documents in this corpus.  Rather than download each of these documents separately, I prefer to let R do this for me, you can too by using the code shown in the next section.  First, install and load the necessary packages.  The `pacman` package is a helpful package for simplifying the process of getting packages, let's install it first.
+Throughout this document you'll be asked to download and install several R packages from the CRAN.  While this is a pretty simple task, we can simplify it a little more by using the `pacman` package.  This package will allow us to install **and/or** load packages on the fly. You can install `pacman` on your machine by using the code in the chunk below
 
 ```{r, eval=FALSE}
-install.packages('pacman')
+install.packages("pacman")
 ```
 
-With the `pacman` package installed, we can easily install and load other packages we'll need to download the files from the web.
+## Extracting text... {.tabbed}
+
+### ...from text files
+
+Many different types of files may be save as raw text in a `.txt` file format.  Thus, it's important to know how to extract text from these types of files and understand that in some cases it may be preferred to work with text data that is stored in this format.
+
+To demonstrate extracting content from this type of file format, we'll work with the README document on the Github repository for this course.  While Github README files are stored in the Github-flavored markdown format, the file in it's raw form may be viewed by visiting <a target=" " href="https://raw.githubusercontent.com/AFIT-R/oper655_fa2019/master/README.md">**THIS SITE**</a>.
+
+In R, we can extract the text from this file using the `readLines()` function as shown in the code chunk below. 
+
+```{r}
+oper655_readme_url <- 
+  "https://raw.githubusercontent.com/AFIT-R/oper655_fa2019/master/README.md"
+
+oper_readme_text <- readLines(oper655_readme_url)
+
+str(oper_readme_text)
+
+head(oper_readme_text)
+```
+
+Looking at the structure and first six elements of the character vector `oper_readme_text` reveals that each element in the vector corresponds to a line of text in the original markdown document.  Looking more closely at the extracted text, we see that there are some features in the original text markdown document that did not get interpreted correctly.
+
+```{r}
+# Incorrecly interpreted curly quotes
+oper_readme_text[136]
+
+# Incorrecly interpreted elipsis ...
+oper_readme_text[251]
+
+# Incorrecly interpreted curly apostrophe
+oper_readme_text[264]
+```
+
+These issues result because the file was saved using a different type of <a target=" " href="https://www.w3.org/International/articles/definitions-characters/">**encoding**</a> that the reading tool used to extract the content.  In this case the original markdown document was saved using a **UTF-8** encoding, while the default assumption for the `readLines()` function was that the data would be saved using a **Unicode** encoding. In this case, we can rectify the problem by specifying the encoding used by `readLines()` to match that of the original document. Looking at the elements of the character vector that had previously contained undesireable Unicode structures reveals that specifying the correct encoding results in the extracted text looking as expected.
+
+```{r}
+oper_readme_text <- readLines(oper655_readme_url, encoding = "UTF-8")
+
+# Correcly interpreted curly quotes
+oper_readme_text[136]
+
+# Correcly interpreted elipsis ...
+oper_readme_text[251]
+
+# Correcly interpreted curly apostrophe
+oper_readme_text[264]
+```
+
+It's important to be aware of the encoding used to store text data is a document.  Using the wrong encoding could force you to perform a number of unnecessary and time-consuming tasks down the road.  Of course there are situations in which you are receiving the data "second-hand" and you're therefore unable to avoid the errors.  Or it may be that the document from which you are extracting uses symbols to denote sections or to make the document look "prettier".  In these cases, we must rely of regular expressions (aka regex) to remove and/or replace these symbols.  Regular expressions will be discussed in a future lecture.
+
+### ...from CSV/XLS/XLSX documents
+
+There may be instances when text data is only a portion of a larger dataset.  Examples of such datasets are survey data, customer review data or data extracted from Twitter.  These data are usually stored in a spreadsheet format where the text is contained in one column.
+
+In this section, we'll demonstrate various methods to extract text data from spreadsheet documents -- specifically those in which the data have been stored as comma separated values (CSV).  We'll focus on this file format because CSV files are commonly used to store and share spreadsheet data and because once we understand how to extract data from a CSV it's trivial to extend our workflow to XLS and XLSX documents.  The specific data we'll use are the <a target=" " href="https://www.kaggle.com/datafiniti/consumer-reviews-of-amazon-products">**Consumer Reviews of Amazon Products**</a> dataset made available by Datafiniti and posted to Kaggle.  The full dataset is spread across three CSV files, for this demonstration we'll focus on the `Datafiniti_Amazon_Consumer_Reviews_of_Amazon_Products_May19.csv` file. The URL we can use to extract the data from this file is as shown in the chunk below
+
+```{r}
+amazon_review_url <- "https://www.kaggle.com/datafiniti/consumer-reviews-of-amazon-products/download"
+
+temp <- tempfile()
+
+download.file(url = amazon_review_url, destfile = temp, method = "wget", mode = "w")
+#Set your browsing links 
+loginurl = "https://www.kaggle.com/account/login?phase=emailSignIn&returnUrl=%2F"
+dataurl  = amazon_review_url
+
+#Set user account data and agent
+pars=list(
+  UserName="auburngrads",
+  Password="ASM{ZMkVZq\7d,!UMroK"
+)
+agent="Mozilla/5.0" #or whatever 
+
+#Set RCurl pars
+curl = getCurlHandle()
+
+curlSetOpt(cookiejar="cookies.txt",  useragent = agent, followlocation = TRUE, curl=curl)
+#Also if you do not need to read the cookies. 
+#curlSetOpt(  cookiejar="", useragent = agent, followlocation = TRUE, curl=curl)
+
+#Post login form
+welcome=postForm(loginurl, .params = pars, curl=curl)
+
+bdown=function(url, file, curl){
+  f = CFILE(file, mode="wb")
+  curlPerform(url = url, writedata = f@ref, noprogress=FALSE, curl = curl)
+  close(f)
+}
+
+ret = bdown(dataurl, "c:\\test.csv",curl)
+
+rm(curl)
+gc()
+
+```
+
+There are at least four packages that contain functions which can be used for loading data from this CSV file.  The main reasons why anyone should choose one function from another are (1) the speed at which the data can be extracted and (2) the type of object that is created as result of extracting in the data.  I'll illustrate each function in turn.
+
+The first and most commonly used function is `read.csv()` from the `base` package that come pre-installed with R.  This function is used as shown in the chunk below
+
+```{r}
+amazon_review_data1 <- read.csv(url(amazon_review_url))
+```
+
+
+
+### ...from PDF documents
+
+The portable document format is often used to store text, expecially among government organizations. In this section we'll walk through the process of extracting text from the 2017 United States Supreme Court Opinions.  These documents can be accessed from [**this site**](https://www.supremecourt.gov/opinions/slipopinion/17).  In total, there are 85 documents in this corpus.  We could download and extract the text from each of these documents separately, but instead let's have R do this for us.  First, we'll need to install a few packages -- this is where `pacman` comes in handy.
 
 ```{r, eval=FALSE}
+# If you have already installed these packages pacman will load them
+# If not, pacman will install the packages and then load them
 pacman::p_load(XML,
                rvest,
                RCurl,
-               rprojroot)
+               rprojroot,
+               qdapTools,
+               pdftools,
+               antiword,
+               glue,
+               data.table,
+               tidyverse
+               vroom)
 ```
-
+`supreme_court_opinions_2017_sample` folder, note that all of these files are saved using the PDF format.
 ### Saving local copies of the documents 
 
 With these packages installed, we can now download the documents from the url using the code shown below.  <u>**However, do not run this code as it is written in the LOGM655 project - it will overwrite the existing files.  I'll show you what to change**</u>
@@ -54,8 +171,8 @@ url_root  <- 'https://www.supremecourt.gov'
 # helps locate where to save the files
 # Before going forward you should change 
 # these values to a location on your machine
-proj_root   <- find_root(is_rstudio_project)
-save_folder <- file.path(proj_root,'raw_data_files','supreme_court_opinions_2017')
+proj_root   <- rprojroot::find_root(is_rstudio_project)
+save_folder <- base::file.path(proj_root,'raw_data_files','supreme_court_opinions_2017')
 
 # Extract html/xml content from URL
 rcurl.doc <- RCurl::getURL(url, 
@@ -94,18 +211,11 @@ for(i in files) {
 }
 ```
 
-Now that we have these document downloaded locally, I'm going to use a small set of these documents `supreme_court_opinions_2017_sample` folder. Before we get too far, let's install some helpful packages.
-
-```{r}
-pacman::p_load(qdapTools,
-               pdftools,
-               antiword,
-               glue)
-```
+Now that we have these documents downloaded locally, I'm going to use a small set of these documents `supreme_court_opinions_2017_sample` folder. Before we get too far, let's install some helpful packages.
 
 ### Using the XpdfReader
 
-First, let's use XpdfReader by letting R talk to our system (i.e. command prompt or terminal).  Xpdf is an open source project developed by [**Glyph & Cog**](http://www.glyphandcog.com/) for viewing Portable Document Format (PDF)
+First, let's use XpdfReader by letting R talk to our system (i.e. command prompt or terminal).  Xpdf is an open source project developed by [**Glyph & Cog**](http://www.glyphandcog.com/) for viewing/manipulating (PDF)
 files.  The Xpdf project also includes **xpdf tools** which contain the following utilities that are useful for extracting data from pdf files:
 
 - pdftotext - Convert a PDF file to text
@@ -126,8 +236,7 @@ xpdf_tools <- 'C:/Program Files/xpdf-tools-win-4.00/bin64'
 Next we'll create a character vector containing the names of the files in the `supreme_court_opinions_2017_sample` folder.
 
 ```{r}
-library(rprojroot)
-root <- find_root(is_rstudio_project)
+root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 
 dest <- file.path(root, 'raw_data_files', 'supreme_court_opinions_2017_sample')
 
@@ -178,9 +287,9 @@ lapply(my_files,
 Now that the data has been extracted into a text file it can then be read into R as a character vector using the `readLines()` function. Note that each element in character vector is a line of text.  A line of text in defined by a certain number of characters, this number of characters may not coincide with the number of characters on the original pdf document.  If we desire to maintain the exact layout of the document we can specify the option `-layout` to maintain the original layout of the text.  
 
 ```{r}
-text_files <- list.files(path = dest, 
-                         pattern = "txt",  
-                         full.names = TRUE)
+text_files <- base::list.files(path = dest, 
+                               pattern = "txt",  
+                               full.names = TRUE)
 
 text1 <- readLines(con = text_files[1])
 text1[1:50]
@@ -207,10 +316,10 @@ The `pdftools` package does not contain a function to save the text directly to 
 
 ```{r eval=FALSE}
 writeLines(text = text2,
-           con = gsub('pdf','txt',file.path(dest,basename(my_files[1]))))
+           con = gsub('pdf','txt', file.path(dest,basename(my_files[1]))))
 ```
 
-## Extracting textual data from MS^&#174;^ Word documents
+## ...from MS^&#174;^ Word documents
 
 Once again, we need to download the Word files from the web, which can be done using the code below. <u>**Again, do not run this code as it is written in the LOGM655 project - it will overwrite the existing files.  I'll show you what to change**</u>
 
