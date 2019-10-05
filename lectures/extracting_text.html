@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Jason Freels" />
@@ -68,8 +69,6 @@ overflow: auto;
 margin-left: 2%;
 position: fixed;
 border: 1px solid #ccc;
-webkit-border-radius: 6px;
-moz-border-radius: 6px;
 border-radius: 6px;
 }
 
@@ -97,9 +96,14 @@ font-size: 12px;
 .tocify-subheader .tocify-subheader {
 text-indent: 30px;
 }
-
 .tocify-subheader .tocify-subheader .tocify-subheader {
 text-indent: 40px;
+}
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader {
+text-indent: 50px;
+}
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader {
+text-indent: 60px;
 }
 
 .tocify .tocify-item > a, .tocify .nav-list .nav-header {
@@ -503,13 +507,13 @@ float: none;
 
           item.append($("<a/>", {
 
-            "text": self.text()
+            "html": self.html()
 
           }));
 
         } else {
 
-          item.text(self.text());
+          item.html(self.html());
 
         }
 
@@ -1325,11 +1329,9 @@ h6 {
 }
 </style>
 
-<style type="text/css">pre {padding: 15px 0 15px 75px;border-style: solid;border-top-width: .75px;border-bottom-width: .75px;border-right-width: .75px;border-left-width: .75;border-color: #e7e7e7;color: #00428C;background-color: #e7e7e7;margin: 30px 150px 30px 0px;border-top-right-radius: 10px;border-top-left-radius: 10px;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;}pre code {font-size: 13pt;font-weight: 550;line-height: 120%;}li pre {margin-right: 0;border: none;font-family: "modern";}pre.sourceCode {font-size: 70%;background-color: #e6e6e6;margin: 5px 150px 5px -5px;line-height: 100%;padding: 15px 0 15px 75px;border-color: #e6e6e6;}code.sourceCode{font-size: 12pt;border: none;font-weight: 550;white-space: pre !important;}code {font-size: .8em;font-family: 'Source Code Pro', 'Courier New', monospace;font-weight: normal;padding: .1em .3em .1em .3em;border-radius: .3em;}p code {font-size: .8em;font-family: 'Source Code Pro', 'Courier New', monospace;color: red;font-weight: normal;background-color: #e6e6e6;padding: .1em .3em .1em .3em;border-radius: .3em;white-space: nowrap;vertical-align: 10%;}code > span.kw { color: #007020; font-weight: bold; } code > span.dt { color: #902000; font-weight: bold; } code > span.dv { color: #40a070; } code > span.bn { color: #40a070; } code > span.fl { color: #40a070; } code > span.ch { color: #4070a0; } code > span.st { color: #4070a0; } code > span.co { color: #60a0b0; font-style: italic; } code > span.ot { color: #007020; } code > span.al { color: #ff0000; font-weight: bold; } code > span.fu { color: #06287e; } code > span.er { color: #ff0000; font-weight: bold; } code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.cn { color: #880000; } code > span.sc { color: #4070a0; } code > span.vs { color: #4070a0; } code > span.ss { color: #bb6688; } code > span.im { } code > span.va { color: #19177c; } code > span.cf { color: #007020; font-weight: bold; } code > span.op { color: #666666; } code > span.bu { } code > span.ex { } code > span.pp { color: #bc7a00; } code > span.at { color: #7d9029; } code > span.do { color: #ba2121; font-style: italic; } code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } div.main-container {max-width: 1800px !important;}p {font-size: 13pt !important;}</style>
+<style type="text/css">pre {padding: 15px 0 15px 75px;border-style: solid;border-top-width: .75px;border-bottom-width: .75px;border-right-width: .75px;border-left-width: .75;border-color: #e7e7e7;color: #00428C;background-color: #e7e7e7;width: 90%;margin: 30px auto 30px auto;border-top-right-radius: 10px;border-top-left-radius: 10px;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;}pre code {font-size: 13pt;font-weight: 550;line-height: 120%;}li pre {margin-right: 0;border: none;font-family: "modern";}pre.sourceCode {font-size: 70%;background-color: #e6e6e6;margin: 5px 150px 5px -5px;line-height: 100%;padding: 15px 0 15px 75px;border-color: #e6e6e6;}code.sourceCode{font-size: 12pt;border: none;font-weight: 550;white-space: pre !important;}code {font-size: .8em;font-family: 'Source Code Pro', 'Courier New', monospace;font-weight: normal;padding: .1em .3em .1em .3em;border-radius: .3em;background-color: #e6e6e6;}p code {color: red;white-space: nowrap;vertical-align: 10%;}li code {color: red;white-space: nowrap;vertical-align: 10%;}code > span.kw { color: #007020; font-weight: bold; } code > span.dt { color: #902000; font-weight: bold; } code > span.dv { color: #40a070; } code > span.bn { color: #40a070; } code > span.fl { color: #40a070; } code > span.ch { color: #4070a0; } code > span.st { color: #4070a0; } code > span.co { color: #60a0b0; font-style: italic; } code > span.ot { color: #007020; } code > span.al { color: #ff0000; font-weight: bold; } code > span.fu { color: #06287e; } code > span.er { color: #ff0000; font-weight: bold; } code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.cn { color: #880000; } code > span.sc { color: #4070a0; } code > span.vs { color: #4070a0; } code > span.ss { color: #bb6688; } code > span.im { } code > span.va { color: #19177c; } code > span.cf { color: #007020; font-weight: bold; } code > span.op { color: #666666; } code > span.bu { } code > span.ex { } code > span.pp { color: #bc7a00; } code > span.at { color: #7d9029; } code > span.do { color: #ba2121; font-style: italic; } code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } div.main-container {max-width: 1800px !important;}p {font-size: 13pt !important;}ul li {font-size: 13pt !important;}a {font-weight: bold !important;◄}#TOC > ul > li {font-size: 12pt;font-weight: normal;}</style>
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -1343,7 +1345,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1354,11 +1355,12 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -1416,48 +1418,9 @@ button.code-folding-btn:focus {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -1506,8 +1469,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -1516,6 +1477,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -1534,303 +1505,215 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Importing Text From Documents</h1>
-<h4 class="author"><em>Jason Freels</em></h4>
-<h4 class="date"><em>10/9/2018</em></h4>
+<h4 class="author">Jason Freels</h4>
+<h4 class="date">10/9/2018</h4>
 
 </div>
 
 
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>This document walks through the process of extracting text data from documents. It is assumed that the documents from which the data will be extracted are saved using on of the following formats:</p>
-<ol style="list-style-type: decimal">
-<li>Plain text - i.e. notepad <code>.txt</code> files or a similar format</li>
-<li>Word Document</li>
-<li>PDF document - saved as an actual file and NOT as a scanned image</li>
-</ol>
-<p>There are a number of R packages and/or 3<sup>rd</sup> party tools that can be used for this purpose. I’ll demo these tools by extracting the text from the <code>supreme_court_opinions_2017_sample</code> folder, note that all of these files are saved using the PDF format.</p>
-</div>
-<div id="extracting-textual-data-from-pdf-documents" class="section level2">
-<h2>Extracting textual data from PDF documents</h2>
-<p>The documents from which the text will be extracted are the United States Supreme Court Opinions from 2017. This documents can be accessed from <a href="https://www.supremecourt.gov/opinions/slipopinion/17"><strong>here</strong></a>. There are a total of 85 documents in this corpus. Rather than download each of these documents separately, I prefer to let R do this for me, you can too by using the code shown in the next section. First, install and load the necessary packages. The <code>pacman</code> package is a helpful package for simplifying the process of getting packages, let’s install it first.</p>
-<pre class="r"><code>install.packages('pacman')</code></pre>
-<p>With the <code>pacman</code> package installed, we can easily install and load other packages we’ll need to download the files from the web.</p>
+<p>In a text analysis, a uncommon first step is knowing how to extract data from a volume of documents that may be stored in multiple different file formats. For example, you might need to extract text from documents where one or more have been saved with the following file format types:</p>
+<ul>
+<li>MS Word (.doc/.docx)</li>
+<li>Portable document format (.pdf)</li>
+<li>Images of documents saved as a PDF (.pdf)</li>
+<li>Raw text files (.txt)</li>
+<li>Tabular data (.csv/.xls/.xlsx)</li>
+</ul>
+<p>This lecture walks through the process of extracting raw, unstructured text data from these different types of document formats. In doing this we’ll encounter several R packages and/or 3<sup>rd</sup> party tools that have been developed for this purpose – we’ll demo each of these tools on various datasets.</p>
+<p>Typically, the text data you extract from a document will be stored in R as a character-class vector – a vector object in which each element is a character string. It will be important to understand how the text is assigned to each element of this output vector. In some cases, each element may contain a single line of text, in others each element may contain an entire page. In the extreme case, each element may contain the entire document. In future lectures we’ll look at how to manipulate the character vector to go from the raw text data that was initially extracted into a form that is more desireable for analysis.</p>
+<p>Throughout this document you’ll be asked to download and install several R packages from the CRAN. While this is a simple task, let’s take the extra step by using the <code>pacman</code> package. The <code>pacman</code> package allows us to install <strong>and/or</strong> load packages on the fly. To use <code>pacman</code>, you first need to install it on your machine by using the code in the chunk below.</p>
+<pre class="r"><code>install.packages(&quot;pacman&quot;)</code></pre>
+<p>With <code>pacman</code> installed, we can use the <code>p_load()</code> function to install and or load the package we’ll need. When invoked, the <code>p_load()</code> function queries the list of <code>installed.packages()</code> currently in our package library. If the package is already installed, <code>p_load()</code> loads the package in your current workspace - making it available to use. If the package is not already installed, <code>p_load()</code> installs the package from the CRAN and then loads the package. The code chunk below can be used to install and/or load the packages we’ll need in this lecture.</p>
 <pre class="r"><code>pacman::p_load(XML,
                rvest,
                RCurl,
-               rprojroot)</code></pre>
-<div id="saving-local-copies-of-the-documents" class="section level3">
-<h3>Saving local copies of the documents</h3>
-<p>With these packages installed, we can now download the documents from the url using the code shown below. <u><strong>However, do not run this code as it is written in the LOGM655 project - it will overwrite the existing files. I’ll show you what to change</strong></u></p>
-<pre class="r"><code># Assign the URL to a text string
-url_root  &lt;- 'https://www.supremecourt.gov'
-     url  &lt;- 'https://www.supremecourt.gov/opinions/slipopinion/17'
-     
-# Assign the root of the project this
-# helps locate where to save the files
-# Before going forward you should change 
-# these values to a location on your machine
-proj_root   &lt;- find_root(is_rstudio_project)
-save_folder &lt;- file.path(proj_root,'raw_data_files','supreme_court_opinions_2017')
-
-# Extract html/xml content from URL
-rcurl.doc &lt;- RCurl::getURL(url, 
-                           .opts = RCurl::curlOptions(followlocation = TRUE))
-
-# Parse html content 
-url_parsed &lt;- XML::htmlParse(rcurl.doc, asText = TRUE)
-
-# We need to get the href attributes from 
-# the anchor tags &lt;a&gt; stored in the table 
-# as table data tags &lt;td&gt;
-# First, let's get all of the attributes
-attrs &lt;- XML::xpathApply(url_parsed, &quot;//td//a&quot;, XML::xmlAttrs)
-
-# Next, we'll split out the hrefs 
-# from the other attributes
-hrefs &lt;- sapply(seq_along(attrs), FUN = function(x) attrs[[x]][['href']])
-
-# Then, we only want the hrefs for the files 
-# that have a .pdf file extension
-pdfs  &lt;- hrefs[tools::file_ext(hrefs) == 'pdf']
-
-# Construct a list of URL's for each file
-# by pasting two character strings together  
-files &lt;- paste0(url_root,pdfs)
-
-# loop through each element in the files
-# vector and download the file to destfile
-for(i in files) {
-  
-  filename &lt;- basename(i)
-  download.file(i, 
-                destfile = file.path(save_folder,filename),
-                method = 'curl')
-  
-}</code></pre>
-<p>Now that we have these document downloaded locally, I’m going to use a small set of these documents <code>supreme_court_opinions_2017_sample</code> folder. Before we get too far, let’s install some helpful packages.</p>
-<pre class="r"><code>pacman::p_load(qdapTools,
+               rprojroot,
+               qdapTools,
                pdftools,
                antiword,
-               glue)</code></pre>
+               glue,
+               data.table,
+               tidyverse,
+               vroom)</code></pre>
+<p>In the sections below I demonstrate how to extract text data from various types of file formats. Click on each tab to learn more</p>
 </div>
-<div id="using-the-xpdfreader" class="section level3">
-<h3>Using the XpdfReader</h3>
-<p>First, let’s use XpdfReader by letting R talk to our system (i.e. command prompt or terminal). Xpdf is an open source project developed by <a href="http://www.glyphandcog.com/"><strong>Glyph &amp; Cog</strong></a> for viewing Portable Document Format (PDF) files. The Xpdf project also includes <strong>xpdf tools</strong> which contain the following utilities that are useful for extracting data from pdf files:</p>
+<div id="extracting-text-from-txt-files" class="section level2">
+<h2>Extracting text from <code>txt</code> files</h2>
+<p>Many different types of files may be saved as raw text using a <code>.txt</code> file format. Thus, it’s important to know how to extract text from these types of files and understand that in some cases it may be preferred to work with text data that is stored in this format.</p>
+<p>To demonstrate extracting content from this type of file format, we’ll work with the README document on the Github repository for this course. While Github README files are stored in the Github-flavored markdown format, the file in it’s raw form may be viewed by visiting <a target=" " href="https://raw.githubusercontent.com/AFIT-R/oper655_fa2019/master/README.md"><strong>THIS SITE</strong></a>.</p>
+<p>In R, we can extract the text from this file using the <code>readLines()</code> function as shown in the code chunk below.</p>
+<pre class="r"><code>oper655_readme_url &lt;- 
+  &quot;https://raw.githubusercontent.com/AFIT-R/oper655_fa2019/master/README.md&quot;
+
+oper_readme_text &lt;- readLines(oper655_readme_url)
+
+str(oper_readme_text)</code></pre>
+<pre><code> chr [1:407] &quot;OPER 655 - Text Mining&quot; &quot;================&quot; &quot;&lt;h3&gt;&quot; &quot;&quot; ...</code></pre>
+<pre class="r"><code>head(oper_readme_text)</code></pre>
+<pre><code>[1] &quot;OPER 655 - Text Mining&quot;      &quot;================&quot;           
+[3] &quot;&lt;h3&gt;&quot;                        &quot;&quot;                           
+[5] &quot;Course Syllabus - Fall 2019&quot; &quot;&quot;                           </code></pre>
+<p>Looking at the structure and first six elements of the character vector <code>oper_readme_text</code> reveals that each element in the vector corresponds to a line of text in the original markdown document. Looking more closely at the extracted text, we see that there are some features in the original text markdown document that did not get interpreted correctly.</p>
+<pre class="r"><code># Incorrecly interpreted curly quotes
+oper_readme_text[136]</code></pre>
+<pre><code>[1] &quot;the course â\200œRoll Callâ\200\235. Read and follow the instructions to post your&quot;</code></pre>
+<pre class="r"><code># Incorrecly interpreted elipsis ...
+oper_readme_text[251]</code></pre>
+<pre><code>[1] &quot;produce better resultsâ\200¦faster.&quot;</code></pre>
+<pre class="r"><code># Incorrecly interpreted curly apostrophe
+oper_readme_text[264]</code></pre>
+<pre><code>[1] &quot;especially if the project has a deadline. Thus, itâ\200\231s important that&quot;</code></pre>
+<p>These issues result because the file was saved using a different type of <a target=" " href="https://www.w3.org/International/articles/definitions-characters/"><strong>encoding</strong></a> that the reading tool used to extract the content. In this case the original markdown document was saved using a <strong>UTF-8</strong> encoding, while the default assumption for the <code>readLines()</code> function was that the data would be saved using a <strong>Unicode</strong> encoding. In this case, we can rectify the problem by specifying the encoding used by <code>readLines()</code> to match that of the original document. Looking at the elements of the character vector that had previously contained undesireable Unicode structures reveals that specifying the correct encoding results in the extracted text looking as expected.</p>
+<pre class="r"><code>oper_readme_text &lt;- readLines(oper655_readme_url, encoding = &quot;UTF-8&quot;)
+
+# Correcly interpreted curly quotes
+oper_readme_text[136]</code></pre>
+<pre><code>[1] &quot;the course “Roll Call”. Read and follow the instructions to post your&quot;</code></pre>
+<pre class="r"><code># Correcly interpreted elipsis ...
+oper_readme_text[251]</code></pre>
+<pre><code>[1] &quot;produce better results…faster.&quot;</code></pre>
+<pre class="r"><code># Correcly interpreted curly apostrophe
+oper_readme_text[264]</code></pre>
+<pre><code>[1] &quot;especially if the project has a deadline. Thus, it’s important that&quot;</code></pre>
+<p>It’s important to be aware of the encoding used to store text data is a document. Using the wrong encoding could force you to perform a number of unnecessary and time-consuming tasks down the road. Of course there are situations in which you are receiving the data “second-hand” and you’re therefore unable to avoid the errors. Or it may be that the document from which you are extracting uses symbols to denote sections or to make the document look “prettier”. In these cases, we must rely of regular expressions (aka regex) to remove and/or replace these symbols. Regular expressions will be discussed in a future lecture.</p>
+</div>
+<div id="extracting-text-from-csvxlsxlsx-files" class="section level2">
+<h2>Extracting text from <code>csv</code>/<code>xls</code>/<code>xlsx</code> files</h2>
+<p>In some cases text data is only a portion of a larger dataset. Examples of this include survey data, customer review data, or data extracted from Twitter. These data are usually stored in a spreadsheet format where the text data is contained in one column.</p>
+<p>In this section, we’ll demonstrate various methods to extract text data from spreadsheet documents – specifically those in which the data have been stored as comma separated values (CSV). We’ll focus CSV files becaues they are commonly used to store and share spreadsheet data and because once we understand how to extract data from a CSV it’s trivial to extend our workflow to XLS and XLSX documents. The specific data we’ll use are the <a target=" " href="https://www.kaggle.com/datafiniti/consumer-reviews-of-amazon-products"><strong>Consumer Reviews of Amazon Products</strong></a> dataset made available by Datafiniti and posted to Kaggle. The full dataset is spread across three CSV files, for this demonstration we’ll focus on the <code>1429_1.csv</code> file. In this case, the file has already been downloaded and made a part of this repository. The location of the file, relative to the root of this repository, is assigned using the following code.</p>
+<pre class="r"><code>root &lt;- rprojroot::find_root(rprojroot::is_rstudio_project)
+
+(amazon_review_file &lt;- file.path(root, &quot;data&quot;,&quot;csv&quot;, &quot;1429_1.csv&quot;))</code></pre>
+<pre><code>[1] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/csv/1429_1.csv&quot;</code></pre>
+<p>We can review information about this specific file from <a target=" " href="https://www.kaggle.com/datafiniti/consumer-reviews-of-amazon-products#1429_1.csv"><strong>this site</strong></a> on Kaggle. On the site we see that the size of this file is 46.72 MB and the dataset within the file has 20 columns. The site does not indicate how may rows are in the dataset, but we can determine this after reading in the data.</p>
+<p>There are at least four packages that contain functions which can be used for loading data from this CSV file. The main reasons why anyone should choose one function from another are (1) the speed at which the data can be extracted, (2) the memory required to store the object after extraction, and (2) the class of the object created as result of the extraction. I’ll illustrate each of these function in turn, outlining some of the key differences.</p>
+<div id="using-utilsread.csv" class="section level3">
+<h3>Using <code>utils::read.csv()</code></h3>
+<p>The first and most commonly used function is <code>read.csv()</code> from the <code>base</code> package that come pre-installed with R. This function is used as shown in the chunk below</p>
+<pre class="r"><code># system.time returns the time required to evaluate the expression in {}
+time1 &lt;- system.time({ amazon_review_data_1 &lt;- read.csv(amazon_review_file) })</code></pre>
 <ul>
-<li>pdftotext - Convert a PDF file to text</li>
-<li>pdftohtml - Convert a PDF file to HTML</li>
-<li>pdfinfo - Dump a PDF file’s Info dictionary (plus some other useful information)</li>
-<li>pdffonts - List the fonts used in a PDF file and various information for each font</li>
-<li>pdfdetach - List or extract embedded files (attachments) from a PDF file</li>
-<li>pdftoppm - Convert a PDF file to a series of PPM/PGM/PBM-format bitmaps</li>
-<li>pdftopng - Convert a PDF file to a series of PNG image files</li>
-<li>pdfimages - Extract the images from a PDF file</li>
+<li><strong>Execution time:</strong> 2.5 seconds</li>
+<li><strong>Memory required:</strong> 19.18 MB</li>
+<li><strong>Object class:</strong> data.frame</li>
+<li><strong>Notes:</strong> <code>read.csv</code> hass the slowest execution time of the four functions, but also results the smallest object size. The only reason this function is used more often than the others is because it is the oldest and comes preinstalled with R as part of the <code>utils</code> package. Another <strong>very</strong> important note is how <code>read.csv</code> treats strings. Let’s look at the structure of the <code>reviews.text</code> column (the column that contains the actual review).</li>
 </ul>
-<p>To use these utilities we must first download xpdf and xpdf tools from <a href="http://www.xpdfreader.com/"><strong>this site</strong></a>. After downloading and unzipping xpdf tools, make sure to note the file location where it was saved. On my machine, the main xpdf folder is located at</p>
-<pre class="r"><code>xpdf_tools &lt;- 'C:/Program Files/xpdf-tools-win-4.00/bin64'</code></pre>
-<p>Next we’ll create a character vector containing the names of the files in the <code>supreme_court_opinions_2017_sample</code> folder.</p>
-<pre class="r"><code>library(rprojroot)
-root &lt;- find_root(is_rstudio_project)
-
-dest &lt;- file.path(root, 'raw_data_files', 'supreme_court_opinions_2017_sample')
-
-# make a vector of PDF file names
-my_files &lt;- list.files(path = dest, 
-                       pattern = &quot;pdf&quot;,  
-                       full.names = TRUE)
-
-my_files</code></pre>
-<pre><code>[1] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017_sample/15-1204_f29g.pdf&quot;    
-[2] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017_sample/15-1439_8njq.pdf&quot;    
-[3] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017_sample/15-1485_new_8n59.pdf&quot;
-[4] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017_sample/15-1485diff_758b.pdf&quot;
-[5] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017_sample/15-1498_1b8e.pdf&quot;    
-[6] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017_sample/15-1509_4fbi.pdf&quot;    
-[7] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017_sample/16-111_new2_22p3.pdf&quot;
-[8] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017_sample/16-111diff_868c.pdf&quot; 
-[9] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017_sample/16-111diff2_e1pf.pdf&quot;</code></pre>
-<p>Now, let’s use the <code>pdftotext</code> utility to extract the text from the first document in <code>my_files</code>. The <code>pdftotext</code> utility converts each PDF file in into a text file. By default, the text file is created in the same directory as the PDF file. Since this is a command-line utility we need to construct the commands to send, normally this would look like the code below.</p>
-<pre class="r"><code>if(nchar(Sys.which('pdftotext') &gt; 0)) {
-  
-   system('pdftotext')
-
-}</code></pre>
-<p>To have R call pdftotext, we need to paste (or glue) these four separate charater strings together into a single command. This can be done as shown below.</p>
-<pre class="r"><code>cmd1 &lt;- 'pdftotext' # which utility are we calling?
-cmd2 &lt;- ''          # which options? - here we use none
-cmd3 &lt;- my_files[1] # which file to convert
-cmd4 &lt;- ''          # which file to write to
-
-# Two options to connect the strings
-CMD1 &lt;- glue::glue(&quot;{cmd1} {cmd2} {cmd3} {cmd4}&quot;)
-CMD2 &lt;- paste(cmd1, cmd2, cmd3, cmd4, sep = ' ')</code></pre>
-<p>Now, we send this command to either the command prompt or terminal, depending on the type of OS being used.</p>
-<pre class="r"><code>system(CMD1)</code></pre>
-<p>To have <code>pdftotext</code> do this action recursively for each of the files we can run the above command in a loop or use one of the apply functions, in this case <code>lapply()</code></p>
-<pre class="r"><code>lapply(my_files, 
-       FUN = function(x) system(glue::glue(&quot;pdftotext {x}&quot;), wait = FALSE))</code></pre>
-<pre><code>[[1]]
-[1] 0
-
-[[2]]
-[1] 0
-
-[[3]]
-[1] 0
-
-[[4]]
-[1] 0
-
-[[5]]
-[1] 0
-
-[[6]]
-[1] 0
-
-[[7]]
-[1] 0
-
-[[8]]
-[1] 0
-
-[[9]]
-[1] 0</code></pre>
-<p>Now that the data has been extracted into a text file it can then be read into R as a character vector using the <code>readLines()</code> function. Note that each element in character vector is a line of text. A line of text in defined by a certain number of characters, this number of characters may not coincide with the number of characters on the original pdf document. If we desire to maintain the exact layout of the document we can specify the option <code>-layout</code> to maintain the original layout of the text.</p>
-<pre class="r"><code>text_files &lt;- list.files(path = dest, 
-                         pattern = &quot;txt&quot;,  
-                         full.names = TRUE)
-
-text1 &lt;- readLines(con = text_files[1])</code></pre>
-<pre><code>Warning in readLines(con = text_files[1]): incomplete final line
-found on 'C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/
-supreme_court_opinions_2017_sample/15-1204_f29g.txt'</code></pre>
-<pre class="r"><code>text1[1:50]</code></pre>
-<pre><code> [1] &quot;(Slip Opinion)              OCTOBER TERM, 2017                                       1&quot;
- [2] &quot;&quot;                                                                                      
- [3] &quot;                                       Syllabus&quot;                                       
- [4] &quot;&quot;                                                                                      
- [5] &quot;         NOTE: Where it is feasible, a syllabus (headnote) will be released, as is&quot;    
- [6] &quot;       being done in connection with this case, at the time the opinion is issued.&quot;    
- [7] &quot;       The syllabus constitutes no part of the opinion of the Court but has been&quot;      
- [8] &quot;       prepared by the Reporter of Decisions for the convenience of the reader.&quot;       
- [9] &quot;       See United States v. Detroit Timber &amp; Lumber Co., 200 U. S. 321, 337.&quot;          
-[10] &quot;&quot;                                                                                      
-[11] &quot;&quot;                                                                                      
-[12] &quot;SUPREME COURT OF THE UNITED STATES&quot;                                                    
-[13] &quot;&quot;                                                                                      
-[14] &quot;                                       Syllabus&quot;                                       
-[15] &quot;&quot;                                                                                      
-[16] &quot; JENNINGS ET AL. v. RODRIGUEZ ET AL., INDIVIDUALLY&quot;                                    
-[17] &quot;     AND ON BEHALF OF ALL OTHERS SIMILARLY SITUATED&quot;                                   
-[18] &quot;&quot;                                                                                      
-[19] &quot;CERTIORARI TO THE UNITED STATES COURT OF APPEALS FOR&quot;                                  
-[20] &quot;                  THE NINTH CIRCUIT&quot;                                                   
-[21] &quot;&quot;                                                                                      
-[22] &quot;    No. 15â\200“1204. Argued November 30, 2016â\200”Reargued October 3,&quot;                     
-[23] &quot;                 2017â\200”Decided February 27, 2018&quot;                                     
-[24] &quot;Immigration officials are authorized to detain certain aliens in the&quot;                  
-[25] &quot;  course of immigration proceedings while they determine whether&quot;                      
-[26] &quot;  those aliens may be lawfully present in the country. For example,&quot;                   
-[27] &quot;  Â§1225(b) of Title 8 of the U. S. Code authorizes the detention of cer-&quot;             
-[28] &quot;  tain aliens seeking to enter the country. Section 1225(b)(1) applies to&quot;             
-[29] &quot;  aliens initially determined to be inadmissible due to fraud, misrepre-&quot;              
-[30] &quot;  sentation, or lack of valid documentation, and to certain other aliens&quot;              
-[31] &quot;  designated by the Attorney General in his discretion. Section&quot;                       
-[32] &quot;  1225(b)(2) is a catchall provision that applies to most other appli-&quot;                
-[33] &quot;  cants for admission not covered by Â§1225(b)(1). Under Â§1225(b)(1),&quot;                
-[34] &quot;  aliens are normally ordered removed â\200œwithout further hearing or re-&quot;               
-[35] &quot;  view,â\200\235 Â§1225(b)(1)(A)(i), but an alien indicating either an intention to&quot;         
-[36] &quot;  apply for asylum or a credible fear of persecution, Â§1225(b)(1)(A)(ii),&quot;            
-[37] &quot;  â\200œshall be detainedâ\200\235 while that alienâ\200\231s asylum application is pending,&quot;         
-[38] &quot;  Â§1225(b)(1)(B)(ii). Aliens covered by Â§1225(b)(2) in turn â\200œshall be de-&quot;         
-[39] &quot;  tained for a [removal] proceedingâ\200\235 if an immigration officer â\200œdeter-&quot;            
-[40] &quot;  mines that [they are] not clearly and beyond a doubt entitledâ\200\235 to ad-&quot;             
-[41] &quot;  mission. Â§1225(b)(2)(A).&quot;                                                           
-[42] &quot;    The Government is also authorized to detain certain aliens already&quot;                
-[43] &quot;  in the country. Section 1226(a)â\200\231s default rule permits the Attorney&quot;               
-[44] &quot;  General to issue warrants for the arrest and detention of these aliens&quot;              
-[45] &quot;  pending the outcome of their removal proceedings. The Attorney&quot;                      
-[46] &quot;  General â\200œmay releaseâ\200\235 these aliens on bond, â\200œ[e]xcept as provided in&quot;          
-[47] &quot;  subsection (c) of this section.â\200\235 Section 1226(c) in turn states that the&quot;          
-[48] &quot;  Attorney General â\200œshall take into custody any alienâ\200\235 who falls into&quot;             
-[49] &quot;  one of the enumerated categories involving criminal offenses and ter-&quot;               
-[50] &quot;\f2                      JENNINGS v. RODRIGUEZ&quot;                                        </code></pre>
-<p>The remaining utilities in xpdf tools can be used in a similar manner as to what what shown here for <code>pdftotext</code>.</p>
+<pre class="r"><code>str(amazon_review_data_1$reviews.text)</code></pre>
+<pre><code> Factor w/ 34660 levels &quot;&quot;,&quot;&#39;ve owned the Kindle Keyboard, 2nd generation Paperwhite and now the Oasis. I love the Oasis very much. The erg&quot;| __truncated__,..: 30403 7361 17938 9850 11205 27867 7376 12407 7101 14728 ...</code></pre>
+<p>We see that each review is not stored as a character string, but as a factor numbered 1:34660. This is a critical issue that analysts often encounter with working with strings. This issue results from the fact that <code>read.csv()</code> calls the function <code>data.frame()</code> to store the data as a data frame. Within the <code>data.frame()</code> function there’s an argument <code>stringsAsFactors</code> with is set by default to <code>TRUE</code>. Therefore, we can easily fix this problem by setting <code>stringsAsFactors = FALSE</code> with our call to <code>read.csv()</code>. Many have argued that the default value for this argument should be set to <code>FALSE</code>. However, with over 20 years of legacy code in use this is not likely to change.</p>
 </div>
-<div id="using-the-pdftools-package" class="section level3">
-<h3>Using the <code>pdftools</code> package</h3>
-<p>The pdftools package is an R interface to the Poppler C++ API. The package makes it easy to use several utilities based on ‘libpoppler’ for extracting text, fonts, attachments and metadata from a PDF file. The package also supports high quality rendering of PDF documents info PNG, JPEG, TIFF format, or into raw bitmap vectors for further processing in R. The <code>pdftools</code> contains the following user-level functions</p>
-<pre class="r"><code>data.frame(function_names = getNamespaceExports('pdftools'))</code></pre>
-<pre><code>   function_names
-1     pdf_convert
-2        pdf_info
-3         pdf_toc
-4        pdf_text
-5        pdf_data
-6 pdf_attachments
-7       pdf_fonts
-8  poppler_config
-9 pdf_render_page</code></pre>
-<p>that can be used to retreive information in a similar fashion as to what was shown for the xpdf tools. As example using the <code>pdf_text()</code> function extracts the text from a PDF file as a character vector. Note that in this case each character vector is an entire page.</p>
-<pre class="r"><code>text2 &lt;- pdftools::pdf_text(pdf = my_files[1])
-text2[1]</code></pre>
-<pre><code>[1] &quot;(Slip Opinion)                OCTOBER TERM, 2017                                    1\r\n                                         Syllabus\r\n          NOTE: Where it is feasible, a syllabus (headnote) will be released, as is\r\n        being done in connection with this case, at the time the opinion is issued.\r\n        The syllabus constitutes no part of the opinion of the Court but has been\r\n        prepared by the Reporter of Decisions for the convenience of the reader.\r\n        See United States v. Detroit Timber &amp; Lumber Co., 200 U. S. 321, 337.\r\nSUPREME COURT OF THE UNITED STATES\r\n                                         Syllabus\r\n JENNINGS ET AL. v. RODRIGUEZ ET AL., INDIVIDUALLY\r\n      AND ON BEHALF OF ALL OTHERS SIMILARLY SITUATED\r\n CERTIORARI TO THE UNITED STATES COURT OF APPEALS FOR\r\n                               THE NINTH CIRCUIT\r\n     No. 15–1204. Argued November 30, 2016—Reargued October 3,\r\n                        2017—Decided February 27, 2018\r\nImmigration officials are authorized to detain certain aliens in the\r\n   course of immigration proceedings while they determine whether\r\n   those aliens may be lawfully present in the country. For example,\r\n   §1225(b) of Title 8 of the U. S. Code authorizes the detention of cer-\r\n   tain aliens seeking to enter the country. Section 1225(b)(1) applies to\r\n   aliens initially determined to be inadmissible due to fraud, misrepre-\r\n   sentation, or lack of valid documentation, and to certain other aliens\r\n   designated by the Attorney General in his discretion. Section\r\n   1225(b)(2) is a catchall provision that applies to most other appli-\r\n   cants for admission not covered by §1225(b)(1). Under §1225(b)(1),\r\n   aliens are normally ordered removed “without further hearing or re-\r\n   view,” §1225(b)(1)(A)(i), but an alien indicating either an intention to\r\n   apply for asylum or a credible fear of persecution, §1225(b)(1)(A)(ii),\r\n   “shall be detained” while that alien’s asylum application is pending,\r\n   §1225(b)(1)(B)(ii). Aliens covered by §1225(b)(2) in turn “shall be de-\r\n   tained for a [removal] proceeding” if an immigration officer “deter-\r\n   mines that [they are] not clearly and beyond a doubt entitled” to ad-\r\n   mission. §1225(b)(2)(A).\r\n      The Government is also authorized to detain certain aliens already\r\n   in the country. Section 1226(a)’s default rule permits the Attorney\r\n   General to issue warrants for the arrest and detention of these aliens\r\n   pending the outcome of their removal proceedings. The Attorney\r\n   General “may release” these aliens on bond, “[e]xcept as provided in\r\n   subsection (c) of this section.” Section 1226(c) in turn states that the\r\n   Attorney General “shall take into custody any alien” who falls into\r\n   one of the enumerated categories involving criminal offenses and ter-\r\n&quot;</code></pre>
-<p>The <code>pdftools</code> package does not contain a function to save the text directly to a text file, however we can write to a text file using the <code>writeLines()</code> function. A downside to this is that we must keep track of the name of the original document when specifying a name to the new <code>.txt</code> file. This could lead to errors in assigning the wrong name to a file. Also, note that the output file contains a blank line between each line of text. This may not present a problem depending on the desired output, however it presents an extra step in our data preparation process.</p>
-<pre class="r"><code>writeLines(text = text2,
-           con = gsub('pdf','txt',file.path(dest,basename(my_files[1]))))</code></pre>
+<div id="using-readrread_csv" class="section level3">
+<h3>Using <code>readr::read_csv()</code></h3>
+<pre class="r"><code># system.time returns the time required to evaluate the expression in {}
+time2 &lt;- system.time({ amazon_review_data_2 &lt;- readr::read_csv(amazon_review_file) })</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  .default = col_character(),
+  reviews.date = col_datetime(format = &quot;&quot;),
+  reviews.dateAdded = col_datetime(format = &quot;&quot;),
+  reviews.didPurchase = col_logical(),
+  reviews.doRecommend = col_logical(),
+  reviews.id = col_logical(),
+  reviews.numHelpful = col_double(),
+  reviews.rating = col_double(),
+  reviews.userCity = col_logical(),
+  reviews.userProvince = col_logical()
+)</code></pre>
+<pre><code>See spec(...) for full column specifications.</code></pre>
+<pre><code>Warning: 1 parsing failure.
+  row        col           expected    actual                                                              file
+17511 reviews.id 1/0/T/F/TRUE/FALSE 111372787 &#39;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/csv/1429_1.csv&#39;</code></pre>
+<ul>
+<li><strong>Execution time:</strong> 0.31 seconds</li>
+<li><strong>Memory required:</strong> 20.31 MB</li>
+<li><strong>Object class:</strong> spec_tbl_df, tbl_df, tbl, data.frame</li>
+<li><strong>Notes:</strong> Executes faster than <code>read.csv()</code> but not as fast as the other functions yet to be discussed. The advantage of <code>read_csv()</code> is that the resulting object type is a <code>tbl_df</code> or <code>tbl</code> otherwise known as a tibble from the <code>tibble</code> package. Tibbles are the primary object type used by the tidyverse family of packages. Note that the object resulting from <code>read_csv()</code> also has the the <code>data.frame</code> class assigned to it. This means that any function that would work for a <code>data.frame</code>-class object will also work for a tibble – but the reverse is not true. Also, note that we don’t have the issue of <code>stringsAsFactors</code> when using <code>read_csv</code> – this will be the case for every function not called <code>read.csv()</code></li>
+</ul>
+</div>
+<div id="using-data.tablefread" class="section level3">
+<h3>Using <code>data.table::fread()</code></h3>
+<pre class="r"><code># system.time returns the time required to evaluate the expression in {}
+time3 &lt;- system.time({ amazon_review_data_3 &lt;- data.table::fread(amazon_review_file) })</code></pre>
+<ul>
+<li><strong>Execution time:</strong> 0.15 seconds</li>
+<li><strong>Memory required:</strong> 20.27 MB</li>
+<li><strong>Object class:</strong> data.table, data.frame</li>
+<li><strong>Notes:</strong> <code>fread()</code>, or fast read, and <code>vroom()</code> are considered the fastest options for reading in data. Note that we never told <code>fread()</code> that this was a csv file, the function just figured it out by looking at the data. The class of object returned includes <code>data.table</code> meaning that this type of object is required if you want to use the <code>data.table</code> syntax. The <code>data.table</code> package uses a SQL-like syntax for manipulating objects and has garnered an almost cult-like following among those who use it. Note that objects extracted using <code>fread()</code> are not tibbles, using functions from a tidyverse package are not guaranteed to work</li>
+</ul>
+</div>
+<div id="using-vroomvroom" class="section level3">
+<h3>Using <code>vroom::vroom()</code></h3>
+<pre class="r"><code># system.time returns the time required to evaluate the expression in {}
+time4 &lt;- system.time({ amazon_review_data_4 &lt;- vroom::vroom(amazon_review_file) })</code></pre>
+<pre><code>Observations: 34,660
+Variables: 21
+chr  [12]: id, name, asins, brand, categories, keys, manufacturer, reviews.dateSeen, ...
+dbl  [ 2]: reviews.numHelpful, reviews.rating
+lgl  [ 5]: reviews.didPurchase, reviews.doRecommend, reviews.id, reviews.userCity, re...
+dttm [ 2]: reviews.date, reviews.dateAdded
+
+Call `spec()` for a copy-pastable column specification
+Specify the column types with `col_types` to quiet this message</code></pre>
+<ul>
+<li><strong>Execution time:</strong> 0.14 seconds</li>
+<li><strong>Memory required:</strong> 20.31 MB</li>
+<li><strong>Object class:</strong> tbl_df, tbl, data.frame</li>
+<li><strong>Notes:</strong> The <code>vroom</code> package is the newest of the four discussed here. For many situations it may be an ideal trade-off between <code>read_csv()</code> and <code>fread()</code> as it’s execution speed is comparable to <code>fread()</code> but allows us to use the resulting object with the tidyverse.</li>
+</ul>
 </div>
 </div>
-<div id="extracting-textual-data-from-ms-word-documents" class="section level2">
-<h2>Extracting textual data from MS<sup>®</sup> Word documents</h2>
+<div id="extracting-text-.doc.docx..from-ms-word-documents" class="section level2">
+<h2>Extracting text <code>.doc/.docx</code>..from MS<sup>®</sup> Word documents</h2>
 <p>Once again, we need to download the Word files from the web, which can be done using the code below. <u><strong>Again, do not run this code as it is written in the LOGM655 project - it will overwrite the existing files. I’ll show you what to change</strong></u></p>
 <pre class="r"><code># Assign the URL to a text string
-url_root  &lt;- 'http://hhoppe.com/'
-     url  &lt;- 'http://hhoppe.com/microsoft_word_examples.html'
-     
+url_root  &lt;- &#39;http://hhoppe.com/&#39;
+     url  &lt;- &#39;http://hhoppe.com/microsoft_word_examples.html&#39;
+
 # Assign the root of the project this
 # helps locate where to save the files
-# Before going forward you should change 
+# Before going forward you should change
 # these values to a location on your machine
 proj_root   &lt;- find_root(is_rstudio_project)
-save_folder &lt;- file.path(proj_root,'raw_data_files','msword_document_examples')
+save_folder &lt;- file.path(proj_root,&#39;raw_data_files&#39;,&#39;msword_document_examples&#39;)
 
 # Extract html/xml content from URL
-rcurl.doc &lt;- RCurl::getURL(url, 
+rcurl.doc &lt;- RCurl::getURL(url,
                            .opts = RCurl::curlOptions(followlocation = TRUE))
 
-# Parse html content 
+# Parse html content
 url_parsed &lt;- XML::htmlParse(rcurl.doc, asText = TRUE)
 
-# We need to get the href attributes from 
-# the anchor tags &lt;a&gt; stored on the page 
+# We need to get the href attributes from
+# the anchor tags &lt;a&gt; stored on the page
 attrs &lt;- XML::xpathApply(url_parsed, &quot;//a&quot;, XML::xmlAttrs)
 
-# Next, we'll split out the hrefs 
+# Next, we&#39;ll split out the hrefs
 # from the other attributes
-hrefs &lt;- sapply(seq_along(attrs), FUN = function(x) attrs[[x]][['href']])
+hrefs &lt;- sapply(seq_along(attrs), FUN = function(x) attrs[[x]][[&#39;href&#39;]])
 
-# Then, we only want the hrefs for the files 
+# Then, we only want the hrefs for the files
 # that have a .docx file extension
-docx  &lt;- hrefs[tools::file_ext(hrefs) == 'docx']
+docx  &lt;- hrefs[tools::file_ext(hrefs) == &#39;docx&#39;]
 
-# Construct a list of URL's for each file
-# by pasting two character strings together  
+# Construct a list of URL&#39;s for each file
+# by pasting two character strings together
 files &lt;- paste0(url_root, docx)
 
 # loop through each element in the files
 # vector and download the file to destfile
 for(i in files) {
-  
+
   filename &lt;- basename(i)
-  download.file(i, 
+  download.file(i,
                 destfile = file.path(save_folder,filename),
-                method = 'curl')
-  
+                method = &#39;curl&#39;)
+
 }</code></pre>
 <div id="using-the-qdaptools-package" class="section level3">
 <h3>Using the <code>qdapTools</code> package</h3>
-<p>The <code>qdapTools</code> package is a collection of tools associated with the <code>qdap</code> package that may be useful outside of the context of text analysis. In the R language there are 4 packages in the <code>qdap</code> family used for qualitative data analysis</p>
+<p>The <code>qdapTools</code> package is a collection of tools associated with the <code>qdap</code> package that may be useful both within and outside the context of text analysis. In the R language there are 4 packages in the <code>qdap</code> family used for qualitative data analysis</p>
 <ul>
 <li><code>qdap</code> - Bridging the Gap Between Qualitative Data and Quantitative Analysis</li>
 <li><code>qdapTools</code> - Tools for the ‘qdap’ Package</li>
@@ -1838,38 +1721,39 @@ for(i in files) {
 <li><code>qdapDictionaries</code> - Dictionaries and Word Lists for the ‘qdap’ Package</li>
 </ul>
 <p>Within the <code>qdapTools</code> package is the <code>read_docx()</code> function that is used for (you’ll never guess) reading <code>.docx</code> files. First, let’s list the files like we did for the PDF files before.</p>
-<pre class="r"><code>library(rprojroot)
-root &lt;- find_root(is_rstudio_project)
+<pre class="r"><code>dest &lt;- file.path(root, &#39;data&#39;, &#39;msword&#39;)
 
-dest &lt;- file.path(root, 'raw_data_files', 'msword_document_examples')
-
-# make a vector of PDF file names
-ms_files &lt;- list.files(path = dest, 
-                       pattern = &quot;docx&quot;,  
+# make a vector of MS Word file names
+ms_files &lt;- list.files(path = dest,
+                       pattern = &quot;docx&quot;,
                        full.names = TRUE)
 
 ms_files</code></pre>
-<pre><code> [1] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/apptexsyn.docx&quot;  
- [2] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/dss.docx&quot;        
- [3] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/factorimage.docx&quot;
- [4] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/flash.docx&quot;      
- [5] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/fur.docx&quot;        
- [6] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/geomclipmap.docx&quot;
- [7] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/intersurf.docx&quot;  
- [8] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/mcgim.docx&quot;      
- [9] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/paratexsyn.docx&quot; 
-[10] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/perfecthash.docx&quot;
-[11] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/pyramid.docx&quot;    
-[12] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/ratrees.docx&quot;    
-[13] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/ravg.docx&quot;       
-[14] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/sphereparam.docx&quot;
-[15] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/ssp.docx&quot;        
-[16] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/tmpm.docx&quot;       </code></pre>
-<p>Now, let’s read in the content of the first file in the <code>ms_files</code> vector which is <u>C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/msword_document_examples/apptexsyn.docx</u>.</p>
+<pre><code> [1] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/apptexsyn.docx&quot;  
+ [2] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/dss.docx&quot;        
+ [3] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/factorimage.docx&quot;
+ [4] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/flash.docx&quot;      
+ [5] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/fur.docx&quot;        
+ [6] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/geomclipmap.docx&quot;
+ [7] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/intersurf.docx&quot;  
+ [8] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/mcgim.docx&quot;      
+ [9] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/paratexsyn.docx&quot; 
+[10] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/perfecthash.docx&quot;
+[11] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/pyramid.docx&quot;    
+[12] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/ratrees.docx&quot;    
+[13] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/ravg.docx&quot;       
+[14] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/sphereparam.docx&quot;
+[15] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/ssp.docx&quot;        
+[16] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/tmpm.docx&quot;       </code></pre>
+<p>Now, let’s read in the content of the first file in the <code>ms_files</code> vector which is <u>C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/apptexsyn.docx</u>.</p>
 <pre class="r"><code>docx1 &lt;- qdapTools::read_docx(file = ms_files[1])
 docx1[90]</code></pre>
 <pre><code>[1] &quot;Having created an 8D appearance-space exemplar, we can apply any pixel-based synthesis algorithm, e.g. evaluating a 55 neighborhood error by summing squared differences (in 8D rather than 3D).  But in fact, the greater information density permits synthesis using a more compact runtime neighborhood.&quot;</code></pre>
-<p>Here we see that this function extracts the text as paragraphs, rather than as lines or pages.</p>
+<p>Here we see that this function extracts the text as paragraphs, rather than as lines or as pages.</p>
+</div>
+<div id="using-the-antiword-package" class="section level3">
+<h3>Using the <code>antiword</code> package</h3>
+<p>If you are working with Word documents that were saved using the older <code>.doc</code> format the <code>antiword</code> package is useful for extracting text data from such files. Note that <code>antiword</code> will not extract data from <code>.docx</code> files as the newer standard utilizes Java code which <code>antiword</code> is unable to parse.</p>
 </div>
 </div>
 <div id="other-datasets" class="section level2">
@@ -1905,6 +1789,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
