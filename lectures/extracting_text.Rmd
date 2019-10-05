@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 
 ## Overview
 
-It is not uncommon in text analysis for you to need to extract data from a volume of documents stored in multiple different formats.  For example, you need need to extract & merge text from a documents where one or more have been saved as the following file types:
+In a text analysis, a uncommon first step is knowing how to extract data from a volume of documents that may be stored in multiple different file formats.  For example, you might need to extract text from documents where one or more have been saved with the following file format types:
 
 - MS Word (.doc/.docx)
 - Portable document format (.pdf) 
@@ -23,19 +23,37 @@ It is not uncommon in text analysis for you to need to extract data from a volum
 - Raw text files (.txt)
 - Tabular data (.csv/.xls/.xlsx)
 
-This document walks through the process of extracting raw, unstructured text data from these different types of document formats.  There are a number of R packages and/or 3^rd^ party tools that can be used for this purpose.  We'll demo each of these tools on various datasets.  Typically, the text data you extract from a document will be stored in R as a character-class vector -- a vector object in which each element is a character string. However, it will be important to understand how the text is assigned to an element of this vector.  In some cases, each element will contain a single line of text, in others each element may contain an entire page.  In the extreme case, each element may contain the entire document.  In future lectures we'll look at how to manipulate the character vector from the raw form in which it was extracted into a form that is more desireable for analysis.
+This lecture walks through the process of extracting raw, unstructured text data from these different types of document formats.  In doing this we'll encounter several R packages and/or 3^rd^ party tools that have been developed for this purpose -- we'll demo each of these tools on various datasets.  
 
-Throughout this document you'll be asked to download and install several R packages from the CRAN.  While this is a pretty simple task, we can simplify it a little more by using the `pacman` package.  This package will allow us to install **and/or** load packages on the fly. You can install `pacman` on your machine by using the code in the chunk below
+Typically, the text data you extract from a document will be stored in R as a character-class vector -- a vector object in which each element is a character string. It will be important to understand how the text is assigned to each element of this output vector.  In some cases, each element may contain a single line of text, in others each element may contain an entire page.  In the extreme case, each element may contain the entire document.  In future lectures we'll look at how to manipulate the character vector to go from the raw text data that was initially extracted into a form that is more desireable for analysis.
+
+Throughout this document you'll be asked to download and install several R packages from the CRAN.  While this is a simple task, let's take the extra step by using the `pacman` package.  The `pacman` package allows us to install **and/or** load packages on the fly.  To use `pacman`, you first need to install it on your machine by using the code in the chunk below.
 
 ```{r, eval=FALSE}
 install.packages("pacman")
 ```
 
-## Extracting text... {.tabbed}
+With `pacman` installed, we can use the `p_load()` function to install and or load the package we'll need.  When invoked, the `p_load()` function queries the list of `installed.packages()` currently in our package library.  If the package is already installed, `p_load()` loads the package in your current workspace - making it available to use.  If the package is not already installed, `p_load()` installs the package from the CRAN and then loads the package.  The code chunk below can be used to install and/or load the packages we'll need in this lecture.
 
-### ...from text files
+```{r}
+pacman::p_load(XML,
+               rvest,
+               RCurl,
+               rprojroot,
+               qdapTools,
+               pdftools,
+               antiword,
+               glue,
+               data.table,
+               tidyverse,
+               vroom)
+```
 
-Many different types of files may be save as raw text in a `.txt` file format.  Thus, it's important to know how to extract text from these types of files and understand that in some cases it may be preferred to work with text data that is stored in this format.
+In the sections below I demonstrate how to extract text data from various types of file formats. Click on each tab to learn more
+
+## Extracting text from `txt` files
+
+Many different types of files may be saved as raw text using a `.txt` file format.  Thus, it's important to know how to extract text from these types of files and understand that in some cases it may be preferred to work with text data that is stored in this format.
 
 To demonstrate extracting content from this type of file format, we'll work with the README document on the Github repository for this course.  While Github README files are stored in the Github-flavored markdown format, the file in it's raw form may be viewed by visiting <a target=" " href="https://raw.githubusercontent.com/AFIT-R/oper655_fa2019/master/README.md">**THIS SITE**</a>.
 
@@ -82,244 +100,79 @@ oper_readme_text[264]
 
 It's important to be aware of the encoding used to store text data is a document.  Using the wrong encoding could force you to perform a number of unnecessary and time-consuming tasks down the road.  Of course there are situations in which you are receiving the data "second-hand" and you're therefore unable to avoid the errors.  Or it may be that the document from which you are extracting uses symbols to denote sections or to make the document look "prettier".  In these cases, we must rely of regular expressions (aka regex) to remove and/or replace these symbols.  Regular expressions will be discussed in a future lecture.
 
-### ...from CSV/XLS/XLSX documents
+## Extracting text from `csv`/`xls`/`xlsx` files
 
-There may be instances when text data is only a portion of a larger dataset.  Examples of such datasets are survey data, customer review data or data extracted from Twitter.  These data are usually stored in a spreadsheet format where the text is contained in one column.
+In some cases text data is only a portion of a larger dataset.  Examples of this include survey data, customer review data, or data extracted from Twitter.  These data are usually stored in a spreadsheet format where the text data is contained in one column.
 
-In this section, we'll demonstrate various methods to extract text data from spreadsheet documents -- specifically those in which the data have been stored as comma separated values (CSV).  We'll focus on this file format because CSV files are commonly used to store and share spreadsheet data and because once we understand how to extract data from a CSV it's trivial to extend our workflow to XLS and XLSX documents.  The specific data we'll use are the <a target=" " href="https://www.kaggle.com/datafiniti/consumer-reviews-of-amazon-products">**Consumer Reviews of Amazon Products**</a> dataset made available by Datafiniti and posted to Kaggle.  The full dataset is spread across three CSV files, for this demonstration we'll focus on the `Datafiniti_Amazon_Consumer_Reviews_of_Amazon_Products_May19.csv` file. The URL we can use to extract the data from this file is as shown in the chunk below
-
-```{r}
-amazon_review_url <- "https://www.kaggle.com/datafiniti/consumer-reviews-of-amazon-products/download"
-
-temp <- tempfile()
-
-download.file(url = amazon_review_url, destfile = temp, method = "wget", mode = "w")
-#Set your browsing links 
-loginurl = "https://www.kaggle.com/account/login?phase=emailSignIn&returnUrl=%2F"
-dataurl  = amazon_review_url
-
-#Set user account data and agent
-pars=list(
-  UserName="auburngrads",
-  Password="ASM{ZMkVZq\7d,!UMroK"
-)
-agent="Mozilla/5.0" #or whatever 
-
-#Set RCurl pars
-curl = getCurlHandle()
-
-curlSetOpt(cookiejar="cookies.txt",  useragent = agent, followlocation = TRUE, curl=curl)
-#Also if you do not need to read the cookies. 
-#curlSetOpt(  cookiejar="", useragent = agent, followlocation = TRUE, curl=curl)
-
-#Post login form
-welcome=postForm(loginurl, .params = pars, curl=curl)
-
-bdown=function(url, file, curl){
-  f = CFILE(file, mode="wb")
-  curlPerform(url = url, writedata = f@ref, noprogress=FALSE, curl = curl)
-  close(f)
-}
-
-ret = bdown(dataurl, "c:\\test.csv",curl)
-
-rm(curl)
-gc()
-
-```
-
-There are at least four packages that contain functions which can be used for loading data from this CSV file.  The main reasons why anyone should choose one function from another are (1) the speed at which the data can be extracted and (2) the type of object that is created as result of extracting in the data.  I'll illustrate each function in turn.
-
-The first and most commonly used function is `read.csv()` from the `base` package that come pre-installed with R.  This function is used as shown in the chunk below
-
-```{r}
-amazon_review_data1 <- read.csv(url(amazon_review_url))
-```
-
-
-
-### ...from PDF documents
-
-The portable document format is often used to store text, expecially among government organizations. In this section we'll walk through the process of extracting text from the 2017 United States Supreme Court Opinions.  These documents can be accessed from [**this site**](https://www.supremecourt.gov/opinions/slipopinion/17).  In total, there are 85 documents in this corpus.  We could download and extract the text from each of these documents separately, but instead let's have R do this for us.  First, we'll need to install a few packages -- this is where `pacman` comes in handy.
-
-```{r, eval=FALSE}
-# If you have already installed these packages pacman will load them
-# If not, pacman will install the packages and then load them
-pacman::p_load(XML,
-               rvest,
-               RCurl,
-               rprojroot,
-               qdapTools,
-               pdftools,
-               antiword,
-               glue,
-               data.table,
-               tidyverse
-               vroom)
-```
-`supreme_court_opinions_2017_sample` folder, note that all of these files are saved using the PDF format.
-### Saving local copies of the documents 
-
-With these packages installed, we can now download the documents from the url using the code shown below.  <u>**However, do not run this code as it is written in the LOGM655 project - it will overwrite the existing files.  I'll show you what to change**</u>
-
-```{r, eval=FALSE}
-# Assign the URL to a text string
-url_root  <- 'https://www.supremecourt.gov'
-     url  <- 'https://www.supremecourt.gov/opinions/slipopinion/17'
-     
-# Assign the root of the project this
-# helps locate where to save the files
-# Before going forward you should change 
-# these values to a location on your machine
-proj_root   <- rprojroot::find_root(is_rstudio_project)
-save_folder <- base::file.path(proj_root,'raw_data_files','supreme_court_opinions_2017')
-
-# Extract html/xml content from URL
-rcurl.doc <- RCurl::getURL(url, 
-                           .opts = RCurl::curlOptions(followlocation = TRUE))
-
-# Parse html content 
-url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
-
-# We need to get the href attributes from 
-# the anchor tags <a> stored in the table 
-# as table data tags <td>
-# First, let's get all of the attributes
-attrs <- XML::xpathApply(url_parsed, "//td//a", XML::xmlAttrs)
-
-# Next, we'll split out the hrefs 
-# from the other attributes
-hrefs <- sapply(seq_along(attrs), FUN = function(x) attrs[[x]][['href']])
-
-# Then, we only want the hrefs for the files 
-# that have a .pdf file extension
-pdfs  <- hrefs[tools::file_ext(hrefs) == 'pdf']
-
-# Construct a list of URL's for each file
-# by pasting two character strings together  
-files <- paste0(url_root,pdfs)
-
-# loop through each element in the files
-# vector and download the file to destfile
-for(i in files) {
-  
-  filename <- basename(i)
-  download.file(i, 
-                destfile = file.path(save_folder,filename),
-                method = 'curl')
-  
-}
-```
-
-Now that we have these documents downloaded locally, I'm going to use a small set of these documents `supreme_court_opinions_2017_sample` folder. Before we get too far, let's install some helpful packages.
-
-### Using the XpdfReader
-
-First, let's use XpdfReader by letting R talk to our system (i.e. command prompt or terminal).  Xpdf is an open source project developed by [**Glyph & Cog**](http://www.glyphandcog.com/) for viewing/manipulating (PDF)
-files.  The Xpdf project also includes **xpdf tools** which contain the following utilities that are useful for extracting data from pdf files:
-
-- pdftotext - Convert a PDF file to text
-- pdftohtml - Convert a PDF file to HTML
-- pdfinfo - Dump a PDF file's Info dictionary (plus some other useful information)
-- pdffonts - List the fonts used in a PDF file and various information for each font
-- pdfdetach - List or extract embedded files (attachments) from a PDF file
-- pdftoppm - Convert a PDF file to a series of PPM/PGM/PBM-format bitmaps
-- pdftopng - Convert a PDF file to a series of PNG image files
-- pdfimages - Extract the images from a PDF file
-
-To use these utilities we must first download xpdf and xpdf tools from [**this site**](http://www.xpdfreader.com/).  After downloading and unzipping xpdf tools, make sure to note the file location where it was saved.  On my machine, the main xpdf folder is located at
-
-```{r}
-xpdf_tools <- 'C:/Program Files/xpdf-tools-win-4.00/bin64'
-```
-
-Next we'll create a character vector containing the names of the files in the `supreme_court_opinions_2017_sample` folder.
+In this section, we'll demonstrate various methods to extract text data from spreadsheet documents -- specifically those in which the data have been stored as comma separated values (CSV).  We'll focus CSV files becaues they are commonly used to store and share spreadsheet data and because once we understand how to extract data from a CSV it's trivial to extend our workflow to XLS and XLSX documents.  The specific data we'll use are the <a target=" " href="https://www.kaggle.com/datafiniti/consumer-reviews-of-amazon-products">**Consumer Reviews of Amazon Products**</a> dataset made available by Datafiniti and posted to Kaggle.  The full dataset is spread across three CSV files, for this demonstration we'll focus on the `1429_1.csv` file. In this case, the file has already been downloaded and made a part of this repository. The location of the file, relative to the root of this repository, is assigned using the following code.
 
 ```{r}
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 
-dest <- file.path(root, 'raw_data_files', 'supreme_court_opinions_2017_sample')
-
-# make a vector of PDF file names
-my_files <- list.files(path = dest, 
-                       pattern = "pdf",  
-                       full.names = TRUE)
-
-my_files
+(amazon_review_file <- file.path(root, "data","csv", "1429_1.csv"))
 ```
 
-Now, let's use the `pdftotext` utility to extract the text from the first document in `my_files`.  The `pdftotext` utility converts each PDF file in into a text file.  By default, the text file is created in the same directory as the PDF file.  Since this is a command-line utility we need to construct the commands to send, normally this would look like the code below.
+We can review information about this specific file from <a target=" " href="https://www.kaggle.com/datafiniti/consumer-reviews-of-amazon-products#1429_1.csv">**this site**</a> on Kaggle. On the site we see that the size of this file is `r round(file.info(amazon_review_file)$size / 1024^2,digits = 2)` MB  and the dataset within the file has 20 columns.  The site does not indicate how may rows are in the dataset, but we can determine this after reading in the data.
+
+There are at least four packages that contain functions which can be used for loading data from this CSV file.  The main reasons why anyone should choose one function from another are (1) the speed at which the data can be extracted, (2) the memory required to store the object after extraction, and (2) the class of the object created as result of the extraction.  I'll illustrate each of these function in turn, outlining some of the key differences.
+
+### Using `utils::read.csv()`
+
+The first and most commonly used function is `read.csv()` from the `base` package that come pre-installed with R.  This function is used as shown in the chunk below
 
 ```{r}
-if(nchar(Sys.which('pdftotext') > 0)) {
-  
-   system('pdftotext')
-
-}
+# system.time returns the time required to evaluate the expression in {}
+time1 <- system.time({ amazon_review_data_1 <- read.csv(amazon_review_file) })
 ```
 
-To have R call pdftotext, we need to paste (or glue) these four separate charater strings together into a single command.  This can be done as shown below. 
+- **Execution time:** `r time1[[3]]` seconds
+- **Memory required:** `r round(object.size(amazon_review_data_1) / 1024^2, digits=2)` MB
+- **Object class:** `r class(amazon_review_data_1)`
+- **Notes:** `read.csv` hass the slowest execution time of the four functions, but also results the smallest object size.  The only reason this function is used more often than the others is because it is the oldest and comes preinstalled with R as part of the `utils` package.  Another **very** important note is how `read.csv` treats strings.  Let's look at the structure of the `reviews.text` column (the column that contains the actual review).
 
 ```{r}
-cmd1 <- 'pdftotext' # which utility are we calling?
-cmd2 <- ''          # which options? - here we use none
-cmd3 <- my_files[1] # which file to convert
-cmd4 <- ''          # which file to write to
-
-# Two options to connect the strings
-CMD1 <- glue::glue("{cmd1} {cmd2} {cmd3} {cmd4}")
-CMD2 <- paste(cmd1, cmd2, cmd3, cmd4, sep = ' ')
+str(amazon_review_data_1$reviews.text)
 ```
 
-Now, we send this command to either the command prompt or terminal, depending on the type of OS being used.  
+We see that each review is not stored as a character string, but as a factor numbered 1:34660.  This is a critical issue that analysts often encounter with working with strings.  This issue results from the fact that `read.csv()` calls the function `data.frame()` to store the data as a data frame.  Within the `data.frame()` function there's an argument `stringsAsFactors` with is set by default to `TRUE`.  Therefore, we can easily fix this problem by setting `stringsAsFactors = FALSE` with our call to `read.csv()`. Many have argued that the default value for this argument should be set to `FALSE`.  However, with over 20 years of legacy code in use this is not likely to change.
 
-```{r, eval=FALSE}
-system(CMD1)
-```
-
-To have `pdftotext` do this action recursively for each of the files we can run the above command in a loop or use one of the apply functions, in this case `lapply()` 
+### Using `readr::read_csv()`
 
 ```{r}
-lapply(my_files, 
-       FUN = function(x) system(glue::glue("pdftotext {x}"), wait = FALSE))
+# system.time returns the time required to evaluate the expression in {}
+time2 <- system.time({ amazon_review_data_2 <- readr::read_csv(amazon_review_file) })
 ```
 
-Now that the data has been extracted into a text file it can then be read into R as a character vector using the `readLines()` function. Note that each element in character vector is a line of text.  A line of text in defined by a certain number of characters, this number of characters may not coincide with the number of characters on the original pdf document.  If we desire to maintain the exact layout of the document we can specify the option `-layout` to maintain the original layout of the text.  
+- **Execution time:** `r time2[[3]]` seconds
+- **Memory required:** `r round(object.size(amazon_review_data_2) / 1024^2,digits=2)` MB
+- **Object class:** `r class(amazon_review_data_2)`
+- **Notes:** Executes faster than `read.csv()` but not as fast as the other functions yet to be discussed.  The advantage of `read_csv()` is that the resulting object type is a `tbl_df` or `tbl` otherwise known as a tibble from the `tibble` package.  Tibbles are the primary object type used by the tidyverse family of packages. Note that the object resulting from `read_csv()` also has the the `data.frame` class assigned to it.  This means that any function that would work for a `data.frame`-class object will also work for a tibble -- but the reverse is not true. Also, note that we don't have the issue of `stringsAsFactors` when using `read_csv` -- this will be the case for every function not called `read.csv()`
+
+### Using `data.table::fread()`
 
 ```{r}
-text_files <- base::list.files(path = dest, 
-                               pattern = "txt",  
-                               full.names = TRUE)
-
-text1 <- readLines(con = text_files[1])
-text1[1:50]
+# system.time returns the time required to evaluate the expression in {}
+time3 <- system.time({ amazon_review_data_3 <- data.table::fread(amazon_review_file) })
 ```
 
-The remaining utilities in xpdf tools can be used in a similar manner as to what what shown here for `pdftotext`.
+- **Execution time:** `r time3[[3]]` seconds
+- **Memory required:** `r round(object.size(amazon_review_data_3) / 1024^2, digits=2)` MB
+- **Object class:** `r class(amazon_review_data_3)`
+- **Notes:** `fread()`, or fast read, and `vroom()` are considered the fastest options for reading in data.  Note that we never told `fread()` that this was a csv file, the function just figured it out by looking at the data.  The class of object returned includes `data.table` meaning that this type of object is required if you want to use the `data.table` syntax.  The `data.table` package uses a SQL-like syntax for manipulating objects and has garnered an almost cult-like following among those who use it. Note that objects extracted using `fread()` are not tibbles, using functions from a tidyverse package are not guaranteed to work 
 
-### Using the `pdftools` package
-
-The pdftools package is an R interface to the Poppler C++ API. The package makes it easy to use several utilities based on 'libpoppler' for extracting text, fonts, attachments and metadata from a PDF file. The package also supports high quality rendering of PDF documents info PNG, JPEG, TIFF format, or into raw bitmap vectors for further processing in R. The `pdftools` contains the following user-level functions 
+### Using `vroom::vroom()`
 
 ```{r}
-data.frame(function_names = getNamespaceExports('pdftools'))
+# system.time returns the time required to evaluate the expression in {}
+time4 <- system.time({ amazon_review_data_4 <- vroom::vroom(amazon_review_file) })
 ```
 
-that can be used to retreive information in a similar fashion as to what was shown for the xpdf tools.  As example using the `pdf_text()` function extracts the text from a PDF file as a character vector. Note that in this case each character vector is an entire page. 
+- **Execution time:** `r time4[[3]]` seconds
+- **Memory required:** `r round(object.size(amazon_review_data_4) / 1024^2, digits=2)` MB
+- **Object class:** `r class(amazon_review_data_4)`
+- **Notes:** The `vroom` package is the newest of the four discussed here.  For many situations it may be an ideal trade-off between `read_csv()` and `fread()` as it's execution speed is comparable to `fread()` but allows us to use the resulting object with the tidyverse.  
 
-```{r}
-text2 <- pdftools::pdf_text(pdf = my_files[1])
-text2[1]
-```
-
-The `pdftools` package does not contain a function to save the text directly to a text file, however we can write to a text file using the `writeLines()` function. A downside to this is that we must keep track of the name of the original document when specifying a name to the new `.txt` file. This could lead to errors in assigning the wrong name to a file. Also, note that the output file contains a blank line between each line of text.  This may not present a problem depending on the desired output, however it presents an extra step in our data preparation process.
-
-```{r eval=FALSE}
-writeLines(text = text2,
-           con = gsub('pdf','txt', file.path(dest,basename(my_files[1]))))
-```
-
-## ...from MS^&#174;^ Word documents
+## Extracting text `.doc/.docx`..from MS^&#174;^ Word documents
 
 Once again, we need to download the Word files from the web, which can be done using the code below. <u>**Again, do not run this code as it is written in the LOGM655 project - it will overwrite the existing files.  I'll show you what to change**</u>
 
@@ -327,52 +180,52 @@ Once again, we need to download the Word files from the web, which can be done u
 # Assign the URL to a text string
 url_root  <- 'http://hhoppe.com/'
      url  <- 'http://hhoppe.com/microsoft_word_examples.html'
-     
+
 # Assign the root of the project this
 # helps locate where to save the files
-# Before going forward you should change 
+# Before going forward you should change
 # these values to a location on your machine
 proj_root   <- find_root(is_rstudio_project)
 save_folder <- file.path(proj_root,'raw_data_files','msword_document_examples')
 
 # Extract html/xml content from URL
-rcurl.doc <- RCurl::getURL(url, 
+rcurl.doc <- RCurl::getURL(url,
                            .opts = RCurl::curlOptions(followlocation = TRUE))
 
-# Parse html content 
+# Parse html content
 url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
 
-# We need to get the href attributes from 
-# the anchor tags <a> stored on the page 
+# We need to get the href attributes from
+# the anchor tags <a> stored on the page
 attrs <- XML::xpathApply(url_parsed, "//a", XML::xmlAttrs)
 
-# Next, we'll split out the hrefs 
+# Next, we'll split out the hrefs
 # from the other attributes
 hrefs <- sapply(seq_along(attrs), FUN = function(x) attrs[[x]][['href']])
 
-# Then, we only want the hrefs for the files 
+# Then, we only want the hrefs for the files
 # that have a .docx file extension
 docx  <- hrefs[tools::file_ext(hrefs) == 'docx']
 
 # Construct a list of URL's for each file
-# by pasting two character strings together  
+# by pasting two character strings together
 files <- paste0(url_root, docx)
 
 # loop through each element in the files
 # vector and download the file to destfile
 for(i in files) {
-  
+
   filename <- basename(i)
-  download.file(i, 
+  download.file(i,
                 destfile = file.path(save_folder,filename),
                 method = 'curl')
-  
+
 }
 ```
 
 ### Using the `qdapTools` package
 
-The `qdapTools` package is a collection of tools associated with the `qdap` package that may be useful outside of the context of text analysis. In the R language there are 4 packages in the `qdap` family used for qualitative data analysis
+The `qdapTools` package is a collection of tools associated with the `qdap` package that may be useful both within and outside the context of text analysis. In the R language there are 4 packages in the `qdap` family used for qualitative data analysis
 
 - `qdap` - Bridging the Gap Between Qualitative Data and Quantitative Analysis
 - `qdapTools` - Tools for the 'qdap' Package
@@ -382,14 +235,11 @@ The `qdapTools` package is a collection of tools associated with the `qdap` pack
 Within the `qdapTools` package is the `read_docx()` function that is used for (you'll never guess) reading `.docx` files.  First, let's list the files like we did for the PDF files before.
 
 ```{r}
-library(rprojroot)
-root <- find_root(is_rstudio_project)
+dest <- file.path(root, 'data', 'msword')
 
-dest <- file.path(root, 'raw_data_files', 'msword_document_examples')
-
-# make a vector of PDF file names
-ms_files <- list.files(path = dest, 
-                       pattern = "docx",  
+# make a vector of MS Word file names
+ms_files <- list.files(path = dest,
+                       pattern = "docx",
                        full.names = TRUE)
 
 ms_files
@@ -402,17 +252,21 @@ docx1 <- qdapTools::read_docx(file = ms_files[1])
 docx1[90]
 ```
 
-Here we see that this function extracts the text as paragraphs, rather than as lines or pages.
+Here we see that this function extracts the text as paragraphs, rather than as lines or as pages.
+
+### Using the `antiword` package
+
+If you are working with Word documents that were saved using the older `.doc` format the `antiword` package is useful for extracting text data from such files.  Note that `antiword` will not extract data from `.docx` files as the newer standard utilizes Java code which `antiword` is unable to parse.
 
 ## Other Datasets
 
-There are many other sources of publicly available text data for use in training NLP models or to test out some of the basic NLP tasks.  A few sources of such data are listed below.  
+There are many other sources of publicly available text data for use in training NLP models or to test out some of the basic NLP tasks.  A few sources of such data are listed below.
 
 1. [**kaggle**](https://www.kaggle.com/datasets?sortBy=relevance&group=all&search=text)
 2. [**UCSD**](https://ucsd.libguides.com/data-statistics/textmining)
-3. [**QUANDL**](https://www.researchgate.net/deref/https%3A%2F%2Fwww.quandl.com%2F) 
-4. [**kdnuggets**](https://www.kdnuggets.com/datasets/index.html) 
-5. [**Amazon reviews**](https://snap.stanford.edu/data/web-Amazon.html) 
-6. [**ENRON emails**](https://www.cs.cmu.edu/~./enron/) 
+3. [**QUANDL**](https://www.researchgate.net/deref/https%3A%2F%2Fwww.quandl.com%2F)
+4. [**kdnuggets**](https://www.kdnuggets.com/datasets/index.html)
+5. [**Amazon reviews**](https://snap.stanford.edu/data/web-Amazon.html)
+6. [**ENRON emails**](https://www.cs.cmu.edu/~./enron/)
 7. [**Hillary Clinton's declassified emails**](http://www.readhillarysemail.com)
 8. [**R package: Harry Potter**](https://github.com/bradleyboehmke/harrypotter)
