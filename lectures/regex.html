@@ -7,10 +7,11 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
-<meta name="date" content="2018-10-17" />
+<meta name="date" content="2019-10-06" />
 
 <title>Dealing with Regular Expressions</title>
 
@@ -68,8 +69,6 @@ overflow: auto;
 margin-left: 2%;
 position: fixed;
 border: 1px solid #ccc;
-webkit-border-radius: 6px;
-moz-border-radius: 6px;
 border-radius: 6px;
 }
 
@@ -97,9 +96,14 @@ font-size: 12px;
 .tocify-subheader .tocify-subheader {
 text-indent: 30px;
 }
-
 .tocify-subheader .tocify-subheader .tocify-subheader {
 text-indent: 40px;
+}
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader {
+text-indent: 50px;
+}
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader {
+text-indent: 60px;
 }
 
 .tocify .tocify-item > a, .tocify .nav-list .nav-header {
@@ -503,13 +507,13 @@ float: none;
 
           item.append($("<a/>", {
 
-            "text": self.text()
+            "html": self.html()
 
           }));
 
         } else {
 
-          item.text(self.text());
+          item.html(self.html());
 
         }
 
@@ -1325,11 +1329,9 @@ h6 {
 }
 </style>
 
-<style type="text/css">pre {padding: 15px 0 15px 75px;border-style: solid;border-top-width: .75px;border-bottom-width: .75px;border-right-width: .75px;border-left-width: .75;border-color: #e7e7e7;color: #00428C;background-color: #e7e7e7;width: 90%;margin: 30px auto 30px auto;border-top-right-radius: 10px;border-top-left-radius: 10px;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;}pre code {font-size: 13pt;font-weight: 550;line-height: 120%;}li pre {margin-right: 0;border: none;font-family: "modern";}pre.sourceCode {font-size: 70%;background-color: #e6e6e6;margin: 5px 150px 5px -5px;line-height: 100%;padding: 15px 0 15px 75px;border-color: #e6e6e6;}code.sourceCode{font-size: 12pt;border: none;font-weight: 550;white-space: pre !important;}code {font-size: .8em;font-family: 'Source Code Pro', 'Courier New', monospace;font-weight: normal;padding: .1em .3em .1em .3em;border-radius: .3em;}p code {font-size: .8em;font-family: 'Source Code Pro', 'Courier New', monospace;color: red;font-weight: normal;background-color: #e6e6e6;padding: .1em .3em .1em .3em;border-radius: .3em;white-space: nowrap;vertical-align: 10%;}code > span.kw { color: #007020; font-weight: bold; } code > span.dt { color: #902000; font-weight: bold; } code > span.dv { color: #40a070; } code > span.bn { color: #40a070; } code > span.fl { color: #40a070; } code > span.ch { color: #4070a0; } code > span.st { color: #4070a0; } code > span.co { color: #60a0b0; font-style: italic; } code > span.ot { color: #007020; } code > span.al { color: #ff0000; font-weight: bold; } code > span.fu { color: #06287e; } code > span.er { color: #ff0000; font-weight: bold; } code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.cn { color: #880000; } code > span.sc { color: #4070a0; } code > span.vs { color: #4070a0; } code > span.ss { color: #bb6688; } code > span.im { } code > span.va { color: #19177c; } code > span.cf { color: #007020; font-weight: bold; } code > span.op { color: #666666; } code > span.bu { } code > span.ex { } code > span.pp { color: #bc7a00; } code > span.at { color: #7d9029; } code > span.do { color: #ba2121; font-style: italic; } code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } div.main-container {max-width: 1800px !important;}p {font-size: 13pt !important;}ul li {font-size: 13pt !important;}a {font-weight: bold !important;◄}#TOC > ul > li {font-size: 12pt;font-weight: normal;}</style>
+<style type="text/css">pre {padding: 15px 0 15px 75px;border-style: solid;border-top-width: .75px;border-bottom-width: .75px;border-right-width: .75px;border-left-width: .75;border-color: #e7e7e7;color: #00428C;background-color: #e7e7e7;width: 90%;margin: 30px auto 30px auto;border-top-right-radius: 10px;border-top-left-radius: 10px;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;}pre code {font-size: 13pt;font-weight: 550;line-height: 120%;}li pre {margin-right: 0;border: none;font-family: "modern";}pre.sourceCode {font-size: 70%;background-color: #e6e6e6;margin: 5px 150px 5px -5px;line-height: 100%;padding: 15px 0 15px 75px;border-color: #e6e6e6;}code.sourceCode{font-size: 12pt;border: none;font-weight: 550;white-space: pre !important;}code {font-size: .8em;font-family: 'Source Code Pro', 'Courier New', monospace;font-weight: normal;padding: .1em .3em .1em .3em;border-radius: .3em;background-color: #e6e6e6;}p code {color: red;white-space: nowrap;vertical-align: 10%;}li code {color: red;white-space: nowrap;vertical-align: 10%;}code > span.kw { color: #007020; font-weight: bold; } code > span.dt { color: #902000; font-weight: bold; } code > span.dv { color: #40a070; } code > span.bn { color: #40a070; } code > span.fl { color: #40a070; } code > span.ch { color: #4070a0; } code > span.st { color: #4070a0; } code > span.co { color: #60a0b0; font-style: italic; } code > span.ot { color: #007020; } code > span.al { color: #ff0000; font-weight: bold; } code > span.fu { color: #06287e; } code > span.er { color: #ff0000; font-weight: bold; } code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.cn { color: #880000; } code > span.sc { color: #4070a0; } code > span.vs { color: #4070a0; } code > span.ss { color: #bb6688; } code > span.im { } code > span.va { color: #19177c; } code > span.cf { color: #007020; font-weight: bold; } code > span.op { color: #666666; } code > span.bu { } code > span.ex { } code > span.pp { color: #bc7a00; } code > span.at { color: #7d9029; } code > span.do { color: #ba2121; font-style: italic; } code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } div.main-container {max-width: 1800px !important;}p {font-size: 13pt !important;}ul li {font-size: 13pt !important;}a {font-weight: bold !important;◄}#TOC > ul > li {font-size: 12pt;font-weight: normal;}</style>
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -1343,7 +1345,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1354,11 +1355,12 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -1416,48 +1418,9 @@ button.code-folding-btn:focus {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -1506,8 +1469,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -1516,6 +1477,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -1534,21 +1505,23 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Dealing with Regular Expressions</h1>
-<h4 class="date"><em>17 Oct 2018</em></h4>
+<h4 class="date">06 Oct 2019</h4>
 
 </div>
 
 
 <p>The term regular expression (aka regex) refers to a language for specifying an algebraic notation for characterizing a set of strings. Functions utilizing regular expressions are often used for pattern matching text strings within a single document or a corpus. Typically, regex patterns consist of a combination of alphanumeric characters as well as special characters. The pattern can also be as simple as a single character or it can be more complex and include several characters.</p>
 <p>To understand how to work with regular expressions in R, we need to consider two primary features of regular expressions. One has to do with the <em>syntax</em>, or the way regex patterns are expressed in R. The other has to do with the <em>functions</em> used for regex matching in R. In this section, we will cover both of these aspects. First, we’ll dicsuss the syntax used to perform pattern matching functions with metacharacters, character &amp; POSIX class objects, and quantifiers. This will provide a basic understanding of the syntax required to establish the pattern to find. Then, we’ll cover the functions provided in both the <code>base</code> and <code>stringr</code> packages you can use to identify, extract, replace, and split parts of character strings based on the regex pattern specified. Finally, we’ll apply these tools to a very unpopular U.S. Supreme Court ruling and dicsuss how to use regular expressions to locate features within the document.</p>
-<p>Several packages will be used in this tutorial, the following code can be used to install and load the required packages</p>
+<p>Several packages will be used in this tutorial, the following code can be used to install and load the required packages from CRAN.</p>
 <pre class="r"><code>pacman::p_load(pdftools,     # extract content from PDF documents
                XML,          # Working with XML formatted data
                here,         # References for file paths
                countrycode,  # Working with names of countries
                tibble,       # Creating and manipulating tibbles
                qdap,
-               stringr)         # Tools for qualitative data</code></pre>
+               stringr)      # Tools for qualitative data</code></pre>
+<p>One additional package that is not currently on CRAN, may be installed from Github using the code shown below.</p>
+<pre class="r"><code>pacman::p_load_gh(&quot;VerbalExpressions/RVerbalExpressions&quot;)</code></pre>
 <div id="regex-syntax" class="section level2">
 <h2>Regex Syntax</h2>
 <p>At first glance the regex syntax can appear quite confusing. This section provides a basic foundation of regex syntax; however, realize that there are several resources available that will give you far more detailed, and advanced, knowledge of regex syntax, some of these are listed at the end of this document. To read more about the specifications and technicalities of regex in R you can find help at <code>help(regex)</code> or <code>help(regexp)</code>.</p>
@@ -1575,19 +1548,19 @@ gsub(pattern = &quot;\\\\&quot;, &quot; &quot;, &quot;I\\need\\space&quot;)</cod
 </center>
 <p>The following are simple examples showing how to use anchor tokens withe the <code>gsub()</code> function to find and replace patterns of characters.</p>
 <pre class="r"><code># substitute any digit with an underscore
-gsub(pattern = &quot;\\d&quot;, &quot;_&quot;, &quot;I'm working in RStudio v.0.99.484&quot;)</code></pre>
-<pre><code>[1] &quot;I'm working in RStudio v._.__.___&quot;</code></pre>
+gsub(pattern = &quot;\\d&quot;, &quot;_&quot;, &quot;I&#39;m working in RStudio v.0.99.484&quot;)</code></pre>
+<pre><code>[1] &quot;I&#39;m working in RStudio v._.__.___&quot;</code></pre>
 <pre class="r"><code># substitute any non-digit with an underscore
-gsub(pattern = &quot;\\D&quot;, &quot;_&quot;, &quot;I'm working in RStudio v.0.99.484&quot;)</code></pre>
+gsub(pattern = &quot;\\D&quot;, &quot;_&quot;, &quot;I&#39;m working in RStudio v.0.99.484&quot;)</code></pre>
 <pre><code>[1] &quot;_________________________0_99_484&quot;</code></pre>
 <pre class="r"><code># substitute any whitespace with underscore
-gsub(pattern = &quot;\\s&quot;, &quot;_&quot;, &quot;I'm working in RStudio v.0.99.484&quot;)</code></pre>
-<pre><code>[1] &quot;I'm_working_in_RStudio_v.0.99.484&quot;</code></pre>
+gsub(pattern = &quot;\\s&quot;, &quot;_&quot;, &quot;I&#39;m working in RStudio v.0.99.484&quot;)</code></pre>
+<pre><code>[1] &quot;I&#39;m_working_in_RStudio_v.0.99.484&quot;</code></pre>
 <pre class="r"><code># substitute any wording with underscore
-gsub(pattern = &quot;\\w&quot;, &quot;_&quot;, &quot;I'm working in RStudio v.0.99.484&quot;)</code></pre>
-<pre><code>[1] &quot;_'_ _______ __ _______ _._.__.___&quot;</code></pre>
+gsub(pattern = &quot;\\w&quot;, &quot;_&quot;, &quot;I&#39;m working in RStudio v.0.99.484&quot;)</code></pre>
+<pre><code>[1] &quot;_&#39;_ _______ __ _______ _._.__.___&quot;</code></pre>
 <pre class="r"><code># substitute any non wording with underscore
-gsub(pattern = &quot;\\W&quot;, &quot;_&quot;, &quot;I'm working in RStudio v.0.99.484&quot;)</code></pre>
+gsub(pattern = &quot;\\W&quot;, &quot;_&quot;, &quot;I&#39;m working in RStudio v.0.99.484&quot;)</code></pre>
 <pre><code>[1] &quot;I_m_working_in_RStudio_v_0_99_484&quot;</code></pre>
 </div>
 <div id="character-classes" class="section level3">
@@ -1634,21 +1607,21 @@ grep(pattern = &quot;s{1,2}&quot;, state.name, value = TRUE)</code></pre>
 [17] &quot;Washington&quot;    &quot;West Virginia&quot; &quot;Wisconsin&quot;    </code></pre>
 <p>The following examples show how to combine anchors and quantifiers together to match more specific patterns of characters.</p>
 <pre class="r"><code># States names: starts with M
-grep('^M', state.name, value = T)</code></pre>
+grep(&#39;^M&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;Maine&quot;         &quot;Maryland&quot;      &quot;Massachusetts&quot; &quot;Michigan&quot;     
 [5] &quot;Minnesota&quot;     &quot;Mississippi&quot;   &quot;Missouri&quot;      &quot;Montana&quot;      </code></pre>
 <pre class="r"><code># States names: starts with N
-grep('^N', state.name, value = T)</code></pre>
+grep(&#39;^N&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;Nebraska&quot;       &quot;Nevada&quot;         &quot;New Hampshire&quot;  &quot;New Jersey&quot;    
 [5] &quot;New Mexico&quot;     &quot;New York&quot;       &quot;North Carolina&quot; &quot;North Dakota&quot;  </code></pre>
 <pre class="r"><code># States names: starts with M or N
-grep('(^M|^N)', state.name, value = T)</code></pre>
+grep(&#39;(^M|^N)&#39;, state.name, value = T)</code></pre>
 <pre><code> [1] &quot;Maine&quot;          &quot;Maryland&quot;       &quot;Massachusetts&quot;  &quot;Michigan&quot;      
  [5] &quot;Minnesota&quot;      &quot;Mississippi&quot;    &quot;Missouri&quot;       &quot;Montana&quot;       
  [9] &quot;Nebraska&quot;       &quot;Nevada&quot;         &quot;New Hampshire&quot;  &quot;New Jersey&quot;    
 [13] &quot;New Mexico&quot;     &quot;New York&quot;       &quot;North Carolina&quot; &quot;North Dakota&quot;  </code></pre>
 <pre class="r"><code># States names: ends with a
-grep('a$', state.name, value = T)</code></pre>
+grep(&#39;a$&#39;, state.name, value = T)</code></pre>
 <pre><code> [1] &quot;Alabama&quot;        &quot;Alaska&quot;         &quot;Arizona&quot;        &quot;California&quot;    
  [5] &quot;Florida&quot;        &quot;Georgia&quot;        &quot;Indiana&quot;        &quot;Iowa&quot;          
  [9] &quot;Louisiana&quot;      &quot;Minnesota&quot;      &quot;Montana&quot;        &quot;Nebraska&quot;      
@@ -1656,52 +1629,52 @@ grep('a$', state.name, value = T)</code></pre>
 [17] &quot;Pennsylvania&quot;   &quot;South Carolina&quot; &quot;South Dakota&quot;   &quot;Virginia&quot;      
 [21] &quot;West Virginia&quot; </code></pre>
 <pre class="r"><code># States names: starts with M &amp; ends with a
-grep('^M\\S+a$', state.name, value = T)</code></pre>
+grep(&#39;^M\\S+a$&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;Minnesota&quot; &quot;Montana&quot;  </code></pre>
 <pre class="r"><code># States names: starts with M or N &amp; ends with a
-grep('(^M|N)\\S+a$', state.name, value = T)</code></pre>
+grep(&#39;(^M|N)\\S+a$&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;Minnesota&quot; &quot;Montana&quot;   &quot;Nebraska&quot;  &quot;Nevada&quot;   </code></pre>
 <pre class="r"><code># States names: has two words
-grep('\\s', state.name, value = T)</code></pre>
+grep(&#39;\\s&#39;, state.name, value = T)</code></pre>
 <pre><code> [1] &quot;New Hampshire&quot;  &quot;New Jersey&quot;     &quot;New Mexico&quot;     &quot;New York&quot;      
  [5] &quot;North Carolina&quot; &quot;North Dakota&quot;   &quot;Rhode Island&quot;   &quot;South Carolina&quot;
  [9] &quot;South Dakota&quot;   &quot;West Virginia&quot; </code></pre>
 <pre class="r"><code># States names: has two words - last word ends with a
-grep('\\s\\S+a$', state.name, value = T)</code></pre>
+grep(&#39;\\s\\S+a$&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;North Carolina&quot; &quot;North Dakota&quot;   &quot;South Carolina&quot; &quot;South Dakota&quot;  
 [5] &quot;West Virginia&quot; </code></pre>
 <pre class="r"><code># States names: has two words - first word starts with N
-grep('^N\\S+\\s', state.name, value = T)</code></pre>
+grep(&#39;^N\\S+\\s&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;New Hampshire&quot;  &quot;New Jersey&quot;     &quot;New Mexico&quot;     &quot;New York&quot;      
 [5] &quot;North Carolina&quot; &quot;North Dakota&quot;  </code></pre>
 <pre class="r"><code># States names: two words - first word starts with M or N and last word ends with a
-grep('(^M|N)\\S+\\s\\S+a$', state.name, value = T)</code></pre>
+grep(&#39;(^M|N)\\S+\\s\\S+a$&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;North Carolina&quot; &quot;North Dakota&quot;  </code></pre>
 <pre class="r"><code># States names: 
 #   - two words 
 #   - starts with M or N 
 #   - ends with a
 #   - last word begins with C
-grep('(^M|N)\\S+\\s+C\\S+a$', state.name, value = T)</code></pre>
+grep(&#39;(^M|N)\\S+\\s+C\\S+a$&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;North Carolina&quot;</code></pre>
 <pre class="r"><code>## States names: contain ss twice
-grep('s{2}\\S+s{2}', state.name, value = T)</code></pre>
+grep(&#39;s{2}\\S+s{2}&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;Mississippi&quot;</code></pre>
 <p>Finally, regular expression anchors can be used to replace multiple patterns that are variations of the same entity. The code in the chunk below matches multiple variations of how the nation of North Korea may be referenced in a document and then replaces each of these patterns with a single pattern.</p>
-<pre class="r"><code>nk_text &lt;- c('North korea', 
-             'DPRK',
-             'dprk',
-             'D.P.R.K',
-             'd.p.r.k.',
-             'North Korea',
-             'NORTH KOREA',
-             'northkorea',
-             'north.korea',
-             'north_korea',
-             'nokia')
+<pre class="r"><code>nk_text &lt;- c(&#39;North korea&#39;, 
+             &#39;DPRK&#39;,
+             &#39;dprk&#39;,
+             &#39;D.P.R.K&#39;,
+             &#39;d.p.r.k.&#39;,
+             &#39;North Korea&#39;,
+             &#39;NORTH KOREA&#39;,
+             &#39;northkorea&#39;,
+             &#39;north.korea&#39;,
+             &#39;north_korea&#39;,
+             &#39;nokia&#39;)
 
-gsub(pattern = '(^[Dd].?\\S+|^[Nn]\\S+[Hh]\\s*[._kK]\\S+[Aa]$)', 
-     replacement = 'DPRK',
+gsub(pattern = &#39;(^[Dd].?\\S+|^[Nn]\\S+[Hh]\\s*[._kK]\\S+[Aa]$)&#39;, 
+     replacement = &#39;DPRK&#39;,
      nk_text)</code></pre>
 <pre><code> [1] &quot;DPRK&quot;  &quot;DPRK&quot;  &quot;DPRK&quot;  &quot;DPRK&quot;  &quot;DPRK&quot;  &quot;DPRK&quot;  &quot;DPRK&quot;  &quot;DPRK&quot; 
  [9] &quot;DPRK&quot;  &quot;DPRK&quot;  &quot;nokia&quot;</code></pre>
@@ -1726,30 +1699,30 @@ gsub(pattern = &quot;[[:alnum:]]&quot;, replacement = &quot;&quot;, x)</code></p
 <pre><code>[1] &quot;  ! #, @__,    (..) #&quot;</code></pre>
 <p>The next set of exampled show how to combine POSIX-class anchors together to to match more specific patterns of characters.</p>
 <pre class="r"><code># States names: starts with M or N &amp; ends with a
-grep('(^M|N)+[[:alpha:]]+a$', state.name, value = T)</code></pre>
+grep(&#39;(^M|N)+[[:alpha:]]+a$&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;Minnesota&quot; &quot;Montana&quot;   &quot;Nebraska&quot;  &quot;Nevada&quot;   </code></pre>
 <pre class="r"><code># States names: has two words
-grep('[[:space:]]', state.name, value = T)</code></pre>
+grep(&#39;[[:space:]]&#39;, state.name, value = T)</code></pre>
 <pre><code> [1] &quot;New Hampshire&quot;  &quot;New Jersey&quot;     &quot;New Mexico&quot;     &quot;New York&quot;      
  [5] &quot;North Carolina&quot; &quot;North Dakota&quot;   &quot;Rhode Island&quot;   &quot;South Carolina&quot;
  [9] &quot;South Dakota&quot;   &quot;West Virginia&quot; </code></pre>
 <pre class="r"><code># States names: has two words - last word ends with a
-grep('[[:space:]]+[[:alpha:]]+a$', state.name, value = T)</code></pre>
+grep(&#39;[[:space:]]+[[:alpha:]]+a$&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;North Carolina&quot; &quot;North Dakota&quot;   &quot;South Carolina&quot; &quot;South Dakota&quot;  
 [5] &quot;West Virginia&quot; </code></pre>
 <pre class="r"><code># States names: has two words - first word starts with N
-grep('^N+[[:alpha:]]+[[:space:]]', state.name, value = T)</code></pre>
+grep(&#39;^N+[[:alpha:]]+[[:space:]]&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;New Hampshire&quot;  &quot;New Jersey&quot;     &quot;New Mexico&quot;     &quot;New York&quot;      
 [5] &quot;North Carolina&quot; &quot;North Dakota&quot;  </code></pre>
 <pre class="r"><code># States names: two words - first word starts with M or N and last word ends with a
-grep('(^M|N)+[[:alpha:]]+[[:space:]]+[[:alpha:]]+a$', state.name, value = T)</code></pre>
+grep(&#39;(^M|N)+[[:alpha:]]+[[:space:]]+[[:alpha:]]+a$&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;North Carolina&quot; &quot;North Dakota&quot;  </code></pre>
 <pre class="r"><code># States names: 
 #   - two words 
 #   - starts with M or N 
 #   - ends with a
 #   - last word begins with C
-grep('(^M|N)+[[:alpha:]]+[[:space:]]+C+[[:alpha:]]+a$', state.name, value = T)</code></pre>
+grep(&#39;(^M|N)+[[:alpha:]]+[[:space:]]+C+[[:alpha:]]+a$&#39;, state.name, value = T)</code></pre>
 <pre><code>[1] &quot;North Carolina&quot;</code></pre>
 </div>
 </div>
@@ -1775,13 +1748,13 @@ head(as.character(state.division))</code></pre>
 <pre class="r"><code># find the elements which match the patter
 grep(&quot;North&quot;, state.division)</code></pre>
 <pre><code> [1] 13 14 15 16 22 23 25 27 34 35 41 49</code></pre>
-<pre class="r"><code># use 'value = TRUE' to show the element value
+<pre class="r"><code># use &#39;value = TRUE&#39; to show the element value
 grep(&quot;North&quot;, state.division, value = TRUE)</code></pre>
 <pre><code> [1] &quot;East North Central&quot; &quot;East North Central&quot; &quot;West North Central&quot;
  [4] &quot;West North Central&quot; &quot;East North Central&quot; &quot;West North Central&quot;
  [7] &quot;West North Central&quot; &quot;West North Central&quot; &quot;West North Central&quot;
 [10] &quot;East North Central&quot; &quot;West North Central&quot; &quot;East North Central&quot;</code></pre>
-<pre class="r"><code># can use the 'invert' argument to show the non-matching elements
+<pre class="r"><code># can use the &#39;invert&#39; argument to show the non-matching elements
 grep(&quot;North | South&quot;, state.division, invert = TRUE)</code></pre>
 <pre><code> [1]  2  3  5  6  7  8  9 10 11 12 19 20 21 26 28 29 30 31 32 33 37 38 39
 [24] 40 44 45 46 47 48 50</code></pre>
@@ -1834,7 +1807,7 @@ new</code></pre>
 <pre class="r"><code># Default is case sensitive
 sub(&quot;New&quot;, replacement = &quot;Old&quot;, new)</code></pre>
 <pre><code>[1] &quot;Old York&quot;         &quot;new new York&quot;     &quot;Old New New York&quot;</code></pre>
-<pre class="r"><code># use 'ignore.case = TRUE' to perform the obvious
+<pre class="r"><code># use &#39;ignore.case = TRUE&#39; to perform the obvious
 sub(&quot;New&quot;, replacement = &quot;Old&quot;, new, ignore.case = TRUE)</code></pre>
 <pre><code>[1] &quot;Old York&quot;         &quot;Old new York&quot;     &quot;Old New New York&quot;</code></pre>
 <p><a name="gsub"></a></p>
@@ -1845,7 +1818,7 @@ sub(&quot;New&quot;, replacement = &quot;Old&quot;, new, ignore.case = TRUE)</co
 <pre class="r"><code># Default is case sensitive
 gsub(&quot;New&quot;, replacement = &quot;Old&quot;, new)</code></pre>
 <pre><code>[1] &quot;Old York&quot;         &quot;new new York&quot;     &quot;Old Old Old York&quot;</code></pre>
-<pre class="r"><code># use 'ignore.case = TRUE' to perform the obvious
+<pre class="r"><code># use &#39;ignore.case = TRUE&#39; to perform the obvious
 gsub(&quot;New&quot;, replacement = &quot;Old&quot;, new, ignore.case = TRUE)</code></pre>
 <pre><code>[1] &quot;Old York&quot;         &quot;Old Old York&quot;     &quot;Old Old Old York&quot;</code></pre>
 <p><a name="splitting"></a></p>
@@ -1870,15 +1843,14 @@ unlist(strsplit(x, &quot; &quot;))</code></pre>
 <div id="regex-functions-with-stringr" class="section level2">
 <h2>Regex Functions with <code>stringr</code></h2>
 <p>Similar to basic string manipulation, the <code>stringr</code> package also offers regex functionality. In some cases the <code>stringr</code> performs the same functions as certain base R functions but with more consistent syntax. In other cases <code>stringr</code> offers additional functionality that is not available in the base R functions. The <code>stringr</code> functions we’ll cover focus on <a href="#h1_stringr">detecting</a>, <a href="#h2_stringr">locating</a>, <a href="#h3_stringr">extracting</a>, and <a href="#h4_stringr">replacing patterns</a> along with string <a href="#h5_stringr">splitting</a>.</p>
-<pre class="r"><code>## # install stringr package
-## install.packages(&quot;stringr&quot;)
-## 
-# load package
-## library(stringr)</code></pre>
+<pre class="r"><code># install stringr package
+install.packages(&quot;stringr&quot;)</code></pre>
+<pre class="r"><code># load package
+library(stringr)</code></pre>
 <div id="detecting-patterns" class="section level3">
 <h3>Detecting Patterns</h3>
 <p>To <em>detect</em> whether a pattern is present (or absent) in a string vector use the <code>str_detect()</code>. This function is a wrapper for <a href="#regex_functions_base#grepl"><code>grepl()</code></a>.</p>
-<pre class="r"><code># use the built in data set 'state.name'
+<pre class="r"><code># use the built in data set &#39;state.name&#39;
 head(state.name)</code></pre>
 <pre><code>[1] &quot;Alabama&quot;    &quot;Alaska&quot;     &quot;Arizona&quot;    &quot;Arkansas&quot;   &quot;California&quot;
 [6] &quot;Colorado&quot;  </code></pre>
@@ -1952,7 +1924,7 @@ cities</code></pre>
 <pre class="r"><code># case sensitive
 str_replace(cities, pattern = &quot;New&quot;, replacement = &quot;Old&quot;)</code></pre>
 <pre><code>[1] &quot;Old York&quot;         &quot;new new York&quot;     &quot;Old New New York&quot;</code></pre>
-<pre class="r"><code># to deal with case sensitivities use Regex syntax in the 'pattern' argument
+<pre class="r"><code># to deal with case sensitivities use Regex syntax in the &#39;pattern&#39; argument
 str_replace(cities, pattern = &quot;[N]*[n]*ew&quot;, replacement = &quot;Old&quot;)</code></pre>
 <pre><code>[1] &quot;Old York&quot;         &quot;Old new York&quot;     &quot;Old New New York&quot;</code></pre>
 <p>To extract all occurrences of a pattern in a character vector use <code>str_replace_all()</code>. This function is a wrapper for <a href="#regex_functions_base#gsub"><code>gsub()</code></a>.</p>
@@ -1986,15 +1958,15 @@ str_split(a, pattern = &quot;-&quot;)</code></pre>
 </ul>
 <p>Which method we choose depends upon what we are trying to accomplish. For documents of this size it may not be useful to know the line number if we have no way of locating a particular line within the original document. Conversely, if we’re want to locate every instance of where a specific character string exists, it may not be sufficient to have to search within an entire page. Therefore, in this tutorial we’ll use both methods and store the results as different objects. First we must locate the path to the desired file - the code to accomplish this is below. Note that we’re using regex in the <code>list.files()</code> function by providing a text string pattern to help us specify which file we want.</p>
 <pre class="r"><code>library(here)
-root &lt;- here('raw_data_files','supreme_court_opinions_2017')
+root &lt;- here(&#39;data&#39;, &#39;pdf_raw&#39;,&#39;supreme_court_opinions_2017&#39;)
 
 trav_ban_pdf &lt;- list.files(root, 
-                           pattern = '17-965\\S+pdf$',
+                           pattern = &#39;17-965\\S+pdf$&#39;,
                            full.names = T)
 
 
 trav_ban_pdf </code></pre>
-<pre><code>[1] &quot;C:/Users/Aubur/github/afit-dsl/LOGM655/raw_data_files/supreme_court_opinions_2017/17-965_h315.pdf&quot;</code></pre>
+<pre><code>[1] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017/17-965_h315.pdf&quot;</code></pre>
 <p>After identifying the correct file, the code below can be used to extract the data from this document and load it into R using the <code>pdftools</code> package.</p>
 <pre class="r"><code>tb_pdftools &lt;- pdftools::pdf_text(trav_ban_pdf)
 
@@ -2010,7 +1982,7 @@ tb_pdftools[1]</code></pre>
 <pre><code>[1] &quot;(Slip Opinion)                OCTOBER TERM, 2017                                    1\r\n                                         Syllabus\r\n          NOTE: Where it is feasible, a syllabus (headnote) will be released, as is\r\n        being done in connection with this case, at the time the opinion is issued.\r\n        The syllabus constitutes no part of the opinion of the Court but has been\r\n        prepared by the Reporter of Decisions for the convenience of the reader.\r\n        See United States v. Detroit Timber &amp; Lumber Co., 200 U. S. 321, 337.\r\nSUPREME COURT OF THE UNITED STATES\r\n                                         Syllabus\r\n TRUMP, PRESIDENT OF THE UNITED STATES, ET AL.\r\n                                 v. HAWAII ET AL.\r\n CERTIORARI TO THE UNITED STATES COURT OF APPEALS FOR\r\n                               THE NINTH CIRCUIT\r\n       No. 17–965.       Argued April 25, 2018—Decided June 26, 2018\r\nIn September 2017, the President issued Proclamation No. 9645, seek-\r\n   ing to improve vetting procedures for foreign nationals traveling to\r\n   the United States by identifying ongoing deficiencies in the infor-\r\n   mation needed to assess whether nationals of particular countries\r\n   present a security threat. The Proclamation placed entry restrictions\r\n   on the nationals of eight foreign states whose systems for managing\r\n   and sharing information about their nationals the President deemed\r\n   inadequate. Foreign states were selected for inclusion based on a re-\r\n   view undertaken pursuant to one of the President’s earlier Executive\r\n   Orders. As part of that review, the Department of Homeland Securi-\r\n   ty (DHS), in consultation with the State Department and intelligence\r\n   agencies, developed an information and risk assessment “baseline.”\r\n   DHS then collected and evaluated data for all foreign governments,\r\n   identifying those having deficient information-sharing practices and\r\n   presenting national security concerns, as well as other countries “at\r\n   risk” of failing to meet the baseline. After a 50-day period during\r\n   which the State Department made diplomatic efforts to encourage\r\n   foreign governments to improve their practices, the Acting Secretary\r\n   of Homeland Security concluded that eight countries—Chad, Iran,\r\n   Iraq, Libya, North Korea, Syria, Venezuela, and Yemen—remained\r\n   deficient. She recommended entry restrictions for certain nationals\r\n   from all of those countries but Iraq, which had a close cooperative re-\r\n   lationship with the U. S. She also recommended including Somalia,\r\n   which met the information-sharing component of the baseline stand-\r\n   ards but had other special risk factors, such as a significant terrorist\r\n   presence. After consulting with multiple Cabinet members, the Pres-\r\n   ident adopted the recommendations and issued the Proclamation.\r\n&quot;</code></pre>
 <pre class="r"><code># The cat() function will execute the \r\n
 # and make the result more visually appealing
-# however, it's important to remember that we're 
+# however, it&#39;s important to remember that we&#39;re 
 # working with the raw data that includes all of 
 # the \r\n terms  
 cat(tb_pdftools[1])</code></pre>
@@ -2056,17 +2028,17 @@ In September 2017, the President issued Proclamation No. 9645, seek-
    presence. After consulting with multiple Cabinet members, the Pres-
    ident adopted the recommendations and issued the Proclamation.</code></pre>
 <p>Likewise, the code below can be used to extract the data using the <code>pdftotext</code> utility.</p>
-<pre class="r"><code>cmd1 &lt;- 'pdftotext' 
-cmd2 &lt;- '-layout'   
+<pre class="r"><code>cmd1 &lt;- &#39;pdftotext&#39; 
+cmd2 &lt;- &#39;-layout&#39;   
 cmd3 &lt;- trav_ban_pdf
-cmd4 &lt;- ''          
+cmd4 &lt;- &#39;&#39;          
 
 CMD1 &lt;- glue::glue(&quot;{cmd1} {cmd2} {cmd3} {cmd4}&quot;)
 
-system(CMD1)
-
-trav_ban_txt &lt;- list.files(root, 
-                           pattern = '17-965\\S+txt$',
+system(CMD1)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>trav_ban_txt &lt;- list.files(root, 
+                           pattern = &#39;17-965\\S+txt$&#39;,
                            full.names = T)
 
 tb_pdftotext &lt;- readLines(trav_ban_txt,
@@ -2100,9 +2072,9 @@ countries &lt;- subset(countries,
 usc_doubles &lt;- str_extract_all(string = tb_pdftools, 
                                pattern = &quot;§§\\S+\\s+\\S+&quot;)</code></pre>
 <p>Another set of character strings we may want locate are the named court cases, which are printed in <em>italics</em>.</p>
-<pre class="r"><code>cmd1 &lt;- 'pdftohtml' 
-cmd2 &lt;- '-s -i -q -xml'  
-cmd3 &lt;- pdf
+<pre class="r"><code>cmd1 &lt;- &#39;pdftohtml&#39; 
+cmd2 &lt;- &#39;-s -i -q -xml&#39;  
+cmd3 &lt;- trav_ban_pdf
 
 # Two options to connect the strings
 CMD1 &lt;- glue::glue(&quot;{cmd1} {cmd2} {cmd3}&quot;)
@@ -2110,18 +2082,18 @@ CMD1 &lt;- glue::glue(&quot;{cmd1} {cmd2} {cmd3}&quot;)
 system(CMD1)</code></pre>
 <pre class="r"><code># Extract html/xml content from URL
 url &lt;- stringr::str_replace(pdf, 
-                            pattern = '.pdf',
-                            replacement = '-html.html')
+                            pattern = &#39;.pdf&#39;,
+                            replacement = &#39;-html.html&#39;)
 
 url_lines &lt;- readLines(url)
-url_lines_gsub &lt;- qdap::mgsub(pattern     = c('§','â€œ','â€\u009d','â€™','Â','&amp;#160;'),
-                              replacement = c('&amp;sect;','&quot;'  ,    '&quot;'   , &quot;'&quot; ,' ',   ' '),
+url_lines_gsub &lt;- qdap::mgsub(pattern     = c(&#39;§&#39;,&#39;â€œ&#39;,&#39;â€\u009d&#39;,&#39;â€™&#39;,&#39;Â&#39;,&#39;&amp;#160;&#39;),
+                              replacement = c(&#39;&amp;sect;&#39;,&#39;&quot;&#39;  ,    &#39;&quot;&#39;   , &quot;&#39;&quot; ,&#39; &#39;,   &#39; &#39;),
                               url_lines)
 
 # We need to get the href attributes from 
 # the anchor tags &lt;a&gt; stored in the table 
 # as table data tags &lt;td&gt;
-# First, let's get all of the attributes
+# First, let&#39;s get all of the attributes
 italic &lt;- XML::xpathApply(url_parsed, &quot;//i&quot;, XML::xmlValue)</code></pre>
 </div>
 <div id="additional-resources" class="section level2">
@@ -2155,6 +2127,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
