@@ -1513,7 +1513,7 @@ div.tocify {
 
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>In a text analysis, a uncommon first step is knowing how to extract data from a volume of documents that may be stored in multiple different file formats. For example, you might need to extract text from documents where one or more have been saved with the following file format types:</p>
+<p>In a text analysis, a common first step is knowing how to extract data from a volume of documents that may be stored in multiple different file formats. For example, you might need to extract text from documents where one or more have been saved with the following file format types:</p>
 <ul>
 <li>MS Word (.doc/.docx)</li>
 <li>Portable document format (.pdf)</li>
@@ -1521,7 +1521,8 @@ div.tocify {
 <li>Raw text files (.txt)</li>
 <li>Tabular data (.csv/.xls/.xlsx)</li>
 </ul>
-<p>This lecture walks through the process of extracting raw, unstructured text data from these different types of document formats. In doing this we’ll encounter several R packages and/or 3<sup>rd</sup> party tools that have been developed for this purpose – we’ll demo each of these tools on various datasets.</p>
+<p>One can find many text analysis tutorials that discuss how to analyze a dataset that’s already been extracted from a document and cleaned up. But this isn’t reality. Therefore, this lecture walks through the process of extracting raw, unstructured text data from the different types of documents listed above. In doing this we’ll encounter several R packages and/or 3<sup>rd</sup> party tools that have been developed for this purpose – we’ll demo each of these tools on various datasets.</p>
+<p>It’s important to mention up front that several text analysis <strong><em>frameworks</em></strong> exist that provide an analyst with potentially “one-stop” resource to perform text analysis. While this sounds great, the analyst recognizes (often too late) that the data extracted by these frameworks is stored in an object type that only works with functions that are part of that framework. Therefore, a problem that’s often encountered is when the chosen framework doesn’t have an important capability that the analyst wants. To avoid this problem I don’t discuss framework, but instead assume that we’ll extract the text data into a baseline form that allows us to work with most any framework or function we want.</p>
 <p>Typically, the text data you extract from a document will be stored in R as a character-class vector – a vector object in which each element is a character string. It will be important to understand how the text is assigned to each element of this output vector. In some cases, each element may contain a single line of text, in others each element may contain an entire page. In the extreme case, each element may contain the entire document. In future lectures we’ll look at how to manipulate the character vector to go from the raw text data that was initially extracted into a form that is more desireable for analysis.</p>
 <p>Throughout this document you’ll be asked to download and install several R packages from the CRAN. While this is a simple task, let’s take the extra step by using the <code>pacman</code> package. The <code>pacman</code> package allows us to install <strong>and/or</strong> load packages on the fly. To use <code>pacman</code>, you first need to install it on your machine by using the code in the chunk below.</p>
 <pre class="r"><code>install.packages(&quot;pacman&quot;)</code></pre>
@@ -1536,7 +1537,10 @@ div.tocify {
                glue,
                data.table,
                tidyverse,
-               vroom)</code></pre>
+               vroom,
+               antiword,
+               magick,
+               tesseract)</code></pre>
 <p>In the sections below I demonstrate how to extract text data from various types of file formats. Click on each tab to learn more</p>
 </div>
 <div id="extracting-text-from-txt-files" class="section level2">
@@ -1595,7 +1599,7 @@ oper_readme_text[264]</code></pre>
 <pre class="r"><code># system.time returns the time required to evaluate the expression in {}
 time1 &lt;- system.time({ amazon_review_data_1 &lt;- read.csv(amazon_review_file) })</code></pre>
 <ul>
-<li><strong>Execution time:</strong> 2.5 seconds</li>
+<li><strong>Execution time:</strong> 2.71 seconds</li>
 <li><strong>Memory required:</strong> 19.18 MB</li>
 <li><strong>Object class:</strong> data.frame</li>
 <li><strong>Notes:</strong> <code>read.csv</code> hass the slowest execution time of the four functions, but also results the smallest object size. The only reason this function is used more often than the others is because it is the oldest and comes preinstalled with R as part of the <code>utils</code> package. Another <strong>very</strong> important note is how <code>read.csv</code> treats strings. Let’s look at the structure of the <code>reviews.text</code> column (the column that contains the actual review).</li>
@@ -1626,7 +1630,7 @@ cols(
   row        col           expected    actual                                                              file
 17511 reviews.id 1/0/T/F/TRUE/FALSE 111372787 &#39;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/csv/1429_1.csv&#39;</code></pre>
 <ul>
-<li><strong>Execution time:</strong> 0.31 seconds</li>
+<li><strong>Execution time:</strong> 0.36 seconds</li>
 <li><strong>Memory required:</strong> 20.31 MB</li>
 <li><strong>Object class:</strong> spec_tbl_df, tbl_df, tbl, data.frame</li>
 <li><strong>Notes:</strong> Executes faster than <code>read.csv()</code> but not as fast as the other functions yet to be discussed. The advantage of <code>read_csv()</code> is that the resulting object type is a <code>tbl_df</code> or <code>tbl</code> otherwise known as a tibble from the <code>tibble</code> package. Tibbles are the primary object type used by the tidyverse family of packages. Note that the object resulting from <code>read_csv()</code> also has the the <code>data.frame</code> class assigned to it. This means that any function that would work for a <code>data.frame</code>-class object will also work for a tibble – but the reverse is not true. Also, note that we don’t have the issue of <code>stringsAsFactors</code> when using <code>read_csv</code> – this will be the case for every function not called <code>read.csv()</code></li>
@@ -1637,7 +1641,7 @@ cols(
 <pre class="r"><code># system.time returns the time required to evaluate the expression in {}
 time3 &lt;- system.time({ amazon_review_data_3 &lt;- data.table::fread(amazon_review_file) })</code></pre>
 <ul>
-<li><strong>Execution time:</strong> 0.15 seconds</li>
+<li><strong>Execution time:</strong> 0.19 seconds</li>
 <li><strong>Memory required:</strong> 20.27 MB</li>
 <li><strong>Object class:</strong> data.table, data.frame</li>
 <li><strong>Notes:</strong> <code>fread()</code>, or fast read, and <code>vroom()</code> are considered the fastest options for reading in data. Note that we never told <code>fread()</code> that this was a csv file, the function just figured it out by looking at the data. The class of object returned includes <code>data.table</code> meaning that this type of object is required if you want to use the <code>data.table</code> syntax. The <code>data.table</code> package uses a SQL-like syntax for manipulating objects and has garnered an almost cult-like following among those who use it. Note that objects extracted using <code>fread()</code> are not tibbles, using functions from a tidyverse package are not guaranteed to work</li>
@@ -1724,11 +1728,9 @@ for(i in files) {
 <pre class="r"><code>dest &lt;- file.path(root, &#39;data&#39;, &#39;msword&#39;)
 
 # make a vector of MS Word file names
-ms_files &lt;- list.files(path = dest,
-                       pattern = &quot;docx&quot;,
-                       full.names = TRUE)
-
-ms_files</code></pre>
+(ms_files &lt;- list.files(path = dest,
+                        pattern = &quot;docx&quot;,
+                        full.names = TRUE))</code></pre>
 <pre><code> [1] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/apptexsyn.docx&quot;  
  [2] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/dss.docx&quot;        
  [3] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/factorimage.docx&quot;
@@ -1747,13 +1749,276 @@ ms_files</code></pre>
 [16] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/tmpm.docx&quot;       </code></pre>
 <p>Now, let’s read in the content of the first file in the <code>ms_files</code> vector which is <u>C:/Users/Aubur/github/afit-r/oper655_fa2019/data/msword/apptexsyn.docx</u>.</p>
 <pre class="r"><code>docx1 &lt;- qdapTools::read_docx(file = ms_files[1])
-docx1[90]</code></pre>
-<pre><code>[1] &quot;Having created an 8D appearance-space exemplar, we can apply any pixel-based synthesis algorithm, e.g. evaluating a 55 neighborhood error by summing squared differences (in 8D rather than 3D).  But in fact, the greater information density permits synthesis using a more compact runtime neighborhood.&quot;</code></pre>
+docx1[90:91]</code></pre>
+<pre><code>[1] &quot;Having created an 8D appearance-space exemplar, we can apply any pixel-based synthesis algorithm, e.g. evaluating a 55 neighborhood error by summing squared differences (in 8D rather than 3D).  But in fact, the greater information density permits synthesis using a more compact runtime neighborhood.&quot;
+[2] &quot;In adapting our earlier parallel synthesis algorithm [Lefebvre and Hoppe 2005], we find that a runtime neighborhood of just 4 diagonal points is sufficient:&quot;                                                                                                                                               </code></pre>
 <p>Here we see that this function extracts the text as paragraphs, rather than as lines or as pages.</p>
 </div>
 <div id="using-the-antiword-package" class="section level3">
 <h3>Using the <code>antiword</code> package</h3>
 <p>If you are working with Word documents that were saved using the older <code>.doc</code> format the <code>antiword</code> package is useful for extracting text data from such files. Note that <code>antiword</code> will not extract data from <code>.docx</code> files as the newer standard utilizes Java code which <code>antiword</code> is unable to parse.</p>
+</div>
+</div>
+<div id="extracting-text-from-pdf-documents" class="section level2">
+<h2>Extracting text from PDF documents</h2>
+<p>The portable document format is often used to store text, expecially among government organizations. In this section we’ll walk through the process of extracting text from the 2017 United States Supreme Court Opinions. These documents can be accessed from <a href="https://www.supremecourt.gov/opinions/slipopinion/17"><strong>this site</strong></a>. In total, there are 85 documents in this corpus. We could download and extract the text from each of these documents separately, but instead let’s have R do this for us.</p>
+<p><code>supreme_court_opinions_2017_sample</code> folder, note that all of these files are saved using the PDF format. ### Saving local copies of the documents</p>
+<p>With these packages installed, we can now download the documents from the url using the code shown below. <u><strong>However, do not run this code as it is written in the LOGM655 project - it will overwrite the existing files. I’ll show you what to change</strong></u></p>
+<pre class="r"><code># Assign the URL to a text string
+url_root  &lt;- &#39;https://www.supremecourt.gov&#39;
+     url  &lt;- &#39;https://www.supremecourt.gov/opinions/slipopinion/17&#39;
+
+# Assign the root of the project this
+# helps locate where to save the files
+# Before going forward you should change
+# these values to a location on your machine
+proj_root   &lt;- rprojroot::find_root(is_rstudio_project)
+save_folder &lt;- base::file.path(proj_root,&#39;raw_data_files&#39;,&#39;supreme_court_opinions_2017&#39;)
+
+# Extract html/xml content from URL
+rcurl.doc &lt;- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+
+# Parse html content
+url_parsed &lt;- XML::htmlParse(rcurl.doc, asText = TRUE)
+
+# We need to get the href attributes from
+# the anchor tags &lt;a&gt; stored in the table
+# as table data tags &lt;td&gt;
+# First, let&#39;s get all of the attributes
+attrs &lt;- XML::xpathApply(url_parsed, &quot;//td//a&quot;, XML::xmlAttrs)
+
+# Next, we&#39;ll split out the hrefs
+# from the other attributes
+hrefs &lt;- sapply(seq_along(attrs), FUN = function(x) attrs[[x]][[&#39;href&#39;]])
+
+# Then, we only want the hrefs for the files
+# that have a .pdf file extension
+pdfs  &lt;- hrefs[tools::file_ext(hrefs) == &#39;pdf&#39;]
+
+# Construct a list of URL&#39;s for each file
+# by pasting two character strings together
+files &lt;- paste0(url_root,pdfs)
+
+# loop through each element in the files
+# vector and download the file to destfile
+for(i in files) {
+
+  filename &lt;- basename(i)
+  download.file(i,
+                destfile = file.path(save_folder,filename),
+                method = &#39;curl&#39;)
+
+}</code></pre>
+<p>Now that we have these documents downloaded locally, I’m going to use a small set of these documents <code>supreme_court_opinions_2017_sample</code> folder. Before we get too far, let’s install some helpful packages.</p>
+<div id="using-the-xpdfreader" class="section level3">
+<h3>Using the XpdfReader</h3>
+<p>First, let’s use XpdfReader by letting R talk to our system (i.e. command prompt or terminal). Xpdf is an open source project developed by <a href="http://www.glyphandcog.com/"><strong>Glyph &amp; Cog</strong></a> for viewing/manipulating (PDF) files. The Xpdf project also includes <strong>xpdf tools</strong> which contain the following utilities that are useful for extracting data from pdf files:</p>
+<ul>
+<li>pdftotext - Convert a PDF file to text</li>
+<li>pdftohtml - Convert a PDF file to HTML</li>
+<li>pdfinfo - Dump a PDF file’s Info dictionary (plus some other useful information)</li>
+<li>pdffonts - List the fonts used in a PDF file and various information for each font</li>
+<li>pdfdetach - List or extract embedded files (attachments) from a PDF file</li>
+<li>pdftoppm - Convert a PDF file to a series of PPM/PGM/PBM-format bitmaps</li>
+<li>pdftopng - Convert a PDF file to a series of PNG image files</li>
+<li>pdfimages - Extract the images from a PDF file</li>
+</ul>
+<p>To use these utilities we must first download xpdf and xpdf tools from <a href="http://www.xpdfreader.com/"><strong>this site</strong></a>. After downloading and unzipping xpdf tools, make sure to note the file location where it was saved. On my machine, the main xpdf folder is located at</p>
+<pre class="r"><code>xpdf_tools &lt;- &#39;C:/Program Files/xpdf-tools-win-4.00/bin64&#39;</code></pre>
+<p>Next we’ll create a character vector containing the names of the files in the <code>supreme_court_opinions_2017_sample</code> folder.</p>
+<pre class="r"><code>dest &lt;- file.path(root, &#39;data&#39;, &#39;pdf_raw&#39;,&#39;supreme_court_opinions_2017_sample&#39;)
+
+# make a vector of PDF file names
+(pdf_files &lt;- list.files(path = dest,
+                         pattern = &quot;pdf&quot;,
+                         full.names = TRUE))</code></pre>
+<pre><code>[1] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017_sample/15-1204_f29g.pdf&quot;    
+[2] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017_sample/15-1439_8njq.pdf&quot;    
+[3] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017_sample/15-1485_new_8n59.pdf&quot;
+[4] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017_sample/15-1485diff_758b.pdf&quot;
+[5] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017_sample/15-1498_1b8e.pdf&quot;    
+[6] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017_sample/15-1509_4fbi.pdf&quot;    
+[7] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017_sample/16-111_new2_22p3.pdf&quot;
+[8] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017_sample/16-111diff_868c.pdf&quot; 
+[9] &quot;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/supreme_court_opinions_2017_sample/16-111diff2_e1pf.pdf&quot;</code></pre>
+<p>Now, let’s use the <code>pdftotext</code> utility to extract the text from the first document in <code>my_files</code>. The <code>pdftotext</code> utility converts each PDF file in into a text file. By default, the text file is created in the same directory as the PDF file. Since this is a command-line utility we need to construct the commands to send, normally this would look like the code below.</p>
+<pre class="r"><code>if(nchar(Sys.which(&#39;pdftotext&#39;) &gt; 0)) {
+
+   system(&#39;pdftotext&#39;)
+
+}</code></pre>
+<pre><code>[1] 99</code></pre>
+<p>To have R call pdftotext, we need to paste (or glue) these four separate charater strings together into a single command. This can be done as shown below.</p>
+<pre class="r"><code>cmd1 &lt;- &#39;pdftotext&#39; # which utility are we calling?
+cmd2 &lt;- &#39;&#39;          # which options? - here we use none
+cmd3 &lt;- pdf_files[1] # which file to convert
+cmd4 &lt;- &#39;&#39;          # which file to write to
+
+# Two options to connect the strings
+CMD1 &lt;- glue::glue(&quot;{cmd1} {cmd2} {cmd3} {cmd4}&quot;)
+CMD2 &lt;- paste(cmd1, cmd2, cmd3, cmd4, sep = &#39; &#39;)</code></pre>
+<p>Now, we send this command to either the command prompt or terminal, depending on the type of OS being used.</p>
+<pre class="r"><code>system(CMD1)</code></pre>
+<p>To have <code>pdftotext</code> do this action recursively for each of the files we can run the above command in a loop or use one of the apply functions, in this case <code>lapply()</code></p>
+<pre class="r"><code>lapply(pdf_files,
+       FUN = function(x) system(glue::glue(&quot;pdftotext {x}&quot;), wait = FALSE))</code></pre>
+<pre><code>[[1]]
+[1] 0
+
+[[2]]
+[1] 0
+
+[[3]]
+[1] 0
+
+[[4]]
+[1] 0
+
+[[5]]
+[1] 0
+
+[[6]]
+[1] 0
+
+[[7]]
+[1] 0
+
+[[8]]
+[1] 0
+
+[[9]]
+[1] 0</code></pre>
+<p>Now that the data has been extracted into a text file it can then be read into R as a character vector using the <code>readLines()</code> function. Note that each element in character vector is a line of text. A line of text in defined by a certain number of characters, this number of characters may not coincide with the number of characters on the original pdf document. If we desire to maintain the exact layout of the document we can specify the option <code>-layout</code> to maintain the original layout of the text.</p>
+<pre class="r"><code>text_files &lt;- list.files(path = dest,
+                         pattern = &quot;txt&quot;,
+                         full.names = TRUE)
+
+text1 &lt;- readLines(con = text_files[1])</code></pre>
+<pre><code>Warning in readLines(con = text_files[1]): incomplete final line
+found on &#39;C:/Users/Aubur/github/afit-r/oper655_fa2019/data/pdf_raw/
+supreme_court_opinions_2017_sample/15-1204_f29g.txt&#39;</code></pre>
+<pre class="r"><code>text1[1:50]</code></pre>
+<pre><code> [1] &quot;(Slip Opinion)&quot;                                                                                                                                                                                                                                  
+ [2] &quot;&quot;                                                                                                                                                                                                                                                
+ [3] &quot;OCTOBER TERM, 2017&quot;                                                                                                                                                                                                                              
+ [4] &quot;&quot;                                                                                                                                                                                                                                                
+ [5] &quot;1&quot;                                                                                                                                                                                                                                               
+ [6] &quot;&quot;                                                                                                                                                                                                                                                
+ [7] &quot;Syllabus&quot;                                                                                                                                                                                                                                        
+ [8] &quot;NOTE: Where it is feasible, a syllabus (headnote) will be released, as is&quot;                                                                                                                                                                       
+ [9] &quot;being done in connection with this case, at the time the opinion is issued.&quot;                                                                                                                                                                     
+[10] &quot;The syllabus constitutes no part of the opinion of the Court but has been&quot;                                                                                                                                                                       
+[11] &quot;prepared by the Reporter of Decisions for the convenience of the reader.&quot;                                                                                                                                                                        
+[12] &quot;See United States v. Detroit Timber &amp; Lumber Co., 200 U. S. 321, 337.&quot;                                                                                                                                                                           
+[13] &quot;&quot;                                                                                                                                                                                                                                                
+[14] &quot;SUPREME COURT OF THE UNITED STATES&quot;                                                                                                                                                                                                              
+[15] &quot;Syllabus&quot;                                                                                                                                                                                                                                        
+[16] &quot;&quot;                                                                                                                                                                                                                                                
+[17] &quot;JENNINGS ET AL. v. RODRIGUEZ ET AL., INDIVIDUALLY&quot;                                                                                                                                                                                               
+[18] &quot;AND ON BEHALF OF ALL OTHERS SIMILARLY SITUATED&quot;                                                                                                                                                                                                  
+[19] &quot;CERTIORARI TO THE UNITED STATES COURT OF APPEALS FOR&quot;                                                                                                                                                                                            
+[20] &quot;THE NINTH CIRCUIT&quot;                                                                                                                                                                                                                               
+[21] &quot;No. 15â\200“1204. Argued November 30, 2016â\200”Reargued October 3,&quot;                                                                                                                                                                                   
+[22] &quot;2017â\200”Decided February 27, 2018&quot;                                                                                                                                                                                                                
+[23] &quot;Immigration officials are authorized to detain certain aliens in the&quot;                                                                                                                                                                            
+[24] &quot;course of immigration proceedings while they determine whether&quot;                                                                                                                                                                                  
+[25] &quot;those aliens may be lawfully present in the country. For example,&quot;                                                                                                                                                                               
+[26] &quot;Â§1225(b) of Title 8 of the U. S. Code authorizes the detention of certain aliens seeking to enter the country. Section 1225(b)(1) applies to&quot;                                                                                                   
+[27] &quot;aliens initially determined to be inadmissible due to fraud, misrepresentation, or lack of valid documentation, and to certain other aliens&quot;                                                                                                     
+[28] &quot;designated by the Attorney General in his discretion. Section&quot;                                                                                                                                                                                   
+[29] &quot;1225(b)(2) is a catchall provision that applies to most other applicants for admission not covered by Â§1225(b)(1). Under Â§1225(b)(1),&quot;                                                                                                         
+[30] &quot;aliens are normally ordered removed â\200œwithout further hearing or review,â\200\235 Â§1225(b)(1)(A)(i), but an alien indicating either an intention to&quot;                                                                                                 
+[31] &quot;apply for asylum or a credible fear of persecution, Â§1225(b)(1)(A)(ii),&quot;                                                                                                                                                                        
+[32] &quot;â\200œshall be detainedâ\200\235 while that alienâ\200\231s asylum application is pending,&quot;                                                                                                                                                                     
+[33] &quot;Â§1225(b)(1)(B)(ii). Aliens covered by Â§1225(b)(2) in turn â\200œshall be detained for a [removal] proceedingâ\200\235 if an immigration officer â\200œdetermines that [they are] not clearly and beyond a doubt entitledâ\200\235 to admission. Â§1225(b)(2)(A).&quot;
+[34] &quot;The Government is also authorized to detain certain aliens already&quot;                                                                                                                                                                              
+[35] &quot;in the country. Section 1226(a)â\200\231s default rule permits the Attorney&quot;                                                                                                                                                                           
+[36] &quot;General to issue warrants for the arrest and detention of these aliens&quot;                                                                                                                                                                          
+[37] &quot;pending the outcome of their removal proceedings. The Attorney&quot;                                                                                                                                                                                  
+[38] &quot;General â\200œmay releaseâ\200\235 these aliens on bond, â\200œ[e]xcept as provided in&quot;                                                                                                                                                                      
+[39] &quot;subsection (c) of this section.â\200\235 Section 1226(c) in turn states that the&quot;                                                                                                                                                                      
+[40] &quot;Attorney General â\200œshall take into custody any alienâ\200\235 who falls into&quot;                                                                                                                                                                         
+[41] &quot;one of the enumerated categories involving criminal offenses and ter-&quot;                                                                                                                                                                           
+[42] &quot;&quot;                                                                                                                                                                                                                                                
+[43] &quot;\f2&quot;                                                                                                                                                                                                                                             
+[44] &quot;&quot;                                                                                                                                                                                                                                                
+[45] &quot;JENNINGS v. RODRIGUEZ&quot;                                                                                                                                                                                                                           
+[46] &quot;Syllabus&quot;                                                                                                                                                                                                                                        
+[47] &quot;rorist activities, Â§1226(c)(1), and specifies that the Attorney General&quot;                                                                                                                                                                        
+[48] &quot;â\200œmay releaseâ\200\235 one of those aliens â\200œonly if the Attorney General decidesâ\200\235 both that doing so is necessary for witness-protection purposes&quot;                                                                                                
+[49] &quot;and that the alien will not pose a danger or flight risk, Â§1226(c)(2).&quot;                                                                                                                                                                         
+[50] &quot;After a 2004 conviction, respondent Alejandro Rodriguez, a Mexican citizen and a lawful permanent resident of the United States,&quot;                                                                                                                </code></pre>
+<p>The remaining utilities in xpdf tools can be used in a similar manner as to what what shown here for <code>pdftotext</code>.</p>
+</div>
+<div id="using-the-pdftools-package" class="section level3">
+<h3>Using the <code>pdftools</code> package</h3>
+<p>The pdftools package is an R interface to the Poppler C++ API. The package makes it easy to use several utilities based on ‘libpoppler’ for extracting text, fonts, attachments and metadata from a PDF file. The package also supports high quality rendering of PDF documents info PNG, JPEG, TIFF format, or into raw bitmap vectors for further processing in R. The <code>pdftools</code> contains the following user-level functions</p>
+<pre class="r"><code>data.frame(function_names = getNamespaceExports(&#39;pdftools&#39;))</code></pre>
+<pre><code>    function_names
+1      pdf_convert
+2         pdf_info
+3      pdf_combine
+4          pdf_toc
+5         pdf_text
+6         pdf_data
+7  pdf_attachments
+8       pdf_length
+9        pdf_fonts
+10    pdf_compress
+11    pdf_pagesize
+12      pdf_subset
+13  poppler_config
+14 pdf_render_page
+15       pdf_split</code></pre>
+<p>that can be used to retreive information in a similar fashion as to what was shown for the xpdf tools. As example using the <code>pdf_text()</code> function extracts the text from a PDF file as a character vector. Note that in this case each character vector is an entire page.</p>
+<pre class="r"><code>text2 &lt;- pdftools::pdf_text(pdf = pdf_files[1])
+text2[1]</code></pre>
+<pre><code>[1] &quot;(Slip Opinion)                OCTOBER TERM, 2017                                    1\r\n                                         Syllabus\r\n          NOTE: Where it is feasible, a syllabus (headnote) will be released, as is\r\n        being done in connection with this case, at the time the opinion is issued.\r\n        The syllabus constitutes no part of the opinion of the Court but has been\r\n        prepared by the Reporter of Decisions for the convenience of the reader.\r\n        See United States v. Detroit Timber &amp; Lumber Co., 200 U. S. 321, 337.\r\nSUPREME COURT OF THE UNITED STATES\r\n                                         Syllabus\r\n JENNINGS ET AL. v. RODRIGUEZ ET AL., INDIVIDUALLY\r\n      AND ON BEHALF OF ALL OTHERS SIMILARLY SITUATED\r\n CERTIORARI TO THE UNITED STATES COURT OF APPEALS FOR\r\n                               THE NINTH CIRCUIT\r\n     No. 15–1204. Argued November 30, 2016—Reargued October 3,\r\n                        2017—Decided February 27, 2018\r\nImmigration officials are authorized to detain certain aliens in the\r\n   course of immigration proceedings while they determine whether\r\n   those aliens may be lawfully present in the country. For example,\r\n   §1225(b) of Title 8 of the U. S. Code authorizes the detention of cer-\r\n   tain aliens seeking to enter the country. Section 1225(b)(1) applies to\r\n   aliens initially determined to be inadmissible due to fraud, misrepre-\r\n   sentation, or lack of valid documentation, and to certain other aliens\r\n   designated by the Attorney General in his discretion. Section\r\n   1225(b)(2) is a catchall provision that applies to most other appli-\r\n   cants for admission not covered by §1225(b)(1). Under §1225(b)(1),\r\n   aliens are normally ordered removed “without further hearing or re-\r\n   view,” §1225(b)(1)(A)(i), but an alien indicating either an intention to\r\n   apply for asylum or a credible fear of persecution, §1225(b)(1)(A)(ii),\r\n   “shall be detained” while that alien’s asylum application is pending,\r\n   §1225(b)(1)(B)(ii). Aliens covered by §1225(b)(2) in turn “shall be de-\r\n   tained for a [removal] proceeding” if an immigration officer “deter-\r\n   mines that [they are] not clearly and beyond a doubt entitled” to ad-\r\n   mission. §1225(b)(2)(A).\r\n      The Government is also authorized to detain certain aliens already\r\n   in the country. Section 1226(a)’s default rule permits the Attorney\r\n   General to issue warrants for the arrest and detention of these aliens\r\n   pending the outcome of their removal proceedings. The Attorney\r\n   General “may release” these aliens on bond, “[e]xcept as provided in\r\n   subsection (c) of this section.” Section 1226(c) in turn states that the\r\n   Attorney General “shall take into custody any alien” who falls into\r\n   one of the enumerated categories involving criminal offenses and ter-\r\n&quot;</code></pre>
+<p>The <code>pdftools</code> package does not contain a function to save the text directly to a text file, however we can write to a text file using the <code>writeLines()</code> function. A downside to this is that we must keep track of the name of the original document when specifying a name to the new <code>.txt</code> file. This could lead to errors in assigning the wrong name to a file. Also, note that the output file contains a blank line between each line of text. This may not present a problem depending on the desired output, however it presents an extra step in our data preparation process.</p>
+<pre class="r"><code>writeLines(text = text2,
+           con = gsub(&#39;pdf&#39;,&#39;txt&#39;, file.path(dest,basename(pdf_files[1]))))</code></pre>
+</div>
+</div>
+<div id="extracting-text-from-scanned-image-files" class="section level2">
+<h2>Extracting text from scanned image files</h2>
+<p>There are many instances, as a text analyst, that you receive a volume of documents only to find out that several of them are actually scanned images of documents. This is especially true when working with government organizations. The files may have been saved using as PDF’s or as one of many image file formats (i.e. <code>.tif</code>,<code>.jpeg</code>, etc.). files In these cases we first need to convert the images to a suitable format for processing with an optical character recognition (OCR) tool. In this tutorial we’ll use the <code>tesseract</code> package which provides R bindings to <a target href="https://en.wikipedia.org/wiki/Tesseract_(software)"><strong>Google’s Tesseract OCR utility</strong></a> and the <code>magick</code> package which connects to the <a target=" " href="https://imagemagick.org/index.php"><strong>Image Magick</strong></a> utility for creating, editing, composing, or converting bitmap images.</p>
+<div id="using-the-tesseract-ocr-engine" class="section level3">
+<h3>Using the Tesseract OCR engine</h3>
+<p>The tesseract developers recommend that you clean up the image before invoking any OCR tool to improve the quality of the output. This involves things like cropping out the text area, rescaling the image, and increasing contrast. Likewise, there are a many reasons why you might not get good quality output from Tesseract, most related to the quality of the image. Moreover, note that the document includes a very unusual font or a new language, retraining Tesseract is unlikely to help. In any case where the resulting text is of poor quality, <a target=" " href="https://github.com/tesseract-ocr/tesseract/wiki/ImproveQuality"><strong>this site</strong></a> recomends various was to improve the quality of image which, in turn, should impact the quality of the converted text.</p>
+<p>In this case, well demonstrate the steps to extract the text from a simple pdf image document. In actual usage, the document may have several artifacts that can dramatically effect the quality of the extracted text, such as: handwriting/signatures/notes, stamps, image imperfections, pictures, watermarks, etc.</p>
+<p>To extract the text let’s first get the path to the desired file.</p>
+<pre class="r"><code>pdf_image &lt;- file.path(root,&quot;data&quot;,&quot;pdf_image&quot;,&quot;Non-text-searchable.pdf&quot;)</code></pre>
+<p>Next, we’ll convert the file from a PDF to Portable Network Graphic (PNG) format to make the ready the image for processing. This is accomplished using the code below.</p>
+<pre class="r"><code>pdf_png &lt;- pdftools::pdf_convert(pdf_image, dpi = 600)</code></pre>
+<pre><code>Converting page 1 to Non-text-searchable_1.png... done!</code></pre>
+<p>Depending on the processing speed of the machine on which you are executing this code, it could take several second to finish. You should see something like this during the execution process.</p>
+<p>Converting page 1 to Non-text-searchable_1.png… done!</p>
+<p>Once the PNG image hase been created, use the Tesseract OCR utility to extract the text.</p>
+<pre class="r"><code>tesseract_text &lt;- tesseract::ocr(pdf_png)</code></pre>
+<p>If this is the first time you have used the Tesseract OCR utility you may see the following message.</p>
+<p>First use of Tesseract: copying language data…</p>
+<p>As result of executing this code, we have the following text</p>
+<pre class="r"><code>tesseract_text</code></pre>
+<pre><code>[1] &quot;IDRH\nNon-text-searchable PDF\nThis is an example of a non-text-searchable PDF. Because it was created from\nan image rather than a text document, it cannot be rendered as plain text by the\nPDF reader. Thus, attempting to select the text on the page as though it were a\ntext document or website will not work, regardless of how neatly it 1s organized.\n&quot;</code></pre>
+<p>which we can compare to the text from the original document by opening and reviewing the PDF file using the following code</p>
+<pre class="r"><code>browseURL(pdf_image)</code></pre>
+</div>
+<div id="using-the-image-magick-ocr-engine" class="section level3">
+<h3>Using the Image Magick OCR engine</h3>
+<p>If the text you want to extract is stored in a bitmap image format other than a PNG, we can still extract the text – using the imagemagick OCR utility. Those wanting to learn more about how to use the <code>magick</code> package (at least more that what is shown here) should visit <a target=" " href="https://ropensci.org/blog/2016/08/23/z-magick-release/"><strong>this site</strong></a>. First, lets set the path the image file.</p>
+<pre class="r"><code>image_file &lt;- file.path(root, &#39;data&#39;,&#39;pdf_image&#39;, &#39;t1.tif&#39;)</code></pre>
+<p>Then, the following code chunk uses the magrittr pipe operator <code>%&gt;%</code> to ‘pipe’ the <code>image_file</code> object through several functions and assign the final extracted text to an object named <code>magick_text</code>.</p>
+<pre class="r"><code>magick_text &lt;- image_read(image_file) %&gt;%
+  image_resize(&quot;2000&quot;) %&gt;%
+  image_convert(colorspace = &#39;gray&#39;) %&gt;%
+  image_trim() %&gt;%
+  image_ocr()</code></pre>
+<p>Let’s compare the extracted text to what’s in the original document. Run the following code in your R console to open the original <code>image_file</code>.</p>
+<pre class="r"><code>browseURL(image_file)</code></pre>
+<p>Next, compare the text in the original <code>image_file</code> to what was extracted using the <code>image_ocr</code> function. If you are unsatisfied with the results, try different argument setting in the chunk above to see what effect it has.</p>
+<pre class="r"><code>magick_text</code></pre>
+<pre><code>[1] &quot;Differences between FineReader versions\nfor beginners for home for office\nyour scanner _ _ ne\n__ Sprint 4.0 StartUp $.0 | Pro5.0 | _—_Offfice 5.0\n| Recognition ee ee ee _\nRecognition Recognition Recognition\nRecognition quality quality better by | quality better by | quality better by;\n1,5-2 times 1,5-2 times 1,5-2 times |\n| Recognition of superscript, subscript |\nand dropped capitals - ,\nBarcode recognition | sd +\nRecognition languages 12 languages’ 176 languages | 176 languages\nMultilingual document recognition i Op\nBuilt-in spelling check - 30 languages 30 languages :\nPattern training for new symbols +\nCreation of new languages fF | + .\n___ Saving [|\nSaving in MS Word, MS Excel, ; .\nWord Pro, WordPerfect, Star Writer a _\nSaving in HTML, PDF, RTF, DOC, a: All save PDF,\nXLS, DBE, CSV,and TXT formas, [OMY RTFLIXT) ry | ae\n_ Export via ODMA _ 7 ee +\ni ____Anterface i\n~ OCR Wizard ; + ; ~\nTBuittinedior J\nNetwork Oo |\nNetwork installation ; a a ty\nDistributed document ‘processing over oe ; OS Lo\na network _\nControl of licences run simultaneously ot\nProfessional features ; _\ni\nBatch work —__ +\nMultiprocessing support _ - _ +\nFomFiller Co Pp\nseries and 5.0 series oe _\nMe English, Dutch (Standard, Belgium), Spanish, Italian, German (Standard, New Spelling}, Portuguese\n(Standard, Brazilian), Russian, Turkish, French.\n&quot;</code></pre>
 </div>
 </div>
 <div id="other-datasets" class="section level2">
