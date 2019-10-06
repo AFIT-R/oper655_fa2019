@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 
 ## Overview
 
-In a text analysis, a uncommon first step is knowing how to extract data from a volume of documents that may be stored in multiple different file formats.  For example, you might need to extract text from documents where one or more have been saved with the following file format types:
+In a text analysis, a common first step is knowing how to extract data from a volume of documents that may be stored in multiple different file formats.  For example, you might need to extract text from documents where one or more have been saved with the following file format types:
 
 - MS Word (.doc/.docx)
 - Portable document format (.pdf) 
@@ -23,7 +23,9 @@ In a text analysis, a uncommon first step is knowing how to extract data from a 
 - Raw text files (.txt)
 - Tabular data (.csv/.xls/.xlsx)
 
-This lecture walks through the process of extracting raw, unstructured text data from these different types of document formats.  In doing this we'll encounter several R packages and/or 3^rd^ party tools that have been developed for this purpose -- we'll demo each of these tools on various datasets.  
+One can find many text analysis tutorials that discuss how to analyze a dataset that's  already been extracted from a document and cleaned up.  But this isn't reality.  Therefore, this lecture walks through the process of extracting raw, unstructured text data from the different types of documents listed above.  In doing this we'll encounter several R packages and/or 3^rd^ party tools that have been developed for this purpose -- we'll demo each of these tools on various datasets.  
+
+It's important to mention up front that several text analysis ***frameworks*** exist that provide an analyst with potentially  "one-stop" resource to perform text analysis.  While this sounds great, the analyst recognizes (often too late) that the data extracted by these frameworks is stored in an object type that only works with functions that are part of that framework.  Therefore, a problem that's often encountered is when the chosen framework doesn't have an important capability that the analyst wants.  To avoid this problem I don't discuss framework, but instead assume that we'll extract the text data into a baseline form that allows us to work with most any framework or function we want.
 
 Typically, the text data you extract from a document will be stored in R as a character-class vector -- a vector object in which each element is a character string. It will be important to understand how the text is assigned to each element of this output vector.  In some cases, each element may contain a single line of text, in others each element may contain an entire page.  In the extreme case, each element may contain the entire document.  In future lectures we'll look at how to manipulate the character vector to go from the raw text data that was initially extracted into a form that is more desireable for analysis.
 
@@ -46,7 +48,10 @@ pacman::p_load(XML,
                glue,
                data.table,
                tidyverse,
-               vroom)
+               vroom,
+               antiword,
+               magick,
+               tesseract)
 ```
 
 In the sections below I demonstrate how to extract text data from various types of file formats. Click on each tab to learn more
@@ -238,18 +243,16 @@ Within the `qdapTools` package is the `read_docx()` function that is used for (y
 dest <- file.path(root, 'data', 'msword')
 
 # make a vector of MS Word file names
-ms_files <- list.files(path = dest,
-                       pattern = "docx",
-                       full.names = TRUE)
-
-ms_files
+(ms_files <- list.files(path = dest,
+                        pattern = "docx",
+                        full.names = TRUE))
 ```
 
 Now, let's read in the content of the first file in the `ms_files` vector which is <u>`r ms_files[1]`</u>.
 
 ```{r}
 docx1 <- qdapTools::read_docx(file = ms_files[1])
-docx1[90]
+docx1[90:91]
 ```
 
 Here we see that this function extracts the text as paragraphs, rather than as lines or as pages.
@@ -257,6 +260,250 @@ Here we see that this function extracts the text as paragraphs, rather than as l
 ### Using the `antiword` package
 
 If you are working with Word documents that were saved using the older `.doc` format the `antiword` package is useful for extracting text data from such files.  Note that `antiword` will not extract data from `.docx` files as the newer standard utilizes Java code which `antiword` is unable to parse.
+
+## Extracting text from PDF documents
+
+The portable document format is often used to store text, expecially among government organizations. In this section we'll walk through the process of extracting text from the 2017 United States Supreme Court Opinions.  These documents can be accessed from [**this site**](https://www.supremecourt.gov/opinions/slipopinion/17).  In total, there are 85 documents in this corpus.  We could download and extract the text from each of these documents separately, but instead let's have R do this for us.
+
+`supreme_court_opinions_2017_sample` folder, note that all of these files are saved using the PDF format.
+### Saving local copies of the documents
+
+With these packages installed, we can now download the documents from the url using the code shown below.  <u>**However, do not run this code as it is written in the LOGM655 project - it will overwrite the existing files.  I'll show you what to change**</u>
+
+```{r, eval=FALSE}
+# Assign the URL to a text string
+url_root  <- 'https://www.supremecourt.gov'
+     url  <- 'https://www.supremecourt.gov/opinions/slipopinion/17'
+
+# Assign the root of the project this
+# helps locate where to save the files
+# Before going forward you should change
+# these values to a location on your machine
+proj_root   <- rprojroot::find_root(is_rstudio_project)
+save_folder <- base::file.path(proj_root,'raw_data_files','supreme_court_opinions_2017')
+
+# Extract html/xml content from URL
+rcurl.doc <- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+
+# Parse html content
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+
+# We need to get the href attributes from
+# the anchor tags <a> stored in the table
+# as table data tags <td>
+# First, let's get all of the attributes
+attrs <- XML::xpathApply(url_parsed, "//td//a", XML::xmlAttrs)
+
+# Next, we'll split out the hrefs
+# from the other attributes
+hrefs <- sapply(seq_along(attrs), FUN = function(x) attrs[[x]][['href']])
+
+# Then, we only want the hrefs for the files
+# that have a .pdf file extension
+pdfs  <- hrefs[tools::file_ext(hrefs) == 'pdf']
+
+# Construct a list of URL's for each file
+# by pasting two character strings together
+files <- paste0(url_root,pdfs)
+
+# loop through each element in the files
+# vector and download the file to destfile
+for(i in files) {
+
+  filename <- basename(i)
+  download.file(i,
+                destfile = file.path(save_folder,filename),
+                method = 'curl')
+
+}
+```
+
+Now that we have these documents downloaded locally, I'm going to use a small set of these documents `supreme_court_opinions_2017_sample` folder. Before we get too far, let's install some helpful packages.
+
+### Using the XpdfReader
+
+First, let's use XpdfReader by letting R talk to our system (i.e. command prompt or terminal).  Xpdf is an open source project developed by [**Glyph & Cog**](http://www.glyphandcog.com/) for viewing/manipulating (PDF)
+files.  The Xpdf project also includes **xpdf tools** which contain the following utilities that are useful for extracting data from pdf files:
+
+- pdftotext - Convert a PDF file to text
+- pdftohtml - Convert a PDF file to HTML
+- pdfinfo - Dump a PDF file's Info dictionary (plus some other useful information)
+- pdffonts - List the fonts used in a PDF file and various information for each font
+- pdfdetach - List or extract embedded files (attachments) from a PDF file
+- pdftoppm - Convert a PDF file to a series of PPM/PGM/PBM-format bitmaps
+- pdftopng - Convert a PDF file to a series of PNG image files
+- pdfimages - Extract the images from a PDF file
+
+To use these utilities we must first download xpdf and xpdf tools from [**this site**](http://www.xpdfreader.com/).  After downloading and unzipping xpdf tools, make sure to note the file location where it was saved.  On my machine, the main xpdf folder is located at
+
+```{r}
+xpdf_tools <- 'C:/Program Files/xpdf-tools-win-4.00/bin64'
+```
+
+Next we'll create a character vector containing the names of the files in the `supreme_court_opinions_2017_sample` folder.
+
+```{r}
+dest <- file.path(root, 'data', 'pdf_raw','supreme_court_opinions_2017_sample')
+
+# make a vector of PDF file names
+(pdf_files <- list.files(path = dest,
+                         pattern = "pdf",
+                         full.names = TRUE))
+```
+
+Now, let's use the `pdftotext` utility to extract the text from the first document in `my_files`.  The `pdftotext` utility converts each PDF file in into a text file.  By default, the text file is created in the same directory as the PDF file.  Since this is a command-line utility we need to construct the commands to send, normally this would look like the code below.
+
+```{r}
+if(nchar(Sys.which('pdftotext') > 0)) {
+
+   system('pdftotext')
+
+}
+```
+
+To have R call pdftotext, we need to paste (or glue) these four separate charater strings together into a single command.  This can be done as shown below.
+
+```{r}
+cmd1 <- 'pdftotext' # which utility are we calling?
+cmd2 <- ''          # which options? - here we use none
+cmd3 <- pdf_files[1] # which file to convert
+cmd4 <- ''          # which file to write to
+
+# Two options to connect the strings
+CMD1 <- glue::glue("{cmd1} {cmd2} {cmd3} {cmd4}")
+CMD2 <- paste(cmd1, cmd2, cmd3, cmd4, sep = ' ')
+```
+
+Now, we send this command to either the command prompt or terminal, depending on the type of OS being used.
+
+```{r, eval=FALSE}
+system(CMD1)
+```
+
+To have `pdftotext` do this action recursively for each of the files we can run the above command in a loop or use one of the apply functions, in this case `lapply()`
+
+```{r}
+lapply(pdf_files,
+       FUN = function(x) system(glue::glue("pdftotext {x}"), wait = FALSE))
+```
+
+Now that the data has been extracted into a text file it can then be read into R as a character vector using the `readLines()` function. Note that each element in character vector is a line of text.  A line of text in defined by a certain number of characters, this number of characters may not coincide with the number of characters on the original pdf document.  If we desire to maintain the exact layout of the document we can specify the option `-layout` to maintain the original layout of the text.
+
+```{r}
+text_files <- list.files(path = dest,
+                         pattern = "txt",
+                         full.names = TRUE)
+
+text1 <- readLines(con = text_files[1])
+text1[1:50]
+```
+
+The remaining utilities in xpdf tools can be used in a similar manner as to what what shown here for `pdftotext`.
+
+### Using the `pdftools` package
+
+The pdftools package is an R interface to the Poppler C++ API. The package makes it easy to use several utilities based on 'libpoppler' for extracting text, fonts, attachments and metadata from a PDF file. The package also supports high quality rendering of PDF documents info PNG, JPEG, TIFF format, or into raw bitmap vectors for further processing in R. The `pdftools` contains the following user-level functions
+
+```{r}
+data.frame(function_names = getNamespaceExports('pdftools'))
+```
+
+that can be used to retreive information in a similar fashion as to what was shown for the xpdf tools.  As example using the `pdf_text()` function extracts the text from a PDF file as a character vector. Note that in this case each character vector is an entire page.
+
+```{r}
+text2 <- pdftools::pdf_text(pdf = pdf_files[1])
+text2[1]
+```
+
+The `pdftools` package does not contain a function to save the text directly to a text file, however we can write to a text file using the `writeLines()` function. A downside to this is that we must keep track of the name of the original document when specifying a name to the new `.txt` file. This could lead to errors in assigning the wrong name to a file. Also, note that the output file contains a blank line between each line of text.  This may not present a problem depending on the desired output, however it presents an extra step in our data preparation process.
+
+```{r eval=FALSE}
+writeLines(text = text2,
+           con = gsub('pdf','txt', file.path(dest,basename(pdf_files[1]))))
+```
+
+## Extracting text from scanned image files
+
+There are many instances, as a text analyst, that you receive a volume of documents only to find out that several of them are actually scanned images of documents.  This is especially true when working with government organizations.  The files may have been saved using as PDF's or as one of many image file formats (i.e. `.tif`,`.jpeg`, etc.). files In these cases we first need to convert the images to a suitable format for processing with an optical character recognition (OCR) tool.  In this tutorial we'll use the `tesseract` package which provides R bindings to <a target="" href="https://en.wikipedia.org/wiki/Tesseract_(software)">**Google's Tesseract OCR utility**</a> and the `magick` package which connects to the <a target=" " href="https://imagemagick.org/index.php">**Image Magick**</a> utility for creating, editing, composing, or converting bitmap images.
+
+### Using the Tesseract OCR engine
+
+The tesseract developers recommend that you clean up the image before invoking any OCR tool to improve the quality of the output. This involves things like cropping out the text area, rescaling the image, and increasing contrast. Likewise, there are a many reasons why you might not get good quality output from Tesseract, most related to the quality of the image.  Moreover, note that the document includes a very unusual font or a new language, retraining Tesseract is unlikely to help.  In any case where the resulting text is of poor quality, 
+<a target=" " href="https://github.com/tesseract-ocr/tesseract/wiki/ImproveQuality">**this site**</a> recomends various was to improve the quality of image which, in turn, should impact the quality of the converted text.
+
+In this case, well demonstrate the steps to extract the text from a simple pdf image document.  In actual usage, the document may have several artifacts that can dramatically effect the quality of the extracted text, such as: handwriting/signatures/notes, stamps, image imperfections, pictures, watermarks, etc.
+
+To extract the text let's first get the path to the desired file. 
+```{r}
+pdf_image <- file.path(root,"data","pdf_image","Non-text-searchable.pdf")
+```
+
+Next, we'll convert the file from a PDF to Portable Network Graphic (PNG) format to make the ready the image for processing. This is accomplished using the code below.
+
+```{r}
+pdf_png <- pdftools::pdf_convert(pdf_image, dpi = 600)
+```
+
+Depending on the processing speed of the machine on which you are executing this code, it could take several second to finish. You should see something like this during the execution process. 
+
+```{asis}
+Converting page 1 to Non-text-searchable_1.png... done!
+```
+
+Once the PNG image hase been created, use the Tesseract OCR utility to extract the text.
+
+```{r}
+tesseract_text <- tesseract::ocr(pdf_png)
+```
+
+If this is the first time you have used the Tesseract OCR utility you may see the following message.
+
+```{asis}
+First use of Tesseract: copying language data...
+```
+
+As result of executing this code, we have the following text
+
+```{r}
+tesseract_text
+```
+
+which we can compare to the text from the original document by opening and reviewing the PDF file using the following code
+
+```{r, eval=FALSE}
+browseURL(pdf_image)
+```
+
+### Using the Image Magick OCR engine
+
+If the text you want to extract is stored in a bitmap image format other than a PNG, we can still extract the text -- using the imagemagick OCR utility.  Those wanting to learn more about how to use the `magick` package (at least more that what is shown here) should visit <a target=" " href="https://ropensci.org/blog/2016/08/23/z-magick-release/">**this site**</a>.  First, lets set the path the image file.
+
+```{r}
+image_file <- file.path(root, 'data','pdf_image', 't1.tif')
+```
+
+Then, the following code chunk uses the magrittr pipe operator `%>%` to 'pipe' the `image_file` object through several functions and assign the final extracted text to an object named `magick_text`.  
+
+```{r}
+magick_text <- image_read(image_file) %>%
+  image_resize("2000") %>%
+  image_convert(colorspace = 'gray') %>%
+  image_trim() %>%
+  image_ocr()
+```
+
+Let's compare the extracted text to what's in the original document. Run the following code in your R console to open the original `image_file`.
+
+```{r, eval=FALSE}
+browseURL(image_file)
+```
+
+Next, compare the text in the original `image_file` to what was extracted using the `image_ocr` function.  If you are unsatisfied with the results, try different argument setting in the chunk above to see what effect it has.
+
+```{r}
+magick_text
+```
 
 ## Other Datasets
 
