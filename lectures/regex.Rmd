@@ -19,7 +19,7 @@ The term regular expression (aka regex) refers to a language for specifying an a
 
 To understand how to work with regular expressions in R, we need to consider two primary features of regular expressions.  One has to do with the *syntax*, or the way regex patterns are expressed in R.  The other has to do with the *functions* used for regex matching in R.  In this section, we will cover both of these aspects.  First, we'll dicsuss the syntax used to perform pattern matching functions with metacharacters, character & POSIX class objects, and quantifiers.  This will provide a basic understanding of the syntax required to establish the pattern to find.  Then, we'll cover the functions provided in both the `base` and `stringr` packages you can use to identify, extract, replace, and split parts of character strings based on the regex pattern specified. Finally, we'll apply these tools to a very unpopular U.S. Supreme Court ruling and dicsuss how to use regular expressions to locate features within the document.
 
-Several packages will be used in this tutorial, the following code can be used to install and load the required packages
+Several packages will be used in this tutorial, the following code can be used to install and load the required packages from CRAN.
 
 ```{r}
 pacman::p_load(pdftools,     # extract content from PDF documents
@@ -28,7 +28,13 @@ pacman::p_load(pdftools,     # extract content from PDF documents
                countrycode,  # Working with names of countries
                tibble,       # Creating and manipulating tibbles
                qdap,
-               stringr)         # Tools for qualitative data
+               stringr)      # Tools for qualitative data
+```
+
+One additional package that is not currently on CRAN, may be installed from Github using the code shown below.
+
+```{r}
+pacman::p_load_gh("VerbalExpressions/RVerbalExpressions")
 ```
 
 ## Regex Syntax
@@ -358,10 +364,12 @@ unlist(strsplit(x, " "))
 
 Similar to basic string manipulation, the `stringr` package also offers regex functionality.  In some cases the `stringr` performs the same functions as certain base R functions but with more consistent syntax.  In other cases `stringr` offers additional functionality that is not available in the base R functions.  The `stringr` functions we'll cover focus on [detecting](#h1_stringr), [locating](#h2_stringr), [extracting](#h3_stringr), and [replacing patterns](#h4_stringr) along with string [splitting](#h5_stringr).
 
-```{r eval=4}
+```{r eval=FALSE}
 # install stringr package
 install.packages("stringr")
+```
 
+```{r}
 # load package
 library(stringr)
 ```
@@ -465,7 +473,7 @@ Which method we choose depends upon what we are trying to accomplish.  For docum
 
 ```{r}
 library(here)
-root <- here('raw_data_files','supreme_court_opinions_2017')
+root <- here('data', 'pdf_raw','supreme_court_opinions_2017')
 
 trav_ban_pdf <- list.files(root, 
                            pattern = '17-965\\S+pdf$',
