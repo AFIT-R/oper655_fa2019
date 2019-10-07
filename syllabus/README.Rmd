@@ -195,9 +195,9 @@ __This activity is worth 20% of your overall course grade.__ Student grades for 
 The group assignments are as shown in the table below
 
 ```{r echo=FALSE}
-NER <- c(NA,NA,NA)
-SA  <- c(NA,NA,NA)
-DS  <- c(NA,NA,NA) 
+NER <- c("tyler-spangler","ACGidds","maxwell2818")
+SA  <- c("bjhufstetler","anson25cheng","hrdCory")
+DS  <- c("clarence0083","treypujat","mnschro6") 
 
 DAT <- data.frame(NER, SA, DS)
 
