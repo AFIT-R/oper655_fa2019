@@ -338,9 +338,9 @@ The group assignments are as shown in the table below
 
 | Named Entity Recognition | Sentiment Analysis | Document Summarization |
 | :----------------------: | :----------------: | :--------------------: |
-|            NA            |         NA         |           NA           |
-|            NA            |         NA         |           NA           |
-|            NA            |         NA         |           NA           |
+|      tyler-spangler      |    bjhufstetler    |      clarence0083      |
+|         ACGidds          |    anson25cheng    |       treypujat        |
+|       maxwell2818        |      hrdCory       |        mnschro6        |
 
 ## Final project
 
