@@ -1,6 +1,6 @@
 ---
 title: "OPER 655 Student Project Report"
-author: "Your name"
+author: "Capt Brandon Hufstetler"
 date: "`r format(Sys.Date(), '%d %b %Y')`"
 output: 
   html_document:
