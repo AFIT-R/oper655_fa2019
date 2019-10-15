@@ -28,7 +28,8 @@ pacman::p_load(pdftools,     # extract content from PDF documents
                countrycode,  # Working with names of countries
                tibble,       # Creating and manipulating tibbles
                qdap,
-               stringr)      # Tools for qualitative data
+               stringr,      # Tools for qualitative data
+               DT)
 ```
 
 One additional package that is not currently on CRAN, may be installed from Github using the code shown below.
@@ -247,9 +248,10 @@ grep('(^M|N)+[[:alpha:]]+[[:space:]]+[[:alpha:]]+a$', state.name, value = T)
 grep('(^M|N)+[[:alpha:]]+[[:space:]]+C+[[:alpha:]]+a$', state.name, value = T)
 ```
 
+
 ## Regex Functions in Base R
 
-R contains a set of functions in the base package that we can use to find pattern matches.  Alternatively, the R package stringr also provides [several functions](#regex_functions_stringr) for regex operations.  This section covers the base R functions that provide [pattern finding](#h1), [pattern replacement](#replacement), and [string splitting capabilities](#splitting).
+R contains a set of functions in the `base` package that we can use to find pattern matches.  Alternatively, the R package `stringr` also provides [several functions](#regex_functions_stringr) for regex operations.  This section covers the `base` R functions that provide [pattern finding](#h1), [pattern replacement](#replacement), and [string splitting capabilities](#splitting).
 
 ### Pattern Finding Functions
 
@@ -263,19 +265,20 @@ There are five functions that provide pattern matching capabilities.  The three 
 
 #### grep( )
 
-To find a pattern in a character vector and to have the element values or indices as the output use `grep()`:
+There are many instances in which we want to locate a string pattern in a body of text and to have the element values or indices as the output use `grep()`.  In this example we want to find patterns within the built in dataset `state.division` that is part of the `datasets` package.
 
 ```{r}
-# use the built in data set `state.division`
-head(as.character(state.division))
+DT::datatable(data.frame(state.division))
+```
 
-# find the elements which match the patter
+```{r}
+# find the elements which match the pattern
 grep("North", state.division)
 
 # use 'value = TRUE' to show the element value
 grep("North", state.division, value = TRUE)
 
-# can use the 'invert' argument to show the non-matching elements
+# use 'invert = TRUE' to show the non-matching elements
 grep("North | South", state.division, invert = TRUE)
 ```
 
@@ -283,7 +286,7 @@ grep("North | South", state.division, invert = TRUE)
 
 #### grepl( )
 
-To find a pattern in a character vector and to have logical (TRUE/FALSE) outputs use `grep()`:
+To find a pattern in a character vector and to have logical (TRUE/FALSE) outputs use `grepl()`:
 
 ```{r}
 grepl("North | South", state.division)
@@ -304,7 +307,7 @@ x <- c("v.111", "0v.11", "00v.1", "000v.", "00000")
 regexpr("v.", x)
 ```
 
-The output of `regexpr()` can be interepreted as follows.  The first element provides the starting position of the match in each element.  Note that the value **-1** means there is no match.  The second element (attribute "match length") provides the length of the match.  The third element (attribute "useBytes") has a value TRUE meaning matching was done byte-by-byte rather than character-by-character.
+The output of `regexpr()` can be interepreted as follows.  The first element provides the starting position of the match in each element.  Note that the value **-1** means there is no match.  The attribute "match length" provides the length of the match.  The attribute "useBytes" has a value TRUE meaning matching was done byte-by-byte rather than character-by-character.
 
 <a name="replacement"></a>
 
@@ -440,7 +443,7 @@ str_replace(cities, pattern = "[N]*[n]*ew", replacement = "Old")
 To extract all occurrences of a pattern in a character vector use `str_replace_all()`.  This function is a wrapper for [`gsub()`](#regex_functions_base#gsub).
 
 ```{r}
-str_replace_all(cities, pattern = "[N]*[n]*ew", replacement = "Old")
+str_replace_all(cities, pattern = "[Nn]ew", replacement = "Old")
 ```
 
 ### String Splitting
@@ -531,26 +534,51 @@ str(tb_pdftotext)
 tb_pdftotext[1]
 ```
 
-Now that the data have been extracted, let's use our knowledge of regex to parse the text and find useful features. One useful feature might be to extract all of the countries named in a document. This may be important for recognizing named entities.  The `countrycode` package contains a list of country names that can be used as patterns to search within the document. The code below shows which countries are named within this ruling.
+Now that the data have been extracted, let's use our knowledge of regex to parse the text and find useful features. One useful feature might be to extract all of the countries named in a document. This may be important for recognizing named entities.  The `countrycode` package contains a list of country names that can be used as patterns to search within the document. The code chunks below uses the `codelist` dataset from the `countrycode` package to show which countries are named within this ruling and identifies on which page(s) the country is listed. The first code chunk looks uses the 'standard' country name as a search pattern and the `grep()` function 
 
 ```{r}
 # look for countries
-all_countries <- countrycode::codelist$country.name.en
+all_countries1 <- countrycode::codelist$country.name.en
 
-countries <- tibble::tibble(name = all_countries)
+countries1 <- tibble::tibble(name = all_countries1)
 
-countries$pages <- 
-  sapply(seq_along(all_countries),
-         FUN = function(x) grep(all_countries[x], tb_pdftools))
+countries1$pages <- 
+  sapply(seq_along(all_countries1),
+         FUN = function(x) { 
+           grep(pattern = all_countries1[x],
+                tb_pdftools)
+})
 
-countries$total_pages <- 
-  sapply(seq_along(countries$pages),
-         FUN = function(x) length(countries$pages[x][[1]]))
+countries1$total_pages <- 
+  sapply(seq_along(countries1$pages),
+         FUN = function(x) length(countries1$pages[x][[1]]))
 
-countries <- subset(countries, 
-                    subset = total_pages > 0)
+(subset(countries1,
+       subset = total_pages > 0))
 ```
 
+The next code chunk uses the regex pattern representing the country names and the `str_which()` function to identify which pages contain each country name.  Note that we specify that the search pattern is a regex string using the `regex()` function.  Also, because the regex strings are all in lower case, we set all of the text from the travel ban document to lower case using `tolower()`.
+
+```{r}
+# look for countries using regex names
+countries2 <- tibble::tibble(name = all_countries1)
+
+countries2$regex <- countrycode::codelist$country.name.en.regex
+
+countries2$pages <- 
+  sapply(seq_along(all_countries2),
+         FUN = function(x) { 
+           stringr::str_which(pattern = regex(countries2$regex[x]),
+                              tolower(tb_pdftools))
+})
+
+countries2$total_pages <- 
+  sapply(seq_along(countries2$pages),
+         FUN = function(x) length(countries2$pages[x][[1]]))
+
+(subset(countries2, 
+        subset = total_pages > 0))
+```
 
 Looking at the document, another feature we might want are the sections of the United States Code (U. S. C.) called out in the document, these are the strings starting with the `§` symbol. We may want to find all of the unique section of the U. S. C. and rename them to something that is more descriptive and meaningful. This would require us to have a library of names that correspond to these sections - which we don't have.  So let's just settle for finding the unique instances Note that when multiple sections of the U. S. C. are referred to the list is preceded by `§§`.
 
@@ -566,7 +594,7 @@ Another set of character strings we may want locate are the named court cases, w
 
 ```{r, eval=FALSE}
 cmd1 <- 'pdftohtml' 
-cmd2 <- '-s -i -q -xml'  
+cmd2 <- '-s -i -q'  
 cmd3 <- trav_ban_pdf
 
 # Two options to connect the strings
@@ -578,8 +606,8 @@ system(CMD1)
 
 ```{r, eval=FALSE}
 # Extract html/xml content from URL
-url <- stringr::str_replace(pdf, 
-                            pattern = '.pdf',
+url <- stringr::str_replace(trav_ban_pdf, 
+                            pattern = '[.]pdf',
                             replacement = '-html.html')
 
 url_lines <- readLines(url)
@@ -587,11 +615,13 @@ url_lines_gsub <- qdap::mgsub(pattern     = c('§','â€œ','â€\u009d','â�
                               replacement = c('&sect;','"'  ,    '"'   , "'" ,' ',   ' '),
                               url_lines)
 
+url_parsed <- XML::htmlParse(url_lines_gsub)
+
 # We need to get the href attributes from 
 # the anchor tags <a> stored in the table 
 # as table data tags <td>
 # First, let's get all of the attributes
-italic <- XML::xpathApply(url_parsed, "//i", XML::xmlValue)
+italic <- XML::xpathSApply(url_parsed, "//i", XML::xmlValue)
 ```
 
 ## Additional Resources
