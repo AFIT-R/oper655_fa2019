@@ -24,10 +24,36 @@ oper_readme_text[251] #Ellpsis error
 oper_readme_text[264] #Apostrophe Error
 
 #Read CSV
-root <- rprojroot::find_root(rprojroot::is_rstudio_project)
+root <- rprojroot::find_root(rprojroot::is_rstudio_project) #Sets root of file diectory
 (amazon_review_file <- file.path(root, "data","csv", "1429_1.csv"))
 time1 <- system.time({ amazon_review_data_1 <- read.csv(amazon_review_file) })
 str(amazon_review_data_1$reviews.text)
 time2 <- system.time({ amazon_review_data_2 <- readr::read_csv(amazon_review_file) })
 time3 <- system.time({ amazon_review_data_3 <- data.table::fread(amazon_review_file) })
 time4 <- system.time({ amazon_review_data_4 <- vroom::vroom(amazon_review_file) })
+
+#Read Word
+dest <- file.path(root, "data", "msword")
+ms_files <- list.files(path = dest,
+                       pattern = "docx",
+                       full.names = TRUE)
+docx1 <- qdapTools::read_docx(file = ms_files[1])
+
+for (i in 1:length(ms_files)){
+  docx <- qdapTools::read_docx(file= ms_files[i])
+}
+
+#Read PDF
+dest_PDF <- file.path(root, "data", "pdf_raw", "supreme_court_opinions_2017_sample")
+pdf_files <- list.files(path = dest_PDF,
+                        pattern = "pdf",
+                        full.names = TRUE)
+cmd1 <- "pdftotext" 
+cmd2 <- ""
+cmd3 <- pdf_files[1]
+cmd4 <- ""
+CMD1 <- glue::glue("{cmd1} {cmd2} {cmd3} {cmd4}")
+# lapply(pdf_files,
+#        FUN = function(x) system(glue::glue("pdftotext {x}"), wait = FALSE))
+
+
