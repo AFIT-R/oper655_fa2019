@@ -1,7 +1,6 @@
 ---
 title: "Word Relationships"
-subtitle: "2017 Supreme Court Rulings"
-author: "Jason Freels"
+subtitle: "Investigating the Harry Potter Book Series"
 date: "`r format(Sys.Date(), '%d %b %Y')`"
 output: 
   html_document:
@@ -55,8 +54,6 @@ harrypotter::philosophers_stone[1]
 Additionally, we'll need to install and load the following packages to help with this analysis.
 
 ```{r, message=FALSE, warning = F}
-if (!require("pacman")) install.packages("pacman")
-
 pacman::p_load(tm, 
                pdftools, 
                here,
@@ -96,5 +93,5 @@ pacman::p_load_gh("dgrtwo/drlib",
 ```{r child_idf, child='text_mining_tf_idf.Rmd', eval=!FALSE}
 ```
 
-```{r child_relate, child='text_mining_word_relationships.Rmd', eval=FALSE}
+```{r child_relate, child='text_mining_word_relationships.Rmd', eval=!FALSE}
 ```

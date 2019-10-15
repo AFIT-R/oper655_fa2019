@@ -1,0 +1,50 @@
+---
+title: "R to Python and back again"
+author: "Jason Freels"
+date: "10/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Running Python code in R Markdown
+
+First, requires the amazing `reticulate` pacakge
+
+```{r eval=FALSE}
+install.packages("reticulate")
+```
+
+Then load the package
+
+```{r eval=FALSE}
+library("reticulate")
+use_virtualenv('r-reticulate')
+```
+
+## Generate some text in R
+
+```{r}
+input_text <- "maneggevole, pratico, veloce, ottime foto............ancora Ã¨ in fase di prova ma il telefono non ha nulla da invidiare a case piÃ¹ blasonate e ad un costo veramente vantaggioso"
+
+input_lang <- "italian"
+output_lang <- "english"
+```
+
+R objects are saved in an S3-generic object named `r`
+
+Create translator in a Python code chunk
+
+```{python translator}
+from translate import Translator
+translator= Translator(from_lang=r.input_lang,to_lang=r.output_lang)
+translation = translator.translate(r.input_text)
+```
+
+Output `translation` back in an R code chunk
+
+```{r}
+(r_trans <- py$translation)
+```
