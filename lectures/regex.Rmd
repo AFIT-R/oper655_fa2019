@@ -566,7 +566,7 @@ countries2 <- tibble::tibble(name = all_countries1)
 countries2$regex <- countrycode::codelist$country.name.en.regex
 
 countries2$pages <- 
-  sapply(seq_along(all_countries2),
+  sapply(seq_along(all_countries1),
          FUN = function(x) { 
            stringr::str_which(pattern = regex(countries2$regex[x]),
                               tolower(tb_pdftools))
