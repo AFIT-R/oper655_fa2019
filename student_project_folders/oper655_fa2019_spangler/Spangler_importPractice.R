@@ -56,4 +56,9 @@ CMD1 <- glue::glue("{cmd1} {cmd2} {cmd3} {cmd4}")
 # lapply(pdf_files,
 #        FUN = function(x) system(glue::glue("pdftotext {x}"), wait = FALSE))
 
+x <- paste(state.name[1:10], collapse = " ")
+strsplit(x, " ")
 
+dest <- file.path(root, "student_project_folders", "oper655_fa2019_spangler", "Files", "Non-text-searchable.pdf")
+pdf_png <- pdftools::pdf_convert(dest, dpi = 600)
+tesseract_text <- tesseract::ocr(pdf_png)

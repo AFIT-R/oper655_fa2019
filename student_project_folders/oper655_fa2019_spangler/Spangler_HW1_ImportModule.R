@@ -16,7 +16,7 @@ pacman::p_load(XML,
 
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 
-#Create List of Files in Folder
+#Update file path to the files folder
 dest <- file.path(root, "student_project_folders", "oper655_fa2019_spangler", "Files")
 
 #Create list of csv files
@@ -48,10 +48,22 @@ lapply(pdf_files,
 text_files <- list.files(path = dest,
                          pattern = "txt",
                          full.names = TRUE)
+
 #Import Text Files
 for (i in 1:length(text_files)){
   assign(text_files[i], readLines(text_files[i]))
 }
 
+#List of Image Files
+image_files <- list.files(path = dest,
+                          pattern = "jpg|tif",
+                          full.names = TRUE)
 
-
+#Import Image Files
+for (i in 1:length(image_files)){
+  assign(image_files[i], image_read(image_files[i]) %>%
+           image_resize("2000") %>%
+           image_convert(colorspace = 'gray') %>%
+           image_trim() %>%
+           image_ocr())
+}
