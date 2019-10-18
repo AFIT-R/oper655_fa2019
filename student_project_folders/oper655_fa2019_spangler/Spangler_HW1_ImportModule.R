@@ -19,6 +19,11 @@ root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 #Update file path to the files folder
 dest <- file.path(root, "student_project_folders", "oper655_fa2019_spangler", "Files")
 
+#Create List of All Files in Folder
+master_list <- list.files(path = dest,
+                          pattern = "",
+                          full.names = TRUE)
+
 #Create list of csv files
 csv_files <- list.files(path = dest,
               pattern = "csv",
@@ -67,3 +72,5 @@ for (i in 1:length(image_files)){
            image_trim() %>%
            image_ocr())
 }
+
+
