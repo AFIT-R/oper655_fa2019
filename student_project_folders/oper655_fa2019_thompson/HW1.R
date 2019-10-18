@@ -6,7 +6,6 @@ p_load("tools")
 
 fun_read_file <- function(myFile){
   
-  myText = data.frame(1:length(myFile))
   file_ext=file_ext(myFile)
   
   if (file_ext == "txt") {
