@@ -49,6 +49,11 @@ pacman::p_load(tm,
 
 OUTLINE GOES HERE
 
+PIPELINE -> Ingest Data
+          -> Regex Parsing 
+            -> VS Representation 
+              -> StopWords (common and specific)
+
 While it wasn't used for this project, a function, ingest(), was created to examine all documents in the given folder of type csv, txt, doc, pdf, jpg, or tif and will create variables in the global R environment containing the raw text from each of them.
 ```{r, warning=FALSE, message=FALSE, echo=TRUE, eval=FALSE}
 ingest <- function(dest){
