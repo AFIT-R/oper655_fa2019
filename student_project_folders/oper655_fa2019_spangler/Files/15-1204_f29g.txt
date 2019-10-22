@@ -1,0 +1,3682 @@
+(Slip Opinion)
+
+OCTOBER TERM, 2017
+
+1
+
+Syllabus
+NOTE: Where it is feasible, a syllabus (headnote) will be released, as is
+being done in connection with this case, at the time the opinion is issued.
+The syllabus constitutes no part of the opinion of the Court but has been
+prepared by the Reporter of Decisions for the convenience of the reader.
+See United States v. Detroit Timber & Lumber Co., 200 U. S. 321, 337.
+
+SUPREME COURT OF THE UNITED STATES
+Syllabus
+
+JENNINGS ET AL. v. RODRIGUEZ ET AL., INDIVIDUALLY
+AND ON BEHALF OF ALL OTHERS SIMILARLY SITUATED
+CERTIORARI TO THE UNITED STATES COURT OF APPEALS FOR
+THE NINTH CIRCUIT
+No. 15–1204. Argued November 30, 2016—Reargued October 3,
+2017—Decided February 27, 2018
+Immigration officials are authorized to detain certain aliens in the
+course of immigration proceedings while they determine whether
+those aliens may be lawfully present in the country. For example,
+§1225(b) of Title 8 of the U. S. Code authorizes the detention of certain aliens seeking to enter the country. Section 1225(b)(1) applies to
+aliens initially determined to be inadmissible due to fraud, misrepresentation, or lack of valid documentation, and to certain other aliens
+designated by the Attorney General in his discretion. Section
+1225(b)(2) is a catchall provision that applies to most other applicants for admission not covered by §1225(b)(1). Under §1225(b)(1),
+aliens are normally ordered removed “without further hearing or review,” §1225(b)(1)(A)(i), but an alien indicating either an intention to
+apply for asylum or a credible fear of persecution, §1225(b)(1)(A)(ii),
+“shall be detained” while that alien’s asylum application is pending,
+§1225(b)(1)(B)(ii). Aliens covered by §1225(b)(2) in turn “shall be detained for a [removal] proceeding” if an immigration officer “determines that [they are] not clearly and beyond a doubt entitled” to admission. §1225(b)(2)(A).
+The Government is also authorized to detain certain aliens already
+in the country. Section 1226(a)’s default rule permits the Attorney
+General to issue warrants for the arrest and detention of these aliens
+pending the outcome of their removal proceedings. The Attorney
+General “may release” these aliens on bond, “[e]xcept as provided in
+subsection (c) of this section.” Section 1226(c) in turn states that the
+Attorney General “shall take into custody any alien” who falls into
+one of the enumerated categories involving criminal offenses and ter-
+
+2
+
+JENNINGS v. RODRIGUEZ
+Syllabus
+rorist activities, §1226(c)(1), and specifies that the Attorney General
+“may release” one of those aliens “only if the Attorney General decides” both that doing so is necessary for witness-protection purposes
+and that the alien will not pose a danger or flight risk, §1226(c)(2).
+After a 2004 conviction, respondent Alejandro Rodriguez, a Mexican citizen and a lawful permanent resident of the United States,
+was detained pursuant to §1226 while the Government sought to remove him. In May 2007, while still litigating his removal, Rodriguez
+filed a habeas petition, claiming that he was entitled to a bond hearing to determine whether his continued detention was justified. As
+relevant here, he and the class of aliens he represents allege that
+§§1225(b), 1226(a), and 1226(c) do not authorize “prolonged” detention in the absence of an individualized bond hearing at which the
+Government proves by clear and convincing evidence that detention
+remains justified. The District Court entered a permanent injunction, and the Ninth Circuit affirmed. Relying on the canon of constitutional avoidance, the Ninth Circuit construed §§1225(b) and
+1226(c) as imposing an implicit 6-month time limit on an alien’s detention under those sections. After that point, the court held, the
+Government may continue to detain the alien only under the authority
+of §1226(a). The court then construed §1226(a) to mean that an alien
+must be given a bond hearing every six months and that detention
+beyond the initial 6-month period is permitted only if the Government proves by clear and convincing evidence that further detention
+is justified.
+
+Held: The judgment is reversed, and the case is remanded.
+804 F. 3d 1060, reversed and remanded.
+JUSTICE ALITO delivered the opinion of the Court, except as to Part
+II, concluding that §§1225(b), 1226(a), and 1226(c) do not give detained aliens the right to periodic bond hearings during the course of
+their detention. The Ninth Circuit misapplied the canon of constitutional avoidance in holding otherwise. Pp. 12–31.
+(a) The canon of constitutional avoidance “comes into play only
+when, after the application of ordinary textual analysis, the statute is
+found to be susceptible of more than one [plausible] construction.”
+Clark v. Martinez, 543 U. S. 371, 385. The Ninth Circuit’s interpretations of the provisions at issue, however, are implausible. Pp. 12–
+13.
+(b) Read most naturally, §§1225(b)(1) and (b)(2) mandate detention
+of applicants for admission until certain proceedings have concluded.
+Until that point, nothing in the statutory text imposes a limit on the
+length of detention, and neither provision says anything about bond
+hearings. Pp. 13–19.
+(1) Nothing in the text of §1225(b)(1) or §1225(b)(2) hints that
+
+Cite as: 583 U. S. ____ (2018)
+
+3
+
+Syllabus
+those provisions have an implicit 6-month time limit on the length of
+detention. Respondents must show that this is a plausible reading in
+order to prevail under the canon of constitutional avoidance, but they
+simply invoke the canon without making any attempt to defend their
+reading.
+The Ninth Circuit also all but ignored the statutory text, relying
+instead on Zadvydas v. Davis, 533 U. S. 678, as authority for grafting
+a time limit onto §1225(b)’s text. There, this Court invoked the
+constitutional-avoidance canon, construing §1231(a)(6)—which provides than an alien subject to a removal order “may be detained” beyond the section’s 90-day removal period—to mean that the alien
+may not be detained beyond “a period reasonably necessary to secure
+removal,” id., at 699, presumptively six months, id., at 701. The
+Court detected ambiguity in the statutory phrase “may be detained”
+and noted the absence of any explicit statutory limit on the length of
+permissible detention following the entry of an order of removal.
+Several material differences distinguish the provisions at issue in
+this case from Zadvydas’s interpretation of §1231(a)(6). To start, the
+provisions here, unlike §1231(a)(6), mandate detention for a specified
+period of time: until immigration officers have finished “consider[ing]” the asylum application, §1225(b)(1)(B)(ii), or until removal
+proceedings have concluded, §1225(b)(2)(A). Section 1231(a)(6) also
+uses the ambiguous “may,” while §§1225(b)(1) and (b)(2) use the unequivocal mandate “shall be detained.” There is also a specific provision authorizing temporary parole from §1225(b) detention “for urgent humanitarian reasons or significant public benefit,”
+§1182(d)(5)(A), but no similar release provision applies to §1231(a)(6).
+That express exception implies that there are no other circumstances
+under which aliens detained under §1225(b) may be released.
+Pp. 14–17.
+(2) Respondents also claim that the term “for” in §§1225(b)(1)
+and (b)(2) mandates detention only until the start of applicable proceedings. That is inconsistent with the meanings of “for”—“[d]uring
+[or] throughout,” 6 Oxford English Dictionary 26, and “with the object
+or purpose of,” id., at 23—that make sense in the context of the statutory scheme as a whole. Nor does respondents’ reading align with the
+historical use of “for” in §1225. Pp. 17–19.
+(c) Section 1226(c)’s language is even clearer. By allowing aliens to
+be released “only if ” the Attorney General decides that certain conditions are met, that provision reinforces the conclusion that aliens detained under its authority are not entitled to be released under any
+circumstances other than those expressly recognized by the statute.
+Together with §1226(a), §1226(c) makes clear that detention of aliens
+within its scope must continue “pending a decision” on removal. Sec-
+
+4
+
+JENNINGS v. RODRIGUEZ
+Syllabus
+tion 1226(c) is thus not silent as to the length of detention. See
+Demore v. Kim, 538 U. S. 510, 529. The provision, by expressly stating that covered aliens may be released “only if ” certain conditions
+are met, also unequivocally imposes an affirmative prohibition on releasing them under any other conditions. Finally, because §1226(c)
+and the PATRIOT Act apply to different categories of aliens in different ways, adopting §1226(c)’s plain meaning will not make any part
+of the PATRIOT Act, see §1226a(a)(3), superfluous. Pp. 19–22.
+(d) Nothing in §1226(a), which authorizes the Attorney General to
+arrest and detain an alien “pending a decision” on removal and which
+permits the Attorney General to release the alien on bond, supports
+the imposition of periodic bond hearings every six months in which
+the Attorney General must prove by clear and convincing evidence
+that continued detention is necessary. Nor does it hint that the
+length of detention prior to the bond hearing must be considered in
+determining whether an alien should be released. Pp. 22–23.
+(e) The Ninth Circuit should consider the merits of respondents’
+constitutional arguments in the first instance. But before doing so, it
+should also reexamine whether respondents can continue litigating
+their claims as a class. Pp. 29–31.
+
+ALITO, J., delivered the opinion of the Court, except as to Part II.
+ROBERTS, C. J., and KENNEDY, J., joined that opinion in full; THOMAS
+and GORSUCH, JJ., joined as to all but Part II; and SOTOMAYOR, J.,
+joined as to Part III–C. THOMAS, J., filed an opinion concurring in part
+and concurring in the judgment, in which GORSUCH, J., joined except for
+footnote 6. BREYER, J., filed a dissenting opinion, in which GINSBURG
+and SOTOMAYOR, JJ., joined. KAGAN, J., took no part in the decision of
+the case.
+
+Cite as: 583 U. S. ____ (2018)
+
+1
+
+Opinion of the Court
+NOTICE: This opinion is subject to formal revision before publication in the
+preliminary print of the United States Reports. Readers are requested to
+notify the Reporter of Decisions, Supreme Court of the United States, Washington, D. C. 20543, of any typographical or other formal errors, in order
+that corrections may be made before the preliminary print goes to press.
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1204
+_________________
+
+DAVID JENNINGS, ET AL., PETITIONERS v.
+ALEJANDRO RODRIGUEZ, ET AL., INDIVIDUALLY AND ON BEHALF OF ALL OTHERS
+SIMILARLY SITUATED
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[February 27, 2018]
+
+JUSTICE ALITO delivered the opinion of the Court, except
+as to Part II.*
+Every day, immigration officials must determine whether
+to admit or remove the many aliens who have arrived at
+an official “port of entry” (e.g., an international airport or
+border crossing) or who have been apprehended trying to
+enter the country at an unauthorized location. Immigration officials must also determine on a daily basis whether
+there are grounds for removing any of the aliens who are
+already present inside the country. The vast majority of
+these determinations are quickly made, but in some cases
+deciding whether an alien should be admitted or removed
+is not as easy. As a result, Congress has authorized immigration officials to detain some classes of aliens during the
+course of certain immigration proceedings. Detention
+during those proceedings gives immigration officials time
+to determine an alien’s status without running the risk of
+the alien’s either absconding or engaging in criminal
+——————
+* JUSTICE SOTOMAYOR joins only Part III–C of this opinion.
+
+2
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+activity before a final decision can be made.
+In this case we are asked to interpret three provisions of
+U. S. immigration law that authorize the Government to
+detain aliens in the course of immigration proceedings.
+All parties appear to agree that the text of these provisions, when read most naturally, does not give detained
+aliens the right to periodic bond hearings during the course
+of their detention. But by relying on the constitutionalavoidance canon of statutory interpretation, the Court of
+Appeals for the Ninth Circuit held that detained aliens
+have a statutory right to periodic bond hearings under the
+provisions at issue.
+Under the constitutional-avoidance canon, when statutory language is susceptible of multiple interpretations, a
+court may shun an interpretation that raises serious
+constitutional doubts and instead may adopt an alternative that avoids those problems. But a court relying on
+that canon still must interpret the statute, not rewrite it.
+Because the Court of Appeals in this case adopted implausible constructions of the three immigration provisions at
+issue, we reverse its judgment and remand for further
+proceedings.
+I
+A
+To implement its immigration policy, the Government
+must be able to decide (1) who may enter the country and
+(2) who may stay here after entering.
+1
+That process of decision generally begins at the Nation’s
+borders and ports of entry, where the Government must
+determine whether an alien seeking to enter the country is
+admissible. Under 122 Stat. 867, 8 U. S. C. §1225, an
+alien who “arrives in the United States,” or “is present” in
+this country but “has not been admitted,” is treated as “an
+
+Cite as: 583 U. S. ____ (2018)
+
+3
+
+Opinion of the Court
+
+applicant for admission.” §1225(a)(1). Applicants for
+admission must “be inspected by immigration officers” to
+ensure that they may be admitted into the country consistent with U. S. immigration law. §1225(a)(3).
+As relevant here, applicants for admission fall into one
+of two categories, those covered by §1225(b)(1) and those
+covered by §1225(b)(2). Section 1225(b)(1) applies to
+aliens initially determined to be inadmissible due to
+fraud, misrepresentation, or lack of valid documentation.
+See §1225(b)(1)(A)(i) (citing §§1182(a)(6)(C), (a)(7)). Section 1225(b)(1) also applies to certain other aliens designated by the Attorney General in his discretion. See
+§1225(b)(1)(A)(iii). Section 1225(b)(2) is broader. It serves
+as a catchall provision that applies to all applicants for
+admission not covered by §1225(b)(1) (with specific exceptions not relevant here). See §§1225(b)(2)(A), (B).
+Both §1225(b)(1) and §1225(b)(2) authorize the detention of certain aliens. Aliens covered by §1225(b)(1) are
+normally ordered removed “without further hearing or
+review” pursuant to an expedited removal process.
+§1225(b)(1)(A)(i). But if a §1225(b)(1) alien “indicates
+either an intention to apply for asylum . . . or a fear of
+persecution,” then that alien is referred for an asylum
+interview. §1225(b)(1)(A)(ii). If an immigration officer
+determines after that interview that the alien has a credible fear of persecution, “the alien shall be detained for
+further consideration of the application for asylum.”
+§1225(b)(1)(B)(ii). Aliens who are instead covered by
+§1225(b)(2) are detained pursuant to a different process.
+Those aliens “shall be detained for a [removal] proceeding”
+if an immigration officer “determines that [they are] not
+clearly and beyond a doubt entitled to be admitted” into
+the country. §1225(b)(2)(A).
+Regardless of which of those two sections authorizes
+their detention, applicants for admission may be temporarily released on parole “for urgent humanitarian reasons
+
+4
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+or significant public benefit.” §1182(d)(5)(A); see also 8
+CFR §§212.5(b), 235.3 (2017). Such parole, however,
+“shall not be regarded as an admission of the alien.” 8
+U. S. C. §1182(d)(5)(A). Instead, when the purpose of the
+parole has been served, “the alien shall forthwith return
+or be returned to the custody from which he was paroled
+and thereafter his case shall continue to be dealt with in
+the same manner as that of any other applicant for admission to the United States.” Ibid.
+2
+Even once inside the United States, aliens do not have
+an absolute right to remain here. For example, an alien
+present in the country may still be removed if he or she
+falls “within one or more . . . classes of deportable aliens.”
+§1227(a). That includes aliens who were inadmissible at
+the time of entry or who have been convicted of certain
+criminal offenses since admission. See §§1227(a)(1), (2).
+Section 1226 generally governs the process of arresting
+and detaining that group of aliens pending their removal.
+As relevant here, §1226 distinguishes between two different categories of aliens. Section 1226(a) sets out the default rule: The Attorney General may issue a warrant for
+the arrest and detention of an alien “pending a decision on
+whether the alien is to be removed from the United
+States.” §1226(a). “Except as provided in subsection (c) of
+this section,” the Attorney General “may release” an alien
+detained under §1226(a) “on bond . . . or conditional parole.” Ibid.
+Section 1226(c), however, carves out a statutory category
+of aliens who may not be released under §1226(a). Under
+§1226(c), the “Attorney General shall take into custody
+any alien” who falls into one of several enumerated categories involving criminal offenses and terrorist activities.
+§1226(c)(1). The Attorney General may release aliens in
+those categories “only if the Attorney General decides . . .
+
+Cite as: 583 U. S. ____ (2018)
+
+5
+
+Opinion of the Court
+
+that release of the alien from custody is necessary” for
+witness-protection purposes and “the alien satisfies the
+Attorney General that the alien will not pose a danger to
+the safety of other persons or of property and is likely to
+appear for any scheduled proceeding.” §1226(c)(2). Any
+release under those narrow conditions “shall take place in
+accordance with a procedure that considers the severity of
+the offense committed by the alien.” Ibid.1
+In sum, U. S. immigration law authorizes the Government to detain certain aliens seeking admission into the
+country under §§1225(b)(1) and (b)(2). It also authorizes
+the Government to detain certain aliens already in the
+country pending the outcome of removal proceedings
+under §§1226(a) and (c). The primary issue is the proper
+interpretation of §§1225(b), 1226(a), and 1226(c).
+B
+Respondent Alejandro Rodriguez is a Mexican citizen.
+Since 1987, he has also been a lawful permanent resident
+of the United States. In April 2004, after Rodriguez was
+convicted of a drug offense and theft of a vehicle, the
+Government detained him under §1226 and sought to
+remove him from the country. At his removal hearing,
+Rodriguez argued both that he was not removable and, in
+the alternative, that he was eligible for relief from removal.
+In July 2004, an Immigration Judge ordered Rodriguez
+deported to Mexico. Rodriguez chose to appeal that decision to the Board of Immigration Appeals, but five months
+——————
+1 Anyone who believes that he is not covered by §1226(c) may also ask
+for what is known as a “Joseph hearing.” See Matter of Joseph, 22
+I. & N. Dec. 799 (BIA 1999). At a Joseph hearing, that person “may
+avoid mandatory detention by demonstrating that he is not an alien,
+was not convicted of the predicate crime, or that the [Government] is
+otherwise substantially unlikely to establish that he is in fact subject to
+mandatory detention.” Demore v. Kim, 538 U. S. 510, 514, n. 3 (2003).
+Whether respondents are entitled to Joseph hearings is not before this
+Court.
+
+6
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+later the Board agreed that Rodriguez was subject to
+mandatory removal. Once again, Rodriguez chose to seek
+further review, this time petitioning the Court of Appeals
+for the Ninth Circuit for review of the Board’s decision.
+In May 2007, while Rodriguez was still litigating his
+removal in the Court of Appeals, he filed a habeas petition
+in the District Court for the Central District of California,
+alleging that he was entitled to a bond hearing to determine whether his continued detention was justified.
+Rodriguez’s case was consolidated with another, similar
+case brought by Alejandro Garcia, and together they
+moved for class certification. The District Court denied
+their motion, but the Court of Appeals for the Ninth Circuit reversed. See Rodriguez v. Hayes, 591 F. 3d 1105,
+1111 (2010). It concluded that the proposed class met the
+certification requirements of Rule 23 of the Federal Rules
+of Civil Procedure, and it remanded the case to the District Court. Id., at 1111, 1126.
+On remand, the District Court certified the following
+class:
+“[A]ll non-citizens within the Central District of California who: (1) are or were detained for longer than
+six months pursuant to one of the general immigration detention statutes pending completion of removal
+proceedings, including judicial review, (2) are not and
+have not been detained pursuant to a national security
+detention statute, and (3) have not been afforded a
+hearing to determine whether their detention is justified.” Class Certification Order in Rodriguez v. Hayes,
+CV 07–03239 (CD Cal., Apr. 5, 2010).
+The District Court named Rodriguez as class representative of the newly certified class, ibid., and then organized
+the class into four subclasses based on the four “general
+immigration detention statutes” under which it understood the class members to be detained: Sections 1225(b),
+
+Cite as: 583 U. S. ____ (2018)
+
+7
+
+Opinion of the Court
+
+1226(a), 1226(c), and 1231(a). See Order Granting Plaintiff ’s Motion for Class Certification in Rodriguez v. Holder,
+CV 07–03239 (CD Cal., Mar. 8, 2011) (2011 Order); Rodriguez v. Robbins, 715 F. 3d 1127, 1130–1131 (CA9 2013).
+Each of the four subclasses was certified to pursue declaratory and injunctive relief. 2011 Order. On appeal, the
+Court of Appeals held that the §1231(a) subclass had been
+improperly certified, but it affirmed the certification of the
+other three subclasses. See Rodriguez v. Robbins, 804
+F. 3d 1060, 1074, 1085–1086 (CA9 2015).
+In their complaint, Rodriguez and the other respondents
+argued that the relevant statutory provisions—§§1225(b),
+1226(a), and 1226(c)—do not authorize “prolonged” detention in the absence of an individualized bond hearing at
+which the Government proves by clear and convincing
+evidence that the class member’s detention remains justified. Absent such a bond-hearing requirement, respondents continued, those three provisions would violate the
+Due Process Clause of the Fifth Amendment. In their
+prayer for relief, respondents thus asked the District
+Court to require the Government “to provide, after giving
+notice, individual hearings before an immigration judge
+for . . . each member of the class, at which [the Government] will bear the burden to prove by clear and convincing evidence that no reasonable conditions will ensure the
+detainee’s presence in the event of removal and protect the
+community from serious danger, despite the prolonged
+length of detention at issue.” Third Amended Complaint
+in Rodriguez v. Holder, CV 07–03239, p. 31 (CD Cal., Oct.
+20, 2010). Respondents also sought declaratory relief.
+Ibid.
+As relevant here, the District Court entered a permanent injunction in line with the relief sought by respondents, and the Court of Appeals affirmed. See 804 F. 3d, at
+1065. Relying heavily on the canon of constitutional
+avoidance, the Court of Appeals construed §§1225(b) and
+
+8
+
+JENNINGS v. RODRIGUEZ
+Opinion
+Court
+, J.
+Opinion of
+of the
+ALITO
+
+1226(c) as imposing an implicit 6-month time limit on an
+alien’s detention under these sections. Id., at 1079, 1082.
+After that point, the Court of Appeals held, the Government may continue to detain the alien only under the
+authority of §1226(a). Ibid. The Court of Appeals then
+construed §1226(a) to mean that an alien must be given a
+bond hearing every six months and that detention beyond
+the initial 6-month period is permitted only if the Government proves by clear and convincing evidence that
+further detention is justified. Id., at 1085, 1087.
+The Government petitioned this Court for review of that
+decision, and we granted certiorari. 579 U. S. ___ (2016).
+II
+Before reaching the merits of the lower court’s interpretation, we briefly address whether we have jurisdiction to
+entertain respondents’ claims. We discuss two potential
+obstacles, 8 U. S. C. §§1252(b)(9) and 1226(e).
+A
+Under §1252(b)(9):
+“Judicial review of all questions of law and fact, including interpretation and application of constitutional
+and statutory provisions, arising from any action
+taken or proceeding brought to remove an alien from
+the United States under this subchapter [including
+§§1225 and 1226] shall be available only in judicial
+review of a final order under this section.”
+This provision does not deprive us of jurisdiction. We
+are required in this case to decide “questions of law,”
+specifically, whether, contrary to the decision of the Court
+of Appeals, certain statutory provisions require detention
+without a bond hearing. We assume for the sake of argument that the actions taken with respect to all the aliens
+in the certified class constitute “action[s] taken . . . to
+
+Cite as: 583 U. S. ____ (2018)
+
+9
+
+Opinion
+Court
+, J.
+Opinion of
+of the
+ALITO
+
+remove [them] from the United States.”2 On that assumption, the applicability of §1252(b)(9) turns on whether the
+legal questions that we must decide “aris[e] from” the
+actions taken to remove these aliens.
+It may be argued that this is so in the sense that if those
+actions had never been taken, the aliens would not be in
+custody at all. But this expansive interpretation of
+§1252(b)(9) would lead to staggering results. Suppose, for
+example, that a detained alien wishes to assert a claim
+under Bivens v. Six Unknown Fed. Narcotics Agents, 403
+U. S. 388 (1971), based on allegedly inhumane conditions
+of confinement. See, e.g., Ziglar v. Abbasi, 582 U. S. ___,
+___–___ (2017) (slip op., at 23–29). Or suppose that a
+detained alien brings a state-law claim for assault against
+a guard or fellow detainee. Or suppose that an alien is
+injured when a truck hits the bus transporting aliens to a
+detention facility, and the alien sues the driver or owner of
+the truck. The “questions of law and fact” in all those
+cases could be said to “aris[e] from” actions taken to remove the aliens in the sense that the aliens’ injuries would
+never have occurred if they had not been placed in detention. But cramming judicial review of those questions into
+the review of final removal orders would be absurd.
+Interpreting “arising from” in this extreme way would
+also make claims of prolonged detention effectively unreviewable. By the time a final order of removal was eventually entered, the allegedly excessive detention would
+have already taken place. And of course, it is possible that
+no such order would ever be entered in a particular case,
+depriving that detainee of any meaningful chance for
+judicial review.
+In past cases, when confronted with capacious phrases
+——————
+2 It is questionable whether this is true for aliens who are detained
+under 8 U. S. C. §1225(b)(1)(B)(ii) for consideration of their asylum
+applications.
+
+10
+
+JENNINGS v. RODRIGUEZ
+Opinion
+Court
+, J.
+Opinion of
+of the
+ALITO
+
+like “ ‘arising from,’ ” we have eschewed “ ‘uncritical literalism’ ” leading to results that “ ‘no sensible person could
+have intended.’ ” Gobeille v. Liberty Mut. Ins. Co., 577
+U. S. ___, ___ (2016) (slip op., at 6) (interpreting phrase
+“relate to” in the Employee Retirement Income Security
+Act of 1974’s pre-emption provision). See also, e.g., FERC
+v. Electric Power Supply Assn., 577 U. S. ___, ___–___
+(2016) (slip op., at 15–16) (interpreting term “affecting” in
+Federal Power Act); Maracich v. Spears, 570 U. S. 48, 59–
+61 (2013) (interpreting phrase “in connection with” in
+Driver’s Privacy Protection Act); Dan’s City Used Cars,
+Inc. v. Pelkey, 569 U. S. 251, 260–261 (2013) (interpreting
+phrase “related to” in Federal Aviation Administration
+Authorization Act); Celotex Corp. v. Edwards, 514 U. S.
+300, 308 (1995) (interpreting phrase “related to” in
+Bankruptcy Act).
+In Reno v. American-Arab AntiDiscrimination Comm., 525 U. S. 471, 482 (1999), we took
+this approach in construing the very phrase that appears
+in §1252(b)(9). A neighboring provision of the Immigration and Nationality Act refers to “any cause or claim by or
+on behalf of any alien arising from the decision or action
+by the Attorney General to commence proceedings, adjudicate cases, or execute removal orders against any alien
+under this chapter.” 8 U. S. C. §1252(g) (emphasis added).
+We did not interpret this language to sweep in any claim
+that can technically be said to “arise from” the three listed
+actions of the Attorney General. Instead, we read the
+language to refer to just those three specific actions themselves. American-Arab Anti-Discrimination Comm., supra, at 482–483.
+The parties in this case have not addressed the scope of
+§1252(b)(9), and it is not necessary for us to attempt to
+provide a comprehensive interpretation. For present
+purposes, it is enough to note that respondents are not
+asking for review of an order of removal; they are not
+challenging the decision to detain them in the first place
+
+Cite as: 583 U. S. ____ (2018)
+
+11
+
+Opinion
+Court
+, J.
+Opinion of
+of the
+ALITO
+
+or to seek removal; and they are not even challenging any
+part of the process by which their removability will be
+determined. Under these circumstances, §1252(b)(9) does
+not present a jurisdictional bar.3
+B
+We likewise hold that §1226(e) does not bar us from
+considering respondents’ claims.
+That provision states:
+“The Attorney General’s discretionary judgment regarding the application of [§1226] shall not be subject
+to review. No court may set aside any action or decision by the Attorney General under this section regarding the detention or release of any alien or the
+grant, revocation, or denial of bond or parole.”
+§1226(e).
+As we have previously explained, §1226(e) precludes an
+alien from “challeng[ing] a ‘discretionary judgment’ by the
+Attorney General or a ‘decision’ that the Attorney General
+has made regarding his detention or release.” Demore v.
+Kim, 538 U. S. 510, 516 (2003). But §1226(e) does not
+preclude “challenges [to] the statutory framework that
+permits [the alien’s] detention without bail.” Id., at 517.
+Respondents mount that second type of challenge here.
+——————
+3 The concurrence contends that “detention is an ‘action taken . . . to
+remove’ an alien” and that therefore “even the narrowest reading of
+‘arising from’ must cover” the claims raised by respondents. Post, at 6.
+We do not follow this logic. We will assume for the sake of argument
+that detention is an action taken “to remove an alien,” i.e., for the
+purpose of removing an alien, rather than simply an action aimed at
+ensuring that the alien does not flee or commit a crime while his
+proceedings are pending. But even if we proceed on the basis of that
+assumption, we do not see what it proves. The question is not whether
+detention is an action taken to remove an alien but whether the legal
+questions in this case arise from such an action. And for the reasons
+explained above, those legal questions are too remote from the actions
+taken to fall within the scope of §1252(b)(9).
+
+12
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+First and foremost, they are challenging the extent of the
+Government’s detention authority under the “statutory
+framework” as a whole. If that challenge fails, they are
+then contesting the constitutionality of the entire statutory
+scheme under the Fifth Amendment. Because the extent
+of the Government’s detention authority is not a matter of
+“discretionary judgment,” “action,” or “decision,” respondents’ challenge to “the statutory framework that permits
+[their] detention without bail,” ibid., falls outside of the
+scope of §1226(e). We may therefore consider the merits of
+their claims.
+III
+When “a serious doubt” is raised about the constitutionality of an act of Congress, “it is a cardinal principle that
+this Court will first ascertain whether a construction of
+the statute is fairly possible by which the question may be
+avoided.” Crowell v. Benson, 285 U. S. 22, 62 (1932).
+Relying on this canon of constitutional avoidance, the
+Court of Appeals construed §§1225(b), 1226(a), and 1226(c)
+to limit the permissible length of an alien’s detention
+without a bond hearing. Without such a construction, the
+Court of Appeals believed, the “ ‘prolonged detention without adequate procedural protections’ ” authorized by the
+provisions “ ‘would raise serious constitutional concerns.’ ”
+804 F. 3d, at 1077 (quoting Casas-Castrillon v. DHS, 535
+F. 3d 942, 950 (CA9 2008)).
+The canon of constitutional avoidance “comes into play
+only when, after the application of ordinary textual analysis, the statute is found to be susceptible of more than one
+construction.” Clark v. Martinez, 543 U. S. 371, 385
+(2005). In the absence of more than one plausible construction, the canon simply “ ‘has no application.’ ” Warger
+v. Shauers, 574 U. S. ___, ___ (2014) (slip op., at 10) (quoting United States v. Oakland Cannabis Buyers’ Cooperative, 532 U. S. 483, 494 (2001)).
+
+Cite as: 583 U. S. ____ (2018)
+
+13
+
+Opinion of the Court
+
+The Court of Appeals misapplied the canon in this case
+because its interpretations of the three provisions at issue
+here are implausible. In Parts III–A and III–B, we hold
+that, subject only to express exceptions, §§1225(b) and
+1226(c) authorize detention until the end of applicable
+proceedings. And in Part III–C, we hold that there is no
+justification for any of the procedural requirements that
+the Court of Appeals layered onto §1226(a) without any
+arguable statutory foundation.
+A
+As noted, §1225(b) applies primarily to aliens seeking
+entry into the United States (“applicants for admission” in
+the language of the statute). Section 1225(b) divides these
+applicants into two categories. First, certain aliens claiming a credible fear of persecution under §1225(b)(1) “shall
+be detained for further consideration of the application for
+asylum.” §1225(b)(1)(B)(ii). Second, aliens falling within
+the scope of §1225(b)(2) “shall be detained for a [removal]
+proceeding.” §1225(b)(2)(A).
+Read most naturally, §§1225(b)(1) and (b)(2) thus mandate detention of applicants for admission until certain
+proceedings have concluded. Section 1225(b)(1) aliens are
+detained for “further consideration of the application for
+asylum,” and §1225(b)(2) aliens are in turn detained for
+“[removal] proceeding[s].” Once those proceedings end,
+detention under §1225(b) must end as well. Until that
+point, however, nothing in the statutory text imposes any
+limit on the length of detention. And neither §1225(b)(1)
+nor §1225(b)(2) says anything whatsoever about bond
+hearings.
+Despite the clear language of §§1225(b)(1) and (b)(2),
+respondents argue—and the Court of Appeals held—that
+those provisions nevertheless can be construed to contain
+implicit limitations on the length of detention. But neither of the two limiting interpretations offered by re-
+
+14
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+spondents is plausible.
+1
+First, respondents argue that §§1225(b)(1) and (b)(2)
+contain an implicit 6-month limit on the length of detention. Once that 6-month period elapses, respondents
+contend, aliens previously detained under those provisions
+must instead be detained under the authority of §1226(a),
+which allows for bond hearings in certain circumstances.
+There are many problems with this interpretation.
+Nothing in the text of §1225(b)(1) or §1225(b)(2) even hints
+that those provisions restrict detention after six months,
+but respondents do not engage in any analysis of the text.
+Instead, they simply cite the canon of constitutional
+avoidance and urge this Court to use that canon to read a
+“six-month reasonableness limitation” into §1225(b). Brief
+for Respondents 48.
+That is not how the canon of constitutional avoidance
+works. Spotting a constitutional issue does not give a
+court the authority to rewrite a statute as it pleases.
+Instead, the canon permits a court to “choos[e] between
+competing plausible interpretations of a statutory text.”
+Clark, supra, at 381 (emphasis added). To prevail, respondents must thus show that §1225(b)’s detention provisions may plausibly be read to contain an implicit 6-month
+limit. And they do not even attempt to defend that reading of the text.
+In much the same manner, the Court of Appeals all but
+ignored the statutory text. Instead, it read Zadvydas v.
+Davis, 533 U. S. 678 (2001), as essentially granting a
+license to graft a time limit onto the text of §1225(b).
+Zadvydas, however, provides no such authority.
+Zadvydas concerned §1231(a)(6), which authorizes the
+detention of aliens who have already been ordered removed from the country. Under this section, when an
+alien is ordered removed, the Attorney General is directed
+
+Cite as: 583 U. S. ____ (2018)
+
+15
+
+Opinion of the Court
+
+to complete removal within a period of 90 days, 8 U. S. C.
+§1231(a)(1)(A), and the alien must be detained during that
+period, §1231(a)(2). After that time elapses, however,
+§1231(a)(6) provides only that certain aliens “may be
+detained” while efforts to complete removal continue.
+(Emphasis added.)
+In Zadvydas, the Court construed §1231(a)(6) to mean
+that an alien who has been ordered removed may not be
+detained beyond “a period reasonably necessary to secure
+removal,” 533 U. S., at 699, and it further held that six
+months is a presumptively reasonable period, id., at 701.
+After that, the Court concluded, if the alien “provides good
+reason to believe that there is no significant likelihood of
+removal in the reasonably foreseeable future,” the Government must either rebut that showing or release the
+alien. Ibid.
+The Zadvydas Court justified this interpretation by
+invoking the constitutional-avoidance canon, and the
+Court defended its resort to that canon on the ground that
+§1231(a)(6) is ambiguous. Specifically, the Court detected
+ambiguity in the statutory phrase “may be detained.”
+“ ‘[M]ay,’ ” the Court said, “suggests discretion” but not
+necessarily “unlimited discretion. In that respect the word
+‘may’ is ambiguous.” Id., at 697. The Court also pointed
+to the absence of any explicit statutory limit on the length
+of permissible detention following the entry of an order of
+removal. Ibid.
+Zadvydas represents a notably generous application of
+the constitutional-avoidance canon, but the Court of Appeals in this case went much further. It failed to address
+whether Zadvydas’s reasoning may fairly be applied in
+this case despite the many ways in which the provision in
+question in Zadvydas, §1231(a)(6), differs materially from
+those at issue here, §§1225(b)(1) and (b)(2). Those differences preclude the reading adopted by the Court of
+Appeals.
+
+16
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+To start, §§1225(b)(1) and (b)(2), unlike §1231(a)(6),
+provide for detention for a specified period of time. Section 1225(b)(1) mandates detention “for further consideration of the application for asylum,” §1225(b)(1)(B)(ii), and
+§1225(b)(2) requires detention “for a [removal] proceeding,” §1225(b)(2)(A). The plain meaning of those phrases
+is that detention must continue until immigration officers
+have finished “consider[ing]” the application for asylum,
+§1225(b)(1)(B)(ii), or until removal proceedings have concluded, §1225(b)(2)(A). By contrast, Congress left the
+permissible length of detention under §1231(a)(6) unclear.
+Moreover, in Zadvydas, the Court saw ambiguity in
+§1231(a)(6)’s use of the word “may.” Here, by contrast,
+§§1225(b)(1) and (b)(2) do not use the word “may.” Instead, they unequivocally mandate that aliens falling
+within their scope “shall” be detained. “Unlike the word
+‘may,’ which implies discretion, the word ‘shall’ usually
+connotes a requirement.” Kingdomware Technologies, Inc.
+v. United States, 579 U. S. ___, ___ (2016) (slip op., at 9).
+That requirement of detention precludes a court from
+finding ambiguity here in the way that Zadvydas found
+ambiguity in §1231(a)(6).
+Zadvydas’s reasoning is particularly inapt here because
+there is a specific provision authorizing release from
+§1225(b) detention whereas no similar release provision
+applies to §1231(a)(6). With a few exceptions not relevant
+here, the Attorney General may “for urgent humanitarian
+reasons or significant public benefit” temporarily parole
+aliens detained under §§1225(b)(1) and (b)(2). 8 U. S. C.
+§1182(d)(5)(A). That express exception to detention implies that there are no other circumstances under which
+aliens detained under §1225(b) may be released. See A.
+Scalia & B. Garner, Reading Law 107 (2012) (“NegativeImplication Canon[:] The expression of one thing implies
+the exclusion of others (expressio unius est exclusio alterius)”). That negative implication precludes the sort of
+
+Cite as: 583 U. S. ____ (2018)
+
+17
+
+Opinion of the Court
+
+implicit time limit on detention that we found in
+Zadvydas.4
+In short, a series of textual signals distinguishes the
+provisions at issue in this case from Zadvydas’s interpretation of §1231(a)(6). While Zadvydas found §1231(a)(6) to
+be ambiguous, the same cannot be said of §§1225(b)(1) and
+(b)(2): Both provisions mandate detention until a certain
+point and authorize release prior to that point only under
+limited circumstances. As a result, neither provision can
+reasonably be read to limit detention to six months.
+2
+In this Court, respondents advance an interpretation of
+the language of §§1225(b)(1) and (b)(2) that was never
+made below, namely, that the term “for,” which appears in
+both provisions, mandates detention only until the start of
+applicable proceedings rather than all the way through to
+their conclusion. Respondents contrast the language of
+§§1225(b)(1) and (b)(2) authorizing detention “for” further
+proceedings with another provision’s authorization of
+detention “pending” further proceedings. See 8 U. S. C.
+§1225(b)(1)(B)(iii)(IV) (“Any alien . . . shall be detained
+pending a final determination of credible fear of persecution and, if found not to have such a fear, until removed”).
+According to respondents, that distinction between “for”
+and “pending” makes an enormous difference. As they see
+things, the word “pending” authorizes detention throughout subsequent proceedings, but the term “for” means that
+detention authority ends once subsequent proceedings
+——————
+4 According to the dissent, we could have applied the expressio unius
+canon in Zadvydas as well because there was also an “alternative
+avenue for relief, namely, bail,” available for aliens detained under
+§1231(a)(6). Post, at 25 (opinion of BREYER, J.). But the dissent overlooks the fact that the provision granting bail was precisely the same
+provision that the Court purported to be interpreting, so the canon was
+not applicable. See 533 U. S., at 683.
+
+18
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+begin. As a result, respondents argue, once the applicable
+proceedings commence, §§1225(b)(1) and (b)(2) no longer
+authorize detention, and the Government must instead
+look to §1226(a) for continued detention authority.
+That interpretation is inconsistent with ordinary English usage and is incompatible with the rest of the statute.
+To be sure, “for” can sometimes mean “in preparation for
+or anticipation of.” 6 Oxford English Dictionary 24 (2d ed.
+1989). But “for” can also mean “[d]uring [or] throughout,”
+id., at 26, as well as “with the object or purpose of,” id., at
+23; see also American Heritage Dictionary 709 (3d ed.
+1992) (“Used to indicate the object, aim, or purpose of an
+action or activity”; “Used to indicate amount, extent, or
+duration”); Random House Dictionary of the English Language 747 (2d ed. 1987) (“with the object or purpose of ”;
+“during the continuance of ”); Webster’s Third New International Dictionary 886 (1993) (“with the purpose or object
+of ”; “to the . . . duration of ”). And here, only that second
+set of definitions makes sense in the context of the statutory scheme as a whole.
+For example, respondents argue that, once detention
+authority ends under §§1225(b)(1) and (b)(2), aliens can be
+detained only under §1226(a). But that section authorizes
+detention only “[o]n a warrant issued” by the Attorney
+General leading to the alien’s arrest. §1226(a). If respondents’ interpretation of §1225(b) were correct, then
+the Government could detain an alien without a warrant
+at the border, but once removal proceedings began, the
+Attorney General would have to issue an arrest warrant in
+order to continue detaining the alien. To put it lightly,
+that makes little sense.
+Nor does respondents’ interpretation of the word “for”
+align with the way Congress has historically used that
+word in §1225. Consider that section’s text prior to the
+enactment of the Illegal Immigration Reform and Immigrant Responsibility Act of 1996, 110 Stat. 3009–546.
+
+Cite as: 583 U. S. ____ (2018)
+
+19
+
+Opinion of the Court
+
+Under the older version of §1225(b), “[e]very alien” within
+its scope “who may not appear . . . to be clearly and beyond
+a doubt entitled to [entry] shall be detained for further
+inquiry to be conducted by a special inquiry officer.” 8
+U. S. C. §1225(b) (1994 ed.). It would make no sense to
+read “for further inquiry” as authorizing detention of the
+alien only until the start of the inquiry; Congress obviously
+did not mean to allow aliens to feel free to leave once
+immigration officers asked their first question.
+In sum, §§1225(b)(1) and (b)(2) mandate detention of
+aliens throughout the completion of applicable proceedings
+and not just until the moment those proceedings begin. Of
+course, other provisions of the immigration statutes do
+authorize detention “pending” other proceedings or “until”
+a certain point. See post, at 22–23 (BREYER, J., dissenting)
+(quoting §1225(b)(1)(B)(iii)(IV)). But there is no “canon of
+interpretation that forbids interpreting different words
+used in different parts of the same statute to mean roughly
+the same thing.” Kirtsaeng v. John Wiley & Sons, Inc.,
+568 U. S. 519, 540 (2013). We decline to invent and apply
+such a canon here.
+B
+While the language of §§1225(b)(1) and (b)(2) is quite
+clear, §1226(c) is even clearer. As noted, §1226 applies to
+aliens already present in the United States. Section
+1226(a) creates a default rule for those aliens by permitting—but not requiring—the Attorney General to issue
+warrants for their arrest and detention pending removal
+proceedings. Section 1226(a) also permits the Attorney
+General to release those aliens on bond, “[e]xcept as provided in subsection (c) of this section.” Section 1226(c) in
+turn states that the Attorney General “shall take into
+custody any alien” who falls into one of the enumerated
+categories involving criminal offenses and terrorist activities. 8 U. S. C. §1226(c)(1). Section 1226(c) then goes on
+
+20
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+to specify that the Attorney General “may release” one of
+those aliens “only if the Attorney General decides” both
+that doing so is necessary for witness-protection purposes
+and that the alien will not pose a danger or flight risk.
+§1226(c)(2) (emphasis added).
+Like §1225(b), §1226(c) does not on its face limit the
+length of the detention it authorizes. In fact, by allowing
+aliens to be released “only if ” the Attorney General decides that certain conditions are met, §1226(c) reinforces
+the conclusion that aliens detained under its authority are
+not entitled to be released under any circumstances other
+than those expressly recognized by the statute. And together with §1226(a), §1226(c) makes clear that detention
+of aliens within its scope must continue “pending a decision on whether the alien is to be removed from the United
+States.” §1226(a).
+In a reprise of their interpretation of §1225(b), respondents argue, and the Court of Appeals held, that §1226(c)
+should be interpreted to include an implicit 6-month time
+limit on the length of mandatory detention. Once again,
+that interpretation falls far short of a “plausible statutory
+construction.”
+In defense of their statutory reading, respondents first
+argue that §1226(c)’s “silence” as to the length of detention
+“cannot be construed to authorize prolonged mandatory
+detention, because Congress must use ‘clearer terms’ to
+authorize ‘long-term detention.’ ” Brief for Respondents 34
+(quoting Zadvydas, 533 U. S., at 697). But §1226(c) is not
+“silent” as to the length of detention. It mandates detention “pending a decision on whether the alien is to be
+removed from the United States,” §1226(a), and it expressly
+prohibits release from that detention except for narrow,
+witness-protection purposes. Even if courts were permitted to fashion 6-month time limits out of statutory silence,
+they certainly may not transmute existing statutory
+language into its polar opposite. The constitutional-
+
+Cite as: 583 U. S. ____ (2018)
+
+21
+
+Opinion of the Court
+
+avoidance canon does not countenance such textual
+alchemy.
+Indeed, we have held as much in connection with
+§1226(c) itself. In Demore v. Kim, 538 U. S., at 529, we
+distinguished §1226(c) from the statutory provision in
+Zadvydas by pointing out that detention under §1226(c)
+has “a definite termination point”: the conclusion of removal proceedings. As we made clear there, that “definite
+termination point”—and not some arbitrary time limit
+devised by courts—marks the end of the Government’s
+detention authority under §1226(c).
+Respondents next contend that §1226(c)’s limited authorization for release for witness-protection purposes
+does not imply that other forms of release are forbidden,
+but this argument defies the statutory text. By expressly
+stating that the covered aliens may be released “only if ”
+certain conditions are met, 8 U. S. C. §1226(c)(2), the
+statute expressly and unequivocally imposes an affirmative prohibition on releasing detained aliens under any
+other conditions.
+Finally, respondents point to a provision enacted as part
+of the PATRIOT Act5 and contend that their reading of
+§1226(c) is needed to prevent that provision from being
+superfluous. That argument, however, misreads both
+statutory provisions. Although the two provisions overlap
+in part, they are by no means congruent.
+Two differences stand out. First, §1226(c) and the
+PATRIOT Act cover different categories of aliens. Both
+apply to certain terrorist suspects, but only §1226(c)
+reaches aliens convicted of other more common criminal
+offenses. See §§1226(c)(1)(A)–(C) (aliens inadmissible or
+deportable under §1182(a)(2); §§1227(a)(2)(A)(ii), (A)(iii),
+——————
+5 See Uniting and Strengthening America by Providing Appropriate
+Tools Required to Intercept and Obstruct Terrorism Act of 2001
+(PATRIOT Act), 115 Stat. 272.
+
+22
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+(B), (C), and (D); and §1227(a)(2)(A)(i) under certain conditions). For its part, the PATRIOT Act casts a wider net
+than §1226(c) insofar as it encompasses certain threats
+to national security not covered by §1226(c).
+See
+§1226a(a)(3) (aliens described in §§1182(a)(3)(A)(i), (iii),
+and 1227(a)(4)(A)(i), (iii), as well as aliens “engaged in any
+other activity that endangers the national security of the
+United States”). In addition, the Government’s detention
+authority under §1226(c) and the PATRIOT Act is not the
+same. Under §1226(c), the Government must detain an
+alien until “a decision on whether the alien is to be removed” is made. §1226(a) (emphasis added). But, subject
+to exceptions not relevant here, the PATRIOT Act authorizes the Government to detain an alien “until the alien is
+removed.” §1226a(a)(2) (emphasis added).
+Far from being redundant, then, §1226(c) and the
+PATRIOT Act apply to different categories of aliens in
+different ways. There is thus no reason to depart from the
+plain meaning of §1226(c) in order to avoid making the
+provision superfluous.
+We hold that §1226(c) mandates detention of any alien
+falling within its scope and that detention may end prior
+to the conclusion of removal proceedings “only if ” the alien
+is released for witness-protection purposes.
+C
+Finally, as noted, §1226(a) authorizes the Attorney
+General to arrest and detain an alien “pending a decision
+on whether the alien is to be removed from the United
+States.” §1226(a). As long as the detained alien is not
+covered by §1226(c), the Attorney General “may release”
+the alien on “bond . . . or conditional parole.” §1226(a).
+Federal regulations provide that aliens detained under
+§1226(a) receive bond hearings at the outset of detention.
+See 8 CFR §§236.1(d)(1), 1236.1(d)(1).
+The Court of Appeals ordered the Government to pro-
+
+Cite as: 583 U. S. ____ (2018)
+
+23
+
+Opinion of the Court
+
+vide procedural protections that go well beyond the initial
+bond hearing established by existing regulations—namely,
+periodic bond hearings every six months in which the
+Attorney General must prove by clear and convincing
+evidence that the alien’s continued detention is necessary.
+Nothing in §1226(a)’s text—which says only that the
+Attorney General “may release” the alien “on . . . bond”—
+even remotely supports the imposition of either of those
+requirements. Nor does §1226(a)’s text even hint that the
+length of detention prior to a bond hearing must specifically
+be considered in determining whether the alien should be
+released.
+IV
+For these reasons, the meaning of the relevant statutory
+provisions is clear—and clearly contrary to the decision of
+the Court of Appeals. But the dissent is undeterred. It
+begins by ignoring the statutory language for as long as
+possible, devoting the first two-thirds of its opinion to a
+disquisition on the Constitution. Only after a 19-page
+prologue does the dissent acknowledge the relevant statutory provisions.
+The dissent frames the question of interpretation as
+follows: Can §§1225(b), 1226(c), and 1226(a) be read to
+require bond hearings every six months “without doing
+violence to the statutory language,” post, at 20 (opinion of
+BREYER, J.)? According to the dissent, the answer is “yes,”
+but the dissent evidently has a strong stomach when it
+comes to inflicting linguistic trauma. Thus, when Congress mandated that an “alien shall be detained,”
+§1225(b)(1)(B)(ii), what Congress really meant, the dissent
+insists, is that the alien may be released from custody
+provided only that his freedom of movement is restricted
+in some way, such as by “the imposition of a curfew,” post,
+at 21. And when Congress stressed that “[t]he Attorney
+General may release an alien . . . only if . . . release . . .
+
+24
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+from custody is necessary” to protect the safety of a witness, §1226(c)(2) (emphasis added), what Congress meant,
+the dissent tells us, is that the Attorney General must
+release an alien even when no witness is in need of protection—so long as the alien is neither a flight risk nor a
+danger to the community, see post, at 25–27. The contortions needed to reach these remarkable conclusions are a
+sight to behold.
+Let us start with the simple term “detain.” According to
+the dissent, “detain” means the absence of “unrestrained
+freedom.” Post, at 21. An alien who is subject to any one
+of “numerous restraints”—including “a requirement to
+obtain medical treatment,” “to report at regular intervals,”
+or even simply to comply with “a curfew”—is “detained” in
+the dissent’s eyes, even if that alien is otherwise free to
+roam the streets. Ibid.
+This interpretation defies ordinary English usage. The
+dictionary cited by the dissent, the Oxford English Dictionary (OED), defines “detain” as follows: “[t]o keep in
+confinement or under restraint; to keep prisoner.” 4 OED
+543 (2d ed. 1989) (emphasis added); see also OED (3d
+ed. 2012), http://www.oed.com/view/Entry/51176 (same).
+Other general-purpose dictionaries provide similar definitions. See, e.g., Webster’s Third New International Dictionary 616 (1961) (“to hold or keep in or as if in custody
+<~ed by the police for questioning>”); Webster’s New
+International Dictionary 710 (2d ed. 1934) (“[t]o hold or
+keep as in custody”); American Heritage Dictionary 508
+(def. 2) (3d ed. 1992) (“To keep in custody or temporary
+confinement”); Webster’s New World College Dictionary
+375 (3d ed. 1997) (“to keep in custody; confine”). And legal
+dictionaries define “detain” the same way. See, e.g., Ballentine’s Law Dictionary 343 (3d ed. 1969) (“To hold; to
+keep in custody; to keep”); Black’s Law Dictionary 459 (7th ed.
+1999) (“The act or fact of holding a person in custody;
+confinement or compulsory delay”).
+
+Cite as: 583 U. S. ____ (2018)
+
+25
+
+Opinion of the Court
+
+How does the dissent attempt to evade the clear meaning of “detain”? It resorts to the legal equivalent of a
+sleight-of-hand trick. First, the dissent cites a passage in
+Blackstone stating that arrestees could always seek release on bail. Post, at 8–9. Then, having established the
+obvious point that a person who is initially detained may
+later be released from detention, the dissent reasons that
+this means that a person may still be regarded as detained
+even after he is released from custody. Post, at 21. That,
+of course, is a nonsequitur. Just because a person who is
+initially detained may later be released, it does not follow
+that the person is still “detained” after his period of detention comes to an end.
+If there were any doubt about the meaning of the term
+“detain” in the relevant statutory provisions, the context
+in which they appear would put that doubt to rest. Title 8
+of the United States Code, the title dealing with immigration, is replete with references that distinguish between
+“detained” aliens and aliens who are free to walk the
+streets in the way the dissent imagines. Section 1226(a),
+for instance, distinguishes between the power to “continue
+to detain the arrested alien” and the power to “release the
+alien on . . . bond.” But if the dissent were right, that
+distinction would make no sense: An “alien released on
+bond” would also be a “detained alien.” Here is another
+example: In §1226(b), Congress gave the Attorney General
+the power to “revoke” at any time “a bond or parole authorized under subsection (a) of this section, rearrest the
+alien under the original warrant, and detain the alien.” It
+beggars belief that Congress would have given the Attorney General the power to detain a class of aliens who,
+under the dissent’s reading, are already “detained” because they are free on bond. But that is what the dissent
+would have us believe. Consider, finally, the example of
+§1226(c). As noted, that provision obligates the Attorney
+General to “take into custody” certain aliens whenever
+
+26
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+they are “released, without regard to whether the alien is
+released on parole, supervised release, or probation.” On
+the dissent’s view, however, even aliens “released on
+parole, supervised release, or probation” are “in custody”—
+and so there would be no need for the Attorney General to
+take them into custody again.6
+Struggling to prop up its implausible interpretation, the
+dissent looks to our prior decisions for aid, but that too
+fails. The best case it can find is Tod v. Waldman, 266
+U. S. 547 (1925), a grant of a petition for rehearing in
+which the Court clarified that “[n]othing in [its original]
+order . . . shall prejudice an application for release on bail
+of the respondents pending compliance with the mandate
+of this Court.” Id., at 548. According to the dissent, that
+two-page decision from almost a century ago supports its
+reading because the underlying immigration statute in
+that case—like some of the provisions at issue here—
+mandated that the relevant class of aliens “ ‘shall be detained’ ” pending the outcome of an inspection process.
+——————
+6 As the dissent notes, §1158(d)(2) regulates employment authorization for certain “applicant[s] for asylum.” Were all asylum applicants
+detained, the dissent says, that provision would make no sense, because
+detained aliens do not need work authorizations. Post, at 23–24. But
+§1158(d)(2) applies not only to aliens seeking asylum status “in accordance with . . . section 1225(b)” (and thus aliens who are detained), but
+also to all aliens already “physically present in the United States.”
+§1158(a)(1). Many of those aliens will be in the country lawfully, and
+thus they will not be detained and will be able to work pending the
+outcome of their asylum application. For example, an alien may apply
+for asylum after being admitted into the country on a short-term visa.
+While the application is pending, §1158 may offer a way for that alien
+to find employment.
+In response, the dissent accuses us of “apply[ing] this provision to
+some asylum applicants but not the ones before us.” Post, at 23–24.
+That is not remotely what we are doing. We do not doubt that
+§1158(d)(2) “applies” to all “applicant[s] for asylum” as it says, even if
+some of those applicants are not as likely to receive an employment
+authorization (for instance, because they are detained) as others.
+
+Cite as: 583 U. S. ____ (2018)
+
+27
+
+Opinion of the Court
+
+See post, at 21–22 (quoting Act of Feb. 5, 1917, §16, 39
+Stat. 886).
+That reads far too much into Waldman. To start, the
+Court did not state that the aliens at issue were entitled to
+bail or even that bail was available to them. Instead, the
+Court merely noted that its decision should not “prejudice”
+any application the aliens might choose to file. That is
+notable, for in their petition for rehearing the aliens had
+asked the Court to affirmatively “authorize [them] to give
+bail.” Petition for Rehearing in Tod v. Waldman, O. T.
+1924, No. 95, p. 17 (emphasis added). By refusing to do so,
+the Court may have been signaling its skepticism about
+their request. But it is impossible to tell. That is precisely
+why we, unlike the dissent, choose not to go beyond what
+the sentence actually says. And Waldman says nothing
+about how the word “detain” should be read in the context
+of §§1225(b), 1226(c), and 1226(a).7
+Neither does Zadvydas. It is true, as the dissent points
+out, that Zadvydas found “that the words ‘ “may be detained” ’ [are] consistent with requiring release from longterm detention,” post, at 23 (quoting 533 U. S., at 682), but
+that is not because there is any ambiguity in the term
+“detain.” As we have explained, the key statutory provision in Zadvydas said that the aliens in question “may,”
+not “shall,” be detained, and that provision also failed to
+specify how long detention was to last. Here, the statutory
+provisions at issue state either that the covered aliens
+“shall” be detained until specified events take place, see 8
+U. S. C. §1225(b)(1)(B)(ii) (“further consideration of the
+——————
+7 It should not be surprising by this point that even the aliens in
+Waldman understood “detention” in contradistinction to “bail.” See
+Petition for Rehearing in Tod v. Waldman, O. T. 1924, No. 95, pp. 17–18
+(“[T]he Court’s mandate should authorize relators to give bail, instead
+of having [them] go to Ellis Island and remain there in custody pending
+an appeal . . . which may involve very long detention pending hearing of
+the appeal . . .” (capitalization omitted and emphasis added)).
+
+28
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+application for asylum”); §1225(b)(2)(A) (“a [removal]
+proceeding”), or provide that the covered aliens may be
+released “only if ” specified conditions are met, §1226(c)(2).
+The term that the Zadvydas Court found to be ambiguous
+was “may,” not “detain.” See 533 U. S., at 697. And the
+opinion in that case consistently used the words “detain”
+and “custody” to refer exclusively to physical confinement
+and restraint. See id., at 690 (referring to “[f]reedom from
+imprisonment—from government custody, detention, or
+other forms of physical restraint” (emphasis added)); id., at
+683 (contrasting aliens “released on bond” with those “held
+in custody”).8
+The dissent offers no plausible interpretation of
+§§1225(b), 1226(c), and 1226(a). But even if we were to
+accept the dissent’s interpretation and hold that “detained” aliens in the “custody” of the Government include
+aliens released on bond, that would still not justify the
+dissent’s proposed resolution of this case. The Court of
+Appeals held that aliens detained under the provisions at
+issue must be given periodic bond hearings, and the dissent agrees. See post, at 2 (“I would interpret the statute
+as requiring bail hearings, presumptively after six months
+of confinement”). But the dissent draws that 6-month
+limitation out of thin air. However broad its interpretation of the words “detain” and “custody,” nothing in any of
+the relevant provisions imposes a 6-month time limit on
+detention without the possibility of bail. So if the dissent’s
+interpretation is right, then aliens detained under
+§§1225(b), 1226(c), and 1226(a) are entitled to bail hearings as soon as their detention begins rather than six
+——————
+8 The dissent argues that because “the question at issue [in Zadvydas]
+was release from detention,” “the key word was consequently ‘may.’ ”
+Post, at 23. We agree but fail to see the point. If, as the dissent admits,
+Zadvydas was about “release from detention” and not about what
+qualifies as “detention,” then it is unclear why the dissent thinks that
+decision supports its unorthodox interpretation of the word “detention.”
+
+Cite as: 583 U. S. ____ (2018)
+
+29
+
+Opinion of the Court
+
+months later.
+“Detained” does not mean “released
+on bond,” and it certainly does not mean “released on
+bond but only after six months of mandatory physical
+confinement.”
+The dissent’s utterly implausible interpretation of the
+statutory language cannot support the decision of the
+court below.
+V
+Because the Court of Appeals erroneously concluded
+that periodic bond hearings are required under the immigration provisions at issue here, it had no occasion to
+consider respondents’ constitutional arguments on their
+merits. Consistent with our role as “a court of review, not
+of first view,” Cutter v. Wilkinson, 544 U. S. 709, 718, n. 7
+(2005), we do not reach those arguments. Instead, we
+remand the case to the Court of Appeals to consider them
+in the first instance.
+Before the Court of Appeals addresses those claims,
+however, it should reexamine whether respondents can
+continue litigating their claims as a class. When the
+District Court certified the class under Rule 23(b)(2) of the
+Federal Rules of Civil Procedure, it had their statutory
+challenge primarily in mind. Now that we have resolved
+that challenge, however, new questions emerge.
+Specifically, the Court of Appeals should first decide
+whether it continues to have jurisdiction despite 8 U. S. C.
+§1252(f )(1). Under that provision, “no court (other than
+the Supreme Court) shall have jurisdiction or authority to
+enjoin or restrain the operation of [§§1221–1232] other
+than with respect to the application of such provisions to
+an individual alien against whom proceedings under such
+part have been initiated.” Section 1252(f )(1) thus “prohibits federal courts from granting classwide injunctive relief
+against the operation of §§1221–123[2].” American-Arab
+Anti-Discrimination Comm., 525 U. S., at 481. The Court
+
+30
+
+JENNINGS v. RODRIGUEZ
+Opinion of the Court
+
+of Appeals held that this provision did not affect its jurisdiction over respondents’ statutory claims because those
+claims did not “seek to enjoin the operation of the immigration detention statutes, but to enjoin conduct . . . not
+authorized by the statutes.” 591 F. 3d, at 1120. This
+reasoning does not seem to apply to an order granting
+relief on constitutional grounds, and therefore the Court of
+Appeals should consider on remand whether it may issue
+classwide injunctive relief based on respondents’ constitutional claims. If not, and if the Court of Appeals concludes
+that it may issue only declaratory relief, then the Court of
+Appeals should decide whether that remedy can sustain
+the class on its own. See, e. g., Rule 23(b)(2) (requiring
+“that final injunctive relief or corresponding declaratory
+relief [be] appropriate respecting the class as a whole”
+(emphasis added)).
+The Court of Appeals should also consider whether a
+Rule 23(b)(2) class action continues to be the appropriate
+vehicle for respondents’ claims in light of Wal-Mart Stores,
+Inc. v. Dukes, 564 U. S. 338 (2011). We held in Dukes that
+“Rule 23(b)(2) applies only when a single injunction or
+declaratory judgment would provide relief to each member
+of the class.” Id., at 360. That holding may be relevant on
+remand because the Court of Appeals has already
+acknowledged that some members of the certified class
+may not be entitled to bond hearings as a constitutional
+matter. See, e. g., 804 F. 3d, at 1082; 715 F. 3d, at 1139–
+1141 (citing, e. g., Shaughnessy v. United States ex rel.
+Mezei, 345 U. S. 206 (1953)). Assuming that is correct,
+then it may no longer be true that the complained-of
+“ ‘conduct is such that it can be enjoined or declared unlawful only as to all of the class members or as to none of
+them.’ ” Dukes, supra, at 360 (quoting Nagareda, Class
+Certification in the Age of Aggregate Proof, 84
+N. Y. U. L. Rev. 97, 132 (2009)).
+Similarly, the Court of Appeals should also consider on
+
+Cite as: 583 U. S. ____ (2018)
+
+31
+
+Opinion of the Court
+
+remand whether a Rule 23(b)(2) class action litigated on
+common facts is an appropriate way to resolve respondents’ Due Process Clause claims. “[D]ue process is flexible,” we have stressed repeatedly, and it “calls for such
+procedural protections as the particular situation demands.” Morrissey v. Brewer, 408 U. S. 471, 481 (1972);
+see also Landon v. Plasencia, 459 U. S. 21, 34 (1982).
+VI
+We reverse the judgment of the United States Court of
+Appeals for the Ninth Circuit and remand the case for
+further proceedings.
+It is so ordered.
+JUSTICE KAGAN took no part in the decision of this case.
+
+Cite as: 583 U. S. ____ (2018)
+
+1
+
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1204
+_________________
+
+DAVID JENNINGS, ET AL., PETITIONERS v.
+ALEJANDRO RODRIGUEZ, ET AL., INDIVIDUALLY AND ON BEHALF OF ALL OTHERS
+SIMILARLY SITUATED
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[February 27, 2018]
+
+JUSTICE THOMAS, with whom JUSTICE GORSUCH joins
+except for footnote 6, concurring in Part I and Parts III–VI
+and concurring in the judgment.
+In my view, no court has jurisdiction over this case.
+Congress has prohibited courts from reviewing aliens’
+claims related to their removal, except in a petition for
+review from a final removal order or in other circumstances
+not present here. See 8 U. S. C. §1252(b)(9). Respondents have not brought their claims in that posture, so
+§1252(b)(9) removes jurisdiction over their challenge to
+their detention. I would therefore vacate the judgment
+below with instructions to dismiss for lack of jurisdiction.
+But because a majority of the Court believes we have
+jurisdiction, and I agree with the Court’s resolution of
+the merits, I join Part I and Parts III–VI of the Court’s
+opinion.
+I
+Respondents are a class of aliens whose removal proceedings are ongoing. Respondents allege that the statutes that authorize their detention during removal proceedings do not authorize “prolonged” detention unless
+they are given an individualized bond hearing at which
+
+2
+
+JENNINGS v. RODRIGUEZ
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+the Government “prove[s] by clear and convincing evidence” that their detention remains justified. Third
+Amended Complaint in Rodriguez v. Holder, No. CV 07–
+03239 (CD Cal., Oct. 22, 2010), pp. 30–31 (Third Amended
+Complaint). If the statutes do authorize “prolonged”
+detention, respondents claim that the statutes violate the
+Due Process Clause of the Fifth Amendment. Ibid. In
+their complaint, respondents sought declaratory and
+injunctive relief from detention during their removal
+proceedings. Id., at 31–32. The District Court certified a
+class of aliens under Federal Rule of Civil Procedure
+23(b)(2) who, among other things, “are or were detained
+for longer than six months pursuant to one of the general
+immigration detention statutes.”
+Class Certification
+Order in Rodriguez v. Holder, No. CV 07–03239 (CD Cal.,
+Apr. 5, 2010), p. 2; Rodriguez v. Hayes, 591 F. 3d 1105,
+1122–1126 (CA9 2010). After the parties moved for summary judgment, the District Court entered a permanent
+injunction in favor of the class, which requires the named
+Government officials1 to take steps to “timely identify all
+current and future class members,” to update class member lists with the District Court every 90 days, and to
+provide class members with bond hearings that comply
+with particular substantive and procedural requirements.
+Order, Judgment, and Permanent Injunction in Rodriguez
+v. Holder, No. CV 07–03239 (CD Cal., Aug. 6, 2013), pp. 5–
+6 (Order, Judgment, and Permanent Injunction).
+
+——————
+1 The named Government officials are the Attorney General of the
+United States, the Secretary of the Department of Homeland Security,
+the Director of the Executive Office for Immigration Review, the Director and Assistant Director of the Los Angeles District of Immigration
+and Customs Enforcement, and several directors of jails and detention
+facilities.
+
+Cite as: 583 U. S. ____ (2018)
+
+3
+
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+II
+A
+Although neither party raises §1252(b)(9), this Court
+has an “independent obligation” to assess whether it deprives us and the lower courts of jurisdiction. Arbaugh v.
+Y & H Corp., 546 U. S. 500, 514 (2006). This Court has
+described §1252(b)(9) as a “ ‘zipper’ clause.” See Reno v.
+American-Arab Anti-Discrimination Comm., 525 U. S. 471,
+483 (1999) (AADC); INS v. St. Cyr, 533 U. S. 289, 313
+(2001). That description is apt because, when an alien
+raises a claim related to his removal, §1252(b)(9) closes all
+but two avenues for judicial review:
+“Consolidation of questions for judicial review
+“Judicial review of all questions of law and fact, including interpretation and application of constitutional and statutory provisions, arising from any action
+taken or proceeding brought to remove an alien from
+the United States under [8 U. S. C. §§1151–1382]
+shall be available only in judicial review of a final order under this section. Except as otherwise provided
+in this section, no court shall have jurisdiction, by habeas corpus under section 2241 of title 28 or any other
+habeas corpus provision, by section 1361 or 1651 of
+such title, or by any other provision of law (statutory
+or nonstatutory), to review such an order or such
+questions of law or fact.” (Emphasis added.)
+The text of this provision is clear. Courts generally lack
+jurisdiction over “all questions of law and fact,” both “constitutional” and “statutory,” that “aris[e] from” an “action
+taken or proceeding brought to remove an alien.” If an
+alien raises a claim arising from such an action or proceeding, courts cannot review it unless they are reviewing “a
+final order” under §1252(a)(1) or exercising jurisdiction
+
+4
+
+JENNINGS v. RODRIGUEZ
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+“otherwise provided” in §1252.2 Neither “habeas corpus”
+nor “any other provision of law” can be used to avoid
+§1252(b)(9)’s jurisdictional bar. In short, if a claim arises
+from an action taken to remove an alien, §1252(b)(9) permits judicial review in only two circumstances: in connection with review of a final removal order and via a specific
+grant of jurisdiction in §1252.
+Respondents do not argue that any specific grant of
+jurisdiction applies here, and they do not seek review of a
+final removal order under §1252(a)(1). Thus, a court may
+review respondents’ claims only if they can show that
+§1252(b)(9)’s jurisdictional bar does not apply in the first
+place because their claims do not “aris[e] from any action
+taken or proceeding brought to remove an alien.”
+Respondents cannot make that showing.
+Section
+1252(b)(9) is a “general jurisdictional limitation” that
+applies to “all claims arising from deportation proceedings” and the “many . . . decisions or actions that may be
+part of the deportation process.” AADC, supra, at 482–
+483. Detaining an alien falls within this definition—
+indeed, this Court has described detention during removal
+proceedings as an “aspect of the deportation process.”
+Demore v. Kim, 538 U. S. 510, 523 (2003); see also Carlson
+v. Landon, 342 U. S. 524, 538 (1952) (“Detention is necessarily a part of [the] deportation procedure”). As the Court
+explains today, Congress either mandates or permits the
+detention of aliens for the entire duration of their removal
+proceedings. See ante, at 12–23. This detention, the
+——————
+2 Section
+
+1252 provides a few specific grants of jurisdiction beyond
+§1252(a)(1)'s general grant of jurisdiction over final removal orders and
+all other related questions of law and fact. Section 1252(b)(7), for
+example, allows an alien to challenge the validity of his removal order
+during criminal proceedings if he is charged with willfully failing to
+depart the United States. And §1252(e)(2) allows an alien who is
+denied admission to the United States and ordered removed to raise
+certain claims in habeas corpus proceedings.
+
+Cite as: 583 U. S. ____ (2018)
+
+5
+
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+Court further explains, is meant to ensure that the Government can ultimately remove them. See ante, at 1;
+accord, Demore, supra, at 528 (explaining that detention
+during removal proceedings “necessarily serves the purpose of preventing deportable criminal aliens from fleeing
+prior to or during their removal proceedings, thus increasing the chance that, if ordered removed, the aliens will be
+successfully removed”). The phrase “any action taken . . .
+to remove an alien from the United States” must at least
+cover congressionally authorized portions of the deportation process that necessarily serve the purpose of ensuring
+an alien’s removal. Claims challenging detention during
+removal proceedings thus fall within the heartland of
+§1252(b)(9).
+B
+The plurality, the dissent, and respondents each offer
+reasons why §1252(b)(9) does not apply to this case. The
+plurality reasons that applying §1252(b)(9) to detention
+claims requires an overly expansive reading of “arising
+from.” See ante, at 9–10. The dissent contends that
+§1252(b)(9) applies only to challenges to the removal order
+itself. Post, at 31. And respondents argue that, if
+§1252(b)(9) applies to their claims, they will have no
+meaningful way to challenge their detention during their
+removal proceedings.3 Tr. of Oral Arg. 36. None of these
+arguments persuades me.
+1
+The plurality asserts that §1252(b)(9) covers respond——————
+3 Respondents also asserted at oral argument that the Government
+“has said repeatedly” that §1252(b)(9) does not apply to detention
+claims. Tr. of Oral Arg. 36. But our “independent obligation” to evaluate jurisdiction, Arbaugh v. Y & H Corp., 546 U. S. 500, 514 (2006),
+means that we cannot accept the Government’s concessions on this
+point. See King Bridge Co. v. Otoe County, 120 U. S. 225, 226 (1887).
+
+6
+
+JENNINGS v. RODRIGUEZ
+THOMAS, J., concurring
+
+ents’ claims only if the words “arising from” are given an
+“expansive interpretation.” Ante, at 9. I am of a different
+view. Even if “arising from” is read narrowly, §1252(b)(9)
+still covers the claims at issue in this case. That is because detention is an “action taken . . . to remove” an
+alien. And even the narrowest reading of “arising from”
+must cover claims that directly challenge such actions.
+See AADC, 525 U. S., at 482–483.
+The main precedent that the plurality cites to support
+its narrow reading of “arising from” demonstrates that
+§1252(b)(9) applies here. See ante, at 10 (citing AADC,
+525 U. S., at 482–483). In AADC, the Court explained
+that §1252(b)(9) covers “all claims arising from deportation proceedings” and the “many . . . decisions or actions
+that may be part of the deportation process.” Ibid. The
+Court even listed examples of the type of claims that
+would be covered, including challenges to the decision “to
+open an investigation” and the decision “to surveil the
+suspected [immigration-law] violator.” Id., at 482. If
+surveilling a suspected violator falls under the statute,
+then the detention of a known violator certainly does as
+well.
+The plurality dismisses my “expansive interpretation”
+because it would lead to “staggering results,” supposedly
+barring claims that are far afield from removal. See ante,
+at 9 (describing lawsuits challenging inhumane conditions
+of confinement, assaults, and negligent driving). But that
+is not the case. Unlike detention during removal proceedings, those actions are neither congressionally authorized
+nor meant to ensure that an alien can be removed. Thus,
+my conclusion that §1252(b)(9) covers an alien’s challenge
+to the fact of his detention (an action taken in pursuit of
+the lawful objective of removal) says nothing about whether
+it also covers claims about inhumane treatment, assaults, or negligently inflicted injuries suffered during
+detention (actions that go beyond the Government’s lawful
+
+Cite as: 583 U. S. ____ (2018)
+
+7
+
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+pursuit of its removal objective). Cf. Bell v. Wolfish, 441
+U. S. 520, 536–539 (1979) (drawing a similar distinction).
+2
+The dissent takes a different approach. Relying on the
+prefatory clause to §1252(b), it asserts that §1252(b)(9) “by
+its terms applies only ‘[w]ith respect to review of an order
+of removal under [§1252(a)(1)].’ ” Post, at 31 (quoting 8
+U. S. C. §1252(b)). The dissent reads the prefatory clause
+to mean that §1252(b)(9) applies only to a “challenge
+[to] an order of removal.” Post, at 31. That reading is
+incorrect.
+Section 1252(b)(9) is not restricted to challenges to
+removal orders. The text refers to review of “all questions
+of law and fact” arising from removal, not just removal
+orders.
+(Emphasis added.)
+And it specifies that
+§1252(a)(1) provides the only means for reviewing “such
+an order or such questions of law or fact.” Ibid. (emphasis
+added). The term “or” is “ ‘almost always disjunctive, that
+is, the words it connects are to be given separate meanings.’ ” Loughrin v. United States, 573 U. S. ___, ___ (2014)
+(slip op., at 6) (quoting United States v. Woods, 571 U. S.
+31, 45–46 (2013)). By interpreting §1252(b)(9) as governing only removal orders, the dissent reads “or such questions of law or fact” out of the statute. It also renders
+superfluous §1252(a)(5), which already specifies that the
+review made available under §1252(a)(1) “shall be the sole
+and exclusive means for judicial review of an order of
+removal.” This Court typically disfavors such interpretations. See AADC, supra, at 483.
+The prefatory clause of §1252(b) does not change the
+meaning of §1252(b)(9). The prefatory clause states that
+the subparagraphs of §1252(b), including §1252(b)(9),
+impose requirements “[w]ith respect to review of an order
+of removal under subsection (a)(1).” The phrase “with
+respect to” means “referring to,” “concerning,” or “relating
+
+8
+
+JENNINGS v. RODRIGUEZ
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+to.” Oxford American Dictionary and Language Guide 853
+(1999 ed.); accord, Webster’s New Universal Unabridged
+Dictionary 1640 (2003 ed.); American Heritage Dictionary
+1485 (4th ed. 2000). Read together, the prefatory clause
+and §1252(b)(9) mean that review of all questions arising
+from removal must occur in connection with review of a
+final removal order under §1252(a)(1), which makes sense
+given that §1252(b)(9) is meant to “[c]onsolidat[e] . . .
+questions for judicial review.” Tellingly, on the two previous occasions when this Court interpreted §1252(b)(9), it
+did not understand §1252(b)(9) as limited to challenges to
+removal orders. See AADC, supra, at 482–483 (stating
+that §1252(b)(9) is a “general jurisdictional limitation”
+that applies to “all claims arising from deportation proceedings” and “the many . . . decisions or actions that may
+be part of the deportation process”); St. Cyr, 533 U. S., at
+313, n. 37 (clarifying that §1252(b)(9) requires “claims that
+were viewed as being outside of a ‘final order’ ” to be “consolidated in a petition for review and considered by the
+courts of appeals” in their review of the final removal
+order under §1252(a)(1)). Thus, despite the dissent’s
+assertion to the contrary, the prefatory clause plainly does
+not change the scope of §1252(b)(9), which covers “all
+questions of law or fact” arising from the removal process.
+3
+At oral argument, respondents asserted that, if
+§1252(b)(9) bars their lawsuit, then the only review available would be “a petition for review of [a] final removal
+order” under §1252(a)(1), which takes place “after all the
+detention has already happened.”4 Tr. of Oral Arg. 36. I
+——————
+4 Contrary to respondents’ argument, some of the respondents will get
+review before “all the detention has already happened.” Respondents
+who successfully petition for review to the Court of Appeals from a final
+removal order and obtain a remand to the immigration court, like class
+representative Alejandro Rodriguez did here, will have an opportunity
+
+Cite as: 583 U. S. ____ (2018)
+
+9
+
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+interpret respondents’ argument as a claim that
+§1252(b)(9) would be unconstitutional if it precluded
+meaningful review of their detention. This argument is
+unpersuasive and foreclosed by precedent.
+The Constitution does not guarantee litigants the most
+effective means of judicial review for every type of claim
+they want to raise. See AADC, 525 U. S., at 487–492
+(rejecting a similar argument); Heikkila v. Barber, 345
+U. S. 229, 237 (1953) (explaining that limitations on judicial review of deportation must be followed “despite [their]
+apparent inconvenience to the alien”). This is especially
+true in the context of deportation, where limits on the
+courts’ jurisdiction have existed for almost as long as
+federal immigration laws, and where this Court has repeatedly affirmed the constitutionality of those limits.5
+Indeed, this Court has already rejected essentially the
+same argument that respondents raise here. In AADC,
+the Court held that §1252(g), a provision similar to
+§1252(b)(9), barred the aliens’ claim that the Government
+was violating the First Amendment by selectively enforc——————
+to obtain review of their detention before it is complete. See Third
+Amended Complaint, at 9–12.
+5 See, e.g., Act of Aug. 18, 1884, 28 Stat. 390 (“In every case where an
+alien is excluded from admission into the United States under any law
+or treaty now existing or hereinafter made, the decision of the appropriate immigration or customs officers, if adverse to the admission of
+such alien, shall be final, unless reversed on appeal to the Secretary of
+Treasury”), upheld in Lem Moon Sing v. United States, 158 U. S. 538,
+547–550 (1895); Immigration Act of 1891, §8, 26 Stat. 1085 (“All decisions made by the inspection officers or their assistants touching the
+right of any alien to land, when adverse to such right, shall be final
+unless appeal be taken to the superintendent of immigration, whose
+action shall be subject to review by the Secretary of Treasury”), upheld
+in Ekiu v. United States, 142 U. S. 651, 660 (1892); 1917 Immigration
+Act, §19, 39 Stat. 890 (“In every case where any person is ordered
+deported from the United States under the provisions of this Act, or of
+any law or treaty, the decision of the Secretary of Labor shall be final”),
+upheld in Heikkila, 345 U. S., at 233–235, 237.
+
+10
+
+JENNINGS v. RODRIGUEZ
+THOMAS, J., concurring
+
+ing the immigration laws against them. 525 U. S., at 487–
+492. The aliens argued that constitutional avoidance
+required the Court to interpret §1252(g) as not applying to
+their claims because the only remaining avenue for review—a petition for review of a final removal order under
+§1252(a)(1)—would be “unavailing” and would “come too
+late to prevent the ‘chilling effect’ upon their First
+Amendment rights.” Id., at 487–488. The Court rejected
+this argument because “an alien unlawfully in this country has no constitutional right to assert selective enforcement as a defense against his deportation.” Id., at 488.
+The Court further explained that it had a duty to enforce
+Congress’ limitations on judicial review, except perhaps in
+“a rare case in which the alleged basis of discrimination is
+so outrageous that the foregoing considerations [ justifying
+limited review could] be overcome.” Id., at 491.
+Like in AADC, respondents’ lack-of-meaningful-review
+argument does not allow us to ignore the jurisdictional
+limitations that Congress has imposed. This Court has
+never held that detention during removal proceedings is
+unconstitutional. To the contrary, this Court has repeatedly recognized the constitutionality of that practice. See
+Demore, 538 U. S., at 523 (explaining that detention is “a
+constitutionally valid aspect of the deportation process”);
+accord, Reno v. Flores, 507 U. S. 292, 305–306 (1993);
+Shaughnessy v. United States ex rel. Mezei, 345 U. S. 206,
+215 (1953); Carlson, 342 U. S., at 538, 542. Nor does this
+lawsuit qualify as the “rare case in which the alleged
+[executive action] is so outrageous” that it could thwart
+the jurisdictional limitations in §1252(b)(9). AADC, supra,
+at 491. The Government’s detention of respondents is
+entirely routine and indistinguishable from the detention
+that we have repeatedly upheld in the past. Thus, regardless of the inconvenience that §1252(b)(9) might pose for
+respondents, this Court must enforce it as written. Respondents must raise their claims in petitions for review of
+
+Cite as: 583 U. S. ____ (2018)
+
+11
+
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+their final removal orders.6
+III
+Because I conclude that §1252(b)(9) bars jurisdiction to
+hear respondents’ claims, I will also address whether its
+application to this case violates the Suspension Clause,
+see Art. I, §9, cl. 2 (“The Privilege of the Writ of Habeas
+Corpus shall not be suspended, unless when in Cases of
+Rebellion or Invasion the public Safety may require it”). It
+does not. Even assuming the Suspension Clause bars
+Congress from stripping habeas jurisdiction over respondents’ claims, but see St. Cyr, 533 U. S., at 337–346 (Scalia, J., dissenting), this case does not involve a habeas
+petition.
+Respondents do not seek habeas relief, as understood by
+our precedents. Although their complaint references the
+general habeas statute, see Third Amended Complaint, at
+1, it is not a habeas petition. The complaint does not
+request that the District Court issue any writ. See id., at
+31–32. Rather, it seeks a declaration and an injunction
+that would provide relief for both present and future class
+members, including future class members not yet detained. Ibid. Indeed, respondents obtained class certification under Federal Rule of Civil Procedure 23(b)(2), which
+applies only when the class seeks “final injunctive relief or
+corresponding declaratory relief.”7
+——————
+6I
+
+take no position on whether some of the respondents will face other
+jurisdictional hurdles, even on review of their final removal orders.
+See, e.g., §§1252(a)(2)(A), (B). I also continue to agree with Justice
+O’Connor’s concurring opinion in Demore v. Kim, 538 U. S. 510 (2003),
+which explained that §1226(e) “unequivocally deprives federal courts of
+jurisdiction to set aside ‘any action or decision’ by the Attorney General” regarding detention. Id., at 533 (opinion concurring in part and
+concurring in judgment).
+7 This Court has never addressed whether habeas relief can be pursued in a class action. See Schall v. Martin, 467 U. S. 253, 261, n. 10
+(1984) (reserving this question). I take no position on that issue here,
+
+12
+
+JENNINGS v. RODRIGUEZ
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+Nor did respondents obtain habeas relief. When their
+case concluded, respondents obtained a classwide permanent injunction. See Order, Judgment, and Permanent
+Injunction, at 5–6. That classwide injunction looks nothing like a typical writ. It is not styled in the form of a
+conditional or unconditional release order. Cf. United
+States v. Jung Ah Lung, 124 U. S. 621, 622 (1888) (describing habeas relief as “order[ing] the discharge from
+custody of the person in whose behalf the writ was sued
+out”); Chin Yow v. United States, 208 U. S. 8, 13 (1908)
+(awarding habeas relief by ordering the release of the
+alien if certain conditions were not satisfied). It applies to
+future class members, including individuals who were not
+in custody when the injunction was issued. Cf. 28 U. S. C.
+§2241(c) (generally precluding issuance of the writ unless
+the petitioner is “in custody”). And it is directed to at least
+one individual, the Director for the Executive Office for
+Immigration Review, who is not a custodian. Cf. Rumsfeld
+v. Padilla, 542 U. S. 426, 434 (2004) (explaining that “the
+proper respondent to a habeas petition is ‘the person who
+has custody over [the petitioner]’ ” (quoting 28 U. S. C.
+§2242)).
+Immigration law has long drawn a distinction between
+the declaratory and injunctive relief that respondents
+sought here and habeas relief. In Heikkila, for instance,
+this Court distinguished habeas relief from “injunctions,
+declaratory judgments and other types of relief ” that
+“courts ha[d] consistently rejected” in immigration cases.
+345 U. S., at 230. The Court rejected the alien’s request
+for “injunctive and declaratory relief ” because Congress
+had authorized courts to grant relief only in habeas proceedings. Id., at 230, 237. We reaffirmed this distinction
+in St. Cyr, where we noted that the 1961 Immigration and
+——————
+since I conclude that respondents are not seeking habeas relief in the
+first place.
+
+Cite as: 583 U. S. ____ (2018)
+
+13
+
+HOMAS, of
+J.,Tconcurring
+TOpinion
+HOMAS, J.
+
+Nationality Act, 75 Stat. 650, withdrew the district courts’
+“authority to grant declaratory and injunctive relief,” but
+not habeas relief. 533 U. S., at 309–310; see also Shaughnessy v. Pedreiro, 349 U. S. 48, 49, 52–53 (1955) (holding
+that the Administrative Procedure Act, which authorizes
+courts to grant declaratory and injunctive relief, authorized “judicial review of deportation orders other than by
+habeas corpus” (emphasis added)). And Congress has
+confirmed this distinction in its immigration statutes by
+allowing one form of relief, but not the other, in particular
+circumstances. Compare, e.g., §1252(e)(1) (prohibiting
+courts from granting “declaratory, injunctive, or other
+equitable relief in any action pertaining to an order to
+exclude an alien in accordance with section 1225(b)(1)”)
+with §1252(e)(2) (allowing “judicial review . . . in habeas
+corpus proceedings” of particular “determination[s] made
+under section 1225(b)(1)”).
+Respondents’ suit for declaratory and injunctive relief,
+in sum, is not a habeas petition. The Suspension Clause
+protects “[t]he Privilege of the Writ of Habeas Corpus,” not
+requests for injunctive relief. Because respondents have
+not sought a writ of habeas corpus, applying §1252(b)(9) to
+bar their suit does not implicate the Suspension Clause.
+*
+*
+*
+Because §1252(b)(9) deprives courts of jurisdiction over
+respondents’ claims, we should have vacated the judgment
+below and remanded with instructions to dismiss this case
+for lack of jurisdiction. But a majority of the Court has
+decided to exercise jurisdiction. Because I agree with the
+Court’s disposition of the merits, I concur in Part I and
+Parts III–VI of its opinion.
+
+Cite as: 583 U. S. ____ (2018)
+
+1
+
+BREYER, J., dissenting
+
+SUPREME COURT OF THE UNITED STATES
+_________________
+
+No. 15–1204
+_________________
+
+DAVID JENNINGS, ET AL., PETITIONERS v.
+ALEJANDRO RODRIGUEZ, ET AL., INDIVIDUALLY AND ON BEHALF OF ALL OTHERS
+SIMILARLY SITUATED
+ON WRIT OF CERTIORARI TO THE UNITED STATES COURT OF
+APPEALS FOR THE NINTH CIRCUIT
+[February 27, 2018]
+
+JUSTICE BREYER, with whom JUSTICE GINSBURG and
+JUSTICE SOTOMAYOR join, dissenting.
+This case focuses upon three groups of noncitizens held
+in confinement. Each of these individuals believes he or
+she has the right to enter or to remain within the United
+States. The question is whether several statutory provi­
+sions of the Immigration and Nationality Act, 8 U. S. C.
+§1101 et seq., forbid granting them bail.
+The noncitizens at issue are asylum seekers, persons
+who have finished serving a sentence of confinement (for a
+crime), or individuals who, while lacking a clear entitle­
+ment to enter the United States, claim to meet the criteria
+for admission, see infra, at 20, 25–26, 29–30. The Gov­
+ernment has held all the members of the groups before us
+in confinement for many months, sometimes for years,
+while it looks into or contests their claims. But ultimately
+many members of these groups win their claims and the
+Government allows them to enter or to remain in the
+United States. Does the statute require members of these
+groups to receive a bail hearing, after, say, six months of
+confinement, with the possibility of release on bail into the
+community provided that they do not pose a risk of flight
+or a threat to the community’s safety?
+
+2
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+The Court reads the statute as forbidding bail, hence
+forbidding a bail hearing, for these individuals. In my
+view, the majority’s interpretation of the statute would
+likely render the statute unconstitutional. Thus, I would
+follow this Court’s longstanding practice of construing a
+statute “so as to avoid not only the conclusion that it is
+unconstitutional but also grave doubts upon that score.”
+United States v. Jin Fuey Moy, 241 U. S. 394, 401 (1916).
+And I would interpret the statute as requiring bail hear­
+ings, presumptively after six months of confinement. Cf.
+Zadvydas v. Davis, 533 U. S. 678, 701 (2001).
+I
+The Respondents
+Because of their importance to my conclusion, I shall
+repeat, with references to record support, the key charac­
+teristics of the groups of noncitizens who appear before us.
+First, as I have said, the respondents in this case are
+members of three special classes of noncitizens, the most
+important of whom (1) arrive at our borders seeking asy­
+lum or (2) have committed crimes but have finished serv­
+ing their sentences of imprisonment. We also consider
+those who (3) arrive at our borders believing they are
+entitled to enter the United States for reasons other than
+asylum seeking, but lack a clear entitlement to enter.
+Second, all members of the first group, the asylum
+seekers, have been found (by an immigration official)
+to have a “credible fear of persecution” in their home coun­
+try should the United States deny them admittance. 8
+U. S. C. §1225(b)(1)(B)(ii). All members of the second
+group have, as I have said, finished serving their criminal
+sentences of confinement. §1226(c)(1). All members of the
+third group may have (or may simply believe they have) a
+strong claim for admittance, but they are neither “clearly
+and beyond a doubt entitled to be admitted” nor conclu­
+sively determined to be inadmissible by an immigration
+
+Cite as: 583 U. S. ____ (2018)
+
+3
+
+BREYER, J., dissenting
+
+officer on grounds of fraud or lack of required documenta­
+tion. §1225(b)(2)(A); see §§1225(b)(1)(A)(i), 1182(a)(6)(C),
+(a)(7).
+Third, members of the first two classes number in the
+thousands. See Brief for 46 Social Science Researchers
+and Professors as Amici Curiae 6, 8 (identifying, in 2015,
+7,500 asylum seekers and 12,220 noncitizens who have
+finished serving sentences of criminal confinement, a
+portion of whom are class members detained for more than
+six months).
+Fourth, detention is often lengthy. The classes before us
+consist of people who were detained for at least six months
+and on average one year. App. 92, 97. The record shows
+that the Government detained some asylum seekers for
+831 days (nearly 2½ years), 512 days, 456 days, 421 days,
+354 days, 319 days, 318 days, and 274 days—before they
+won their cases and received asylum. Id., at 97, 228–236.
+It also shows that the Government detained one nonciti­
+zen for nearly four years after he had finished serving a
+criminal sentence, and the Government detained other
+members of this class for 608 days, 561 days, 446 days,
+438 days, 387 days, and 305 days—all before they won
+their cases and received relief from removal. Id., at 92,
+213–220.
+Fifth, many of those whom the Government detains
+eventually obtain the relief they seek. Two-thirds of the
+asylum seekers eventually receive asylum. Id., at 98
+(Table 28); id., at 135 (Table 38); App. to Pet. for Cert. 40a.
+Nearly 40% of those who have served criminal sentences
+receive relief from removal, because, for example, their
+earlier conviction involved only a short sentence. See App.
+95 (Table 23); id., at 135 (Table 38). See also App. to Pet.
+for Cert. 34a; App. 210, 216–217, 312–313 (between onehalf and two-thirds of the class served sentences less than
+six months, e.g., a 2-month sentence for being under the
+influence of a controlled substance, or an 8-day jail term
+
+4
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+for a minor firearms offense).
+Sixth, these very asylum seekers would have received
+bail hearings had they first been taken into custody within
+the United States rather than at the border. See In re
+X-K-, 23 I. & N. Dec. 731, 734–735 (BIA 2005); 8 U. S. C.
+§1226(a).
+Seventh, as for those who have finished serving their
+sentences (for crimes), some of those who are less danger­
+ous would (on the majority’s view) be held without bail the
+longest, because their claims will take longer to adjudi­
+cate. Moreover, those noncitizens would have no oppor­
+tunity to obtain bail while they pursue their claims, but if
+they lose their claims, the Government must release them,
+typically within six months, if the Government can find no
+other country willing to take them. See Zadvydas, supra,
+at 701.
+Eighth, all the respondents are held in detention within
+the geographical boundaries of the United States, either in
+facilities controlled by United States Immigration and
+Customs Enforcement (ICE) or in state or local jails that
+hold them on ICE’s behalf. App. 302–304; see ICE, Deten­
+tion Facility Locator, online at http://www.ice.gov/
+detention-facilities (all Internet materials as last visited
+Feb. 21, 2018).
+Ninth, the circumstances of their detention are similar,
+so far as we can tell, to those in many prisons and jails.
+And in some cases the conditions of their confinement are
+inappropriately poor. See Dept. of Homeland Security
+(DHS), Office of Inspector General (OIG), DHS OIG In­
+spection Cites Concerns With Detainee Treatment and
+Care at ICE Detention Facilities (2017) (reporting in­
+stances of invasive procedures, substandard care, and
+mistreatment, e.g., indiscriminate strip searches, long
+waits for medical care and hygiene products, and, in the
+case of one detainee, a multiday lock down for sharing a
+cup of coffee with another detainee).
+
+Cite as: 583 U. S. ____ (2018)
+
+5
+
+BREYER, J., dissenting
+
+These record-based facts make evident what I said at
+the outset: The case concerns persons whom immigration
+authorities believe are not citizens and may not have a
+right to enter into, or remain within, the United States.
+Nonetheless they likely have a reasonable claim that they
+do have such a right. The Government detains them,
+often for many months while it determines the merits of,
+or contests, their claims. To repeat the question before us:
+Does the statute entitle an individual member of one of
+these classes to obtain, say, after six months of detention,
+a bail hearing to decide whether he or she poses a risk of
+flight or danger to the community and, if not, to receive
+bail?
+II
+The Constitutional Question
+The majority reads the relevant statute as prohibiting
+bail and hence prohibiting a bail hearing. In my view, the
+relevant constitutional language, purposes, history, tradi­
+tion, and case law all make clear that the majority’s inter­
+pretation at the very least would raise “grave doubts”
+about the statute’s constitutionality. See Jin Fuey Moy,
+241 U. S., at 401.
+A
+Consider the relevant constitutional language and the
+values that language protects. The Fifth Amendment says
+that “[n]o person shall be . . . deprived of life, liberty, or
+property without due process of law.” An alien is a “per­
+son.” See Wong Wing v. United States, 163 U. S. 228, 237–
+238 (1896). To hold him without bail is to deprive him of
+bodily “liberty.” See United States v. Salerno, 481 U. S.
+739, 748–751 (1987). And, where there is no bail proceed­
+ing, there has been no bail-related “process” at all. The
+Due Process Clause—itself reflecting the language of the
+Magna Carta—prevents arbitrary detention.
+Indeed,
+
+6
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+“[f]reedom from bodily restraint has always been at the
+core of the liberty protected by the Due Process Clause
+from arbitrary governmental action.” Foucha v. Louisiana, 504 U. S. 71, 80 (1992); see also Demore v. Kim, 538
+U. S. 510, 532 (2003) (KENNEDY, J., concurring);
+Zadvydas, 533 U. S., at 718 (KENNEDY, J., dissenting).
+The Due Process Clause foresees eligibility for bail as
+part of “due process.” See Salerno, supra, at 748–751;
+Schilb v. Kuebel, 404 U. S. 357, 365 (1971); Stack v. Boyle,
+342 U. S. 1, 4 (1951). Bail is “basic to our system of law.”
+Schilb, supra, at 365. It not only “permits the unham­
+pered preparation of a defense,” but also “prevent[s] the
+infliction of punishment prior to conviction.” Stack, supra,
+at 4. It consequently limits the Government’s ability to
+deprive a person of his physical liberty where doing so is
+not needed to protect the public, see Salerno, supra, at
+750–751, or to assure his appearance at, say, a trial or the
+equivalent, see Stack, supra, at 4–5. Why would this
+constitutional language and its bail-related purposes not
+apply to members of the classes of detained persons at
+issue here?
+The Eighth Amendment reinforces the view that the
+Fifth Amendment’s Due Process Clause does apply. The
+Eighth Amendment forbids “[e]xcessive bail.” It does so in
+order to prevent bail being set so high that the level itself
+(rather than the reasons that might properly forbid re­
+lease on bail) prevents provisional release. See Carlson v.
+Landon, 342 U. S. 524, 545 (1952) (explaining that the
+English clause from which the Eighth Amendment was
+copied was understood “to provide that bail shall not be
+excessive in those cases where it is proper to grant bail”).
+That rationale applies a fortiori to a refusal to hold any
+bail hearing at all. Thus, it is not surprising that this
+Court has held that both the Fifth Amendment’s Due
+Process Clause and the Eighth Amendment’s Excessive
+Bail Clause apply in cases challenging bail procedures.
+
+Cite as: 583 U. S. ____ (2018)
+
+7
+
+BREYER, J., dissenting
+
+See, e.g., Salerno, supra, at 746–755; Carlson, supra, at
+537–546.
+It is clear that the Fifth Amendment’s protections ex­
+tend to “all persons within the territory of the United
+States.” Wong Wing, supra, at 238. But the Government
+suggests that those protections do not apply to asylum
+seekers or other arriving aliens because the law treats
+arriving aliens as if they had never entered the United
+States; hence they are not held within its territory.
+This last-mentioned statement is, of course, false. All of
+these noncitizens are held within the territory of the
+United States at an immigration detention facility. Those
+who enter at JFK airport are held in immigration deten­
+tion facilities in, e.g., New York; those who arrive in El
+Paso are held in, e.g., Texas. At most one might say that
+they are “constructively” held outside the United States:
+the word “constructive” signaling that we indulge in a
+“legal fiction,” shutting our eyes to the truth. But once we
+admit to uttering a legal fiction, we highlight, we do not
+answer, the relevant question: Why should we engage in
+this legal fiction here?
+The legal answer to this question is clear. We cannot
+here engage in this legal fiction. No one can claim, nor
+since the time of slavery has anyone to my knowledge
+successfully claimed, that persons held within the United
+States are totally without constitutional protection.
+Whatever the fiction, would the Constitution leave the
+Government free to starve, beat, or lash those held within
+our boundaries? If not, then, whatever the fiction, how
+can the Constitution authorize the Government to imprison
+arbitrarily those who, whatever we might pretend, are
+in reality right here in the United States? The answer is
+that the Constitution does not authorize arbitrary deten­
+tion. And the reason that is so is simple: Freedom from
+arbitrary detention is as ancient and important a right as
+any found within the Constitution’s boundaries. See
+
+8
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+Zadvydas, supra, at 720–721 (KENNEDY, J., dissenting)
+(“inadmissible aliens” who are “stopped at the border” are
+“entitled to be free from detention that is arbitrary or
+capricious”).
+B
+The Due Process Clause, among other things, protects
+“those settled usages and modes of proceeding existing in
+the common and statute law of England, before the emi­
+gration of our ancestors,” and which were brought by them
+to this country. Murray’s Lessee v. Hoboken Land & Improvement Co., 18 How. 272, 277 (1856). A brief look at
+Blackstone makes clear that at the time of the American
+Revolution the right to bail was “settled”—in both civil
+and criminal cases.
+Blackstone tells us that every prisoner (except for a
+convict serving his sentence) was entitled to seek release
+on bail. 4 Commentaries on the Laws of England 296–297
+(1769). This right applied in every criminal case. Ibid. A
+noncapital defendant could seek bail from a local magis­
+trate; a capital defendant could seek bail at a hearing
+before the Court of King’s Bench. See ibid. Although a
+capital defendant had no right to obtain bail, he could
+always seek it, because “the court of king’s bench . . . may
+bail for any crime whatsoever, be it treason, murder, or
+any other offense, according to the circumstances of the
+case.” Id., at 296. And although King Charles I initially
+claimed the right to hold a prisoner without bail on secret
+national security grounds, see Darnel’s Case, 3 How. St.
+Tr. 1 (K. B. 1627), Parliament responded by extracting
+from the King (via the 1628 Petition of Right) a promise to
+cease such detention. See 2 W. Hawkins, A Treatise of the
+Pleas of the Crown 107–110 (4th ed. 1771). From then on,
+bail was available even when a prisoner was held on the
+personal command of the King. Ibid. That is why Black­
+stone says that the King’s Bench or its judges “may bail in
+
+Cite as: 583 U. S. ____ (2018)
+
+9
+
+BREYER, J., dissenting
+
+any Case whatsoever,” 4 Analysis of the Laws of England
+148 (6th ed. 1771), indeed, in civil cases too, for in Black­
+stone’s time some private civil cases might have begun
+with an arrest. See 3 Blackstone, Commentaries 290
+(1768). And bail was likewise an alternative to detention
+where a judgment debtor was unable to pay a civil judg­
+ment in the era of debtor’s prison. See, e.g., Beers v.
+Haughton, 9 Pet. 329, 356 (1835) (explaining that under
+Ohio law, “if a defendant, upon a [writ of] capias, does not
+give sufficient appearance bail, he shall be committed to
+prison”); Hamilton v. Dunklee, 1 N. H. 172 (1818).
+American history makes clear that the settlers brought
+this practice with them to America. The Judiciary Act of
+1789 conferred rights to bail proceedings in all federal
+criminal cases. §33, 1 Stat. 91. It said that for a noncapi­
+tal defendant “bail shall be admitted” and for a capital
+defendant bail may be admitted in the discretion of a
+district judge, a circuit judge, or a Justice of the Supreme
+Court, taking account of “the offence, and of the evidence,
+and the usages of law.” Ibid. Congress enacted this law
+during its debate over the Bill of Rights, which it subse­
+quently sent to the States for ratification. See 1 Annals of
+Cong. 90 (1789); see also Martin v. Hunter’s Lessee, 1
+Wheat. 304, 351 (1816) (Members of the First Congress
+were “men of great learning and ability, . . . who had acted
+a principal part in framing, supporting, or opposing” the
+Constitution itself). Colonial law had been similarly, or in
+some instances even more, protective. See Foote, The
+Coming Constitutional Crisis in Bail: I, 113 U. Pa. L. Rev.
+959, 974–977 (1965).
+Similar laws have consistently remained part of our
+legal tradition. In all federal criminal cases federal Acts
+have provided for bail proceedings. Bail Reform Act of
+1984, 18 U. S. C. §3141 et seq.; Bail Reform Act of 1966, 18
+U. S. C. §3146 et seq. (1964 ed., Supp. II). Every State has
+similar or more generous laws. See Appendix B, infra.
+
+10
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+Standards for granting bail have changed somewhat
+over time. Initially the sole factor determining the out­
+come of a bail proceeding was risk of flight. See Stack, 342
+U. S., at 4–5 (interpreting the 1789 bail law, applied to a
+noncapital defendant and in light of the Eighth Amend­
+ment, to require bail no higher than required to provide
+“adequate assurance” that the defendant “will stand trial
+and submit to sentence if found guilty,” “based upon
+standards relevant to the purpose of assuring the presence
+of that defendant”).
+Congress gradually added community safety as a bail
+factor. In 1966, Congress provided that for capital de­
+fendants and convicted defendants pursuing appeals, bail
+would be granted unless the appeal was frivolous or a
+court had “reason to believe that no one or more conditions
+of release will reasonably assure that the person will not
+flee or pose a danger to any other person or to the commu­
+nity.” Bail Reform Act of 1966 §3148. In 1984, Congress
+modified the bail standard for noncapital defendants by
+adding concern for community safety. §3142(e)(1). This
+Court, applying the Due Process Clause and the Excessive
+Bail Clause to these changes, found that the 1984 Act
+passed constitutional muster. See Salerno, 481 U. S., at
+746–755. Again, the States typically apply roughly simi­
+lar or more generous standards. See Appendix B, infra.
+The cases before us, however, are not criminal cases.
+Does that fact make a difference? The problem is that
+there are not many instances of civil confinement (aside
+from immigration detention, which I address below).
+Mental illness does sometimes provide an example. Indi­
+viduals dangerous to themselves or to others may be
+confined involuntarily to a mental hospital. See, e.g.,
+United States v. Comstock, 560 U. S. 126 (2010); Kansas v.
+Hendricks, 521 U. S. 346 (1997). Those persons normally
+do not have what we would call “a right to a bail hearing.”
+But they do possess equivalent rights: They have the right
+
+Cite as: 583 U. S. ____ (2018)
+
+11
+
+BREYER, J., dissenting
+
+to a hearing prior to confinement and the right to review
+of the circumstances at least annually. See Comstock,
+supra, at 130–131 (initial hearing followed by review every
+six months); Hendricks, supra, at 353 (initial hearing
+followed by yearly review). And the mentally ill persons
+detained under these schemes are being detained because
+they are dangerous. That being so, there would be no
+point in providing a bail hearing as well. See Salerno,
+supra, at 748–749 (analogizing denial of bail to dangerous
+individuals to the civil commitment of the mentally ill).
+But there is every reason for providing a bail proceeding to
+the noncitizens at issue here, because they have received
+no individualized determination that they pose a risk of
+flight or present a danger to others, nor is there any evi­
+dence that most or all of them do.
+This Court has also protected the right to a bail hearing
+during extradition proceedings. Wright v. Henkel, 190
+U. S. 40 (1903), concerned the arrest and confinement of
+Whitaker Wright, an American citizen, pending extradi­
+tion for a crime that Wright was accused of having com­
+mitted in Great Britain. Wright sought bail. Id., at 43.
+Since the federal bail laws applied only to those charged
+with committing crimes against the United States, they
+did not cover Wright’s confinement. Id., at 61–62. The
+relevant extradition statute said nothing about bail. Id.,
+at 62. Its language (stronger than the language at issue
+here) said that the individual was “to remain” in “the
+proper jail” until the “surrender shall be made” to the
+nation seeking extradition; and it added that he was “to
+remain” in custody “until delivered up”—though after two
+months he could seek release. Rev. Stat. §§5270, 5273.
+In an opinion by Chief Justice Fuller, this Court unani­
+mously wrote that, despite the lack of express statutory
+authorization and the risk of “embarrassment” to the
+United States if Wright fled, Wright could seek release on
+bail prior to the expiration of the 2-month period. Wright,
+
+12
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+190 U. S., at 62–63. Given the universal entitlement to
+bail under English law, the Court was “unwilling to hold
+that . . . courts may not in any case, and whatever the
+special circumstances, extend that relief ” to prisoners
+awaiting extradition. Id., at 63. It consequently read a
+silent statute as authorizing bail proceedings (though the
+Court went on to hold that, under applicable standards,
+Wright’s request for bail should be denied). Ibid.
+The strongest basis for reading the Constitution’s bail
+requirements as extending to these civil, as well as crimi­
+nal, cases, however, lies in the simple fact that the law
+treats like cases alike. And reason tells us that the civil
+confinement at issue here and the pretrial criminal con­
+finement that calls for bail are in every relevant sense
+identical. There is no difference in respect to the fact of
+confinement itself. And I can find no relevant difference
+in respect to bail-related purposes.
+Which class of persons—criminal defendants or asylum
+seekers—seems more likely to have acted in a manner
+that typically warrants confinement? A person charged
+with a crime cannot be confined at all without a finding of
+probable cause that he or she committed the crime. And
+the majority of criminal defendants lose their cases. See
+Dept. of Justice, Bureau of Justice Statistics, B. Reaves,
+Felony Defendants in Large Urban Counties, 2009–
+Statistical Tables, p. 24 (Dec. 2013) (reporting that 66% of
+felony defendants were convicted). A high percentage of
+the noncitizens before us, however, ultimately win the
+right they seek, the right to be in the United States.
+Nor am I aware of any evidence indicating that the
+noncitizens seeking to enter, or to remain within, the
+United States are more likely than criminal defendants to
+threaten the safety of the community if released. In any
+event, this is a matter to be determined, case by case, at
+bail hearings.
+Which group is more likely to present a risk of flight?
+
+Cite as: 583 U. S. ____ (2018)
+
+13
+
+BREYER, J., dissenting
+
+Again, I can find no evidence suggesting that asylum
+seekers or other noncitizens generally present a greater
+risk of flight than persons imprisoned for trial where there
+is probable cause to believe that the confined person has
+committed a crime. In any event, this matter too is to be
+determined, case by case, at bail hearings.
+If there is no reasonable basis for treating these con­
+fined noncitizens worse than ordinary defendants charged
+with crimes, 18 U. S. C. §3142; worse than convicted crim­
+inals appealing their convictions, §3143(b); worse than
+civilly committed citizens, supra, at 10–11; worse than
+identical noncitizens found elsewhere within the United
+States, supra, at 4; and worse than noncitizens who have
+committed crimes, served their sentences, and been defini­
+tively ordered removed (but lack a country willing to take
+them), supra, at 4, their detention without bail is arbi­
+trary. Thus, the constitutional language, purposes, and
+tradition that require bail in instances of criminal con­
+finement also very likely require bail in these instances of
+civil confinement. That perhaps is why Blackstone wrote
+that the law provides for the possibility of “bail in any case
+whatsoever.” 4 Analysis of the Laws of England, at 148.
+C
+My examination of the cases from this Court that con­
+sidered detention of noncitizens and bail suggests that this
+Court, while sometimes denying bail to individuals, gen­
+erally has not held that bail proceedings are unnecessary.
+Indeed, it almost always has suggested the contrary.
+1. In 1882 Congress enacted two laws that restricted
+immigration: The first prohibited the entry of “Chinese
+laborers.” The Chinese Exclusion Act, ch. 126, 22 Stat. 58.
+The second prohibited the entry of “any convict, lunatic,
+idiot, or any person unable to take care of himself or her­
+self without becoming a public charge.” Act of Aug. 3,
+1882, 22 Stat. 214. Neither said a word about bail. But in
+
+14
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+one instance, an excluded Chinese woman was detained in
+jail in San Francisco pending her return to China. She
+sought bail. In re Ah Moy, 21 F. 808 (CC Cal. 1884).
+Justice Field, sitting as a Circuit Judge, wrote that the
+court lacked the authority to order bail because doing so
+would allow her to enter the United States—just what the
+statute forbade. Id., at 809. The other sitting Circuit
+Judge (Judge Sawyer) disagreed. Id., at 810 (dissenting
+opinion). He pointed out that the alien would remain “in
+the custody and control of the law while lawfully on bail.”
+Ibid. He added that it “would be a great hardship, not to
+say a gross violation of her personal rights,” to refuse bail
+for 15 days before her ship arrived as long as she could
+provide “security satisfactory to the court” that she would
+indeed depart when it did. Id., at 809–810. Two other
+Circuit Judges noted their agreement with Judge Sawyer.
+Id., at 809, n. 1. But they did not participate in the case,
+ibid., the two participating judges split 1 to 1, and so the
+views of presiding Justice Field prevailed. The alien
+appealed to this Court, Cheong Ah Moy v. United States,
+113 U. S. 216 (1885), but before this Court could decide,
+the ship departed with Cheong Ah Moy aboard.
+2. In Wong Wing v. United States, 163 U. S. 228 (1896),
+the Court struck down as unconstitutional a statute that
+said alien Chinese laborers should be “imprisoned at hard
+labor” for up to a year before being deported. Id., at 235.
+In doing so, the Court wrote that although a sentence to
+hard labor was unlawful, “detention, or temporary con­
+finement,” was constitutional, because “[d]etention is a
+usual feature of every case of arrest on a criminal charge,
+even when an innocent person is wrongfully accused.”
+Ibid. But an analogy to criminal detention is an analogy
+to instances in which bail hearings are required.
+3. In Tod v. Waldman, 266 U. S. 113 (1924), the Waldman family, like many of the respondents here, challenged
+their exclusion. They had arrived at Ellis Island fleeing
+
+Cite as: 583 U. S. ____ (2018)
+
+15
+
+BREYER, J., dissenting
+
+religious persecution in Ukraine. They were detained
+because the immigration inspector believed the mother
+illiterate, one of the daughters disabled, and the whole
+family likely to become public charges. They appealed to
+the Labor Department, which ordered Mrs. Waldman
+retested for literacy, requiring her to read both Yiddish
+and Hebrew. She could not. She then petitioned for a writ
+of habeas corpus on the grounds that (1) as a religious
+refugee she was exempt from the literacy requirement; (2)
+in any event, she need read only one language, not two; (3)
+her daughter was not disabled; and (4) the Department of
+Labor should have allowed her to appeal administratively.
+Id., at 114–115.
+The relevant statutory provisions, just like the present
+statute, see infra, at 20, 29, said that an arriving person,
+unless “clearly and beyond a doubt entitled” to land, “shall
+be detained for examination . . . by a board of special in­
+quiry.” Act of Feb. 5, 1917, §16, 39 Stat. 886 (emphasis
+added). By the time the case reached this Court, however,
+the family had been allowed bail. See Waldman, 266
+U. S., at 117. This Court ordered the Department of Labor
+to provide the family with an administrative appeal.
+Then, after initially “remand[ing] the petitioners to the
+custody of immigration authorities” pending the outcome
+of the appeal, id., at 120, the Court clarified in a rehearing
+order that “[n]othing in the order of this Court shall prej­
+udice an application for release on bail of the respondents
+pending compliance with the mandate of this Court.” Tod
+v. Waldman, 266 U. S. 547, 548 (1925). This statement is
+inconsistent with the earlier opinion of Justice Field,
+sitting as a Circuit Judge, because it shows that even an
+alien challenging her exclusion could be released on bail.
+Supra, at 14.
+4. In Carlson v. Landon, 342 U. S. 524 (1952), this Court
+upheld the denial of bail to noncitizen Communists being
+held pending deportation, despite a statute that permitted
+
+16
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+bail proceedings. Id., at 541–546. It did so because
+it considered the individuals to be a risk to security. It
+said nothing to suggest that bail proceedings were
+unnecessary.
+5. In Shaughnessy v. United States ex rel. Mezei, 345
+U. S. 206 (1953), the Attorney General had ordered a
+noncitizen permanently excluded from the United States
+on the ground that his “entry would be prejudicial to the
+public interest for security reasons.” Id., at 208; see Sub­
+versive Activities Control Act of 1950, §§22–23, 64 Stat.
+1006–1012. He “sat on Ellis Island because this country
+shut him out and others were unwilling to take him in.”
+345 U. S., at 209. After 21 months in confinement he filed
+a petition for a writ of habeas corpus seeking judicial
+review of the exclusion decision or release on bail until he
+could be removed to another country. Id., at 207, 209.
+This Court refused to review the exclusion decision on the
+ground that the security matter fell totally within the
+President’s authority, pursuant to an express congressional
+delegation of power. Id., at 210. The Court also denied
+Mezei a bail proceeding because in an “exclusion proceed­
+ing grounded on danger to the national security . . . nei­
+ther the rationale nor the statutory authority for” release
+on bail exists. Id., at 216. It denied bail, however, after
+the Attorney General had already found, on an individual­
+ized basis, not only that Mezei was a security risk and
+consequently not entitled to either admission or bail, but
+also that he could be denied a hearing on the matter be­
+cause the basis for that decision could not be disclosed
+without harm to national security. Id., at 208–209. The
+respondents in this case have been the subject of no such
+individualized findings. And unlike Mezei, who was re­
+questing bail after his exclusion proceedings had ended
+(while the Attorney General searched for a country that
+would take him—a matter that we again confronted in
+Zadvydas), the respondents here continue to litigate the
+
+Cite as: 583 U. S. ____ (2018)
+
+17
+
+BREYER, J., dissenting
+
+lawfulness of their exclusion itself. Thus, Mezei, but not
+the respondents here, was in a sense in the position of a
+convicted criminal who had lost his appeal, not a criminal
+awaiting trial (or the results of an appeal).
+6. Zadvydas v. Davis, 533 U. S. 678 (2001), concerned a
+noncitizen who had lawfully resided in this country, com­
+mitted a serious crime, completed his prison sentence, and
+was then ordered deported. Id., at 684. Zadvydas sought
+release on bail during the time the Government searched
+for a country that would take him. Id., at 684–685. The
+governing statute said an alien such as Zadvydas “may be
+detained” pending his removal to another country. 8
+U. S. C. §1231(a)(6). We interpreted those words as re­
+quiring release from detention once it became clear that
+there was “no significant likelihood of removal in the
+reasonably foreseeable future”—presumptively after a
+period of confinement of six months. 533 U. S., at 701.
+We read the statute as requiring this release because a
+“statute permitting indefinite detention of an alien would
+raise a serious constitutional problem.” Id., at 690.
+From a constitutional perspective, this case follows a
+fortiori from Zadvydas. Here only a bail hearing is at
+issue, not release on bail, much less permanent release.
+And here there has been no final determination that any
+of the respondents lacks a legal right to stay in the United
+States—the bail hearing at issue concerns conditional
+release pending that final determination. It is immaterial
+that detention here is not literally indefinite, because
+while the respondents’ removal proceedings must end
+eventually, they last an indeterminate period of at least
+six months and a year on average, thereby implicating the
+same constitutional right against prolonged arbitrary
+detention that we recognized in Zadvydas.
+7. In Demore v. Kim, 538 U. S. 510 (2003), we held that
+the Government could constitutionally hold without bail
+noncitizens who had committed certain crimes, had com­
+
+18
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+pleted their sentences, and were in removal proceedings.
+See §1226(c). But we based our holding on the short-term
+nature of the confinement necessary to complete proceed­
+ings. See id., at 529–530. The Court wrote that the “de­
+tention at stake . . . lasts roughly a month and a half in
+the vast majority of cases in which it is invoked, and about
+five months in the minority of cases in which the alien
+chooses to appeal.” Id., at 530. We added:
+“[I]n 85% of the cases in which aliens are detained
+[pursuant to the relevant statute], removal proceed­
+ings are completed in an average time of 47 days and
+a median of 30 days. In the remaining 15% of cases,
+in which the alien appeals the decision of the immi­
+gration judge to the Board of Immigration Appeals,
+appeal takes an average of four months, with a median
+time that is slightly shorter.” Id., at 529 (citation
+omitted).
+Demore himself, an outlier, was detained for six months.
+Id., at 530–531.
+The Court then found detention constitutional “during
+the limited period” necessary to arrange for removal, and
+we contrasted that period of detention with the detention
+at issue in Zadvydas, referring to the detention in Demore
+as being “of a much shorter duration.” 538 U. S., at 526,
+528. JUSTICE KENNEDY stated in a concurrence that the
+Due Process Clause might require bail hearings “if the
+continued detention became unreasonable or unjustified.”
+Id., at 532. Dissenting, I wrote that, had I believed that
+Demore “had conceded that he [was] deportable,” then,
+despite Zadvydas, “I would conclude that the Government
+could detain him without bail for the few weeks ordinarily
+necessary for formal entry of a removal order.” 538 U. S.,
+at 576 (opinion concurring in part and dissenting in part).
+The Government now tells us that the statistics it gave
+to the Court in Demore were wrong. Detention normally
+
+Cite as: 583 U. S. ____ (2018)
+
+19
+
+BREYER, J., dissenting
+
+lasts twice as long as the Government then said it did.
+And, as I have pointed out, thousands of people here are
+held for considerably longer than six months without an
+opportunity to seek bail. See supra, at 3. We deal here
+with prolonged detention, not the short-term detention at
+issue in Demore. Hence Demore, itself a deviation from
+the history and tradition of bail and alien detention, can­
+not help the Government.
+The upshot is the following: The Constitution’s lan­
+guage, its basic purposes, the relevant history, our tradi­
+tion, and many of the relevant cases point in the same
+interpretive direction. They tell us that an interpretation
+of the statute before us that would deny bail proceedings
+where detention is prolonged would likely mean that the
+statute violates the Constitution. The interpretive princi­
+ple that flows from this conclusion is clear and longstand­
+ing: “ ‘[A]s between two possible interpretations of a stat­
+ute, by one of which it would be unconstitutional and by
+the other valid, our plain duty is to adopt that which will
+save the Act.’ ” Rust v. Sullivan, 500 U. S. 173, 190 (1991)
+(quoting Blodgett v. Holden, 275 U. S. 142, 148 (1927)
+(opinion of Holmes, J.)). Moreover, a “statute must be
+construed, if fairly possible, so as to avoid not only the
+conclusion that it is unconstitutional, but also grave
+doubts upon that score.” Jin Fuey Moy, 241 U. S., at 401.
+These legal principles reflect a realistic assumption,
+namely, that Congress—particularly a Congress that did not
+consider a constitutional matter—would normally have
+preferred a constitutional interpretation to an interpreta­
+tion that may render a statute an unconstitutional nullity.
+And that is so even where the constitutional interpreta­
+tion departs from the most natural reading of the statute’s
+language. See Edward J. DeBartolo Corp. v. Florida Gulf
+Coast Building & Constr. Trades Council, 485 U. S. 568,
+575 (1988); see also National Federation of Independent
+Business v. Sebelius, 567 U. S. 519, 563, 574–576 (2012)
+
+20
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+(majority opinion and opinion of ROBERTS, C. J.).
+III
+The Statutory Provisions
+The question remains whether it is possible to read the
+statute as authorizing bail. As desirable as a constitu­
+tional interpretation of a statute may be, we cannot read it
+to say the opposite of what its language states. The word
+“animal” does not include minerals, no matter how strongly
+one might wish that it did. Indeed, where “ ‘Congress
+has made its intent in the statute clear, we must give
+effect to that intent,’ ” even if doing so requires us to con­
+sider the constitutional question, and even if doing so
+means that we hold the statute unconstitutional.
+Zadvydas, 533 U. S., at 696 (quoting Miller v. French, 530
+U. S. 327, 336 (2000)). In my view, however, we can, and
+should, read the relevant statutory provisions to require
+bail proceedings in instances of prolonged detention with­
+out doing violence to the statutory language or to the
+provisions’ basic purposes.
+A
+Asylum Seekers
+The relevant provision governing the first class of
+noncitizens, the asylum seekers, is §1225(b)(1)(B)(ii). It
+says that, if an immigration “officer determines at the
+time” of an initial interview with an alien seeking to enter
+the United States “that [the] alien has a credible fear of
+persecution . . . , the alien shall be detained for further
+consideration of the application for asylum.” See Appen­
+dix A–1, infra. I have emphasized the three key words,
+namely, “shall be detained.” Do those words mean that
+the asylum seeker must be detained without bail?
+They do not. First, in ordinary English and in light of
+the history of bail, the word “detain” is ambiguous in
+respect to the relevant point. The Oxford English Diction­
+
+Cite as: 583 U. S. ____ (2018)
+
+21
+
+BREYER, J., dissenting
+
+ary (OED), surveying the history of the word, notes that
+Edward Hall, a famous 16th-century legal scholar and
+author of Hall’s Chronicle, wrote: “A traytor . . . is appre­
+hended and deteigned in prisone for his offence,” a use of
+the word, as we know from Blackstone, that is consistent
+with bail. See supra, at 8–9; OED (3d ed., Dec. 2012),
+http://www.oed.com/view/Entry/51176 (annot. to def. 1).
+David Hume, the famous 18th-century historian and
+philosopher, writes of being “detained in strict confine­
+ment,” thereby implying the existence of detention without
+strict confinement. Ibid. A 19th-century novelist writes,
+“ ‘Beg your pardon, sir,’ said the constable, . . . ‘I shall be
+obliged to detain you till this business is settled’ ”—again a
+use of “detain” that we know (from Blackstone) is con­
+sistent with bail. Ibid. And the OED concludes that the
+primary meaning of “detain” is “[t]o keep in confinement
+or under restraint; to keep prisoner.” Ibid. (emphasis
+added). To grant bail, we know, is not to grant unre­
+strained freedom. Rather, where the Act elsewhere ex­
+pressly permits bail, it requires “bond of at least $1,500
+with security approved by, and containing conditions
+prescribed by, the Attorney General.”
+8 U. S. C.
+§1226(a)(2)(A). Similarly in the criminal context, bail
+imposes numerous restraints, ranging from the provision
+of a bond, to restrictions on residences and travel, to the
+imposition of a curfew, to a requirement to obtain medical
+treatment, to report at regular intervals, or even to return
+to custody at specified hours.
+See 18 U. S. C.
+§3142(c)(1)(B) (listing possible conditions for the pretrial
+release of federal criminal defendants).
+At the very least, because the word “detain” in this
+context refers to a comparatively long period of time, it can
+readily coexist with a word such as “bail” that refers to a
+shorter period of conditional release. For instance, there
+is nothing inconsistent in saying: During his exile, he was
+permitted to pay short visits to his home country; during
+
+22
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+the period of active hostilities, the soldiers would lay down
+their arms and fraternize on Christmas Day; during his
+overseas detention, he was allowed home to see his sick
+mother; or during his detention pending proceedings, he
+was permitted bail.
+Second, our precedent treats the statutory word “detain”
+as consistent with bail. In Waldman, 266 U. S. 547, we
+considered an immigration statute that stated (in respect
+to arriving aliens) that “[e]very alien who may not appear
+to the examining inspector at the port of arrival to be
+clearly and beyond a doubt entitled to land shall be detained for examination in relation thereto by a board of
+special inquiry.” Act of Feb. 5, 1917, §16, 39 Stat. 886
+(emphasis added). The Court indicated that bail was
+available, stating that “[n]othing in the order of this court
+shall prejudice an application for release on bail.” 266
+U. S., at 548. In so stating, the Court was simply follow­
+ing precedent, such as Wright v. Henkel, where the Court
+wrote that bail is available even where not “specifically
+vested by statute.” 190 U. S., at 63; see supra, at 11–12.
+When Congress passed the relevant provisions of the Act
+in 1996, it legislated against this historical backdrop, at a
+time when the precise language that it adopted had been
+interpreted by this Court to permit bail. See Monessen
+Southwestern R. Co. v. Morgan, 486 U. S. 330, 338 (1988)
+(“Congress’ failure to disturb a consistent judicial inter­
+pretation of a statute may provide some indication that
+‘Congress at least acquiesces in, and apparently affirms,
+that [interpretation]’ ” (quoting Cannon v. University of
+Chicago, 441 U. S. 677, 703 (1979))).
+Third, the Board of Immigration Appeals reads the word
+“detain” as consistent with bail, for it has held that its
+regulations, implementing the same statutory provision as
+is before us, allow bail for asylum seekers who are appre­
+hended inside the United States within 100 miles of the
+border, rather than at a border crossing. See In re X-K-,
+
+Cite as: 583 U. S. ____ (2018)
+
+23
+
+BREYER, J., dissenting
+
+23 I. & N. Dec., at 732, 734–735 (discussing 8 CFR
+§1003.19(h)(2)(i) (2004)). The same statute, same lan­
+guage applies to the detention of those asylum seekers and
+the ones before us, so the statute must be consistent with
+bail in the Board of Immigration Appeals’ view.
+Fourth, in Zadvydas we found (to avoid similar constitu­
+tional questions) that the words “ ‘may be detained’ ” were
+consistent with requiring release from long-term deten­
+tion. 533 U. S., at 682 (quoting 8 U. S. C. §1231(a)(6)).
+The majority correctly notes that here the language sub­
+stitutes the word “shall” for the word “may.” Ante, at 14–
+16. But the majority is wrong to distinguish Zadvydas on
+this basis. There the Court did not emphasize the word
+“detain,” for the question at issue was release from deten­
+tion. And the key word was consequently “may,” suggest­
+ing discretion. Here the question concerns the right to a
+bail hearing during detention. And the key linguistic
+ambiguity concerns the word “detention.” Is that word
+consistent with bail proceedings? The answer, for the
+reasons I have stated, is “yes.”
+Fifth, the statute does not even mention long-term
+detention without bail. Whether the statute speaks in
+terms of discretion (“may,” as in Zadvydas) or mandatory
+action (“shall,” as in this case), the Government’s argu­
+ment is wrong for the same reason: Congress does not
+unambiguously authorize long-term detention without bail
+by failing to say when detention must end. As we recog­
+nized in Zadvydas, Congress anticipated long-term deten­
+tion elsewhere in the Act, providing for review every six
+months of terrorist aliens detained under 8 U. S. C.
+§1537(b)(2)(C), but it did not do so here. See 533 U. S., at
+697.
+Sixth, the Act provides that an asylum applicant whose
+proceedings last longer than six months may be given
+work authorization. §1158(d)(2). The majority would
+apply this provision to some asylum applicants but not the
+
+24
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+ones before us. Ante, at 26, n. 6. Of course, the statute
+does not contain that limitation. Read most naturally, the
+provision offers some indication that Congress, in the
+same statute, did not require asylum seekers to remain
+confined without bail at the 6-month mark.
+Seventh, there is a separate statutory provision that
+purports to do precisely what the majority says this one
+does, providing that certain aliens “shall be detained . . .
+until removed.” §1225(b)(1)(B)(iii)(IV) (emphasis added);
+ante, at 16 (detention must continue until proceedings
+“have finished”). The problem for the majority is that this
+other provision applies only to those who, unlike the re­
+spondents, have no credible fear of persecution. The pro­
+vision that applies here lacks similar language.
+Linguistic ambiguity, while necessary, is not sufficient.
+I would also ask whether the statute’s purposes suggest a
+congressional refusal to permit bail where confinement is
+prolonged. The answer is “no.” There is nothing in the
+statute or in the legislative history that reveals any such
+congressional intent. The most likely reason for its ab­
+sence is that Congress, like the Government when it ap­
+peared before us in Demore, believed there were no such
+instances, or at least that there were very few. Indeed,
+the Act suggests that asylum proceedings ordinarily finish
+quickly. See §1158(d)(5)(A) (providing that absent “excep­
+tional circumstances,” final administrative adjudication
+(not including appeal) must be completed “within 180
+days,” and any appeal must be filed “within 30 days” of the
+decision). And for those proceedings that last longer than
+six months, we know that two-thirds of asylum seekers
+win their cases. Thus, legislative silence suggests not
+disapproval of bail, but a lack of consideration of the mat­
+ter. For present purposes that is sufficient. It means that
+Congress did not intend to forbid bail. An interpretation
+that permits bail—based upon history, tradition, statutory
+context, and precedent—is consistent, not inconsistent,
+
+Cite as: 583 U. S. ____ (2018)
+
+25
+
+BREYER, J., dissenting
+
+with what Congress intended the statutory provision to
+do.
+The majority apparently finds a contrary purpose in the
+fact that other provisions of the statute permit the Attor­
+ney General to release an alien on parole “ ‘for urgent
+humanitarian reasons or significant public benefit’ ” and
+impose bail-like conditions. Ante, at 16–17 (discussing 8
+U. S. C. §1182(d)(5)(A)). Yet under the majority’s inter­
+pretation of “detain,” the same argument could have been
+made in Zadvydas. We held that noncitizens presump­
+tively are entitled to release after six months of detention,
+notwithstanding an available alternative avenue for relief,
+namely, bail. 533 U. S., at 683. There is no reason to
+reach a different result here. While the Government
+historically used this provision to take account of tradi­
+tional bail factors (flight risk, safety risk), the President
+since issued an Executive Order directing parole to be
+granted “in all circumstances only when an individual
+demonstrates urgent humanitarian reasons or a signifi­
+cant public benefit.” Exec. Order. No. 13767, 82 Fed. Reg.
+8793 (2017). And besides, Congress’ provision of parole to
+permit, for example, release for the purpose of medical
+care or to testify in a court proceeding—which adds to the
+circumstances under which a noncitizen can be released
+from confinement—says nothing about whether Congress
+intended to cut back on those circumstances in respect to
+the meaning of “detain” and the historical understanding
+that detention permits bail.
+B
+Criminals Who Have Served Their Sentences
+The relevant statutory provision, §1226(c), says in para­
+graph (1) that the “Attorney General shall take into custody any alien who . . . is deportable [or inadmissible] by
+reason of having committed [certain crimes] when the
+alien is released,” presumably (or ordinarily) after having
+
+26
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+served his sentence. It then goes on to say, in paragraph
+(2), that the “Attorney General may release [that] alien . . .
+only if the Attorney General decides pursuant to section
+3521 of title 18 that release of the alien from custody is
+necessary to provide protection to a witness [or to certain
+related others].” See Appendix A–2, infra.
+I have emphasized the relevant phrases: “take into
+custody” in the first paragraph, and “may release [that]
+alien . . . only if ” in the second paragraph. We have long
+interpreted “in custody” as “not requir[ing] that a prisoner
+be physically confined.” Maleng v. Cook, 490 U. S. 488,
+491 (1989) (per curiam). In the habeas context, we have
+held that “a person released on bail or on his own recogni­
+zance” is “ ‘in custody’ within the meaning of the statute.”
+Hensley v. Municipal Court, San Jose-Milpitas Judicial
+Dist., Santa Clara Cty., 411 U. S. 345, 349 (1973); Justices
+of Boston Municipal Court v. Lydon, 466 U. S. 294, 300–
+301 (1984) (same). The reason is simple, as I already have
+explained, supra, at 21: A person who is released on bail
+“is subject to restraints ‘not shared by the public gener­
+ally.’ ” Hensley, supra, at 351 (quoting Jones v. Cunningham, 371 U. S. 236, 240 (1963)); see also Maleng, supra, at
+491 (“[A] prisoner who had been placed on parole was still
+‘in custody’ ” because his “release from physical confine­
+ment . . . was not unconditional; instead, it was explicitly
+conditioned on his reporting regularly to his parole officer,
+remaining in a particular community, residence, and job,
+and refraining from certain activities” (citing Jones, supra,
+at 242)).
+Moreover, there is no reason to interpret “custody”
+differently than “detain.” The OED defines “custody” as
+“[t]he state of being detained,” http://www.oed.com/view/
+Entry/46305 (def. 5). “Detained,” as I have previously
+pointed out, can be read consistently with bail. See supra,
+at 20–23. The OED also defines the statutory phrase,
+“take (a person) into custody,” as “to arrest and imprison
+
+Cite as: 583 U. S. ____ (2018)
+
+27
+
+BREYER, J., dissenting
+
+(a person),” http://www.oed.com/view/Entry/46305 (def. 5).
+And we know from the history, tradition, case law, and
+other sources earlier discussed, including Blackstone, that
+arresting and imprisoning a person is consistent with a
+bail hearing and a subsequent grant of bail, even where a
+statute contains words such as “commitment” or “detain.”
+See supra, at 5–19 (citing, e.g., Wright, 190 U. S., at 62
+(reading as consistent with a bail proceeding the statutory
+language “ ‘shall issue [a] warrant for the commitment . . .
+to the proper jail, there to remain’ ” until “ ‘surrender’ ” for
+extradition)).
+But what about the second phrase, stating that the
+Attorney General “may release [that] alien . . . only if the
+Attorney General decides pursuant to section 3521 of title
+18 that release of the alien from custody is necessary to
+provide protection to a witness”? Does the presence of the
+words “only if ” show that the statute automatically denies
+bail for any other reason?
+It does not. That is because the phrase has nothing to
+do with bail. It has to do with a special program, the
+Witness Protection Program, set forth in 18 U. S. C.
+§3521. That program allows the Attorney General to
+relocate the witness, to give him an entirely new identity,
+to help his family similarly, and to pay him a stipend,
+among other things. §§3521(a)(1), (b)(1). The Attorney
+General may “take such action as [he] determines to be
+necessary to protect the person,” presumably even free the
+witness from whatever obligations might require him to
+report to an immigration or judicial authority.
+§3521(b)(1). Accordingly, when the Attorney General
+“release[s]” an alien under 8 U. S. C. §1226(c)(2), he does
+not grant bail; he may well do far more, freeing the wit­
+ness from a host of obligations and restraints, including
+those many obligations and restraints that accompany
+bail. See supra, at 21.
+This understanding of “release” in §1226(c) is consistent
+
+28
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+with the OED’s definition of “release” as “to free from
+restraint” or even “to liberate from . . . an obligation” (not
+simply “to free from . . . captivity”), http://www.oed.com/
+view/Entry/161859 (def. 6(a)). And it is consistent with
+our earlier reading of the word “detain.” Supra, at 20–24.
+Following the OED’s definition of “detain” as “under restraint,” we have understood the word “detention” to in­
+clude the state of being “under” those “restraints” that
+typically accompany bail. Supra, at 20–24. That is to say,
+both the individual on bail and the individual not on bail
+are “detained”; and the Attorney General, through his
+Witness Protection Program powers can free the individual
+from both. To repeat: The provision at issue means that
+the Attorney General “may release” the detained person
+from the restraints that accompany detainment—whether
+that individual has been detained with, or without, bail.
+So understood the phrase has nothing to do with the
+issue before us: whether a confined individual is, or is not,
+entitled to bail or a bail hearing. It simply means that the
+Attorney General cannot free that person from all, or
+most, restraining conditions (including those that accom­
+pany bail) unless the alien is placed in the Witness Protec­
+tion Program. So read, the words “only if ” neither favor
+nor disfavor a reading of the statute consistent with the
+right to a bail proceeding.
+The purpose-related reasons that argue for a bailfavorable reading are also applicable here. Congress did
+not consider the problem of long-term detention. It wrote
+the statute with brief detention in mind. See H. R. Rep.
+No. 104–469, pt. 1, p. 123, and n. 25 (1996) (stating that
+the “average stay [was] 28 days”). Congress did not know
+(for apparently the Government did not know in Demore)
+that the average length of detention for this class would
+turn out to be about a year. Nor did Congress necessarily
+know that about 40% of class members eventually obtain
+the right to remain in the United States.
+
+Cite as: 583 U. S. ____ (2018)
+
+29
+
+BREYER, J., dissenting
+
+I should add that reading the statute as denying bail to
+those whose detention is prolonged is anomalous. Those
+whose removal is legally or factually questionable could be
+imprisoned indefinitely while the matter is being decided.
+Those whose removal is not questionable (for they are
+under a final removal order) could be further imprisoned
+for no more than six months. See supra, at 4, 17. In fact,
+even before our decision in Zadvydas, the Government
+gave bail hearings to noncitizens under a final order of
+removal after six months of detention. See 533 U. S., at
+683.
+C
+Other Applicants for Admission
+The statutory provision that governs the third category
+of noncitizens seeking admission at the border is
+§1225(b)(2)(A). It says that “if the examining immigration
+officer determines that an alien seeking admission is not
+clearly and beyond a doubt entitled to be admitted, the
+alien shall be detained for a proceeding under section
+1229a of this title.” See Appendix A–3, infra.
+The Government tells us that this miscellaneous category consists of persons who are neither (1) clearly eligible
+for admission, nor (2) clearly ineligible. Pet. for Cert. 3–4.
+A clearly eligible person is, of course, immediately admit­
+ted. A clearly ineligible person—someone who lacks the
+required documents, or provides fraudulent ones—is
+“removed . . . without further hearing or review.”
+§1225(b)(1)(A)(i); see §§1182(a)(6)(C), (a)(7). But where
+the matter is not clear, i.e., where the immigration officer
+determines that an alien “is not clearly and beyond a
+doubt entitled to be admitted,” he is detained for a re­
+moval proceeding. §1225(b)(2)(A). Like all respondents, this
+class has been detained for at least six months. It may
+include persons returning to the United States who have
+work permits or other documents seemingly entitling
+
+30
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+them to entry, but whom an immigration officer suspects
+are inadmissible for some other reason, such as because
+they may have incomplete vaccinations or have committed
+student visa abuse or a crime of “moral turpitude.” See
+§1182(a) (delineating classes of aliens ineligible for admis­
+sion). For instance, the Federal Register is replete with
+examples of offenses that immigration authorities have
+thought are crimes of moral turpitude but that the courts
+of appeals later determine are not. See, e.g., Goldeshtein
+v. INS, 8 F. 3d 645, 648 (CA9 1993) (structuring financial
+transactions to avoid currency reports); Nunez v. Holder,
+594 F. 3d 1124, 1138 (CA9 2010) (indecent exposure). It
+also may include individuals who claim citizenship by
+virtue of birth or parentage but who lack documents
+clearly proving their claim.
+The critical statutory words are the same as those I
+have just discussed in the context of the asylum seekers—
+“shall be detained.” There is no more plausible reason
+here than there was there to believe those words foreclose
+bail. See supra, at 20–24. The constitutional considera­
+tions, the statutory language, and the purposes underlying
+the statute are virtually the same. Thus, the result should
+be the same: Given the constitutional considerations, we
+should interpret the statute as permitting bail.
+IV
+The majority concludes in Part V, ante, at 29–31, by
+saying that, before considering bail-related constitutional
+arguments, the lower courts “should reexamine whether
+respondents can continue litigating their claims as a
+class.” Ante, at 29. Relying on dicta in Reno v. AmericanArab Anti-Discrimination Comm., 525 U. S. 471 (1999)
+(AADC), it then suggests that the respondents may not be
+able to continue litigating because the Act says that
+“no court (other than the Supreme Court) shall have
+jurisdiction or authority to enjoin or restrain the oper­
+
+Cite as: 583 U. S. ____ (2018)
+
+31
+
+BREYER, J., dissenting
+
+ation [of the statutory provisions here at
+than with respect to the application of
+sions to an individual alien against whom
+under such part have been initiated.”
+§1252(f )(1).
+
+issue] other
+such proviproceedings
+8 U. S. C.
+
+Were the majority’s suggestion correct as to this juris­
+dictional question, it would have shown, at most, that we
+should decide the constitutional question here and now.
+We have already asked for and received briefs on that
+question. But I do not believe the majority is correct.
+Every member of the classes before us falls within the
+provision’s exception. Every one of them is an “individual
+alien against whom proceedings under such part have
+been initiated.” Ibid. The Court in AADC did not con­
+sider, and had no reason to consider, the application of
+§1252(f)(1) to such a class. Regardless, a court could order
+declaratory relief. Federal Rule of Civil Procedure 23(b)(2)
+permits a class action where “final injunctive relief or
+corresponding declaratory relief is appropriate respecting
+the class as a whole.” (Emphasis added.) And the Advisory
+Committee says that declaratory relief can fall within
+the Rule’s term “corresponding” if it “serves as a basis for
+later injunctive relief.” Notes on Rule 23(b)(2)–1966
+Amendment, 28 U. S. C. App., p. 812.
+Jurisdiction also is unaffected by 8 U. S. C. §1252(b)(9),
+which by its terms applies only “[w]ith respect to review of
+an order of removal under [§1252(a)(1)].” §1252(b). Re­
+spondents challenge their detention without bail, not an
+order of removal.
+Neither does Wal-Mart Stores, Inc. v. Dukes, 564 U. S.
+338 (2011), bar these class actions. Every member of each
+class seeks the same relief (a bail hearing), every member
+has been denied that relief, and the differences in situa­
+tion among members of the class are not relevant to their
+entitlement to a bail hearing.
+
+32
+
+JENNINGS v. RODRIGUEZ
+BREYER, J., dissenting
+
+At a minimum I can find nothing in the statute or in the
+cases to which the majority refers that would prevent the
+respondents from pursuing their action, obtaining a de­
+claratory judgment, and then using that judgment to
+obtain relief, namely, a bail hearing, in an individual case.
+Thus, I believe the lower courts are free to consider the
+constitutionality of the relevant statutory provisions as
+the majority now interprets them.
+V
+Conclusion
+The relevant constitutional language, purposes, history,
+traditions, context, and case law, taken together, make it
+likely that, where confinement of the noncitizens before us
+is prolonged (presumptively longer than six months), bail
+proceedings are constitutionally required. Given this
+serious constitutional problem, I would interpret the
+statutory provisions before us as authorizing bail. Their
+language permits that reading, it furthers their basic
+purposes, and it is consistent with the history, tradition,
+and constitutional values associated with bail proceedings.
+I believe that those bail proceedings should take place in
+accordance with customary rules of procedure and burdens
+of proof rather than the special rules that the Ninth Cir­
+cuit imposed.
+The bail questions before us are technical but at heart
+they are simple. We need only recall the words of the
+Declaration of Independence, in particular its insistence
+that all men and women have “certain unalienable
+Rights,” and that among them is the right to “Liberty.”
+We need merely remember that the Constitution’s Due
+Process Clause protects each person’s liberty from arbi­
+trary deprivation. And we need just keep in mind the fact
+that, since Blackstone’s time and long before, liberty has
+included the right of a confined person to seek release on
+bail. It is neither technical nor unusually difficult to read
+
+Cite as: 583 U. S. ____ (2018)
+
+33
+
+BREYER, J., dissenting
+
+the words of these statutes as consistent with this basic
+right. I would find it far more difficult, indeed, I would
+find it alarming, to believe that Congress wrote these
+statutory words in order to put thousands of individuals at
+risk of lengthy confinement all within the United States
+but all without hope of bail. I would read the statutory
+words as consistent with, indeed as requiring protection
+of, the basic right to seek bail.
+Because the majority does not do so, with respect, I
+dissent.
+
+34
+
+JENNINGS v. RODRIGUEZ
+J., dissenting
+BREYER
+Appendix
+A to ,opinion
+of BREYER, J.
+
+APPENDIXES
+A
+1
+Statute Applicable to Asylum Seekers
+8 U. S. C. §1225. “Inspection by immigration officers;
+expedited removal of inadmissible arriving aliens; referral
+for hearing
+.
+.
+.
+.
+.
+“(b) Inspection of applicants for admission
+“(1) Inspection of aliens arriving in the United States
+and certain other aliens who have not been admitted or
+paroled
+“(A) Screening
+“(i) In general
+“If an immigration officer determines that an alien
+(other than an alien described in subparagraph (F)) who is
+arriving in the United States or is described in clause (iii)
+is inadmissible under section 1182(a)(6)(C) or 1182(a)(7)
+of this title, the officer shall order the alien removed
+from the United States without further hearing or review
+unless the alien indicates either an intention to apply
+for asylum under section 1158 of this title or a fear of
+persecution.
+“(ii) Claims for asylum
+“If an immigration officer determines that an alien
+(other than an alien described in subparagraph (F)) who is
+arriving in the United States or is described in clause (iii)
+is inadmissible under section 1182(a)(6)(C) or 1182(a)(7) of
+this title and the alien indicates either an intention to
+apply for asylum under section 1158 of this title or a fear
+of persecution, the officer shall refer the alien for an inter­
+view by an asylum officer under subparagraph (B).
+.
+.
+.
+.
+.
+
+Cite as: 583 U. S. ____ (2018)
+
+35
+
+J., dissenting
+BREYER
+Appendix
+A to ,opinion
+of BREYER, J.
+
+“(B) Asylum interviews
+“(i) Conduct by asylum officers
+“An asylum officer shall conduct interviews of aliens
+referred under subparagraph (A)(ii), either at a port of
+entry or at such other place designated by the Attorney
+General.
+“(ii) Referral of certain aliens
+“If the officer determines at the time of the interview
+that an alien has a credible fear of persecution (within the
+meaning of clause (v)), the alien shall be detained for
+further consideration of the application for asylum.” (Em­
+phasis added.)
+
+36
+
+JENNINGS v. RODRIGUEZ
+J., dissenting
+BREYER
+Appendix
+A to ,opinion
+of BREYER, J.
+
+2
+Statute Applicable to Criminal Aliens
+8 U. S. C. §1226. “Apprehension and detention of aliens
+“(a) Arrest, detention, and release
+“On a warrant issued by the Attorney General, an alien
+may be arrested and detained pending a decision on
+whether the alien is to be removed from the United States.
+Except as provided in subsection (c) of this section and
+pending such decision, the Attorney General—
+“(1) may continue to detain the arrested alien; and
+“(2) may release the alien on—
+“(A) bond of at least $1,500 with security approved by,
+and containing conditions prescribed by, the Attorney
+General; or
+“(B) conditional parole;
+.
+.
+.
+.
+.
+“(c) Detention of criminal aliens
+“(1) Custody
+“The Attorney General shall take into custody any alien
+who—
+“(A) is inadmissible by reason of having committed any
+offense covered in section 1182(a)(2) of this title,
+“(B) is deportable by reason of having committed any
+offense covered in section 1227(a)(2)(A)(ii), (A)(iii), (B), (C),
+or (D) of this title,
+“(C) is deportable under section 1227(a)(2)(A)(i) of this
+title on the basis of an offense for which the alien has been
+sentence[d] to a term of imprisonment of at least 1 year, or
+“(D) is inadmissible under section 1182(a)(3)(B) of this
+title or deportable under section 1227(a)(4)(B) of this title,
+“when the alien is released, without regard to whether the
+alien is released on parole, supervised release, or pro­
+
+Cite as: 583 U. S. ____ (2018)
+
+37
+
+J., dissenting
+BREYER
+Appendix
+A to ,opinion
+of BREYER, J.
+
+bation, and without regard to whether the alien may be
+arrested or imprisoned again for the same offense.
+“(2) Release
+“The Attorney General may release an alien described in
+paragraph (1) only if the Attorney General decides pursuant to section 3521 of title 18 that release of the alien from
+custody is necessary to provide protection to a witness, a
+potential witness, a person cooperating with an investiga­
+tion into major criminal activity, or an immediate family
+member or close associate of a witness, potential witness,
+or person cooperating with such an investigation, and the
+alien satisfies the Attorney General that the alien will not
+pose a danger to the safety of other persons or of property
+and is likely to appear for any scheduled proceeding. A
+decision relating to such release shall take place in ac­
+cordance with a procedure that considers the severity of
+the offense committed by the alien.” (Emphasis added.)
+
+38
+
+JENNINGS v. RODRIGUEZ
+J., dissenting
+BREYER
+Appendix
+A to ,opinion
+of BREYER, J.
+
+3
+Statute Applicable to Miscellaneous Applicants for
+Admission
+8 U. S. C. §1225. “Inspection by immigration officers;
+expedited removal of inadmissible arriving aliens; referral
+for hearing
+.
+.
+.
+.
+.
+“(b) Inspection of applicants for admission
+.
+.
+.
+.
+.
+“(2) Inspection of other aliens
+“(A) In general
+“Subject to subparagraphs (B) and (C), in the case of an
+alien who is an applicant for admission, if the examining
+immigration officer determines that an alien seeking
+admission is not clearly and beyond a doubt entitled to be
+admitted, the alien shall be detained for a proceeding
+under section 1229a of this title.
+“(B) Exception
+“Subparagraph (A) shall not apply to an alien—
+“(i) who is a crewman,
+“(ii) to whom paragraph (1) applies, or
+“(iii) who is a stowaway.
+“(C) Treatment of aliens arriving from contiguous territory
+“In the case of an alien described in subparagraph (A)
+who is arriving on land (whether or not at a designated
+port of arrival) from a foreign territory contiguous to the
+United States, the Attorney General may return the alien
+to that territory pending a proceeding under section 1229a
+of this title.” (Emphasis added.)
+
+Cite as: 583 U. S. ____ (2018)
+
+39
+
+J., dissenting
+BREYER
+Appendix
+B to ,opinion
+of BREYER, J.
+
+B
+State Bail Law
+State
+Alabama
+
+Alaska
+Arizona
+
+Arkansas
+
+California
+Colorado
+Connecticut
+Delaware
+Florida
+Georgia
+
+Key Bail Provisions
+Ala. Const., Art. 1, §16; Ala. Code
+§§15–13–3, 15–13–108, 15–13–190
+(2011); Ala. Rule Crim. Proc. 7.2
+(Cum. Supp. 2017)
+Alaska Const., Art. 1, §11; Alaska
+Stat. §§12.30.011, 12.30.040 (2016)
+Ariz. Const., Art. 2, §22; Ariz. Rev.
+Stat. Ann. §§13–3961 (Cum. Supp.
+2017), 13–3961.01 (2010), 13–3962;
+Ariz. Rule Crim. Proc. 7.2 (Cum.
+Supp. 2017)
+Ark. Const., Art. 2, §8; Ark. Code
+§§16–84–110 (2005), 16–91–110
+(Supp. 2017); Ark. Rule App. Crim.
+Proc. 6 (2017)
+Cal. Const., Art. 1, §12; Cal. Penal
+Code Ann. §1271 (West 2004)
+Colo. Const., Art. 2, §19; Colo. Rev.
+Stat. §§16–4–101, 16–4–102, 16–4–
+201, 16–4–201.5 (2017)
+Conn. Const., Art. 1, §8; Conn. Gen.
+Stat. §§54–63f, 54–64a (2017)
+Del. Const., Art. 1, §12; Del. Code
+Ann., Tit. 11, §§2103, 2104, 2112
+(2015)
+Fla. Const., Art. 1, §14; Fla. Stat.
+§§903.046, 903.132, 903.133 (2017)
+Ga. Code Ann. §§17–6–1, 17–6–15
+(Supp. 2017)
+
+40
+
+JENNINGS v. RODRIGUEZ
+J., dissenting
+BREYER
+Appendix
+B to ,opinion
+of BREYER, J.
+
+State
+Hawaii
+Idaho
+Illinois
+Indiana
+Iowa
+Kansas
+Kentucky
+
+Louisiana
+Maine
+
+Maryland
+Massachusetts
+
+Key Bail Provisions
+Haw. Rev. Stat. §§804–3, 804–4
+(2014)
+Idaho Const., Art. 1, §6; Idaho Code
+Ann. §19–2903 (2017)
+Ill. Const., Art. 1, §9; Ill. Comp.
+Stat., ch. 725, §§5110–4, 5110–6.2
+(West 2016)
+Ind. Const., Art. 1, §17; Ann. Ind.
+Code §§35–33–8.5–6 (West 2012),
+35–33–9–1 (West Cum. Supp. 2017)
+Iowa Const., Art. 1, §12; Iowa Code
+Ann. §§811.1, 811.5 (West 2015)
+Kan. Const., Bill of Rights §9; Kan.
+Stat. Ann. §§22–2801, 22–2804
+(2007), 22–2802 (2016 Cum. Supp.)
+Ky. Const., §16; Ky. Rev. Stat. Ann.
+§431.066 (West Cum. Supp. 2017);
+Ky. Rules Crim. Proc. 4.02, 4.54,
+12.78 (West Cum. Supp. 2017)
+La. Const., Art. 1, §18; La. Code
+Crim. Proc. Ann., Art. 312, 316
+(West 2017)
+Me. Const., Art. 1, §10; Me. Rev.
+Stat. Ann., Tit. 15, §§1003, 1051
+(Cum. Supp. 2017), 1026, 1027
+(2016)
+Md. Crim. Proc. Code Ann. §§5–101,
+5–102 (Supp. 2017), 5–207 (2008);
+Md. Rules 4–216.1, 4–349 (2018)
+Mass. Gen. Laws, ch. 276, §§20D,
+42, 42A (2016); Mass. Rule Crim.
+Proc. 31 (West 2017)
+
+Cite as: 583 U. S. ____ (2018)
+
+41
+
+J., dissenting
+BREYER
+Appendix
+B to ,opinion
+of BREYER, J.
+
+State
+Michigan
+Minnesota
+Mississippi
+Missouri
+
+Montana
+Nebraska
+Nevada
+New Hampshire
+New Jersey
+
+New Mexico
+
+Key Bail Provisions
+Mich. Comp. Laws Ann. §§765.6
+(West Supp. 2017), 770.9 (West
+2006)
+Minn. Const., Art. 1, §7; Minn. Stat.
+§629.16 (2016); Minn. Rules Crim.
+Proc. 6, 28.02 (2016)
+Miss. Const., Art. 32, §29; Miss.
+Code Ann. §§99–5–11, 99–35–3.
+(2015)
+Mo. Const., Art. 1, §§20, 34; Mo.
+Ann. Rev. Stat. §§544.455, 544. 671
+(Vernon Cum. Supp. 2017), 544.457,
+547.170 (Vernon 2002)
+Mont. Const., Art. 2, §21; Mont.
+Code Ann. §§46–9–102, 46–9–107
+(2017)
+Neb. Const., Art. 1, §9; Neb. Rev.
+Stat. §§29–901 (2017 Supp.), 29–
+2301 (2016)
+Nev. Const., Art. 1, §7; Nev. Rev.
+Stat. §§178.484, 178.488 (2015)
+N. H. Rev. Stat. Ann. §§597:1
+(2001), 597:1–a (Cum. Supp. 2017),
+597:1–c, 597:2
+N. J. Const., Art. 1, §11; N. J. Stat.
+Ann. §§2A:162–11 (West 2011),
+162–18 (West Cum. Supp. 2017),
+2A:162–20; N. J. Rule App.
+Proc. 2:9–4 (West 2018)
+N. M. Const., Art. 2, §13; N. M.
+Dist. Ct. Rules Crim. Proc. 5–401,
+5–402 (1992)
+
+42
+
+JENNINGS v. RODRIGUEZ
+J., dissenting
+BREYER
+Appendix
+B to ,opinion
+of BREYER, J.
+
+State
+New York
+North Carolina
+North Dakota
+Ohio
+
+Oklahoma
+Oregon
+Pennsylvania
+Rhode Island
+
+South Carolina
+South Dakota
+
+Tennessee
+
+Key Bail Provisions
+N. Y. Crim. Proc. Law Ann.
+§§510.20, 530.10 (West 2009),
+510.30 (West Cum. Supp. 2018)
+N. C. Gen. Stat. Ann. §§15A–533,
+15A–534 (2017)
+N. D. Const., Art. 1, §11; N. D. Rule
+Crim. Proc. 46 (2016–2017)
+Ohio Const., Art. I, §9; Ohio Rev.
+Code Ann. §§2937.222, 2949.02
+(Lexis 2014); Ohio Rule Crim. Proc.
+46 (Lexis 2017–2018)
+Okla. Const., Art. 2, §8; Okla. Stat.,
+Tit. 22, §§1077, 1101, 1102 (2011)
+Ore. Const., Art. 1, §§14, 43; Ore.
+Rev. Stat. §§135.240, 138.650
+(2015)
+Pa. Const., Art. 1, §14; 42 Pa. Cons.
+Stat. §5701 (2015); Pa. Rule Crim.
+Proc. 521 (West 2017)
+R. I. Const., Art. 1, §9; R. I. Gen.
+Laws §§12–13–1, 12–22–12 (2002);
+R. I. Super. Ct. Rule Crim. Proc. 46
+(Supp. 2017)
+S. C. Const., Art. 1, §15; S. C. Code
+Ann. §§17–15–10, 22–5–510 (Cum.
+Supp. 2017), 18–1–90 (2014)
+S. D. Const., Art. 6, §8; S. D. Codi­
+fied Laws §§23A–43–2, 23A–43–2.1,
+23A–43–16 (2016), 23A–43–3, 23A–
+43–4 (Cum. Supp. 2017)
+Tenn. Const., Art. 1, §15; Tenn.
+Code Ann. §§40–11–102, 40–11–
+105, 40–11–113 (2012)
+
+Cite as: 583 U. S. ____ (2018)
+
+43
+
+J., dissenting
+BREYER
+Appendix
+B to ,opinion
+of BREYER, J.
+
+State
+Texas
+
+Utah
+Vermont
+Virginia
+Washington
+West Virginia
+Wisconsin
+Wyoming
+
+Key Bail Provisions
+Tex. Const., Art. 1, §§11, 11a, 11b,
+11c; Tex. Code Crim. Proc. Ann.,
+Art. 17.15, 17.40 (Vernon 2015),
+44.04 (Vernon Cum. Supp. 2017)
+Utah Const., Art. 1, §8; Utah Code
+§§77–20–1, 77–20–10 (2017)
+Vt. Const., ch. 2, §40; Vt. Stat.
+Ann., Tit. 13, §§7553, 7574 (2009),
+7553a, 7554 (2017 Cum. Supp.)
+Va. Code Ann. §§19.2–120, 19.2–
+120.1, 19.2–121, 19.2–319 (2015)
+Wash. Const., Art. 1, §20; Wash.
+Rev. Code §§10.21.020, 10.21.030,
+10.21.040, 10.73.040 (2016)
+W. Va. Code Ann. 62–1C–1 (Lexis
+2014)
+Wis. Const., Art. 1, §8, cl. 2; Wis.
+Stat. §§969.01, 969.03, 969.035
+(2011–2012)
+Wyo. Const., Art. 1, §14; Wyo. Stat.
+Ann. §7–10–101 (2015)
+
+

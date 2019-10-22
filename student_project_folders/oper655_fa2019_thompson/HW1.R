@@ -1,40 +1,71 @@
-install.packages("pacman")
-pacman::p_load(XML,
-               rvest,
-               RCurl,
-               rprojroot,
-               qdapTools,
-               pdftools,
-               antiword,
-               glue,
-               data.table,
-               tidyverse,
-               vroom,
-               antiword,
-               magick,
-               tesseract)
-oper655_readme_url <- 
-  "https://raw.githubusercontent.com/AFIT-R/oper655_fa2019/master/README.md"
+cat("\014") #Clear console
+rm(list = ls()) #clear variables
 
-oper_readme_text <- readLines(oper655_readme_url)
+library("pacman")
+p_load("tools")
 
-str(oper_readme_text)
-head(oper_readme_text)
+fun_read_file <- function(myFile){
+  
+  myText = data.frame(1:length(myFile))
+  file_ext=file_ext(myFile)
+  
+  if (file_ext == "txt") {
+    myText = readLines(myFile, encoding = "UTF-8")
+    
+  }else if (file_ext == "csv") {
+    p_load(readr)
+    myText = readr::read_csv(myFile)
+    
+  }else if (file_ext == "xls") {
+    p_load(readxl)
+    myText = readxl::read_excel(myFile)
+    
+  }else if (file_ext == "xlsx") {
+    p_load(readxl)
+    myText = readxl::read_excel(myFile)
+    
+  }else if (file_ext == "docx") {
+    p_load(qdapTools)  
+    myText = qdapTools::read_docx(myFile)
+    
+  }else if (file_ext == "doc") {
+    p_load(antiword)
+    myText = antiword::antiword(myFile)
 
-# Incorrecly interpreted curly quotes
-oper_readme_text[136]
-# Incorrecly interpreted elipsis ...
-oper_readme_text[251]
-# Incorrecly interpreted curly apostrophe
-oper_readme_text[264]
+  }else if (file_ext == "pdf") {
+    p_load(pdftools)
+    myText = pdftools::pdf_text(pdf = myFile)
+    
+    if (length(myText) == 1) {
+      pdf_png <- pdftools::pdf_convert(myFile, dpi = 600)
+      p_load(tesseract)
+      myText <- tesseract::ocr(pdf_png)
+      print("PDF image")
+    } else {
+      print("PDF file")}
+    
+  }else {
+    print("Not a known file type")
+    myText = "Not a known file type"
+  }
+  
+  return(myText)
+}
 
-root <- rprojroot::find_root(rprojroot::is_rstudio_project)
-(amazon_review_file <- file.path(root, "data","csv", "1429_1.csv"))
 
-time1 <- system.time({ amazon_review_data_1 <- read.csv(amazon_review_file) })
 
-str(amazon_review_data_1$reviews.text)
-time2 <- system.time({ amazon_review_data_2 <- readr::read_csv(amazon_review_file) })
+file=0
+file[1]="C:/Users/Max's USAFA PC/Desktop/Files/Pick the date.doc"
+file[2]="C:/Users/Max's USAFA PC/Desktop/Files/NDS 18.pdf"
+file[3]="C:/Users/Max's USAFA PC/Desktop/Files/hybrid_data_v1.xlsx"
+file[4]="C:/Users/Max's USAFA PC/Desktop/Files/hybrid_data_v2.xls"
+file[5]="C:/Users/Max's USAFA PC/Desktop/Files/hybrid_data_v3.csv"
+file[6]="C:/Users/Max's USAFA PC/Desktop/Files/Bush_1989.txt"
+file[7]="C:/Users/Max's USAFA PC/Desktop/Files/Non-text-searchable.pdf"
+
+output<-lapply(X=file,FUN = fun_read_file)
+
+print(summary(output))
 
 
 
