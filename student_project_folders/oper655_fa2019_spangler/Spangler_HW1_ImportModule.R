@@ -12,12 +12,18 @@ pacman::p_load(XML,
                vroom,
                antiword,
                magick,
-               tesseract)
+               tesseract,
+               readr)
 
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 
 #Update file path to the files folder
 dest <- file.path(root, "student_project_folders", "oper655_fa2019_spangler", "Files")
+
+#Create List of All Files in Folder
+master_list <- list.files(path = dest,
+                          pattern = "",
+                          full.names = TRUE)
 
 #Create list of csv files
 csv_files <- list.files(path = dest,
@@ -26,16 +32,17 @@ csv_files <- list.files(path = dest,
 
 #Load CSV Files (https://stackoverflow.com/questions/11433432/how-to-import-multiple-csv-files-at-once)
 for (i in 1:length(csv_files)){
-  assign(csv_files[i], vroom::vroom(csv_files[i]))
+  assign(paste("csv_files",i,sep = "_"), vroom::vroom(csv_files[i]))
 }
+
 
 #Create List of Word Files
 ms_files <- list.files(path = dest, 
                        pattern = "docx",
                        full.names = TRUE)
-
+#Read in word files
 for (i in 1:length(ms_files)){
-  assign(ms_files[i], qdapTools::read_docx(ms_files[i]))
+  assign(paste("ms_files", i, sep = "_"), qdapTools::read_docx(ms_files[i]))
 }
 
 #Create List of PDF Files
@@ -51,7 +58,8 @@ text_files <- list.files(path = dest,
 
 #Import Text Files
 for (i in 1:length(text_files)){
-  assign(text_files[i], readLines(text_files[i]))
+  assign(paste("text_files", i, sep = "_"), read_file(text_files[i]))
+  
 }
 
 #List of Image Files
@@ -61,9 +69,11 @@ image_files <- list.files(path = dest,
 
 #Import Image Files
 for (i in 1:length(image_files)){
-  assign(image_files[i], image_read(image_files[i]) %>%
+ assign(paste("image_files",i,sep = "_"), image_read(image_files[i]) %>%
            image_resize("2000") %>%
            image_convert(colorspace = 'gray') %>%
            image_trim() %>%
            image_ocr())
+
 }
+
