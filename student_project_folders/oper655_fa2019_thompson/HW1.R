@@ -32,7 +32,7 @@ fun_read_file <- function(myFile){
     p_load(pdftools)
     myText = pdftools::pdf_text(pdf = myFile)
     
-    if (length(myText) == 1) {
+    if (length(myText) <= 1) {
       pdf_png <- pdftools::pdf_convert(myFile, dpi = 600)
       p_load(tesseract)
       myText <- tesseract::ocr(pdf_png)
