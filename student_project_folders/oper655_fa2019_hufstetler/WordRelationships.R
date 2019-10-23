@@ -234,4 +234,131 @@ book_words <- left_join(book_words, series_words)
 
 book_words
 
+# Graph Term Frequencies
+book_words %>%
+  mutate(ratio = n / total) %>%
+  ggplot(aes(ratio, fill = book)) +
+  geom_histogram(show.legend = FALSE) +
+  scale_x_log10() +
+  facet_wrap(~ book, ncol = 2)
+
+# Inverse Document Frequency and tf-idf
+book_words <- book_words %>%
+  bind_tf_idf(word, book, n)
+
+book_words
+
+book_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf))
+
+book_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf)) %>%
+  dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+                book = base::factor(book, levels = titles)) %>% 
+  dplyr::group_by(book) %>%
+  dplyr::top_n(15, wt = tf_idf) %>%
+  dplyr::ungroup() %>%
+  ggplot(aes(word, tf_idf, fill = book)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf words in the Harry Potter series",
+       x = NULL, y = "tf-idf") +
+  facet_wrap(~book, ncol = 2, scales = "free") +
+  coord_flip()
+
+# Digrams
+hp_tidy_2 <- tibble()
+
+for(i in seq_along(titles)) {
+  
+  clean <- tibble(chapter = seq_along(books[[i]]),
+                  text = books[[i]]) %>%
+    unnest_tokens(bigram, text, token = "ngrams", n = 2) %>%
+    mutate(book = titles[i]) %>%
+    select(book, everything())
+  
+  hp_tidy_2 <- rbind(hp_tidy_2, clean)
+}
+
+# set factor to keep books in order of publication
+hp_tidy_2$book <- factor(hp_tidy_2$book, levels = rev(titles))
+
+hp_tidy_2
+
+hp_tidy_2 %>%
+  count(bigram, sort = TRUE)
+
+hp_tidy_2 %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  count(word1, word2, sort = TRUE)
+
+hp_tidy_2 %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  count(book, word1, word2, sort = TRUE) %>%
+  unite("bigram", c(word1, word2), sep = " ") %>%
+  group_by(book) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  mutate(book = factor(book) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, n, book), n, fill = book)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  drlib::scale_x_reordered() +
+  facet_wrap(~ book, ncol = 2, scales = "free") +
+  coord_flip()
+
+(bigram_tf_idf <- hp_tidy_2 %>%
+    count(book, bigram, sort = TRUE) %>%
+    bind_tf_idf(bigram, book, n) %>%
+    arrange(desc(tf_idf)))
+
+bigram_tf_idf %>%
+  group_by(book) %>%
+  top_n(15, wt = tf_idf) %>%
+  ungroup() %>%
+  mutate(book = factor(book) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, tf_idf, book), tf_idf, fill = book)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf bi-grams in the Harry Potter series",
+       x = NULL, y = "tf-idf") +
+  drlib::scale_x_reordered() +
+  facet_wrap(~book, ncol = 2, scales = "free") +
+  coord_flip()
+
+# Visualizing n-gram networks
+library(igraph)
+
+bigram_graph <- hp_tidy_2 %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  count(word1, word2, sort = TRUE) %>%
+  unite("bigram", c(word1, word2), sep = " ") %>%
+  filter(n > 20) %>%
+  graph_from_data_frame()
+
+library(ggraph)
+set.seed(123)
+
+a <- grid::arrow(type = "closed", length = unit(.15, "inches"))
+
+ggraph(bigram_graph, layout = "fr") +
+  geom_edge_link() +
+  geom_node_point(color = "lightblue", size = 5) +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+  theme_void()
+
+ps_words <- tibble(chapter = seq_along(philosophers_stone),
+                   text = philosophers_stone) %>%
+  unnest_tokens(word, text) %>%
+  filter(!word %in% stop_words$word)
+
+word_pairs <- ps_words %>%
+  widyr::pairwise_count(word, chapter, sort = TRUE)
+
+word_pairs %>% 
+  filter(item1 == "harry")
+
 

@@ -219,6 +219,356 @@ for(i in files) {
 
 
 ```
+Organize the data into a tibble by ingesting each episode, extracting the season and episode number, and unnesting all words
+```{r}
+office_tidy <- tibble::tibble()
+
+# Create List of All Files in Folder
+master_list <- list.files(path = save_folder,
+                          pattern = "s",
+                          full.names = TRUE)
+
+
+ep = 0
+for(i in master_list){
+  ep = ep + 1
+  clean <- tibble::tibble(season = substr(i,nchar(i)-8,nchar(i)-7),
+                          subep = substr(i,nchar(i)-5,nchar(i)-4),
+                          episode = ep,
+                          text = read_file(i)) %>%
+            tidytext::unnest_tokens(word, text)
+  office_tidy <- base::rbind(office_tidy, clean)
+}
+# Set factor to keep episodes in order
+office_tidy$season <- base::factor(office_tidy$season)
+office_tidy$subep <- base::factor(office_tidy$subep)
+```
+
+Get some summary statistics about the data. This table shows the individual word counts for each script organized by season and episode.
+
+```{r}
+# Table total word counts
+table(office_tidy$season,office_tidy$subep)
+
+# Show most frequent words
+office_tidy %>%
+  dplyr::count(word, sort = TRUE)
+
+# remove stop words
+office_nostop <- office_tidy %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE)
+
+# visualize with ggplot2
+# top 10 most common words in each season
+office_tidy %>%
+  anti_join(stop_words) %>%
+  group_by(season) %>%
+  count(word, sort = TRUE) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  mutate(text_order = base::nrow(.):1) %>%
+  ## Pipe output directly to ggplot
+  ggplot(aes(reorder(word, text_order), n, fill = season)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ season, scales = "free_y") +
+  labs(x = "NULL", y = "Frequency") +
+  coord_flip() +
+  theme(legend.position="none")
+
+# calculate frequencies and look for deviations
+# calculate percent of word use across all seasons
+office_pct <- office_tidy %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word) %>%
+  dplyr::transmute(word, all_words = n / sum(n))
+
+# calculate percent of word use within each novel
+frequency <- office_tidy %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(season, word) %>%
+  dplyr::mutate(season_words = n / sum(n)) %>%
+  dplyr::left_join(office_pct) %>%
+  dplyr::arrange(dplyr::desc(season_words)) %>%
+  dplyr::ungroup()
+
+# Visualize word freq
+ggplot(frequency, 
+       aes(x = season_words, 
+           y = all_words, 
+           color = abs(all_words - season_words))) +
+  geom_abline(color = "gray40", lty = 2) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = scales::percent_format()) +
+  scale_y_log10(labels = scales::percent_format()) +
+  scale_color_gradient(limits = c(0, 0.001), 
+                       low = "darkslategray4", 
+                       high = "gray75") +
+  facet_wrap(~ season, ncol = 2) +
+  theme(legend.position="none") +
+  labs(y = "The Office", x = NULL)
+
+# Correlation Test
+frequency %>%
+  dplyr::group_by(season) %>%
+  dplyr::summarize(correlation = stats::cor(season_words, all_words),
+                   p_value = stats::cor.test(season_words,
+                                             all_words)$p.value)
+
+episodes <- list()
+
+for(i in master_list){
+  episodes <- append(episodes, read_file(i))
+}
+# Document Term Matrices
+office_dtm <- tm::VectorSource(episodes) %>%
+  tm::VCorpus() %>%
+  tm::DocumentTermMatrix(control = base::list(removePunctuation = TRUE,
+                                              removeNumbers = TRUE,
+                                              stopwords = tidytext::stop_words[,2],
+                                              tokenize = 'MC',
+                                              weighting =
+                                                function(x)
+                                                  weightTfIdf(x, normalize =
+                                                                !FALSE)))
+
+tm::inspect(office_dtm)
+
+terms <- tm::Terms(office_dtm)
+utils::head(terms, 50)
+
+# Convert to tidy df
+office_tidy_tm <- tidytext::tidy(office_dtm)
+
+# cast tidy data to a DFM object 
+# for use with the quanteda package
+office_tidy_tm %>%
+  cast_dfm(term, document, count)
+
+# cast tidy data to a DocumentTermMatrix 
+# object for use with the `tm` package
+office_tidy_tm %>%
+  cast_dtm(term, document, count)
+
+# cast tidy data to a TermDocumentMatrix 
+# object for use with the `tm` package
+office_tidy_tm %>%
+  cast_tdm(term, document, count)
+
+# cast tidy data to a sparse matrix
+# uses the Matrix package
+office_tidy_tm %>%
+  cast_sparse(term, document, count) %>%
+  dim
+
+# Using the text2vec package
+t2v_tokens <- episodes   %>% 
+  tolower %>% 
+  tokenizers::tokenize_words()
+
+t2v_itoken <- text2vec::itoken(t2v_tokens, 
+                              progressbar = FALSE)
+
+(t2v_vocab <- text2vec::create_vocabulary(t2v_itoken,
+                                         stopwords = tidytext::stop_words[[1]]))
+
+t2v_dtm = create_dtm(t2v_itoken, hash_vectorizer())
+model_tfidf = TfIdf$new()
+dtm_tfidf = model_tfidf$fit_transform(t2v_dtm)
+
+# Term Frequencies
+season_words <- office_tidy %>%
+  count(season, word, sort = TRUE) %>%
+  dplyr::anti_join(stop_words) %>%
+  ungroup()
+
+series_words <- season_words %>%
+  group_by(season) %>%
+  summarise(total = sum(n))
+
+season_words <- left_join(season_words, series_words)
+
+season_words
+
+# Graph Term Frequencies
+season_words %>%
+  mutate(ratio = n / total) %>%
+  ggplot(aes(ratio, fill = season)) +
+  geom_histogram(show.legend = FALSE) +
+  scale_x_log10() +
+  facet_wrap(~ season, ncol = 2)
+
+# Inverse Document Frequency and tf-idf
+season_words <- season_words %>%
+  bind_tf_idf(word, season, n)
+
+season_words
+
+season_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf))
+
+season_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf)) %>%
+  dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+                season = base::factor(season)) %>% 
+  dplyr::group_by(season) %>%
+  dplyr::top_n(15, wt = tf_idf) %>%
+  dplyr::ungroup() %>%
+  ggplot(aes(word, tf_idf, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf words in The Office series",
+       x = NULL, y = "tf-idf") +
+  facet_wrap(~season, ncol = 2, scales = "free") +
+  coord_flip()
+
+# Digrams
+office_tidy_2 <- tibble()
+
+for(i in master_list) {
+  clean <- tibble::tibble(season = substr(i,nchar(i)-8,nchar(i)-7),
+                          subep = substr(i,nchar(i)-5,nchar(i)-4),
+                          episode = ep,
+                          text = read_file(i)) %>%
+            tidytext::unnest_tokens(bigram, text, token = "ngrams", n=2)
+  office_tidy_2 <- base::rbind(office_tidy_2, clean)
+}
+
+# set factor to keep books in order of publication
+office_tidy_2$season <- factor(office_tidy_2$season)
+office_tidy_2$subep <- factor(office_tidy_2$subep)
+
+office_tidy_2
+
+office_tidy_2 %>%
+  count(bigram, sort = TRUE)
+
+office_tidy_2 %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  count(word1, word2, sort = TRUE)
+
+office_tidy_2 %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  count(season, word1, word2, sort = TRUE) %>%
+  unite("bigram", c(word1, word2), sep = " ") %>%
+  group_by(season) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  mutate(season = factor(season) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, n, season), n, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  drlib::scale_x_reordered() +
+  facet_wrap(~ season, ncol = 2, scales = "free") +
+  coord_flip()
+
+(bigram_tf_idf <- office_tidy_2 %>%
+    count(season, bigram, sort = TRUE) %>%
+    bind_tf_idf(bigram, season, n) %>%
+    arrange(desc(tf_idf)))
+
+bigram_tf_idf %>%
+  group_by(season) %>%
+  top_n(15, wt = tf_idf) %>%
+  ungroup() %>%
+  mutate(season = factor(season) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, tf_idf, season), tf_idf, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf bi-grams in The Office series",
+       x = NULL, y = "tf-idf") +
+  drlib::scale_x_reordered() +
+  facet_wrap(~season, ncol = 2, scales = "free") +
+  coord_flip()
+
+# N-grams
+office_tidy_4 <- tibble()
+
+for(i in master_list) {
+  clean <- tibble::tibble(season = substr(i,nchar(i)-8,nchar(i)-7),
+                          subep = substr(i,nchar(i)-5,nchar(i)-4),
+                          episode = ep,
+                          text = read_file(i)) %>%
+            tidytext::unnest_tokens(bigram, text, token = "ngrams", n=4)
+  office_tidy_4 <- base::rbind(office_tidy_4, clean)
+}
+
+# set factor to keep books in order of publication
+office_tidy_4$season <- factor(office_tidy_2$season)
+office_tidy_4$subep <- factor(office_tidy_2$subep)
+
+office_tidy_4 %>%
+  count(bigram, sort = TRUE)
+
+office_tidy_4 %>%
+  separate(bigram, c("word1", "word2", "word3", "word4"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word | word1 =="that's",
+         !word2 %in% stop_words$word | word2 =="what",
+         !word3 %in% stop_words$word | word3 =="she",
+         !word4 %in% stop_words$word | word4 =="said") %>%
+  count(word1, word2, word3, word4, sort = TRUE)
+
+office_tidy_4 %>%
+  separate(bigram, c("word1", "word2", "word3", "word4"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word,
+         !word3 %in% stop_words$word,
+         !word4 %in% stop_words$word) %>%
+  count(season, word1, word2, word3, word4, sort = TRUE) %>%
+  unite("bigram", c(word1, word2, word3, word4), sep = " ") %>%
+  group_by(season) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  mutate(season = factor(season) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, n, season), n, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  drlib::scale_x_reordered() +
+  facet_wrap(~ season, ncol = 2, scales = "free") +
+  coord_flip()
+
+bigram_tf_idf <- office_tidy_2 %>%
+    count(season, bigram, sort = TRUE) %>%
+    bind_tf_idf(bigram, season, n) %>%
+    arrange(desc(tf_idf))
+
+bigram_tf_idf %>%
+  group_by(season) %>%
+  top_n(15, wt = tf_idf) %>%
+  ungroup() %>%
+  mutate(season = factor(season) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, tf_idf, season), tf_idf, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf bi-grams in The Office series",
+       x = NULL, y = "tf-idf") +
+  drlib::scale_x_reordered() +
+  facet_wrap(~season, ncol = 2, scales = "free") +
+  coord_flip()
+
+# Visualizing n-gram networks
+library(igraph)
+
+bigram_graph <- office_tidy_2 %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  count(word1, word2, sort = TRUE) %>%
+  unite("bigram", c(word1, word2), sep = " ") %>%
+  filter(n > 20) %>%
+  graph_from_data_frame()
+
+library(ggraph)
+set.seed(123)
+
+a <- grid::arrow(type = "closed", length = unit(.15, "inches"))
+
+ggraph(bigram_graph, layout = "fr") +
+  geom_edge_link() +
+  geom_node_point(color = "lightblue", size = 5) +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+  theme_void()
+```
 
 ### Analysis
 
