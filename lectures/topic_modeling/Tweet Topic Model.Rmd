@@ -1,0 +1,114 @@
+---
+title: "Tweets for Topic Modeling"
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Data Download 
+
+If you want to follow along, you can download the "Kline Tutorial Raw Data.csv" file to your computer from the "In Class Activity" folder.  The file contains the 650 most popular Tweets from March-July that contained an Air Force reference.
+
+##Installs
+
+```{r}
+install.packages("quanteda", repos = "http://cran.ur.r-project.org")
+install.packages("stm", repos = "http://cran.ur.r-project.org")
+```
+
+##Loads
+
+```{r}
+library(tidytext)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(tidyverse)
+library(quanteda)
+library(stm)
+```
+Once downloaded to your working directory, you can read in the data by the following:
+
+```{r}
+AFTweets <- read.csv("Kline Tutorial Raw Data.csv")
+AFTweets <- tbl_df(AFTweets)
+AFTweets$Tweet <- as.character(AFTweets$Tweet)
+AFTweets$Document <- as.character(AFTweets$Document)
+AFTweets
+```
+
+##Data Prep
+
+As you can see, there are three columns and 650 observations (Tweets). Next we'll transform the data to a Tidy data structure and list the most used words outside of stop words.
+
+##Tidy
+
+```{r}
+Tidy_Tweets <- AFTweets %>%
+  unnest_tokens(word,Tweet) %>%
+  anti_join(stop_words) %>%
+  add_count(word, sort = TRUE)
+Tidy_Tweets
+```
+##Removing Unimportant Words
+
+Since tweets were searched for using Air Force references,we'll need to filter out words such as "Air Force" or "USAF"
+
+```{r}
+Tidy_Tweets <- Tidy_Tweets %>%
+  filter(word != "air") %>%
+  filter(word != "force")%>%
+  filter (word != "military") %>%
+  filter (word != "u.s") %>%
+  filter (word != "usaf") %>%
+  filter (word != "usairforce")
+Tidy_Tweets
+```
+
+##Document Frequency Matrix (DFM)
+Also known as a document term matrix.  In this matrix, rows correspond to the documents (Tweets) and collumns correspond to the terms (words)
+
+```{r}
+dfm_Tweets <- Tidy_Tweets %>%
+  cast_dfm(Document, word, n)
+dfm_Tweets
+```
+
+##Topic Model Using STM
+```{r}
+topic_model <- stm(dfm_Tweets, K = 4, init.type = "LDA")
+topic_model
+```
+
+##Summary of Topic Model
+
+```{r}
+summary(topic_model)
+```
+
+##Visualization
+
+```{r}
+topic_model <- tidy(topic_model)
+```
+
+#We'll use ggplot to graph the beta to see which words are contributing the most to which topic
+
+```{r}
+ topic_model %>%
+  group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  coord_flip()
+topic_model
+'''
+
