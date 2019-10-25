@@ -248,21 +248,80 @@ hp_tidy_tm %>%
   dim
 ```
 
-### Using the `text2vec` Package
+### Using `quanteda`
+
+The `quanteda` package is a more modern treatment of text analysis than that of `tm`.  To analyze the Harry Potter, `quanteda` assumes that the text from each document is stored in a single character vector.  Because the books are currently subdivided into chapters we need to remove these divisions.  This can be done using the code below
 
 ```{r}
-t2v_tokens = books   %>% 
-             tolower %>% 
-             tokenizers::tokenize_words()
+cos <- paste(harrypotter::chamber_of_secrets,
+             collapse = "\n\n")
+attr(cos, "names") <- "chamber_of_secrets"
 
-t2v_itoken = text2vec::itoken(t2v_tokens, 
-                              progressbar = FALSE)
+ps <- paste(harrypotter::philosophers_stone,
+             collapse = "\n\n")
+attr(ps, "names") <- "philosophers_stone"
 
-(t2v_vocab = text2vec::create_vocabulary(t2v_itoken,
-                                         stopwords = tidytext::stop_words[[1]]))
+hbp <- paste(harrypotter::half_blood_prince,
+             collapse = "\n\n")
+attr(hbp, "names") <- "half_blood_prince"
 
-t2v_dtm = create_dtm(t2v_itoken, hash_vectorizer())
-model_tfidf = TfIdf$new()
-dtm_tfidf = model_tfidf$fit_transform(t2v_dtm)
+ootp <- paste(harrypotter::order_of_the_phoenix,
+              collapse = "\n\n")
+attr(ootp, "names") <- "order_of_the_phoenix"
+
+gof <- paste(harrypotter::goblet_of_fire,
+             collapse = "\n\n")
+attr(gof, "names") <- "goblet_of_fire"
+
+dh <- paste(harrypotter::deathly_hallows,
+            collapse = "\n\n")
+attr(dh, "names") <- "deathly_hallows"
+
+poa <- paste(harrypotter::prisoner_of_azkaban,
+             collapse = "\n\n")
+attr(poa, "names") <- "prisoner_of_azkaban"
 ```
+
+Then we create a `corpus` object.  A corpus is designed to be a more or less static container of texts with respect to processing and analysis. This means that the texts in corpus are not designed to be changed internally through (for example) cleaning or pre-processing steps, such as stemming or removing punctuation. Rather, texts can be extracted from the corpus as part of processing, and assigned to new objects, but the idea is that the corpus will remain as an original reference copy so that other analyses – for instance those in which stems and punctuation were required, such as analyzing a reading ease index – can be performed on the same corpus. 
+
+```{r}
+hp_books <- c(cos,gof,dh,poa,ootp,hbp,ps)
+
+hp_corpus <- quanteda::corpus(hp_books)
+```
+
+Then we add the metadata to the corpus using `docvars` and `metadoc`
+
+```{r}
+docvars(hp_corpus, "book") <- names(hp_books)
+metadoc(hp_corpus, "order") <- c(2,4,7,3,5,6,1)
+```
+
+Next we can get a `summary` of the corpus 
+
+```{r}
+summary(hp_corpus, showmeta = TRUE)
+```
+
+```{r}
+kwic(hp_corpus, pattern = "voldemort")
+```
+
+<!-- ### Using the `text2vec` Package -->
+
+<!-- ```{r} -->
+<!-- t2v_tokens = books   %>%  -->
+<!--              tolower %>%  -->
+<!--              tokenizers::tokenize_words() -->
+
+<!-- t2v_itoken = text2vec::itoken(t2v_tokens,  -->
+<!--                               progressbar = FALSE) -->
+
+<!-- (t2v_vocab = text2vec::create_vocabulary(t2v_itoken, -->
+<!--                                          stopwords = tidytext::stop_words[[1]])) -->
+
+<!-- t2v_dtm = create_dtm(t2v_itoken, hash_vectorizer()) -->
+<!-- model_tfidf = TfIdf$new() -->
+<!-- dtm_tfidf = model_tfidf$fit_transform(t2v_dtm) -->
+<!-- ``` -->
 

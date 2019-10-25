@@ -1,0 +1,156 @@
+---
+title: "Examples"
+date: '`r format(Sys.Date(), "%d %b %Y")`'
+output: 
+  html_document:
+    df_print: 'paged'
+    toc: yes
+    toc_float: yes
+---
+
+This example runs through both LSA and LDA and compares the results. Two packages for running these models are *lsa* and *topicmodels*.
+
+The links below provide the documentation for each package:
+
+1. [lsa](https://cran.r-project.org/web/packages/lsa/lsa.pdf)
+2. [topicmodels](https://cran.r-project.org/web/packages/topicmodels/topicmodels.pdf)
+
+```{r}
+pacman::p_load(topicmodels,
+               lsa,
+               ggplot2,
+               dplyr,
+               tidytext)
+``` 
+
+There are some sample data sets included in the *topicmodels* package. One of them is a large corpus of Associated Press articles. We can load the data using the code below and see that the the corpus has already been formatted as a document-term matrix.
+
+```{r}
+data("AssociatedPress")
+AssociatedPress
+```
+
+Now we can run an LSA model. If you try to run this, you will see that it runs incredibly slow compared to the LDA packages in R. This time, we're using *tf* instead of *tf-idf*.
+
+```{r, warning=FALSE, message=FALSE}
+MyLSA <- lsa(AssociatedPress, dims=2)
+```
+
+The results refer to the document-topic matrix as "tk" and the term-topic matrix as "dk" because the *A* matrix that I gave it had documents in the rows and terms in the columns, but the *lsa* function expects documents in the columns and terms in the rows per the documentation. Recall that there were 2,246 documents and 10,473 terms, so these are pretty large matrices.
+
+```{r}
+dim(MyLSA$tk)
+dim(MyLSA$dk)
+```
+
+Each of these matrices contain the likelihood that the terms and documents relate to each topic.
+
+```{r}
+head(MyLSA$tk,10)
+head(MyLSA$dk,10)
+```
+
+Let's check what the most prominent words in each topic are. The negative signs are irrelevant so we can get rid of them.
+
+```{r}
+MyLSA$dk <- abs(MyLSA$dk)
+head(MyLSA$dk[order(-MyLSA$dk[,1]),],10)
+head(MyLSA$dk[order(-MyLSA$dk[,2]),],10)
+```
+
+It seems like the first topic relates most to politics and the second topic relates to economics. However, there are words like "percent" and "i" that are highly related to each topic. If these words aren't interesting or insightful, it might be useful to drop a word like "i" from the data and run the analysis again. For comparison purposes, let's look at extracting three topics using LSA.
+
+```{r, warning=FALSE, message=FALSE}
+MyLSA2 <- lsa(AssociatedPress, dims=3)
+```
+
+Again, let's check what the most prominent words in each topic are.
+
+```{r}
+MyLSA2$dk <- abs(MyLSA2$dk)
+head(MyLSA2$dk[order(-MyLSA2$dk[,1]),],10)
+head(MyLSA2$dk[order(-MyLSA2$dk[,2]),],10)
+head(MyLSA2$dk[order(-MyLSA2$dk[,3]),],10)
+```
+
+Compared to running the model with two topics, this iteration interestingly found two different political topics. It looks like the first topic relates to politics in general. Again, the second topic concerns economics. The third topic refers to political campaigns. Bush, Dukakis and Reverend Jesse Jackson all ran for president in 1988. These topics obviously overlap because economic issues are commonly attributed to the president and presidential candidates often debate about economics during political campaigns.
+
+We can use LDA to check if the results are similar. This example is from *Text Mining with R* which is [available](https://www.tidytextmining.com/topicmodeling.html) on the class GitHub page. If you look at the example, you will see that they set a seed which is important if you want your results to be reproducible. We would all get slightly different results if we didn't set the same seed because there are multiple probability distributions involved in LDA.
+
+```{r}
+(MyLDA <- LDA(AssociatedPress, k = 2, control = list(seed = 1234)))
+```
+
+We can extract the the per-topic-per-term probabilities from the model and visualize the results.
+
+```{r}
+(ap_topics <- tidy(MyLDA, matrix = "beta"))
+
+ap_top_terms <- ap_topics %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+ap_top_terms %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip()
+```
+
+Similar to the LSA results, we again see economic and political topics. Let's run another model with three topics.
+
+```{r}
+(MyLDA2 <- LDA(AssociatedPress, k = 3, control = list(seed = 1234)))
+```
+
+Again, we can visualize the results to see which words line up with which topic.
+
+```{r}
+(ap_topics2 <- tidy(MyLDA2, matrix = "beta"))
+
+ap_top_terms2 <- ap_topics2 %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+ap_top_terms2 %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip()
+```
+
+Topic three clearly relates to economics. However, the difference between topics one and two is not clear. It seems that LDA did better than LSA at distinguishing between economics and politics. However, LSA did a better job at pulling out the topic specifically relating to the political campaign.
+
+We can also extract the per-document-per-topic probabilities. We have 2,246 documents and 3 topics, so there will be 6,738 rows.
+
+```{r}
+(ap_documents <- tidy(MyLDA2, matrix = "gamma"))
+```
+
+We can single out a document and check to which topic it relates. The code below shows the probabilities that document 25 relates to topics one, two and three.
+
+```{r}
+ap_documents %>% filter(document==25)
+```
+
+The results show that the LDA model is highly confident that document 25 is about economics. We can verify this result using the following code.
+
+```{r}
+tidy(AssociatedPress) %>%
+  filter(document==25) %>%
+  arrange(desc(count))
+```
+
+As we discussed before, one of the best parts of LDA besides easily interpretable results is the ability to generalize the results to new documents. Given a new document, we could find its topic mixture. 
+
+
+
+
+
+
