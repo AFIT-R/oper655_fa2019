@@ -143,10 +143,11 @@ pacman::p_load(XML,
                gsubfn,
                rvest,
                stringr)
-```
-```{r, eval=FALSE}
+
 proj_root   <- find_root(is_rstudio_project)
 save_folder <- file.path(proj_root,'student_project_folders','oper655_fa2019_hufstetler','Data')
+```
+```{r, eval=FALSE}
 dir.create(save_folder)
 ```
 
@@ -321,6 +322,7 @@ episodes <- list()
 for(i in master_list){
   episodes <- append(episodes, read_file(i))
 }
+
 # Document Term Matrices
 office_dtm <- tm::VectorSource(episodes) %>%
   tm::VCorpus() %>%
