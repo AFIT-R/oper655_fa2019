@@ -175,3 +175,64 @@ tt_funcs <- base::ls(base::getNamespace("tidytext"),
                      all.names = TRUE)
 
 base::grep(pattern = "^tidy", tt_funcs, value = TRUE)
+
+hp_tidy_tm %>%
+  cast_dfm(term, document, count)
+
+hp_tidy_tm %>%
+  cast_dtm(term, document, count)
+
+t2v_tokens = books %>%
+  tolower %>%
+  tokenizers::tokenize_words()
+
+t2v_itoken = text2vec::itoken(t2v_tokens,
+                              progressbar = FALSE)
+(t2v_vocab = text2vec::create_vocabulary(t2v_itoken,
+                                        stopwords = tidytext::stop_words[[1]]))
+
+t2v_dtm = create_dtm(t2v_itoken, hash_vectorizer())
+model_tfidf <- TfIdf$new()
+dtm_tfidf = model_tfidf$fit_transform(t2v_dtm)
+
+book_words <- hp_tidy %>%
+  count(book, word, sort = TRUE) %>%
+  dplyr::anti_join(stop_words) %>%
+  ungroup()
+
+series_word <- book_words %>%
+  group_by(book) %>%
+  summarise(total = sum(n))
+
+book_words <- left_join(book_words, series_word)
+book_words
+
+book_words %>%
+  mutate(ratio = n/total) %>%
+  ggplot(aes(ratio, fill = book))+
+  geom_histogram(show.legend = FALSE) +
+  scale_x_log10()+
+  facet_wrap(~book, ncol = 2)
+
+book_words <- book_words %>%
+  bind_tf_idf(word, book, n) 
+book_words
+
+book_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf))
+
+book_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf)) %>%
+  dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+                book = base::factor(book, levels = titles)) %>%
+  dplyr::group_by(book) %>%
+  dplyr::top_n(15, wt = tf_idf) %>%
+  dplyr::ungroup() %>%
+  ggplot(aes(word, tf_idf, fill = book)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf in Harry Potter Series",
+       x = NULL, y= "tf-idf") +
+  facet_wrap(~book, ncol = 2, scales = "free") +
+  coord_flip()
+
+

@@ -8,7 +8,7 @@ output:
 abstract: 'This is where you put your abstract'
 ---
 
-```{r setup, include=FALSE, echo=FALSE}
+```{r setup, include=TRUE, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       message = F,
                       warning = F, 
@@ -23,22 +23,554 @@ Describe your project in sufficient detail for someone who is not familiar with 
 
 Before going too far, be sure your reader has the necessary packages to follow along with your methodology and ultimately reproduce your results.
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=TRUE}
+#install.packages("pacman")
 pacman::p_load(tm,
-               tidytext)
+               tidytext,
+               XML,
+               rvest,
+               RCurl,
+               rprojroot,
+               qdapTools,
+               pdftools,
+               antiword,
+               glue,
+               data.table,
+               tidyverse,
+               vroom,
+               antiword,
+               magick,
+               tesseract,
+               readr,
+               gsubfn)
 ```
 
 ## Methodology 
 
-Describe the steps and methods you used for your analysis to go from raw data to end result.
+OUTLINE GOES HERE
+
+PIPELINE -> Ingest Data
+          -> Regex Parsing 
+            -> VS Representation 
+              -> StopWords (common and specific)
+
+While it wasn't used for this project, a function, ingest(), was created to examine all documents in the given folder of type csv, txt, doc, pdf, jpg, or tif and will create variables in the global R environment containing the raw text from each of them.
+```{r, warning=FALSE, message=FALSE, echo=TRUE, eval=FALSE}
+ingest <- function(dest){
+root <- rprojroot::find_root(rprojroot::is_rstudio_project)
+
+#Update file path to the files folder
+#dest <- file.path(root, "student_project_folders", "oper655_fa2019_hufstetler", "Files")
+
+#Create List of All Files in Folder
+master_list <- list.files(path = dest,
+                          pattern = "",
+                          full.names = TRUE)
+
+#Create List of PDF Files
+pdf_files <- list.files(path = dest, 
+                        pattern = "pdf",
+                        full.names = TRUE)
+
+#Convert PDFs to txt
+if (length(pdf_files)>0){
+lapply(pdf_files,
+       FUN = function(x) system(glue::glue("pdftotext {x}"), wait = FALSE))
+}
+
+#Create list of csv files
+csv_files <- list.files(path = dest,
+              pattern = "csv",
+              full.names = TRUE)
+
+#Create List of Word Files
+ms_files <- list.files(path = dest, 
+                       pattern = "docx?",
+                       full.names = TRUE)
+
+#Create List of txt files
+text_files <- list.files(path = dest,
+                         pattern = "txt",
+                         full.names = TRUE)
+
+#List of Image Files
+image_files <- list.files(path = dest,
+                          pattern = "jpg|tif",
+                          full.names = TRUE)
+
+#Read in .csv Files (https://stackoverflow.com/questions/11433432/how-to-import-multiple-csv-files-at-once)
+if (length(csv_files)>0){
+for (i in 1:length(csv_files)){
+  assign(paste("cs",sprintf("%02d", i),sep = "_"), vroom::vroom(csv_files[i]), envir = .GlobalEnv)
+}}
+
+#Read in .doc* files
+if (length(ms_files)>0){
+for (i in 1:length(ms_files)){
+  assign(paste("ms", sprintf("%02d", i), sep = "_"), qdapTools::read_docx(ms_files[i]), envir = .GlobalEnv)
+}}
+
+#Read in .txt Files
+if (length(text_files)>0){
+for (i in 1:length(text_files)){
+  assign(paste("tx", sprintf("%02d", i), sep = "_"), read_file(text_files[i]), envir = .GlobalEnv)
+}}
+
+#Import Image Files
+if (length(image_files)>0){
+for (i in 1:length(image_files)){
+ assign(paste("im",sprintf("%02d", i),sep = "_"), image_read(image_files[i]) %>%
+           image_resize("2000") %>%
+           image_convert(colorspace = 'gray') %>%
+           image_trim() %>%
+           image_ocr(), envir = .GlobalEnv)
+}}
+}
+
+```
 
 ### Data 
 
 Describe the data
 
-- Where did you get the data?
-- In what format was the data when you received/retreived it?
-- What transformations did you perform on the data?
+The data for this project consists of the scripts for all 187 episodes in the TV series, The Office. The scripts are found on individual webpages indexed at https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-office-us. Unfortunately, the scripts were not easily accessible on their own. An inspection of the site elements revealed that the scripts were presented in a page divider with the id, "scrolling-script-container". The contents of the containers included the script and just a few html formatting items. Knowing this, it was simple to extract the script and remove the unwanted items. The process of compiling all of the data for this project is outlined below.
+
+The XML, RCurl, rprojroot, and gsubfn packages are used to extract and clean the data for this project. A directory location was determined within the project directory and assigned to the variable "save_folder". The data directory be named "Data" and created in my student folder in the course repository.
+```{r}
+pacman::p_load(XML,
+               RCurl,
+               rprojroot,
+               gsubfn,
+               rvest,
+               stringr)
+
+proj_root   <- find_root(is_rstudio_project)
+save_folder <- file.path(proj_root,'student_project_folders','oper655_fa2019_hufstetler','Data')
+```
+```{r, eval=FALSE}
+dir.create(save_folder)
+```
+
+The script data was found online but was spread across 186 websites. Luckily these sites were all indexed on a single page. The URLs for that page and its root were assigned to the variables "url" and "url_root".
+
+```{r}
+url_root <- 'https://www.springfieldspringfield.co.uk/'
+url  <- 'https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-office-us'
+```
+
+The html and xml content are extracted from the index site and parsed. The attributes separated by anchor tags are parsed and just the href attributes are isolated into the variable "hrefs".
+
+```{r}
+# Extract html/xml content from URL
+rcurl.txt <- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+  substr(rcurl.txt,1,50)
+# Parse html content
+url_parsed <- XML::htmlParse(rcurl.txt, asText = TRUE)
+
+# We need to get the href attributes from
+# the anchor tags <a> stored on the page
+attrs <- XML::xpathApply(url_parsed, "//a", XML::xmlAttrs)
+  attrs[1:2]
+# Next, we'll split out the hrefs
+# from the other attributes
+hrefs <- sapply(seq_along(attrs), FUN = function(x) attrs[[x]][['href']])
+  hrefs[39:42]
+```
+
+Looking at all of the hrefs on this site, common only among the ones of interest is the feature "view". All links containing the feature "view" are put into the variable "episodes" and then reattached to the root url in the variable "files". 
+
+```{r}
+# Then, we only want the hrefs for the files
+# that have a .docx file extension
+episodes  <- hrefs[grep('view',hrefs)]
+  episodes[1:2]
+# Construct a list of URL's for each file
+# by pasting two character strings together
+files <- paste0(url_root, episodes)
+  files[1]
+```
+
+For each url in files, the site text is extracted using the read_html(), html_nodes(), and html_text() functions. Each site bounds the text of interest within a div attribute with the id "scrolling-script-container". A few html format features are then removed using stringr tools and the text extraction and cleaning process is complete. The file() command is then used to create a .txt file in the data directory for each of the cleaned episode texts. Before executing the file creation process, the first url in files is tested.
+```{r}
+scraping_scripts <- read_html(files[1])
+
+text <- scraping_scripts %>%
+        html_nodes("div.scrolling-script-container") %>%
+        html_text() %>%
+        str_replace_all(pattern = "\\s-\\s|\n|\r|\t|\"", replacement = " ") %>%
+        str_trim(side = "both")
+substr(text,1,200)
+```
+It worked so the process is applied to all urls in files. Each file is named based on the season and episode that its contents came from.
+```{r, eval=FALSE}
+for(i in files) {
+  scraping_scripts <- read_html(i)
+
+  text <- scraping_scripts %>%
+          html_nodes("div.scrolling-script-container") %>%
+          html_text() %>%
+          str_replace_all(pattern = "\\s-\\s|\n|\r|\t|\"", replacement = " ") %>%
+          str_trim(side = "both")
+  
+  fileConn<-file(paste(save_folder,"/", substr(i, nchar(i)-5, nchar(i)),".txt", sep=""))
+  writeLines(text, fileConn)
+  close(fileConn)
+}
+
+
+```
+Organize the data into a tibble by ingesting each episode, extracting the season and episode number, and unnesting all words
+```{r}
+office_tidy <- tibble::tibble()
+
+# Create List of All Files in Folder
+master_list <- list.files(path = save_folder,
+                          pattern = "s",
+                          full.names = TRUE)
+
+
+ep = 0
+for(i in master_list){
+  ep = ep + 1
+  clean <- tibble::tibble(season = substr(i,nchar(i)-8,nchar(i)-7),
+                          subep = substr(i,nchar(i)-5,nchar(i)-4),
+                          episode = ep,
+                          text = read_file(i)) %>%
+            tidytext::unnest_tokens(word, text)
+  office_tidy <- base::rbind(office_tidy, clean)
+}
+# Set factor to keep episodes in order
+office_tidy$season <- base::factor(office_tidy$season)
+office_tidy$subep <- base::factor(office_tidy$subep)
+```
+
+Get some summary statistics about the data. This table shows the individual word counts for each script organized by season and episode.
+
+```{r}
+# Table total word counts
+table(office_tidy$season,office_tidy$subep)
+
+# Show most frequent words
+office_tidy %>%
+  dplyr::count(word, sort = TRUE)
+
+# remove stop words
+office_nostop <- office_tidy %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE)
+
+# visualize with ggplot2
+# top 10 most common words in each season
+office_tidy %>%
+  anti_join(stop_words) %>%
+  group_by(season) %>%
+  count(word, sort = TRUE) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  mutate(text_order = base::nrow(.):1) %>%
+  ## Pipe output directly to ggplot
+  ggplot(aes(reorder(word, text_order), n, fill = season)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ season, scales = "free_y") +
+  labs(x = "NULL", y = "Frequency") +
+  coord_flip() +
+  theme(legend.position="none")
+
+# calculate frequencies and look for deviations
+# calculate percent of word use across all seasons
+office_pct <- office_tidy %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word) %>%
+  dplyr::transmute(word, all_words = n / sum(n))
+
+# calculate percent of word use within each novel
+frequency <- office_tidy %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(season, word) %>%
+  dplyr::mutate(season_words = n / sum(n)) %>%
+  dplyr::left_join(office_pct) %>%
+  dplyr::arrange(dplyr::desc(season_words)) %>%
+  dplyr::ungroup()
+
+# Visualize word freq
+ggplot(frequency, 
+       aes(x = season_words, 
+           y = all_words, 
+           color = abs(all_words - season_words))) +
+  geom_abline(color = "gray40", lty = 2) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = scales::percent_format()) +
+  scale_y_log10(labels = scales::percent_format()) +
+  scale_color_gradient(limits = c(0, 0.001), 
+                       low = "darkslategray4", 
+                       high = "gray75") +
+  facet_wrap(~ season, ncol = 2) +
+  theme(legend.position="none") +
+  labs(y = "The Office", x = NULL)
+
+# Correlation Test
+frequency %>%
+  dplyr::group_by(season) %>%
+  dplyr::summarize(correlation = stats::cor(season_words, all_words),
+                   p_value = stats::cor.test(season_words,
+                                             all_words)$p.value)
+
+episodes <- list()
+
+for(i in master_list){
+  episodes <- append(episodes, read_file(i))
+}
+
+# Document Term Matrices
+office_dtm <- tm::VectorSource(episodes) %>%
+  tm::VCorpus() %>%
+  tm::DocumentTermMatrix(control = base::list(removePunctuation = TRUE,
+                                              removeNumbers = TRUE,
+                                              stopwords = tidytext::stop_words[,2],
+                                              tokenize = 'MC',
+                                              weighting =
+                                                function(x)
+                                                  weightTfIdf(x, normalize =
+                                                                !FALSE)))
+
+tm::inspect(office_dtm)
+
+terms <- tm::Terms(office_dtm)
+utils::head(terms, 50)
+
+# Convert to tidy df
+office_tidy_tm <- tidytext::tidy(office_dtm)
+
+# cast tidy data to a DFM object 
+# for use with the quanteda package
+office_tidy_tm %>%
+  cast_dfm(term, document, count)
+
+# cast tidy data to a DocumentTermMatrix 
+# object for use with the `tm` package
+office_tidy_tm %>%
+  cast_dtm(term, document, count)
+
+# cast tidy data to a TermDocumentMatrix 
+# object for use with the `tm` package
+office_tidy_tm %>%
+  cast_tdm(term, document, count)
+
+# cast tidy data to a sparse matrix
+# uses the Matrix package
+office_tidy_tm %>%
+  cast_sparse(term, document, count) %>%
+  dim
+
+# Using the text2vec package
+t2v_tokens <- episodes   %>% 
+  tolower %>% 
+  tokenizers::tokenize_words()
+
+t2v_itoken <- text2vec::itoken(t2v_tokens, 
+                              progressbar = FALSE)
+
+(t2v_vocab <- text2vec::create_vocabulary(t2v_itoken,
+                                         stopwords = tidytext::stop_words[[1]]))
+
+t2v_dtm = create_dtm(t2v_itoken, hash_vectorizer())
+model_tfidf = TfIdf$new()
+dtm_tfidf = model_tfidf$fit_transform(t2v_dtm)
+
+# Term Frequencies
+season_words <- office_tidy %>%
+  count(season, word, sort = TRUE) %>%
+  dplyr::anti_join(stop_words) %>%
+  ungroup()
+
+series_words <- season_words %>%
+  group_by(season) %>%
+  summarise(total = sum(n))
+
+season_words <- left_join(season_words, series_words)
+
+season_words
+
+# Graph Term Frequencies
+season_words %>%
+  mutate(ratio = n / total) %>%
+  ggplot(aes(ratio, fill = season)) +
+  geom_histogram(show.legend = FALSE) +
+  scale_x_log10() +
+  facet_wrap(~ season, ncol = 2)
+
+# Inverse Document Frequency and tf-idf
+season_words <- season_words %>%
+  bind_tf_idf(word, season, n)
+
+season_words
+
+season_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf))
+
+season_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf)) %>%
+  dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+                season = base::factor(season)) %>% 
+  dplyr::group_by(season) %>%
+  dplyr::top_n(15, wt = tf_idf) %>%
+  dplyr::ungroup() %>%
+  ggplot(aes(word, tf_idf, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf words in The Office series",
+       x = NULL, y = "tf-idf") +
+  facet_wrap(~season, ncol = 2, scales = "free") +
+  coord_flip()
+
+# Digrams
+office_tidy_2 <- tibble()
+
+for(i in master_list) {
+  clean <- tibble::tibble(season = substr(i,nchar(i)-8,nchar(i)-7),
+                          subep = substr(i,nchar(i)-5,nchar(i)-4),
+                          episode = ep,
+                          text = read_file(i)) %>%
+            tidytext::unnest_tokens(bigram, text, token = "ngrams", n=2)
+  office_tidy_2 <- base::rbind(office_tidy_2, clean)
+}
+
+# set factor to keep books in order of publication
+office_tidy_2$season <- factor(office_tidy_2$season)
+office_tidy_2$subep <- factor(office_tidy_2$subep)
+
+office_tidy_2
+
+office_tidy_2 %>%
+  count(bigram, sort = TRUE)
+
+office_tidy_2 %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  count(word1, word2, sort = TRUE)
+
+office_tidy_2 %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  count(season, word1, word2, sort = TRUE) %>%
+  unite("bigram", c(word1, word2), sep = " ") %>%
+  group_by(season) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  mutate(season = factor(season) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, n, season), n, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  drlib::scale_x_reordered() +
+  facet_wrap(~ season, ncol = 2, scales = "free") +
+  coord_flip()
+
+(bigram_tf_idf <- office_tidy_2 %>%
+    count(season, bigram, sort = TRUE) %>%
+    bind_tf_idf(bigram, season, n) %>%
+    arrange(desc(tf_idf)))
+
+bigram_tf_idf %>%
+  group_by(season) %>%
+  top_n(15, wt = tf_idf) %>%
+  ungroup() %>%
+  mutate(season = factor(season) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, tf_idf, season), tf_idf, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf bi-grams in The Office series",
+       x = NULL, y = "tf-idf") +
+  drlib::scale_x_reordered() +
+  facet_wrap(~season, ncol = 2, scales = "free") +
+  coord_flip()
+
+# N-grams
+office_tidy_4 <- tibble()
+
+for(i in master_list) {
+  clean <- tibble::tibble(season = substr(i,nchar(i)-8,nchar(i)-7),
+                          subep = substr(i,nchar(i)-5,nchar(i)-4),
+                          episode = ep,
+                          text = read_file(i)) %>%
+            tidytext::unnest_tokens(bigram, text, token = "ngrams", n=4)
+  office_tidy_4 <- base::rbind(office_tidy_4, clean)
+}
+
+# set factor to keep books in order of publication
+office_tidy_4$season <- factor(office_tidy_2$season)
+office_tidy_4$subep <- factor(office_tidy_2$subep)
+
+office_tidy_4 %>%
+  count(bigram, sort = TRUE)
+
+office_tidy_4 %>%
+  separate(bigram, c("word1", "word2", "word3", "word4"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word | word1 =="that's",
+         !word2 %in% stop_words$word | word2 =="what",
+         !word3 %in% stop_words$word | word3 =="she",
+         !word4 %in% stop_words$word | word4 =="said") %>%
+  count(word1, word2, word3, word4, sort = TRUE)
+
+office_tidy_4 %>%
+  separate(bigram, c("word1", "word2", "word3", "word4"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word,
+         !word3 %in% stop_words$word,
+         !word4 %in% stop_words$word) %>%
+  count(season, word1, word2, word3, word4, sort = TRUE) %>%
+  unite("bigram", c(word1, word2, word3, word4), sep = " ") %>%
+  group_by(season) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  mutate(season = factor(season) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, n, season), n, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  drlib::scale_x_reordered() +
+  facet_wrap(~ season, ncol = 2, scales = "free") +
+  coord_flip()
+
+bigram_tf_idf <- office_tidy_2 %>%
+    count(season, bigram, sort = TRUE) %>%
+    bind_tf_idf(bigram, season, n) %>%
+    arrange(desc(tf_idf))
+
+bigram_tf_idf %>%
+  group_by(season) %>%
+  top_n(15, wt = tf_idf) %>%
+  ungroup() %>%
+  mutate(season = factor(season) %>% forcats::fct_rev()) %>%
+  ggplot(aes(drlib::reorder_within(bigram, tf_idf, season), tf_idf, fill = season)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf bi-grams in The Office series",
+       x = NULL, y = "tf-idf") +
+  drlib::scale_x_reordered() +
+  facet_wrap(~season, ncol = 2, scales = "free") +
+  coord_flip()
+
+# Visualizing n-gram networks
+library(igraph)
+
+bigram_graph <- office_tidy_2 %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  count(word1, word2, sort = TRUE) %>%
+  unite("bigram", c(word1, word2), sep = " ") %>%
+  filter(n > 20) %>%
+  graph_from_data_frame()
+
+library(ggraph)
+set.seed(123)
+
+a <- grid::arrow(type = "closed", length = unit(.15, "inches"))
+
+ggraph(bigram_graph, layout = "fr") +
+  geom_edge_link() +
+  geom_node_point(color = "lightblue", size = 5) +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+  theme_void()
+```
 
 ### Analysis
 

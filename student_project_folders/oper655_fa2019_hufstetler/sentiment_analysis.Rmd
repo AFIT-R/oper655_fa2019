@@ -1,0 +1,210 @@
+---
+title: "Sentiment Analysis"
+author: "Brandon Hufstetler"
+date: "10/23/2019"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    css: 'css/hufstetler.css'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      comment = NA, 
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+## Overview
+Sentiment Analysis, or *Opinion Mining*, attempst to use the understanding of the emotional intent of words to infer whether a section of text is positive or negative, or perhaps characterized by some other more nuanced emtion like surprise or disgust. 
+
+One way to analyze the sentiment of a text is to consider the text as a combination of its individual words and the sentiment content of the whole text as the sum of the sentiment content of the individual words.
+
+## Sentiment Lexicons
+A sentiment lexicon is a dictionary that equates words with a sentiment value. That value may be numeric on a scale of negative to positive, binary negative and positive, or descriptive using words like trust, fear, sadness, anger, and happiness. The tidytext package comes with several sentiment lexicons. Three of the general purpose lexicons are:  
+  
+`AFINN` assigns words with a score that runs between -5 and 5  
+`bing` assigns words an emotion like joy, anger, sadness, etc.  
+`nrc` categorizes words as either positive or negative  
+
+These lexicons do not contain the entirety of the English language for two main reasons. First, most words are considered to be sentiment neutral and would not provide much value in a sentiment analysis. Second, they have to be assembled by hand, either through some method of crowdsourcing or by the labor of the author. The construction and validation techniques for these lexicons means that they are inherently biased by the contributors and the domain in which they were created. For example, a perfect lexicon *now* may not capture the true sentiment of words as they were used 200 years ago. For this, there has been work to develop domain specific sentiment libraries.
+
+These single word sentiment lexicons also fail in understanding the true nature of negated words. For example, *not bad* and *no good* would be incorrectly categorized since *bad* is generally a negative word and *good* is generally positive. Sarcasm is also lost on single word sentiment lexicons for the same reason.
+
+Finally, since these lexicons will be applied directly to the text under analysis, the quantity of text being analyzed will directly impact the overall sentiment score. A large body of text may have enough positive and negative sentiments that they cancel each other out. A sentence or paragraph a more appropriate size to measure the sentiment of.
+
+## Sentiment Analysis with Inner Join
+First, we need to import the data and get it into tidy format.
+
+```{r}
+pacman::p_load(tidyr,
+               tidytext,
+               tidyverse,
+               textdata,
+               dplyr,
+               stringr,
+               ggplot2,
+               magrittr,
+               wordcloud,
+               reshape2)
+
+root <- rprojroot::find_root(rprojroot::is_rstudio_project)
+file_loc <- file.path(root,"data","phone_user_reviews")
+
+file_list <- list.files(path = file_loc,
+                          pattern = "",
+                          full.names = TRUE)
+reviews_tidy <- tibble::tibble()
+manu_pattern <- "/cellphones/[a-z0-9]+"
+prod_pattern <- paste(manu_pattern, "-|/", sep = "")
+for (i in file_list){
+  input <- load(i,ex <- new.env())
+  text_raw <- get(ls(ex),ex)
+  text_en <- text_raw[text_raw$lang=="en",]
+  rm(ex, text_raw, input, i)
+  
+  clean <- tibble::tibble(score = text_en$score,
+                          maxscore = text_en$score_max,
+                          text = text_en$extract,
+                          product = gsub(prod_pattern, "", text_en$phone_url),
+                          author = text_en$author,
+                          manufacturer = gsub("/cellphones/","",str_extract(text_en$phone_url,manu_pattern))) %>%
+            tidytext::unnest_tokens(word, text)
+  reviews_tidy <- base::rbind(reviews_tidy, clean)
+  rm(text_en, clean)
+}
+rm(file_list, root, manu_pattern, prod_pattern, file_loc)
+
+```
+Taking a peek at the data we see that all scores are based on a ten-point scale so the **maxscore** column can be dropped.
+```{r}
+table(reviews_tidy$maxscore)
+reviews_tidy <- select(reviews_tidy, -maxscore)
+```
+# NRC application
+The nrc lexicon distinguishes 10 emotions, ***anger***, ***anticipation***, ***disgust***, ***fear***, ***joy***, ***negative***, ***positive***, ***sadness***, ***surprise***, and ***trust***. Looking at the sentiments ***joy*** and ***anger*** we can get some understanding of the words people use in their reviews to express these emotions.
+```{r}
+nrc_joy <- get_sentiments("nrc") %>%
+  filter(sentiment == "joy")
+nrc_anger <- get_sentiments("nrc") %>%
+  filter(sentiment == "anger")
+
+reviews_tidy %>%
+  filter(manufacturer == "apple") %>%
+  inner_join(nrc_joy) %>%
+  count(word, sort = T)
+reviews_tidy %>%
+  filter(manufacturer == "apple") %>%
+  inner_join(nrc_anger) %>%
+  count(word, sort = T)
+
+
+```
+Notice how some words like *money* appear in the ***joy*** and ***anger*** dictionaries. More information is needed about the context in which money is discussed. Also, words like *ram*, *lightning*, and *battery* are categorized as ***anger*** but are actually just words used to describe components of a phone. These are further limitations of a single word analysis.
+
+```{r}
+wordcounts <- reviews_tidy %>%
+  filter(grepl("(galaxy-s[0-9]$)|(iphone-[0-9]$)", product)) %>%
+  group_by(product, author) %>%
+  summarize(words = n())
+
+binnegative <- get_sentiments("bing") %>%
+  filter(sentiment == "negative")
+
+reviews_tidy %>%
+  filter(grepl("(galaxy-s[0-9]$)|(iphone-[0-9]$)", product)) %>%
+  semi_join(binnegative) %>%
+  group_by(product, author) %>% 
+  summarize(negativewords = n(),
+            score = max(score)) %>%
+  left_join(wordcounts, by = c("product", "author")) %>%
+  mutate(ratio = negativewords/words) %>%
+  top_n(1) %>%
+  ungroup()
+
+reviews_tidy %>%
+  group_by(author) %>%
+  filter(grepl("skirocks", author))%>%
+  collapse(word)
+```
+```{r}
+sentiment_1 <- reviews_tidy %>%
+  filter(grepl("(galaxy-s[0-9]$)|(iphone-[0-9]$)", product)) %>% # get just galaxy s and iphone reviews
+  group_by(product) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(product, index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative)
+sentiment_1 %>%
+  ggplot(aes(product, sentiment, fill = product)) + 
+  geom_boxplot(show.legend = F) +
+  theme(axis.text.x = element_text(angle = 60))
+
+```
+There are clear outliers in the positive sentiment realm for all phones but the galaxy s8.
+```{r}
+sentiment_1 %>% 
+  filter(sentiment > 50)
+```
+```{r}
+reviews_tidy %>%
+  filter(grepl("(galaxy-s[0-9]$)|(iphone-[0-9]$)", product)) %>% # get just galaxy s and iphone reviews
+  group_by(product) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(product, index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  filter(sentiment <= 50) %>%
+  ggplot(aes(product, sentiment, fill = product)) + 
+  geom_boxplot(show.legend = F) +
+  theme(axis.text.x = element_text(angle = 60))
+```
+
+```{r}
+new_stop_words_regex <- paste("phones?","[0-9]+",str_c(unique(reviews_tidy$manufacturer), collapse = "|"), sep = "|")
+new_stop_words <- tibble::tibble(word = unlist(unique(str_extract(reviews_tidy$word,new_stop_words_regex))))
+
+reviews_tidy %>%
+  anti_join(stop_words) %>%
+  anti_join(new_stop_words) %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 100))
+```
+
+Here we see the most common positive and negative words in the cell phone review data.
+```{r}
+reviews_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("gray20","gray80"),
+                   max.words = 100)
+```
+
+## Other Datasets
+
+There are many other sources of publicly available text data for use in training NLP models or to test out some of the basic NLP tasks.  A few sources of such data are listed below.
+
+1. [**kaggle**](https://www.kaggle.com/datasets?sortBy=relevance&group=all&search=text)
+2. [**UCSD**](https://ucsd.libguides.com/data-statistics/textmining)
+3. [**QUANDL**](https://www.researchgate.net/deref/https%3A%2F%2Fwww.quandl.com%2F)
+4. [**kdnuggets**](https://www.kdnuggets.com/datasets/index.html)
+5. [**Amazon reviews**](https://snap.stanford.edu/data/web-Amazon.html)
+6. [**ENRON emails**](https://www.cs.cmu.edu/~./enron/)
+7. [**Hillary Clinton's declassified emails**](http://www.readhillarysemail.com)
+8. [**R package: Harry Potter**](https://github.com/bradleyboehmke/harrypotter)
+
+nrc citation 
+article{mohammad13,
+author = {Mohammad, Saif M. and Turney, Peter D.},
+title = {Crowdsourcing a Word-Emotion Association Lexicon},
+journal = {Computational Intelligence},
+volume = {29},
+number = {3},
+pages = {436-465},
+doi = {10.1111/j.1467-8640.2012.00460.x},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-8640.2012.00460.x},
+eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-8640.2012.00460.x},
+year = {2013}
+}

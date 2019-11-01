@@ -7,11 +7,12 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Capt Brandon Hufstetler" />
 
-<meta name="date" content="2019-10-11" />
+<meta name="date" content="2019-10-22" />
 
 <title>OPER 655 Student Project Report</title>
 
@@ -214,7 +215,7 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show)
+    if (show || $(this)[0].classList.contains('fold-show'))
       div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
@@ -340,7 +341,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -414,27 +414,10 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
-});
-</script>
 
 
 
@@ -463,7 +446,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">OPER 655 Student Project Report</h1>
 <h4 class="author">Capt Brandon Hufstetler</h4>
-<h4 class="date">11 Oct 2019</h4>
+<h4 class="date">22 Oct 2019</h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 This is where you put your abstract
@@ -478,27 +461,183 @@ This is where you put your abstract
 <div id="installing-loading-required-r-packages" class="section level3">
 <h3>Installing Loading Required R Packages</h3>
 <p>Before going too far, be sure your reader has the necessary packages to follow along with your methodology and ultimately reproduce your results.</p>
-<pre class="r"><code>pacman::p_load(tm,
-               tidytext)</code></pre>
-<pre><code>
-The downloaded binary packages are in
-    /var/folders/dm/18xd49jj67n5mh5s581rg1nw0000gn/T//Rtmplhv8jR/downloaded_packages
-
-The downloaded binary packages are in
-    /var/folders/dm/18xd49jj67n5mh5s581rg1nw0000gn/T//Rtmplhv8jR/downloaded_packages</code></pre>
+<pre class="r"><code>#install.packages(&quot;pacman&quot;)
+pacman::p_load(tm,
+               tidytext,
+               XML,
+               rvest,
+               RCurl,
+               rprojroot,
+               qdapTools,
+               pdftools,
+               antiword,
+               glue,
+               data.table,
+               tidyverse,
+               vroom,
+               antiword,
+               magick,
+               tesseract,
+               readr,
+               gsubfn)</code></pre>
 </div>
 </div>
 <div id="methodology" class="section level2">
 <h2>Methodology</h2>
 <p>Describe the steps and methods you used for your analysis to go from raw data to end result.</p>
+<p>The following script will examine all documents in the ‘dest’ folder and will create variables in the environment containing the raw text from each of them.</p>
+<pre class="r"><code>ingest &lt;- function(dest){
+root &lt;- rprojroot::find_root(rprojroot::is_rstudio_project)
+
+#Update file path to the files folder
+#dest &lt;- file.path(root, &quot;student_project_folders&quot;, &quot;oper655_fa2019_hufstetler&quot;, &quot;Files&quot;)
+
+#Create List of All Files in Folder
+master_list &lt;- list.files(path = dest,
+                          pattern = &quot;&quot;,
+                          full.names = TRUE)
+
+#Create List of PDF Files
+pdf_files &lt;- list.files(path = dest, 
+                        pattern = &quot;pdf&quot;,
+                        full.names = TRUE)
+
+#Convert PDFs to txt
+if (length(pdf_files)&gt;0){
+lapply(pdf_files,
+       FUN = function(x) system(glue::glue(&quot;pdftotext {x}&quot;), wait = FALSE))
+}
+
+#Create list of csv files
+csv_files &lt;- list.files(path = dest,
+              pattern = &quot;csv&quot;,
+              full.names = TRUE)
+
+#Create List of Word Files
+ms_files &lt;- list.files(path = dest, 
+                       pattern = &quot;docx?&quot;,
+                       full.names = TRUE)
+
+#Create List of txt files
+text_files &lt;- list.files(path = dest,
+                         pattern = &quot;txt&quot;,
+                         full.names = TRUE)
+
+#List of Image Files
+image_files &lt;- list.files(path = dest,
+                          pattern = &quot;jpg|tif&quot;,
+                          full.names = TRUE)
+
+#Read in .csv Files (https://stackoverflow.com/questions/11433432/how-to-import-multiple-csv-files-at-once)
+if (length(csv_files)&gt;0){
+for (i in 1:length(csv_files)){
+  assign(paste(&quot;cs&quot;,sprintf(&quot;%02d&quot;, i),sep = &quot;_&quot;), vroom::vroom(csv_files[i]), envir = .GlobalEnv)
+}}
+
+#Read in .doc* files
+if (length(ms_files)&gt;0){
+for (i in 1:length(ms_files)){
+  assign(paste(&quot;ms&quot;, sprintf(&quot;%02d&quot;, i), sep = &quot;_&quot;), qdapTools::read_docx(ms_files[i]), envir = .GlobalEnv)
+}}
+
+#Read in .txt Files
+if (length(text_files)&gt;0){
+for (i in 1:length(text_files)){
+  assign(paste(&quot;tx&quot;, sprintf(&quot;%02d&quot;, i), sep = &quot;_&quot;), read_file(text_files[i]), envir = .GlobalEnv)
+}}
+
+#Import Image Files
+if (length(image_files)&gt;0){
+for (i in 1:length(image_files)){
+ assign(paste(&quot;im&quot;,sprintf(&quot;%02d&quot;, i),sep = &quot;_&quot;), image_read(image_files[i]) %&gt;%
+           image_resize(&quot;2000&quot;) %&gt;%
+           image_convert(colorspace = 'gray') %&gt;%
+           image_trim() %&gt;%
+           image_ocr(), envir = .GlobalEnv)
+}}
+}
+ingest(&quot;~/oper655_fa2019/student_project_folders/oper655_fa2019_hufstetler/raw_data_files/msword_document_examples&quot;)</code></pre>
 <div id="data" class="section level3">
 <h3>Data</h3>
 <p>Describe the data</p>
-<ul>
-<li>Where did you get the data?</li>
-<li>In what format was the data when you received/retreived it?</li>
-<li>What transformations did you perform on the data?</li>
-</ul>
+<p>The data for this project consists of the scripts for all 187 episodes in the TV series, The Office. The scripts are found on individual webpages indexed at <a href="https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-office-us" class="uri">https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-office-us</a>. Unfortunately, the scripts were not easily accessible on their own. An inspection of the site elements revealed that the scripts were presented in a page divider with the id, “scrolling-script-container”. The contents of the containers included the script and just a few html formatting items. Knowing this, it was simple to extract the script and remove the unwanted items. The process of compiling all of the data for this project is outlined below.</p>
+<p>The XML, RCurl, rprojroot, and gsubfn packages are used to extract and clean the data for this project. A directory location was determined within the project directory and assigned to the variable “save_folder”. The data directory be named “Data” and created in my student folder in the course repository.</p>
+<pre class="r"><code>pacman::p_load(XML,
+               RCurl,
+               rprojroot,
+               gsubfn,
+               rvest,
+               stringr)</code></pre>
+<pre class="r"><code>proj_root   &lt;- find_root(is_rstudio_project)
+save_folder &lt;- file.path(proj_root,'student_project_folders','oper655_fa2019_hufstetler','Data')
+dir.create(save_folder)</code></pre>
+<p>The script data was found online but was spread across 186 websites. Luckily these sites were all indexed on a single page. The URLs for that page and its root were assigned to the variables “url” and “url_root”.</p>
+<pre class="r"><code>url_root &lt;- 'https://www.springfieldspringfield.co.uk/'
+url  &lt;- 'https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-office-us'</code></pre>
+<p>The html and xml content are extracted from the index site and parsed. The attributes separated by anchor tags are parsed and just the href attributes are isolated into the variable “hrefs”.</p>
+<pre class="r"><code># Extract html/xml content from URL
+rcurl.txt &lt;- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+  substr(rcurl.txt,1,50)</code></pre>
+<pre><code>[1] &quot;&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n&lt;meta charset=\&quot;utf-8&quot;</code></pre>
+<pre class="r"><code># Parse html content
+url_parsed &lt;- XML::htmlParse(rcurl.txt, asText = TRUE)
+
+# We need to get the href attributes from
+# the anchor tags &lt;a&gt; stored on the page
+attrs &lt;- XML::xpathApply(url_parsed, &quot;//a&quot;, XML::xmlAttrs)
+  attrs[1:2]</code></pre>
+<pre><code>[[1]]
+         class           href 
+&quot;navbar-brand&quot;            &quot;/&quot; 
+
+[[2]]
+                  href           data-submenu 
+                   &quot;#&quot; &quot;movie-and-tv-scripts&quot; </code></pre>
+<pre class="r"><code># Next, we'll split out the hrefs
+# from the other attributes
+hrefs &lt;- sapply(seq_along(attrs), FUN = function(x) attrs[[x]][['href']])
+  hrefs[39:42]</code></pre>
+<pre><code>[1] &quot;/episode_scripts.php?tv-show=the-office-us&amp;season=8&quot;          
+[2] &quot;/episode_scripts.php?tv-show=the-office-us&amp;season=9&quot;          
+[3] &quot;view_episode_scripts.php?tv-show=the-office-us&amp;episode=s01e01&quot;
+[4] &quot;view_episode_scripts.php?tv-show=the-office-us&amp;episode=s01e02&quot;</code></pre>
+<p>Looking at all of the hrefs on this site, common only among the ones of interest is the feature “view”. All links containing the feature “view” are put into the variable “episodes” and then reattached to the root url in the variable “files”.</p>
+<pre class="r"><code># Then, we only want the hrefs for the files
+# that have a .docx file extension
+episodes  &lt;- hrefs[grep('view',hrefs)]
+  episodes[1:2]</code></pre>
+<pre><code>[1] &quot;view_episode_scripts.php?tv-show=the-office-us&amp;episode=s01e01&quot;
+[2] &quot;view_episode_scripts.php?tv-show=the-office-us&amp;episode=s01e02&quot;</code></pre>
+<pre class="r"><code># Construct a list of URL's for each file
+# by pasting two character strings together
+files &lt;- paste0(url_root, episodes)
+  files[1]</code></pre>
+<pre><code>[1] &quot;https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-office-us&amp;episode=s01e01&quot;</code></pre>
+<p>For each url in files, the site text is extracted using the read_html(), html_nodes(), and html_text() functions. Each site bounds the text of interest within a div attribute with the id “scrolling-script-container”. A few html format features are then removed using stringr tools and the text extraction and cleaning process is complete. The file() command is then used to create a .txt file in the data directory for each of the cleaned episode texts. Before executing the file creation process, the first url in files is tested.</p>
+<pre class="r"><code>scraping_scripts &lt;- read_html(files[1])
+
+text &lt;- scraping_scripts %&gt;%
+        html_nodes(&quot;div.scrolling-script-container&quot;) %&gt;%
+        html_text() %&gt;%
+        str_replace_all(pattern = &quot;\\s-\\s|\n|\r|\t|\&quot;&quot;, replacement = &quot; &quot;) %&gt;%
+        str_trim(side = &quot;both&quot;)
+substr(text,1,200)</code></pre>
+<pre><code>[1] &quot;All right, Jim. Your quarterlies look very good. How are things at the library? I told you. I couldn't close it. So you've come to the master for guidance? Is this what you're saying, grasshopper? Act&quot;</code></pre>
+<p>It worked so the process is applied to all urls in files. Each file is named based on the season and episode that its contents came from.</p>
+<pre class="r"><code>for(i in files) {
+  scraping_scripts &lt;- read_html(i)
+
+  text &lt;- scraping_scripts %&gt;%
+          html_nodes(&quot;div.scrolling-script-container&quot;) %&gt;%
+          html_text() %&gt;%
+          str_replace_all(pattern = &quot;\\s-\\s|\n|\r|\t|\&quot;&quot;, replacement = &quot; &quot;) %&gt;%
+          str_trim(side = &quot;both&quot;)
+  
+  fileConn&lt;-file(paste(save_folder,&quot;/&quot;, substr(i, nchar(i)-5, nchar(i)),&quot;.txt&quot;, sep=&quot;&quot;))
+  writeLines(text, fileConn)
+  close(fileConn)
+}</code></pre>
 </div>
 <div id="analysis" class="section level3">
 <h3>Analysis</h3>
@@ -531,6 +670,28 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
