@@ -1,4 +1,4 @@
-# Text Mining Project: MCU Quantum
+# Text Mining Project: MCU Quantum Analysis
 # By: Aaron Giddings
 
 pacman::p_load(pdftools,     # extract content from PDF documents
@@ -57,12 +57,17 @@ pacman::p_load(pdftools,     # extract content from PDF documents
 library(here)
 root <- here('data', 'pdf_raw','Ant-Man and the Wasp Script')
 
-ant-man_and_the_wasp_pdf <- list.files(root, 
+antman_and_the_wasp_pdf <- list.files(root, 
                            pattern = '17-965\\S+pdf$',
                            full.names = T)
 
-ant-man_and_the_wasp_pdf 
-tb_pdftools <- pdftools::pdf_text(ant-man_and_the_wasp_pdf)
+antman_and_the_wasp_pdf 
+tb_pdftools <- pdftools::pdf_text(antman_and_the_wasp_pdf)
+
+
+
+
+
 
 text_tb <- tibble::tibble(chapter = base::seq_along(philosophers_stone),
                           text = philosophers_stone)
