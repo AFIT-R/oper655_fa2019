@@ -86,7 +86,7 @@ a = text_tb %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
-  top_n(12)
+  top_n(10)
 p<-ggplot(data=a, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkred") + coord_flip() +
   theme(legend.position="none") + theme_minimal()
@@ -107,3 +107,9 @@ frequency <- quantum_pct %>%
   dplyr::ungroup()
 
 frequency
+
+#Adding words to the stop words.
+stop_words <- rbind(stop_words, c("53", "SMART"))
+stop_words <- rbind(stop_words, c("page", "SMART"))
+stop_words <- rbind(stop_words, c("hey", "SMART"))
+stop_words <- rbind(stop_words, c("yeah", "SMART"))
