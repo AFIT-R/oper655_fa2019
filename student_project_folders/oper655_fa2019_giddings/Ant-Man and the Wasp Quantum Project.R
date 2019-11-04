@@ -12,10 +12,6 @@ pacman::p_load(pdftools,     # extract content from PDF documents
 if (packageVersion("devtools") < 1.6) {
   install.packages("devtools")
 }
-install.packages(qdap)
-library(qdap)
-devtools::install_github("bradleyboehmke/harrypotter")
-harrypotter::philosophers_stone[1]
 pacman::p_load(tm, 
                pdftools, 
                here,
