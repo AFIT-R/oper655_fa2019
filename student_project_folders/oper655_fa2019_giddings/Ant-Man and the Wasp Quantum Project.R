@@ -56,21 +56,38 @@ pacman::p_load(pdftools,     # extract content from PDF documents
 
 library(here)
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
-dest <- file.path(root,'student_project_folders','oper655_fa2019_giddings','MCU Scripts', 'Phase 3')
+dest3 <- file.path(root,'student_project_folders','oper655_fa2019_giddings','MCU Scripts', 'Phase 3')
+dest2 <- file.path(root,'student_project_folders','oper655_fa2019_giddings','MCU Scripts', 'Phase 2')
+dest1 <- file.path(root,'student_project_folders','oper655_fa2019_giddings','MCU Scripts', 'Phase 1')
 
-
-mcu_phase3 <- list.files(dest, 
+mcu_phase3 <- list.files(dest3, 
                            pattern = 'pdf',
                            full.names = TRUE)
+mcu_phase2 <- list.files(dest2, 
+                         pattern = 'pdf',
+                         full.names = TRUE)
+mcu_phase1 <- list.files(dest1, 
+                         pattern = 'pdf',
+                         full.names = TRUE)
 
 mcu_phase3[1]
 tb_pdftools <- pdftools::pdf_text(pdf = mcu_phase3[1])
 
+text_tb <- tibble::tibble(chapter = base::seq_along(tb_pdftools),
+                          text = tb_pdftools)
 
 
-
-
-
-text_tb <- tibble::tibble(text = antman_and_the_wasp_pdf)
-
-
+text_tb %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE)
+# top 10 most common words in each book
+a = text_tb %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+p<-ggplot(data=a, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="steelblue") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+p
