@@ -55,14 +55,16 @@ pacman::p_load(pdftools,     # extract content from PDF documents
                stringr)      # Tools for qualitative data
 
 library(here)
-root <- here('MCU Scripts', 'Phase 3','Ant-Man and the Wasp Script')
+root <- rprojroot::find_root(rprojroot::is_rstudio_project)
+dest <- file.path(root,'student_project_folders','oper655_fa2019_giddings','MCU Scripts', 'Phase 3')
 
-antman_and_the_wasp_pdf <- list.files(root, 
-                           pattern = '17-965\\S+pdf$',
-                           full.names = T)
 
-antman_and_the_wasp_pdf 
-tb_pdftools <- pdftools::pdf_text(antman_and_the_wasp_pdf)
+mcu_phase3 <- list.files(dest, 
+                           pattern = 'pdf',
+                           full.names = TRUE)
+
+mcu_phase3[1]
+tb_pdftools <- pdftools::pdf_text(pdf = mcu_phase3[1])
 
 
 
@@ -70,3 +72,5 @@ tb_pdftools <- pdftools::pdf_text(antman_and_the_wasp_pdf)
 
 
 text_tb <- tibble::tibble(text = antman_and_the_wasp_pdf)
+
+
