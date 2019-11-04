@@ -69,6 +69,13 @@ mcu_phase1 <- list.files(dest1,
 mcu_phase3[1]
 tb_pdftools <- pdftools::pdf_text(pdf = mcu_phase3[1])
 
+#Attempting to add the rest of the scripts of the MCU into a corpus.
+for (i in 1:8) {
+  nam <- paste("tb_pdftools",i,sep = "")
+  assign(nam,pdftools::pdf_text(pdf = mcu_phase3[i]))
+}
+
+
 text_tb <- tibble::tibble(chapter = base::seq_along(tb_pdftools),
                           text = tb_pdftools)
 
