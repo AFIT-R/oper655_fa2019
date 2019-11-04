@@ -86,8 +86,24 @@ a = text_tb %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
-  top_n(10)
+  top_n(12)
 p<-ggplot(data=a, aes(x = reorder(word, n), y =n)) +
-  geom_bar(stat="identity", fill="steelblue") + coord_flip() +
+  geom_bar(stat="identity", fill="darkred") + coord_flip() +
   theme(legend.position="none") + theme_minimal()
 p
+# calculate percent of word use across all novels
+quantum_pct <- a %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word) %>%
+  dplyr::transmute(word, all_words = n / sum(n))
+
+# calculate percent of word use within each novel
+frequency <- quantum_pct %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word) %>%
+  dplyr::mutate(book_words = n / sum(n)) %>%
+  dplyr::left_join(quantum_pct) %>%
+  dplyr::arrange(dplyr::desc(book_words)) %>%
+  dplyr::ungroup()
+
+frequency
