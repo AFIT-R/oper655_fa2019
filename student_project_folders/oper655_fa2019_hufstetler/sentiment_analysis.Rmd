@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = F,
                       eval = T)
 ```
 
-```{r, eval = T}
+```{r filepaths, eval = T}
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 images <- file.path(root, "student_project_folders", "oper655_fa2019_hufstetler", "images")
 ```
@@ -125,7 +125,7 @@ In their critique of crowd sourcing, they discuss the difficulty in properly des
 
 One approach to standardize the linguistics of emotion is to identify a subset of emotional words that can adequately characterize the polarity and intensity of an emotional state. This subset can then be chosen from when a crowd source participant is asked to label the data. An example of this is Plutchik's Wheel of Emotions.
 
-```{r pressure, echo=FALSE, fig.cap="", out.width = '100%', eval = T}
+```{r plutchik_img, echo=FALSE, fig.cap="", out.width = '100%', eval = T}
 knitr::include_graphics(file.path(images, "plutchik.png"))
 ```
 
@@ -136,7 +136,7 @@ The nrc lexicon distinguishes 10 emotions, ***anger***, ***anticipation***, ***d
 
 First, we need to import the data and get it into tidy format.
 
-```{r}
+```{r importdata}
 pacman::p_load(tidyr,
                tidytext,
                tidyverse,
@@ -146,7 +146,8 @@ pacman::p_load(tidyr,
                ggplot2,
                magrittr,
                wordcloud,
-               reshape2)
+               reshape2,
+               saotd)
 
 file_loc <- file.path(root,"data","phone_user_reviews")
 
@@ -178,14 +179,14 @@ rm(file_list, root, manu_pattern, prod_pattern, file_loc)
 
 Taking a peek at the data we see that all scores are based on a ten-point scale so the **maxscore** column can be dropped.
 
-```{r}
+```{r maxscore}
 table(reviews_tidy$maxscore)
 reviews_tidy <- select(reviews_tidy, -maxscore)
 ```
 
 Next we can do an inner join to filter out words relating the sentiments ***joy*** and ***anger***. The following results are the words used in reviews of Apple products that the NRC lexicon determined conveyed those two sentiments, respectively. They were then sorted by frequency.
 
-```{r}
+```{r applejoy}
 nrc_joy <- get_sentiments("nrc") %>%
   filter(sentiment == "joy")
 nrc_anger <- get_sentiments("nrc") %>%
@@ -199,15 +200,13 @@ reviews_tidy %>%
   filter(manufacturer == "apple") %>%
   inner_join(nrc_anger) %>%
   count(word, sort = T)
-
-
 ```
 
 Notice how some words like *money* appear in the ***joy*** and ***anger*** dictionaries? More information is needed about the context in which money is discussed. Also, words like *ram*, *lightning*, and *battery* are categorized as ***anger*** but are actually just words used to describe components of a phone. These are further limitations of a single word analysis.
 
 Looking at the sentimental polarity in relation to the score given in the review may be able to provide some context.
 
-```{r}
+```{r scorevpolarity}
 wordcounts <- reviews_tidy %>%
   filter(grepl("(galaxy-s[0-9]$)|(iphone-[0-9]$)", product)) %>%
   group_by(product, author) %>%
@@ -230,7 +229,7 @@ reviews_tidy %>%
 
 The first review listed here stands out. The consumer gave a Samsun Galaxy S5 a one star review that consisted of only one word, and that word was classified as having a negative sentiment. Here is the content of that review:
 
-```{r}
+```{r skirocksjunk}
 reviews_tidy %>%
   group_by(author) %>%
   filter(grepl("skirocks", author))%>%
@@ -239,7 +238,7 @@ reviews_tidy %>%
 
 Another application of sentiment analysis is to determine which product has more favorable reviews. Some Apple and Samsung phones were chosen to be compared against each other.
 
-```{r}
+```{r bigplot}
 sentiment_1 <- reviews_tidy %>%
   filter(grepl("(galaxy-s[0-9]$)|(iphone-[0-9]$)", product)) %>% # get just galaxy s and iphone reviews
   group_by(product) %>% 
@@ -256,14 +255,14 @@ sentiment_1 %>%
 
 There are clear outliers in the positive sentiment realm for all phones but the galaxy s8. These reviews are suspicious for multiple reasons. They are much lengthier and the user ids are *anonymous*.
 
-```{r}
+```{r whosaidsomuch}
 sentiment_1 %>% 
   filter(sentiment > 50)
 ```
 
 Filtering away the outliers yields the following results. Generally speaking, all of the phones compared have similarly positive reveiws.
 
-```{r}
+```{r smallplot}
 reviews_tidy %>%
   filter(grepl("(galaxy-s[0-9]$)|(iphone-[0-9]$)", product)) %>% # get just galaxy s and iphone reviews
   group_by(product) %>% 
@@ -279,7 +278,7 @@ reviews_tidy %>%
 
 A word cloud can also be used to quickly identify the words used to describe products. Stop words have been removed as well as common words used to identify the products. The size of the words in this word cloud is proportional to frequency.
 
-```{r}
+```{r wordcloud}
 new_stop_words_regex <- paste("phones?","[0-9]+",str_c(unique(reviews_tidy$manufacturer), collapse = "|"), sep = "|")
 new_stop_words <- tibble::tibble(word = unlist(unique(str_extract(reviews_tidy$word,new_stop_words_regex))))
 
@@ -292,7 +291,7 @@ reviews_tidy %>%
 
 Using the `bing` lexicon, the polarity of the words can be shaded to expand upon the insight gained in the first word cloud. Here we see the most common positive and negative words in the cell phone review data.
 
-```{r}
+```{r polarwordcloud}
 reviews_tidy %>%
   inner_join(get_sentiments("bing")) %>%
   count(word, sentiment, sort = TRUE) %>%
@@ -311,13 +310,46 @@ Traditional stop word removal and stemming are not used in this technique becaus
 
 Additionally, the cosine similarity can be applied to the bag of words to find the most similar words to a queried word, further enhancing the classification capacity of the model.
 
+# Recognizing Contextual Polarity in Phrase-Level Sentiment Analysis
+
+Wilson (wilson2005recognizing) introduces an approach to phrase-level sentiment analysis that determines the polarity of an expression then disambiguates that polarity. Unlike the document-level analysis already performed by each of the product reviews, this technique deconstructs individual sentences to determine the polarity of expressions related to the objects of those sentences.
+
+The phrase-level approach captures sentiment in context to update the prior probabilities of individual word's polarity. For example:
+
+**Negation** can be local (*not* good), long-distance (*does not* look very good), or applied to the subject (*no one* likes that). Additionally, some negation words may be used to intensify rather than negate (*not only* good but amazing).
+
+**Diminishers** such as (There is *little* truth)
+
+**Modality** of prepositions as in (*no reason* to believe)
+
+**Word sense** (Environmental Trust vs the people's trust)
+
+**Syntactic roles** as in (polluters *are* vs they *are* polluters)
+
+Texts can be broken down into *structure*, *sentence*, and *document* level features that contribute to the attribution of sentiment towards a particular object. 
+
+```{r dtree_img, echo=FALSE, fig.cap="", out.width = '100%', eval = T}
+knitr::include_graphics(file.path(images, "dtree.png"))
+```
+
+Wilson's method uses a two-step process that first classifies each phrase as either containing some clue indicating polarity or not. Each identified phrase is then deconstructed and disambiguated.
+
 # Twitter and sentiment analysis
-Twitter sentiment analysis: The good the bad and the omg! (@kouloumpis2011twitter)
 
-Sentiment analysis of twitter data (@agarwal2011sentiment)
+When searching for *Sentiment Analysis*, many papers applied their techniques to Twitter data. Twitter is a *microblogging* platform with a large number of active daily users and is thus a rich source of text created by a variety of individuals. This data could be used to check the emotional pulse of a large population on any given topic.
 
-Sentiment analysis of twitter data package (@munson2019sentiment)
+One paper, *Twitter sentiment analysis: The good the bad and the omg!* (@kouloumpis2011twitter), investigated the utility of linguistic features for detecting the sentiment of Twitter messages. Their paper included sentimental lexicons for hashtagged data and emoticons. 
 
+They concluded that part-of-speach features may not be useful for sentiment analysis in the microblogging domain. The presense and understanding of intensifiers, emoticons, and abbreviations were the most useful for accurately classifying Twitter sentiments.
 
+Agarwal (@agarwal2011sentiment) introduces parts-of-speech (POS)-specific prior polarity features and explores a tree kernel feature reduction model. The paper *Sentiment Analysis of Twitter Data* had only marginal increases in accuracy while including emoticon data but saw a significant increase using trees.
+
+```{r stree_img, echo=FALSE, fig.cap="", out.width = '100%', eval = T}
+knitr::include_graphics(file.path(images, "stree.png"))
+```
+
+## Sentiment analysis of twitter data (saotd) R package
+
+Created by Munson et al. (@munson2019sentiment), the saotd package (available on GitHub and Zenodo) allows a user to acquire tweets of their choosing, explore n-grams, correlation networks, and latent topics, classify polarization with the `bing` lexicon, and visualize the sentiment of tweets.
 
 # References
