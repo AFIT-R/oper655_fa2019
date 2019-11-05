@@ -7,21 +7,89 @@ output:
     toc: yes
     toc_float: yes
     css: 'css/hufstetler.css'
+bibliography: sentiment_analysis.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
+knitr::opts_chunk$set(echo = F, 
                       comment = NA, 
                       message = FALSE,
-                      warning = FALSE)
+                      warning = FALSE,
+                      eval = T)
 ```
 
-## Overview
+```{r, eval = T}
+root <- rprojroot::find_root(rprojroot::is_rstudio_project)
+images <- file.path(root, "student_project_folders", "oper655_fa2019_hufstetler", "images")
+```
+
+# Overview
 Sentiment Analysis, or *Opinion Mining*, attempst to use the understanding of the emotional intent of words to infer whether a section of text is positive or negative, or perhaps characterized by some other more nuanced emtion like surprise or disgust. 
 
+From Pang (@pang2008opinion):
+“What other people think” has always been an important piece of information for most of us during the decision-making process. Long before awareness of the World Wide Web became widespread, many of us asked our friends to recommend an auto mechanic or to explain who they were planning to vote for in local elections, requested reference letters regarding job applicants from colleagues, or consulted Consumer Reports to decide what dishwasher to buy. But the Internet and theWeb have now (among other things) made it possible to find out about the opinions and experiences of those in the vast pool of people that are neither our personal acquaintances nor well-known professional critics — that is, people we have never heard of. And conversely, more and more people are making their opinions available to strangers via the Internet.
+
+Indeed, according to two surveys of more than 2000 American adults each,
+
+- 81% of Internet users (or 60% of Americans) have done online research on a product at least once;
+
+- 20% (15% of all Americans) do so on a typical day;
+
+- among readers of online reviews of restaurants, hotels, and various services (e.g., travel agencies or doctors), between 73% and 87% report that reviews had a significant influence on their purchase;
+
+- consumers report being willing to pay from 20% to 99% more for a 5-star-rated item than a 4-star-rated item (the variance stems from what type of item or service is considered);
+
+- 32% have provided a rating on a product, service, or person via an online ratings system, and 30% (including 18% of online senior citizens) have posted an online comment or review regarding a product or service.
+
+We hasten to point out that consumption of goods and services is not the only motivation behind people’s seeking out or expressing opinions online. A need for political information is another important factor. For example, in a survey of over 2500 American adults, Rainie and Horrigan studied the 31% of Americans — over 60 million people — that were 2006 campaign internet users, defined as those who gathered information about the 2006 elections online and exchanged views via email. Of these,
+
+- 28% said that a major reason for these online activities was to get perspectives from within their community, and 34% said that a major reason was to get perspectives from outside their community;
+
+- 27% had looked online for the endorsements or ratings of external organizations;
+
+- 28% said that most of the sites they use share their point of view, but 29% said that most of the sites they use challenge their point of view, indicating that many people are not simply looking for validations of their pre-existing opinions; and
+
+- 8% posted their own political commentary online.
+
+# Sentiment Analysis and Subjectivity
+Liu (@liu2010sentiment) states that sentiment analysis can be subdivided into two broad categories: (1) classifying an opinionated document as expressing a positive or negative opinion, and (2) classifying a sentence or a clause of the sentance as subjective or objective, and for a subjective sentence or clause classifying it as expressing a positive, negative or neutral opinion.
+
+The first objective aims to find the general sentiment of the author of an opinionated text, such as a review. This is commonly called **sentiment classification** or **document-level sentiment classification**. The second objective looks at individual sentences to determine whether they express an opinion or not, and if so, whether the opinion is positive or negative. This is often called **subjectivity classification** or **sentence-level sentiment classification**.
+
+Another approach is called **feature-based sentiment analysis**. This model first discovers the targets on which opinions have
+been expressed in a sentence, and then determines whether the opinions are positive, negative or neutral. The targets are objects, and their components, attributes and features. An object can be a product, service, individual, organization, event, topic, etc. For instance, in a product review sentence, it identifies product features that have been commented on by the reviewer and determines whether the comments are positive or negative. For example, in the sentence, *“The battery life of this camera is too short,”* the comment is on *“battery life”* of the camera object and the opinion is negative.
+
+**Comparative sentiment analysis** seeks to evaluate the sentiment of a statement about a product and determine if the comment is a direct appraisal or a comparison. This is useful for determining if a customer prefers one product over another.
+
+*Opinion search and retrieval* is a technique that searches a large database, such as the *interwebs*, for expressions relevant to a query and ranks the sentiment of the returned results.
+
+The opposite approach to sentiment analysis is **opinion spam and utility of opinions**. This refers to fake or bogus opinions being placed to deliberately mislead readers or automated systems by giving undeserving positive opinions ot some target objects in order to promote the objects or by giving malicious negative opinions to some other objects in order to damage their reputations. The detection of opinion spam is of particular interest in the age of *fake news*.
+
+The following passage illustrates the difficulties with sentiment analysis:
+
+*“(1) I bought an iPhone a few days ago. (2) It was such a nice phone. (3) The touch screen was really cool. (4) The voice quality was clear too. (5) Although the battery life was not long, that is ok for me. (6) However, my mother was mad with me as I did not tell her before I bought it. (7) She also thought the phone was too expensive, and wanted me to return it to the shop.*
+
+Definitions:
+
+**Opinion Passage** - an opinion passage on a feature *f* of an object *O* evaluated in *d* is a group of consecutive sentences in *d* that expresses a positive or negative opinion on *f*.
+
+**Explicit and Implicit Features** - features *f* that are stated explicitly *"the battery life is short"* or implicityly *"the phone is too large"*.
+
+**Opinion Holder** - the individual or group to whom the opinion belongs.
+
+**Opinion** - a positive or negative view, attitude, emotion, or appraisal of a feature *f* from an opinion holder.
+
+**Opinion orientation** - The indication of whether an opinion is positive, negative, or neutral. Commonly referred to as *polarity*.
+
+**Emotions** - subjective feelings or thoughts.
+
+**Explicit and Implicit Opinions** - opinions that are stated explicitly *"the voice quality is amazing"* or implicitly *"it broke after two days"*
+
+# Sentiment Lexicons
 One way to analyze the sentiment of a text is to consider the text as a combination of its individual words and the sentiment content of the whole text as the sum of the sentiment content of the individual words.
 
-## Sentiment Lexicons
+Many of the ideas and code for the sentiment lexicon section were adapted from the book *Text Mining with R* (@silge2017text) and rely on the R tidy data tools (@wickham2017package).
+
 A sentiment lexicon is a dictionary that equates words with a sentiment value. That value may be numeric on a scale of negative to positive, binary negative and positive, or descriptive using words like trust, fear, sadness, anger, and happiness. The tidytext package comes with several sentiment lexicons. Three of the general purpose lexicons are:  
   
 `AFINN` assigns words with a score that runs between -5 and 5  
@@ -34,7 +102,38 @@ These single word sentiment lexicons also fail in understanding the true nature 
 
 Finally, since these lexicons will be applied directly to the text under analysis, the quantity of text being analyzed will directly impact the overall sentiment score. A large body of text may have enough positive and negative sentiments that they cancel each other out. A sentence or paragraph a more appropriate size to measure the sentiment of.
 
-## Sentiment Analysis with Inner Join
+## Crowdsourcing a Word-Emotion Association Lexicon
+
+Mohammad and Turney (@mohammad13) discuss the strenghts and weaknesses of crowdsourching an emotional lexicon. In their paper, they highlight the following application of sentiment analysis (note that their citations are not reflected in this document, please refer to the original paper for further reading):
+
+1. Managing customer relations by taking appropriate actions depending on the customer's emotional state (for example, dissatisfaction, satisfaction, sadness, trust, anticipation, or anger) (Bougie et al., 2003).
+2. Tracking sentiment towards politicians, movies, products, countries, and other target entities (Pang and Lee, 2008; Mohammad and Yang, 2011).
+3. Developing sophisticated search algorithms that distinguish between different emotions associated with a product (Knautz et al., 2010). For example, customers may search for banks, mutual funds, or stocks that people trust. Aid organizations may search for events and stories that are generating empathy, and highlight them in their fund-raising campaigns. Further, systems that are not emotion-discerning may fall prey to abuse. For example, it was recently discovered that an online vendor deliberately mistreated his customers because the negative online reviews translated to higher rankings on Google searches.4
+4. Creating dialogue systems that respond appropriately to different emotional states of the user; for example, in emotion-aware games (Velasquez, 1997; Ravaja et al., 2006).
+5. Developing intelligent tutoring systems that manage the emotional state of the learner for more effective learning. There is some support for the hypothesis that students learn better and faster when they are in a positive emotional state (Litman and Forbes-Riley, 2004).
+6. Determining risk of repeat attempts by analyzing suicide notes (Osgood and Walker, 1959; Matykiewicz et al., 2009; Pestian et al., 2008).5
+7. Understanding how genders communicate through work-place and personal email (Mohammad and Yang, 2011).
+8. Assisting in writing e-mails, documents, and other text to convey the desired emotion (and avoiding misinterpretation) (Liu et al., 2003).
+9. Depicting the  ow of emotions in novels and other books (Boucouvalas, 2002; Mohammad, 2011b).
+10. Identifying what emotion a newspaper headline is trying to evoke (Bellegarda, 2010).
+11. Re-ranking and categorizing information/answers in online question{answer forums (Adamic et al., 2008). For example, highly emotional responses may be ranked lower.
+12. Detecting how people use emotion-bearing-words and metaphors to persuade and coerce others (for example, in propaganda) (Kovecses, 2003).
+13. Developing more natural text-to-speech systems (Francisco and Gervas, 2006; Bellegarda, 2010).
+14. Developing assistive robots that are sensitive to human emotions (Breazeal and Brooks, 2004; Hollinger et al., 2006). For example, the robotics group in Carnegie Melon University is interested in building an emotion-aware physiotherapy coach robot.
+
+In their critique of crowd sourcing, they discuss the difficulty in properly describing the problem and expectations to a sufficiently large population. Emotions, in particular, can be described very differently by different people. This difficulty is compounded by sarcasm, non-verbal communication, and other context specific semantics. For example, the word *shout* is usually used in admonishment but takes on a completely different meaning in the sentence "*Give me a shout.*"
+
+One approach to standardize the linguistics of emotion is to identify a subset of emotional words that can adequately characterize the polarity and intensity of an emotional state. This subset can then be chosen from when a crowd source participant is asked to label the data. An example of this is Plutchik's Wheel of Emotions.
+
+```{r pressure, echo=FALSE, fig.cap="", out.width = '100%', eval = T}
+knitr::include_graphics(file.path(images, "plutchik.png"))
+```
+
+The paper summarized 10 questions that are asked about every word in the lexicon to develop a thorough emotional understanding of each word but lacking context. The lexicon developed through these means fall prey to the problems discussed with other lexicons earlier, but allow for a statistically large sampling to be used, thus decreasing the effect of author bias and outliers.
+
+## Sentiment lexicons applied to cell phone reviews with inner join
+The nrc lexicon distinguishes 10 emotions, ***anger***, ***anticipation***, ***disgust***, ***fear***, ***joy***, ***negative***, ***positive***, ***sadness***, ***surprise***, and ***trust***. Looking at the sentiments ***joy*** and ***anger*** we can get some understanding of the words people use in their reviews to express these emotions.
+
 First, we need to import the data and get it into tidy format.
 
 ```{r}
@@ -49,7 +148,6 @@ pacman::p_load(tidyr,
                wordcloud,
                reshape2)
 
-root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 file_loc <- file.path(root,"data","phone_user_reviews")
 
 file_list <- list.files(path = file_loc,
@@ -77,13 +175,16 @@ for (i in file_list){
 rm(file_list, root, manu_pattern, prod_pattern, file_loc)
 
 ```
+
 Taking a peek at the data we see that all scores are based on a ten-point scale so the **maxscore** column can be dropped.
+
 ```{r}
 table(reviews_tidy$maxscore)
 reviews_tidy <- select(reviews_tidy, -maxscore)
 ```
-# NRC application
-The nrc lexicon distinguishes 10 emotions, ***anger***, ***anticipation***, ***disgust***, ***fear***, ***joy***, ***negative***, ***positive***, ***sadness***, ***surprise***, and ***trust***. Looking at the sentiments ***joy*** and ***anger*** we can get some understanding of the words people use in their reviews to express these emotions.
+
+Next we can do an inner join to filter out words relating the sentiments ***joy*** and ***anger***. The following results are the words used in reviews of Apple products that the NRC lexicon determined conveyed those two sentiments, respectively. They were then sorted by frequency.
+
 ```{r}
 nrc_joy <- get_sentiments("nrc") %>%
   filter(sentiment == "joy")
@@ -101,7 +202,10 @@ reviews_tidy %>%
 
 
 ```
-Notice how some words like *money* appear in the ***joy*** and ***anger*** dictionaries. More information is needed about the context in which money is discussed. Also, words like *ram*, *lightning*, and *battery* are categorized as ***anger*** but are actually just words used to describe components of a phone. These are further limitations of a single word analysis.
+
+Notice how some words like *money* appear in the ***joy*** and ***anger*** dictionaries? More information is needed about the context in which money is discussed. Also, words like *ram*, *lightning*, and *battery* are categorized as ***anger*** but are actually just words used to describe components of a phone. These are further limitations of a single word analysis.
+
+Looking at the sentimental polarity in relation to the score given in the review may be able to provide some context.
 
 ```{r}
 wordcounts <- reviews_tidy %>%
@@ -122,12 +226,19 @@ reviews_tidy %>%
   mutate(ratio = negativewords/words) %>%
   top_n(1) %>%
   ungroup()
+```
 
+The first review listed here stands out. The consumer gave a Samsun Galaxy S5 a one star review that consisted of only one word, and that word was classified as having a negative sentiment. Here is the content of that review:
+
+```{r}
 reviews_tidy %>%
   group_by(author) %>%
   filter(grepl("skirocks", author))%>%
   collapse(word)
 ```
+
+Another application of sentiment analysis is to determine which product has more favorable reviews. Some Apple and Samsung phones were chosen to be compared against each other.
+
 ```{r}
 sentiment_1 <- reviews_tidy %>%
   filter(grepl("(galaxy-s[0-9]$)|(iphone-[0-9]$)", product)) %>% # get just galaxy s and iphone reviews
@@ -142,11 +253,16 @@ sentiment_1 %>%
   theme(axis.text.x = element_text(angle = 60))
 
 ```
-There are clear outliers in the positive sentiment realm for all phones but the galaxy s8.
+
+There are clear outliers in the positive sentiment realm for all phones but the galaxy s8. These reviews are suspicious for multiple reasons. They are much lengthier and the user ids are *anonymous*.
+
 ```{r}
 sentiment_1 %>% 
   filter(sentiment > 50)
 ```
+
+Filtering away the outliers yields the following results. Generally speaking, all of the phones compared have similarly positive reveiws.
+
 ```{r}
 reviews_tidy %>%
   filter(grepl("(galaxy-s[0-9]$)|(iphone-[0-9]$)", product)) %>% # get just galaxy s and iphone reviews
@@ -161,6 +277,8 @@ reviews_tidy %>%
   theme(axis.text.x = element_text(angle = 60))
 ```
 
+A word cloud can also be used to quickly identify the words used to describe products. Stop words have been removed as well as common words used to identify the products. The size of the words in this word cloud is proportional to frequency.
+
 ```{r}
 new_stop_words_regex <- paste("phones?","[0-9]+",str_c(unique(reviews_tidy$manufacturer), collapse = "|"), sep = "|")
 new_stop_words <- tibble::tibble(word = unlist(unique(str_extract(reviews_tidy$word,new_stop_words_regex))))
@@ -172,7 +290,8 @@ reviews_tidy %>%
   with(wordcloud(word, n, max.words = 100))
 ```
 
-Here we see the most common positive and negative words in the cell phone review data.
+Using the `bing` lexicon, the polarity of the words can be shaded to expand upon the insight gained in the first word cloud. Here we see the most common positive and negative words in the cell phone review data.
+
 ```{r}
 reviews_tidy %>%
   inner_join(get_sentiments("bing")) %>%
@@ -182,29 +301,23 @@ reviews_tidy %>%
                    max.words = 100)
 ```
 
-## Other Datasets
+# Learning Word Vectors
 
-There are many other sources of publicly available text data for use in training NLP models or to test out some of the basic NLP tasks.  A few sources of such data are listed below.
+Maas et al. (@maas2011learning) developed a method of using review data similar to the cell phone review data to train a sentimental analysis based on the occurrence of words in relation to the score given to the review. This approach does not require labeled data apart from the score given to each review and can thus be trained on different datasets independently to avoid problems with semantical or topical jargon inherent in those datasets. 
 
-1. [**kaggle**](https://www.kaggle.com/datasets?sortBy=relevance&group=all&search=text)
-2. [**UCSD**](https://ucsd.libguides.com/data-statistics/textmining)
-3. [**QUANDL**](https://www.researchgate.net/deref/https%3A%2F%2Fwww.quandl.com%2F)
-4. [**kdnuggets**](https://www.kdnuggets.com/datasets/index.html)
-5. [**Amazon reviews**](https://snap.stanford.edu/data/web-Amazon.html)
-6. [**ENRON emails**](https://www.cs.cmu.edu/~./enron/)
-7. [**Hillary Clinton's declassified emails**](http://www.readhillarysemail.com)
-8. [**R package: Harry Potter**](https://github.com/bradleyboehmke/harrypotter)
+The learning word vector approach trains by maximizing two objective functions. The first attempts to identify the score, high or low, of a review given the words in it. The second attempts to identify which words would be used in a review, given its score.
 
-nrc citation 
-article{mohammad13,
-author = {Mohammad, Saif M. and Turney, Peter D.},
-title = {Crowdsourcing a Word-Emotion Association Lexicon},
-journal = {Computational Intelligence},
-volume = {29},
-number = {3},
-pages = {436-465},
-doi = {10.1111/j.1467-8640.2012.00460.x},
-url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-8640.2012.00460.x},
-eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-8640.2012.00460.x},
-year = {2013}
-}
+Traditional stop word removal and stemming are not used in this technique because of how the relationships between words are learned by the model. Many negating stop words change the sentiment of other words in an expression and the ending of stem words are learned appropriately in context.
+
+Additionally, the cosine similarity can be applied to the bag of words to find the most similar words to a queried word, further enhancing the classification capacity of the model.
+
+# Twitter and sentiment analysis
+Twitter sentiment analysis: The good the bad and the omg! (@kouloumpis2011twitter)
+
+Sentiment analysis of twitter data (@agarwal2011sentiment)
+
+Sentiment analysis of twitter data package (@munson2019sentiment)
+
+
+
+# References
