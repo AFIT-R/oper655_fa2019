@@ -11,7 +11,7 @@ bibliography: sentiment_analysis.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = F, 
+knitr::opts_chunk$set(echo = T, 
                       comment = NA, 
                       message = FALSE,
                       warning = FALSE,
