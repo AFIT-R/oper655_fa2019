@@ -1,0 +1,189 @@
+---
+title: "Trump Tweets"
+author: "Jason Freels"
+date: "11/8/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Background
+
+Sentiment analysis of Trump's tweets from [**here**](https://github.com/bpb27/trump_tweet_data_archive)
+
+The data for each year are stored in a JSON format which is itself stored in a zip archive.  Therefore to get the data we need to:
+
+1. Find the links to each of the zip files on the site
+2. Download each file
+3. Unzip each file
+4. Convert the JSON objects to R objects
+5. Manipulate the data for analysis
+
+### Find the links for each of the zip files
+
+```{r}
+git_url <- "https://github.com/bpb27/trump_tweet_data_archive"
+git_get <- httr::GET(git_url)
+git_content <- httr::content(git_get, as = "text")
+
+doc <- XML::htmlParse(git_content)
+
+anchors <- XML::getNodeSet(doc, c('//a'))
+
+hrefs <- XML::xmlApply(anchors, 
+                       FUN = function(x) XML::xmlGetAttr(node = x, name = "href"))
+
+is_zip <- stringr::str_detect(unlist(hrefs), pattern = ".zip")
+
+zips <- unlist(hrefs)[is_zip]
+
+zip_urls <- paste0("https://www.github.com",zips[-1],"?raw=true")
+```
+
+### Download and unzip the files
+
+Using this [hack](https://stackoverflow.com/questions/3053833/using-r-to-download-zipped-data-file-extract-and-import-data?rq=1) from Dirk Eddelbuettel
+
+```{r}
+temp <- tempdir()
+
+download.file(zip_urls[1],
+              file.path(temp,"test.zip"), 
+              method = "wget")
+
+zip_files <- unzip(file.path(temp,"test.zip"), 
+                   exdir = temp)
+
+Lines <- readLines(zip_files)
+tweets <- rjson::fromJSON(Lines)
+
+DF <- data.frame(t(unlist(tweets[[1]])), stringsAsFactors = F)
+
+for(i in seq_along(tweets)[-1]) {
+  
+    df <- data.frame(t(unlist(tweets[[i]])))
+    
+    DF <- rbind(DF,df)
+    
+}
+
+unlink(temp)
+```
+
+Now do the same to the other urls
+
+```{r}
+for(j in seq_along(zip_urls)[-1]) {
+  
+temp <- tempdir()
+
+download.file(zip_urls[j],
+              file.path(temp,"test.zip"), 
+              method = "wget")
+
+zip_files <- unzip(file.path(temp,"test.zip"), 
+                   exdir = temp)
+
+Lines <- readLines(zip_files)
+tweets <- rjson::fromJSON(Lines)
+
+for(i in seq_along(tweets)) {
+  
+    df <- data.frame(t(unlist(tweets[[i]])), stringsAsFactors = F)
+    
+    if("in_reply_to_user_id_str" %in% names(df)) {
+      
+       irtuis <- which(names(df) == "in_reply_to_user_id_str")
+       df <- df[,-irtuis]
+       
+    }
+    
+    DF <- rbind(DF,df)
+    
+}
+
+unlink(temp)
+
+}
+```
+
+Now let's do the sentiment stuff
+
+```{r}
+tw_corpus <- quanteda::corpus(as.vector(DF$text))
+
+quanteda::docvars(tw_corpus, field = "source")         <- as.vector(DF$source)
+quanteda::docvars(tw_corpus, field = "created_at")     <- as.vector(DF$created_at)
+quanteda::docvars(tw_corpus, field = "id_str")         <- as.vector(DF$id_str)
+quanteda::docvars(tw_corpus, field = "is_retweet")     <- as.vector(DF$is_retweet)
+quanteda::docvars(tw_corpus, field = "retweet_count")  <- as.vector(DF$retweet_count)
+quanteda::docvars(tw_corpus, field = "favorite_count") <- as.vector(DF$favorite_count)
+```
+
+```{r}
+tw_tokens <- quanteda::tokens(tw_corpus, 
+                              remove_punct = TRUE, 
+                              remove_numbers = TRUE)
+tw_tokens <- quanteda::tokens_select(tw_tokens, 
+                                     stopwords::stopwords('english'),
+                                     selection='remove')
+
+tw_tokens <- quanteda::tokens_wordstem(tw_tokens)
+
+tw_tokens <- quanteda::tokens_tolower(tw_tokens)
+```
+
+```{r}
+tw_dfm <- quanteda::dfm(tw_tokens)
+```
+
+
+```{r}
+(most_common <- quanteda::topfeatures(tw_dfm, 20))
+```
+
+```{r}
+trump_stop_words <- most_common[most_common > 2000]
+
+stop_words <- c(stopwords::stopwords(),names(trump_stop_words))
+                
+tw_tokens <- quanteda::tokens_select(tw_tokens, 
+                                     stop_words,
+                                     selection='remove')
+```
+
+```{r}
+tw_dfm <- quanteda::dfm(tw_tokens)
+```
+
+
+```{r}
+(most_common <- quanteda::topfeatures(tw_dfm, 20))
+```
+
+```{r}
+tw_tidy <- tidytext::tidy(tw_corpus)
+tw_tidy$year <- as.factor(substr(tw_tidy$created_at, 27 ,30))
+
+tw_tidy <- tw_tidy[,c("text", "year")]
+
+tw_tidy <- tw_tidy %>% tidytext::unnest_tokens(word,text)
+```
+
+```{r}
+tw_tidy %>%
+        group_by(year) %>% 
+        mutate(word_count = 1:n(),
+               index = word_count %/% 25 + 1) %>% 
+        inner_join(tidytext::get_sentiments("bing")) %>%
+        count(year, index = index , sentiment) %>%
+        ungroup() %>%
+        spread(sentiment, n, fill = 0) %>%
+        mutate(sentiment = positive - negative)%>%
+              # year = factor(year) %>%
+        ggplot(aes(index, sentiment, fill = year)) +
+          geom_bar(alpha = 0.5, stat = "identity", show.legend = FALSE) +
+          facet_wrap(~year, ncol = 2, scales = "free_x")
+```
