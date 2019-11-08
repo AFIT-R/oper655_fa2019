@@ -1,0 +1,67 @@
+---
+title: "Document Summarization"
+author: "Maria Schroeder"
+date: "November 8, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Setup
+
+This first set of code lays down the foundation for our analysis. The data is imported and cleaned (credit: Huf) for document summarization application.
+
+```{r cars}
+pacman::p_load(tidyr,
+               tidytext,
+               tidyverse,
+               textdata,
+               dplyr,
+               stringr,
+               ggplot2,
+               magrittr,
+               wordcloud,
+               reshape2)
+
+root <- rprojroot::find_root(rprojroot::is_rstudio_project)
+file_loc <- file.path(root,"data","phone_user_reviews")
+
+file_list <- list.files(path = file_loc,
+                        pattern = "",
+                        full.names = TRUE)
+reviews_tidy <- tibble::tibble()
+manu_pattern <- "/cellphones/[a-z0-9]+"
+prod_pattern <- paste(manu_pattern, "-|/", sep = "")
+for (i in file_list){
+  input <- load(i,ex <- new.env())
+  text_raw <- get(ls(ex),ex)
+  text_en <- text_raw[text_raw$lang=="en",]
+  rm(ex, text_raw, input, i)
+  
+  clean <- tibble::tibble(score = text_en$score,
+                          maxscore = text_en$score_max,
+                          text = text_en$extract,
+                          product = gsub(prod_pattern, "", text_en$phone_url),
+                          author = text_en$author,
+                          manufacturer = gsub("/cellphones/","",str_extract(text_en$phone_url,manu_pattern))) %>%
+    tidytext::unnest_tokens(word, text)
+  reviews_tidy <- base::rbind(reviews_tidy, clean)
+  rm(text_en, clean)
+}
+rm(file_list, root, manu_pattern, prod_pattern, file_loc)
+
+table(reviews_tidy$maxscore)
+reviews_tidy <- select(reviews_tidy, -maxscore)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
