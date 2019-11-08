@@ -44,3 +44,8 @@ for (i in file_list){
 table(reviews_tidy$maxscore)
 reviews_tidy <- select(reviews_tidy, -maxscore)
 rm(file_list, root, manu_pattern, prod_pattern, file_loc)
+
+pacman::p_load_gh("trinker/entity")
+library(monkeylearn)
+library(magrittr)
+ner_test <- monkeylearn::monkey_extract(reviews_tidy$text, extractor_id = "ex_isnnZRbS")
