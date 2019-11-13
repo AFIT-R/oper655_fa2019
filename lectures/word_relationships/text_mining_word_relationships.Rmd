@@ -1,3 +1,9 @@
+---
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
 ## Text Mining&#58; Word Relationships
 
 So far, we've analyzed the Harry Potter series by understanding the frequency and distribution of words across the corpus.  However, we often want to understand the relationship between words in a corpus.  What sequences of words are common across our text?  Given a sequence of words, what word is most likely to follow?  What words have the strongest relationship with each other?
