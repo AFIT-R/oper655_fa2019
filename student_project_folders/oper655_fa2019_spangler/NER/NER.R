@@ -103,7 +103,7 @@ file_list <- list.files(path = file_loc,
                         full.names = TRUE)
 full_parsed <- data.frame()
 for (i in file_list){
-  parsed <- load(i)
+  load(i)
 }
 
 full_parsed <- rbind(parsed_1, parsed_2, parsed_3, parsed_4, parsed_5, parsed_6,
