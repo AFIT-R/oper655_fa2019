@@ -12,10 +12,13 @@ pacman::p_load(pdftools,     # extract content from PDF documents
 if (packageVersion("devtools") < 1.6) {
   install.packages("devtools")
 }
+<<<<<<< HEAD
+=======
 install.packages(qdap)
 library(qdap)
 devtools::install_github("bradleyboehmke/harrypotter")
 harrypotter::philosophers_stone[1]
+>>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
 pacman::p_load(tm, 
                pdftools, 
                here,
@@ -73,6 +76,16 @@ mcu_phase1 <- list.files(dest1,
 mcu_phase3[1]
 tb_pdftools <- pdftools::pdf_text(pdf = mcu_phase3[1])
 
+<<<<<<< HEAD
+#Attempting to add the rest of the scripts of the MCU into a corpus.
+for (i in 1:8) {
+  nam <- paste("tb_pdftools",i,sep = "")
+  assign(nam,pdftools::pdf_text(pdf = mcu_phase3[i]))
+}
+
+
+=======
+>>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
 text_tb <- tibble::tibble(chapter = base::seq_along(tb_pdftools),
                           text = tb_pdftools)
 
