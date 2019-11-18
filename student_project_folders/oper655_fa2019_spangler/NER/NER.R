@@ -103,7 +103,7 @@ file_list <- list.files(path = file_loc,
                         full.names = TRUE)
 full_parsed <- data.frame()
 for (i in file_list){
-  parsed <- load(i)
+  load(i)
 }
 
 full_parsed <- rbind(parsed_1, parsed_2, parsed_3, parsed_4, parsed_5, parsed_6,
@@ -111,6 +111,8 @@ full_parsed <- rbind(parsed_1, parsed_2, parsed_3, parsed_4, parsed_5, parsed_6,
  
 full_extracted <- entity_extract(full_parsed, type = "all")
 save(full_extracted, file = "fullextracted.RData")
+
+load("fullextracted.RData")
 
 full_extracted %>%
   filter(entity_type != "CARDINAL" & entity_type != "ORDINAL") %>%
@@ -129,13 +131,60 @@ full_extracted %>%
   geom_bar(stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
+#Extracts reviews that Samsung is Mentioned
+samsung_reviews <- full_extracted %>%
+  filter(entity == "Samsung" | entity == "samsung") %>%
+  mutate(rownum = str_sub(doc_id, 5)) 
+
+all_samsung <- reviews_tidy[c(samsung_reviews$rownum),]
+
+#Extracts reviews that mention Apple
+apple_reviews <- full_extracted %>%
+  filter(entity == "Apple" | entity == "apple") %>%
+  mutate(rownum = str_sub(doc_id, 5)) 
+
+#S5 reviews
+all_apple <- reviews_tidy[c(apple_reviews$rownum),]
+
+nokia_reviews <- full_extracted %>%
+  filter(entity == "Nokia" | entity == "nokia") %>%
+  mutate(rownum = str_sub(doc_id, 5))
+
+all_nokia <- reviews_tidy[c(nokia_reviews$rownum),]
+
+s5_reviews <- full_extracted %>%
+  filter(entity == "S5" | entity == "s5") %>%
+  mutate(rownum = str_sub(doc_id, 5))
+
+(reviews_tidy[c(s5_reviews$rownum),])
+
+#Battery Reviews
+battery_rev <- full_extracted %>%
+  filter(entity == "Battery" | entity == "battery") %>%
+  mutate(rownum = str_sub(doc_id, 5))
+
+(reviews_tidy[c(battery_rev$rownum),])
+
+neg_sentiment <- get_sentiments("bing") %>%
+  filter(sentiment == "negative")
+  
+samsung_reviews_full <- reviews_tidy[c(samsung_reviews$rownum),]
+samsung_reviews_full %>%
+  unnest_tokens(word, text) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  summarise(sum(sentiment)/14937)
+  
 consolidated_parsed <- entity_consolidate(full_parsed) 
 
 consolidated_parsed %>%
-  group_by(pos) %>%
-  filter(entity_type != "")
-  count(lemma) %>%
-  top_n(10)
+  group_by(entity_type) %>%
+  count(entity_type) %>%
+  
+  
+load("consolidated_parsed.RData")
 
 #######################Uses openNLP###########################################
 
