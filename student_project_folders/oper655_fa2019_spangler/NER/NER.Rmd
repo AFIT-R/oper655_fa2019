@@ -96,6 +96,9 @@ full_extracted %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Product Entities")+
+  xlab("Product") +
+  ylab("Number of Entries")
 
 full_extracted %>%
   filter(entity_type == "ORG") %>%
@@ -105,6 +108,9 @@ full_extracted %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Organizations")+
+  xlab("Organizations") +
+  ylab("Number of Mentions")
 
 full_extracted %>%
   filter(entity_type == "PERSON" ) %>%
@@ -114,6 +120,9 @@ full_extracted %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "What is Labelled as People")+
+  xlab("Products") +
+  ylab("Number of Mentions")
 
 full_extracted %>%
   filter(entity_type == "LOC" ) %>%
@@ -123,6 +132,9 @@ full_extracted %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Locations")+
+  xlab("Locations") +
+  ylab("Number of Mentions")
 
 full_extracted %>%
   filter(entity_type == "GPE" ) %>%
@@ -132,6 +144,9 @@ full_extracted %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Geopolitical Entities")+
+  xlab("GPEs") +
+  ylab("Mentions")
 ````
 
 As mentioned in the general NER presentation, there are a few different uses of NER.  The first application is to use NER as a search algorithm.  In our dataset, the manufacturer is already listed as a column, so this is not really necessary, but not using the manufacturer column or imagining that it is gone, we can use NER to extract only the reviews that mention certain manufacturers.  The reviews may not be about their phones in particular, but they may also contain comparisons between two companies.  Samsung is the most commonly occuring organization so we will start with Samsung.  
