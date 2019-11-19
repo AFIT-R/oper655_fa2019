@@ -181,10 +181,15 @@ consolidated_parsed <- entity_consolidate(full_parsed)
 
 consolidated_parsed %>%
   group_by(entity_type) %>%
-  count(entity_type) %>%
+  count(entity_type)
+
+full_extracted %>%
+  filter(entity_type == "PRODUCT") %>%
+  filter(entity ==  "Battery")
   
   
 load("consolidated_parsed.RData")
+
 
 #######################Uses openNLP###########################################
 

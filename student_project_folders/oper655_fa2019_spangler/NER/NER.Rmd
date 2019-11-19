@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 There are multiple different R packages that can perfrom Named Entity Recognition (NER).  A few include trinker/entity, monkeylearn, openNLP, and spaCyR.  trinker/entity package is from github and when experimenting with this package, it would output items that were not named entities.  Additionally, to extract the entities, you must specify in the command which entity you are extracting.  The monkeylearn package interfaces with the MonkeyLearn API which is a machine learning platform on the cloud.  We downloaded the API key from the website, but quickly ran out of runs against the API.  The openNLP package interfaces to the Apache OpenNlp which is a machine learning based toolkit for NLP text written in java.  The spaCyR package is an R wrapper to the Python spaCy NLP package.  We tried both openNLP and spaCyR and found that spaCyR was easier to extract the entities and other aspects of the text.  The openNLP package worked, but the output was not as easily readable or intereptable as the spaCyR output.  A downside to spaCyR is that it requires a Python environment to operate and can take a while to load the first time.  Instructions for loading spaCyR can be found at https://spacyr.quanteda.io/.  This "tutorial" will use spaCyR. 
 
-The first step is to load the require packages and load the data using Huf's code.  The command spacy_initialize() is an important command that load the miniconda environment that spaCyR will use to run the functions.  We do not unnest the tokens when loading the data and leave the comments intact.
+The first step is to load the required packages and load the data using Huf's code.  The command spacy_initialize() is an important command that loads the miniconda environment that spaCyR will use to run the functions.  We do not unnest the tokens when loading the data and leave the comments intact.
 ````{r}
 pacman::p_load(tidyr,
                tidytext,
@@ -60,19 +60,22 @@ for (i in file_list){
 rm(file_list, root, manu_pattern, prod_pattern, file_loc)
 
 ````
-With the data loaded in the tibble reviews_tidy, spaCyR can be used to parse out the data.  Before using the spacy_parse command, the data must be in a data.frame and only the comment column is run through the command.  This command will unnest the tokens and perform part of speech tagging, lemmatizing, and NER on the token. With this command performing so many functions, it takes a long time to run on the more than 550,000 rows of the original data.  For the purpose of this tutorial, we will run the spacy_parse function on a set of 100 rows from the original data.  
+With the data loaded in the tibble, reviews_tidy, spaCyR can be used to parse out the data.  Before using the spacy_parse command, the data must be in a data.frame and only the comment column is run through the command.  This command will unnest the tokens and perform part of speech tagging, lemmatizing, and NER on the token. With this command performing so many functions, it takes a long time to run on the more than 550,000 rows of the original data.  For the purpose of this tutorial, we will run the spacy_parse function on a set of 100 rows from the original data.  
 
 ````{r}
 presentation_data <- as.data.frame(reviews_tidy[1:100,], stringsAsFactors = FALSE)
 presentation_parsed <- spacy_parse(presentation_data$text, entity = TRUE)
 head(presentation_parsed)
+
 presentation_extracted <- entity_extract(presentation_parsed)
+head(presentation_extracted)
 ````
-To load the full data, the data was split in increments of 50,000 rows and parsed.  After each subset was parsed, it was combined into one dataset and the entities were extracted using the entity_extract function.  This was demonstrated in the above chunk. and saved as a .RData file in the NER folder in my student folder.  The remaining portion of this "tutorial will use this data set.  
+To load the full data, the data was split into increments of 50,000 rows and parsed.  The parsed increments were each saved as a .Rdata file.  After each subset was parsed, it was combined into one dataset and the entities were extracted using the entity_extract function (demonstrated above) and saved as a .RData file in the NER folder in my student folder.  The remaining portion of this "tutorial will use the compiled data set.  
 
 ````{r}
 setwd("C:/Users/Tyler/Documents/oper655_fa2019/student_project_folders/oper655_fa2019_spangler/NER")
 load("fullextracted.RData")
+head(full_extracted)
 ````
 With the full data loaded, we can look at the counts for different entities and what the most common named entities are. 
 
@@ -131,7 +134,7 @@ full_extracted %>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ````
 
-As mentioned in the general NER presentation, there are a few different uses of NER.  The first application is search algorithm.  In our dataset, the manufacturer is already listed as a column, so this is not really necessary, but not using the manufacturer column or imagining that it is gone, we can use NER to extract only the reviews that mention certain manufacturers.  The reviews may not be about their phones in particular, but they may also contain comparisons between two companies.  Samsung is the most often occuring organization so we will start with that Samsung.  
+As mentioned in the general NER presentation, there are a few different uses of NER.  The first application is to use NER as a search algorithm.  In our dataset, the manufacturer is already listed as a column, so this is not really necessary, but not using the manufacturer column or imagining that it is gone, we can use NER to extract only the reviews that mention certain manufacturers.  The reviews may not be about their phones in particular, but they may also contain comparisons between two companies.  Samsung is the most commonly occuring organization so we will start with Samsung.  
 
 ```{r}
 samsung_reviews <- full_extracted %>%
@@ -198,7 +201,7 @@ all_samsung_reviews %>%
 
 ````
 
-This can be applied to both Nokia and Apple to determine the sentiment associated with the reviews that mention this two companies.
+This can be applied to both Nokia and Apple to determine the sentiment associated with the reviews that mention these two companies.
 
 ````{r}
 all_apple_reviews %>%
