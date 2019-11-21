@@ -38,7 +38,7 @@ pacman::p_load_gh("dgrtwo/drlib",
 
 #Load Dataset
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
-root <- file.path(root, "Oper655", "Texas Last Statement - CSV.csv")
+root <- file.path(root, "student_project_folders", "oper655_fa2019_spangler", "Project", "Texas Last Statement - CSV.csv")
 data <- readr::read_csv(root)
 
 #Creates Years in Prison Variable
@@ -115,7 +115,28 @@ for (i in 1:length(data$NumberVictim)){
     data$NumberVictim[i] = "Not Available"
   }
 }
-View(data)
+
+#Mean value imputation for each numeric column
+for (i in 1:length(imputedata$AgeWhenReceived)){
+  for (j in 1:15){
+    meanvalue <- mean(na.omit(imputedata[,j]))
+    if (is.na(imputedata[i,j])){
+      imputedata[i,j] = meanvalue 
+    }
+  }
+}
+# #Removes NAs from all cells and replaces with Not Available
+# for (i in 1:length(data$Age)){
+#   for (j in 1:23){
+#     if (is.na(data[i,j])){
+#       data[i,j] = "Not Available"
+#     }
+#   }
+# }
+# View(data)
+
+
+  
 
 #Distribution of Convictions among Independent Vars
 data %>%
@@ -510,5 +531,11 @@ data %>%
   ungroup() %>%
   bind_tf_idf(word, NumberVictim, n) %>%
   arrange(desc(tf_idf))
+
+
+##############################################
+#                  Topic Modeling            #
+##############################################
+
  
  
