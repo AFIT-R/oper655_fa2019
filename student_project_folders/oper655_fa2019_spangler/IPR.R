@@ -25,7 +25,8 @@ pacman::p_load(tm,
                knitr,
                widyr,
                textdata,
-               tidyr)
+               tidyr,
+               topicmodels)
 
 pacman::p_load_gh("dgrtwo/drlib",
                   "trinker/termco", 
@@ -116,24 +117,16 @@ for (i in 1:length(data$NumberVictim)){
   }
 }
 
-#Mean value imputation for each numeric column
-for (i in 1:length(imputedata$AgeWhenReceived)){
-  for (j in 1:15){
-    meanvalue <- mean(na.omit(imputedata[,j]))
-    if (is.na(imputedata[i,j])){
-      imputedata[i,j] = meanvalue 
+
+#Removes NAs from all cells and replaces with Not Available
+for (i in 1:length(data$Age)){
+  for (j in 1:23){
+    if (is.na(data[i,j])){
+      data[i,j] = "Not Available"
     }
   }
 }
-# #Removes NAs from all cells and replaces with Not Available
-# for (i in 1:length(data$Age)){
-#   for (j in 1:23){
-#     if (is.na(data[i,j])){
-#       data[i,j] = "Not Available"
-#     }
-#   }
-# }
-# View(data)
+View(data)
 
 
   
@@ -536,6 +529,7 @@ data %>%
 ##############################################
 #                  Topic Modeling            #
 ##############################################
-
- 
- 
+unnesteddata <- data %>%
+  unnest_tokens(words, LastStatement)
+dfm_data <- unnesteddata %>%
+  tidytext::cast_dfm(LastStatment)
