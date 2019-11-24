@@ -5,7 +5,9 @@ date: "`r format(Sys.Date(), '%d %b %Y')`"
 output: 
   html_document:
     code_folding: 'hide'
-abstract: 'This is where you put your abstract'
+bibliography: bib.bib
+abstract: The purpose of this report is to analyze the last statments from Texas Prisoner inmates.  The data set from @kaggle contains data on 545 executions with prisoner attributes including race, education level, age, etc.  This research will utilize topic modeling and sentiment analysis to determine if there are similarities among last statements between prisoners.   
+
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
@@ -17,6 +19,9 @@ knitr::opts_chunk$set(echo = TRUE,
 
 ## Project Overview/Problem Statement 
 
+Outline:
+1.    
+
 Describe your project in sufficient detail for someone who is not familiar with text mining or NLP can understand what you are saying. This section should conclude with a problem statement that clearly and concisely describes the problem you are addressing (aka the question you are trying to answer). 
 
 ### Installing Loading Required R Packages
@@ -24,8 +29,35 @@ Describe your project in sufficient detail for someone who is not familiar with 
 Before going too far, be sure your reader has the necessary packages to follow along with your methodology and ultimately reproduce your results.
 
 ```{r, warning=FALSE, message=FALSE}
-pacman::p_load(tm,
-               tidytext)
+pacman::p_load(tm, 
+               pdftools, 
+               here,
+               tau,
+               tidyverse,
+               stringr,
+               tidytext, 
+               RColorBrewer,
+               qdap,
+               qdapRegex,
+               qdapDictionaries,
+               qdapTools,
+               data.table,
+               coreNLP,
+               scales,
+               harrypotter,
+               text2vec,
+               SnowballC,
+               DT,
+               quanteda,
+               RWeka,
+               broom,
+               tokenizers,
+               grid,
+               knitr,
+               widyr,
+               textdata,
+               tidyr,
+               topicmodels)
 ```
 
 ## Methodology 
