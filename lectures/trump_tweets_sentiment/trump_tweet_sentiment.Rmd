@@ -126,8 +126,9 @@ quanteda::docvars(tw_corpus, field = "favorite_count") <- as.vector(DF$favorite_
 tw_tokens <- quanteda::tokens(tw_corpus, 
                               remove_punct = TRUE, 
                               remove_numbers = TRUE)
+
 tw_tokens <- quanteda::tokens_select(tw_tokens, 
-                                     stopwords::stopwords('english'),
+                                     tidytext::stop_words$word,
                                      selection='remove')
 
 tw_tokens <- quanteda::tokens_wordstem(tw_tokens)
@@ -145,12 +146,14 @@ tw_dfm <- quanteda::dfm(tw_tokens)
 ```
 
 ```{r}
-trump_stop_words <- most_common[most_common > 2000]
+trump_stop_words <- most_common[most_common > 3000]
 
-stop_words <- c(stopwords::stopwords(),names(trump_stop_words))
+my_stop_words <- c(tidytext::stop_words$word,
+                   names(trump_stop_words),
+                   "rt")
                 
 tw_tokens <- quanteda::tokens_select(tw_tokens, 
-                                     stop_words,
+                                     my_stop_words,
                                      selection='remove')
 ```
 
