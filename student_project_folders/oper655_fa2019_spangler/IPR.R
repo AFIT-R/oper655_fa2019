@@ -25,7 +25,8 @@ pacman::p_load(tm,
                knitr,
                widyr,
                textdata,
-               tidyr)
+               tidyr,
+               topicmodels)
 
 pacman::p_load_gh("dgrtwo/drlib",
                   "trinker/termco", 
@@ -38,8 +39,9 @@ pacman::p_load_gh("dgrtwo/drlib",
 
 #Load Dataset
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
-root <- file.path(root, "Oper655", "Texas Last Statement - CSV.csv")
+root <- file.path(root, "student_project_folders", "oper655_fa2019_spangler", "Project", "Texas Last Statement - CSV.csv")
 data <- readr::read_csv(root)
+rm(root)
 
 #Creates Years in Prison Variable
 data$Years_in_Prison <- data$Age - data$AgeWhenReceived
@@ -115,7 +117,18 @@ for (i in 1:length(data$NumberVictim)){
     data$NumberVictim[i] = "Not Available"
   }
 }
+
+
+#Removes NAs from all cells and replaces with Not Available
+for (i in 1:length(data$Age)){
+  for (j in 1:23){
+    if (is.na(data[i,j])){
+      data[i,j] = "Not Available"
+    }
+  }
+}
 View(data)
+  
 
 #Distribution of Convictions among Independent Vars
 data %>%
@@ -291,7 +304,7 @@ data %>%
 
 data %>% 
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
-  filter(EducationLevel > 5 & EducationLevel < 14) %>%
+  filter(EducationLevel >= 7) %>%
   group_by(EducationLevel) %>%
   count(trigram, sort = TRUE) %>%
   top_n(10) %>%
@@ -510,5 +523,70 @@ data %>%
   ungroup() %>%
   bind_tf_idf(word, NumberVictim, n) %>%
   arrange(desc(tf_idf))
- 
- 
+
+
+##############################################
+#                  Topic Modeling            #
+##############################################
+data2 <- as_tibble(data)
+topic_data <- data2 %>%
+  filter(Race == "White") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+dfm_data <- topic_data %>%
+  tidytext::cast_dfm(word, word, n)
+topic_model <- stm::stm(dfm_data, K = 4, init.type = "LDA")
+
+topic_model <- tidytext::tidy(topic_model)
+
+topic_model %>%
+  group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  coord_flip()
+
+############################################
+#               Sentitment Analysis        #
+############################################
+
+# data_sents <-  data %>%
+#   unnest_tokens(word, LastStatement) %>%
+#   inner_join(get_sentiments("afinn")) 
+# 
+# data_sentiments <- data %>%
+#   left_join(data_sents %>%
+#               group_by(LastName)%>%
+#               summarise(score = sum(value))) %>%
+#   replace_na(list(score = 0))
+
+data %>%
+  unnest_tokens(word, LastStatement) %>%
+  count(index = EducationLevel, word) %>%
+  mutate(tot_words = sum(n))
+
+data_sentiments <- data %>%
+  unnest_tokens(word, LastStatement) %>%
+  inner_join(get_sentiments("bing")) %>%
+  anti_join(stop_words) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative))
+
+data_sentiments %>%
+  ggplot(aes(x = index, y = sentiment)) +
+  geom_col()
+
+##Count Words per LastName??????
+tot_word <- data %>% 
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  count(EducationLevel)
+  
+
+
