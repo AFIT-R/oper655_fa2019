@@ -129,7 +129,10 @@ full_extracted %>%
   top_n(10) %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Product Entities")+
+  xlab("Product") +
+  ylab("Number of Entries")
 
 #Extracts reviews that Samsung is Mentioned
 samsung_reviews <- full_extracted %>%
