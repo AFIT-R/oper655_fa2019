@@ -170,12 +170,14 @@ As is probably obvious, there are better and more convenient ways to visualize t
 entities_by_type <- function(annotated_text_doc, kind){
   
   text_content<-annotated_text_doc$content
-  annotation_data <- annotation(annotated_text_doc)[[1]]
+  annotation_data <- annotation(annotated_text_doc)
   
   if(hasArg(kind)){
     
-     data_with_features<- sapply(annotation_data$features, `[[`, "kind")
-     text_content[annotation_data[data_with_features == kind]]
+     data_features <- sapply(seq_along(annotation_data),
+                             FUN = function(x) names(annotation_data[[x]]$features[[1]])) == "kind"
+    
+     text_content[unlist(annotation_data[data_features]$features) == kind]
     
    } else {
     
