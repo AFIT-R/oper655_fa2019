@@ -86,10 +86,7 @@ full_extracted %>%
   top_n(10) %>%
   ggplot(aes(x = entity_type, y = n)) +
   geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "Entity Types") +
-  xlab("Entity Type") +
-  ylab("Count")
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 full_extracted %>%
   filter(entity_type == "PRODUCT") %>%
@@ -98,10 +95,10 @@ full_extracted %>%
   top_n(10) %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "Product Entities") +
-  xlab("Products") +
-  ylab("Mentions")
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Product Entities")+
+  xlab("Product") +
+  ylab("Number of Entries")
 
 full_extracted %>%
   filter(entity_type == "ORG") %>%
@@ -110,10 +107,10 @@ full_extracted %>%
   top_n(20) %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "Organization Entities") +
-  xlab("Organizatons") +
-  ylab("Mentions")
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Organizations")+
+  xlab("Organizations") +
+  ylab("Number of Mentions")
 
 full_extracted %>%
   filter(entity_type == "PERSON" ) %>%
@@ -122,10 +119,10 @@ full_extracted %>%
   top_n(10) %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "What it Labeled as Persons") +
-  xlab("Persons") +
-  ylab("Mentions")
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "What is Labelled as People")+
+  xlab("Products") +
+  ylab("Number of Mentions")
 
 full_extracted %>%
   filter(entity_type == "LOC" ) %>%
@@ -134,10 +131,10 @@ full_extracted %>%
   top_n(10) %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
-labs(title = "Location Entities") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Locations")+
   xlab("Locations") +
-  ylab("Mentions")
+  ylab("Number of Mentions")
 
 full_extracted %>%
   filter(entity_type == "GPE" ) %>%
@@ -146,9 +143,9 @@ full_extracted %>%
   top_n(10) %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
-  labs(title = "Geopolitical Entities") +
-  xlab("Geopolitcal Entities") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Geopolitical Entities")+
+  xlab("GPEs") +
   ylab("Mentions")
 ````
 
