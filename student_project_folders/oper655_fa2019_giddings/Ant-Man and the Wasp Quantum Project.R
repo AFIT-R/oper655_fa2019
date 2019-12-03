@@ -95,7 +95,7 @@ for (i in 1:5) {
 
 =======
 >>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
-text_tb <- tibble::tibble(chapter = base::seq_along(tb_pdftools),
+text_tb <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu1, tb_pdftools_mcu2, tb_pdftools_mcu3),
                           text = tb_pdftools)
 
 
