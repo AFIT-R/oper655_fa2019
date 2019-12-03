@@ -1,0 +1,34 @@
+---
+title: "Introduction to Text Analysis Using Tensorflow & Keras"
+subtitle: "Integrating R & Python"
+date: "`r format(Sys.Date(),'%d %B %Y')`"
+output: 
+  html_document:
+    css: "css/tf.css"
+    toc: yes
+    toc_float: yes
+---
+
+# Overview
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate)
+```
+
+This tutorial walks through how to perform text analyses using Tensorflow by integrating Python and R.  We start with an overview of the R package `reticulate` that allows us to seamlessly call Python from within R and pitch and catch objects between the languages.
+
+```{r reticulate, child="reticulate.Rmd", eval=TRUE}
+```
+
+```{r tf_overview, child="tf_overview.Rmd", eval=TRUE}
+```
+
+```{r tf1, child="tf1.Rmd", eval=TRUE}
+```
+
+```{r tf2, child="tf2.Rmd", eval=TRUE}
+```
+
+```{r tf3, child="tf3.Rmd", eval=TRUE}
+```

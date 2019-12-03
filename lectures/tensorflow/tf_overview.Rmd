@@ -1,0 +1,71 @@
+---
+output: html_document
+---
+
+# Tensorflow Overview
+
+Created by the Google Brain team, [**TensorFlow**](https://www.tensorflow.org/) is an open source library for numerical computation and large-scale machine learning. TensorFlow bundles together many machine learning and deep learning (aka neural networking) models and algorithms and makes them useful by way of a common metaphor. Tensorflow uses Python to provide a convenient front-end API for building applications with the framework, while executing those applications in high-performance C++.
+
+TensorFlow allows developers to create dataflow graphs—structures that describe how data moves through a graph, or a series of processing nodes. Each node in the graph represents a mathematical operation, and each connection or edge between nodes is a multidimensional data array, or tensor.  Mare specifically as tensor is a mathematical object that is analogous to but more general than a vector, represented by an array of components that are functions of the coordinates of a space.
+
+TensorFlow provides all of this for the programmer by way of the Python language. Python is easy to learn and work with, and provides convenient ways to express how high-level abstractions can be coupled together. Nodes and tensors in TensorFlow are Python objects, and TensorFlow applications are themselves Python applications.
+
+The actual math operations, however, are not performed in Python. The libraries of transformations that are available through TensorFlow are written as high-performance C++ binaries. Python just directs traffic between the pieces, and provides high-level programming abstractions to hook them together.
+
+TensorFlow applications can be run on most any target that’s convenient: a local machine, a cluster in the cloud, iOS and Android devices, CPUs or GPUs. If you use Google’s own cloud, you can run TensorFlow on Google’s custom TensorFlow Processing Unit (TPU) for further acceleration. The resulting models created by TensorFlow, though, can be deployed on most any device where they will be used to serve predictions.
+
+TensorFlow 2.0.0, released in October 2019, revamped the framework in many ways based on user feedback, to make it easier to work with (e.g., by using the relatively simple Keras API for model training) and more performant. Distributed training is easier to run thanks to a new API, and support for TensorFlow Lite makes it possible to deploy models on a greater variety of platforms. However, code written for earlier versions of TensorFlow must be rewritten—sometimes only slightly, sometimes significantly—to take maximum advantage of new TensorFlow 2.0.0 features.
+
+## Benefits
+
+The single biggest benefit TensorFlow provides for machine learning development is abstraction. Instead of dealing with the nitty-gritty details of implementing algorithms, or figuring out proper ways to hitch the output of one function to the input of another, the developer can focus on the overall logic of the application. TensorFlow takes care of the details behind the scenes.
+
+TensorFlow offers additional conveniences for developers who need to debug and gain introspection into TensorFlow apps. The eager execution mode lets you evaluate and modify each graph operation separately and transparently, instead of constructing the entire graph as a single opaque object and evaluating it all at once. The TensorBoard visualization suite lets you inspect and profile the way graphs run by way of an interactive, web-based dashboard.
+
+TensorFlow also gains many advantages from the backing of an A-list commercial outfit in Google. Google has not only fueled the rapid pace of development behind the project, but created many significant offerings around TensorFlow that make it easier to deploy and easier to use: the above-mentioned TPU silicon for accelerated performance in Google’s cloud; an online hub for sharing models created with the framework; in-browser and mobile-friendly incarnations of the framework; and much more.
+
+One caveat: Some details of TensorFlow’s implementation make it hard to obtain totally deterministic model-training results for some training jobs. Sometimes a model trained on one system will vary slightly from a model trained on another, even when they are fed the exact same data. The reasons for this are slippery—e.g., how random numbers are seeded and where, or certain non-deterministic behaviors when using GPUs). That said, it is possible to work around those issues, and TensorFlow’s team is considering more controls to affect determinism in a workflow.
+
+## TensorFlow vs. Competition
+
+TensorFlow competes with a slew of other machine learning frameworks. PyTorch, CNTK, and MXNet are three major frameworks that address many of the same needs. Below I’ve noted where they stand out and come up short against TensorFlow.
+
+- PyTorch, in addition to being built with Python, and has many other similarities to TensorFlow: hardware-accelerated components under the hood, a highly interactive development model that allows for design-as-you-go work, and many useful components already included. PyTorch is generally a better choice for fast development of projects that need to be up and running in a short time, but TensorFlow wins out for larger projects and more complex workflows.
+
+- CNTK, the Microsoft Cognitive Toolkit, like TensorFlow uses a graph structure to describe dataflow, but focuses most on creating deep learning neural networks. CNTK handles many neural network jobs faster, and has a broader set of APIs (Python, C++, C#, Java). But CNTK isn’t currently as easy to learn or deploy as TensorFlow.
+
+- Apache MXNet, adopted by Amazon as the premier deep learning framework on AWS, can scale almost linearly across multiple GPUs and multiple machines. It also supports a broad range of language APIs—Python, C++, Scala, R, JavaScript, Julia, Perl, Go—although its native APIs aren’t as pleasant to work with as TensorFlow’s.
+
+## Getting Started
+
+```{r, include=FALSE}
+reticulate::use_condaenv("base")
+```
+
+If you don't already have the `tensorflow` package for Python installed, you can do so from within R by running the following
+
+```{r, eval=FALSE}
+reticulate::py_install("tensorflow")
+```
+
+or
+
+```{r, eval=FALSE}
+reticulate::conda_install("tensorflow")
+```
+
+Once you've installed the `tensorflow` library, import it (aka load it) into your current working environment using the `import` command.  Let's also check the version of `tensorflow` that you have installed.  It's best if you have version `2.0.0` installed now that it has been [**offically released**](https://github.com/tensorflow/tensorflow/releases/tag/v2.0.0)
+
+```{python}
+import tensorflow as tf
+
+print(tf.__version__)
+```
+
+At this points let's also load some other modules that are included with `tensorflow` that we'll need later.
+
+```{python}
+from tensorflow import keras
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+```

@@ -1,0 +1,44 @@
+---
+output: html_document
+---
+
+## Working with the Sarcasm Headlines Dataset
+
+```{python}
+import json
+
+DATA = json.load(open("data/Sarcasm_Headlines.json", 'r'))
+```
+
+```{python}
+sentences = []
+labels = []
+urls = []
+
+for item in DATA:
+  sentences.append(item['headline'])
+  labels.append(item['is_sarcastic'])
+  urls.append(item['article_link'])
+  
+tokenizer = Tokenizer(num_words = 100, oov_token="<OOV>")
+
+# Builds a dictionary of words from the corpus
+# Any inference/prediction will be dependent on the 
+# word dictionary to which it uses for comparison 
+tokenizer.fit_on_texts(sentences)
+
+word_index = tokenizer.word_index
+print(len(word_index))
+#print(word_index)
+
+sequences = tokenizer.texts_to_sequences(sentences)
+
+# padded out sequences into a matrix
+padded = pad_sequences(sequences, 
+                       padding = "post", # move padding to the end of the matrix
+                       truncating = "post")
+
+print(sentences[2])
+print(padded[2])
+print(padded.shape)
+```

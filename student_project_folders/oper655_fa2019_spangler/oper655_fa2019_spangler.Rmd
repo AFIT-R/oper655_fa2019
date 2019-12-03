@@ -6,7 +6,7 @@ output:
   html_document:
     code_folding: 'hide'
 bibliography: bib.bib
-abstract: The purpose of this report is to analyze the last statments from Texas Prisoner inmates.  The data set from @kaggle contains data on 545 executions with prisoner attributes including race, education level, age, etc.  This research will utilize topic modeling and sentiment analysis to determine if there are similarities among last statements between prisoners.   
+abstract: The purpose of this report is to analyze the last statments from Texas Prisoner inmates.  The data set from @kaggle contains data on 545 executions with prisoner attributes including race, education level, age, etc.  This research will utilize topic modeling and sentiment analysis to determine if there are similarities or differences between last statements between prisoners.     
 
 ---
 
@@ -17,16 +17,8 @@ knitr::opts_chunk$set(echo = TRUE,
                       comment = NA)
 ```
 
-## Project Overview/Problem Statement 
-
-Outline:
-1.    
-
-Describe your project in sufficient detail for someone who is not familiar with text mining or NLP can understand what you are saying. This section should conclude with a problem statement that clearly and concisely describes the problem you are addressing (aka the question you are trying to answer). 
-
-### Installing Loading Required R Packages
-
-Before going too far, be sure your reader has the necessary packages to follow along with your methodology and ultimately reproduce your results.
+## Background
+Natural language procesing (NLP) is the process of organizing and extracting structured or unstructured text data @NLP.  NLP is a set of tools that can enable the user to identify and extract relevant information for analysis from a set of documents or a data set containing text elements.  The first step in NLP is to extract and organize the text in a manner that analysis can be accomplished.  The subsequent steps will extract elements from the text including word replationships, topic modeling, and sentiment from the text elements in order to glean insight into relationship between the text and other aspects of the data set.  This research will analyze the last statements from Texas prison inmates and determine if demographic or prisoner characteristics are related to last statements or if there are relationships between prisoner attributes and last statements.  This report is organized in  five sections: the remainder of this first section will load all related packages needed for this analysis and load the data set, the second section will describe the data used in this research and the methods to perform the analysis, the third section will explore the data further in exploratory analysis, the fourth section explains the NLP analysis conducted in this research, and the final section will discuss further work in this area.   
 
 ```{r, warning=FALSE, message=FALSE}
 pacman::p_load(tm, 
@@ -57,30 +49,331 @@ pacman::p_load(tm,
                widyr,
                textdata,
                tidyr,
-               topicmodels)
+               topicmodels,
+               dplyr,
+               magrittr,
+               gridExtra)
+
+root <- rprojroot::find_root(rprojroot::is_rstudio_project)
+root <- file.path(root, "student_project_folders", "oper655_fa2019_spangler", "Project", "Texas Last Statement - CSV.csv")
+data <- readr::read_csv(root)
+rm(root)
 ```
 
 ## Methodology 
 
-Describe the steps and methods you used for your analysis to go from raw data to end result.
-
 ### Data 
+The data set used for this analysis is from the website Kaggle.  The data set is titled "Last Words of Death Row Inmates" and contains data on 545 inmates between 1982 and 2017.  Each observation in the data set is an inmate who was sentenced to death with 20 variables describing the inmate.  The below list shows all variables available in the data set. The below list shows the name of the variable, what the variable describes, and what type of variable it is.
 
-Describe the data
+    - Execution Number is the number of the execution beginning in 1982 going
+    through 2017
+    - Last Name is a character variable with the last name of the prisoner
+    - First Name is a character variable with the first name of the prisoner
+    - TDCJNumber is a numeric variable 
+    - Age is a numeric variable with the age of the inmate when the death sentence
+    was administered
+    - Race is a character variable showing the race of the inmate in four levels:
+    Hispanic, White, Black, and Other
+    - County of Conviction is a character variable with the county where the inmate
+    was sentenced to death.
+    - Age when received is a numeric variable showing when the inmate was sentenced
+    to death
+    - Education Level is a numeric variable with the number of years of education
+    for each inmate
+    - Native County is...
+    - Previous crime is a binary variable with a zero indicating that the crime for
+    which they were sentenced to death was their first crime and a one indicating
+    that they were convicted of previous crimes
+    - Codefendents is a numeric showing the number of codefendents the inmate had
+    - Number of Vicitms is a numeric variable showing the number of victims the
+    inmate was convicte of crimes against
+    - There are four binary representing the race of the victim. The first is white
+    victim where a one indicates that the victim was white and a zero indicates
+    that the victim was of another race.  Similarly the other victim race variables
+    are binary variables indicating if the victim was hispanic, black, or other
+    - Female Victim is a binary variable with a zero indicating that the victim was
+    not female and a one representing that the victim was female
+    - Male Victim is a binary variable with a zero indicating that the victim was
+    not male and a one representing that the victim was male
+    - Last Statment is a character variable showing the full last statement of the 
+    inmate. This variable will be the primary focus of this research.  
+ 
+The data was downloaded from Kaggle in a CSV data table and was easily imported into R.  THe data cleaning process for this data set consisted of deriving variable bins for the age of the prisoner at death.  The age of each inmate was binned into ten year increments to group different ages together.  Additionally, a variable thought to be interesting to study in relation to last statements was the amount of time spent in prison.  This variable was derived by subtracting the age the inmate was received from the age of the inmate at death.  This variable was then binned into five year increments.  The final step was to remove missing values from the data set. For the purpose of this research, it was important to retain as many last statments as possible, so instead of removing observations from the data set with missing values, each value labeled as "NA" was replaced with a character value of "Not Available."  This retained the observation in the observation and also allowed for binning the Not Available values for analysis.  After the data cleaning process, exploratory analysis on the independent variables of the data set was conducted to visulaize the distributions of different variables and identify potenital areas of interest for this study.  
 
-- Where did you get the data?
-- In what format was the data when you received/retreived it?
-- What transformations did you perform on the data?
+````{r Data Set Up}
+data$Years_in_Prison <- data$Age - data$AgeWhenReceived
+data$AgeBin <- 0
+for (i in 1:length(data$Age)){
+  if ((data$Age[i] >= 20)&(data$Age[i] < 30)){
+    data$AgeBin[i] = "20-29"
+  }
+  if ((data$Age[i] >= 30)&(data$Age[i] < 40)){
+    data$AgeBin[i] = "30-39"
+  }
+  if ((data$Age[i] >= 40)&(data$Age[i] < 50)){
+    data$AgeBin[i] = "40-49"
+  }
+  if ((data$Age[i] >= 50)&(data$Age[i] < 60)){
+    data$AgeBin[i] = "50-59"
+   }
+  if ((data$Age[i] >= 60)&(data$Age[i] < 70)){
+    data$AgeBin[i] = "60-69"
+  }
+}
 
-### Analysis
+data$Years_in_Prison2 <- 0
 
-Walk your reader through you analysis.  The yaml header is already set to fold all code chunks. 
+for (i in 1:length(data$Years_in_Prison)){
+  if(is.na(data$Years_in_Prison[i])){
+    next
+  } 
+  if (data$Years_in_Prison[i] <= 5){
+      data$Years_in_Prison2[i] = "0-5"
+  }
+  if((data$Years_in_Prison[i] >5)&(data$Years_in_Prison[i] <= 10)){
+    data$Years_in_Prison2[i] = "6-10"
+  }
+  if ((data$Years_in_Prison[i] > 10)&(data$Years_in_Prison[i] <= 15)){
+    data$Years_in_Prison2[i] = "11-15"
+  }
+  if ((data$Years_in_Prison[i] >15) & (data$Years_in_Prison[i] <= 20)){
+    data$Years_in_Prison2[i] = "16-20"
+  }
+  if((data$Years_in_Prison[i]>20)&(data$Years_in_Prison[i] <= 25)){
+    data$Years_in_Prison2[i] = "21-25"
+  }
+  if((data$Years_in_Prison[i] > 25)&(data$Years_in_Prison[i] <= 30)){
+    data$Years_in_Prison2 = "26-30"
+  }
+  if((data$Years_in_Prison[i] > 30)){
+    data$Years_in_Prison2[i] = "30+"
+  }
+}
+
+for (i in 1:length(data$Years_in_Prison)){
+  if(is.na(data$Years_in_Prison[i])){
+    data$Years_in_Prison2[i] = "Not Available"
+  }
+}
+
+for (i in 1:length(data$NumberVictim)){
+  if(is.na(data$NumberVictim[i])){
+    data$NumberVictim[i] = "Not Available"
+  }
+}
+
+
+#Removes NAs from all cells and replaces with Not Available
+for (i in 1:length(data$Age)){
+  for (j in 1:23){
+    if (is.na(data[i,j])){
+      data[i,j] = "Not Available"
+    }
+  }
+}
+  
+````
+
+## Exploratory Analysis
+When analyzing the last statements of death row prison inmates, there are several factors that could influence the content of their last statement.  Analyzing the distribution of the independent variables included in the data set can help identify areas to study or areas that could be of interest in this study.  The below plots show the distributions of the county of conviction, age bins, education levels, number of victims, the race of the inmate, and the years in prison
+
+````{r Distributions}
+county_dist <- data %>%
+  count(CountyOfConviction, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(x = CountyOfConviction, n))+
+  geom_bar(stat = "identity") +
+  xlab("County of Conviction") +
+  ylab("Number of Convictions") +
+  labs(title = "Number of Death Penalty Convictions by County") +
+  theme(plot.title = element_text(hjust = .5, size = 5)) +
+  theme(axis.text = element_text(angle = 90, size = 5)) +
+  theme(axis.title = element_text(size = 5))
+
+agebin_dist <- data %>%
+  count(AgeBin, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(x = AgeBin, n))+
+  geom_bar(stat = "identity") +
+  xlab("Age") +
+  ylab("Number of Convictions") +
+  labs(title = "Number of Death Penalty Convictions by Age") +
+  theme(plot.title = element_text(hjust = .5, size = 5)) +
+  theme(axis.text = element_text(angle = 90, size = 5)) +
+  theme(axis.title = element_text(size = 5))
+
+years_in_prison_dist <- data %>%
+  count(Years_in_Prison2, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(x = Years_in_Prison2, n))+
+  geom_bar(stat = "identity") +
+  xlab("Years in Prison") +
+  ylab("Number of Convictions") +
+  labs(title = "Number of Death Penalty Convictions by Years in Prison") +
+  theme(plot.title = element_text(hjust = .5, size = 5)) +
+  theme(axis.text = element_text(angle = 90, size = 5)) +
+  theme(axis.title = element_text(size = 5))+
+  scale_x_discrete(name = "Years in Prison",
+                   limits = c("0-5", "6-10", "11-15", "16-20", "21-25", "30+", "Not Available"))
+
+race_dist <- data %>%
+  count(Race, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(x = Race, n))+
+  geom_bar(stat = "identity") +
+  xlab("Race") +
+  ylab("Number of Convictions") +
+  labs(title = "Number of Death Penalty Convictions by Race") +
+  theme(plot.title = element_text(hjust = .5, size = 5)) +
+  theme(axis.text = element_text(angle = 90, size = 5)) +
+  theme(axis.title = element_text(size = 5))
+
+EducationLevel_dist <- data %>%
+  count(EducationLevel, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(x = EducationLevel, n))+
+  geom_bar(stat = "identity") +
+  xlab("Education Level") +
+  ylab("Number of Convictions") +
+  labs(title = "Number of Death Penalty Convictions by Education Level") +
+  theme(plot.title = element_text(hjust = .5, size = 5)) +
+  theme(axis.text = element_text(angle = 90, size = 5)) +
+  theme(axis.title = element_text(size = 5)) +
+  scale_x_discrete(name = "Education Level",
+                   limits = c("0", "3", "4", "5", "6", "7",
+                              "8", "9", "10", "11", "12", 
+                              "13", "14", "16", "Not Available"))
+NumVic_dist <- data %>%
+  count(NumberVictim, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(x = NumberVictim, n))+
+  geom_bar(stat = "identity") +
+  xlab("Number Victim") +
+  ylab("Number of Convictions") +
+  labs(title = "Number of Death Penalty Convictions by Number Victim") +
+  theme(plot.title = element_text(hjust = .5, size = 5)) +
+  theme(axis.text = element_text(angle = 90, size = 5)) +
+  theme(axis.title = element_text(size = 5)) +
+  scale_x_discrete(name = "Number Victim",
+                  limits = c("0", "1", "2", "3", "4", "5", "6", "Not Available"))
+
+grid.arrange(county_dist, agebin_dist, EducationLevel_dist, NumVic_dist, race_dist, years_in_prison_dist, nrow = 2)
+
+rm(county_dist, agebin_dist, EducationLevel_dist, NumVic_dist, race_dist, years_in_prison_dist)            
+
+````
+
+From these plots, there is one county where the majority of inmates were convicted.  For age of inmates at death, almost half were in the age range of 30-39 and the age range of 40-49 has the second most inmates.  The other age bins have a few observations with 10 inmates in the 60-69 age range.  The majority of inmates have education levels in the range of 9-12 years with the majority having 12 years.  Almost all inmates were convicted of crimes against one victim with 90 inmates being convicted of crimes againts 2 victim.  There are 18 inmates where this data was unavailable and 1 inmate who was convicted of crimes against 6 victims. There is a pretty even spread in the race of inmates between black, white, and hispanic.  There are only two inmates with their race categorized as other.  The final variable is the years in prison for each inmate.  The majority of inmates are in the range 6-10 years.  From these plots, the variables that could be of interest in comparing the last statements are age, education level, number of victims, race, and years in prison.       
+
+## Analysis
+1. Word relationships and frequencies
+
+  The preliminary NLP analysis for this data is to analyze the most commonly used word and trigram within the last statements.  These can be generated and grouped by each variable identified in the exploratory analysis.  The below chart shows the top ten most commonly used words and trigrams across all inmates.  The most commonly used word is love and the most commonly used trigram is "I love you."  Where the trigram is NA corresponds to inmates that had no last statements or statements that were less than 3 words.  For example, one inmate's last statement was simply "Peace," so this would not be counted as a trigram.      
+  
+````{r}
+words <- data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  count(word, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(x = reorder(word, n), y = n)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Words", y = "Count", x = "Word") +
+  coord_flip()
+
+#Unnest Trigram and Count (NA is no last statement)
+trigram <- data %>%
+  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  count(trigram, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(x = reorder(trigram, n), y = n)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Trigrams", x = "Trigram", y = "Count") +
+  coord_flip()
+
+grid.arrange(words, trigram, nrow = 1)
+rm(words, trigram)
+
+````
+
+Grouping the words and trigrams by race shows that the most commonly used words and trigrams are consistent across all races.  The race categorized as other was filtered out from this analysis due to the small number of observations.  The most common word is love and the most common trigram is "I love you."  A trigram that could be of interest in this analysis is the trigram "i am sorry" or "would like to" could be used to apologize or show remorse.  
+
+````{r}
+#Unnest Words/Trigrams and groups by Race
+words <- data %>% 
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  filter(Race != "Other") %>%
+  group_by(Race) %>%
+  count(word, sort = TRUE) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  ggplot(aes(x = word, y = n, fill = Race)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~Race, scales = "free_y") +
+  labs(x = NULL, y = "Count", title = "Word Count") +
+  coord_flip() +
+  theme(legend.position = "none")
+
+trigram <- data %>% 
+  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  filter(Race != "Other") %>%
+  group_by(Race) %>%
+  count(trigram, sort = TRUE) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  ggplot(aes(x = trigram, y = n, fill = Race)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~Race, scales = "free_y") +
+  labs(x = NULL, y = "Count", title = "Trigram Count") +
+  coord_flip() +
+  theme(legend.position = "none")
+
+race_trigram_freq <- data %>%
+  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  group_by(Race) %>%
+  filter(Race != "Other") %>%
+  count(trigram) %>%
+  top_n(10) %>%
+  transmute(trigram, all_trigram = n/sum(n)) %>%
+  arrange(desc(all_trigram)) %>%
+  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= Race)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~Race) +
+  theme(legend.position = "none")
+
+grid.arrange(words, trigram, nrow = 2)
+
+
+````
+
+The frequency of words and trigrams is oftentimes more informative as the number of words used across the different last statement differs.   
+
+````{r}
+race_trigram_freq <- data %>%
+  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  group_by(Race) %>%
+  filter(Race != "Other") %>%
+  count(trigram) %>%
+  top_n(10) %>%
+  transmute(trigram, all_trigram = n/sum(n)) %>%
+  arrange(desc(all_trigram)) %>%
+  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= Race)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~Race) +
+  theme(legend.position = "none")
+
+````
+2. Topic Modeling
+3. Sentiment Analysis
 
 ## Findings and Conclusions 
 
-Describe your findings and conclusions here.  Include your important visualizations
 
-### Future Work
+## Future Work
 
-What else would you do if you had more time?
-
+# References
