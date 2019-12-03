@@ -65,11 +65,6 @@ mcu_phase1 <- list.files(dest1,
                          pattern = 'pdf',
                          full.names = TRUE)
 
-mcu_phase3[1]
-tb_pdftools_mcu3 <- pdftools::pdf_text(pdf = mcu_phase3[1])
-tb_pdftools_mcu2 <- pdftools::pdf_text(pdf = mcu_phase2[1])
-tb_pdftools_mcu1 <- pdftools::pdf_text(pdf = mcu_phase1[1])
-
 <<<<<<< HEAD
 #Attempting to add the rest of the scripts of the MCU into a corpus.
 for (i in 1:8) {
@@ -89,6 +84,12 @@ for (i in 1:5) {
 >>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
 text_tb <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu1, tb_pdftools_mcu2, tb_pdftools_mcu3),
                           text = tb_pdftools)
+
+#Tests
+mcu_phase3[1]
+tb_pdftools_mcu3 <- pdftools::pdf_text(pdf = mcu_phase3[1])
+tb_pdftools_mcu2 <- pdftools::pdf_text(pdf = mcu_phase2[1])
+tb_pdftools_mcu1 <- pdftools::pdf_text(pdf = mcu_phase1[1])
 
 
 text_tb %>%
