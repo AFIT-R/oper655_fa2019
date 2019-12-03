@@ -1,0 +1,59 @@
+---
+output: html_document
+---
+
+# Basic Text Processing Steps with Tensorflow
+
+## Working with Jane Austen's _Emma_
+
+At this point we need some text to work with.  Let's use the text from the book <b><i>Emma</i></b> written by Jane Austen, which is made available by the r package `janeaustenr`. We'll save the text from the book under an object named `emma`. 
+
+```{r}
+(emma = janeaustenr::emma[20:30])
+```
+
+Next, we create an instance of a tokenizer function using the `Tokenizer` sub-module that we extracted from `tensorflow` earlier.  Note that although we use the `Tokenizer`,  Tensorflow and Keras provide several ways to encode words. The Tokenizer generates the dictionary of word encodings and creates vectors out of the sentences.  
+
+The parameter `num_words = 100` instructs the tokenizer to take the top 100 most used words and just encode those. It's a shortcut when dealing with a large corpus, and worth experimenting with when training with real data.  Note that sometimes the impact of less words can be minimal with respect to training accuracy, but huge in terms of training time.
+
+```{python}
+tokenizer = Tokenizer(num_words = 100,
+                      oov_token = "<OOV>")
+
+type(tokenizer)
+```
+
+As we'll see, the object `tokenizer` we just created contains other sub-functions that will applied to our text. Also, note that the purpose of the `oov_token = <OOV>` will refer to any token that appears in our training data vocabulary but does not appear in our test data (out of vocabulary). The purpose of this will become clear soon.  
+
+Now, we `fit_on_texts()` function that is part of `tokenizer` to builds a dictionary of words from the corpus `emma`. Any inference/prediction will be dependent on the word dictionary to which it uses for comparison 
+
+```{python}
+tokenizer.fit_on_texts(r.emma)
+```
+
+After, creating our vocabulary with `fit_on_texts()` we may want to view the word index that was generated.  The result of this is a set of `token : id` pairs denoting the order of the words encountered in the text.  You'll note that (1) `fit_on_texts()` converts the text to it's lower-cased representation as well as stripping punctuation and (2) the results are not particularly easy to read.
+
+```{python}
+word_index = tokenizer.word_index
+
+print(word_index)
+```
+
+Next, we need to convert the encoded sentences into lists of value sequences based on the included tokens. This is done using the `texts_to_sequences()` function
+
+```{python}
+sequences = tokenizer.texts_to_sequences(r.emma)
+
+print(sequences)
+```
+
+Then, we'll need to manipulate the lists, making each one the same length, to make it easier to train a neural network.  To make each list of value sequences the same length we'll do what's called padding our sequences using `pad_sequences()`.  This functions adds "padding" to each sequence of token values such that each are the same length, and then stores these padded sequences in a matrix. The argument `padding = "post"` indicates that the padding should be added to the end of the matrix (rather than at the beginning).  The `maxlen = 4` argument indicates that we want to truncate our sequences (sentences) after four values (words). Finally, the `truncating = "post"` argument indicates from which end the sequences should be truncated.
+
+```{python}
+padded = pad_sequences(sequences, 
+                       padding = "post", 
+                       maxlen = 12, 
+                       truncating = "post")
+
+padded
+```

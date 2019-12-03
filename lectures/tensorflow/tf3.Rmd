@@ -1,0 +1,273 @@
+---
+title: "embeddings"
+author: "Jason Freels"
+date: "8/21/2019"
+output: 
+  html_document:
+    df_print: "paged"
+---
+
+```{r}
+library(reticulate)
+reticulate::conda_python(envname = "r-reticulate")
+```
+
+```{python}
+import tensorflow as tf
+
+print(tf.__version__)
+```
+
+Download the data, along with metadata to a specified directory. `tensorflow_datasets` will attempt to load these data to a default directory.  In my case, my Virus protection would not allow these new directories/files to be created in a "protected folder".  Therefore, I specified another location.
+
+```{python}
+import tensorflow_datasets as tfds
+
+imdb, info = tfds.load("imdb_reviews", with_info=True, as_supervised=True,data_dir = "C:\\Users\\Aubur\\OneDrive\\Desktop")
+```
+
+Let's look into the `imdb` and `info` objects.  First let's see what keys are available
+
+```{python}
+type(imdb)
+```
+
+```{python}
+imdb_dir = dir(imdb)
+```
+
+```{r}
+data.frame(py$imdb_dir)
+```
+
+```{python}
+imdb.keys()
+```
+
+```{python}
+unsp = imdb['unsupervised']
+
+unsp.output_shapes
+```
+
+```{python}
+import numpy as np
+
+train_data, test_data = imdb['train'], imdb['test']
+```
+
+
+```{python}
+training_sentences = []
+training_labels = []
+
+testing_sentences = []
+testing_labels = []
+
+# str(s.tonumpy()) is needed in Python3 instead of just s.numpy()
+# this doesn't seem to be the case anymore
+
+for s,l in train_data:
+  training_sentences.append(str(s.numpy()))
+  training_labels.append(l.numpy())
+
+for s,l in train_data:
+  testing_sentences.append(str(s.numpy()))
+  testing_labels.append(l.numpy())
+```
+
+
+```{python}
+training_labels_final = np.array(training_labels)
+
+testing_labels_final = np.array(testing_labels)
+```
+
+```{python}
+vocab_size = 10000
+embedding_dim = 16
+max_length = 120
+trunc_type = "post"
+oov_tok = "<OOV>"
+
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+tokenizer = Tokenizer(num_words = vocab_size, oov_token = oov_tok)
+
+tokenizer.fit_on_texts(training_sentences)
+word_index = tokenizer.word_index
+sequences = tokenizer.texts_to_sequences(training_sentences)
+
+padded = pad_sequences(sequences, maxlen = max_length, truncating = trunc_type)
+
+testing_sequences = tokenizer.texts_to_sequences(testing_sentences)
+testing_padded = pad_sequences(testing_sequences, maxlen = max_length)
+```
+
+```{python}
+model = tf.keras.Sequential([
+  tf.keras.layers.Embedding(vocab_size, embedding_dim, input_length=max_length),
+  tf.keras.layers.Flatten(),
+  tf.keras.layers.Dense(6,activation = "relu"),
+  tf.keras.layers.Dense(1,activation = "sigmoid")
+])
+
+model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
+model.summary()
+```
+
+```{python}
+num_epochs = 10
+model.fit(padded,training_labels_final,epochs=num_epochs,validation_data=(testing_padded, testing_labels_final))
+```
+
+```{python}
+model2 = tf.keras.Sequential([
+  tf.keras.layers.Embedding(vocab_size, embedding_dim, input_length=max_length),
+  tf.keras.layers.GlobalAveragePooling1D(),
+  tf.keras.layers.Dense(6,activation = "relu"),
+  tf.keras.layers.Dense(1,activation = "sigmoid")
+])
+
+model2.summary()
+```
+
+Vizualise the embeddings. 10000 X 16 array
+
+```{python}
+e = model.layers[0]
+weights = e.get_weights()[0]
+print(weights.shape) # shape: (vocab_size, embedding_dim)
+```
+
+Helper function to help decode the words from their numerical representations
+
+```{python}
+reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])
+
+def decode_review(text):
+    return ' '.join([reverse_word_index.get(i, '?') for i in text])
+
+print(decode_review(padded[1]))
+print(training_sentences[1])
+```
+
+```{python}
+import io
+
+out_v = io.open('vecs.tsv', 'w', encoding='utf-8')
+out_m = io.open('meta.tsv', 'w', encoding='utf-8')
+for word_num in range(1, vocab_size):
+  word = reverse_word_index[word_num]
+  embeddings = weights[word_num]
+  out_m.write(word + "\n")
+  out_v.write('\t'.join([str(x) for x in embeddings]) + "\n")
+out_v.close()
+out_m.close()
+```
+
+To visualize upload these data to http://projector.tensorflow.org
+
+```{python}
+sentence = "I really think this is amazing. honest."
+sequence = tokenizer.texts_to_sequences(sentence)
+print(sequence)
+```
+
+```{python}
+imdb.items()
+```
+
+Try this link later from coursera
+
+https://colab.research.google.com/github/lmoroney/dlaicourse/blob/master/TensorFlow%20In%20Practice/Course%203%20-%20NLP/Course%203%20-%20Week%202%20-%20Lesson%201.ipynb#scrollTo=_IoM4VFxWpMR
+
+## diving into the code
+
+```{python}
+imdb, info = tfds.load("imdb_reviews/subwords8k", 
+                       with_info=True, 
+                       as_supervised=True,
+                       data_dir = "C:\\Users\\Aubur\\OneDrive\\Desktop")
+```
+
+
+```{python}
+train_data, test_data = imdb['train'], imdb['test']
+```
+
+Learn more <a target=" " href='https://www.tensorflow.org/datasets/api_docs/python/tfds/features/text/SubwordTextEncoder'>HERE</a>
+
+```{python}
+tokenizer = info.features['text'].encoder
+```
+
+```{python}
+print(tokenizer.subwords)
+```
+
+How the tokenizer encodes strings as numerical values using the vocabulary and then decodes them as well
+
+```{python}
+sample_string = "Tensorflow, from basics to mastery"
+
+tokenized_string = tokenizer.encode(sample_string)
+
+print("Tokenized string is {}".format(tokenized_string))
+
+original_string = tokenizer.decode(tokenized_string)
+print("The original string: {}".format(original_string))
+```
+
+```{python}
+for ts in tokenized_string:
+  print("{} -----> {}".format(ts,tokenizer.decode([ts])))
+```
+
+
+```{python}
+embedding_dim = 64
+
+model3 = tf.keras.Sequential([
+  tf.keras.layers.Embedding(tokenizer.vocab_size, 
+                            embedding_dim),
+  tf.keras.layers.GlobalAveragePooling1D(),
+  tf.keras.layers.Dense(6,activation = "relu"),
+  tf.keras.layers.Dense(1,activation = "sigmoid")
+])
+
+model3.summary()
+```
+
+
+```{python}
+num_epochs = 10
+
+model3.compile(loss = "binary_crossentropy",
+               optimizer = "adam",
+               metrics = ['accuracy'])
+
+history = model3.fit(train_data,
+                     epochs = num_epochs,
+                     validation_data = test_data)
+```
+
+```{python}
+import matplotlib.pyplot as plt
+
+def plot_graphs(history,string):
+  plt.plot(history.history[string])
+  plt.plot(history.history["val_"+string])
+  plt.xlabel("Epochs")
+  plt.ylabel(string)
+  plt.legend([string, "val_"+string])
+  plt.show()
+
+plot_graphs(history, "acc")
+plot_graphs(history, "loss")
+```
+
+```{python}
+
+```

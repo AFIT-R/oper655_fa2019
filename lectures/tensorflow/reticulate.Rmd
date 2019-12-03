@@ -1,0 +1,138 @@
+---
+output: html_document
+---
+
+```{r, echo=FALSE}
+library(reticulate)
+```
+
+## Using The `reticulate` R Package (reproduced from [**here**](https://rstudio.github.io/reticulate/#python-in-r-markdown))
+
+The `reticulate` package provides a comprehensive set of tools for interoperability between Python and R. The package includes facilities for:
+
+- Calling Python from R in a variety of ways including R Markdown, sourcing Python scripts, importing Python modules, and using Python interactively within an R session.
+
+- Translation between R and Python objects (for example, between R and Pandas data frames, or between R matrices and NumPy arrays).
+
+- Flexible binding to different versions of Python including virtual environments and Conda environments.
+
+`reticulate` embeds a Python session within your R session, enabling seamless, high-performance interoperability. As an R developer that uses Python for some of your work or a member of data science team that uses both languages, `reticulate` can greatly streamline your workflow!
+
+## Installation
+
+Install the `reticulate` package from CRAN as follows:
+
+```{r, eval=FALSE}
+install.packages("reticulate")
+```
+
+By default, `reticulate` uses the version of Python found on your `PATH` (i.e. `Sys.which("python")`). The `reticulate::use_python()` function enables you to specify an alternate version, for example:
+
+```{r, eval=FALSE}
+reticulate::use_python("path/to/python.exe", required = T)
+```
+
+The `reticulate::use_virtualenv()` and `reticulate::use_condaenv()` functions enable you to specify versions of Python in virtual or Conda environments, for example: `reticulate::use_virtualenv("myenv")`. See [**this article**](https://rstudio.github.io/reticulate/articles/versions.html) for more details.
+
+You can install any required Python packages using standard shell tools like `pip` and `conda`. Alternately, `reticulate` includes functions for managing and installing packages within virtual environments and Conda environments. See [**this article**](https://rstudio.github.io/reticulate/articles/python_packages.html) for more details.
+
+## There are a variety of ways to integrate Python code into your R projects:
+
+### Python in R Markdown 
+
+The reticulate package includes a new Python engine for R Markdown that supports bi-directional communication between R and Python (R chunks can access Python objects and vice-versa).
+
+- Run Python chunks in a single Python session embedded within your R session (shared variables/state between Python chunks)
+
+- Printing of Python output, including graphical output from `matplotlib`.
+
+- Access to objects created within Python chunks from R using the py object (e.g. `py$x` would access an `x` variable created within Python from R).
+
+- Access to objects created within R chunks from Python using the r object (e.g. `r.x` would access to `x` variable created within R from Python)
+
+Built in conversion for many Python object types is provided, including `NumPy` arrays and Pandas data frames. From example, you can use `Pandas` to read and manipulate data then easily plot the `Pandas` data frame using `ggplot2`:
+
+```{python}
+import pandas as pd
+
+flights = pd.read_csv("data/flights.csv")
+flights = flights[flights['dest'] == "ORD"]
+flights = flights[['carrier','dep_delay','arr_delay']]
+flights = flights.dropna()
+```
+
+```{r}
+library(ggplot2)
+g = ggplot(py$flights, aes(carrier, arr_delay))
+
+g + geom_point() + geom_jitter()
+```
+
+### Importing Python modules 
+
+`reticulate::import()` allows you to import any Python module and call its functions directly from R.
+
+```{r}
+library(reticulate)
+os <- import("os")
+os$listdir(".")
+```
+
+### Sourcing Python scripts 
+
+You can source any Python script using  `reticulate::source_python()` the same way you would `source()` an R script (Python functions and objects defined within the script become directly available to the R session).
+
+```{python, eval=FALSE}
+import pandas as pd
+
+def read_flights(file):
+  flights = pd.read_csv(file)
+  flights = flights[flights['dest'] == "ORD"]
+  flights = flights[['carrier', 'dep_delay', 'arr_delay']]
+  flights = flights.dropna()
+  return flights
+```
+
+Then you can source the script and call the `read_flights()` function as follows:
+
+```{r flights}
+source_python("python/flights.py")
+flights <- read_flights("data/flights.csv")
+
+library(ggplot2)
+g = ggplot(flights, aes(carrier, arr_delay))
+
+g + geom_point() + geom_jitter()
+```
+
+See `?reticulate::source_python()` for documentation and additional details on sourcing Python code.
+
+### Python REPL 
+
+If you want to work with Python interactively `reticulate::repl_python()` creates an interactive Python console within R. Objects you create within Python are available to your R session (and vice-versa).
+
+Enter `exit` within the Python REPL to return to the R prompt.
+
+Note that Python code can also access objects from within the R session using the `r` object (e.g. r.flights). See `?reticulate::repl_python()` for the documentation file and additional details on using the embedded Python REPL.
+
+## Type Conversions
+
+When calling into Python, R data types are automatically converted to their equivalent Python types. When values are returned from Python to R they are converted back to R types. Types are converted as follows:
+
+```{r}
+r2py <- tibble::tribble(
+~R,	~Python,	~Examples,
+"Single-element vector", "Scalar", '1, 1L, TRUE, "foo"',
+'Multi-element vector', "List", "c(1.0, 2.0, 3.0), c(1L, 2L, 3L)",
+"List of multiple types", "Tuple", 'list(1L, TRUE, "foo")',
+"Named list",	"Dict", "list(a = 1L, b = 2.0), dict(x = x_data)",
+"Matrix/Array", "NumPy ndarray", "matrix(c(1,2,3,4), nrow = 2, ncol = 2)",
+"Data Frame", "Pandas DataFrame",	'data.frame(x = c(1,2,3), y = c("a", "b", "c"))',
+"Function",	"Python function",	"function(x) x + 1",
+'NULL, TRUE, FALSE',	"None, True, False",	"NULL, TRUE, FALSE" 
+)
+
+knitr::kable(r2py)
+```
+
+If a Python object of a custom class is returned then an R reference to that object is returned. You can call methods and access properties of the object just as if it was an instance of an R reference class.
