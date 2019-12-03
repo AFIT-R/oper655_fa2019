@@ -49,14 +49,6 @@ pacman::p_load_gh("dgrtwo/drlib",
                   "trinker/termco", 
                   "trinker/coreNLPsetup",        
                   "trinker/tagger")
-pacman::p_load(pdftools,     # extract content from PDF documents
-               XML,          # Working with XML formatted data
-               here,         # References for file paths
-               countrycode,  # Working with names of countries
-               tibble,       # Creating and manipulating tibbles
-               qdap,
-               stringr)      # Tools for qualitative data
-
 library(here)
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 dest3 <- file.path(root,'student_project_folders','oper655_fa2019_giddings','MCU Scripts', 'Phase 3')
