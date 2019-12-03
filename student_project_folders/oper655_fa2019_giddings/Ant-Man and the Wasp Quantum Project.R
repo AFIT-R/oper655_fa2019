@@ -12,10 +12,13 @@ pacman::p_load(pdftools,     # extract content from PDF documents
 if (packageVersion("devtools") < 1.6) {
   install.packages("devtools")
 }
+<<<<<<< HEAD
+=======
 install.packages(qdap)
 library(qdap)
 devtools::install_github("bradleyboehmke/harrypotter")
 harrypotter::philosophers_stone[1]
+>>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
 pacman::p_load(tm, 
                pdftools, 
                here,
@@ -46,14 +49,6 @@ pacman::p_load_gh("dgrtwo/drlib",
                   "trinker/termco", 
                   "trinker/coreNLPsetup",        
                   "trinker/tagger")
-pacman::p_load(pdftools,     # extract content from PDF documents
-               XML,          # Working with XML formatted data
-               here,         # References for file paths
-               countrycode,  # Working with names of countries
-               tibble,       # Creating and manipulating tibbles
-               qdap,
-               stringr)      # Tools for qualitative data
-
 library(here)
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 dest3 <- file.path(root,'student_project_folders','oper655_fa2019_giddings','MCU Scripts', 'Phase 3')
@@ -70,11 +65,31 @@ mcu_phase1 <- list.files(dest1,
                          pattern = 'pdf',
                          full.names = TRUE)
 
-mcu_phase3[1]
-tb_pdftools <- pdftools::pdf_text(pdf = mcu_phase3[1])
+<<<<<<< HEAD
+#Attempting to add the rest of the scripts of the MCU into a corpus.
+for (i in 1:8) {
+  nam <- paste("tb_pdftools_mcu3",i,sep = "")
+  assign(nam,pdftools::pdf_text(pdf = mcu_phase3[i]))
+}
+for (i in 1:6) {
+  nam <- paste("tb_pdftools_mcu2",i,sep = "")
+  assign(nam,pdftools::pdf_text(pdf = mcu_phase2[i]))
+}
+for (i in 1:5) {
+  nam <- paste("tb_pdftools_mcu1",i,sep = "")
+  assign(nam,pdftools::pdf_text(pdf = mcu_phase1[i]))
+}
 
-text_tb <- tibble::tibble(chapter = base::seq_along(tb_pdftools),
+=======
+>>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
+text_tb <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu1, tb_pdftools_mcu2, tb_pdftools_mcu3),
                           text = tb_pdftools)
+
+#Tests
+mcu_phase3[1]
+tb_pdftools_mcu3 <- pdftools::pdf_text(pdf = mcu_phase3[1])
+tb_pdftools_mcu2 <- pdftools::pdf_text(pdf = mcu_phase2[1])
+tb_pdftools_mcu1 <- pdftools::pdf_text(pdf = mcu_phase1[1])
 
 
 text_tb %>%

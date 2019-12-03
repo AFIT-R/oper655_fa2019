@@ -1,0 +1,268 @@
+---
+title: "Named Entity Recognition"
+author: "Tyler Spangler, Aaron Giddings, Max Thompson"
+date: "18 November 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+There are multiple different R packages that can perfrom Named Entity Recognition (NER).  A few include trinker/entity, monkeylearn, openNLP, and spaCyR.  trinker/entity package is from github and when experimenting with this package, it would output items that were not named entities.  Additionally, to extract the entities, you must specify in the command which entity you are extracting.  The monkeylearn package interfaces with the MonkeyLearn API which is a machine learning platform on the cloud.  We downloaded the API key from the website, but quickly ran out of runs against the API.  The openNLP package interfaces to the Apache OpenNlp which is a machine learning based toolkit for NLP text written in java.  The spaCyR package is an R wrapper to the Python spaCy NLP package.  We tried both openNLP and spaCyR and found that spaCyR was easier to extract the entities and other aspects of the text.  The openNLP package worked, but the output was not as easily readable or intereptable as the spaCyR output.  A downside to spaCyR is that it requires a Python environment to operate and can take a while to load the first time.  Instructions for loading spaCyR can be found at https://spacyr.quanteda.io/.  This "tutorial" will use spaCyR. 
+
+The first step is to load the required packages and load the data using Huf's code.  The command spacy_initialize() is an important command that loads the miniconda environment that spaCyR will use to run the functions.  We do not unnest the tokens when loading the data and leave the comments intact.
+````{r}
+pacman::p_load(tidyr,
+               tidytext,
+               tidyverse,
+               textdata,
+               dplyr,
+               stringr,
+               ggplot2,
+               magrittr,
+               wordcloud,
+               reshape2,
+               entity,
+               monkeylearn,
+               quanteda,
+               spacyr,
+               rJava,
+               NLP,
+               openNLP)
+
+spacy_initialize()
+root <- rprojroot::find_root(rprojroot::is_rstudio_project)
+file_loc <- file.path(root,"data","phone_user_reviews")
+
+file_list <- list.files(path = file_loc,
+                        pattern = "",
+                        full.names = TRUE)
+reviews_tidy <- tibble::tibble()
+manu_pattern <- "/cellphones/[a-z0-9]+"
+prod_pattern <- paste(manu_pattern, "-|/", sep = "")
+for (i in file_list){
+  input <- load(i,ex <- new.env())
+  text_raw <- get(ls(ex),ex)
+  text_en <- text_raw[text_raw$lang=="en",]
+  rm(ex, text_raw, input, i)
+  
+  clean <- tibble::tibble(score = text_en$score,
+                          maxscore = text_en$score_max,
+                          text = text_en$extract,
+                          product = gsub(prod_pattern, "", text_en$phone_url),
+                          author = text_en$author,
+                          manufacturer = gsub("/cellphones/","",str_extract(text_en$phone_url,manu_pattern)))#%>%
+  #tidytext::unnest_tokens(word, text) 
+  reviews_tidy <- base::rbind(reviews_tidy, clean)
+  rm(text_en, clean)
+}
+rm(file_list, root, manu_pattern, prod_pattern, file_loc)
+
+````
+With the data loaded in the tibble, reviews_tidy, spaCyR can be used to parse out the data.  Before using the spacy_parse command, the data must be in a data.frame and only the comment column is run through the command.  This command will unnest the tokens and perform part of speech tagging, lemmatizing, and NER on the token. With this command performing so many functions, it takes a long time to run on the more than 550,000 rows of the original data.  For the purpose of this tutorial, we will run the spacy_parse function on a set of 100 rows from the original data.  
+
+````{r}
+presentation_data <- as.data.frame(reviews_tidy[1:100,], stringsAsFactors = FALSE)
+presentation_parsed <- spacy_parse(presentation_data$text, entity = TRUE)
+head(presentation_parsed)
+
+presentation_extracted <- entity_extract(presentation_parsed)
+head(presentation_extracted)
+````
+To load the full data, the data was split into increments of 50,000 rows and parsed.  The parsed increments were each saved as a .Rdata file.  After each subset was parsed, it was combined into one dataset and the entities were extracted using the entity_extract function (demonstrated above) and saved as a .RData file in the NER folder in my student folder.  The remaining portion of this "tutorial will use the compiled data set.  
+
+````{r}
+setwd("C:/Users/Tyler/Documents/oper655_fa2019/student_project_folders/oper655_fa2019_spangler/NER")
+load("fullextracted.RData")
+head(full_extracted)
+````
+With the full data loaded, we can look at the counts for different entities and what the most common named entities are. 
+
+````{r}
+full_extracted %>%
+  filter(entity_type != "CARDINAL" & entity_type != "ORDINAL") %>%
+  count(entity_type) %>%
+  top_n(10) %>%
+  ggplot(aes(x = entity_type, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+full_extracted %>%
+  filter(entity_type == "PRODUCT") %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(10) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Product Entities")+
+  xlab("Product") +
+  ylab("Number of Entries")
+
+full_extracted %>%
+  filter(entity_type == "ORG") %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(20) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Organizations")+
+  xlab("Organizations") +
+  ylab("Number of Mentions")
+
+full_extracted %>%
+  filter(entity_type == "PERSON" ) %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(10) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "What is Labelled as People")+
+  xlab("Products") +
+  ylab("Number of Mentions")
+
+full_extracted %>%
+  filter(entity_type == "LOC" ) %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(10) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Locations")+
+  xlab("Locations") +
+  ylab("Number of Mentions")
+
+full_extracted %>%
+  filter(entity_type == "GPE" ) %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(10) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(title = "Geopolitical Entities")+
+  xlab("GPEs") +
+  ylab("Mentions")
+````
+
+As mentioned in the general NER presentation, there are a few different uses of NER.  The first application is to use NER as a search algorithm.  In our dataset, the manufacturer is already listed as a column, so this is not really necessary, but not using the manufacturer column or imagining that it is gone, we can use NER to extract only the reviews that mention certain manufacturers.  The reviews may not be about their phones in particular, but they may also contain comparisons between two companies.  Samsung is the most commonly occuring organization so we will start with Samsung.  
+
+```{r}
+samsung_reviews <- full_extracted %>%
+  filter(entity == "Samsung" | entity == "samsung") %>%
+  mutate(rownum = str_sub(doc_id, 5)) 
+
+all_samsung_reviews <- reviews_tidy[c(samsung_reviews$rownum),]
+head(all_samsung_reviews)
+```
+
+The same can be done with Nokia which is the second most common organization entity.  
+
+````{r}
+nokia_reviews <- full_extracted %>%
+  filter(entity == "Nokia" | entity == "nokia") %>%
+  mutate(rownum = str_sub(doc_id, 5)) 
+
+all_nokia_reviews <- reviews_tidy[c(nokia_reviews$rownum),]
+head(all_nokia_reviews)
+````
+
+Finally, we can do the same for Apple to see the reviews for Apple.  
+
+````{r}
+apple_reviews <- full_extracted %>%
+  filter(entity == "Apple" | entity == "apple") %>%
+  mutate(rownum = str_sub(doc_id, 5)) 
+
+all_apple_reviews<- reviews_tidy[c(apple_reviews$rownum),]
+head(all_apple_reviews)
+````
+This same concept can be applied to different kinds of phones.  S5 was the most commonly mentioned product entity.  
+
+````{r}
+s5_reviews <- full_extracted %>%
+  filter(entity == "S5" | entity == "s5") %>%
+  mutate(rownum = str_sub(doc_id, 5))
+
+all_s5_reviews <- reviews_tidy[c(s5_reviews$rownum),]
+head(all_s5_reviews)
+````
+
+Another application of NER is being able to use sentitment analysis on named entities.  After doing a search and extracting only reviews that mention an organization or product, we can use sentiment analysis on these reviews to get an idea of how people are viewing different organizations or products.  
+
+````{r}
+all_samsung_reviews %>%
+  unnest_tokens(word, text) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  arrange(desc(sentiment)) %>%
+  top_n(10)
+
+#Can also arrange to see the most negative reviews
+all_samsung_reviews %>%
+  unnest_tokens(word, text) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  arrange(sentiment) %>%
+  top_n(10)
+
+````
+
+This can be applied to both Nokia and Apple to determine the sentiment associated with the reviews that mention these two companies.
+
+````{r}
+all_apple_reviews %>%
+  unnest_tokens(word, text) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  arrange(desc(sentiment)) %>%
+  top_n(10)
+
+all_nokia_reviews %>%
+  unnest_tokens(word, text) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  arrange(desc(sentiment)) %>%
+  top_n(10)
+
+````
+
+Being able to apply sentiment to the three companies allows us to compare the total sentiment for each company.  The sentiment values for each phone are summed and divided by the total number of reviews that mention each brand.    
+
+````{r}
+all_nokia_reviews %>%
+  unnest_tokens(word, text) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  summarise(sum(sentiment)/7575)
+
+all_samsung_reviews %>%
+  unnest_tokens(word, text) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  summarise(sum(sentiment)/14937)
+
+all_apple_reviews %>%
+  unnest_tokens(word, text) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(index = author, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  summarise(sum(sentiment)/4400)
+````

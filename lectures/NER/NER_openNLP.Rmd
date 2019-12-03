@@ -1,0 +1,245 @@
+---
+title: "OPER655 - Examples"
+subtitle: "Named Entity Recognition"
+author: "Maj Bryan Kolano, 2Lt Nate Beveridge, 2Lt Zachary Kane"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output: 
+  html_document:
+    code_folding: 'hide'
+    
+---
+
+# Named Entity Recognition using openNLP
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = F,
+                      warning = F, 
+                      comment = NA)
+```
+
+Prior to using the `openNLP` package, you must first download the corresponding language package from the [**datacube**](http://datacube.wu.ac.at) repository as shown below
+
+```{r, eval=FALSE}
+install.packages("openNLPmodels.en", 
+                 repos = "http://datacube.wu.ac.at/",
+                 type = "source")
+```
+
+Then, you'll need to load the following packages using `pacman`.
+
+```{r}
+pacman::p_load(openNLP,
+               coreNLP,
+               readr,
+               NLP,
+               monkeylearn,
+               magrittr)
+
+# Or if you already have them installed, just load the libraries
+```
+
+Now that the packages are loaded, we need to insert the text documents
+
+# `openNLP` on State of the Union Address
+
+Next, the team used the `openNLP` NER capability in a slight different manner to see how well it could do on multiple State of the Union Addresses. Reading in all the text documents below as follows:
+
+```{r}
+bush1989 <- NLP::as.String(readr::read_file("data/Bush_1989.txt"))
+bush1990 <- NLP::as.String(readr::read_file("data/Bush_1990.txt"))
+bush1991 <- NLP::as.String(readr::read_file("data/Bush_1991.txt"))
+bush1992 <- NLP::as.String(readr::read_file("data/Bush_1992.txt"))
+bush2001 <- NLP::as.String(readr::read_file("data/Bush_2001.txt"))
+bush2002 <- NLP::as.String(readr::read_file("data/Bush_2002.txt"))
+bush2003 <- NLP::as.String(readr::read_file("data/Bush_2003.txt"))
+bush2004 <- NLP::as.String(readr::read_file("data/Bush_2004.txt"))
+```
+
+Now we define the annotators we will need.
+
+```{r echo=TRUE}
+# the first two are the same ones used in POS tagging
+
+token_annotator_sent <- openNLP::Maxent_Sent_Token_Annotator()
+token_annotator_word <- openNLP::Maxent_Word_Token_Annotator()
+
+# these next six allow for extraction of the specific entity types
+
+entity_annotator_ppls <- openNLP::Maxent_Entity_Annotator(kind = "person")
+entity_annotator_orgs <- openNLP::Maxent_Entity_Annotator(kind = "organization")
+entity_annotator_mone <- openNLP::Maxent_Entity_Annotator(kind = "money")
+entity_annotator_loca <- openNLP::Maxent_Entity_Annotator(kind = "location")
+entity_annotator_perc <- openNLP::Maxent_Entity_Annotator(kind = "percentage")
+entity_annotator_date <- openNLP::Maxent_Entity_Annotator(kind = "date")
+
+# we can now bundle them into one list
+annotators_all <- list(entity_annotator_ppls,
+                       entity_annotator_orgs,
+                       entity_annotator_mone,
+                       entity_annotator_loca,
+                       entity_annotator_perc,
+                       entity_annotator_date)
+```
+
+In order to annotate entities we need to run the sentence and word token annotators on our text.
+
+```{r echo=TRUE}
+tokenized_bush1989 <- NLP::annotate(bush1989, 
+                                    list(token_annotator_sent,
+                                         token_annotator_word))
+
+tokenized_bush1990 <- NLP::annotate(bush1990, 
+                                    list(token_annotator_sent,
+                                         token_annotator_word))
+
+tokenized_bush1991 <- NLP::annotate(bush1991, 
+                                    list(token_annotator_sent,
+                                         token_annotator_word))
+
+tokenized_bush1992 <- NLP::annotate(bush1992, 
+                                    list(token_annotator_sent,
+                                         token_annotator_word))
+
+tokenized_bush2001 <- NLP::annotate(bush2001, 
+                                    list(token_annotator_sent,
+                                         token_annotator_word))
+
+tokenized_bush2002 <- NLP::annotate(bush2002, 
+                                    list(token_annotator_sent,
+                                         token_annotator_word))
+
+tokenized_bush2003 <- NLP::annotate(bush2003, 
+                                    list(token_annotator_sent,
+                                         token_annotator_word))
+
+tokenized_bush2004 <- NLP::annotate(bush2004, 
+                                    list(token_annotator_sent,
+                                         token_annotator_word))
+```
+
+Now construct the entity annotators for each text.
+
+```{r echo=TRUE}
+entity_annotations_bush1989 <- NLP::annotate(bush1989,
+                                             annotators_all,
+                                             tokenized_bush1989)
+
+entity_annotations_bush1990 <- NLP::annotate(bush1990,
+                                             annotators_all,
+                                             tokenized_bush1990)
+
+entity_annotations_bush1991 <- NLP::annotate(bush1991,
+                                             annotators_all,
+                                             tokenized_bush1991)
+
+entity_annotations_bush1992 <- NLP::annotate(bush1992,
+                                             annotators_all,
+                                             tokenized_bush1992)
+
+entity_annotations_bush2001 <- NLP::annotate(bush2001,
+                                             annotators_all,
+                                             tokenized_bush2001)
+
+entity_annotations_bush2002 <- NLP::annotate(bush2002,
+                                             annotators_all,
+                                             tokenized_bush2002)
+
+entity_annotations_bush2003 <- NLP::annotate(bush2003,
+                                             annotators_all,
+                                             tokenized_bush2003)
+
+entity_annotations_bush2004 <- NLP::annotate(bush2004,
+                                             annotators_all,
+                                             tokenized_bush2004)
+```
+
+We are now able to examine some of the functionality of the named entity recognizer. Lets look at President Bush's 1989 SOTU Address.
+
+```{r echo=TRUE}
+entity_annotations_bush1989[5821:5927]
+
+# the information can be visualized differently by doing the following:
+
+tail(bush1989[entity_annotations_bush1989])
+```
+
+As is probably obvious, there are better and more convenient ways to visualize the output. The function defined below was taken from the internet and seemed to be used ubiquitously in conjunction with `openNLP` for this purpose.
+
+```{r echo=TRUE}
+entities_by_type <- function(annotated_text_doc, kind){
+  
+  text_content<-annotated_text_doc$content
+  annotation_data <- annotation(annotated_text_doc)
+  
+  if(hasArg(kind)){
+    
+     data_features <- sapply(seq_along(annotation_data),
+                             FUN = function(x) names(annotation_data[[x]]$features[[1]])) == "kind"
+    
+     text_content[unlist(annotation_data[data_features]$features) == kind]
+    
+   } else {
+    
+     text_content[annotation_data[annotation_data$type=="entity"]]
+    
+   }
+  
+}
+```
+
+The function requires the use of AnnotedPlainTextDocument to format one of the function parameters and is done below as shown.
+
+```{r echo=TRUE}
+entity_annotations_bush1989 <-
+  NLP::AnnotatedPlainTextDocument(bush1989, entity_annotations_bush1989)
+
+entity_annotations_bush1990 <-
+  NLP::AnnotatedPlainTextDocument(bush1990, entity_annotations_bush1990)
+
+entity_annotations_bush1991 <-
+  NLP::AnnotatedPlainTextDocument(bush1991, entity_annotations_bush1991)
+
+entity_annotations_bush1992 <- 
+  NLP::AnnotatedPlainTextDocument(bush1992, entity_annotations_bush1992)
+
+entity_annotations_bush2001 <- 
+  NLP::AnnotatedPlainTextDocument(bush2001, entity_annotations_bush2001)
+
+entity_annotations_bush2002 <-
+  NLP::AnnotatedPlainTextDocument(bush2002, entity_annotations_bush2002)
+
+entity_annotations_bush2003 <-
+  NLP::AnnotatedPlainTextDocument(bush2003, entity_annotations_bush2003)
+
+entity_annotations_bush2004 <-
+  NLP::AnnotatedPlainTextDocument(bush2004, entity_annotations_bush2004)
+```
+
+The function can now be used on any of our texts to extract the specific entity types the user desires. The parameters are one of objects created above using AnnotatedPlainTextDocument, and a type of entity. The possibilites are "person", "date", "organization", "percentage", "location", and "money".
+
+```{r echo=TRUE, include=TRUE}
+entities_by_type(entity_annotations_bush1989, kind = "person")
+entities_by_type(entity_annotations_bush1989, kind = "organization")
+entities_by_type(entity_annotations_bush1989, kind = "date")
+entities_by_type(entity_annotations_bush1989, kind = "percentage")
+entities_by_type(entity_annotations_bush1989, kind = "location")
+entities_by_type(entity_annotations_bush1989, kind = "money")
+```
+
+The information can also be displayed in a table to show frequency.
+
+```{r echo=TRUE}
+table(entities_by_type(entity_annotations_bush1989, kind = "person"))
+table(entities_by_type(entity_annotations_bush1989, kind = "organization"))
+table(entities_by_type(entity_annotations_bush1989, kind = "date"))
+table(entities_by_type(entity_annotations_bush1989, kind = "percentage"))
+table(entities_by_type(entity_annotations_bush1989, kind = "location"))
+table(entities_by_type(entity_annotations_bush1989, kind = "money"))
+```
+
+Using the function on other speeches can highlight differences in the type of entities mentioned across presidencies and times.
+
+```{r echo=TRUE}
+table(entities_by_type(entity_annotations_bush2001, kind = "organization"))
+```

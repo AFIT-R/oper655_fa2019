@@ -35,3 +35,7 @@ vignettes/*.pdf
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
 .Rproj.user
+
+# large tensorflow datasets and HTML files
+lectures/tensorflow/data/imdb_reviews/*
+lectures/tensorflow/data/downloads/*

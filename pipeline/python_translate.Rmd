@@ -1,0 +1,32 @@
+---
+title: "Untitled"
+author: "Jason Freels"
+date: "9/27/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate)
+reticulate::use_condaenv("r-reticulate")
+```
+
+
+```{python}
+from translate import Translator
+translator= Translator(from_lang = "italian",to_lang = "english")
+translation = translator.translate("maneggevole, pratico, veloce, ottime foto............ancora Ã¨ in fase di prova ma il telefono non ha nulla da invidiare a case piÃ¹ blasonate e ad un costo veramente vantaggioso")
+print(translation)
+```
+
+Create out translator in a Python code chunk
+
+You can also embed plots, for example:
+
+```{python translator}
+from translate import Translator
+translator= Translator(from_lang=r.input_lang,to_lang=r.output_lang)
+translation = translator.translate("Guten Morgen")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

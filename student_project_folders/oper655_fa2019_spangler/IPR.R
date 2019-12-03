@@ -25,7 +25,10 @@ pacman::p_load(tm,
                knitr,
                widyr,
                textdata,
-               tidyr)
+               tidyr,
+               topicmodels,
+               dplyr,
+               magrittr)
 
 pacman::p_load_gh("dgrtwo/drlib",
                   "trinker/termco", 
@@ -38,8 +41,9 @@ pacman::p_load_gh("dgrtwo/drlib",
 
 #Load Dataset
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
-root <- file.path(root, "Oper655", "Texas Last Statement - CSV.csv")
+root <- file.path(root, "student_project_folders", "oper655_fa2019_spangler", "Project", "Texas Last Statement - CSV.csv")
 data <- readr::read_csv(root)
+rm(root)
 
 #Creates Years in Prison Variable
 data$Years_in_Prison <- data$Age - data$AgeWhenReceived
@@ -49,28 +53,28 @@ data$Years_in_Prison <- data$Age - data$AgeWhenReceived
 #data$Age40_49 <- 0
 #data$Age50_59 <- 0
 #data$Age60_69 <- 0
-data$Age2 <- 0
+data$AgeBin <- 0
 #Bin Age Groups
 for (i in 1:length(data$Age)){
   if ((data$Age[i] >= 20)&(data$Age[i] < 30)){
     #data$Age20_29[i] = 1
-    data$Age2[i] = "20-29"
+    data$AgeBin[i] = "20-29"
   }
   if ((data$Age[i] >= 30)&(data$Age[i] < 40)){
     #data$Age30_39[i] = 1
-    data$Age2[i] = "30-39"
+    data$AgeBin[i] = "30-39"
   }
   if ((data$Age[i] >= 40)&(data$Age[i] < 50)){
     #data$Age40_49[i] = 1
-    data$Age2[i] = "40-49"
+    data$AgeBin[i] = "40-49"
   }
   if ((data$Age[i] >= 50)&(data$Age[i] < 60)){
     #data$Age50_59[i] = 1
-    data$Age2[i] = "50-59"
+    data$AgeBin[i] = "50-59"
    }
   if ((data$Age[i] >= 60)&(data$Age[i] < 70)){
     #data$Age60_69[i] = 1
-    data$Age2[i] = "60-69"
+    data$AgeBin[i] = "60-69"
   }
 }
 
@@ -115,9 +119,22 @@ for (i in 1:length(data$NumberVictim)){
     data$NumberVictim[i] = "Not Available"
   }
 }
+
+
+#Removes NAs from all cells and replaces with Not Available
+for (i in 1:length(data$Age)){
+  for (j in 1:23){
+    if (is.na(data[i,j])){
+      data[i,j] = "Not Available"
+    }
+  }
+}
 View(data)
+  
 
 #Distribution of Convictions among Independent Vars
+par(mfrow=c(2,2))
+
 data %>%
   count(CountyOfConviction, sort = TRUE) %>%
   top_n(10) %>%
@@ -130,9 +147,8 @@ data %>%
   theme(axis.text = element_text(angle = 90))
 
 data %>%
-  count(Age2, sort = TRUE) %>%
-  top_n(10) %>%
-  ggplot(aes(x = Age2, n))+
+  count(AgeBin, sort = TRUE) %>%
+  ggplot(aes(x = AgeBin, n))+
   geom_bar(stat = "identity") +
   xlab("Age") +
   ylab("Number of Convictions") +
@@ -190,8 +206,7 @@ data %>%
   theme(axis.text = element_text(angle = 90)) +
   scale_x_discrete(name = "Number Victim",
                   limits = c("0", "1", "2", "3", "4", "5", "6", "Not Available"))
-                            
-
+                    
 ##############################################
 #        Word Counts By Groupings            #
 ##############################################
@@ -210,6 +225,8 @@ data %>%
 #Unnest Trigram and Count (NA is no last statement)
 data %>%
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  filter(trigram == "NA")
+  
   count(trigram, sort = TRUE) %>%
   top_n(10) %>%
   ggplot(aes(x = reorder(trigram, -n), y = n)) +
@@ -263,13 +280,13 @@ data %>%
 
 data %>% 
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
-  group_by(Age2) %>%
+  group_by(AgeBin) %>%
   count(trigram, sort = TRUE) %>%
   top_n(10) %>%
   ungroup() %>%
-  ggplot(aes(x = reorder(trigram, n), y = n, fill = Age2)) +
+  ggplot(aes(x = reorder(trigram, n), y = n, fill = AgeBin)) +
   geom_bar(stat = "identity") +
-  facet_wrap(~Age2, scales = "free_y") +
+  facet_wrap(~AgeBin, scales = "free_y") +
   labs(x = NULL, y = "Frequency") +
   coord_flip() +
   theme(legend.position = "none")
@@ -291,7 +308,7 @@ data %>%
 
 data %>% 
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
-  filter(EducationLevel > 5 & EducationLevel < 14) %>%
+  filter(EducationLevel >= 7) %>%
   group_by(EducationLevel) %>%
   count(trigram, sort = TRUE) %>%
   top_n(10) %>%
@@ -383,21 +400,21 @@ frequency <-
   arrange(desc(race_word)) %>%
   ungroup()
 
-ggplot(frequency,
-       aes(x = race_word,
-           y = all_words,
-           color = abs(all_words - race_word))) + 
-  geom_abline(color = "gray40", lty = 2) +
-  geom_jitter(alpha = .1, size = 2.5, width = .3, height = .3) +
-  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
-  scale_x_log10(labels = scales::percent_format()) +
-  scale_y_log10(labels = scales::percent_format()) +
-  scale_color_gradient(limits = c(0,.001),
-                       low = "darkslategray4",
-                       high = "gray75") +
-  facet_wrap(~Race, ncol = 2) +
-  theme(legend.position = "none")
-  labs(y = "Race Word Frequency", x= NULL)
+# ggplot(frequency,
+#        aes(x = race_word,
+#            y = all_words,
+#            color = abs(all_words - race_word))) + 
+#   geom_abline(color = "gray40", lty = 2) +
+#   geom_jitter(alpha = .1, size = 2.5, width = .3, height = .3) +
+#   geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+#   scale_x_log10(labels = scales::percent_format()) +
+#   scale_y_log10(labels = scales::percent_format()) +
+#   scale_color_gradient(limits = c(0,.001),
+#                        low = "darkslategray4",
+#                        high = "gray75") +
+#   facet_wrap(~Race, ncol = 2) +
+#   theme(legend.position = "none")
+#   labs(y = "Race Word Frequency", x= NULL)
                 
 data_pct <- 
   data %>%
@@ -409,9 +426,16 @@ data_pct <-
 
 trigram_freq <- data %>%
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  group_by(Race) %>%
+  filter(Race != "Other") %>%
   count(trigram) %>%
+  top_n(10) %>%
   transmute(trigram, all_trigram = n/sum(n)) %>%
-  arrange(desc(all_trigram))
+  arrange(desc(all_trigram)) %>%
+  ggplot(aes(x = trigram, y = all_trigram)) +
+  geom_bar(stat = "identity") + 
+  facet_wrap(~Race) +
+  theme(axis.text = element_text(angle = 90))
 
 trigram_freq %>%
   top_n(10) %>%
@@ -432,10 +456,11 @@ data %>%
     unnest_tokens(word, LastStatement) %>%
     anti_join(stop_words) %>%
     count(EducationLevel, word) %>%
+    top_n(10) %>%
     mutate(Ed_word = n/sum(n)) %>%
     left_join(data_pct) %>%
     arrange(desc(Ed_word)) %>%
-    ungroup() 
+    ungroup()
 
 data %>%
   unnest_tokens(word, LastStatement) %>%
@@ -470,8 +495,8 @@ data %>%
 data %>%
   unnest_tokens(word, LastStatement) %>%
   anti_join(stop_words) %>%
-  count(Age2, word) %>%
-  mutate(Age2_word = n/sum(n)) %>%
+  count(AgeBin, word) %>%
+  mutate(AgeBin_word = n/sum(n)) %>%
   left_join(data_pct) %>%
   arrange(desc(Age2_word)) %>%
   ungroup() %>%
@@ -510,5 +535,60 @@ data %>%
   ungroup() %>%
   bind_tf_idf(word, NumberVictim, n) %>%
   arrange(desc(tf_idf))
- 
- 
+
+
+##############################################
+#                  Topic Modeling            #
+##############################################
+data2 <- as_tibble(data)
+topic_data <- data2 %>%
+  filter(Race == "White") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+dfm_data <- topic_data %>%
+  tidytext::cast_dfm(word, word, n)
+topic_model <- stm::stm(dfm_data, K = 4, init.type = "LDA")
+
+topic_model <- tidytext::tidy(topic_model)
+
+topic_model %>%
+  group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  coord_flip()
+
+############################################
+#               Sentitment Analysis        #
+############################################
+
+# data_sents <-  data %>%
+#   unnest_tokens(word, LastStatement) %>%
+#   inner_join(get_sentiments("afinn")) 
+# 
+# data_sentiments <- data %>%
+#   left_join(data_sents %>%
+#               group_by(LastName)%>%
+#               summarise(score = sum(value))) %>%
+#   replace_na(list(score = 0))
+
+
+data_sentiments <- data %>%
+  unnest_tokens(word, LastStatement) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative))
+
+data_sentiments %>%
+  ggplot(aes(x = index, y = sentiment)) +
+  geom_col() 
+
+data %>%
+  group_by(Age) 
+
