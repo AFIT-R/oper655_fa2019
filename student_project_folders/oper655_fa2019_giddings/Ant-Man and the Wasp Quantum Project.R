@@ -477,4 +477,152 @@ stop_words <- rbind(stop_words, c("it's", "SMART"))
 stop_words <- rbind(stop_words, c("it' s", "SMART"))
 stop_words <- rbind(stop_words, c("marvel' s", "SMART"))
 
+#Phase Tibbles
+text_mcu_p1 <- rbind(text_IronMan,
+                     text_CaptAmerica,
+                     text_Hulk,
+                     text_IronMan2,
+                     text_Thor)
+text_mcu_p2 <- rbind(text_IronMan3,
+                     text_CaptAmerica2,
+                     text_GotG,
+                     text_AntMan,
+                     text_Thor2,
+                     text_AvengersAOU)
+text_mcu_p3 <- rbind(text_SpiderManHC,
+                     text_CaptAmerica3,
+                     text_GotG2,
+                     text_AntMan2,
+                     text_Thor3,
+                     text_AvengersIW,
+                     text_BkPanther,
+                     text_DrStrange)
+#The entire MCU
+text_mcu <- rbind(text_mcu_p1, text_mcu_p2, text_mcu_p3)
+#Series Tibbles
+text_AM_Comb <- rbind(text_AntMan, text_AntMan2)
+text_GotG_Comb <- rbind(text_GotG, text_GotG2)
+text_AV_Comb <- rbind(text_AvengersAOU, text_AvengersIW)
+text_CA_Tril <- rbind(text_CaptAmerica, text_CaptAmerica2, text_CaptAmerica3)
+text_IM_Tril <- rbind(text_IronMan, text_IronMan2, text_IronMan3)
+text_Thor_Tril <- rbind(text_Thor, text_Thor2, text_Thor3)
+#Cursory Analysis by Phase
+#Phase 1
+mcup1 = text_mcu_p1 %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pmcup1<-ggplot(data=mcup1, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="darkred") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pmcup1
+#Phase 2
+mcup2 = text_mcu_p2 %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pmcup2<-ggplot(data=mcup2, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="darkblue") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pmcup2
+#Phase 3
+mcup3 = text_mcu_p3 %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pmcup3<-ggplot(data=mcup3, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="grey") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pmcup3
+#The Entire MCU
+mcu = text_mcu %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pmcu<-ggplot(data=mcu, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="black") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pmcu
+#The Captain America Movies
+catm = text_CA_Tril %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pcatm<-ggplot(data=catm, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="darkblue") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pcatm
+#The Iron Man Movies
+imtm = text_IM_Tril %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pimtm<-ggplot(data=imtm, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="gold") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pimtm
+#The Thor Movies
+ttm = text_Thor_Tril %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pttm<-ggplot(data=ttm, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="grey") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pttm
+#The Ant-Man Movies
+acm = text_AM_Comb %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pacm<-ggplot(data=acm, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="darkred") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pacm
+#The Avengers Movies
+avcm = text_AV_Comb %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pavcm<-ggplot(data=avcm, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="blue") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pavcm
+#The Guardians of the Galaxy Movies
+gotgcm = text_GotG_Comb %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pgotgcm<-ggplot(data=gotgcm, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="purple") + coord_flip() +
+  theme(legend.position="none") + theme_minimal()
+pgotgcm
 #Named Entity Recognition
+pacman::p_load(tidyr,
+               tidytext,
+               tidyverse,
+               textdata,
+               dplyr,
+               stringr,
+               ggplot2,
+               magrittr,
+               wordcloud,
+               reshape2,
+               entity,
+               monkeylearn,
+               quanteda,
+               spacyr,
+               rJava,
+               NLP,
+               openNLP)
+spacy_initialize()
