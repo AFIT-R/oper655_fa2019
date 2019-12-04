@@ -1,5 +1,6 @@
 cat("\014") #Clear console
 rm(list = ls()) #clear variables
+dev.off()
 library(pacman)
 pacman::p_load( broom,
                 coreNLP,
@@ -48,7 +49,7 @@ pacman::p_load( broom,
                 XML
 )
 
-#spacy_initialize()
+
 
 url  <- 'https://www.springfieldspringfield.co.uk/movie_script.php?movie=elf'
 rcurl.doc <- RCurl::getURL(url,.opts = RCurl::curlOptions(followlocation = TRUE))
@@ -70,38 +71,50 @@ url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
   text1 = gsub("greenway","Greenway", text1)
   text1 = gsub("charlotte","Charlotte", text1)
   text1 = gsub("chuck","Chuck", text1)
+  text1 = gsub("Claus meter","Clause Meter", text1)
   text1 = gsub("elf","Elf", text1)
+  text1 = gsub("Never","never", text1)
   text1 = gsub("a, san","a, Santa", text1)
   text1 = gsub("Lincoln tunnel","Lincoln Tunnel", text1)
   text1 = gsub("Aspires","aspires", text1)
   text1 = gsub("Wandering","wandering", text1)
   text1 = gsub("Spread","spread", text1)
+  text1 = gsub("Behind","behind", text1)
+  text1 = gsub("Carolyn Reynolds","Carolyn", text1)
+  text1 = gsub("Decisin","decision", text1)
+  
   text1 <- gsub("Santa clausis","Santa Claus",text1)
   text1 <- gsub("Santa Clausis","Santa Claus",text1)
   text1 <- gsub("Santa claus","Santa",text1)
   text1 <- gsub("Santa Claus","Santa",text1)
-
+  text1 <- gsub("ray's pizzas","Rays Pizzas",text1)
+  text1 <- gsub("Nice list","Nice_List",text1)
+  text1 <- gsub("ho!","ho",text1)
+  text1 <- gsub("Run","run",text1)
+  
+  
+    
 
 
 text2=data.frame(text1,stringsAsFactors = FALSE)
 names(text2)<-"col1"
 str(text2)
 
-rm(url,rcurl.doc,url_parsed)
+rm(url,rcurl.doc,url_parsed,text1)
 
+spacy_initialize(model="en_core_web_sm")
 
-#text2$col1
 presentation_parsed <- spacy_parse(text2$col1, entity = TRUE)
 head(presentation_parsed)
 
-presentation_extracted <- entity_extract(presentation_parsed)
-head(presentation_extracted)
+full_extracted <- entity_extract(presentation_parsed)
+head(full_extracted)
 
-full_extracted <- presentation_extracted
 
 for (i in 1:nrow(full_extracted)) {
   if (full_extracted$entity[i]== "Santa" || 
       full_extracted$entity[i]== "Leon"  ||
+      full_extracted$entity[i]== "Baby"  ||
       full_extracted$entity[i]== "Charlotte"  ||
       full_extracted$entity[i]== "arctic_puffin"  ||
       full_extracted$entity[i]=="Francisco" ||
@@ -110,10 +123,14 @@ for (i in 1:nrow(full_extracted)) {
   }
   if (full_extracted$entity[i]== "Mm" ||
       full_extracted$entity[i]== "Ho_ho_ho" ||
+      full_extracted$entity[i]== "Yaah" ||
+      full_extracted$entity[i]== "syrup" ||
+      full_extracted$entity[i]== "yoursElf" ||
       full_extracted$entity[i]== "Merry_Christmas" ){ 
     full_extracted$entity_type[i]="Other"
   }
-  if (full_extracted$entity[i]== "the_candy_cane_forest"){
+  if (full_extracted$entity[i]== "the_candy_cane_forest" ||
+      full_extracted$entity[i]== "the_Lincoln_Tunnel"){
     full_extracted$entity_type[i]="LOC"
   }  
   if (full_extracted$entity[i]== "Paparazzi"){
@@ -124,7 +141,6 @@ for (i in 1:nrow(full_extracted)) {
 
 #Entity Types
 full_extracted %>%
-  filter(entity_type != "CARDINAL" & entity_type != "ORDINAL") %>%
   count(entity_type) %>%
   top_n(100) %>%
   ggplot(aes(x = entity_type, y = n)) +
@@ -134,18 +150,6 @@ full_extracted %>%
   xlab("Entity Type") +
   ylab("Count")
 
-# #Products
-# full_extracted %>%
-#   filter(entity_type == "PRODUCT") %>%
-#   group_by(entity_type) %>%
-#   count(entity) %>%
-#   top_n(10) %>%
-#   ggplot(aes(x = entity, y = n)) +
-#   geom_bar(stat = "identity") +
-#   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-#   labs(title = "Product Entities") +
-#   xlab("Products") +
-#   ylab("Mentions")
 
 #Organization
 full_extracted %>%
@@ -165,7 +169,7 @@ full_extracted %>%
   filter(entity_type == "PERSON" ) %>%
   group_by(entity_type) %>%
   count(entity) %>%
-  top_n(16) %>%
+  top_n(15) %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
@@ -181,7 +185,7 @@ full_extracted %>%
   top_n(100) %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "Location/GPE Entities") +
   xlab("Locations") +
   ylab("Mentions")
@@ -201,5 +205,14 @@ full_extracted %>%
   xlab("All Other") +
   ylab("Mentions")
 
+#Parts of Speech
+presentation_parsed %>%
+  group_by(pos) %>%
+  count(entity) %>%
+  ggplot(aes(x = pos, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  labs(title = "Parts of Speech") +
+  xlab("Parts of Speech") +
+  ylab("Count")
 
-#

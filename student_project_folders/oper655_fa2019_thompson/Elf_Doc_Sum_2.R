@@ -48,14 +48,9 @@ pacman::p_load( broom,
                 XML
 )
 
-# pacman::p_load_gh("dgrtwo/drlib",
-#                   "trinker/termco", 
-#                   "trinker/coreNLPsetup",        
-#                   "trinker/tagger")
 
 url  <- 'https://www.springfieldspringfield.co.uk/movie_script.php?movie=elf'
-rcurl.doc <- RCurl::getURL(url,
-                           .opts = RCurl::curlOptions(followlocation = TRUE))
+rcurl.doc <- RCurl::getURL(url,.opts = RCurl::curlOptions(followlocation = TRUE))
 url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
 
 #Create Text1
@@ -80,6 +75,7 @@ text1 = gsub("Lincoln tunnel","Lincoln Tunnel", text1)
 text1 = gsub("Aspires","aspires", text1)
 text1 = gsub("Wandering","wandering", text1)
 text1 = gsub("Spread","spread", text1)
+text1 = gsub("Aah","ah", text1)
 text1 <- gsub("Santa clausis","Santa Claus",text1)
 text1 <- gsub("Santa Clausis","Santa Claus",text1)
 text1 <- gsub("Santa claus","Santa",text1)
@@ -90,17 +86,6 @@ word_vect = raw_tb %>% tidytext::unnest_tokens(word, text, token = 'words')
 rm(url,rcurl.doc,url_parsed)
 
 
-# sort_text = word_vect %>% dplyr::count(word, sort = TRUE)
-# 
-# sort_text_no_sw = word_vect %>%
-#   dplyr::anti_join(stop_words) %>%
-#   dplyr::count(word, sort = TRUE)
-
-#head(text1)
-# head(word_vect)
-# #head(sort_text)
-# head(sort_text_no_sw)
-
 text2=data.frame(text1,stringsAsFactors = FALSE)
 names(text2)<-"col1"
 str(text2)
@@ -108,11 +93,11 @@ sentences_1 <- unnest_tokens(tbl=text2,input=col1,output=sentences_1,token = "se
 text=sentences_1[,1]
 
 rm(raw_tb,sentences_1,sort_text,sort_text_no_sw,text2,word_vect,text1)
-#g_sum = genericSummary(sentences_1$text3[1:100],1)
 
 
 
-article_sentences <- tibble(text = text[1:100]) %>%
+
+article_sentences <- tibble(text = text) %>%
   unnest_tokens(sentence, text, token = "sentences") %>%
   mutate(sentence_id = row_number()) %>%
   select(sentence_id, sentence)
@@ -135,13 +120,14 @@ article_summary[["sentences"]] %>%
   pull(sentence)
 
 
-
-#g_sum = genericSummary(text[1:500],1)
+#g_sum = genericSummary(sentences_1$text3[1:100],1)
+g_sum = genericSummary(text,5)
 
 
 
 
 #This shows where, within the document, you see the most important text.
+dev.off()
 article_summary[["sentences"]] %>%
   ggplot(aes(textrank_id, textrank, fill = textrank_id)) +
   geom_col() +
@@ -169,8 +155,8 @@ x <- as.data.frame(x)
 #Here we simply show the frequency of the words.
 stats <- subset(x, upos %in% "NOUN")
 stats <- txt_freq(x = stats$lemma)
-library(lattice)
 stats$key <- factor(stats$key, levels = rev(stats$key))
+dev.off()
 barchart(key ~ freq, data = head(stats, 30), col = "orange", main = "Most occurring nouns", xlab = "Freq")
 
 stats <- keywords_collocation(x = x, 
@@ -190,6 +176,7 @@ head(stats)
 #From here we build out a word network showing how closely related and used together multi word phrases are in the document. 
 wordnetwork <- head(stats, 30)
 wordnetwork <- graph_from_data_frame(wordnetwork)
+dev.off()
 ggraph(wordnetwork, layout = "fr") +
   geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "pink") +
   geom_node_text(aes(label = name), col = "darkgreen", size = 4) +
@@ -201,7 +188,7 @@ stats <- textrank_keywords(x$lemma,
                            relevant = x$upos %in% c("NOUN", "ADJ"), 
                            ngram_max = 8, sep = " ")
 stats <- subset(stats$keywords, ngram > 1 & freq >= 3)
-library(wordcloud)
+dev.off()
 wordcloud(words = stats$keyword, freq = stats$freq, max.words = 300)
 
 stats <- keywords_rake(x = x, 
@@ -226,7 +213,7 @@ stats <- merge(x, x,
 stats <- subset(stats, dep_rel %in% "nsubj" & upos %in% c("NOUN") & upos_parent %in% c("ADJ"))
 stats$term <- paste(stats$lemma_parent, stats$lemma, sep = " ")
 stats <- txt_freq(stats$term)
-library(wordcloud)
+dev.off()
 wordcloud(words = stats$key, freq = stats$freq, min.freq = 3, max.words = 100,
           random.order = FALSE, colors = brewer.pal(6, "Dark2"), scale = c(1.1,5))
 
