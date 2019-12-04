@@ -1,3 +1,19 @@
+---
+title: "Text Mining Final Project"
+author: "2d Lt Maxwell Thompson"
+date: "12/4/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document
+
+```{r,warning=FALSE}
 cat("\014") #Clear console
 rm(list = ls()) #clear variables
 dev.off()
@@ -48,8 +64,16 @@ pacman::p_load( broom,
                 wordcloud,
                 XML
 )
+```
 
+## Including Plots
 
+You can also
+
+```{r}
+##################################################
+##########Loading and CLeaning Data
+##################################################
 
 url  <- 'https://www.springfieldspringfield.co.uk/movie_script.php?movie=elf'
 rcurl.doc <- RCurl::getURL(url,.opts = RCurl::curlOptions(followlocation = TRUE))
@@ -57,6 +81,8 @@ url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
 
 #Create Text1
   text1 =  XML::xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+  rm(url,rcurl.doc,url_parsed)
+  
   text1 = gsub('\\\n', "", text1)
   text1 = gsub('\\  ', "", text1)
   text1 = gsub("Mmm","Mm", text1)
@@ -92,25 +118,48 @@ url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
   text1 <- gsub("ho!","ho",text1)
   text1 <- gsub("Run","run",text1)
   
-  
-    
+```
 
+## Including Plots
+
+You can also
+
+```{r}
+##################################################
+##########Named Entity Rec
+##################################################
 
 text2=data.frame(text1,stringsAsFactors = FALSE)
 names(text2)<-"col1"
 str(text2)
+```
 
-rm(url,rcurl.doc,url_parsed,text1)
+## Including Plots
 
+You can also
+
+```{r}
+#spacy_install() #only used once
 spacy_initialize(model="en_core_web_sm")
+```
 
+## Including Plots
+
+You can also
+
+```{r}
 presentation_parsed <- spacy_parse(text2$col1, entity = TRUE)
 head(presentation_parsed)
 
 full_extracted <- entity_extract(presentation_parsed)
 head(full_extracted)
+```
 
+## Including Plots
 
+You can also
+
+```{r}
 for (i in 1:nrow(full_extracted)) {
   if (full_extracted$entity[i]== "Santa" || 
       full_extracted$entity[i]== "Leon"  ||
@@ -137,8 +186,13 @@ for (i in 1:nrow(full_extracted)) {
     full_extracted$entity_type[i]="ORG"
   } 
 }
+```
 
+## Including Plots
 
+You can also
+
+```{r}
 #Entity Types
 full_extracted %>%
   count(entity_type) %>%
@@ -149,8 +203,13 @@ full_extracted %>%
   labs(title = "Entity Types") +
   xlab("Entity Type") +
   ylab("Count")
+```
 
+## Including Plots
 
+You can also
+
+```{r}
 #Organization
 full_extracted %>%
   filter(entity_type == "ORG") %>%
@@ -173,7 +232,7 @@ full_extracted %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "What it Labeled as Persons") +
+  labs(title = "Persons") +
   xlab("Persons") +
   ylab("Mentions")
 
@@ -192,7 +251,7 @@ full_extracted %>%
 
 
 
-#All Other
+#All Other Type of Entities
 full_extracted %>%
   filter(entity_type != "PERSON" & entity_type != "LOC" & entity_type != "GPE" & entity_type != "ORG" ) %>%
   group_by(entity_type) %>%
@@ -201,10 +260,16 @@ full_extracted %>%
   ggplot(aes(x = entity, y = n)) +
   geom_bar(stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))+
-  labs(title = "All Other") +
-  xlab("All Other") +
+  labs(title = "All Other Type of Entities") +
+  xlab("Entities") +
   ylab("Mentions")
+```
 
+## Including Plots
+
+You can also
+
+```{r}
 #Parts of Speech
 presentation_parsed %>%
   group_by(pos) %>%
@@ -216,3 +281,212 @@ presentation_parsed %>%
   xlab("Parts of Speech") +
   ylab("Count")
 
+rm(i)
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+##################################################
+##########Sentiment An
+##################################################
+raw_tb <- tibble::tibble(text = text1)
+word_vect = raw_tb %>% tidytext::unnest_tokens(word, text, token = 'words')
+text=as_tibble(word_vect)
+rm(raw_tb,word_vect)
+head(text)
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+nrc_joy <- get_sentiments("nrc") %>%
+  filter(sentiment == "joy")
+nrc_anger <- get_sentiments("nrc") %>%
+  filter(sentiment == "anger")
+
+text %>%
+  inner_join(nrc_joy) %>%
+  count(word, sort = T)
+
+text %>%
+  inner_join(nrc_anger) %>%
+  count(word, sort = T)
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+dev.off()
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 40)
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+dev.off()
+text %>%
+  anti_join(stop_words) %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 100))
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+text = text %>%
+  dplyr::anti_join(stop_words)
+
+
+dev.off()
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 50)
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```
+
+## Including Plots
+
+You can also
+
+```{r}
+
+```

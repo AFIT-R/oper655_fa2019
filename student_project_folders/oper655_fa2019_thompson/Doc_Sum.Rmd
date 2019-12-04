@@ -1,3 +1,14 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
 cat("\014") #Clear console
 rm(list = ls()) #clear variables
 library(pacman)
@@ -228,4 +239,8 @@ stats <- txt_freq(stats$term)
 dev.off()
 wordcloud(words = stats$key, freq = stats$freq, min.freq = 3, max.words = 100,
           random.order = FALSE, colors = brewer.pal(6, "Dark2"), scale = c(1.1,5))
+
+
+```
+
 
