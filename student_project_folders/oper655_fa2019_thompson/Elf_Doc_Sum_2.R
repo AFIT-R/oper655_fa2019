@@ -52,49 +52,67 @@ pacman::p_load( broom,
 #                   "trinker/termco", 
 #                   "trinker/coreNLPsetup",        
 #                   "trinker/tagger")
-#spacy_initialize()
 
 url  <- 'https://www.springfieldspringfield.co.uk/movie_script.php?movie=elf'
 rcurl.doc <- RCurl::getURL(url,
                            .opts = RCurl::curlOptions(followlocation = TRUE))
 url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
 
+#Create Text1
 text1 =  XML::xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
 text1 = gsub('\\\n', "", text1)
 text1 = gsub('\\  ', "", text1)
+text1 = gsub("Mmm","Mm", text1)
+text1 = gsub("Susan wells","Susan", text1)
+text1 = gsub("Walter Hobbs","Walter", text1)
+text1 = gsub("papa","Papa", text1)
+text1 = gsub("Papa Elf","Papa", text1)
+text1 = gsub("new York City","New York", text1)
+text1 = gsub("mike","Michael", text1)
+text1 = gsub("Ho ho ho ho ho","Ho ho ho", text1)
+text1 = gsub("ho ho ho","Ho ho ho", text1)
+text1 = gsub("greenway","Greenway", text1)
+text1 = gsub("charlotte","Charlotte", text1)
+text1 = gsub("chuck","Chuck", text1)
+text1 = gsub("elf","Elf", text1)
+text1 = gsub("a, san","a, Santa", text1)
+text1 = gsub("Lincoln tunnel","Lincoln Tunnel", text1)
+text1 = gsub("Aspires","aspires", text1)
+text1 = gsub("Wandering","wandering", text1)
+text1 = gsub("Spread","spread", text1)
+text1 <- gsub("Santa clausis","Santa Claus",text1)
+text1 <- gsub("Santa Clausis","Santa Claus",text1)
+text1 <- gsub("Santa claus","Santa",text1)
+text1 <- gsub("Santa Claus","Santa",text1)
 
 raw_tb <- tibble::tibble(text = text1)
 word_vect = raw_tb %>% tidytext::unnest_tokens(word, text, token = 'words')
-
 rm(url,rcurl.doc,url_parsed)
 
-sort_text = word_vect %>% dplyr::count(word, sort = TRUE)
 
-sort_text_no_sw = word_vect %>%
-  dplyr::anti_join(stop_words) %>%
-  dplyr::count(word, sort = TRUE)
+# sort_text = word_vect %>% dplyr::count(word, sort = TRUE)
+# 
+# sort_text_no_sw = word_vect %>%
+#   dplyr::anti_join(stop_words) %>%
+#   dplyr::count(word, sort = TRUE)
 
 #head(text1)
-head(word_vect)
-#head(sort_text)
-head(sort_text_no_sw)
+# head(word_vect)
+# #head(sort_text)
+# head(sort_text_no_sw)
 
 text2=data.frame(text1,stringsAsFactors = FALSE)
 names(text2)<-"col1"
 str(text2)
-
-sentences_1 <- unnest_tokens(tbl=text2,input=col1,output=text3,token = "sentences")
-head(sentences_1)
-#g_sum = genericSummary(sentences_1$text3[1:100],1)
-
-
-#spacy_parse(text1)
-
+sentences_1 <- unnest_tokens(tbl=text2,input=col1,output=sentences_1,token = "sentences")
 text=sentences_1[,1]
 
 rm(raw_tb,sentences_1,sort_text,sort_text_no_sw,text2,word_vect,text1)
+#g_sum = genericSummary(sentences_1$text3[1:100],1)
 
-article_sentences <- tibble(text = text[1:1000]) %>%
+
+
+article_sentences <- tibble(text = text[1:100]) %>%
   unnest_tokens(sentence, text, token = "sentences") %>%
   mutate(sentence_id = row_number()) %>%
   select(sentence_id, sentence)
@@ -141,8 +159,8 @@ article_summary[["sentences"]] %>%
 library(udpipe)
 library(textrank)
 ## First step: Take the English udpipe model and annotate the text.
-#ud_model <- udpipe_download_model(language = "english")
-#ud_model <- udpipe_load_model(ud_model$file_model)
+ud_model <- udpipe_download_model(language = "english")
+ud_model <- udpipe_load_model(ud_model$file_model)
 x <- udpipe_annotate(ud_model, x = text)
 x <- as.data.frame(x)
 #head(x)
