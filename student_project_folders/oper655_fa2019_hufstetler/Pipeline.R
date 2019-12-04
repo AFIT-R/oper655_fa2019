@@ -3,11 +3,6 @@
 ###################################
 
 huf.1_txt_from_site <- function(url_root, url, save_directory){
-  library(pacman)
-  pacman::p_load(RCurl,
-                 XML,
-                 stringr,
-                 rvest)
   base::dir.create(save_folder)
   # Extract html/xml content from URL
   rcurl.txt <- RCurl::getURL(url,
@@ -54,22 +49,12 @@ huf.1_txt_from_site <- function(url_root, url, save_directory){
     txt <- stringr::str_replace_all(txt, pattern = pattern_ep, replacement = " ")
     base::writeLines(txt, con=i)
   }
-  detach(package:RCurl)
-  detach(package:XML)
-  detach(package:stringr)
-  detach(package:rvest)
-  detach(package:pacman)
 }
 
 ######################################
 ## Create corpus from all txt files ##
 ######################################
 huf.2_create_corpus <- function(txt_directory, ngram){
-  library(pacman)
-  pacman::p_load(tibble,
-                 readr,
-                 tidytext,
-                 dplyr)
   corpus_tidy <- tibble::tibble()
   
   # Create List of All Files in Folder
@@ -90,11 +75,5 @@ huf.2_create_corpus <- function(txt_directory, ngram){
   corpus_tidy$season <- base::factor(corpus_tidy$season)
   corpus_tidy$subep <- base::factor(corpus_tidy$subep)
   return(corpus_tidy)
-  
-  detach(package:tibble)
-  detach(package:readr)
-  detach(package:tidytext)
-  detach(package:dplyr)
-  detach(package:pacman)
 }
 
