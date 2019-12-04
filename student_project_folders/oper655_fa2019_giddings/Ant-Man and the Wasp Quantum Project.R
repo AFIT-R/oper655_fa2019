@@ -402,6 +402,8 @@ pds<-ggplot(data=ds, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkorange") + coord_flip() +
   theme(legend.position="none") + theme_minimal()
 pds
+
+#The following code would work better once I figure out how to make each movie a chapter.
 # calculate percent of word use across all novels
 antman_pct <- am %>%
   dplyr::anti_join(stop_words) %>%
@@ -475,3 +477,4 @@ stop_words <- rbind(stop_words, c("it's", "SMART"))
 stop_words <- rbind(stop_words, c("it' s", "SMART"))
 stop_words <- rbind(stop_words, c("marvel' s", "SMART"))
 
+#Named Entity Recognition
