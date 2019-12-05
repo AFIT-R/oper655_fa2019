@@ -51,10 +51,11 @@ huf.1_txt_from_site <- function(url_root, url, save_directory){
   }
 }
 
-######################################
-## Create corpus from all txt files ##
-######################################
-huf.2_create_corpus <- function(txt_directory, ngram){
+###########################################
+## Create tidy corpus from all txt files ##
+###########################################
+huf.2_create_corpus <- function(txt_directory){
+  library(dplyr) # for pipe operator
   corpus_tidy <- tibble::tibble()
   
   # Create List of All Files in Folder
@@ -67,13 +68,64 @@ huf.2_create_corpus <- function(txt_directory, ngram){
     clean <- tibble::tibble(season = base::substr(i,nchar(i)-8,nchar(i)-7),
                             subep = base::substr(i,nchar(i)-5,nchar(i)-4),
                             episode = ep,
-                            text = readr::read_file(i)) %>%
-      tidytext::unnest_tokens(word, text, token = "ngrams", n = ngram)
+                            text = readr::read_file(i))
     corpus_tidy <- base::rbind(corpus_tidy, clean)
   }
   # Set factor to keep episodes in order
   corpus_tidy$season <- base::factor(corpus_tidy$season)
   corpus_tidy$subep <- base::factor(corpus_tidy$subep)
   return(corpus_tidy)
+  detach(package = "dplyr")
 }
 
+###########################################
+## Unnest corpus elements ##
+###########################################
+huf.3_unnest <- function(corpus, ngram){
+  library(dplyr) # for pipe operator
+  corpus_unnested <- corpus %>%
+    tidytext::unnest_tokens(word, text, token = "ngrams", n = ngram)
+  return(corpus_unnested)
+  detach(package = "dplyr")
+}
+
+########################
+## Cast tibble as DFM ##
+########################
+
+huf.4_corpus2other <- function(corpus, output_type){
+  library(dplyr)
+  # create a dtm from the corpus
+  corpus_dtm <- tm::VectorSource(corpus$text) %>%
+    tm::VCorpus() %>%
+    tm::DocumentTermMatrix(control = base::list(removePunctuation = T,
+                                                removeNumbers = T,
+                                                stopwords = tidytext::stop_words[,2],
+                                                tokenize = 'MC',
+                                                weighting =
+                                                  function(x)
+                                                    tm::weightTfIdf(x, normalize = !F)))
+  # convert to tidy df
+  corpus_tidy_tm <- tidytext::tidy(corpus_dtm)
+  
+  switch(output_type,
+         "dfm" =
+          # cast tidy data to DFM for quanteda package
+          output_object <- corpus_tidy_tm %>%
+            tidytext::cast_dfm(term, document, count),
+          "dtm" =
+          # cast tidy data to DTM for tm package
+          output_object <- corpus_tidy_tm %>%
+            tidytext::cast_dtm(term, document, count),
+          "tdm" = 
+          # cast tidy data to TDM for tm package
+          output_object <- corpus_tidy_tm %>%
+            tidytext::cast_tdm(term, document, count),
+          "sparse" =
+          #cast tidy data to sparce matrix
+          output_object <- corpus_tidy_tm %>%
+            tidytext::cast_sparse(term, document, count)
+  )
+  return(output_object)
+  detach(package = "dplyr")
+}
