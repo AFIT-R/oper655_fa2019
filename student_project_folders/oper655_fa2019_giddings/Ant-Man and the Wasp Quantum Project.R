@@ -13,13 +13,6 @@ pacman::p_load(pdftools,     # extract content from PDF documents
 if (packageVersion("devtools") < 1.6) {
   install.packages("devtools")
 }
-<<<<<<< HEAD
-=======
-install.packages(qdap)
-library(qdap)
-devtools::install_github("bradleyboehmke/harrypotter")
-harrypotter::philosophers_stone[1]
->>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
 pacman::p_load(tm, 
                pdftools, 
                here,
@@ -403,7 +396,7 @@ pds<-ggplot(data=ds, aes(x = reorder(word, n), y =n)) +
   theme(legend.position="none") + theme_minimal()
 pds
 
-#The following code would work better once I figure out how to make each movie a chapter.
+#The following code might work better once I figure out how to make each movie a chapter.
 # calculate percent of word use across all novels
 antman_pct <- am %>%
   dplyr::anti_join(stop_words) %>%
