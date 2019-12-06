@@ -48,53 +48,68 @@ pacman::p_load( broom,
                 XML
 )
 
-# pacman::p_load_gh("dgrtwo/drlib",
-#                   "trinker/termco", 
-#                   "trinker/coreNLPsetup",        
-#                   "trinker/tagger")
-#spacy_initialize()
 
 url  <- 'https://www.springfieldspringfield.co.uk/movie_script.php?movie=elf'
-rcurl.doc <- RCurl::getURL(url,
-                           .opts = RCurl::curlOptions(followlocation = TRUE))
+rcurl.doc <- RCurl::getURL(url,.opts = RCurl::curlOptions(followlocation = TRUE))
 url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
 
+#Create Text1
 text1 =  XML::xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+rm(url,rcurl.doc,url_parsed)
+
 text1 = gsub('\\\n', "", text1)
 text1 = gsub('\\  ', "", text1)
+text1 = gsub("Mmm","Mm", text1)
+text1 = gsub("Susan wells","Susan", text1)
+text1 = gsub("Walter Hobbs","Walter", text1)
+text1 = gsub("papa","Papa", text1)
+text1 = gsub("Papa Elf","Papa", text1)
+text1 = gsub("new York City","New York", text1)
+text1 = gsub("mike","Michael", text1)
+text1 = gsub("Ho ho ho ho ho","Ho ho ho", text1)
+text1 = gsub("ho ho ho","Ho ho ho", text1)
+text1 = gsub("greenway","Greenway", text1)
+text1 = gsub("charlotte","Charlotte", text1)
+text1 = gsub("chuck","Chuck", text1)
+text1 = gsub("Claus meter","Clause Meter", text1)
+text1 = gsub("elf","Elf", text1)
+text1 = gsub("Never","never", text1)
+text1 = gsub("a, san","a, Santa", text1)
+text1 = gsub("Lincoln tunnel","Lincoln Tunnel", text1)
+text1 = gsub("Aspires","aspires", text1)
+text1 = gsub("Wandering","wandering", text1)
+text1 = gsub("Spread","spread", text1)
+text1 = gsub("Behind","behind", text1)
+text1 = gsub("Carolyn Reynolds","Carolyn", text1)
+text1 = gsub("Decisin","decision", text1)
+
+text1 <- gsub("Santa clausis","Santa Claus",text1)
+text1 <- gsub("Santa Clausis","Santa Claus",text1)
+text1 <- gsub("Santa claus","Santa",text1)
+text1 <- gsub("Santa Claus","Santa",text1)
+text1 <- gsub("ray's pizzas","Rays Pizzas",text1)
+text1 <- gsub("Nice list","Nice_List",text1)
+text1 <- gsub("ho!","ho",text1)
+text1 <- gsub("Run","run",text1)
+
 
 raw_tb <- tibble::tibble(text = text1)
 word_vect = raw_tb %>% tidytext::unnest_tokens(word, text, token = 'words')
-
 rm(url,rcurl.doc,url_parsed)
 
-sort_text = word_vect %>% dplyr::count(word, sort = TRUE)
 
-sort_text_no_sw = word_vect %>%
-  dplyr::anti_join(stop_words) %>%
-  dplyr::count(word, sort = TRUE)
-
-#head(text1)
-head(word_vect)
-#head(sort_text)
-head(sort_text_no_sw)
-
-text2=data.frame(text1,stringsAsFactors = FALSE)
-names(text2)<-"col1"
-str(text2)
-
-sentences_1 <- unnest_tokens(tbl=text2,input=col1,output=text3,token = "sentences")
-head(sentences_1)
-#g_sum = genericSummary(sentences_1$text3[1:100],1)
-
-
-#spacy_parse(text1)
-
+text3=data.frame(text1,stringsAsFactors = FALSE)
+names(text3)<-"col1"
+str(text3)
+sentences_1 <- unnest_tokens(tbl=text3,input=col1,output=sentences_1,token = "sentences")
 text=sentences_1[,1]
 
-rm(raw_tb,sentences_1,sort_text,sort_text_no_sw,text2,word_vect,text1)
+rm(raw_tb,sentences_1,sort_text,sort_text_no_sw,text3,word_vect,text1)
 
-article_sentences <- tibble(text = text[1:1000]) %>%
+
+
+
+article_sentences <- tibble(text = text) %>%
   unnest_tokens(sentence, text, token = "sentences") %>%
   mutate(sentence_id = row_number()) %>%
   select(sentence_id, sentence)
@@ -113,17 +128,18 @@ article_summary <- textrank_sentences(data = article_sentences,
 #This shows us the top three sentences that summarize the document
 article_summary[["sentences"]] %>%
   arrange(desc(textrank)) %>% 
-  slice(1:3) %>%
+  slice(1:5) %>%
   pull(sentence)
 
 
-
-#g_sum = genericSummary(text[1:500],1)
+#g_sum = genericSummary(sentences_1$text3[1:100],1)
+g_sum = genericSummary(text,5)
 
 
 
 
 #This shows where, within the document, you see the most important text.
+dev.off()
 article_summary[["sentences"]] %>%
   ggplot(aes(textrank_id, textrank, fill = textrank_id)) +
   geom_col() +
@@ -141,8 +157,8 @@ article_summary[["sentences"]] %>%
 library(udpipe)
 library(textrank)
 ## First step: Take the English udpipe model and annotate the text.
-#ud_model <- udpipe_download_model(language = "english")
-#ud_model <- udpipe_load_model(ud_model$file_model)
+ud_model <- udpipe_download_model(language = "english")
+ud_model <- udpipe_load_model(ud_model$file_model)
 x <- udpipe_annotate(ud_model, x = text)
 x <- as.data.frame(x)
 #head(x)
@@ -151,8 +167,8 @@ x <- as.data.frame(x)
 #Here we simply show the frequency of the words.
 stats <- subset(x, upos %in% "NOUN")
 stats <- txt_freq(x = stats$lemma)
-library(lattice)
 stats$key <- factor(stats$key, levels = rev(stats$key))
+dev.off()
 barchart(key ~ freq, data = head(stats, 30), col = "orange", main = "Most occurring nouns", xlab = "Freq")
 
 stats <- keywords_collocation(x = x, 
@@ -172,6 +188,7 @@ head(stats)
 #From here we build out a word network showing how closely related and used together multi word phrases are in the document. 
 wordnetwork <- head(stats, 30)
 wordnetwork <- graph_from_data_frame(wordnetwork)
+dev.off()
 ggraph(wordnetwork, layout = "fr") +
   geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "pink") +
   geom_node_text(aes(label = name), col = "darkgreen", size = 4) +
@@ -183,7 +200,7 @@ stats <- textrank_keywords(x$lemma,
                            relevant = x$upos %in% c("NOUN", "ADJ"), 
                            ngram_max = 8, sep = " ")
 stats <- subset(stats$keywords, ngram > 1 & freq >= 3)
-library(wordcloud)
+dev.off()
 wordcloud(words = stats$keyword, freq = stats$freq, max.words = 300)
 
 stats <- keywords_rake(x = x, 
@@ -208,7 +225,7 @@ stats <- merge(x, x,
 stats <- subset(stats, dep_rel %in% "nsubj" & upos %in% c("NOUN") & upos_parent %in% c("ADJ"))
 stats$term <- paste(stats$lemma_parent, stats$lemma, sep = " ")
 stats <- txt_freq(stats$term)
-library(wordcloud)
+dev.off()
 wordcloud(words = stats$key, freq = stats$freq, min.freq = 3, max.words = 100,
           random.order = FALSE, colors = brewer.pal(6, "Dark2"), scale = c(1.1,5))
 

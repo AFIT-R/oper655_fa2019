@@ -1,0 +1,71 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate)
+```
+
+# Implementing LSTM's
+
+```{python}
+import tensorflow as tf
+```
+
+```{python}
+vocab_size = 10000
+embedding_dim = 16
+max_length = 120
+trunc_type = "post"
+oov_tok = "<OOV>"
+
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+tokenizer = Tokenizer(num_words = vocab_size, oov_token = oov_tok)
+```
+
+Here's a model where the second layer uses an LSTM by calling the method `tf.keras.layers.LSTM`. The parameter passed to the method, in this case the integer 64, refers to the number of outputs that I want from that layer.  Wrapping this method with `tf.keras.layers.Bidirectional`, ensures that the cell state can go in both directions. 
+
+```{python}
+model_lstm = tf.keras.Sequential([
+  tf.keras.layers.Embedding(tokenizer.num_words, 64),
+  tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64)),
+  tf.keras.layers.Dense(64, activation = 'relu'),
+  tf.keras.layers.Dense(1, activation = 'sigmoid'),
+])
+```
+
+You'll see this when you explore the model summary, which looks like the output from the code chunk below. 
+
+```{python}
+model_lstm.summary()
+```
+
+We have our embedding and our bidirectional containing the LSTM, followed by the two dense layers. Note that the dimension of the output from a layer with a bidirectional cell state is 128, not 64 as we specified when declaring the LSTM layer.  This is because the a bidirectional cell state effectively doubles this dimension. 
+
+If desired, we can stack LSTM layers -- just as we would with any other `keras` layer -- as shown in the code chunk below. Note that when feeding one LSTM layer into another, you have to include the `return_sequences = True` in the first layer to make sure that the outputs of the LSTM match the desired inputs of the next one. 
+
+```{python}
+model_lstm2 = tf.keras.Sequential([
+  tf.keras.layers.Embedding(tokenizer.num_words, 64),
+  tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64, 
+                                                     return_sequences = True)),
+  tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(32)),
+  tf.keras.layers.Dense(64, activation = 'relu'),
+  tf.keras.layers.Dense(1, activation = 'sigmoid'),
+])
+```
+
+The summary of this second model `model_lstm2` is as shown below. 
+
+```{python}
+model_lstm2.summary()
+```
+
+Let's look at the impact of using an LSTM on the model that we looked at in the last module, where we had subword tokens.
+
+```{python}
+
+```
