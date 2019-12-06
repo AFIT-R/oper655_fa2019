@@ -328,7 +328,7 @@ am = text_AntMan %>%
 pam<-ggplot(data=am, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkred") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Ant-Man") +
   xlab("Words") +
   ylab("Count")
 pam
@@ -341,7 +341,7 @@ am2 = text_AntMan2 %>%
 pam2<-ggplot(data=am2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkred") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Ant-Man & the Wasp") +
   xlab("Words") +
   ylab("Count")
 pam2
@@ -354,7 +354,7 @@ ca = text_CaptAmerica %>%
 pca<-ggplot(data=ca, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Captain America: The First Avenger") +
   xlab("Words") +
   ylab("Count")
 pca
@@ -367,7 +367,7 @@ ca2 = text_CaptAmerica2 %>%
 pca2<-ggplot(data=ca2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Captain America: The Winter Soldier") +
   xlab("Words") +
   ylab("Count")
 pca2
@@ -380,7 +380,7 @@ ca3 = text_CaptAmerica3 %>%
 pca3<-ggplot(data=ca3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Captain America: Civil War") +
   xlab("Words") +
   ylab("Count")
 pca3
@@ -393,7 +393,7 @@ im = text_IronMan %>%
 pim<-ggplot(data=im, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Iron Man") +
   xlab("Words") +
   ylab("Count")
 pim
@@ -406,7 +406,7 @@ im2 = text_IronMan2 %>%
 pim2<-ggplot(data=im2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Iron Man 2") +
   xlab("Words") +
   ylab("Count")
 pim2
@@ -419,7 +419,7 @@ im3 = text_IronMan3 %>%
 pim3<-ggplot(data=im3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Iron Man 3") +
   xlab("Words") +
   ylab("Count")
 pim3
@@ -432,7 +432,7 @@ gotg = text_GotG %>%
 pgotg<-ggplot(data=gotg, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="purple") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Guardians of the Galaxy") +
   xlab("Words") +
   ylab("Count")
 pgotg
@@ -445,7 +445,7 @@ gotg2 = text_GotG2 %>%
 pgotg2<-ggplot(data=gotg2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="purple") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Guardians of the Galaxy Vol. 2") +
   xlab("Words") +
   ylab("Count")
 pgotg2
@@ -458,7 +458,7 @@ t = text_Thor %>%
 pt<-ggplot(data=t, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Thor") +
   xlab("Words") +
   ylab("Count")
 pt
@@ -471,7 +471,7 @@ t2 = text_Thor2 %>%
 pt2<-ggplot(data=t2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Thor: The Dark World") +
   xlab("Words") +
   ylab("Count")
 pt2
@@ -484,7 +484,7 @@ t3 = text_Thor3 %>%
 pt3<-ggplot(data=t3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Thor: Ragnarok") +
   xlab("Words") +
   ylab("Count")
 pt3
@@ -497,7 +497,7 @@ sm = text_SpiderManHC %>%
 psm<-ggplot(data=sm, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="red") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Spider-Man: Homecoming") +
   xlab("Words") +
   ylab("Count")
 psm
@@ -510,7 +510,7 @@ h = text_Hulk %>%
 ph<-ggplot(data=h, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkgreen") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in The Incredible Hulk") +
   xlab("Words") +
   ylab("Count")
 ph
@@ -523,7 +523,7 @@ av2 = text_AvengersAOU %>%
 pav2<-ggplot(data=av2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="blue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Avengers: Age of Ultron") +
   xlab("Words") +
   ylab("Count")
 pav2
@@ -536,7 +536,7 @@ av3 = text_AvengersIW %>%
 pav3<-ggplot(data=av3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="blue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Avengers: Infinity War") +
   xlab("Words") +
   ylab("Count")
 pav3
@@ -549,7 +549,7 @@ bp = text_BkPanther %>%
 pbp<-ggplot(data=bp, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="black") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Black Panther") +
   xlab("Words") +
   ylab("Count")
 pbp
@@ -562,7 +562,7 @@ ds = text_DrStrange %>%
 pds<-ggplot(data=ds, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkorange") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Doctor Strange") +
   xlab("Words") +
   ylab("Count")
 pds
@@ -680,7 +680,7 @@ mcup1 = text_mcu_p1 %>%
 pmcup1<-ggplot(data=mcup1, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkred") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Phase 1 of the MCU") +
   xlab("Words") +
   ylab("Count")
 pmcup1
@@ -693,7 +693,7 @@ mcup2 = text_mcu_p2 %>%
 pmcup2<-ggplot(data=mcup2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Phase 2 of the MCU") +
   xlab("Words") +
   ylab("Count")
 pmcup2
@@ -706,7 +706,7 @@ mcup3 = text_mcu_p3 %>%
 pmcup3<-ggplot(data=mcup3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in Phase 3 of the MCU") +
   xlab("Words") +
   ylab("Count")
 pmcup3
@@ -719,7 +719,7 @@ mcu = text_mcu %>%
 pmcu<-ggplot(data=mcu, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="black") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in the Entire MCU") +
   xlab("Words") +
   ylab("Count")
 pmcu
@@ -745,7 +745,7 @@ imtm = text_IM_Tril %>%
 pimtm<-ggplot(data=imtm, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in the Iron Man Trilogy") +
   xlab("Words") +
   ylab("Count")
 pimtm
@@ -758,7 +758,7 @@ ttm = text_Thor_Tril %>%
 pttm<-ggplot(data=ttm, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in the Thor Trilogy") +
   xlab("Words") +
   ylab("Count")
 pttm
@@ -771,7 +771,7 @@ acm = text_AM_Comb %>%
 pacm<-ggplot(data=acm, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkred") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in the Ant-Man Movies") +
   xlab("Words") +
   ylab("Count")
 pacm
@@ -784,7 +784,7 @@ avcm = text_AV_Comb %>%
 pavcm<-ggplot(data=avcm, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="blue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in the Avengers Movies") +
   xlab("Words") +
   ylab("Count")
 pavcm
@@ -797,7 +797,7 @@ gotgcm = text_GotG_Comb %>%
 pgotgcm<-ggplot(data=gotgcm, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="purple") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
-  labs(title = "Top 10 Words") +
+  labs(title = "Top 10 Words in the Guardians of the Galaxy Movies") +
   xlab("Words") +
   ylab("Count")
 pgotgcm
