@@ -4,6 +4,7 @@ subtitle: "Integrating R & Python"
 date: "`r format(Sys.Date(),'%d %B %Y')`"
 output: 
   html_document:
+    df_print: "paged"
     css: "css/tf.css"
     toc: yes
     toc_float: yes
@@ -30,5 +31,5 @@ This tutorial walks through how to perform text analyses using Tensorflow by int
 ```{r tf2, child="tf2.Rmd", eval=TRUE}
 ```
 
-```{r tf3, child="tf3.Rmd", eval=TRUE}
+```{r tf3, child="tf3.Rmd", eval=!TRUE}
 ```

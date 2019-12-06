@@ -1,0 +1,95 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## diving into the code
+
+```{python}
+imdb, info = tfds.load("imdb_reviews/subwords8k", 
+                       with_info = True, 
+                       as_supervised = True,
+                       data_dir = "data")
+```
+
+
+```{python}
+train_data, test_data = imdb['train'], imdb['test']
+```
+
+Learn more <a target=" " href='https://www.tensorflow.org/datasets/api_docs/python/tfds/features/text/SubwordTextEncoder'>HERE</a>
+
+```{python}
+tokenizer = info.features['text'].encoder
+```
+
+```{python}
+print(tokenizer.subwords)
+```
+
+How the tokenizer encodes strings as numerical values using the vocabulary and then decodes them as well
+
+```{python}
+sample_string = "Tensorflow, from basics to mastery"
+
+tokenized_string = tokenizer.encode(sample_string)
+
+print("Tokenized string is {}".format(tokenized_string))
+
+original_string = tokenizer.decode(tokenized_string)
+print("The original string: {}".format(original_string))
+```
+
+```{python}
+for ts in tokenized_string:
+  print("{} -----> {}".format(ts,tokenizer.decode([ts])))
+```
+
+
+```{python}
+embedding_dim = 64
+
+model3 = tf.keras.Sequential([
+  tf.keras.layers.Embedding(tokenizer.vocab_size, 
+                            embedding_dim),
+  tf.keras.layers.GlobalAveragePooling1D(),
+  tf.keras.layers.Dense(6,activation = "relu"),
+  tf.keras.layers.Dense(1,activation = "sigmoid")
+])
+
+model3.summary()
+```
+
+
+```{python}
+num_epochs = 10
+
+model3.compile(loss = "binary_crossentropy",
+               optimizer = "adam",
+               metrics = ['accuracy'])
+
+history = model3.fit(train_data,
+                     epochs = num_epochs,
+                     validation_data = test_data)
+```
+
+```{python}
+import matplotlib.pyplot as plt
+
+def plot_graphs(history,string):
+  plt.plot(history.history[string])
+  plt.plot(history.history["val_"+string])
+  plt.xlabel("Epochs")
+  plt.ylabel(string)
+  plt.legend([string, "val_"+string])
+  plt.show()
+
+plot_graphs(history, "acc")
+plot_graphs(history, "loss")
+```
+
