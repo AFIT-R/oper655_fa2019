@@ -79,35 +79,40 @@ for (i in 1:5) {
 >>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
 #Tibbles (Readable Texts)
 #Phase 1 Movies (No Avengers Script)
-text_CaptAmerica <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu11),
+text_CaptAmerica <- tibble::tibble(title = "Captain America: The First Avenger",
+                                   chapter = base::seq_along(tb_pdftools_mcu11),
                                     text = tb_pdftools_mcu11,
                                    movie_number = 5,
                                    release_date = "June 22, 2011",
                                    director = "Joe Johnston",
                                    screenwriter = "Christopher Markus & Stephen McFeely",
                                    producer = "Kevin Feige")
-text_IronMan2 <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu12),
+text_IronMan2 <- tibble::tibble(title = "Iron Man 2",
+                                chapter = base::seq_along(tb_pdftools_mcu12),
                                 text = tb_pdftools_mcu12,
                                 movie_number = 3,
                                 release_date = "May 7, 2010",
                                 director = "Jon Favreau",
                                 screenwriter = "Justin Theroux",
                                 producer = "Kevin Feige")
-text_IronMan <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu13),
+text_IronMan <- tibble::tibble(title = "Iron Man",
+                               chapter = base::seq_along(tb_pdftools_mcu13),
                                 text = tb_pdftools_mcu13,
                                movie_number = 1,
                                release_date = "May 2, 2008",
                                director = "Jon Favreau",
                                screenwriter = "Mark Fergus, Hawk Ostby, Art Marcum, & Matt Holloway",
                                producer = "Kevin Feige & Avi Arad")
-text_Hulk <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu14),
-                                text = tb_pdftools_mcu14,
+text_Hulk <- tibble::tibble(title = "The Incredible Hulk",
+                            chapter = base::seq_along(tb_pdftools_mcu14),
+                            text = tb_pdftools_mcu14,
                             movie_number = 2,
                             release_date = "June 13, 2008",
                             director = "Louis Leterrier",
                             screenwriter = "Zak Penn",
                             producer = "Kevin Feige, Avi Arad, & Gale Anne Hurd")
-text_Thor <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu15),
+text_Thor <- tibble::tibble(title = "Thor",
+                            chapter = base::seq_along(tb_pdftools_mcu15),
                              text = tb_pdftools_mcu15,
                             movie_number = 4,
                             release_date = "May 6, 2011",
@@ -115,42 +120,48 @@ text_Thor <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu15),
                             screenwriter = "Ashley Edward Miller, Zack Stentz, & Don Payne",
                             producer = "Kevin Feige")
 #Phase 2 Movies
-text_AntMan <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu21),
+text_AntMan <- tibble::tibble(title = "Ant-Man",
+                              chapter = base::seq_along(tb_pdftools_mcu21),
                                text = tb_pdftools_mcu21,
                               movie_number = 12,
                               release_date = "June 17, 2015",
                               director = "Peyton Reed",
                               screenwriter = "Edgar Wright, Joe Cornish, Adam McKay, & Paul Rudd",
                               producer = "Kevin Feige")
-text_AvengersAOU <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu22),
+text_AvengersAOU <- tibble::tibble(title = "Avengers: Age of Ultron",
+                                   chapter = base::seq_along(tb_pdftools_mcu22),
                                   text = tb_pdftools_mcu22,
                                   movie_number = 11,
                                   release_date = "May 1, 2015",
                                   director = "Joss Whedon",
                                   screenwriter = "Joss Whedon",
                                   producer = "Kevin Feige")
-text_CaptAmerica2 <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu23),
+text_CaptAmerica2 <- tibble::tibble(title = "Captain America: The Winter Soldier",
+                                    chapter = base::seq_along(tb_pdftools_mcu23),
                                     text = tb_pdftools_mcu23,
                                     movie_number = 9,
                                     release_date = "April 4, 2014",
                                     director = "Anthony & Joe Russo",
                                     screenwriter = "Christopher Markus & Stephen McFeely",
                                     producer = "Kevin Feige")
-text_GotG <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu24),
+text_GotG <- tibble::tibble(title = "Guardians of the Galaxy",
+                            chapter = base::seq_along(tb_pdftools_mcu24),
                              text = tb_pdftools_mcu24,
                             movie_number = 10,
                             release_date = "August 1, 2014",
                             director = "James Gunn",
                             screenwriter = "James Gunn & Nicole Perlman",
                             producer = "Kevin Feige")
-text_IronMan3 <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu25),
-                                   text = tb_pdftools_mcu25,
+text_IronMan3 <- tibble::tibble(title = "Iron Man 3",
+                                chapter = base::seq_along(tb_pdftools_mcu25),
+                                text = tb_pdftools_mcu25,
                                 movie_number = 7,
                                 release_date = "May 3, 2013",
                                 director = "Shane Black",
                                 screenwriter = "Drew Pearce & Shane Black",
                                 producer = "Kevin Feige")
-text_Thor2 <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu26),
+text_Thor2 <- tibble::tibble(title = "Thor: The Dark World",
+                             chapter = base::seq_along(tb_pdftools_mcu26),
                              text = tb_pdftools_mcu26,
                              movie_number = 8,
                              release_date = "November 8, 2013",
@@ -158,56 +169,64 @@ text_Thor2 <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu26),
                              screenwriter = "Christopher L. Yost, Christopher Markus, & Stephen McFeely",
                              producer = "Kevin Feige")
 #Phase 3 Movies (Ends at Avengers: Infinity War)
-text_AntMan2 <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu31),
+text_AntMan2 <- tibble::tibble(title = "Ant-Man & The Wasp",
+                               chapter = base::seq_along(tb_pdftools_mcu31),
                           text = tb_pdftools_mcu31,
                           movie_number = 20,
                           release_date = "July 6, 2018",
                           director = "Peyton Reed",
                           screenwriter = "Chris McKenna, Erik Sommers, Paul Rudd, Andrew Barrer, & Gabriel Ferrari",
                           producer = "Kevin Feige & Stephen Broussard")
-text_AvengersIW <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu32),
+text_AvengersIW <- tibble::tibble(title = "Avengers: Infinity War",
+                                  chapter = base::seq_along(tb_pdftools_mcu32),
                                text = tb_pdftools_mcu32,
                                movie_number = 19,
                                release_date = "April 27, 2018",
                                director = "Anthony & Joe Russo",
                                screenwriter = "Christopher Markus & Stephen McFeely",
                                producer = "Kevin Feige")
-text_BkPanther <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu33),
+text_BkPanther <- tibble::tibble(title = "Black Panther",
+                                 chapter = base::seq_along(tb_pdftools_mcu33),
                                text = tb_pdftools_mcu33,
                                movie_number = 18,
                                release_date = "February 16, 2018",
                                director = "Ryan Coogler",
                                screenwriter = "Ryan Coogler & Joe Robert Cole",
                                producer = "Kevin Feige")
-text_CaptAmerica3 <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu34),
+text_CaptAmerica3 <- tibble::tibble(title = "Captain America: Civil War",
+                                    chapter = base::seq_along(tb_pdftools_mcu34),
                                text = tb_pdftools_mcu34,
                                movie_number = 13,
                                release_date = "May 6, 2016",
                                director = "Anthony & Joe Russo",
                                screenwriter = "Christopher Markus & Stephen McFeely",
                                producer = "Kevin Feige")
-text_DrStrange <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu35),
+text_DrStrange <- tibble::tibble(title = "Doctor Strange",
+                                 chapter = base::seq_along(tb_pdftools_mcu35),
                                text = tb_pdftools_mcu35,
                                movie_number = 14,
                                release_date = "November 4, 2016",
                                director = "Scott Derrickson",
                                screenwriter = "Jon Spaihts, Scott Derrickson, & C. Robert Cargill",
                                producer = "Kevin Feige")
-text_GotG2 <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu36),
+text_GotG2 <- tibble::tibble(title = "Guardians of the Galaxy Volume 2",
+                             chapter = base::seq_along(tb_pdftools_mcu36),
                                text = tb_pdftools_mcu36,
                              movie_number = 15,
                              release_date = "May 5, 2017",
                              director = "James Gunn",
                              screenwriter = "James Gunn",
                              producer = "Kevin Feige")
-text_SpiderManHC <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu37),
+text_SpiderManHC <- tibble::tibble(title = "Spider-Man: Homecoming",
+                                   chapter = base::seq_along(tb_pdftools_mcu37),
                                text = tb_pdftools_mcu37,
                                movie_number = 16,
                                release_date = "July 7, 2017",
                                director = "Jon Watts",
                                screenwriter = "Jonathan Goldstein, John Francis Daley, Jon Watts, Christopher Ford, Chris McKenna, & Erik Sommers",
                                producer = "Kevin Feige & Amy Pascal")
-text_Thor3 <- tibble::tibble(chapter = base::seq_along(tb_pdftools_mcu38),
+text_Thor3 <- tibble::tibble(title = "Thor: Ragnarok",
+                             chapter = base::seq_along(tb_pdftools_mcu38),
                                text = tb_pdftools_mcu38,
                              movie_number = 17,
                              release_date = "November 3, 2017",
@@ -805,7 +824,7 @@ spacy_initialize()
 #Unnesting tokens
 tidytext::unnest_tokens(text_mcu, word, text)
 
-mcu_data <- as.data.frame(text_mcu[1:7], stringsAsFactors = FALSE)
+mcu_data <- as.data.frame(text_mcu[1:8], stringsAsFactors = FALSE)
 mcu_parsed <- spacy_parse(mcu_data$text, entity = TRUE)
 mcu_extracted <- entity_extract(mcu_parsed)
 
@@ -885,3 +904,86 @@ mcu_extracted %>%
   labs(title = "Geopolitical Entities") +
   xlab("Geopolitcal Entities") +
   ylab("Mentions")
+
+#Sentiment Analysis
+pacman::p_load(tidyr,
+               tidytext,
+               tidyverse,
+               textdata,
+               dplyr,
+               stringr,
+               ggplot2,
+               magrittr,
+               wordcloud,
+               reshape2,
+               saotd)
+nrc_joy <- get_sentiments("nrc") %>%
+  filter(sentiment == "joy")
+nrc_anger <- get_sentiments("nrc") %>%
+  filter(sentiment == "anger")
+
+mcu_unnested <- tidytext::unnest_tokens(text_mcu, word, text)
+
+#Top 10 Positive Sentiment Words
+mcu_unnested %>%
+  anti_join(tibble::tibble(word = c("rocket")))%>%
+  inner_join(nrc_joy) %>%
+  count(word, sort = T)
+
+#Top 10 Negative Sentiment Words
+mcu_unnested %>%
+  anti_join(tibble::tibble(word = c("rocket")))%>%
+  inner_join(nrc_anger) %>%
+  count(word, sort = T)
+
+wordcounts <- mcu_unnested %>%
+  group_by(title) %>%
+  summarize(words = n())
+
+binnegative <- get_sentiments("bing") %>%
+  filter(sentiment == "negative")
+binpositive <- get_sentiments("bing") %>%
+  filter(sentiment == "positive")
+
+mcu_unnested %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = title, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive/negative) %>%
+  top_n(10) %>%
+  arrange(desc(sentiment)) %>%
+  ungroup()
+
+#Top 10 Most Positive Movies in the MCU
+mcu_unnested %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = title, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive/(positive + negative))) %>%
+  top_n(10) %>%
+  arrange(desc(sentiment)) %>%
+  ungroup()
+
+#Top 10 Most Negative Movies in the MCU
+mcu_unnested %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = title, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (negative/(positive + negative))) %>%
+  top_n(10) %>%
+  arrange(desc(sentiment)) %>%
+  ungroup()
+
+#Word Cloud - Most Used Words
+mcu_unnested %>%
+  anti_join(stop_words) %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 100))
+
+#Word Cloud w/ Sentiment
+mcu_unnested %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("gray20","gray80"),
+                   max.words = 100)
