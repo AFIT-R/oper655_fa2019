@@ -82,6 +82,8 @@ text1 = gsub("Spread","spread", text1)
 text1 = gsub("Behind","behind", text1)
 text1 = gsub("Carolyn Reynolds","Carolyn", text1)
 text1 = gsub("Decisin","decision", text1)
+text1 = gsub("D,","",text1)
+text1 = gsub("D...","",text1)
 
 text1 <- gsub("Santa clausis","Santa Claus",text1)
 text1 <- gsub("Santa Clausis","Santa Claus",text1)
@@ -104,7 +106,6 @@ str(text3)
 sentences_1 <- unnest_tokens(tbl=text3,input=col1,output=sentences_1,token = "sentences")
 text=sentences_1[,1]
 
-rm(raw_tb,sentences_1,sort_text,sort_text_no_sw,text3,word_vect,text1)
 
 
 
@@ -120,21 +121,34 @@ article_words <- article_sentences %>%
 article_words <- article_words %>%
   anti_join(stop_words, by = "word")
 
-article_summary <- textrank_sentences(data = article_sentences, 
-                                      terminology = article_words)
+# article_summary <- textrank_sentences(data = article_sentences, 
+#                                       terminology = article_words)
                   #this part takes awhile
-
+# saveRDS(article_summary,"C:/Users/Max's USAFA PC/Documents/SCHOOL/article_summary.RDS")
+article_summary=readRDS("C:/Users/Max's USAFA PC/Documents/SCHOOL/article_summary.RDS")
 
 #This shows us the top three sentences that summarize the document
-article_summary[["sentences"]] %>%
+a_s_2<- article_summary[["sentences"]] %>%
   arrange(desc(textrank)) %>% 
-  slice(1:5) %>%
+  slice(1:10) %>%
   pull(sentence)
 
 
-#g_sum = genericSummary(sentences_1$text3[1:100],1)
-g_sum = genericSummary(text,5)
+x=nchar(text1)
 
+a=substr(text1, 1, x/2)
+b=substr(text1, x/2+1,x*7/8)
+
+d=text1
+d=gsub("D,","",d)
+d=gsub("D...","",d)
+character_count(d)
+
+g_sum_d = genericSummary(d,20,min = 2)
+
+g_sum_d=unique(g_sum_d)
+
+saveRDS(g_sum_d,"C:/Users/Max's USAFA PC/Documents/SCHOOL/g_sum_d.RDS")
 
 
 
@@ -149,8 +163,7 @@ article_summary[["sentences"]] %>%
   labs(x = "Sentence",
        y = "TextRank score",
        title = "Location within the data where most informative text occurs",
-       subtitle = 'Galaxy S5',
-       caption = "Source: Oper 655 - Text Mining")
+       subtitle = 'Elf')
 
 
 
