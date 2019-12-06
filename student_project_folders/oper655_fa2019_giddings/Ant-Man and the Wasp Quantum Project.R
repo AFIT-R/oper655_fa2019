@@ -60,7 +60,6 @@ mcu_phase1 <- list.files(dest1,
                          pattern = 'pdf',
                          full.names = TRUE)
 
-<<<<<<< HEAD
 #Attempting to add the rest of the scripts of the MCU into a corpus.
 for (i in 1:8) {
   nam <- paste("tb_pdftools_mcu3",i,sep = "")
@@ -75,8 +74,6 @@ for (i in 1:5) {
   assign(nam,pdftools::pdf_text(pdf = mcu_phase1[i]))
 }
 
-=======
->>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
 #Tibbles (Readable Texts)
 #Phase 1 Movies (No Avengers Script)
 text_CaptAmerica <- tibble::tibble(title = "Captain America: The First Avenger",
@@ -240,7 +237,7 @@ tb_pdftools_mcu3 <- pdftools::pdf_text(pdf = mcu_phase3[1])
 tb_pdftools_mcu2 <- pdftools::pdf_text(pdf = mcu_phase2[1])
 tb_pdftools_mcu1 <- pdftools::pdf_text(pdf = mcu_phase1[1])
 
-#Cursory Analysis (Top 10 Words in a List)
+#Unnesting the tokens.
 text_CaptAmerica %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
@@ -317,7 +314,7 @@ text_SpiderManHC %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE)
-# top 10 most common words in each book
+
 #Top 10 words in a Bar Graph
 #Ant-Man
 am = text_AntMan %>%
@@ -338,7 +335,7 @@ am2 = text_AntMan2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pam2<-ggplot(data=am2, aes(x = reorder(word, n), y =n)) +
+pam2 <- ggplot(data=am2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkred") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Ant-Man & the Wasp") +
@@ -351,7 +348,7 @@ ca = text_CaptAmerica %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pca<-ggplot(data=ca, aes(x = reorder(word, n), y =n)) +
+pca <- ggplot(data=ca, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Captain America: The First Avenger") +
@@ -364,7 +361,7 @@ ca2 = text_CaptAmerica2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pca2<-ggplot(data=ca2, aes(x = reorder(word, n), y =n)) +
+pca2 <- ggplot(data=ca2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Captain America: The Winter Soldier") +
@@ -377,7 +374,7 @@ ca3 = text_CaptAmerica3 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pca3<-ggplot(data=ca3, aes(x = reorder(word, n), y =n)) +
+pca3 <- ggplot(data=ca3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Captain America: Civil War") +
@@ -390,7 +387,7 @@ im = text_IronMan %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pim<-ggplot(data=im, aes(x = reorder(word, n), y =n)) +
+pim <- ggplot(data=im, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Iron Man") +
@@ -403,7 +400,7 @@ im2 = text_IronMan2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pim2<-ggplot(data=im2, aes(x = reorder(word, n), y =n)) +
+pim2 <- ggplot(data=im2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Iron Man 2") +
@@ -416,7 +413,7 @@ im3 = text_IronMan3 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pim3<-ggplot(data=im3, aes(x = reorder(word, n), y =n)) +
+pim3 <- ggplot(data=im3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Iron Man 3") +
@@ -429,7 +426,7 @@ gotg = text_GotG %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pgotg<-ggplot(data=gotg, aes(x = reorder(word, n), y =n)) +
+pgotg <- ggplot(data=gotg, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="purple") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Guardians of the Galaxy") +
@@ -442,7 +439,7 @@ gotg2 = text_GotG2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pgotg2<-ggplot(data=gotg2, aes(x = reorder(word, n), y =n)) +
+pgotg2 <- ggplot(data=gotg2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="purple") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Guardians of the Galaxy Vol. 2") +
@@ -455,7 +452,7 @@ t = text_Thor %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pt<-ggplot(data=t, aes(x = reorder(word, n), y =n)) +
+pt <- ggplot(data=t, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Thor") +
@@ -468,7 +465,7 @@ t2 = text_Thor2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pt2<-ggplot(data=t2, aes(x = reorder(word, n), y =n)) +
+pt2 <- ggplot(data=t2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Thor: The Dark World") +
@@ -481,7 +478,7 @@ t3 = text_Thor3 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pt3<-ggplot(data=t3, aes(x = reorder(word, n), y =n)) +
+pt3 <- ggplot(data=t3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Thor: Ragnarok") +
@@ -494,7 +491,7 @@ sm = text_SpiderManHC %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-psm<-ggplot(data=sm, aes(x = reorder(word, n), y =n)) +
+psm <- ggplot(data=sm, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="red") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Spider-Man: Homecoming") +
@@ -507,7 +504,7 @@ h = text_Hulk %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-ph<-ggplot(data=h, aes(x = reorder(word, n), y =n)) +
+ph <- ggplot(data=h, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkgreen") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in The Incredible Hulk") +
@@ -520,7 +517,7 @@ av2 = text_AvengersAOU %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pav2<-ggplot(data=av2, aes(x = reorder(word, n), y =n)) +
+pav2 <- ggplot(data=av2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="blue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Avengers: Age of Ultron") +
@@ -533,7 +530,7 @@ av3 = text_AvengersIW %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pav3<-ggplot(data=av3, aes(x = reorder(word, n), y =n)) +
+pav3 <- ggplot(data=av3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="blue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Avengers: Infinity War") +
@@ -546,7 +543,7 @@ bp = text_BkPanther %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pbp<-ggplot(data=bp, aes(x = reorder(word, n), y =n)) +
+pbp <- ggplot(data=bp, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="black") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Black Panther") +
@@ -559,7 +556,7 @@ ds = text_DrStrange %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pds<-ggplot(data=ds, aes(x = reorder(word, n), y =n)) +
+pds <- ggplot(data=ds, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkorange") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Doctor Strange") +
@@ -978,7 +975,7 @@ mcu_unnested %>%
 mcu_unnested %>%
   anti_join(stop_words) %>%
   count(word) %>%
-  with(wordcloud(word, n, max.words = 100))
+  with(wordcloud(word, n, max.words = 50))
 
 #Word Cloud w/ Sentiment
 mcu_unnested %>%
@@ -986,4 +983,23 @@ mcu_unnested %>%
   count(word, sentiment, sort = TRUE) %>%
   acast(word ~ sentiment, value.var = "n", fill = 0) %>%
   comparison.cloud(colors = c("gray20","gray80"),
-                   max.words = 100)
+                   max.words = 50)
+
+#Document Summarization
+pacman::p_load(tidyr,
+               tidytext,
+               tidyverse,
+               textdata,
+               dplyr,
+               stringr,
+               ggplot2,
+               magrittr,
+               wordcloud,
+               reshape2,
+               textmineR,
+               LSAfun,
+               igraph,
+               textrank,
+               ggraph,
+               lattice,
+               udpipe)
