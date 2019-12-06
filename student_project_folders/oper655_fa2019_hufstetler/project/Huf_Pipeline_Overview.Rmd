@@ -1,0 +1,203 @@
+---
+title: "OPER 655 Student Project Report"
+author: "Capt Brandon Hufstetler"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output: 
+  html_document:
+    code_folding: 'hide'
+abstract: 'This file walks a user through an implementation of the Huf Pipeline using transcripts from The Office.'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = F,
+                      warning = F, 
+                      comment = NA)
+for(i in c(1:5,7:8)){
+  source(base::paste0("./functions/pipeline_0",i,".R"))
+}
+rm(i)
+```
+
+
+# Overview
+## Background
+
+The purpose of this report is to describe a text mining pipeline created by Capt Hufstetler. The *pipeline* concept is to provide users an easily accessible toolset with which to perform text mining analysis and develop insights. It is intended that each link in the pipeline be managed in such a way that data can freely and easily flow between them without the need for additional formatting.
+
+## Pipeline Objectives
+
+The pipeline should be able to ingest text from an online repository of television show transcripts. The ingested text should then be processed into a central format that can be used by the other links of the pipeline. The output links should provide summary statistics, sentiment analysis, document summarization, and visual representations of the data. The outputs should also be easily interpreted by a lay-person.
+
+## Methodology
+
+This pipeline implementation will walk a user through the text mining processes of:
+
+1. Downloading, cleaning, and saving television show transcripts from *https://www.springfieldspringfield.co.uk/*
+2. Importing these text files into a corpus
+3. Tokenizing items from the corpus into a tibble for use with **tidy** package
+4. Casting the tibble into a Document Feature Matrix object for use with **quanteda** package, a Document Term Matrix object for use with **tm** package, a Term Document Matrix object for use with **tm** package, or a sparse matrix
+5. Visualizing text statistics
+6. Visualizing term-frequency inverse-document frequency
+7. Sentiment analysis
+8. Document Summarization
+
+# Initialization
+The first step in this pipeline is designed to scrape our text from the SpringfieldSpringfield website. It is not required that the text come from this source, but any external text documents must be saved in a folder accessible to R for the rest of the pipeline to function. 
+
+We identify the text to be analyzed and a local directory on the computer in which to store the raw text scraped from the internet. The text to be anlayzed should come from one of the shows found in the springfieldspringfield website. Navigate to the the main page of any of the shows and save the url. For this walkthrough, we'll use the US version of the show **The Office**.
+
+```{r initialize}
+library(dplyr) # for pipe operator to work
+save_folder <- base::file.path(rprojroot::find_root(rprojroot::is_rstudio_project)
+                               ,'student_project_folders'
+                               ,'oper655_fa2019_hufstetler'
+                               ,'project'
+                               ,'Data')
+url  <- 'https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-office-us'
+```
+
+# Pipeline
+
+## Phase I - Scrape the Web
+
+The first phase of the pipeline will scrape the web for the desired scripts, clean the text, and save each episode as a text file in a folder on the computer. The inputs are the desired show's main page's URL and the directory in which to save the scripts. The main page for the show **The Office** is *https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-office-us*. The save folder used here a folder named **Data** in my student project folder. It's ok if **Data** does not exist because the first phase of the pipeline will create it if necessary.
+
+```{r phaseI, eval=FALSE}
+huf.1_txt_from_site(url, save_folder)
+```
+
+## Phase II - Build a Corpus
+
+The second phase of the pipeline ingests every text document found in a directory and combines them into a corpus object. The corpus is just a tibble consisting of a row for every document with columns for the series episode number, the season, the episode within the season, a title, and the text within the document. If you're not using phase I of the pipeline, you'll need to guarantee that each file in the directory is named following the convention **s##e##.txt** where *s* represents the season/book/level 1 ID and *e* represents the episode/chapter/level 2 ID.
+
+```{r phaseII}
+corpus <- huf.2_create_corpus(save_folder)
+str(corpus)
+```
+
+## Phase III - Tokenize
+
+Phase III lets us unnest the corpus by sentence or n-gram. The token option can take the inputs *words*, *sentences*, or *ngrams*. If *ngrams* is chosen, the length of the n-gram must also be specified. The output is a tibble with the same structure as the corpus except the text column is replaced by the unnested tokens. 
+
+By summarizing information about the tokens, it's possible to quickly identify common words to add to the stop words list. The words shown here were found during analysis of later phases and added here. The analysis was then repeated in a recursive manner to further refine insights and filter out noise.
+
+Here we can combine phase III with other packages for some interesting results. First we unnest the corpus using each word as a token. Next we remove all stop words and re-nest the text back together. Finally, we unnest by 4-gram and sort by frequency. Some notable mentions easily recognized by anyone who has seen the show:
+
+```{r phaseIII}
+stop_custom <- tibble::tibble(word = c("click", "uh", "blah", "whoa", 
+                                           "ho", "hey", "bum", "doo", "ha", 
+                                           "olé", "pa", "yeah", "guh", "da",
+                                           "dot", "la", "mm", "hmm", "roo", 
+                                           "ya", "dah", "ah", "aye", "um"))
+
+knitr::kable(
+  (corpus %>% 
+    huf.3_unnest("words") %>%
+    dplyr::anti_join(tidytext::stop_words) %>%
+    dplyr::anti_join(stop_custom) %>%
+    plyr::ddply(plyr::.(episode, 
+                        season, 
+                        subep, 
+                        ep_title), 
+                summarize, 
+                word = paste(word, collapse=" ")) %>%
+    huf.3_unnest("ngrams", 4) %>% 
+    dplyr::count(word, sort = T))[c(1,13,27,41),],
+  caption = "4-grams with stop words omitted with frequency"
+)
+```
+
+## Phase IV Convert
+
+In phase IV, the functionality to convert the corpus to a particular format is added. The formats available in the pipeline are document term matrices (dtm), term document matrices (tdm), document feature matrices (DFM), and sparse matrices. Each of these formats is a variation of the same general idea of representing the tokens in a corpus in a matrix showing how often each token appears in each document in the corpus. The dtm and tdm formats produced here are good for working with the *tm* package and the DFM format is good for working with the *quanteda* package. Here, we'll create one of each.
+
+```{r phaseIV, eval = F}
+str(corpus %>% huf.4_corpus2other("dtm"))
+str(corpus %>% huf.4_corpus2other("dfm"))
+str(corpus %>% huf.4_corpus2other("tdm"))
+str(corpus %>% huf.4_corpus2other("sparse"))
+```
+
+## Phase V Statistics
+
+Phase V of the pipeline allows the user to quickly compute and visualize summary statistics of tokens in the corpus. It has the same inputs as phase II and actually calls phase II to unnest the tokens before performing a simple statistical analysis. The outputs from phase V are:
+
+- Tokens sorted by frequency (tabled and plotted)
+- Correlations between episodes and seasons
+
+```{r phaseV}
+```
+
+## Phase VI Visualizing tf-idf
+
+
+
+```{r phaseVI}
+huf.6_plot_tfidf(corpus, 1:4, 2, stop_custom)
+```
+
+## Phase VII Sentiment Analysis
+
+In this phase of the pipeline, we calculate the sum of the *bing* sentiments in each of the individual sentences of the corpus. The totals are then aggregated for 4 sentences at a time and plotted for an easy visual of how the sentiment changes during an episode. The user can choose which episodes to plot and the number of plots per row in the output. Here we show the sentiments for the first 12 episodes.
+
+While this does not provide any context about why the sentiment is varying during a particular episode, emotional arcs could be seen in several of the episodes. For example, perhaps in an effort to reset the tone of the show early on, the ending of the season 2 premiere has much higher positivity than previous episodes.
+
+```{r phaseVII}
+corpus %>% huf.7_sentiment(1:12, 3)
+```
+
+## Phase VIII Document Summarization
+
+In this phase, we get short summaries of each episode using the *textrank* package and compare them to the top ten terms found in a tf-idf table. Pairing these two methods gives the user both a sentence level summary of the episodes and key words that are used more frequently in the episode than throughout the series. To provide such a broad and narrow scope simultaneously, the entire corpus is required to be ingested.
+
+This combination of methods is able to identify the central theme of an episode without losing content from the many other stories occuring with other characters.
+
+### **Season 3 Episode 17** *Business School*
+
+The human created summarization of this episode from wikipedia.com states:
+
+*For extra credit, Ryan invites Michael to his business school as a guest speaker. Michael attempts to make a motivational speech, unaware that Ryan has introduced him as an ineffectual manager of an out of touch company. Meanwhile, a bat is discovered in the office, leading Dwight to lead an attempt to capture it. That night, Pam displays her artwork at an art show, and is disappointed when few of her co-workers attend. Michael soon arrives after giving his speech and, in a moment of genuine kindness, compliments her work and buys her painting of their office building.*
+
+The document summarization output from this phase is spot on with the title. Every sentence has the word *business* and two has *business school*. The tf-idf output picks up on the fact that there was a bat in this episode and leads a user to assume someone was bitten because the term *vampire* was also identified.
+
+Pam's artwork is also caught but with so little context, a user would only know that art is mentioned more often than usual in this episode.
+
+```{r phaseVIII}
+  episode <- corpus$episode[corpus$ep_title == "S03E17"]
+  
+
+  document_summary <- corpus %>%
+    huf.8_document_summary(episode, stop_custom)
+  print(document_summary[[1]])
+  print(document_summary[[2]]$word[1:10])
+```
+
+### **Season 4 Episode 1** *Fun Run*
+
+The human create summarization of this episode from wikipedia.com states:
+
+*After Michael hits Meredith with his car in the carpark of Dunder Mifflin Scranton, she learns she is infected with rabies. Angela asks Dwight to care for her sick cat, but Dwight mercy-kills the animal, leading to relationship problems. After being videoed in public by the camera crew, Pam announces that she and Jim are now dating, but they do not share this with their co-workers. Feeling guilty about the incident with Meredith, Michael decides to host "Michael Scott's Dunder Mifflin Scranton Meredith Palmer Memorial Celebrity Rabies Awareness Pro-Am Fun Run Race For The Cure", although his employees are less than enthused. Toby wins the race, and a depressed and dehydrated Michael is finally forgiven by Meredith.*
+
+It's interesting that the document summary of this episode did not identify the actual fun run, but did discover that Dwight had killed Angela's cat, Sprinkles. The document summary leads the user to think the episode was about Meredith being hit by a car and someone or something having rabies, but not Michael.
+
+The tf-idf outputs was able to pick up on the fun run by identifying *5k* and *race*. The combination of these terms with the document summary and the previous document summary, a user may glean that whoever was bit by the bat contracted rabies, that Meredith was hit by a car and broke her pelvis, and that there was a 5k race.
+
+Nothing about Pam and Jim's relationship is noted but that may be because it is such a central theme to the series.
+
+```{r phaseVIII}
+  episode <- corpus$episode[corpus$ep_title == "S04E01"]
+  
+  document_summary <- corpus %>%
+    huf.8_document_summary(episode, stop_custom)
+  print(document_summary[[1]])
+  print(document_summary[[2]]$word[1:10])
+```
+
+# Conclusion
+
+The pipeline demonstrated in this report met its goals of ingesting raw data from the web and presenting it in a meaningful way with very little input from a user. The outputs of the pipeline, while limited in scope, provide enough information for a user to develop insights into the texts. 
+
+In preparing this document, the links of the pipeline were iterated over multiple times. After every iteration, new stop words and corruptions in the data were identified or new insights were developed. In applying this pipeline to other data sets, a recursive process should be followed again to tune the pipeline to that data.
+
+It would be interesting to apply this pipeline to other shows in the SpringfieldSpringfield catalog.

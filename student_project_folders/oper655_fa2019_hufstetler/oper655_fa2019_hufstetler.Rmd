@@ -299,14 +299,14 @@ office_tidy %>%
 
 # calculate frequencies and look for deviations
 # calculate percent of word use across all seasons
-office_pct <- office_tidy %>%
-  dplyr::anti_join(stop_words) %>%
+office_pct <- corpus_unnestByWord %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
   dplyr::count(word) %>%
   dplyr::transmute(word, all_words = n / sum(n))
 
 # calculate percent of word use within each season
-frequency <- office_tidy %>%
-  dplyr::anti_join(stop_words) %>%
+frequency <- corpus_unnestByWord %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
   dplyr::count(season, word) %>%
   dplyr::mutate(season_words = n / sum(n)) %>%
   dplyr::left_join(office_pct) %>%
