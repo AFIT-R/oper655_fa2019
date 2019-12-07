@@ -38,7 +38,7 @@ huf.6_plot_tfidf <- function(corpus, episode_range, width, stop_custom){
       ggplot2::scale_color_gradient(limits = c(0, 0.001), 
                                     low = "darkslategray4", 
                                     high = "gray75") +
-      ggplot2::facet_wrap(~ episode, ncol = 2) +
+      ggplot2::facet_wrap(~ ep_title, ncol = 2) +
       ggplot2::theme(legend.position="none") +
       ggplot2::labs(y = "Series", x = NULL)
   )
