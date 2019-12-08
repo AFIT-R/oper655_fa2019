@@ -263,7 +263,7 @@ rm(county_dist, agebin_dist, EducationLevel_dist, NumVic_dist, race_dist, years_
 
 ````
 
-From these plots, there is one county where the majority of inmates were convicted.  For age of inmates at death, almost half were in the age range of 30-39 and the age range of 40-49 has the second most inmates.  The other age bins have a few observations with 10 inmates in the 60-69 age range.  The majority of inmates have education levels in the range of 9-12 years with the majority having 12 years.  Almost all inmates were convicted of crimes against one victim with 90 inmates being convicted of crimes againts 2 victim.  There are 18 inmates where this data was unavailable and 1 inmate who was convicted of crimes against 6 victims. There is a pretty even spread in the race of inmates between black, white, and hispanic.  There are only two inmates with their race categorized as other.  The final variable is the years in prison for each inmate.  The majority of inmates are in the range 6-10 years.  From these plots, the variables that could be of interest in comparing the last statements are age, education level, number of victims, race, and years in prison.       
+From these plots, there is one county where the majority of inmates were convicted.  For age of inmates at death, almost half were in the age range of 30-39 and the age range of 40-49 has the second most inmates.  The other age bins have a few observations with 10 inmates in the 60-69 age range.  The majority of inmates have education levels in the range of 9-12 years with the majority having 12 years.  Almost all inmates were convicted of crimes against one victim with 90 inmates being convicted of crimes againts 2 victim.  There are 18 inmates where this data was unavailable and 1 inmate who was convicted of crimes against 6 victims. There is a pretty even spread in the race of inmates between black, white, and hispanic.  There are only two inmates with their race categorized as other.  The final variable is the years in prison for each inmate.  The majority of inmates are in the range 6-10 years.  From these plots, the variables that could be of interest in comparing the last statements are age, education level, and years in prison.       
 
 ## Analysis
 1. Word relationships and frequencies
@@ -279,13 +279,13 @@ words <- data %>%
   ggplot(aes(x = reorder(word, n), y = n)) +
   geom_bar(stat = "identity") +
   labs(title = "Top 10 Words", y = "Count", x = "Word") +
-  coord_flip()
+  coord_flip() 
 
 #Unnest Trigram and Count (NA is no last statement)
 trigram <- data %>%
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
   count(trigram, sort = TRUE) %>%
-  top_n(10) %>%
+  top_n(10) %>% 
   ggplot(aes(x = reorder(trigram, n), y = n)) +
   geom_bar(stat = "identity") +
   labs(title = "Top 10 Trigrams", x = "Trigram", y = "Count") +
@@ -296,79 +296,265 @@ rm(words, trigram)
 
 ````
 
-Grouping the words and trigrams by race shows that the most commonly used words and trigrams are consistent across all races.  The race categorized as other was filtered out from this analysis due to the small number of observations.  The most common word is love and the most common trigram is "I love you."  A trigram that could be of interest in this analysis is the trigram "i am sorry" or "would like to" could be used to apologize or show remorse.  
+Analyzing word and trigram frequency grouped by the various independent variables shows how the usage of each word or trigram differs.  The frequency for age, education level, and years in prison are below.  
 
 ````{r}
-#Unnest Words/Trigrams and groups by Race
-words <- data %>% 
+#Unnest Words/Trigrams and groups by Age
+word_freq <- data %>% 
   unnest_tokens(word, LastStatement) %>%
   anti_join(stop_words) %>%
-  filter(Race != "Other") %>%
-  group_by(Race) %>%
+  group_by(AgeBin) %>%
   count(word, sort = TRUE) %>%
   top_n(10) %>%
-  ungroup() %>%
-  ggplot(aes(x = word, y = n, fill = Race)) +
+  transmute(word, all_words = n/sum(n)) %>%
+  arrange(desc(all_words)) %>%
+  ggplot(aes(x = reorder(word, all_words), y = all_words, fill = AgeBin)) +
   geom_bar(stat = "identity") +
-  facet_wrap(~Race, scales = "free_y") +
-  labs(x = NULL, y = "Count", title = "Word Count") +
+  facet_wrap(~AgeBin, scales = "free_y") +
+  labs(x = NULL, y = "Count", title = "Word Frequncy") +
   coord_flip() +
   theme(legend.position = "none")
-
-trigram <- data %>% 
+    
+trigram_freq <- data %>% 
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
-  filter(Race != "Other") %>%
-  group_by(Race) %>%
+  group_by(AgeBin) %>%
   count(trigram, sort = TRUE) %>%
   top_n(10) %>%
-  ungroup() %>%
-  ggplot(aes(x = trigram, y = n, fill = Race)) +
+  transmute(trigram, all_trigrams = n/sum(n)) %>%
+  arrange(desc(trigram)) %>%
+  ggplot(aes(x = reorder(trigram, all_trigrams), y = all_trigrams, fill = AgeBin)) +
   geom_bar(stat = "identity") +
-  facet_wrap(~Race, scales = "free_y") +
-  labs(x = NULL, y = "Count", title = "Trigram Count") +
+  facet_wrap(~AgeBin, scales = "free_y") +
+  labs(x = NULL, y = "Count", title = "Trigram Frequency") +
   coord_flip() +
-  theme(legend.position = "none")
-
-race_trigram_freq <- data %>%
-  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
-  group_by(Race) %>%
-  filter(Race != "Other") %>%
-  count(trigram) %>%
-  top_n(10) %>%
-  transmute(trigram, all_trigram = n/sum(n)) %>%
-  arrange(desc(all_trigram)) %>%
-  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= Race)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
-  theme(axis.text = element_text(angle = 90)) +
-  facet_wrap(~Race) +
   theme(legend.position = "none")
 
 grid.arrange(words, trigram, nrow = 2)
 
-
 ````
 
-The frequency of words and trigrams is oftentimes more informative as the number of words used across the different last statement differs.   
-
+With many differences in the number of observations for each indepedent variable of interst, word frequency is more informative because it will display the frequency of the word among all the words used in last statements of the independent variable.  The first variable is the age at death of the inmates.   
 ````{r}
-race_trigram_freq <- data %>%
+age_trigram_freq <- data %>%
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
-  group_by(Race) %>%
-  filter(Race != "Other") %>%
+  group_by(AgeBin) %>%
   count(trigram) %>%
   top_n(10) %>%
   transmute(trigram, all_trigram = n/sum(n)) %>%
   arrange(desc(all_trigram)) %>%
-  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= Race)) +
+  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= AgeBin)) +
   geom_bar(stat = "identity") +
   labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
   theme(axis.text = element_text(angle = 90)) +
-  facet_wrap(~Race) +
-  theme(legend.position = "none")
+  facet_wrap(~AgeBin) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
+  
+
+age_word_freq <- data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  group_by(AgeBin) %>%
+  count(word) %>%
+  top_n(10) %>%
+  transmute(word, all_word = n/sum(n)) %>%
+  arrange(desc(all_word)) %>%
+  ggplot(aes(x = reorder(word, -all_word), y = all_word, fill= AgeBin)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Word Frequency", x = "Word", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~AgeBin) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
+
+grid.arrange(age_word_freq, age_trigram_freq, nrow = 2)
+rm(age_word_freq, age_trigram_freq)
 
 ````
+
+The most frequently used words across all age brackets are love, family, and god.  The usage across the age groups differ for each word.  The most commonly used trigram is "i love you" with the frequency of usage much higher for the age range 30-39. The frequency of this trigram is similar between the age ranges 50-59 and 60-69.  The second most common trigram is "i want to" and the frequency is lower in the age range 30-39.
+
+The second independent variable of interst is the education level of the inmate at death. Only education levels of 9 years or greater were used because they had the most observations as shown in the distribution chart above.  
+
+````{r}
+
+data$EducationLevel <- factor(data$EducationLevel, levels = (sort(unique(as.numeric(data$EducationLevel)))))
+
+Ed_trigram_freq <- data %>%
+  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  group_by(EducationLevel) %>%
+  filter(EducationLevel == 9 | EducationLevel == 10 | EducationLevel == 11 |
+         EducationLevel == 12 | EducationLevel == 13 | EducationLevel == 14) %>%
+  count(trigram) %>%
+  top_n(10) %>%
+  transmute(trigram, all_trigram = n/sum(n)) %>%
+  arrange(desc(all_trigram)) %>%
+  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= EducationLevel)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~EducationLevel) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
+
+Ed_word_freq <- data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  group_by(EducationLevel) %>%
+  filter(EducationLevel == 9 | EducationLevel == 10 | EducationLevel == 11 |
+         EducationLevel == 12 | EducationLevel == 13 | EducationLevel == 14) %>%
+  count(word) %>%
+  top_n(10) %>%
+  transmute(word, all_word = n/sum(n)) %>%
+  arrange(desc(all_word)) %>%
+  ggplot(aes(x = reorder(word, -all_word), y = all_word, fill= EducationLevel)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Word Frequency", x = "Word", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~EducationLevel) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
+
+grid.arrange(Ed_word_freq, Ed_trigram_freq, nrow = 2)
+rm(Ed_word_freq, Ed_trigram_freq)
+````
+
+The most frequently used words for the education levels are very similar.  There is a difference in the frequency of the use of god in the last statements.  The individuals who had 14 years of education used god more frequently than the other education levels. When looking at the trigram frequency, the trigram of interest in this chart is the trigram "i am sorry."  Individuals with 11 years of education said I am sorry the least among all the education levels and individuals with 9 years of education had the highest frequency of the trigram "i am sorry."
+
+
+````{r}
+# use this to reorder the years in prison
+years_trigram_freq <- data %>%
+  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  group_by(Years_in_Prison2) %>%
+  filter(Years_in_Prison2 == "0-5" | 
+          Years_in_Prison2 == "6-10" |
+          Years_in_Prison2 == "11-15"  |
+          Years_in_Prison2 == "16-20" |
+          Years_in_Prison2 == "21-25"
+         ) %>%
+  count(trigram) %>%
+  top_n(10) %>%
+  transmute(trigram, all_trigram = n/sum(n)) %>%
+  arrange(desc(all_trigram)) %>%
+  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= Years_in_Prison2)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~Years_in_Prison2) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
+
+years_word_freq <- data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  group_by(Years_in_Prison2) %>%
+  filter(Years_in_Prison2 == "0-5" | 
+          Years_in_Prison2 == "6-10" |
+          Years_in_Prison2 == "11-15"  |
+          Years_in_Prison2 == "16-20" |
+          Years_in_Prison2 == "21-25") %>%
+  count(word) %>%
+  top_n(10) %>%
+  transmute(word, all_word = n/sum(n)) %>%
+  arrange(desc(all_word)) %>%
+  ggplot(aes(x = reorder(word, -all_word), y = all_word, fill= Years_in_Prison2)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Word Frequency", x = "Word", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~Years_in_Prison2) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
+
+grid.arrange(years_word_freq, years_trigram_freq, nrow = 2)
+rm(years_word_freq, years_trigram_freq)
+````
 2. Topic Modeling
+  - Discuss what topic modeling is/what it tells us
+  
+````{r}
+data2 <- as_tibble(data)
+topic_data_AgeBin1 <- data2 %>%
+  filter(AgeBin == "20-29") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_AgeBin2 <- data2 %>%
+  filter(AgeBin == "30-39") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_AgeBin3 <- data2 %>%
+  filter(AgeBin == "40-49") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_AgeBin4 <- data2 %>%
+  filter(AgeBin == "50-59") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_AgeBin5 <- data2 %>%
+  filter(AgeBin == "60-69") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+dfm_list <- list()
+
+for(i in 1:5){
+  dfm_list[[i]] <- assign(paste("dfm_data", i, sep = "_"), cast_dfm(topic_data_list[[i]], word, word, n))
+  
+}
+
+
+topic_model_list <- list()
+
+for(i in 1:length(dfm_list)){
+  topic_model_list[[i]] <- tidy(stm::stm(dfm_list[[i]], K = 4, init.type = "LDA"))
+  print(i)
+}
+
+
+
+
+topic_model_list <- list(topic_model1, topic_model2, topic_model3, topic_model4, topic_model5)
+
+tidy_list <- list()
+for(item in topic_model_list){
+  tidy(item) %>%  group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  coord_flip()
+}
+
+tidy_topic_1 <- tidy(topic_model1)
+
+tidy_topic_1 %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  coord_flip()
+
+````
 3. Sentiment Analysis
 
 ## Findings and Conclusions 

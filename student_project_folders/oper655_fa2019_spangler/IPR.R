@@ -578,17 +578,26 @@ topic_model %>%
 #   replace_na(list(score = 0))
 
 
-data_sentiments <- data %>%
+#data_sentiments <- 
+data %>%
   unnest_tokens(word, LastStatement) %>%
   inner_join(get_sentiments("bing")) %>%
   count(index = Execution, sentiment) %>%
   spread(sentiment, n, fill = 0) %>%
-  mutate(sentiment = (positive - negative))
+  mutate(sentiment = (positive - negative)/(positive + negative))
 
 data_sentiments %>%
-  ggplot(aes(x = index, y = sentiment)) +
-  geom_col() 
+  ggplot(aes(x = reorder(data_sentiments$index, sentiment), y = sentiment)) +
+  geom_col()
 
 data %>%
-  group_by(Age) 
+  unnest_tokens(word, LastStatement) %>%
+  group_by(AgeBin) %>%
+  count(word) %>%
+  summarise(sum(n))
 
+d <- 5
+for (i in 1:5){
+  nam <- paste("A", i, sep= "")
+  assign(nam, rnorm(3) + d)
+}
