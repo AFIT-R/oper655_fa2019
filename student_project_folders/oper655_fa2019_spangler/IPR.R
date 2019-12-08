@@ -584,7 +584,8 @@ data %>%
   inner_join(get_sentiments("bing")) %>%
   count(index = Execution, sentiment) %>%
   spread(sentiment, n, fill = 0) %>%
-  mutate(sentiment = (positive - negative)/(positive + negative))
+  mutate(sentiment = (positive - negative)/(positive + negative)) 
+  
 
 data_sentiments %>%
   ggplot(aes(x = reorder(data_sentiments$index, sentiment), y = sentiment)) +
@@ -601,3 +602,38 @@ for (i in 1:5){
   nam <- paste("A", i, sep= "")
   assign(nam, rnorm(3) + d)
 }
+
+````{r, word_trigram_freq}
+#Unnest Words/Trigrams and groups by Age
+word_freq <- data %>% 
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  group_by(AgeBin) %>%
+  count(word, sort = TRUE) %>%
+  top_n(10) %>%
+  transmute(word, all_words = n/sum(n)) %>%
+  arrange(desc(all_words)) %>%
+  ggplot(aes(x = reorder(word, all_words), y = all_words, fill = AgeBin)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~AgeBin, scales = "free_y") +
+  labs(x = NULL, y = "Count", title = "Word Frequncy") +
+  theme(legend.position = "none",
+        axis.text = element_text(angle = 90))
+
+trigram_freq <- data %>% 
+  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  group_by(AgeBin) %>%
+  count(trigram, sort = TRUE) %>%
+  top_n(10) %>%
+  transmute(trigram, all_trigrams = n/sum(n)) %>%
+  arrange(desc(trigram)) %>%
+  ggplot(aes(x = reorder(trigram, all_trigrams), y = all_trigrams, fill = AgeBin)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~AgeBin, scales = "free_y") +
+  labs(x = NULL, y = "Count", title = "Trigram Frequency") +
+  theme(legend.position = "none",        
+        axis.text = element_text(angle = 90))
+
+grid.arrange(word_freq, trigram_freq, nrow = 2)
+
+````
