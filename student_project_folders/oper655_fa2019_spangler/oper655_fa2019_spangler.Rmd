@@ -6,7 +6,7 @@ output:
   html_document:
     code_folding: 'hide'
 bibliography: bib.bib
-abstract: The purpose of this report is to analyze the last statments from Texas Prisoner inmates.  The data set from @kaggle contains data on 545 executions with prisoner attributes including race, education level, age, etc.  This research will utilize topic modeling and sentiment analysis to determine if there are similarities or differences between last statements between prisoners.     
+abstract: The purpose of this report is to analyze the last statments from Texas Prisoner inmates.  The data set from (@kaggle) contains data on 545 executions with prisoner attributes including race, education level, age, etc.  This research will utilize word relationships, topic modeling, and sentiment analysis to determine if there are similarities or differences between last statements between prisoners.     
 
 ---
 
@@ -18,9 +18,9 @@ knitr::opts_chunk$set(echo = TRUE,
 ```
 
 ## Background
-Natural language procesing (NLP) is the process of organizing and extracting structured or unstructured text data @NLP.  NLP is a set of tools that can enable the user to identify and extract relevant information for analysis from a set of documents or a data set containing text elements.  The first step in NLP is to extract and organize the text in a manner that analysis can be accomplished.  The subsequent steps will extract elements from the text including word replationships, topic modeling, and sentiment from the text elements in order to glean insight into relationship between the text and other aspects of the data set.  This research will analyze the last statements from Texas prison inmates and determine if demographic or prisoner characteristics are related to last statements or if there are relationships between prisoner attributes and last statements.  This report is organized in  five sections: the remainder of this first section will load all related packages needed for this analysis and load the data set, the second section will describe the data used in this research and the methods to perform the analysis, the third section will explore the data further in exploratory analysis, the fourth section explains the NLP analysis conducted in this research, and the final section will discuss further work in this area.   
+Natural language procesing (NLP) is the process of organizing and extracting structured or unstructured text data (@NLP).  NLP is a set of tools that can enable the user to identify and extract relevant information for analysis from a set of documents or a data set containing text elements.  The first step in NLP is to extract and organize the text in a manner that analysis can be accomplished.  The subsequent steps will extract elements from the text including word relationships, topic modeling, and sentiment from the text elements in order to glean insight into relationships between the text and other aspects of the data set.  This research will analyze the last statements from Texas prison inmates and determine if demographic or prisoner characteristics are related to last statements or if there are relationships between prisoner attributes and last statements.  This report is organized in  five sections: the remainder of this first section will load all related packages needed for this analysis and load the data set, the second section will describe the data used in this research and the methods to perform the analysis, the third section will explore the data further in exploratory analysis, the fourth section explains the NLP analysis conducted in this research, and the final section will discuss further work in this area.   
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, results = "hide"}
 pacman::p_load(tm, 
                pdftools, 
                here,
@@ -52,7 +52,9 @@ pacman::p_load(tm,
                topicmodels,
                dplyr,
                magrittr,
-               gridExtra)
+               gridExtra,
+               ggplot2,
+               stm)
 
 root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 root <- file.path(root, "student_project_folders", "oper655_fa2019_spangler", "Project", "Texas Last Statement - CSV.csv")
@@ -63,13 +65,13 @@ rm(root)
 ## Methodology 
 
 ### Data 
-The data set used for this analysis is from the website Kaggle.  The data set is titled "Last Words of Death Row Inmates" and contains data on 545 inmates between 1982 and 2017.  Each observation in the data set is an inmate who was sentenced to death with 20 variables describing the inmate.  The below list shows all variables available in the data set. The below list shows the name of the variable, what the variable describes, and what type of variable it is.
+The data set used for this analysis is from the website Kaggle.  The data set is titled "Last Words of Death Row Inmates" and contains data on 545 inmates between 1982 and 2017.  Each observation in the data set is an inmate who was sentenced to death with 20 variables describing the inmate.  The below list shows the name of all variables in the data set, what the variable describe, and what type of variable it is.
 
     - Execution Number is the number of the execution beginning in 1982 going
     through 2017
     - Last Name is a character variable with the last name of the prisoner
     - First Name is a character variable with the first name of the prisoner
-    - TDCJNumber is a numeric variable 
+    - TDCJ Number is a numeric variable showing the department of corrections number for the inmate 
     - Age is a numeric variable with the age of the inmate when the death sentence
     was administered
     - Race is a character variable showing the race of the inmate in four levels:
@@ -80,14 +82,14 @@ The data set used for this analysis is from the website Kaggle.  The data set is
     to death
     - Education Level is a numeric variable with the number of years of education
     for each inmate
-    - Native County is...
+    - Native County is a binary variable with zero indicating the inmate is from Texas and a one indicating they are not from Texas
     - Previous crime is a binary variable with a zero indicating that the crime for
     which they were sentenced to death was their first crime and a one indicating
     that they were convicted of previous crimes
     - Codefendents is a numeric showing the number of codefendents the inmate had
     - Number of Vicitms is a numeric variable showing the number of victims the
     inmate was convicte of crimes against
-    - There are four binary representing the race of the victim. The first is white
+    - There are four binary varaibles representing the race of the victim. The first is white
     victim where a one indicates that the victim was white and a zero indicates
     that the victim was of another race.  Similarly the other victim race variables
     are binary variables indicating if the victim was hispanic, black, or other
@@ -98,9 +100,9 @@ The data set used for this analysis is from the website Kaggle.  The data set is
     - Last Statment is a character variable showing the full last statement of the 
     inmate. This variable will be the primary focus of this research.  
  
-The data was downloaded from Kaggle in a CSV data table and was easily imported into R.  THe data cleaning process for this data set consisted of deriving variable bins for the age of the prisoner at death.  The age of each inmate was binned into ten year increments to group different ages together.  Additionally, a variable thought to be interesting to study in relation to last statements was the amount of time spent in prison.  This variable was derived by subtracting the age the inmate was received from the age of the inmate at death.  This variable was then binned into five year increments.  The final step was to remove missing values from the data set. For the purpose of this research, it was important to retain as many last statments as possible, so instead of removing observations from the data set with missing values, each value labeled as "NA" was replaced with a character value of "Not Available."  This retained the observation in the observation and also allowed for binning the Not Available values for analysis.  After the data cleaning process, exploratory analysis on the independent variables of the data set was conducted to visulaize the distributions of different variables and identify potenital areas of interest for this study.  
+The data was downloaded from Kaggle in a CSV data table and was easily imported into R.  The data cleaning process for this data set consisted of deriving variable bins for the age of the prisoner at death.  The age of each inmate was binned into ten year increments to group different ages together.  Additionally, a variable thought to be interesting to study in relation to last statements was the amount of time spent in prison.  This variable was derived by subtracting the age the inmate was received from the age of the inmate at death.  This variable was then binned into five year increments.  The final step was to remove missing values from the data set. For the purpose of this research, it was important to retain as many last statments as possible, so instead of removing observations from the data set with missing values, each value labeled as "NA" was replaced with a character value of "Not Available."  This retained the observation in the data and also allowed for binning the Not Available values for analysis.  After the data cleaning process, exploratory analysis on the independent variables of the data set was conducted to visulaize the distributions of different variables and identify potenital areas of interest for this study.  
 
-````{r Data Set Up}
+````{r Data Set Up, message=FALSE}
 data$Years_in_Prison <- data$Age - data$AgeWhenReceived
 data$AgeBin <- 0
 for (i in 1:length(data$Age)){
@@ -186,9 +188,9 @@ county_dist <- data %>%
   xlab("County of Conviction") +
   ylab("Number of Convictions") +
   labs(title = "Number of Death Penalty Convictions by County") +
-  theme(plot.title = element_text(hjust = .5, size = 5)) +
-  theme(axis.text = element_text(angle = 90, size = 5)) +
-  theme(axis.title = element_text(size = 5))
+  theme(plot.title = element_text(hjust = .5, size = 7)) +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
 
 agebin_dist <- data %>%
   count(AgeBin, sort = TRUE) %>%
@@ -198,9 +200,9 @@ agebin_dist <- data %>%
   xlab("Age") +
   ylab("Number of Convictions") +
   labs(title = "Number of Death Penalty Convictions by Age") +
-  theme(plot.title = element_text(hjust = .5, size = 5)) +
-  theme(axis.text = element_text(angle = 90, size = 5)) +
-  theme(axis.title = element_text(size = 5))
+  theme(plot.title = element_text(hjust = .5, size = 7)) +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
 
 years_in_prison_dist <- data %>%
   count(Years_in_Prison2, sort = TRUE) %>%
@@ -210,9 +212,9 @@ years_in_prison_dist <- data %>%
   xlab("Years in Prison") +
   ylab("Number of Convictions") +
   labs(title = "Number of Death Penalty Convictions by Years in Prison") +
-  theme(plot.title = element_text(hjust = .5, size = 5)) +
-  theme(axis.text = element_text(angle = 90, size = 5)) +
-  theme(axis.title = element_text(size = 5))+
+  theme(plot.title = element_text(hjust = .5, size = 7)) +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))+
   scale_x_discrete(name = "Years in Prison",
                    limits = c("0-5", "6-10", "11-15", "16-20", "21-25", "30+", "Not Available"))
 
@@ -224,9 +226,9 @@ race_dist <- data %>%
   xlab("Race") +
   ylab("Number of Convictions") +
   labs(title = "Number of Death Penalty Convictions by Race") +
-  theme(plot.title = element_text(hjust = .5, size = 5)) +
-  theme(axis.text = element_text(angle = 90, size = 5)) +
-  theme(axis.title = element_text(size = 5))
+  theme(plot.title = element_text(hjust = .5, size = 7)) +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
 
 EducationLevel_dist <- data %>%
   count(EducationLevel, sort = TRUE) %>%
@@ -236,9 +238,9 @@ EducationLevel_dist <- data %>%
   xlab("Education Level") +
   ylab("Number of Convictions") +
   labs(title = "Number of Death Penalty Convictions by Education Level") +
-  theme(plot.title = element_text(hjust = .5, size = 5)) +
-  theme(axis.text = element_text(angle = 90, size = 5)) +
-  theme(axis.title = element_text(size = 5)) +
+  theme(plot.title = element_text(hjust = .5, size = 7)) +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7)) +
   scale_x_discrete(name = "Education Level",
                    limits = c("0", "3", "4", "5", "6", "7",
                               "8", "9", "10", "11", "12", 
@@ -251,9 +253,9 @@ NumVic_dist <- data %>%
   xlab("Number Victim") +
   ylab("Number of Convictions") +
   labs(title = "Number of Death Penalty Convictions by Number Victim") +
-  theme(plot.title = element_text(hjust = .5, size = 5)) +
-  theme(axis.text = element_text(angle = 90, size = 5)) +
-  theme(axis.title = element_text(size = 5)) +
+  theme(plot.title = element_text(hjust = .5, size = 7)) +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7)) +
   scale_x_discrete(name = "Number Victim",
                   limits = c("0", "1", "2", "3", "4", "5", "6", "Not Available"))
 
@@ -263,14 +265,14 @@ rm(county_dist, agebin_dist, EducationLevel_dist, NumVic_dist, race_dist, years_
 
 ````
 
-From these plots, there is one county where the majority of inmates were convicted.  For age of inmates at death, almost half were in the age range of 30-39 and the age range of 40-49 has the second most inmates.  The other age bins have a few observations with 10 inmates in the 60-69 age range.  The majority of inmates have education levels in the range of 9-12 years with the majority having 12 years.  Almost all inmates were convicted of crimes against one victim with 90 inmates being convicted of crimes againts 2 victim.  There are 18 inmates where this data was unavailable and 1 inmate who was convicted of crimes against 6 victims. There is a pretty even spread in the race of inmates between black, white, and hispanic.  There are only two inmates with their race categorized as other.  The final variable is the years in prison for each inmate.  The majority of inmates are in the range 6-10 years.  From these plots, the variables that could be of interest in comparing the last statements are age, education level, number of victims, race, and years in prison.       
+From these plots, there is one county where the majority of inmates were convicted.  For age of inmates at death, almost half were in the age range of 30-39 and the age range of 40-49 has the second most inmates.  The other age bins have a few observations with 10 inmates in the 60-69 age range.  The majority of inmates have education levels in the range of 9-12 years with the majority having 12 years.  Almost all inmates were convicted of crimes against one victim with 90 inmates being convicted of crimes againts 2 victim.  There are 18 inmates where this data was unavailable and 1 inmate who was convicted of crimes against 6 victims. There is a pretty even spread in the race of inmates between black, white, and hispanic.  There are only two inmates with their race categorized as other.  The final variable is the years in prison for each inmate.  The majority of inmates are in the range 6-10 years.  From these plots, the variables that could be of interest in comparing the last statements are age, education level, and years in prison.       
 
 ## Analysis
-1. Word relationships and frequencies
+# 1. Word relationships and frequencies
 
-  The preliminary NLP analysis for this data is to analyze the most commonly used word and trigram within the last statements.  These can be generated and grouped by each variable identified in the exploratory analysis.  The below chart shows the top ten most commonly used words and trigrams across all inmates.  The most commonly used word is love and the most commonly used trigram is "I love you."  Where the trigram is NA corresponds to inmates that had no last statements or statements that were less than 3 words.  For example, one inmate's last statement was simply "Peace," so this would not be counted as a trigram.      
+  The preliminary NLP analysis for this data is to analyze the most commonly used words and trigrams within the last statements.  These can be generated and grouped by each variable identified in the exploratory analysis.  The below chart shows the top ten most commonly used words and trigrams across all inmates.  The most commonly used word is love and the most commonly used trigram is "I love you."  Where the trigram is NA corresponds to inmates that had no last statements or statements that were less than 3 words.  For example, one inmate's last statement was simply "Peace," so this would not be counted as a trigram.      
   
-````{r}
+````{r, word_trigram_count}
 words <- data %>%
   unnest_tokens(word, LastStatement) %>%
   anti_join(stop_words) %>%
@@ -279,13 +281,13 @@ words <- data %>%
   ggplot(aes(x = reorder(word, n), y = n)) +
   geom_bar(stat = "identity") +
   labs(title = "Top 10 Words", y = "Count", x = "Word") +
-  coord_flip()
+  coord_flip() 
 
 #Unnest Trigram and Count (NA is no last statement)
 trigram <- data %>%
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
   count(trigram, sort = TRUE) %>%
-  top_n(10) %>%
+  top_n(10) %>% 
   ggplot(aes(x = reorder(trigram, n), y = n)) +
   geom_bar(stat = "identity") +
   labs(title = "Top 10 Trigrams", x = "Trigram", y = "Count") +
@@ -296,84 +298,797 @@ rm(words, trigram)
 
 ````
 
-Grouping the words and trigrams by race shows that the most commonly used words and trigrams are consistent across all races.  The race categorized as other was filtered out from this analysis due to the small number of observations.  The most common word is love and the most common trigram is "I love you."  A trigram that could be of interest in this analysis is the trigram "i am sorry" or "would like to" could be used to apologize or show remorse.  
 
-````{r}
-#Unnest Words/Trigrams and groups by Race
-words <- data %>% 
+With many differences in the number of observations for each indepedent variable of interst, word frequency is more informative because it will display the frequency of the word among all the words used in last statements of the independent variable.  The first variable is the age at death of the inmates.   
+````{r, age}
+age_trigram_freq <- data %>%
+  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  group_by(AgeBin) %>%
+  count(trigram) %>%
+  top_n(10) %>%
+  transmute(trigram, all_trigram = n/sum(n)) %>%
+  arrange(desc(all_trigram)) %>%
+  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= AgeBin)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~AgeBin) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
+  
+
+age_word_freq <- data %>%
   unnest_tokens(word, LastStatement) %>%
   anti_join(stop_words) %>%
-  filter(Race != "Other") %>%
-  group_by(Race) %>%
-  count(word, sort = TRUE) %>%
+  group_by(AgeBin) %>%
+  count(word) %>%
   top_n(10) %>%
-  ungroup() %>%
-  ggplot(aes(x = word, y = n, fill = Race)) +
+  transmute(word, all_word = n/sum(n)) %>%
+  arrange(desc(all_word)) %>%
+  ggplot(aes(x = reorder(word, -all_word), y = all_word, fill= AgeBin)) +
   geom_bar(stat = "identity") +
-  facet_wrap(~Race, scales = "free_y") +
-  labs(x = NULL, y = "Count", title = "Word Count") +
-  coord_flip() +
-  theme(legend.position = "none")
+  labs(title = "Word Frequency", x = "Word", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~AgeBin) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
 
-trigram <- data %>% 
-  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
-  filter(Race != "Other") %>%
-  group_by(Race) %>%
-  count(trigram, sort = TRUE) %>%
-  top_n(10) %>%
-  ungroup() %>%
-  ggplot(aes(x = trigram, y = n, fill = Race)) +
-  geom_bar(stat = "identity") +
-  facet_wrap(~Race, scales = "free_y") +
-  labs(x = NULL, y = "Count", title = "Trigram Count") +
-  coord_flip() +
-  theme(legend.position = "none")
+grid.arrange(age_word_freq, age_trigram_freq, nrow = 2)
+rm(age_word_freq, age_trigram_freq)
 
-race_trigram_freq <- data %>%
+````
+
+The most frequently used words across all age brackets are love, family, and god.  The usage across the age groups differ for each word.  The most commonly used trigram is "i love you" with the frequency of usage much higher for the age range 30-39. The frequency of this trigram is similar between the age ranges 50-59 and 60-69.  The second most common trigram is "i want to" and the frequency is lower in the age range 30-39.
+
+The second independent variable of interst is the education level of the inmate at death. Only education levels of 9 years or greater were used because they had the most observations as shown in the distribution chart above.  
+
+````{r, educationLevel}
+
+data$EducationLevel <- factor(data$EducationLevel, levels = (sort(unique(as.numeric(data$EducationLevel)))))
+
+Ed_trigram_freq <- data %>%
   unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
-  group_by(Race) %>%
-  filter(Race != "Other") %>%
+  group_by(EducationLevel) %>%
+  filter(EducationLevel == 9 | EducationLevel == 10 | EducationLevel == 11 |
+         EducationLevel == 12 | EducationLevel == 13 | EducationLevel == 14) %>%
   count(trigram) %>%
   top_n(10) %>%
   transmute(trigram, all_trigram = n/sum(n)) %>%
   arrange(desc(all_trigram)) %>%
-  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= Race)) +
+  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= EducationLevel)) +
   geom_bar(stat = "identity") +
   labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
   theme(axis.text = element_text(angle = 90)) +
-  facet_wrap(~Race) +
-  theme(legend.position = "none")
+  facet_wrap(~EducationLevel) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 7)) +
+  theme(axis.title = element_text(size = 7))
 
-grid.arrange(words, trigram, nrow = 2)
+Ed_word_freq <- data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  group_by(EducationLevel) %>%
+  filter(EducationLevel == 9 | EducationLevel == 10 | EducationLevel == 11 |
+         EducationLevel == 12 | EducationLevel == 13 | EducationLevel == 14) %>%
+  count(word) %>%
+  top_n(10) %>%
+  transmute(word, all_word = n/sum(n)) %>%
+  arrange(desc(all_word)) %>%
+  ggplot(aes(x = reorder(word, -all_word), y = all_word, fill= EducationLevel)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Word Frequency", x = "Word", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~EducationLevel) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(angle = 90, size = 8)) +
+  theme(axis.title = element_text(size = 8))
 
-
+Ed_word_freq
+Ed_trigram_freq
+rm(Ed_word_freq, Ed_trigram_freq)
 ````
 
-The frequency of words and trigrams is oftentimes more informative as the number of words used across the different last statement differs.   
+The most frequently used words for the education levels are very similar.  There is a difference in the frequency of the use of god in the last statements.  The individuals who had 14 years of education used god more frequently than the other education levels. When looking at the trigram frequency, the trigram of interest in this chart is the trigram "i am sorry."  Individuals with 11 years of education said I am sorry the least among all the education levels and individuals with 9 years of education had the highest frequency of the trigram "i am sorry."  
+
+
+````{r, years_in_prison}
+
+years_trigram_freq <- data %>%
+  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
+  group_by(Years_in_Prison2) %>%
+  filter(Years_in_Prison2 == "0-5" | 
+          Years_in_Prison2 == "6-10" |
+          Years_in_Prison2 == "11-15"  |
+          Years_in_Prison2 == "16-20" |
+          Years_in_Prison2 == "21-25"
+         ) %>%
+  count(trigram) %>%
+  top_n(10) %>%
+  transmute(trigram, all_trigram = n/sum(n)) %>%
+  arrange(desc(all_trigram)) %>%
+  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= Years_in_Prison2)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~Years_in_Prison2) +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(angle = 90, size = 7),
+        axis.text.y = element_text(size  = 5),
+        axis.title = element_text(size = 7))
+
+
+years_word_freq <- data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  group_by(Years_in_Prison2) %>%
+  filter(Years_in_Prison2 == "0-5" | 
+          Years_in_Prison2 == "6-10" |
+          Years_in_Prison2 == "11-15"  |
+          Years_in_Prison2 == "16-20" |
+          Years_in_Prison2 == "21-25") %>%
+  count(word) %>%
+  top_n(10) %>%
+  transmute(word, all_word = n/sum(n)) %>%
+  arrange(desc(all_word)) %>%
+  ggplot(aes(x = reorder(word, -all_word), y = all_word, fill= Years_in_Prison2)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Word Frequency", x = "Word", y = "Frequency")+
+  theme(axis.text = element_text(angle = 90)) +
+  facet_wrap(~Years_in_Prison2) +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(angle = 90, size = 7),
+        axis.text.y = element_text(size  = 5),
+        axis.title = element_text(size = 7))
+
+years_word_freq
+years_trigram_freq
+rm(years_word_freq, years_trigram_freq)
+````
+
+The final variable is the amount of time in prison.  The most frequently used word across all groupings is love and the most frequently used trigram is "i love you."  Inmates with 21-25 years in prison had the lowest frequency of using the trigram "i am sorry" and the all the other year groups had similar frequency of this trigram.  The next technique used to explore last statements is topic modeling.    
+
+# 2. Topic Modeling
+Topic modeling aims to discover topics used across various text documents (@Topic).  Topic modeling is an unsupervised learning technique and can be used to identify similarities between different documents (@Topic).  Topic modeling is used in this research to identify similar topics used between different demographics of inmates.  Topic modeling is used for each age group, year in prison groups, and education level groups to identify if there are similarities or differences between the topics of each group.  First topic modeling is run on each age group in the data set.  Four topics are generated for each group of inmates and the top 7 keywords contributing most to those topics are shown.   
+  
+````{r, topicModelAge, message=FALSE, results = "hide"}
+data2 <- as_tibble(data)
+topic_data_AgeBin1 <- data2 %>%
+  filter(AgeBin == "20-29") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_AgeBin2 <- data2 %>%
+  filter(AgeBin == "30-39") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_AgeBin3 <- data2 %>%
+  filter(AgeBin == "40-49") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_AgeBin4 <- data2 %>%
+  filter(AgeBin == "50-59") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_AgeBin5 <- data2 %>%
+  filter(AgeBin == "60-69") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_list <- list(topic_data_AgeBin1, topic_data_AgeBin2, topic_data_AgeBin3, topic_data_AgeBin4, topic_data_AgeBin5)
+
+dfm_list <- list()
+
+for(i in 1:5){
+  dfm_list[[i]] <- assign(paste("dfm_data", i, sep = "_"), cast_dfm(topic_data_list[[i]], word, word, n))
+  
+}
+
+
+topic_model_list <- list()
+
+for(i in 1:length(dfm_list)){
+  topic_model_list[[i]] <- tidy(stm::stm(dfm_list[[i]], K = 4, init.type = "LDA"))
+  print(i)
+}
+
+age20_29 <- topic_model_list[[1]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for Ages 20-29")+
+  coord_flip()
+
+age30_39 <- topic_model_list[[2]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for Ages 30-39")+
+  coord_flip()
+
+age40_49 <- topic_model_list[[3]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for Ages 40-49")+
+  coord_flip()
+
+age50_59 <- topic_model_list[[4]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for Ages 50-59")+
+  coord_flip()
+
+age60_69 <- topic_model_list[[5]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for Ages 60-69")+
+  coord_flip()
+
+rm(dfm_data_1, dfm_data_2, dfm_data_3, dfm_data_4, dfm_data_5, dfm_list,
+   tidy_list, topic_data_AgeBin1, topic_data_AgeBin2, topic_data_AgeBin3, topic_data_AgeBin4, topic_data_AgeBin5, topic_data_list, topic_model_list)
+
+````
 
 ````{r}
-race_trigram_freq <- data %>%
-  unnest_tokens(trigram, LastStatement, token = "ngrams", n = 3) %>%
-  group_by(Race) %>%
-  filter(Race != "Other") %>%
-  count(trigram) %>%
-  top_n(10) %>%
-  transmute(trigram, all_trigram = n/sum(n)) %>%
-  arrange(desc(all_trigram)) %>%
-  ggplot(aes(x = reorder(trigram, -all_trigram), y = all_trigram, fill= Race)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Trigram Frequency", x = "Trigram", y = "Frequency")+
-  theme(axis.text = element_text(angle = 90)) +
-  facet_wrap(~Race) +
+age20_29
+rm(age20_29)
+````
+The first age group is inmates aged 20-29.  The first topic is difficult to interpret with many words relating to the topic.  The most contributing word for this topic is strong.  The second topic appears to relate to family.  The third topic appears related to life and forgiveness.  The final topic is related to love with the keyword love being the most contributing word. 
+
+````{r}
+age30_39
+rm(age30_39)
+````
+
+The four topics generated for the age group 30-39 appear to be related to family , life, love and hope, and religion.  These are similar to the topics generate for ages 20-29.  
+
+````{r}
+age40_49
+age50_59
+age60_69
+rm(age40_49, age50_59, age60_69)
+````
+
+The final three age groups are shown above.  The topics for age groups 40-49 and 50-49 are very similar to the first two age groups shown.  The topics for ages 60-69 differ slighty.  The second topic appears to relate more to time than the previous age groups.  
+
+This process can be completed for the different years in prison groups and education level groups.  
+```{r, topicModelYears, message = FALSE, results = "hide" }
+data2 <- as_tibble(data)
+topic_data_years1 <- data2 %>%
+  filter(Years_in_Prison2 == "0-5") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_years2<- data2 %>%
+  filter(Years_in_Prison2 == "6-10") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_years3 <- data2 %>%
+  filter(Years_in_Prison2 == "11-15") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_years4 <- data2 %>%
+  filter(Years_in_Prison2 == "16-20") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_years5 <- data2 %>%
+  filter(Years_in_Prison2 == "21-25") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_list <- list(topic_data_years1, topic_data_years2, topic_data_years3, topic_data_years4, topic_data_years5)
+
+dfm_list <- list()
+
+for(i in 1:5){
+  dfm_list[[i]] <- assign(paste("dfm_data", i, sep = "_"), cast_dfm(topic_data_list[[i]], word, word, n))
+  
+}
+
+
+topic_model_list <- list()
+
+for(i in 1:length(dfm_list)){
+  topic_model_list[[i]] <- tidy(stm::stm(dfm_list[[i]], K = 4, init.type = "LDA"))
+  print(i)
+}
+
+years1 <- topic_model_list[[1]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 0-5 Years in Prison")+
+  coord_flip()
+
+years2 <- topic_model_list[[2]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 6-10 Years in Prison")+
+  coord_flip()
+
+years3 <- topic_model_list[[3]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 11-15 Years in Prison")+
+  coord_flip()
+
+years4 <- topic_model_list[[4]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 16-20 Years in Prison")+
+  coord_flip()
+
+years5 <- topic_model_list[[5]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 21-25 Years in Prison")+
+  coord_flip()
+
+rm(dfm_data_1, dfm_data_2, dfm_data_3, dfm_data_4, dfm_data_5, dfm_list,
+   tidy_list, topic_data_years5, topic_data_years4, topic_data_years1, topic_data_years2, topic_data_years3, topic_data_list, topic_model_list)
+
+```
+
+```{r, years1}
+years1
+rm(years1)
+```
+The first group of inmates is for those inmates who were in prison for 0-5 years before their execution.  The topics are difficult to generalize as the words in them do not seem too related.  The first topic appears to be about forgiveness or peace, but the word lynching is contributing highly to this topic which does not fit with the other words.  The second topic can be generalized to family a with some religion influences.  The third topic has elements of love, family, and a little bit of religion.  
+
+```{r, years2}
+years2
+rm(years2)
+```
+
+For inmates who had 6-10 years in prison at their execution, the topics are easier to generalize.  The four topics appear to pertain to hope/peace, love/family, forgiveness, and religion.  These appear to be similar to the first group of inmates, but the topics are easier to generalize.  
+
+```{r, years3}
+years3
+rm(years3)
+```
+
+The results for inmates with 11-15 years in prison are similar to the group with 6-10 years in prison.  The first topic is different with the keywords of heart and care contributed highly to this topic.  The remaining topics are all related to religion, love, and family.  
+
+```{r, years4_5}
+years4
+years5
+rm(years4, years5)
+```
+
+The results for the final two groups are very similar to the other groups.  The main topics include hope, forgiveness, family, and religion.  Many of the topics for this independent variable are very similar and do not show a large difference betweeen the last statements and the number of years in prison.  The only group with differences in the topics is for inmates with 0-5 years in prison.  
+The final variable of interest in the study is the number of years of education.  Only inmates with 9 or more years of education were included in these topic models and compared.  
+
+```{r, topicModelingEd, message = FALSE, results = "hide"}
+
+data2 <- as_tibble(data)
+topic_data_ed9 <- data2 %>%
+  filter(EducationLevel == "9") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_ed10<- data2 %>%
+  filter(EducationLevel == "10") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_ed11 <- data2 %>%
+  filter(EducationLevel == "11" ) %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_ed12 <- data2 %>%
+  filter(EducationLevel == "12") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_ed13 <- data2 %>%
+  filter(EducationLevel == "13") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_ed14<- data2 %>%
+  filter(EducationLevel == "14") %>%
+  tidytext::unnest_tokens(word,LastStatement) %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::add_count(word, sort = TRUE)
+
+topic_data_list <- list(topic_data_ed10, topic_data_ed9, topic_data_ed11, topic_data_ed12, topic_data_ed13, topic_data_ed14)
+
+dfm_list <- list()
+
+for(i in 1:length(topic_data_list)){
+  dfm_list[[i]] <- assign(paste("dfm_data", i, sep = "_"), cast_dfm(topic_data_list[[i]], word, word, n))
+  
+}
+
+
+topic_model_list <- list()
+
+for(i in 1:length(dfm_list)){
+  topic_model_list[[i]] <- tidy(stm::stm(dfm_list[[i]], K = 4, init.type = "LDA"))
+  print(i)
+}
+
+ed9 <- topic_model_list[[1]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 9 Years of Education")+
+  coord_flip()
+
+ed10 <- topic_model_list[[2]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 10 Years of Education")+
+  coord_flip()
+
+ed11 <- topic_model_list[[3]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 11 Years of Education")+
+  coord_flip()
+
+ed12 <- topic_model_list[[4]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 12 Years of Education")+
+  coord_flip()
+
+ed13 <- topic_model_list[[5]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 13 Years of Education")+
+  coord_flip()
+
+ed14 <- topic_model_list[[6]] %>%  
+    group_by(topic) %>%
+  top_n(7) %>%
+  ungroup %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  labs(title = "Topics for 14 Years of Education")+
+  coord_flip()
+
+rm(dfm_data_1, dfm_data_2, dfm_data_3, dfm_data_4, dfm_data_5, dfm_data_6, dfm_list,
+topic_data_ed9, topic_data_ed10, topic_data_ed11, topic_data_ed12, topic_data_ed13, topic_data_ed14, topic_data_list, topic_model_list)
+
+```
+
+```{r}
+ed9
+rm(ed9)
+```
+
+The topics for inmates with 9 years of education appear to relate to peace/forgiveness, love, releigion, and family.  The results for inmates with 10, 11, 12, and 13 appear to be similar in the general topics that are mentioned.  There is a difference in the inmates with 14 years of education.  The first topic generated is very difficult to interpret and the words do not appear in the other education groups.  There appear to be some references to religion, but they are the least contributing words to this topic.  The other topics are all relating to religion. Additionally, forgiveness does not appear to be mentioned in any of the topics, but it was for the other education groups.  The topic modeling plot for inmates with 14 years of education is shown below.  The plots for the other education groups are shown in the appendix.    
+
+```{r}
+ed14
+rm(ed14)
+```
+
+# 3. Sentiment Analysis
+  The final analysis technique used to analyze the last statements of prison inmatesis sentiment analysis.  Sentiment analysis is the process of classifying a text document as positive or negative (@Sent).  There are many dictionaries available that can be used to assign a word as positive or negative or to another emotion such as anger or happiness.  In this research, the R dicitionary of get_sentiments("bing") is used to assign each word of the last statements as positive or negative.  After each word is assigned as positive or negative, an overall score is gathered by tallying the total amount of positive words and substracting the total amount of negatives.  A negative sentiment value would mean that more negative words than positive words are used labeling this as a negative last statement.  To account for the number of words used in the last statements, the difference between the positive and negative words is divided by the sum of the positive and negative words giving a value between negative one and positive one.  The overall sentiment is shown in the below figure.    
+  
+```{r, overallSentiment}
+
+data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative)) %>%
+  ggplot(aes(x = reorder(index, sentiment), y = sentiment)) +
+  geom_col() +
+  labs(title = "Overall Sentitment") +
+  xlab("Execution Number") +
+  ylab("Sentiment") +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.ticks.x = element_blank()) 
+
+
+```
+
+The above figure shows the sentiment across all last statements in increasing order.  From this chart, there are more positive than negative sentiment scores across all inmates with many having a score 1 meaning that the statements are all positive.  There are a few that are all negative as well.  The average sentiment across all last statements can also be calculated using the summarize() command.  
+
+```{r, averageSentiment}
+data %>%
+  unnest_tokens(word, LastStatement) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative)) %>% 
+  summarise(mean(sentiment)) 
+```
+
+The overall average sentiment across all inmates is 0.369.  This shows that on average the sentiment was more positive than negative, but this value is still relatively small as the max positive score is 1. The first groupings considered is the age groupings.  The below chart shows the sentiment for each age group.  
+
+```{r, ageSentiment}
+
+data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  group_by(AgeBin) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative)) %>%
+  ggplot(aes(x = reorder(index, sentiment), y = sentiment, fill = AgeBin)) +
+  facet_wrap(~AgeBin, scales = "free_y") +
+  geom_col() +
+  labs(title = "Sentiment by Age Group") +
+  xlab("Execution Number") +
+  ylab("Sentiment") +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.ticks.x = element_blank()) +
   theme(legend.position = "none")
 
-````
-2. Topic Modeling
-3. Sentiment Analysis
+```
+
+From the above chart, the sentiment for each inmate is shown by the age group they are in.  The number of all negative vs. all positive last statements can be discerned from this chart.  It is difficult to tell how the sentiment for each group compares to the other age groups.  The average sentiment score for each age group is calculate to compare the different age groupings. 
+
+```{r, aveAgeSent}
+data %>%
+  unnest_tokens(word, LastStatement) %>%
+  group_by(AgeBin) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative)) %>% 
+  summarise(mean(sentiment))
+
+
+
+```
+Comparing these average sentiment scores between the different age groupings, the inmates aged 20-29 had the highest average sentiment and the age group of inmates aged 60-69 had the lower average sentiment.  The sentiment scores for age group 20-29 and 40-49 are very similar and this is also seen in the above chart as they both follow very similar curves of sentiment.  
+
+  The same process above is used for inmates with 9 or more years of education.  The below chart shows the sentiment of inmates with 9 or more years of education in increasing order of sentiment scores.  
+  
+```{r, edSent}
+data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  group_by(EducationLevel) %>%
+  filter(EducationLevel == 9 | EducationLevel == 10 | EducationLevel == 11 | EducationLevel == 12| EducationLevel == 13| 
+         EducationLevel == 14) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative)) %>%
+  ggplot(aes(x = reorder(index, sentiment), y = sentiment, fill = EducationLevel)) +
+  facet_wrap(~EducationLevel, scales = "free_y") +
+  geom_col() +
+  labs(title = "Sentiment by Education Level") +
+  xlab("Execution Number") +
+  ylab("Sentiment") +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.ticks.x = element_blank()) +
+  theme(legend.position = "none")
+
+```
+
+This chart shows a similar range of sentiment scores as the overall and age sentiment scores.  The inmates with 13 years of education all had sentiment values greater than zero.  The average scores can again be compared to see how sentiment changes with education level.  
+
+```{r, aveEdSent}
+EdSent <- data %>%
+  unnest_tokens(word, LastStatement) %>%
+  filter(EducationLevel == 9 | EducationLevel == 10 | EducationLevel == 11 | EducationLevel == 12| EducationLevel == 13| 
+         EducationLevel == 14) %>%
+  group_by(EducationLevel) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative)) %>% 
+  summarise(mean(sentiment))
+
+EdSent %>%
+    filter(EducationLevel == 9 | EducationLevel == 10 | EducationLevel == 11 | EducationLevel == 12| EducationLevel == 13| 
+         EducationLevel == 14)
+  
+
+```
+
+The above listing shows that inmates with 13 years of education had higher average sentiment than the other education levels.  The spread of sentiment scores is similar to that of the age groupings.  Interestingly, the inmates with the highest education had the lowest sentiment.  There seemed to be an increasing level of average sentiment as education level increased and then dropped for those with 14 years of education.  To see which words are contributing to the positive or negative sentiment scores, the below plot, found in (@Tidy) can be used.  The green bars are positive sentiment and the red bars are negative sentiment.    
+
+```{r}
+ed14 <- data %>%
+   unnest_tokens(word, LastStatement) %>%
+  group_by(EducationLevel) %>%
+  filter(EducationLevel == 9 | EducationLevel == 10 | EducationLevel == 11 | EducationLevel == 12| EducationLevel == 13| 
+         EducationLevel == 14) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  ungroup()
+  
+  
+  ed14 %>%
+  group_by(EducationLevel) %>%
+  top_n(10) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n, fill = sentiment)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~EducationLevel, scales = "free_y") +
+  labs(y = "Contribution to sentiment",
+       x = NULL) +
+  coord_flip() +
+  theme(legend.position = "right")
+```
+
+This chart can be used to see that in the inmates with 14 years of education, there are more negative words used than in the other education levels.  This would decrease their average sentiment.  
+
+The final variable of interest is the years in prison.  The same methodology is used to compare the average sentiment values for each group of inmates to see if the number of years has an affect on the average sentiment of last statements.  
+
+```{r, PrisonYearsSent}
+data %>%
+  unnest_tokens(word, LastStatement) %>%
+  anti_join(stop_words) %>%
+  group_by(Years_in_Prison2) %>% 
+  filter(Years_in_Prison2 != "Not Available" & Years_in_Prison2 != "30+") %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative)) %>%
+  ggplot(aes(x = reorder(index, sentiment), y = sentiment, fill = Years_in_Prison2)) +
+  facet_wrap(~Years_in_Prison2, scales = "free_y") +
+  geom_col() +
+  labs(title = "Sentiment by Years in Prison") +
+  xlab("Execution Number") +
+  ylab("Sentiment") +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.ticks.x = element_blank()) +
+  theme(legend.position = "none")
+
+
+```
+This chart shows a similar trend between the other two variable groupings.  The chart appears to show that inmates with 0-5 years and 21-25 years in prison had fewer negative last statements than the other groups.  The average sentiment is again used to compare the different inmates. 
+
+```{r, aveYearsSent}
+data %>%
+  unnest_tokens(word, LastStatement) %>%
+  group_by(Years_in_Prison2) %>%
+  filter(Years_in_Prison2 != "30+" & Years_in_Prison2 != "Not Available") %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(index = Execution, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative)) %>% 
+  summarise(mean(sentiment))
+```
+
+The average sentiment scores show a general increase in the average sentiment as time in prison increases.  The inmates with 0-5 years in prison have the lowest sentiment and the inmates with 21-25 years in prison have the highest average sentiment.  The words contributing to the highest average sentiment can be plotted using code found in (@Tidy) to visualize the words that contribute most to the positive sentiment.  
+
+```{r, yearsContribSent}
+
+years2125 <- data %>% 
+  filter(Years_in_Prison2 == "21-25") %>%
+  unnest_tokens(word, LastStatement) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  ungroup()
+
+years2125 %>%
+  group_by(sentiment) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n, fill = sentiment)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~sentiment, scales = "free_y") +
+  labs(y = "Contribution to sentiment",
+       x = NULL) +
+  coord_flip()
+  
+```
+
+This chart shows that love contributes most to the positive score for the inmates with 21-25 years in prison.  The use of positive words is also much higher than the negative words as shown in the chart.  
 
 ## Findings and Conclusions 
-
+This research used NLP techniques of word relationships, topic modeling, and sentiment analysis to analyze the last statements of 545 Texas prison inmates.  These three techniques were used to analyze the affect of age, education level, and time in prison on the content of the prisoner's last statement. Using word relationships, the words used in the last statements were similar among the different age, education levels, and years in prison between the inmates.  Analyzing the topics mentioned in each last statement also indicated there were many similarities between the different groupings of inmates.  There were slight differences in the words used to describe each topic, but the general topics appeared to be similar.  The final method indicated that average sentiment scores varied across all the variable groupings, but the spread of scores was small.  The variable that seemed to have a trend in sentiment scores was years in prison with the inmates with the highest number of years in prison having the highest average sentiment.
 
 ## Future Work
+Areas of future work in this area should consider the other indepedent variables included in this data set.  Only three were chosen due to time constraints and data availability.  Additionally, another area of future work could be to try and use classification techniques to classify the sentiment for a last statement as positive or negative for prisoners based on their demographics.  
+
+## Appendix
+# Topic Modeling Plots
+```{r}
+ed10
+ed11
+ed12
+ed13
+```
 
 # References
