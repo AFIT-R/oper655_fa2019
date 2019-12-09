@@ -6,7 +6,7 @@ output:
   html_document:
     code_folding: 'hide'
 bibliography: bib.bib
-abstract: The purpose of this report is to analyze the last statments from Texas Prisoner inmates.  The data set from @kaggle contains data on 545 executions with prisoner attributes including race, education level, age, etc.  This research will utilize topic modeling and sentiment analysis to determine if there are similarities or differences between last statements between prisoners.     
+abstract: The purpose of this report is to analyze the last statments from Texas Prisoner inmates.  The data set from (@kaggle) contains data on 545 executions with prisoner attributes including race, education level, age, etc.  This research will utilize word relationships, topic modeling, and sentiment analysis to determine if there are similarities or differences between last statements between prisoners.     
 
 ---
 
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE,
 ```
 
 ## Background
-Natural language procesing (NLP) is the process of organizing and extracting structured or unstructured text data @NLP.  NLP is a set of tools that can enable the user to identify and extract relevant information for analysis from a set of documents or a data set containing text elements.  The first step in NLP is to extract and organize the text in a manner that analysis can be accomplished.  The subsequent steps will extract elements from the text including word replationships, topic modeling, and sentiment from the text elements in order to glean insight into relationship between the text and other aspects of the data set.  This research will analyze the last statements from Texas prison inmates and determine if demographic or prisoner characteristics are related to last statements or if there are relationships between prisoner attributes and last statements.  This report is organized in  five sections: the remainder of this first section will load all related packages needed for this analysis and load the data set, the second section will describe the data used in this research and the methods to perform the analysis, the third section will explore the data further in exploratory analysis, the fourth section explains the NLP analysis conducted in this research, and the final section will discuss further work in this area.   
+Natural language procesing (NLP) is the process of organizing and extracting structured or unstructured text data (@NLP).  NLP is a set of tools that can enable the user to identify and extract relevant information for analysis from a set of documents or a data set containing text elements.  The first step in NLP is to extract and organize the text in a manner that analysis can be accomplished.  The subsequent steps will extract elements from the text including word relationships, topic modeling, and sentiment from the text elements in order to glean insight into relationships between the text and other aspects of the data set.  This research will analyze the last statements from Texas prison inmates and determine if demographic or prisoner characteristics are related to last statements or if there are relationships between prisoner attributes and last statements.  This report is organized in  five sections: the remainder of this first section will load all related packages needed for this analysis and load the data set, the second section will describe the data used in this research and the methods to perform the analysis, the third section will explore the data further in exploratory analysis, the fourth section explains the NLP analysis conducted in this research, and the final section will discuss further work in this area.   
 
 ```{r, warning=FALSE, message=FALSE, results = "hide"}
 pacman::p_load(tm, 
@@ -65,13 +65,13 @@ rm(root)
 ## Methodology 
 
 ### Data 
-The data set used for this analysis is from the website Kaggle.  The data set is titled "Last Words of Death Row Inmates" and contains data on 545 inmates between 1982 and 2017.  Each observation in the data set is an inmate who was sentenced to death with 20 variables describing the inmate.  The below list shows all variables available in the data set. The below list shows the name of the variable, what the variable describes, and what type of variable it is.
+The data set used for this analysis is from the website Kaggle.  The data set is titled "Last Words of Death Row Inmates" and contains data on 545 inmates between 1982 and 2017.  Each observation in the data set is an inmate who was sentenced to death with 20 variables describing the inmate.  The below list shows the name of all variables in the data set, what the variable describe, and what type of variable it is.
 
     - Execution Number is the number of the execution beginning in 1982 going
     through 2017
     - Last Name is a character variable with the last name of the prisoner
     - First Name is a character variable with the first name of the prisoner
-    - TDCJNumber is a numeric variable 
+    - TDCJ Number is a numeric variable showing the department of corrections number for the inmate 
     - Age is a numeric variable with the age of the inmate when the death sentence
     was administered
     - Race is a character variable showing the race of the inmate in four levels:
@@ -82,14 +82,14 @@ The data set used for this analysis is from the website Kaggle.  The data set is
     to death
     - Education Level is a numeric variable with the number of years of education
     for each inmate
-    - Native County is...
+    - Native County is a binary variable with zero indicating the inmate is from Texas and a one indicating they are not from Texas
     - Previous crime is a binary variable with a zero indicating that the crime for
     which they were sentenced to death was their first crime and a one indicating
     that they were convicted of previous crimes
     - Codefendents is a numeric showing the number of codefendents the inmate had
     - Number of Vicitms is a numeric variable showing the number of victims the
     inmate was convicte of crimes against
-    - There are four binary representing the race of the victim. The first is white
+    - There are four binary varaibles representing the race of the victim. The first is white
     victim where a one indicates that the victim was white and a zero indicates
     that the victim was of another race.  Similarly the other victim race variables
     are binary variables indicating if the victim was hispanic, black, or other
@@ -100,7 +100,7 @@ The data set used for this analysis is from the website Kaggle.  The data set is
     - Last Statment is a character variable showing the full last statement of the 
     inmate. This variable will be the primary focus of this research.  
  
-The data was downloaded from Kaggle in a CSV data table and was easily imported into R.  THe data cleaning process for this data set consisted of deriving variable bins for the age of the prisoner at death.  The age of each inmate was binned into ten year increments to group different ages together.  Additionally, a variable thought to be interesting to study in relation to last statements was the amount of time spent in prison.  This variable was derived by subtracting the age the inmate was received from the age of the inmate at death.  This variable was then binned into five year increments.  The final step was to remove missing values from the data set. For the purpose of this research, it was important to retain as many last statments as possible, so instead of removing observations from the data set with missing values, each value labeled as "NA" was replaced with a character value of "Not Available."  This retained the observation in the observation and also allowed for binning the Not Available values for analysis.  After the data cleaning process, exploratory analysis on the independent variables of the data set was conducted to visulaize the distributions of different variables and identify potenital areas of interest for this study.  
+The data was downloaded from Kaggle in a CSV data table and was easily imported into R.  The data cleaning process for this data set consisted of deriving variable bins for the age of the prisoner at death.  The age of each inmate was binned into ten year increments to group different ages together.  Additionally, a variable thought to be interesting to study in relation to last statements was the amount of time spent in prison.  This variable was derived by subtracting the age the inmate was received from the age of the inmate at death.  This variable was then binned into five year increments.  The final step was to remove missing values from the data set. For the purpose of this research, it was important to retain as many last statments as possible, so instead of removing observations from the data set with missing values, each value labeled as "NA" was replaced with a character value of "Not Available."  This retained the observation in the data and also allowed for binning the Not Available values for analysis.  After the data cleaning process, exploratory analysis on the independent variables of the data set was conducted to visulaize the distributions of different variables and identify potenital areas of interest for this study.  
 
 ````{r Data Set Up, message=FALSE}
 data$Years_in_Prison <- data$Age - data$AgeWhenReceived
@@ -270,7 +270,7 @@ From these plots, there is one county where the majority of inmates were convict
 ## Analysis
 # 1. Word relationships and frequencies
 
-  The preliminary NLP analysis for this data is to analyze the most commonly used word and trigram within the last statements.  These can be generated and grouped by each variable identified in the exploratory analysis.  The below chart shows the top ten most commonly used words and trigrams across all inmates.  The most commonly used word is love and the most commonly used trigram is "I love you."  Where the trigram is NA corresponds to inmates that had no last statements or statements that were less than 3 words.  For example, one inmate's last statement was simply "Peace," so this would not be counted as a trigram.      
+  The preliminary NLP analysis for this data is to analyze the most commonly used words and trigrams within the last statements.  These can be generated and grouped by each variable identified in the exploratory analysis.  The below chart shows the top ten most commonly used words and trigrams across all inmates.  The most commonly used word is love and the most commonly used trigram is "I love you."  Where the trigram is NA corresponds to inmates that had no last statements or statements that were less than 3 words.  For example, one inmate's last statement was simply "Peace," so this would not be counted as a trigram.      
   
 ````{r, word_trigram_count}
 words <- data %>%
@@ -390,7 +390,7 @@ Ed_trigram_freq
 rm(Ed_word_freq, Ed_trigram_freq)
 ````
 
-The most frequently used words for the education levels are very similar.  There is a difference in the frequency of the use of god in the last statements.  The individuals who had 14 years of education used god more frequently than the other education levels. When looking at the trigram frequency, the trigram of interest in this chart is the trigram "i am sorry."  Individuals with 11 years of education said I am sorry the least among all the education levels and individuals with 9 years of education had the highest frequency of the trigram "i am sorry."
+The most frequently used words for the education levels are very similar.  There is a difference in the frequency of the use of god in the last statements.  The individuals who had 14 years of education used god more frequently than the other education levels. When looking at the trigram frequency, the trigram of interest in this chart is the trigram "i am sorry."  Individuals with 11 years of education said I am sorry the least among all the education levels and individuals with 9 years of education had the highest frequency of the trigram "i am sorry."  
 
 
 ````{r, years_in_prison}
@@ -414,8 +414,10 @@ years_trigram_freq <- data %>%
   theme(axis.text = element_text(angle = 90)) +
   facet_wrap(~Years_in_Prison2) +
   theme(legend.position = "none") +
-  theme(axis.text = element_text(angle = 90, size = 7)) +
-  theme(axis.title = element_text(size = 7))
+  theme(axis.text.x = element_text(angle = 90, size = 7),
+        axis.text.y = element_text(size  = 5),
+        axis.title = element_text(size = 7))
+
 
 years_word_freq <- data %>%
   unnest_tokens(word, LastStatement) %>%
@@ -436,14 +438,19 @@ years_word_freq <- data %>%
   theme(axis.text = element_text(angle = 90)) +
   facet_wrap(~Years_in_Prison2) +
   theme(legend.position = "none") +
-  theme(axis.text = element_text(angle = 90, size = 7)) +
-  theme(axis.title = element_text(size = 7))
+  theme(axis.text.x = element_text(angle = 90, size = 7),
+        axis.text.y = element_text(size  = 5),
+        axis.title = element_text(size = 7))
 
-grid.arrange(years_word_freq, years_trigram_freq, nrow = 2)
+years_word_freq
+years_trigram_freq
 rm(years_word_freq, years_trigram_freq)
 ````
+
+The final variable is the amount of time in prison.  The most frequently used word across all groupings is love and the most frequently used trigram is "i love you."  Inmates with 21-25 years in prison had the lowest frequency of using the trigram "i am sorry" and the all the other year groups had similar frequency of this trigram.  The next technique used to explore last statements is topic modeling.    
+
 # 2. Topic Modeling
-Topic modeling aims to discover topics used across various text documents @Topic.  Topic modeling is an unsupervised learning technique and can be used to identify similarities between different documents @Topic.  Topic modeling is used in this research to identify similar topics used between different demographics of inmates.  Topic modeling is used for each age group, year in prison groups, and education level groups to identify if there are similarities or differences between the topics of each group.  First topic modeling is run on each age group in the data set.  Four topics are generated for each group of inmates and the top 7 keywords contributing most to those topics are shown.   
+Topic modeling aims to discover topics used across various text documents (@Topic).  Topic modeling is an unsupervised learning technique and can be used to identify similarities between different documents (@Topic).  Topic modeling is used in this research to identify similar topics used between different demographics of inmates.  Topic modeling is used for each age group, year in prison groups, and education level groups to identify if there are similarities or differences between the topics of each group.  First topic modeling is run on each age group in the data set.  Four topics are generated for each group of inmates and the top 7 keywords contributing most to those topics are shown.   
   
 ````{r, topicModelAge, message=FALSE, results = "hide"}
 data2 <- as_tibble(data)
@@ -558,7 +565,7 @@ rm(dfm_data_1, dfm_data_2, dfm_data_3, dfm_data_4, dfm_data_5, dfm_list,
 age20_29
 rm(age20_29)
 ````
-The first age group is inmates aged 20-29.  The first topic appears to relate to family and religion.  The second topic is related to love and hope, the third is related to peace or forgiveness.  The final topic is more difficult to interpret and has many different words contributing to the topic with the word contributing most being life.
+The first age group is inmates aged 20-29.  The first topic is difficult to interpret with many words relating to the topic.  The most contributing word for this topic is strong.  The second topic appears to relate to family.  The third topic appears related to life and forgiveness.  The final topic is related to love with the keyword love being the most contributing word. 
 
 ````{r}
 age30_39
@@ -847,7 +854,7 @@ ed9
 rm(ed9)
 ```
 
-The topics for inmates with 9 years of education appear to relate to peace/forgiveness, love, releigion, and family.  The results for inmates with 10, 11, 12, and 13 appear to be similar in the general topics that are mentioned.  There is a difference in the inmates with 14 years of educations.  The first topic generated is very difficult to interpret and the words do not appear in the other education groups.  There appear to be som references to religion, but they are the least contributing words to this topic.  The other topics are all relating to religion. Additionally, forgiveness does not appear to be mentioned in any of the topics, but it was for the other education groups.  The topic modeling plot for inmates with 14 years of education is shown below.  The plots for the other education groups are shown in the appendix.    
+The topics for inmates with 9 years of education appear to relate to peace/forgiveness, love, releigion, and family.  The results for inmates with 10, 11, 12, and 13 appear to be similar in the general topics that are mentioned.  There is a difference in the inmates with 14 years of education.  The first topic generated is very difficult to interpret and the words do not appear in the other education groups.  There appear to be some references to religion, but they are the least contributing words to this topic.  The other topics are all relating to religion. Additionally, forgiveness does not appear to be mentioned in any of the topics, but it was for the other education groups.  The topic modeling plot for inmates with 14 years of education is shown below.  The plots for the other education groups are shown in the appendix.    
 
 ```{r}
 ed14
@@ -855,7 +862,7 @@ rm(ed14)
 ```
 
 # 3. Sentiment Analysis
-  The final analysis technique used to analyze the last statements of prison inmatesis sentiment analysis.  Sentiment analysis is the process of classifying a text document as positive or negative @Sent.  There are many dictionaries available that can be used to assign a word as positive or negative or to another emotion such as anger or happiness.  In this research, the R dicitionary of get_sentiments("bing") is used to assign each word of the last statements as positive or negative.  After each word is assigned as positive or negative, an overall score is gathered by tallying the total amount of positive words and substracting the total amount of negatives.  A negative sentiment value would mean that more negative words than positive words are used labeling this as a negative last statement.  To account for the number of words used in the last statements, the difference between the positive and negative words is divided by the sum of the positive and negative words giving a value between negative one and positive one.  The overall sentiment is shown in the below figure.    
+  The final analysis technique used to analyze the last statements of prison inmatesis sentiment analysis.  Sentiment analysis is the process of classifying a text document as positive or negative (@Sent).  There are many dictionaries available that can be used to assign a word as positive or negative or to another emotion such as anger or happiness.  In this research, the R dicitionary of get_sentiments("bing") is used to assign each word of the last statements as positive or negative.  After each word is assigned as positive or negative, an overall score is gathered by tallying the total amount of positive words and substracting the total amount of negatives.  A negative sentiment value would mean that more negative words than positive words are used labeling this as a negative last statement.  To account for the number of words used in the last statements, the difference between the positive and negative words is divided by the sum of the positive and negative words giving a value between negative one and positive one.  The overall sentiment is shown in the below figure.    
   
 ```{r, overallSentiment}
 
@@ -889,7 +896,7 @@ data %>%
   summarise(mean(sentiment)) 
 ```
 
-This overall average can be used to compare the different variable groupings used throughout this report.  The first groupings considered is the age groupings.  The below chart shows the  
+The overall average sentiment across all inmates is 0.369.  This shows that on average the sentiment was more positive than negative, but this value is still relatively small as the max positive score is 1. The first groupings considered is the age groupings.  The below chart shows the sentiment for each age group.  
 
 ```{r, ageSentiment}
 
@@ -913,7 +920,7 @@ data %>%
 
 ```
 
-From the above chart, the sentiment for each inmate is shown by the age group they are in.  The number of all negative vs. all positive last statements can be discrened from this chart.  It is difficult to tell how the sentiment for each group compares to the overall sentiment level.  The average sentiment for each age group is found to compare to the overall average. 
+From the above chart, the sentiment for each inmate is shown by the age group they are in.  The number of all negative vs. all positive last statements can be discerned from this chart.  It is difficult to tell how the sentiment for each group compares to the other age groups.  The average sentiment score for each age group is calculate to compare the different age groupings. 
 
 ```{r, aveAgeSent}
 data %>%
@@ -928,7 +935,7 @@ data %>%
 
 
 ```
-Comparing these average sentiment scores between the different age groupings, the inmates aged 20-29 had the highest average sentiment and the age group of inmates aged 60-69 had the lower average sentiment.  The sentiment scores for age group 20-29 and 40-49 are very similar and this is also seen in the above chart as they both follow very similar curves of sentiment.  The below chart compares the words that contribute highly to either positive or negative sentiment.  The green bars indicate that the word contributes to positive sentiment and the red bars indicate negative sentiment.  
+Comparing these average sentiment scores between the different age groupings, the inmates aged 20-29 had the highest average sentiment and the age group of inmates aged 60-69 had the lower average sentiment.  The sentiment scores for age group 20-29 and 40-49 are very similar and this is also seen in the above chart as they both follow very similar curves of sentiment.  
 
   The same process above is used for inmates with 9 or more years of education.  The below chart shows the sentiment of inmates with 9 or more years of education in increasing order of sentiment scores.  
   
@@ -976,7 +983,7 @@ EdSent %>%
 
 ```
 
-The above listing shows that inmates with 13 years of education had higher average sentiment than the other education levels.  The spread of sentiment scores is similar to that of the age groupings.  Interesting, the inmates with the highest education had the lowest sentiment.  There seemed to be an increasing level of average sentiment as education level increased and then dropped for those with 14 years of education.  To see which words are contributing to the positive or negative sentiment scores, the below plot, found in @Tidy can be used.  The green bars are positive sentiment and the red bars are negative sentiment.    
+The above listing shows that inmates with 13 years of education had higher average sentiment than the other education levels.  The spread of sentiment scores is similar to that of the age groupings.  Interestingly, the inmates with the highest education had the lowest sentiment.  There seemed to be an increasing level of average sentiment as education level increased and then dropped for those with 14 years of education.  To see which words are contributing to the positive or negative sentiment scores, the below plot, found in (@Tidy) can be used.  The green bars are positive sentiment and the red bars are negative sentiment.    
 
 ```{r}
 ed14 <- data %>%
@@ -1001,7 +1008,8 @@ ed14 <- data %>%
   coord_flip() +
   theme(legend.position = "right")
 ```
-This chart can be used to see that in the inmates with 14 years of education, there are many more negative words used than in the other education levels.  This would decrease their average sentiment.  
+
+This chart can be used to see that in the inmates with 14 years of education, there are more negative words used than in the other education levels.  This would decrease their average sentiment.  
 
 The final variable of interest is the years in prison.  The same methodology is used to compare the average sentiment values for each group of inmates to see if the number of years has an affect on the average sentiment of last statements.  
 
@@ -1041,7 +1049,7 @@ data %>%
   summarise(mean(sentiment))
 ```
 
-The average sentiment scores show a general increase in the average sentiment as time in prison increases.  The inmates with 0-5 years in prison have the lowest sentiment and the inmates with 21-25 years in prison have the highest average sentiment.  The words contributing to the highest average sentiment can be plotted using code found in @Tidy to visualize the words that contribute most to the positive sentiment.  
+The average sentiment scores show a general increase in the average sentiment as time in prison increases.  The inmates with 0-5 years in prison have the lowest sentiment and the inmates with 21-25 years in prison have the highest average sentiment.  The words contributing to the highest average sentiment can be plotted using code found in (@Tidy) to visualize the words that contribute most to the positive sentiment.  
 
 ```{r, yearsContribSent}
 
@@ -1065,13 +1073,14 @@ years2125 %>%
   coord_flip()
   
 ```
-This chart shows that love contributes most to the positive score for the inmates with 21-25 years in prison.  The use positive words is also much higher than the negative words as shown in the chart.  
+
+This chart shows that love contributes most to the positive score for the inmates with 21-25 years in prison.  The use of positive words is also much higher than the negative words as shown in the chart.  
 
 ## Findings and Conclusions 
 This research used NLP techniques of word relationships, topic modeling, and sentiment analysis to analyze the last statements of 545 Texas prison inmates.  These three techniques were used to analyze the affect of age, education level, and time in prison on the content of the prisoner's last statement. Using word relationships, the words used in the last statements were similar among the different age, education levels, and years in prison between the inmates.  Analyzing the topics mentioned in each last statement also indicated there were many similarities between the different groupings of inmates.  There were slight differences in the words used to describe each topic, but the general topics appeared to be similar.  The final method indicated that average sentiment scores varied across all the variable groupings, but the spread of scores was small.  The variable that seemed to have a trend in sentiment scores was years in prison with the inmates with the highest number of years in prison having the highest average sentiment.
 
 ## Future Work
-Areas of future work in this area should consider the other indepedent variables included in this data set.  Only three were chosen due to time constraints and data availability.  Additionally, another area of future work could be to try and use a neural network or other classification technique to predict the sentiment score for prisoners based on their demographics.  
+Areas of future work in this area should consider the other indepedent variables included in this data set.  Only three were chosen due to time constraints and data availability.  Additionally, another area of future work could be to try and use classification techniques to classify the sentiment for a last statement as positive or negative for prisoners based on their demographics.  
 
 ## Appendix
 # Topic Modeling Plots
