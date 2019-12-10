@@ -426,14 +426,15 @@ g_sum_d = readRDS("C:/Users/Max's USAFA PC/Documents/SCHOOL/g_sum_d.RDS")
 # 
 # 
 for (i in 1:nrow(g_sum_d)) {
-  print(head(as.character(g_sum_d[i,])))
+  print(substr(as.character(g_sum_d[i,]),1,150))
+  print(" ")
 }
 
 
 ```
 
 
-Next i generate a chart which shows where, within the document, you see the most important text.
+Next i generate a chart which shows where, within the document, you see the most important scentances.
 
 ```{r}
 #This shows where, within the document, you see the most important text.
@@ -477,6 +478,8 @@ barchart(key ~ freq, data = head(stats, 30), col = "orange", main = "Most occurr
 
 ```
 
+I also did this for the most occuring verbs.
+
 ```{r,a2}
 #Lemma is just the column of all of the words in the document
 #Here we simply show the frequency of the words.
@@ -496,7 +499,7 @@ Next, I build a word network showing how closely related and used together multi
 
 ```{r,b,warning=F}
 stats <- keywords_collocation(x = x, 
-                              term = "token", group = c("doc_id", "paragraph_id", "sentence_id"),ngram_max = 4)
+                              term = "token", group = c("doc_id", "paragraph_id", "sentence_id"),ngram_max = 5)
 
 ## Co-occurrences: How frequent do words occur in the same sentence, in this case only nouns or adjectives
 stats <- cooccurrence(x = subset(x, upos %in% c("NOUN", "ADJ")), 
@@ -510,12 +513,12 @@ stats <- cooccurrence(x = x$lemma,
 
 
 #From here we build out a word network showing how closely related and used together multi word phrases are in the document. 
-wordnetwork <- head(stats, 30)
+wordnetwork <- head(stats, 20)
 wordnetwork <- graph_from_data_frame(wordnetwork)
 
 ggraph(wordnetwork, layout = "fr") +
-  geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "pink") +
-  geom_node_text(aes(label = name), col = "darkgreen", size = 4) +
+  geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "red") +
+  geom_node_text(aes(label = name), col = "darkgreen", size = 5) +
   theme_graph(base_family = "Arial Narrow") +
   theme(legend.position = "none") +
   labs(title = "Cooccurrences within 3 words distance", subtitle = "Nouns & Adjective")
@@ -524,7 +527,7 @@ ggraph(wordnetwork, layout = "fr") +
 
 
 
-Next, i created a word cloud showing...
+Next, I created a word cloud showing the most common phrases.
 
 ```{r,d}
 stats <- textrank_keywords(x$lemma, 
@@ -536,7 +539,7 @@ wordcloud(words = stats$keyword, freq = stats$freq, max.words = 300)
 ```
 
 
-Next, I...
+Next, I print out the most common groups of words.
 
 ```{r,e}
 stats <- keywords_rake(x = x,
@@ -544,8 +547,11 @@ stats <- keywords_rake(x = x,
                        relevant = x$upos %in% c("NOUN", "ADJ"),
                        ngram_max = 4)
 head(subset(stats, freq > 3))
+```
 
-## Simple noun phrases (a adjective+noun, pre/postposition, optional determiner and another adjective+noun)
+Next is some simple noun phrases.
+
+```{r}
 x$phrase_tag <- as_phrasemachine(x$upos, type = "upos")
 stats <- keywords_phrases(x = x$phrase_tag, term = x$token,
                           pattern = "(A|N)+N(P+D*(A|N)*N)*",
@@ -553,8 +559,10 @@ stats <- keywords_phrases(x = x$phrase_tag, term = x$token,
 head(subset(stats, ngram > 2))
 ```
 
+Lastly, I identifed the most common phrases in the dataset to get a feel for the overall docuement.
+
 ```{r,e2,warning=F}
-#Lastly, we identify the most common phrases in the dataset to get a feel for the overall docuement.
+#
 stats <- merge(x, x,
                by.x = c("doc_id", "paragraph_id", "sentence_id", "head_token_id"),
                by.y = c("doc_id", "paragraph_id", "sentence_id", "token_id"),
@@ -569,8 +577,6 @@ wordcloud(words = stats$key, freq = stats$freq, min.freq = 3, max.words = 100,
 
 
 ```
-
-## Other
 
 
 ## Findings and Conclusions 
