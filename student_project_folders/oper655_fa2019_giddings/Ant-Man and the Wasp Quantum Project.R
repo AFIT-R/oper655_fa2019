@@ -60,7 +60,6 @@ mcu_phase1 <- list.files(dest1,
                          pattern = 'pdf',
                          full.names = TRUE)
 
-<<<<<<< HEAD
 #Attempting to add the rest of the scripts of the MCU into a corpus.
 for (i in 1:8) {
   nam <- paste("tb_pdftools_mcu3",i,sep = "")
@@ -70,19 +69,18 @@ for (i in 1:6) {
   nam <- paste("tb_pdftools_mcu2",i,sep = "")
   assign(nam,pdftools::pdf_text(pdf = mcu_phase2[i]))
 }
-for (i in 1:5) {
+for (i in 1:6) {
   nam <- paste("tb_pdftools_mcu1",i,sep = "")
   assign(nam,pdftools::pdf_text(pdf = mcu_phase1[i]))
 }
 
-=======
->>>>>>> c1be969ade6a9957ad9607b20d9eda70b65021b0
 #Tibbles (Readable Texts)
-#Phase 1 Movies (No Avengers Script)
+#Phase 1 Movies
 text_CaptAmerica <- tibble::tibble(title = "Captain America: The First Avenger",
                                    chapter = base::seq_along(tb_pdftools_mcu11),
                                     text = tb_pdftools_mcu11,
                                    movie_number = 5,
+                                   mcu_phase = 1,
                                    release_date = "June 22, 2011",
                                    director = "Joe Johnston",
                                    screenwriter = "Christopher Markus & Stephen McFeely",
@@ -91,6 +89,7 @@ text_IronMan2 <- tibble::tibble(title = "Iron Man 2",
                                 chapter = base::seq_along(tb_pdftools_mcu12),
                                 text = tb_pdftools_mcu12,
                                 movie_number = 3,
+                                mcu_phase = 1,
                                 release_date = "May 7, 2010",
                                 director = "Jon Favreau",
                                 screenwriter = "Justin Theroux",
@@ -99,22 +98,34 @@ text_IronMan <- tibble::tibble(title = "Iron Man",
                                chapter = base::seq_along(tb_pdftools_mcu13),
                                 text = tb_pdftools_mcu13,
                                movie_number = 1,
+                               mcu_phase = 1,
                                release_date = "May 2, 2008",
                                director = "Jon Favreau",
                                screenwriter = "Mark Fergus, Hawk Ostby, Art Marcum, & Matt Holloway",
                                producer = "Kevin Feige & Avi Arad")
+text_Avengers <- tibble::tibble(title = "The Avengers",
+                               chapter = base::seq_along(tb_pdftools_mcu14),
+                               text = tb_pdftools_mcu14,
+                               movie_number = 6,
+                               mcu_phase = 1,
+                               release_date = "May 4, 2012",
+                               director = "Joss Whedon",
+                               screenwriter = "Joss Whedon",
+                               producer = "Kevin Feige")
 text_Hulk <- tibble::tibble(title = "The Incredible Hulk",
-                            chapter = base::seq_along(tb_pdftools_mcu14),
-                            text = tb_pdftools_mcu14,
+                            chapter = base::seq_along(tb_pdftools_mcu15),
+                            text = tb_pdftools_mcu15,
                             movie_number = 2,
+                            mcu_phase = 1,
                             release_date = "June 13, 2008",
                             director = "Louis Leterrier",
                             screenwriter = "Zak Penn",
                             producer = "Kevin Feige, Avi Arad, & Gale Anne Hurd")
 text_Thor <- tibble::tibble(title = "Thor",
-                            chapter = base::seq_along(tb_pdftools_mcu15),
-                             text = tb_pdftools_mcu15,
+                            chapter = base::seq_along(tb_pdftools_mcu16),
+                             text = tb_pdftools_mcu16,
                             movie_number = 4,
+                            mcu_phase = 1,
                             release_date = "May 6, 2011",
                             director = "Kenneth Branagh",
                             screenwriter = "Ashley Edward Miller, Zack Stentz, & Don Payne",
@@ -124,6 +135,7 @@ text_AntMan <- tibble::tibble(title = "Ant-Man",
                               chapter = base::seq_along(tb_pdftools_mcu21),
                                text = tb_pdftools_mcu21,
                               movie_number = 12,
+                              mcu_phase = 2,
                               release_date = "June 17, 2015",
                               director = "Peyton Reed",
                               screenwriter = "Edgar Wright, Joe Cornish, Adam McKay, & Paul Rudd",
@@ -132,6 +144,7 @@ text_AvengersAOU <- tibble::tibble(title = "Avengers: Age of Ultron",
                                    chapter = base::seq_along(tb_pdftools_mcu22),
                                   text = tb_pdftools_mcu22,
                                   movie_number = 11,
+                                  mcu_phase = 2,
                                   release_date = "May 1, 2015",
                                   director = "Joss Whedon",
                                   screenwriter = "Joss Whedon",
@@ -140,6 +153,7 @@ text_CaptAmerica2 <- tibble::tibble(title = "Captain America: The Winter Soldier
                                     chapter = base::seq_along(tb_pdftools_mcu23),
                                     text = tb_pdftools_mcu23,
                                     movie_number = 9,
+                                    mcu_phase = 2,
                                     release_date = "April 4, 2014",
                                     director = "Anthony & Joe Russo",
                                     screenwriter = "Christopher Markus & Stephen McFeely",
@@ -148,6 +162,7 @@ text_GotG <- tibble::tibble(title = "Guardians of the Galaxy",
                             chapter = base::seq_along(tb_pdftools_mcu24),
                              text = tb_pdftools_mcu24,
                             movie_number = 10,
+                            mcu_phase = 2,
                             release_date = "August 1, 2014",
                             director = "James Gunn",
                             screenwriter = "James Gunn & Nicole Perlman",
@@ -156,6 +171,7 @@ text_IronMan3 <- tibble::tibble(title = "Iron Man 3",
                                 chapter = base::seq_along(tb_pdftools_mcu25),
                                 text = tb_pdftools_mcu25,
                                 movie_number = 7,
+                                mcu_phase = 2,
                                 release_date = "May 3, 2013",
                                 director = "Shane Black",
                                 screenwriter = "Drew Pearce & Shane Black",
@@ -164,15 +180,17 @@ text_Thor2 <- tibble::tibble(title = "Thor: The Dark World",
                              chapter = base::seq_along(tb_pdftools_mcu26),
                              text = tb_pdftools_mcu26,
                              movie_number = 8,
+                             mcu_phase = 2,
                              release_date = "November 8, 2013",
                              director = "Alan Taylor",
                              screenwriter = "Christopher L. Yost, Christopher Markus, & Stephen McFeely",
                              producer = "Kevin Feige")
-#Phase 3 Movies (Ends at Avengers: Infinity War)
+#Phase 3 Movies (Ends at Ant-Man & The Wasp)
 text_AntMan2 <- tibble::tibble(title = "Ant-Man & The Wasp",
                                chapter = base::seq_along(tb_pdftools_mcu31),
                           text = tb_pdftools_mcu31,
                           movie_number = 20,
+                          mcu_phase = 3,
                           release_date = "July 6, 2018",
                           director = "Peyton Reed",
                           screenwriter = "Chris McKenna, Erik Sommers, Paul Rudd, Andrew Barrer, & Gabriel Ferrari",
@@ -181,6 +199,7 @@ text_AvengersIW <- tibble::tibble(title = "Avengers: Infinity War",
                                   chapter = base::seq_along(tb_pdftools_mcu32),
                                text = tb_pdftools_mcu32,
                                movie_number = 19,
+                               mcu_phase = 3,
                                release_date = "April 27, 2018",
                                director = "Anthony & Joe Russo",
                                screenwriter = "Christopher Markus & Stephen McFeely",
@@ -189,6 +208,7 @@ text_BkPanther <- tibble::tibble(title = "Black Panther",
                                  chapter = base::seq_along(tb_pdftools_mcu33),
                                text = tb_pdftools_mcu33,
                                movie_number = 18,
+                               mcu_phase = 3,
                                release_date = "February 16, 2018",
                                director = "Ryan Coogler",
                                screenwriter = "Ryan Coogler & Joe Robert Cole",
@@ -197,6 +217,7 @@ text_CaptAmerica3 <- tibble::tibble(title = "Captain America: Civil War",
                                     chapter = base::seq_along(tb_pdftools_mcu34),
                                text = tb_pdftools_mcu34,
                                movie_number = 13,
+                               mcu_phase = 3,
                                release_date = "May 6, 2016",
                                director = "Anthony & Joe Russo",
                                screenwriter = "Christopher Markus & Stephen McFeely",
@@ -205,6 +226,7 @@ text_DrStrange <- tibble::tibble(title = "Doctor Strange",
                                  chapter = base::seq_along(tb_pdftools_mcu35),
                                text = tb_pdftools_mcu35,
                                movie_number = 14,
+                               mcu_phase = 3,
                                release_date = "November 4, 2016",
                                director = "Scott Derrickson",
                                screenwriter = "Jon Spaihts, Scott Derrickson, & C. Robert Cargill",
@@ -213,6 +235,7 @@ text_GotG2 <- tibble::tibble(title = "Guardians of the Galaxy Volume 2",
                              chapter = base::seq_along(tb_pdftools_mcu36),
                                text = tb_pdftools_mcu36,
                              movie_number = 15,
+                             mcu_phase = 3,
                              release_date = "May 5, 2017",
                              director = "James Gunn",
                              screenwriter = "James Gunn",
@@ -221,6 +244,7 @@ text_SpiderManHC <- tibble::tibble(title = "Spider-Man: Homecoming",
                                    chapter = base::seq_along(tb_pdftools_mcu37),
                                text = tb_pdftools_mcu37,
                                movie_number = 16,
+                               mcu_phase = 3,
                                release_date = "July 7, 2017",
                                director = "Jon Watts",
                                screenwriter = "Jonathan Goldstein, John Francis Daley, Jon Watts, Christopher Ford, Chris McKenna, & Erik Sommers",
@@ -229,6 +253,7 @@ text_Thor3 <- tibble::tibble(title = "Thor: Ragnarok",
                              chapter = base::seq_along(tb_pdftools_mcu38),
                                text = tb_pdftools_mcu38,
                              movie_number = 17,
+                             mcu_phase = 3,
                              release_date = "November 3, 2017",
                              director = "Taika Waititi",
                              screenwriter = "Eric Pearson, Craig Kyle, & Christopher L. Yost",
@@ -240,7 +265,7 @@ tb_pdftools_mcu3 <- pdftools::pdf_text(pdf = mcu_phase3[1])
 tb_pdftools_mcu2 <- pdftools::pdf_text(pdf = mcu_phase2[1])
 tb_pdftools_mcu1 <- pdftools::pdf_text(pdf = mcu_phase1[1])
 
-#Cursory Analysis (Top 10 Words in a List)
+#Unnesting the Tokens & Getting Top 10 Words
 text_CaptAmerica %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
@@ -305,6 +330,10 @@ text_DrStrange %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE)
+text_Avengers %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE)
 text_AvengersAOU %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
@@ -317,7 +346,7 @@ text_SpiderManHC %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE)
-# top 10 most common words in each book
+
 #Top 10 words in a Bar Graph
 #Ant-Man
 am = text_AntMan %>%
@@ -338,7 +367,7 @@ am2 = text_AntMan2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pam2<-ggplot(data=am2, aes(x = reorder(word, n), y =n)) +
+pam2 <- ggplot(data=am2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkred") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Ant-Man & the Wasp") +
@@ -351,7 +380,7 @@ ca = text_CaptAmerica %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pca<-ggplot(data=ca, aes(x = reorder(word, n), y =n)) +
+pca <- ggplot(data=ca, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Captain America: The First Avenger") +
@@ -364,7 +393,7 @@ ca2 = text_CaptAmerica2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pca2<-ggplot(data=ca2, aes(x = reorder(word, n), y =n)) +
+pca2 <- ggplot(data=ca2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Captain America: The Winter Soldier") +
@@ -377,7 +406,7 @@ ca3 = text_CaptAmerica3 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pca3<-ggplot(data=ca3, aes(x = reorder(word, n), y =n)) +
+pca3 <- ggplot(data=ca3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkblue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Captain America: Civil War") +
@@ -390,7 +419,7 @@ im = text_IronMan %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pim<-ggplot(data=im, aes(x = reorder(word, n), y =n)) +
+pim <- ggplot(data=im, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Iron Man") +
@@ -403,7 +432,7 @@ im2 = text_IronMan2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pim2<-ggplot(data=im2, aes(x = reorder(word, n), y =n)) +
+pim2 <- ggplot(data=im2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Iron Man 2") +
@@ -416,7 +445,7 @@ im3 = text_IronMan3 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pim3<-ggplot(data=im3, aes(x = reorder(word, n), y =n)) +
+pim3 <- ggplot(data=im3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="gold") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Iron Man 3") +
@@ -429,7 +458,7 @@ gotg = text_GotG %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pgotg<-ggplot(data=gotg, aes(x = reorder(word, n), y =n)) +
+pgotg <- ggplot(data=gotg, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="purple") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Guardians of the Galaxy") +
@@ -442,7 +471,7 @@ gotg2 = text_GotG2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pgotg2<-ggplot(data=gotg2, aes(x = reorder(word, n), y =n)) +
+pgotg2 <- ggplot(data=gotg2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="purple") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Guardians of the Galaxy Vol. 2") +
@@ -455,7 +484,7 @@ t = text_Thor %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pt<-ggplot(data=t, aes(x = reorder(word, n), y =n)) +
+pt <- ggplot(data=t, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Thor") +
@@ -468,7 +497,7 @@ t2 = text_Thor2 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pt2<-ggplot(data=t2, aes(x = reorder(word, n), y =n)) +
+pt2 <- ggplot(data=t2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Thor: The Dark World") +
@@ -481,7 +510,7 @@ t3 = text_Thor3 %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pt3<-ggplot(data=t3, aes(x = reorder(word, n), y =n)) +
+pt3 <- ggplot(data=t3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="grey") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Thor: Ragnarok") +
@@ -494,7 +523,7 @@ sm = text_SpiderManHC %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-psm<-ggplot(data=sm, aes(x = reorder(word, n), y =n)) +
+psm <- ggplot(data=sm, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="red") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Spider-Man: Homecoming") +
@@ -507,20 +536,33 @@ h = text_Hulk %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-ph<-ggplot(data=h, aes(x = reorder(word, n), y =n)) +
+ph <- ggplot(data=h, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkgreen") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in The Incredible Hulk") +
   xlab("Words") +
   ylab("Count")
 ph
+#Avengers
+av = text_Avengers %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  top_n(10)
+pav <- ggplot(data=av, aes(x = reorder(word, n), y =n)) +
+  geom_bar(stat="identity", fill="blue") + coord_flip() +
+  theme(legend.position="none") + theme_minimal() +
+  labs(title = "Top 10 Words in Avengers") +
+  xlab("Words") +
+  ylab("Count")
+pav
 #Avengers: Age of Ultron
 av2 = text_AvengersAOU %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pav2<-ggplot(data=av2, aes(x = reorder(word, n), y =n)) +
+pav2 <- ggplot(data=av2, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="blue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Avengers: Age of Ultron") +
@@ -533,7 +575,7 @@ av3 = text_AvengersIW %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pav3<-ggplot(data=av3, aes(x = reorder(word, n), y =n)) +
+pav3 <- ggplot(data=av3, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="blue") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Avengers: Infinity War") +
@@ -546,7 +588,7 @@ bp = text_BkPanther %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pbp<-ggplot(data=bp, aes(x = reorder(word, n), y =n)) +
+pbp <- ggplot(data=bp, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="black") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Black Panther") +
@@ -559,7 +601,7 @@ ds = text_DrStrange %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
   top_n(10)
-pds<-ggplot(data=ds, aes(x = reorder(word, n), y =n)) +
+pds <- ggplot(data=ds, aes(x = reorder(word, n), y =n)) +
   geom_bar(stat="identity", fill="darkorange") + coord_flip() +
   theme(legend.position="none") + theme_minimal() +
   labs(title = "Top 10 Words in Doctor Strange") +
@@ -646,7 +688,8 @@ text_mcu_p1 <- rbind(text_IronMan,
                      text_CaptAmerica,
                      text_Hulk,
                      text_IronMan2,
-                     text_Thor)
+                     text_Thor,
+                     text_Avengers)
 text_mcu_p2 <- rbind(text_IronMan3,
                      text_CaptAmerica2,
                      text_GotG,
@@ -666,7 +709,7 @@ text_mcu <- rbind(text_mcu_p1, text_mcu_p2, text_mcu_p3)
 #Series Tibbles
 text_AM_Comb <- rbind(text_AntMan, text_AntMan2)
 text_GotG_Comb <- rbind(text_GotG, text_GotG2)
-text_AV_Comb <- rbind(text_AvengersAOU, text_AvengersIW)
+text_AV_Tril <- rbind(text_Avengers, text_AvengersAOU, text_AvengersIW)
 text_CA_Tril <- rbind(text_CaptAmerica, text_CaptAmerica2, text_CaptAmerica3)
 text_IM_Tril <- rbind(text_IronMan, text_IronMan2, text_IronMan3)
 text_Thor_Tril <- rbind(text_Thor, text_Thor2, text_Thor3)
@@ -776,7 +819,7 @@ pacm<-ggplot(data=acm, aes(x = reorder(word, n), y =n)) +
   ylab("Count")
 pacm
 #The Avengers Movies
-avcm = text_AV_Comb %>%
+avcm = text_AV_Tril %>%
   tidytext::unnest_tokens(word, text, token = 'words') %>%
   dplyr::anti_join(stop_words) %>%
   dplyr::count(word, sort = TRUE) %>%
@@ -824,7 +867,7 @@ spacy_initialize()
 #Unnesting tokens
 tidytext::unnest_tokens(text_mcu, word, text)
 
-mcu_data <- as.data.frame(text_mcu[1:8], stringsAsFactors = FALSE)
+mcu_data <- as.data.frame(text_mcu[1:9], stringsAsFactors = FALSE)
 mcu_parsed <- spacy_parse(mcu_data$text, entity = TRUE)
 mcu_extracted <- entity_extract(mcu_parsed)
 
@@ -932,7 +975,7 @@ mcu_unnested %>%
 
 #Top 10 Negative Sentiment Words
 mcu_unnested %>%
-  anti_join(tibble::tibble(word = c("rocket")))%>%
+  anti_join(tibble::tibble(word = c("rocket", "fury")))%>%
   inner_join(nrc_anger) %>%
   count(word, sort = T)
 
@@ -978,7 +1021,7 @@ mcu_unnested %>%
 mcu_unnested %>%
   anti_join(stop_words) %>%
   count(word) %>%
-  with(wordcloud(word, n, max.words = 100))
+  with(wordcloud(word, n, max.words = 50))
 
 #Word Cloud w/ Sentiment
 mcu_unnested %>%
@@ -986,4 +1029,633 @@ mcu_unnested %>%
   count(word, sentiment, sort = TRUE) %>%
   acast(word ~ sentiment, value.var = "n", fill = 0) %>%
   comparison.cloud(colors = c("gray20","gray80"),
-                   max.words = 100)
+                   max.words = 50)
+
+#Document Summarization
+pacman::p_load(tidyr,
+               tidytext,
+               tidyverse,
+               textdata,
+               dplyr,
+               stringr,
+               ggplot2,
+               magrittr,
+               wordcloud,
+               reshape2,
+               textmineR,
+               LSAfun,
+               igraph,
+               textrank,
+               ggraph,
+               lattice,
+               udpipe)
+#This uses tidy text to create tokens of sentences and of words from the document. 
+#This is necessary to analyze the similarity between sentences, get rid of stop words and to rank the sentences.
+#The Entire MCU Summarized
+mcu_sentences <- tibble(text = text_mcu$text[1:1346]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+mcu_words <- mcu_sentences %>%
+  unnest_tokens(word, sentence)
+
+mcu_words <- mcu_words %>%
+  anti_join(stop_words, by = "word")
+
+mcu_summary <- textrank_sentences(data = mcu_sentences, 
+                                      terminology = mcu_words)
+
+#This shows us the top 10 sentences that summarize the document
+mcu_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:10) %>%
+  pull(sentence)
+
+#The Captain America Trilogy
+cat_sentences <- tibble(text = text_CA_Tril$text[1:94]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+cat_words <- cat_sentences %>%
+  unnest_tokens(word, sentence)
+
+cat_words <- cat_words %>%
+  anti_join(stop_words, by = "word")
+
+cat_summary <- textrank_sentences(data = cat_sentences, 
+                                  terminology = cat_words)
+
+#This shows us the top 5 sentences that summarize the document
+cat_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:5) %>%
+  pull(sentence)
+
+#The Iron Man Trilogy
+imt_sentences <- tibble(text = text_IM_Tril$text[1:284]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+imt_words <- imt_sentences %>%
+  unnest_tokens(word, sentence)
+
+imt_words <- imt_words %>%
+  anti_join(stop_words, by = "word")
+
+imt_summary <- textrank_sentences(data = imt_sentences, 
+                                  terminology = imt_words)
+
+#This shows us the top 5 sentences that summarize the document
+imt_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:5) %>%
+  pull(sentence)
+
+#The Thor Trilogy
+tht_sentences <- tibble(text = text_Thor_Tril$text[1:302]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+tht_words <- tht_sentences %>%
+  unnest_tokens(word, sentence)
+
+tht_words <- tht_words %>%
+  anti_join(stop_words, by = "word")
+
+tht_summary <- textrank_sentences(data = tht_sentences, 
+                                  terminology = tht_words)
+
+#This shows us the top 5 sentences that summarize the document
+tht_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:5) %>%
+  pull(sentence)
+
+#The Avengers Trilogy
+avt_sentences <- tibble(text = text_AV_Tril$text[1:142]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+avt_words <- avt_sentences %>%
+  unnest_tokens(word, sentence)
+
+avt_words <- avt_words %>%
+  anti_join(stop_words, by = "word")
+
+avt_summary <- textrank_sentences(data = avt_sentences, 
+                                  terminology = avt_words)
+
+#This shows us the top 5 sentences that summarize the document
+avt_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:5) %>%
+  pull(sentence)
+
+#The Guardians of the Galaxy Movies
+gotgm_sentences <- tibble(text = text_GotG_Comb$text[1:169]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+gotgm_words <- gotgm_sentences %>%
+  unnest_tokens(word, sentence)
+
+gotgm_words <- gotgm_words %>%
+  anti_join(stop_words, by = "word")
+
+gotgm_summary <- textrank_sentences(data = gotgm_sentences, 
+                                  terminology = gotgm_words)
+
+#This shows us the top 5 sentences that summarize the document
+gotgm_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:5) %>%
+  pull(sentence)
+
+#The Ant-Man Movies
+amm_sentences <- tibble(text = text_AM_Comb$text[1:82]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+amm_words <- amm_sentences %>%
+  unnest_tokens(word, sentence)
+
+amm_words <- amm_words %>%
+  anti_join(stop_words, by = "word")
+
+amm_summary <- textrank_sentences(data = amm_sentences, 
+                                    terminology = amm_words)
+
+#This shows us the top 5 sentences that summarize the document
+amm_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:5) %>%
+  pull(sentence)
+
+#Phase 1 of the MCU
+mcup1_sentences <- tibble(text = text_mcu_p1$text[1:570]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+mcup1_words <- mcup1_sentences %>%
+  unnest_tokens(word, sentence)
+
+mcup1_words <- mcup1_words %>%
+  anti_join(stop_words, by = "word")
+
+mcup1_summary <- textrank_sentences(data = mcup1_sentences, 
+                                    terminology = mcup1_words)
+
+#This shows us the top 10 sentences that summarize the document
+mcup1_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:10) %>%
+  pull(sentence)
+
+#Phase 2 of the MCU
+mcup2_sentences <- tibble(text = text_mcu_p2$text[1:248]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+mcup2_words <- mcup2_sentences %>%
+  unnest_tokens(word, sentence)
+
+mcup2_words <- mcup2_words %>%
+  anti_join(stop_words, by = "word")
+
+mcup2_summary <- textrank_sentences(data = mcup2_sentences, 
+                                    terminology = mcup2_words)
+
+#This shows us the top 10 sentences that summarize the document
+mcup2_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:10) %>%
+  pull(sentence)
+
+#Phase 3 of the MCU
+mcup3_sentences <- tibble(text = text_mcu_p3$text[1:528]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+mcup3_words <- mcup3_sentences %>%
+  unnest_tokens(word, sentence)
+
+mcup3_words <- mcup3_words %>%
+  anti_join(stop_words, by = "word")
+
+mcup3_summary <- textrank_sentences(data = mcup3_sentences, 
+                                    terminology = mcup3_words)
+
+#This shows us the top 10 sentences that summarize the document
+mcup3_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:10) %>%
+  pull(sentence)
+
+#Iron Man
+im_sentences <- tibble(text = text_IronMan$text[1:180]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+im_words <- im_sentences %>%
+  unnest_tokens(word, sentence)
+
+im_words <- im_words %>%
+  anti_join(stop_words, by = "word")
+
+im_summary <- textrank_sentences(data = im_sentences, 
+                                    terminology = im_words)
+
+#This shows us the top 3 sentences that summarize the document
+im_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Iron Man
+im2_sentences <- tibble(text = text_IronMan2$text[1:29]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+im2_words <- im2_sentences %>%
+  unnest_tokens(word, sentence)
+
+im2_words <- im2_words %>%
+  anti_join(stop_words, by = "word")
+
+im2_summary <- textrank_sentences(data = im2_sentences, 
+                                 terminology = im2_words)
+
+#This shows us the top 3 sentences that summarize the document
+im2_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Iron Man 3
+im3_sentences <- tibble(text = text_IronMan3$text[1:75]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+im3_words <- im3_sentences %>%
+  unnest_tokens(word, sentence)
+
+im3_words <- im3_words %>%
+  anti_join(stop_words, by = "word")
+
+im3_summary <- textrank_sentences(data = im3_sentences, 
+                                 terminology = im3_words)
+
+#This shows us the top 3 sentences that summarize the document
+im3_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Captain America: The First Avenger
+ca_sentences <- tibble(text = text_CaptAmerica$text[1:24]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+ca_words <- ca_sentences %>%
+  unnest_tokens(word, sentence)
+
+ca_words <- ca_words %>%
+  anti_join(stop_words, by = "word")
+
+ca_summary <- textrank_sentences(data = ca_sentences, 
+                                 terminology = ca_words)
+
+#This shows us the top 3 sentences that summarize the document
+ca_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Captain America: The Winter Soldier
+ca2_sentences <- tibble(text = text_CaptAmerica2$text[1:31]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+ca2_words <- ca2_sentences %>%
+  unnest_tokens(word, sentence)
+
+ca2_words <- ca2_words %>%
+  anti_join(stop_words, by = "word")
+
+ca2_summary <- textrank_sentences(data = ca2_sentences, 
+                                 terminology = ca2_words)
+
+#This shows us the top 3 sentences that summarize the document
+ca2_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Captain America: Civil War
+ca3_sentences <- tibble(text = text_CaptAmerica3$text[1:39]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+ca3_words <- ca3_sentences %>%
+  unnest_tokens(word, sentence)
+
+ca3_words <- ca3_words %>%
+  anti_join(stop_words, by = "word")
+
+ca3_summary <- textrank_sentences(data = ca3_sentences, 
+                                 terminology = ca3_words)
+
+#This shows us the top 3 sentences that summarize the document
+ca3_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Thor
+th_sentences <- tibble(text = text_Thor$text[1:147]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+th_words <- th_sentences %>%
+  unnest_tokens(word, sentence)
+
+th_words <- th_words %>%
+  anti_join(stop_words, by = "word")
+
+th_summary <- textrank_sentences(data = th_sentences, 
+                                 terminology = th_words)
+
+#This shows us the top 3 sentences that summarize the document
+th_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Thor: The Dark World
+th2_sentences <- tibble(text = text_Thor2$text[1:43]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+th2_words <- th2_sentences %>%
+  unnest_tokens(word, sentence)
+
+th2_words <- th2_words %>%
+  anti_join(stop_words, by = "word")
+
+th2_summary <- textrank_sentences(data = th2_sentences, 
+                                 terminology = th2_words)
+
+#This shows us the top 3 sentences that summarize the document
+th2_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Thor: Ragnarok
+th3_sentences <- tibble(text = text_Thor3$text[1:112]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+th3_words <- th3_sentences %>%
+  unnest_tokens(word, sentence)
+
+th3_words <- th3_words %>%
+  anti_join(stop_words, by = "word")
+
+th3_summary <- textrank_sentences(data = th3_sentences, 
+                                 terminology = th3_words)
+
+#This shows us the top 3 sentences that summarize the document
+th3_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Ant-Man
+am_sentences <- tibble(text = text_AntMan$text[1:29]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+am_words <- am_sentences %>%
+  unnest_tokens(word, sentence)
+
+am_words <- am_words %>%
+  anti_join(stop_words, by = "word")
+
+am_summary <- textrank_sentences(data = am_sentences, 
+                                 terminology = am_words)
+
+#This shows us the top 3 sentences that summarize the document
+am_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Ant-Man & The Wasp
+am2_sentences <- tibble(text = text_AntMan2$text[1:53]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+am2_words <- am2_sentences %>%
+  unnest_tokens(word, sentence)
+
+am2_words <- am2_words %>%
+  anti_join(stop_words, by = "word")
+
+am2_summary <- textrank_sentences(data = am2_sentences, 
+                                 terminology = am2_words)
+
+#This shows us the top 3 sentences that summarize the document
+am2_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Avengers
+av_sentences <- tibble(text = text_Avengers$text[1:73]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+av_words <- av_sentences %>%
+  unnest_tokens(word, sentence)
+
+av_words <- av_words %>%
+  anti_join(stop_words, by = "word")
+
+av_summary <- textrank_sentences(data = av_sentences, 
+                                 terminology = av_words)
+
+#This shows us the top 3 sentences that summarize the document
+av_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Avengers: Age of Ultron
+av2_sentences <- tibble(text = text_AvengersAOU$text[1:29]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+av2_words <- av2_sentences %>%
+  unnest_tokens(word, sentence)
+
+av2_words <- av2_words %>%
+  anti_join(stop_words, by = "word")
+
+av2_summary <- textrank_sentences(data = av2_sentences, 
+                                 terminology = av2_words)
+
+#This shows us the top 3 sentences that summarize the document
+av2_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Avengers: Infinity War
+av3_sentences <- tibble(text = text_AvengersIW$text[1:40]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+av3_words <- av3_sentences %>%
+  unnest_tokens(word, sentence)
+
+av3_words <- av3_words %>%
+  anti_join(stop_words, by = "word")
+
+av3_summary <- textrank_sentences(data = av3_sentences, 
+                                 terminology = av3_words)
+
+#This shows us the top 3 sentences that summarize the document
+av3_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Doctor Strange
+ds_sentences <- tibble(text = text_DrStrange$text[1:35]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+ds_words <- ds_sentences %>%
+  unnest_tokens(word, sentence)
+
+ds_words <- ds_words %>%
+  anti_join(stop_words, by = "word")
+
+ds_summary <- textrank_sentences(data = ds_sentences, 
+                                 terminology = ds_words)
+
+#This shows us the top 3 sentences that summarize the document
+ds_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Guardians of the Galaxy
+gotg_sentences <- tibble(text_GotG$text[1:41]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+gotg_words <- gotg_sentences %>%
+  unnest_tokens(word, sentence)
+
+gotg_words <- gotg_words %>%
+  anti_join(stop_words, by = "word")
+
+gotg_summary <- textrank_sentences(data = gotg_sentences, 
+                                 terminology = gotg_words)
+
+#This shows us the top 3 sentences that summarize the document
+gotg_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Guardians of the Galaxy Volume 2
+gotg2_sentences <- tibble(text_GotG2$text[1:128]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+gotg2_words <- gotg2_sentences %>%
+  unnest_tokens(word, sentence)
+
+gotg2_words <- gotg2_words %>%
+  anti_join(stop_words, by = "word")
+
+gotg2_summary <- textrank_sentences(data = gotg2_sentences, 
+                                   terminology = gotg2_words)
+
+#This shows us the top 3 sentences that summarize the document
+gotg2_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#The Incredible Hulk
+ih_sentences <- tibble(text_Hulk$text[1:117]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+ih_words <- ih_sentences %>%
+  unnest_tokens(word, sentence)
+
+ih_words <- ih_words %>%
+  anti_join(stop_words, by = "word")
+
+ih_summary <- textrank_sentences(data = ih_sentences, 
+                                   terminology = ih_words)
+
+#This shows us the top 3 sentences that summarize the document
+ih_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+#Spider-Man: Homecoming
+sm_sentences <- tibble(text_SpiderManHC$text[1:59]) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+sm_words <- sm_sentences %>%
+  unnest_tokens(word, sentence)
+
+sm_words <- sm_words %>%
+  anti_join(stop_words, by = "word")
+
+sm_summary <- textrank_sentences(data = sm_sentences, 
+                                   terminology = sm_words)
+
+#This shows us the top 3 sentences that summarize the document
+sm_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
