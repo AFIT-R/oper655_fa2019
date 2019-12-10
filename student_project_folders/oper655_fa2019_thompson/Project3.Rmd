@@ -1,0 +1,582 @@
+---
+title: "OPER 655 Student Project Repor"
+author: "2d Lt Maxwell Thompson"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output: 
+  html_document:
+    #code_folding: 'hide'
+abstract: 'This is where you put your abstract'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Project Overview/Problem Statement 
+
+Describe your project in sufficient detail for someone who is not familiar with text mining or NLP can understand what you are saying. This section should conclude with a problem statement that clearly and concisely describes the problem you are addressing (aka the question you are trying to answer). 
+
+### Installing Loading Required R Packages
+
+For this project, I installed the below packages. (Note: Not all packages may be nessesary.)
+
+```{r}
+cat("\014") #Clear console
+#rm(list = ls()) #clear variables
+library(pacman)
+pacman::p_load( broom,
+                coreNLP,
+                dplyr,
+                DT,
+                ggplot2,
+                ggraph,
+                grid,
+                here,
+                igraph,
+                knitr,
+                lattice,
+                LSAfun,
+                magrittr,
+                monkeylearn,
+                NLP,
+                openNLP,
+                pdftools, 
+                qdap,
+                qdapDictionaries,
+                qdapRegex,
+                qdapTools,
+                quanteda,
+                RColorBrewer,
+                reshape2,
+                rJava,
+                RWeka,
+                scales,
+                SnowballC,
+                spacyr,
+                stringr,
+                tau,
+                text2vec,
+                textdata,
+                textmineR,
+                textrank,
+                tidyr,
+                tidytext,
+                tidytext, 
+                tidyverse,
+                tm, 
+                tokenizers,
+                udpipe,
+                widyr,
+                wordcloud,
+                XML
+)
+```
+
+## Methodology 
+
+Describe the steps and methods you used for your analysis to go from raw data to end result. 
+
+### Data 
+
+Describe the data
+
+The data used for this project was the script of the movie Elf (2003) starring Will Ferrell. This script was pulled from the website SpringfieldSpringfield.co.uk. As shown, the wepage was imported in HTML formatted. Then the script text was pulled out of the html code. Then I ran the text through a series of functions and substitutions. These subsitutions corrected mostly spelling, capitalization, and special character errors. These changes were nessisary to enhance my Named Entity Recognition.
+
+```{r,three}
+#URL
+url  <- 'https://www.springfieldspringfield.co.uk/movie_script.php?movie=elf'
+#Grabs data from URL
+rcurl.doc <- RCurl::getURL(url,.opts = RCurl::curlOptions(followlocation = TRUE))
+#Converts data from html to text
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+
+#Create Text1
+  text1 =  XML::xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+  rm(url,rcurl.doc,url_parsed)
+
+#Perfrom substitutions to fix errors and enhance NER  
+  text1 = gsub('\\\n', "", text1)
+  text1 = gsub('\\  ', "", text1)
+  text1 = gsub("Mmm","Mm", text1)
+  text1 = gsub("Susan wells","Susan", text1)
+  text1 = gsub("Walter Hobbs","Walter", text1)
+  text1 = gsub("papa","Papa", text1)
+  text1 = gsub("Papa Elf","Papa", text1)
+  text1 = gsub("new York City","New York", text1)
+  text1 = gsub("mike","Michael", text1)
+  text1 = gsub("Ho ho ho ho ho","Ho ho ho", text1)
+  text1 = gsub("ho ho ho","Ho ho ho", text1)
+  text1 = gsub("greenway","Greenway", text1)
+  text1 = gsub("charlotte","Charlotte", text1)
+  text1 = gsub("chuck","Chuck", text1)
+  text1 = gsub("Claus meter","Clause Meter", text1)
+  text1 = gsub("elf","Elf", text1)
+  text1 = gsub("Never","never", text1)
+  text1 = gsub("a, san","a, Santa", text1)
+  text1 = gsub("Lincoln tunnel","Lincoln Tunnel", text1)
+  text1 = gsub("Aspires","aspires", text1)
+  text1 = gsub("Wandering","wandering", text1)
+  text1 = gsub("Spread","spread", text1)
+  text1 = gsub("Behind","behind", text1)
+  text1 = gsub("Carolyn Reynolds","Carolyn", text1)
+  text1 = gsub("Decisin","decision", text1)
+  text1 = gsub("D,","",text1)
+  text1 = gsub("D...","",text1)
+  
+  text1 <- gsub("Santa clausis","Santa Claus",text1)
+  text1 <- gsub("Santa Clausis","Santa Claus",text1)
+  text1 <- gsub("Santa claus","Santa",text1)
+  text1 <- gsub("Santa Claus","Santa",text1)
+  text1 <- gsub("ray's pizzas","Rays Pizzas",text1)
+  text1 <- gsub("Nice list","Nice_List",text1)
+  text1 <- gsub("ho!","ho",text1)
+  text1 <- gsub("Run","run",text1)
+  
+```
+
+### Analysis
+
+Walk your reader through you analysis.  The yaml header is already set to fold all code chunks. 
+
+## Named Entity Recognition
+
+I begin by putting my data into a one-by-one dataframe containing the entire script in character form.
+
+```{r,four}
+text2=data.frame(text1,stringsAsFactors = FALSE)
+names(text2)<-"col1"
+str(text2)
+```
+
+Next, I used 'Spacy' to do NER. The first time you use SpacyR you must install it. Then, you must initialize it. IF SpacyR is already installed or initiallized, minor errors will occur.
+
+```{r}
+#spacy_install() #only used once
+spacy_initialize(model="en_core_web_sm")
+```
+
+Next, NER is ran using the "spacy_parse" function. The output of this function is a dataframe of including each word by itself, its part of speech, and entity type. I then create a new dataframe containing only entities.
+
+```{r}
+presentation_parsed <- spacy_parse(text2$col1, entity = TRUE)
+head(presentation_parsed)
+
+full_extracted <- entity_extract(presentation_parsed)
+head(full_extracted)
+```
+
+Next, manual corrections are made for some of the entitiy classifications Spacy got wrong. As shown, a decent amount of work is required to correct for the misclassifcation of entities. Additionally, some phrases were classifed as entities when they should not have been. I stuck these phrases into an "Other" category.
+
+```{r}
+for (i in 1:nrow(full_extracted)) {
+  if (full_extracted$entity[i]== "Santa" || 
+      full_extracted$entity[i]== "Leon"  ||
+      full_extracted$entity[i]== "Baby"  ||
+      full_extracted$entity[i]== "Charlotte"  ||
+      full_extracted$entity[i]== "arctic_puffin"  ||
+      full_extracted$entity[i]=="Francisco" ||
+      full_extracted$entity[i]=="Elf") {
+    full_extracted$entity_type[i]="PERSON"
+  }
+  if (full_extracted$entity[i]== "the_candy_cane_forest" ||
+      full_extracted$entity[i]== "the_Lincoln_Tunnel"){
+    full_extracted$entity_type[i]="LOC"
+  }  
+  if (full_extracted$entity[i]== "Paparazzi"||
+      full_extracted$entity[i]== "Merry_Christmas" ){
+    full_extracted$entity_type[i]="ORG"
+  } 
+  if (full_extracted$entity[i]== "Mm" ||
+      full_extracted$entity[i]== "Ho_ho_ho" ||
+      full_extracted$entity[i]== "Yaah" ||
+      full_extracted$entity[i]== "syrup" ||
+      full_extracted$entity[i]== "yoursElf" ){ 
+    full_extracted$entity_type[i]="Other"
+  }
+}
+```
+
+With this (mostly) corrected information, I generated a chart of the number of each type of entity.
+
+```{r}
+#Entity Types
+full_extracted %>%
+  count(entity_type) %>%
+  top_n(100) %>%
+  ggplot(aes(x = entity_type, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Entity Types") +
+  xlab("Entity Type") +
+  ylab("Count")
+```
+
+As seen above, most of the entites are classified as people.
+
+Then I created charts of the "organizations," people, locations, and all other entities.
+
+```{r}
+#Organization
+full_extracted %>%
+  filter(entity_type == "ORG") %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(300) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Organization Entities") +
+  xlab("Organizatons") +
+  ylab("Mentions")
+
+#Persons
+full_extracted %>%
+  filter(entity_type == "PERSON" ) %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(15) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Persons") +
+  xlab("Persons") +
+  ylab("Mentions")
+
+#Location
+full_extracted %>%
+  filter(entity_type == "LOC" | entity_type == "GPE") %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(100) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Location/GPE Entities") +
+  xlab("Locations") +
+  ylab("Mentions")
+
+
+
+#All Other Type of Entities
+full_extracted %>%
+  filter(entity_type != "PERSON" & entity_type != "LOC" & entity_type != "GPE" & entity_type != "ORG" ) %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(100) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  labs(title = "All Other Type of Entities") +
+  xlab("Entities") +
+  ylab("Mentions")
+```
+
+It is clear that this is far from perfect. However, it does allow for some quick and dirty understanding of the use of entities in the script. 
+
+I also used the NER process to identity parts of speech and then chart them.
+
+```{r}
+#Parts of Speech
+presentation_parsed %>%
+  group_by(pos) %>%
+  count(entity) %>%
+  ggplot(aes(x = pos, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  labs(title = "Parts of Speech") +
+  xlab("Parts of Speech") +
+  ylab("Count")
+
+rm(full_extracted,presentation_parsed)
+```
+
+This chart, though complicated, gives the viewer some understanding of the break down of how often certain parts of speech are used in dialogue.
+
+## Sentiment Analysis
+
+For sentiment analysis, the data is prepared into a vector of words.
+
+```{r}
+raw_tb <- tibble::tibble(text = text1)
+word_vect = raw_tb %>% tidytext::unnest_tokens(word, text, token = 'words')
+text=as_tibble(word_vect)
+rm(raw_tb,word_vect)
+head(text)
+
+```
+
+Next, words that represent sentiments for 'joy' and  'anger' were loaded into R from the 'tidytext' package. Then, the words  in the script are compared to these and displayed.
+
+```{r}
+nrc_joy <- get_sentiments("nrc") %>%
+  filter(sentiment == "joy")
+nrc_anger <- get_sentiments("nrc") %>%
+  filter(sentiment == "anger")
+
+text %>%
+  inner_join(nrc_joy) %>%
+  count(word, sort = T)
+
+text %>%
+  inner_join(nrc_anger) %>%
+  count(word, sort = T)
+```
+
+These outputs represent the words in the script that could represent joy and anger respectively.
+
+Next, I compare these 'positive' and 'negative' words using a Wordcloud.
+
+```{r}
+
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 40)
+```
+
+Some of these words may be unintresting "stop words." As a result i see if anthing changes when i remove these "stop words."
+
+```{r}
+text = text %>%
+  dplyr::anti_join(stop_words)
+
+
+
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 50)
+```
+
+Finally, I show a simple wordcloud of all words used in the script (excluding stop words).
+
+```{r}
+
+text %>%
+  anti_join(stop_words) %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 100))
+```
+
+
+## Document Summary
+
+For document summarization, the text was formatted as a vector of scentences.
+
+```{r}
+text3=data.frame(text1,stringsAsFactors = FALSE)
+names(text3)<-"col1"
+sentences_1 <- unnest_tokens(tbl=text3,input=col1,output=sentences_1,token = "sentences")
+text=sentences_1[,1]
+head(text)
+rm(sentences_1)
+```
+
+
+
+The below code shows us the top three sentences that summarize the document. Because this can take some time to run, I load data in from a save rather than run the code when I produced this document.
+
+```{r}
+article_sentences <- tibble(text = text) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+article_words <- article_sentences %>%
+  unnest_tokens(word, sentence)
+
+article_words <- article_words %>%
+  anti_join(stop_words, by = "word")
+
+# article_summary <- textrank_sentences(data = article_sentences, 
+#                                       terminology = article_words)
+#                   #this part takes awhile
+# saveRDS(article_summary,"C:/Users/Max's USAFA PC/Documents/SCHOOL/article_summary.RDS")
+
+article_summary = readRDS("C:/Users/Max's USAFA PC/Documents/SCHOOL/article_summary.RDS")
+
+#This shows us the top three sentences that summarize the document
+a_s_2<- article_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:10) %>%
+  pull(sentence)
+
+a_s_2
+
+```
+
+
+Next I used a different method to summarize the document. Once again, I load data in from a save rather than run the code.
+
+```{r}
+# d=gsub("! ",". ",text1)
+# character_count(d)
+# d
+# 
+# g_sum_d = LSAfun::genericSummary(d,20,min = 2,split=c(".","!","?"),breakdown=FALSE)
+# g_sum_d = unique(g_sum_d)
+# g_sum_d = tibble(g_sum_d)
+# saveRDS(g_sum_d,"C:/Users/Max's USAFA PC/Documents/SCHOOL/g_sum_d.RDS")
+
+g_sum_d = readRDS("C:/Users/Max's USAFA PC/Documents/SCHOOL/g_sum_d.RDS")
+# 
+# 
+for (i in 1:nrow(g_sum_d)) {
+  print(head(as.character(g_sum_d[i,])))
+}
+
+
+```
+
+
+Next i generate a chart which shows where, within the document, you see the most important text.
+
+```{r}
+#This shows where, within the document, you see the most important text.
+
+article_summary[["sentences"]] %>%
+  ggplot(aes(textrank_id, textrank, fill = textrank_id)) +
+  geom_col() +
+  theme_minimal() +
+  scale_fill_viridis_c() +
+  guides(fill = "none") +
+  labs(x = "Sentence",
+       y = "TextRank score",
+       title = "Location within the data where most informative text occurs",
+       subtitle = 'Title')
+```
+
+
+Next we can apply methods to she the frequency of words. First, I load and apply the English udpipe model and annotate the text.
+
+```{r,udpipe}
+library(udpipe)
+library(textrank)
+## First step: Take the English udpipe model and annotate the text.
+ud_model <- udpipe_download_model(language = "english")
+ud_model <- udpipe_load_model(ud_model$file_model)
+x <- udpipe_annotate(ud_model, x = text)
+x <- as.data.frame(x)
+head(x)
+```
+
+Next, I run a query to show the most occuring nouns.
+
+```{r,a}
+#Lemma is just the column of all of the words in the document
+#Here we simply show the frequency of the words.
+stats <- subset(x, upos %in% "NOUN")
+stats <- txt_freq(x = stats$lemma)
+stats$key <- factor(stats$key, levels = rev(stats$key))
+
+barchart(key ~ freq, data = head(stats, 30), col = "orange", main = "Most occurring nouns", xlab = "Freq")
+
+```
+
+```{r,a2}
+#Lemma is just the column of all of the words in the document
+#Here we simply show the frequency of the words.
+stats <- subset(x, upos %in% "VERB")
+stats <- txt_freq(x = stats$lemma)
+stats$key <- factor(stats$key, levels = rev(stats$key))
+
+barchart(key ~ freq, data = head(stats, 30), col = "orange", main = "Most occurring verbs", xlab = "Freq")
+
+```
+
+
+
+
+
+Next, I build a word network showing how closely related and used together multi-word phrases are in the document. 
+
+```{r,b,warning=F}
+stats <- keywords_collocation(x = x, 
+                              term = "token", group = c("doc_id", "paragraph_id", "sentence_id"),ngram_max = 4)
+
+## Co-occurrences: How frequent do words occur in the same sentence, in this case only nouns or adjectives
+stats <- cooccurrence(x = subset(x, upos %in% c("NOUN", "ADJ")), 
+                      term = "lemma", group = c("doc_id", "paragraph_id", "sentence_id"))
+## Co-occurrences: How frequent do words follow one another
+stats <- cooccurrence(x = x$lemma, 
+                      relevant = x$upos %in% c("NOUN", "ADJ"))
+## Co-occurrences: How frequent do words follow one another even if we would skip 2 words in between
+stats <- cooccurrence(x = x$lemma, 
+                      relevant = x$upos %in% c("NOUN", "ADJ"), skipgram = 2)
+
+
+#From here we build out a word network showing how closely related and used together multi word phrases are in the document. 
+wordnetwork <- head(stats, 30)
+wordnetwork <- graph_from_data_frame(wordnetwork)
+
+ggraph(wordnetwork, layout = "fr") +
+  geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "pink") +
+  geom_node_text(aes(label = name), col = "darkgreen", size = 4) +
+  theme_graph(base_family = "Arial Narrow") +
+  theme(legend.position = "none") +
+  labs(title = "Cooccurrences within 3 words distance", subtitle = "Nouns & Adjective")
+
+```
+
+
+
+You can also
+
+```{r,d}
+stats <- textrank_keywords(x$lemma, 
+                           relevant = x$upos %in% c("NOUN", "ADJ"), 
+                           ngram_max = 8, sep = " ")
+stats <- subset(stats$keywords, ngram > 1 & freq >= 3)
+
+wordcloud(words = stats$keyword, freq = stats$freq, max.words = 300)
+```
+
+
+You can also
+
+```{r,e}
+stats <- keywords_rake(x = x,
+                       term = "token", group = c("doc_id", "paragraph_id", "sentence_id"),
+                       relevant = x$upos %in% c("NOUN", "ADJ"),
+                       ngram_max = 4)
+head(subset(stats, freq > 3))
+
+## Simple noun phrases (a adjective+noun, pre/postposition, optional determiner and another adjective+noun)
+x$phrase_tag <- as_phrasemachine(x$upos, type = "upos")
+stats <- keywords_phrases(x = x$phrase_tag, term = x$token,
+                          pattern = "(A|N)+N(P+D*(A|N)*N)*",
+                          is_regex = TRUE, ngram_max = 4, detailed = FALSE)
+head(subset(stats, ngram > 2))
+```
+
+```{r,e2,warning=F}
+#Lastly, we identify the most common phrases in the dataset to get a feel for the overall docuement.
+stats <- merge(x, x,
+               by.x = c("doc_id", "paragraph_id", "sentence_id", "head_token_id"),
+               by.y = c("doc_id", "paragraph_id", "sentence_id", "token_id"),
+               all.x = TRUE, all.y = FALSE,
+               suffixes = c("", "_parent"), sort = FALSE)
+stats <- subset(stats, dep_rel %in% "nsubj" & upos %in% c("NOUN") & upos_parent %in% c("ADJ"))
+stats$term <- paste(stats$lemma_parent, stats$lemma, sep = " ")
+stats <- txt_freq(stats$term)
+
+wordcloud(words = stats$key, freq = stats$freq, min.freq = 3, max.words = 100,
+          random.order = FALSE, colors = brewer.pal(6, "Dark2"))
+
+
+```
+
+## Other
+
+
+## Findings and Conclusions 
+
+Describe your findings and conclusions here.  Include your important visualizations
+
+### Future Work
+
+What else would you do if you had more time?

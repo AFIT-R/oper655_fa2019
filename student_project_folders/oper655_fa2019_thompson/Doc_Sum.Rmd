@@ -9,6 +9,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
+ptm <- proc.time()
+
 cat("\014") #Clear console
 rm(list = ls()) #clear variables
 library(pacman)
@@ -240,7 +242,8 @@ dev.off()
 wordcloud(words = stats$key, freq = stats$freq, min.freq = 3, max.words = 100,
           random.order = FALSE, colors = brewer.pal(6, "Dark2"), scale = c(1.1,5))
 
-
+# Stop the clock
+(proc.time() - ptm)/60
 ```
 
 
