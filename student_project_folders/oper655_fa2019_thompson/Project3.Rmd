@@ -524,7 +524,7 @@ ggraph(wordnetwork, layout = "fr") +
 
 
 
-You can also
+Next, i created a word cloud showing...
 
 ```{r,d}
 stats <- textrank_keywords(x$lemma, 
@@ -536,7 +536,7 @@ wordcloud(words = stats$keyword, freq = stats$freq, max.words = 300)
 ```
 
 
-You can also
+Next, I...
 
 ```{r,e}
 stats <- keywords_rake(x = x,
