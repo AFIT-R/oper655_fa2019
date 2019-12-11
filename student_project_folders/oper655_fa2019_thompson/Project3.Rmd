@@ -4,23 +4,32 @@ author: "2d Lt Maxwell Thompson"
 date: "`r format(Sys.Date(), '%d %b %Y')`"
 output: 
   html_document:
-    #code_folding: 'hide'
-abstract: 'This is where you put your abstract'
+    code_folding: 'hide'
+abstract: 'This project performs three text mining techniques in the script of the movie Elf. The techniques used are Named Entity Recognition, Document Summarization, and Sentiment Analysis. This project seeks to provide a basic level of understand of the movie to those who have not seen the movie and interesting insights to those who have seen it.'
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Project Overview/Problem Statement 
+## Background
 
-Describe your project in sufficient detail for someone who is not familiar with text mining or NLP can understand what you are saying. This section should conclude with a problem statement that clearly and concisely describes the problem you are addressing (aka the question you are trying to answer). 
+Elf is a 2003 movie starring Will Ferrell. It has been called one of the all time greatest Christmas movies by me. It follows the story of Buddy the Elf who was accidentally transported to the North Pole as a toddler and raised to adulthood among Santa's elves. Unable to fit in, adult Buddy travels to New York City in search of his real father. His father reluctantly attempts to start a relationship with the childlike Buddy. In the end Buddy saves Christmas and forms a lasting relationship with his new family."
+
+
+For this project, I will be doing some simple text analysis on the movie script of Elf. This should familiarize those unfamiliar with the movie as well as provide deeper insights to those whole share my passion for the cinematic masterpiece. Hopefully, this analysis will provide a clear summary of the movie to viewers unfamiliar with it.  
+
+
+## Methodology 
+
+
+To begin this analysis, the script must be imported and packaged in such a way that enables analysis. Then this text is used to generate outputs that demonstrate a summary of the text and a deeper understanding of the text. I break this analysis into three parts: document summarization, named entity recognition, and sentiment analysis.
 
 ### Installing Loading Required R Packages
 
-For this project, I installed the below packages. (Note: Not all packages may be nessesary.)
+For this project, I installed the below packages. (Note: Not all packages may be necessary.)
 
-```{r}
+```{r,warning=FALSE}
 cat("\014") #Clear console
 #rm(list = ls()) #clear variables
 library(pacman)
@@ -72,15 +81,9 @@ pacman::p_load( broom,
 )
 ```
 
-## Methodology 
-
-Describe the steps and methods you used for your analysis to go from raw data to end result. 
-
 ### Data 
 
-Describe the data
-
-The data used for this project was the script of the movie Elf (2003) starring Will Ferrell. This script was pulled from the website SpringfieldSpringfield.co.uk. As shown, the wepage was imported in HTML formatted. Then the script text was pulled out of the html code. Then I ran the text through a series of functions and substitutions. These subsitutions corrected mostly spelling, capitalization, and special character errors. These changes were nessisary to enhance my Named Entity Recognition.
+The data used for this project was the script of the movie Elf. This script was pulled from the website SpringfieldSpringfield.co.uk. As shown, the webpage was imported in HTML formatted. Then the script text was pulled out of the html code. After, I ran the text through a series of functions and substitutions. These substitutions corrected mostly spelling, capitalization, and special character errors. These changes were necessary to enhance my Named Entity Recognition as well as other analysis.
 
 ```{r,three}
 #URL
@@ -134,11 +137,10 @@ url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
   
 ```
 
-### Analysis
-
-Walk your reader through you analysis.  The yaml header is already set to fold all code chunks. 
 
 ## Named Entity Recognition
+
+The first form of analysis performed was Named Entity Recognition (NER). This technique classifies text into defined entity categories such as person names, organizations, and locations. Additionally, I provide a very simple analysis of the parts of speech used.
 
 I begin by putting my data into a one-by-one dataframe containing the entire script in character form.
 
@@ -148,16 +150,16 @@ names(text2)<-"col1"
 str(text2)
 ```
 
-Next, I used 'Spacy' to do NER. The first time you use SpacyR you must install it. Then, you must initialize it. IF SpacyR is already installed or initiallized, minor errors will occur.
+Next, I used 'Spacy' to do NER. Spacy is a well know NER package and is available for use in R. The first time you use SpacyR you must install it. Then, you must initialize it. IF SpacyR is already installed or initialized, minor warning messages will occur.
 
-```{r}
+```{r,warning=F}
 #spacy_install() #only used once
 spacy_initialize(model="en_core_web_sm")
 ```
 
-Next, NER is ran using the "spacy_parse" function. The output of this function is a dataframe of including each word by itself, its part of speech, and entity type. I then create a new dataframe containing only entities.
+Next, NER is performed using the "spacy_parse" function. The output of this function is a dataframe of including each word by itself, its part of speech, and entity type. I then create a new dataframe containing only entities.
 
-```{r}
+```{r,warning=F}
 presentation_parsed <- spacy_parse(text2$col1, entity = TRUE)
 head(presentation_parsed)
 
@@ -165,7 +167,7 @@ full_extracted <- entity_extract(presentation_parsed)
 head(full_extracted)
 ```
 
-Next, manual corrections are made for some of the entitiy classifications Spacy got wrong. As shown, a decent amount of work is required to correct for the misclassifcation of entities. Additionally, some phrases were classifed as entities when they should not have been. I stuck these phrases into an "Other" category.
+Next, manual corrections are made for some of the entity classifications Spacy got wrong. As shown, a decent amount of work is required to correct for the misclassification of entities. Additionally, some phrases were classified as entities when they should not have been. I stuck these phrases into an "Other" category.
 
 ```{r}
 for (i in 1:nrow(full_extracted)) {
@@ -211,7 +213,7 @@ full_extracted %>%
   ylab("Count")
 ```
 
-As seen above, most of the entites are classified as people.
+As seen above, most of the entities are classified as people.
 
 Then I created charts of the "organizations," people, locations, and all other entities.
 
@@ -271,6 +273,10 @@ full_extracted %>%
   ylab("Mentions")
 ```
 
+Unsurprisingly for a Christmas movie, Santa is the most mentioned person in the movie. interestingly, Michael, Elf's step-brother, is the second most mentioned individual followed by Elf himself and his father Walter.
+
+For those familiar with the movie, this analysis reminds of some gems in the movie such as the entities "the Candy Cane Forest" and "the Code of the Elves." 
+
 It is clear that this is far from perfect. However, it does allow for some quick and dirty understanding of the use of entities in the script. 
 
 I also used the NER process to identity parts of speech and then chart them.
@@ -290,9 +296,12 @@ presentation_parsed %>%
 rm(full_extracted,presentation_parsed)
 ```
 
-This chart, though complicated, gives the viewer some understanding of the break down of how often certain parts of speech are used in dialogue.
+This chart, though complicated, gives the viewer some understanding of the breakdown of how often certain parts of speech are used in dialogue.
+
 
 ## Sentiment Analysis
+
+The next technique I applied was sentiment analysis. Sentiment is the "attitude toward a situation or event"  and sentiment analysis tries to describe this attitude of the text.
 
 For sentiment analysis, the data is prepared into a vector of words.
 
@@ -305,7 +314,7 @@ head(text)
 
 ```
 
-Next, words that represent sentiments for 'joy' and  'anger' were loaded into R from the 'tidytext' package. Then, the words  in the script are compared to these and displayed.
+Next, words that represent sentiments for 'joy' and  'anger' were loaded into R from the 'tidytext' package. Then, the words in the script are compared to these and displayed.
 
 ```{r}
 nrc_joy <- get_sentiments("nrc") %>%
@@ -322,7 +331,7 @@ text %>%
   count(word, sort = T)
 ```
 
-These outputs represent the words in the script that could represent joy and anger respectively.
+These outputs represent the words in the script that could represent joy and anger respectively. interestingly, Buddy, the name of the main character, is classified as a positive word while the word elf is classified as a negative word.
 
 Next, I compare these 'positive' and 'negative' words using a Wordcloud.
 
@@ -336,13 +345,11 @@ text %>%
                    max.words = 40)
 ```
 
-Some of these words may be unintresting "stop words." As a result i see if anthing changes when i remove these "stop words."
+Some of these words may be uninteresting "stop words." As a result, I see if anything changes when I remove these "stop words."
 
 ```{r}
 text = text %>%
   dplyr::anti_join(stop_words)
-
-
 
 text %>%
   inner_join(get_sentiments("bing")) %>%
@@ -362,10 +369,13 @@ text %>%
   with(wordcloud(word, n, max.words = 100))
 ```
 
+From this, "buddy" appears to be more common than Santa in the text. This appears to contradict with the previous NER analysis. This may be because "buddy" appears as both a "Buddy" and "buddy" in the text.
 
 ## Document Summary
 
-For document summarization, the text was formatted as a vector of scentences.
+The final technique I perform is document summarization. Up to this point, analysis has been rather simple. The purpose of using document summarization is to provide a more complex understanding and summary of the movie.
+
+The text was formatted as a vector of sentences for this technique.
 
 ```{r}
 text3=data.frame(text1,stringsAsFactors = FALSE)
@@ -378,7 +388,7 @@ rm(sentences_1)
 
 
 
-The below code shows us the top three sentences that summarize the document. Because this can take some time to run, I load data in from a save rather than run the code when I produced this document.
+Next, I summarize the document by showing some of the "most important sentence." Because the code can take a while to run, in the code for this R-Markdown file I load data in from a save rather than run the code when I produced this document.
 
 ```{r}
 article_sentences <- tibble(text = text) %>%
@@ -433,8 +443,10 @@ for (i in 1:nrow(g_sum_d)) {
 
 ```
 
+Both methods unfortunately have problems splitting sentences properly. Despite my best efforts I could not get either method to divide the text into sentences properly. As a result, "sentences" with lots of words end up as the "most important" sentences. Driving home this point is the fact that songs appear in the second type of summarization. Additionally, in the first type of summarization it is no surprise that the word Buddy shows up in every summary "sentence."
 
-Next i generate a chart which shows where, within the document, you see the most important scentances.
+
+Next I generate a chart which shows where, within the document, you see the most important "sentences" based off the first method of summarization. 
 
 ```{r}
 #This shows where, within the document, you see the most important text.
@@ -451,10 +463,11 @@ article_summary[["sentences"]] %>%
        subtitle = 'Title')
 ```
 
+This chart does not yield any interesting results.
 
-Next we can apply methods to she the frequency of words. First, I load and apply the English udpipe model and annotate the text.
+Next we can apply methods to see the frequency of words. First, I load and apply the English udpipe model and annotate the text.
 
-```{r,udpipe}
+```{r,udpipe, echo=FALSE}
 library(udpipe)
 library(textrank)
 ## First step: Take the English udpipe model and annotate the text.
@@ -462,10 +475,10 @@ ud_model <- udpipe_download_model(language = "english")
 ud_model <- udpipe_load_model(ud_model$file_model)
 x <- udpipe_annotate(ud_model, x = text)
 x <- as.data.frame(x)
-head(x)
+#head(x)
 ```
 
-Next, I run a query to show the most occuring nouns.
+Next, I run a query to show the most occurring nouns.
 
 ```{r,a}
 #Lemma is just the column of all of the words in the document
@@ -478,7 +491,9 @@ barchart(key ~ freq, data = head(stats, 30), col = "orange", main = "Most occurr
 
 ```
 
-I also did this for the most occuring verbs.
+We can see that references to "dad" and "son" appear often.
+
+I also did this for the most occurring verbs.
 
 ```{r,a2}
 #Lemma is just the column of all of the words in the document
@@ -521,11 +536,11 @@ ggraph(wordnetwork, layout = "fr") +
   geom_node_text(aes(label = name), col = "darkgreen", size = 5) +
   theme_graph(base_family = "Arial Narrow") +
   theme(legend.position = "none") +
-  labs(title = "Cooccurrences within 3 words distance", subtitle = "Nouns & Adjective")
+  labs(title = "Cooccurrences within 5 words distance", subtitle = "Nouns & Adjective")
 
 ```
 
-
+The words tickle and fight are used together often.
 
 Next, I created a word cloud showing the most common phrases.
 
@@ -537,6 +552,8 @@ stats <- subset(stats$keywords, ngram > 1 & freq >= 3)
 
 wordcloud(words = stats$keyword, freq = stats$freq, max.words = 300)
 ```
+
+"Ho ho" and "ho ho ho" are some of the most common phrases.
 
 
 Next, I print out the most common groups of words.
@@ -559,7 +576,7 @@ stats <- keywords_phrases(x = x$phrase_tag, term = x$token,
 head(subset(stats, ngram > 2))
 ```
 
-Lastly, I identifed the most common phrases in the dataset to get a feel for the overall docuement.
+Lastly, I identified the most common phrases in the dataset to get a feel for the overall document.
 
 ```{r,e2,warning=F}
 #
@@ -581,8 +598,10 @@ wordcloud(words = stats$key, freq = stats$freq, min.freq = 3, max.words = 100,
 
 ## Findings and Conclusions 
 
-Describe your findings and conclusions here.  Include your important visualizations
+In conclusion, it is surprisingly hard to analysis this script.NER and sentiment analysis provide simple insights. Though they seem simple to anyone that has seen the movie, the do give those who have not seen the movie some level of familiarity. 
+
+Document summarization seemed to have lots of potential in concept. Unfortunately, it provided quite difficult to implement properly and even then it really only gives you sentences that have words most similar to other sentences. The methods I tried simply do not summarize the document in any meaningful way.
 
 ### Future Work
 
-What else would you do if you had more time?
+If I had more time, I would investigate why different methods had different results in counting the number of occurrences of certain words. Additionally, I would get document summarization to split sentences properly.
