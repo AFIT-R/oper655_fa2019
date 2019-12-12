@@ -1,0 +1,607 @@
+---
+title: "OPER 655 Student Project Report"
+author: "2d Lt Maxwell Thompson"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output: 
+  html_document:
+    code_folding: 'hide'
+abstract: 'This project performs three text mining techniques in the script of the movie Elf. The techniques used are Named Entity Recognition, Document Summarization, and Sentiment Analysis. This project seeks to provide a basic level of understand of the movie to those who have not seen the movie and interesting insights to those who have seen it.'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Background
+
+Elf is a 2003 movie starring Will Ferrell. It has been called one of the all time greatest Christmas movies by me. It follows the story of Buddy the Elf who was accidentally transported to the North Pole as a toddler and raised to adulthood among Santa's elves. Unable to fit in, adult Buddy travels to New York City in search of his real father. His father reluctantly attempts to start a relationship with the childlike Buddy. In the end Buddy saves Christmas and forms a lasting relationship with his new family."
+
+
+For this project, I will be doing some simple text analysis on the movie script of Elf. This should familiarize those unfamiliar with the movie as well as provide deeper insights to those whole share my passion for the cinematic masterpiece. Hopefully, this analysis will provide a clear summary of the movie to viewers unfamiliar with it.  
+
+
+## Methodology 
+
+
+To begin this analysis, the script must be imported and packaged in such a way that enables analysis. Then this text is used to generate outputs that demonstrate a summary of the text and a deeper understanding of the text. I break this analysis into three parts: document summarization, named entity recognition, and sentiment analysis.
+
+### Installing Loading Required R Packages
+
+For this project, I installed the below packages. (Note: Not all packages may be necessary.)
+
+```{r,warning=FALSE}
+cat("\014") #Clear console
+#rm(list = ls()) #clear variables
+library(pacman)
+pacman::p_load( broom,
+                coreNLP,
+                dplyr,
+                DT,
+                ggplot2,
+                ggraph,
+                grid,
+                here,
+                igraph,
+                knitr,
+                lattice,
+                LSAfun,
+                magrittr,
+                monkeylearn,
+                NLP,
+                openNLP,
+                pdftools, 
+                qdap,
+                qdapDictionaries,
+                qdapRegex,
+                qdapTools,
+                quanteda,
+                RColorBrewer,
+                reshape2,
+                rJava,
+                RWeka,
+                scales,
+                SnowballC,
+                spacyr,
+                stringr,
+                tau,
+                text2vec,
+                textdata,
+                textmineR,
+                textrank,
+                tidyr,
+                tidytext,
+                tidytext, 
+                tidyverse,
+                tm, 
+                tokenizers,
+                udpipe,
+                widyr,
+                wordcloud,
+                XML
+)
+```
+
+### Data 
+
+The data used for this project was the script of the movie Elf. This script was pulled from the website SpringfieldSpringfield.co.uk. As shown, the webpage was imported in HTML formatted. Then the script text was pulled out of the html code. After, I ran the text through a series of functions and substitutions. These substitutions corrected mostly spelling, capitalization, and special character errors. These changes were necessary to enhance my Named Entity Recognition as well as other analysis.
+
+```{r,three}
+#URL
+url  <- 'https://www.springfieldspringfield.co.uk/movie_script.php?movie=elf'
+#Grabs data from URL
+rcurl.doc <- RCurl::getURL(url,.opts = RCurl::curlOptions(followlocation = TRUE))
+#Converts data from html to text
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+
+#Create Text1
+  text1 =  XML::xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+  rm(url,rcurl.doc,url_parsed)
+
+#Perfrom substitutions to fix errors and enhance NER  
+  text1 = gsub('\\\n', "", text1)
+  text1 = gsub('\\  ', "", text1)
+  text1 = gsub("Mmm","Mm", text1)
+  text1 = gsub("Susan wells","Susan", text1)
+  text1 = gsub("Walter Hobbs","Walter", text1)
+  text1 = gsub("papa","Papa", text1)
+  text1 = gsub("Papa Elf","Papa", text1)
+  text1 = gsub("new York City","New York", text1)
+  text1 = gsub("mike","Michael", text1)
+  text1 = gsub("Ho ho ho ho ho","Ho ho ho", text1)
+  text1 = gsub("ho ho ho","Ho ho ho", text1)
+  text1 = gsub("greenway","Greenway", text1)
+  text1 = gsub("charlotte","Charlotte", text1)
+  text1 = gsub("chuck","Chuck", text1)
+  text1 = gsub("Claus meter","Clause Meter", text1)
+  text1 = gsub("elf","Elf", text1)
+  text1 = gsub("Never","never", text1)
+  text1 = gsub("a, san","a, Santa", text1)
+  text1 = gsub("Lincoln tunnel","Lincoln Tunnel", text1)
+  text1 = gsub("Aspires","aspires", text1)
+  text1 = gsub("Wandering","wandering", text1)
+  text1 = gsub("Spread","spread", text1)
+  text1 = gsub("Behind","behind", text1)
+  text1 = gsub("Carolyn Reynolds","Carolyn", text1)
+  text1 = gsub("Decisin","decision", text1)
+  text1 = gsub("D,","",text1)
+  text1 = gsub("D...","",text1)
+  
+  text1 <- gsub("Santa clausis","Santa Claus",text1)
+  text1 <- gsub("Santa Clausis","Santa Claus",text1)
+  text1 <- gsub("Santa claus","Santa",text1)
+  text1 <- gsub("Santa Claus","Santa",text1)
+  text1 <- gsub("ray's pizzas","Rays Pizzas",text1)
+  text1 <- gsub("Nice list","Nice_List",text1)
+  text1 <- gsub("ho!","ho",text1)
+  text1 <- gsub("Run","run",text1)
+  
+```
+
+
+## Named Entity Recognition
+
+The first form of analysis performed was Named Entity Recognition (NER). This technique classifies text into defined entity categories such as person names, organizations, and locations. Additionally, I provide a very simple analysis of the parts of speech used.
+
+I begin by putting my data into a one-by-one dataframe containing the entire script in character form.
+
+```{r,four}
+text2=data.frame(text1,stringsAsFactors = FALSE)
+names(text2)<-"col1"
+str(text2)
+```
+
+Next, I used 'Spacy' to do NER. Spacy is a well know NER package and is available for use in R. The first time you use SpacyR you must install it. Then, you must initialize it. IF SpacyR is already installed or initialized, minor warning messages will occur.
+
+```{r,warning=F}
+#spacy_install() #only used once
+spacy_initialize(model="en_core_web_sm")
+```
+
+Next, NER is performed using the "spacy_parse" function. The output of this function is a dataframe of including each word by itself, its part of speech, and entity type. I then create a new dataframe containing only entities.
+
+```{r,warning=F}
+presentation_parsed <- spacy_parse(text2$col1, entity = TRUE)
+head(presentation_parsed)
+
+full_extracted <- entity_extract(presentation_parsed)
+head(full_extracted)
+```
+
+Next, manual corrections are made for some of the entity classifications Spacy got wrong. As shown, a decent amount of work is required to correct for the misclassification of entities. Additionally, some phrases were classified as entities when they should not have been. I stuck these phrases into an "Other" category.
+
+```{r}
+for (i in 1:nrow(full_extracted)) {
+  if (full_extracted$entity[i]== "Santa" || 
+      full_extracted$entity[i]== "Leon"  ||
+      full_extracted$entity[i]== "Baby"  ||
+      full_extracted$entity[i]== "Charlotte"  ||
+      full_extracted$entity[i]== "arctic_puffin"  ||
+      full_extracted$entity[i]=="Francisco" ||
+      full_extracted$entity[i]=="Elf") {
+    full_extracted$entity_type[i]="PERSON"
+  }
+  if (full_extracted$entity[i]== "the_candy_cane_forest" ||
+      full_extracted$entity[i]== "the_Lincoln_Tunnel"){
+    full_extracted$entity_type[i]="LOC"
+  }  
+  if (full_extracted$entity[i]== "Paparazzi"||
+      full_extracted$entity[i]== "Merry_Christmas" ){
+    full_extracted$entity_type[i]="ORG"
+  } 
+  if (full_extracted$entity[i]== "Mm" ||
+      full_extracted$entity[i]== "Ho_ho_ho" ||
+      full_extracted$entity[i]== "Yaah" ||
+      full_extracted$entity[i]== "syrup" ||
+      full_extracted$entity[i]== "yoursElf" ){ 
+    full_extracted$entity_type[i]="Other"
+  }
+}
+```
+
+With this (mostly) corrected information, I generated a chart of the number of each type of entity.
+
+```{r}
+#Entity Types
+full_extracted %>%
+  count(entity_type) %>%
+  top_n(100) %>%
+  ggplot(aes(x = entity_type, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Entity Types") +
+  xlab("Entity Type") +
+  ylab("Count")
+```
+
+As seen above, most of the entities are classified as people.
+
+Then I created charts of the "organizations," people, locations, and all other entities.
+
+```{r}
+#Organization
+full_extracted %>%
+  filter(entity_type == "ORG") %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(300) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Organization Entities") +
+  xlab("Organizatons") +
+  ylab("Mentions")
+
+#Persons
+full_extracted %>%
+  filter(entity_type == "PERSON" ) %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(15) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Persons") +
+  xlab("Persons") +
+  ylab("Mentions")
+
+#Location
+full_extracted %>%
+  filter(entity_type == "LOC" | entity_type == "GPE") %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(100) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Location/GPE Entities") +
+  xlab("Locations") +
+  ylab("Mentions")
+
+
+
+#All Other Type of Entities
+full_extracted %>%
+  filter(entity_type != "PERSON" & entity_type != "LOC" & entity_type != "GPE" & entity_type != "ORG" ) %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(100) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  labs(title = "All Other Type of Entities") +
+  xlab("Entities") +
+  ylab("Mentions")
+```
+
+Unsurprisingly for a Christmas movie, Santa is the most mentioned person in the movie. interestingly, Michael, Elf's step-brother, is the second most mentioned individual followed by Elf himself and his father Walter.
+
+For those familiar with the movie, this analysis reminds of some gems in the movie such as the entities "the Candy Cane Forest" and "the Code of the Elves." 
+
+It is clear that this is far from perfect. However, it does allow for some quick and dirty understanding of the use of entities in the script. 
+
+I also used the NER process to identity parts of speech and then chart them.
+
+```{r}
+#Parts of Speech
+presentation_parsed %>%
+  group_by(pos) %>%
+  count(entity) %>%
+  ggplot(aes(x = pos, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  labs(title = "Parts of Speech") +
+  xlab("Parts of Speech") +
+  ylab("Count")
+
+rm(full_extracted,presentation_parsed)
+```
+
+This chart, though complicated, gives the viewer some understanding of the breakdown of how often certain parts of speech are used in dialogue.
+
+
+## Sentiment Analysis
+
+The next technique I applied was sentiment analysis. Sentiment is the "attitude toward a situation or event"  and sentiment analysis tries to describe this attitude of the text.
+
+For sentiment analysis, the data is prepared into a vector of words.
+
+```{r}
+raw_tb <- tibble::tibble(text = text1)
+word_vect = raw_tb %>% tidytext::unnest_tokens(word, text, token = 'words')
+text=as_tibble(word_vect)
+rm(raw_tb,word_vect)
+head(text)
+
+```
+
+Next, words that represent sentiments for 'joy' and  'anger' were loaded into R from the 'tidytext' package. Then, the words in the script are compared to these and displayed.
+
+```{r}
+nrc_joy <- get_sentiments("nrc") %>%
+  filter(sentiment == "joy")
+nrc_anger <- get_sentiments("nrc") %>%
+  filter(sentiment == "anger")
+
+text %>%
+  inner_join(nrc_joy) %>%
+  count(word, sort = T)
+
+text %>%
+  inner_join(nrc_anger) %>%
+  count(word, sort = T)
+```
+
+These outputs represent the words in the script that could represent joy and anger respectively. interestingly, Buddy, the name of the main character, is classified as a positive word while the word elf is classified as a negative word.
+
+Next, I compare these 'positive' and 'negative' words using a Wordcloud.
+
+```{r}
+
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 40)
+```
+
+Some of these words may be uninteresting "stop words." As a result, I see if anything changes when I remove these "stop words."
+
+```{r}
+text = text %>%
+  dplyr::anti_join(stop_words)
+
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 50)
+```
+
+Finally, I show a simple wordcloud of all words used in the script (excluding stop words).
+
+```{r}
+
+text %>%
+  anti_join(stop_words) %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 100))
+```
+
+From this, "buddy" appears to be more common than Santa in the text. This appears to contradict with the previous NER analysis. This may be because "buddy" appears as both a "Buddy" and "buddy" in the text.
+
+## Document Summary
+
+The final technique I perform is document summarization. Up to this point, analysis has been rather simple. The purpose of using document summarization is to provide a more complex understanding and summary of the movie.
+
+The text was formatted as a vector of sentences for this technique.
+
+```{r}
+text3=data.frame(text1,stringsAsFactors = FALSE)
+names(text3)<-"col1"
+sentences_1 <- unnest_tokens(tbl=text3,input=col1,output=sentences_1,token = "sentences")
+text=sentences_1[,1]
+head(text)
+rm(sentences_1)
+```
+
+
+
+Next, I summarize the document by showing some of the "most important sentence." Because the code can take a while to run, in the code for this R-Markdown file I load data in from a save rather than run the code when I produced this document.
+
+```{r}
+article_sentences <- tibble(text = text) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+
+article_words <- article_sentences %>%
+  unnest_tokens(word, sentence)
+
+article_words <- article_words %>%
+  anti_join(stop_words, by = "word")
+
+# article_summary <- textrank_sentences(data = article_sentences, 
+#                                       terminology = article_words)
+#                   #this part takes awhile
+# saveRDS(article_summary,"C:/Users/Max's USAFA PC/Documents/SCHOOL/article_summary.RDS")
+
+article_summary = readRDS("C:/Users/Max's USAFA PC/Documents/SCHOOL/article_summary.RDS")
+
+#This shows us the top three sentences that summarize the document
+a_s_2<- article_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:10) %>%
+  pull(sentence)
+
+a_s_2
+
+```
+
+
+Next I used a different method to summarize the document. Once again, I load data in from a save rather than run the code.
+
+```{r}
+# d=gsub("! ",". ",text1)
+# character_count(d)
+# d
+# 
+# g_sum_d = LSAfun::genericSummary(d,20,min = 2,split=c(".","!","?"),breakdown=FALSE)
+# g_sum_d = unique(g_sum_d)
+# g_sum_d = tibble(g_sum_d)
+# saveRDS(g_sum_d,"C:/Users/Max's USAFA PC/Documents/SCHOOL/g_sum_d.RDS")
+
+g_sum_d = readRDS("C:/Users/Max's USAFA PC/Documents/SCHOOL/g_sum_d.RDS")
+# 
+# 
+for (i in 1:nrow(g_sum_d)) {
+  print(substr(as.character(g_sum_d[i,]),1,150))
+  print(" ")
+}
+
+
+```
+
+Both methods unfortunately have problems splitting sentences properly. Despite my best efforts I could not get either method to divide the text into sentences properly. As a result, "sentences" with lots of words end up as the "most important" sentences. Driving home this point is the fact that songs appear in the second type of summarization. Additionally, in the first type of summarization it is no surprise that the word Buddy shows up in every summary "sentence."
+
+
+Next I generate a chart which shows where, within the document, you see the most important "sentences" based off the first method of summarization. 
+
+```{r}
+#This shows where, within the document, you see the most important text.
+
+article_summary[["sentences"]] %>%
+  ggplot(aes(textrank_id, textrank, fill = textrank_id)) +
+  geom_col() +
+  theme_minimal() +
+  scale_fill_viridis_c() +
+  guides(fill = "none") +
+  labs(x = "Sentence",
+       y = "TextRank score",
+       title = "Location within the data where most informative text occurs",
+       subtitle = 'Title')
+```
+
+This chart does not yield any interesting results.
+
+Next we can apply methods to see the frequency of words. First, I load and apply the English udpipe model and annotate the text.
+
+```{r,udpipe, echo=FALSE}
+library(udpipe)
+library(textrank)
+## First step: Take the English udpipe model and annotate the text.
+ud_model <- udpipe_download_model(language = "english")
+ud_model <- udpipe_load_model(ud_model$file_model)
+x <- udpipe_annotate(ud_model, x = text)
+x <- as.data.frame(x)
+#head(x)
+```
+
+Next, I run a query to show the most occurring nouns.
+
+```{r,a}
+#Lemma is just the column of all of the words in the document
+#Here we simply show the frequency of the words.
+stats <- subset(x, upos %in% "NOUN")
+stats <- txt_freq(x = stats$lemma)
+stats$key <- factor(stats$key, levels = rev(stats$key))
+
+barchart(key ~ freq, data = head(stats, 30), col = "orange", main = "Most occurring nouns", xlab = "Freq")
+
+```
+
+We can see that references to "dad" and "son" appear often.
+
+I also did this for the most occurring verbs.
+
+```{r,a2}
+#Lemma is just the column of all of the words in the document
+#Here we simply show the frequency of the words.
+stats <- subset(x, upos %in% "VERB")
+stats <- txt_freq(x = stats$lemma)
+stats$key <- factor(stats$key, levels = rev(stats$key))
+
+barchart(key ~ freq, data = head(stats, 30), col = "orange", main = "Most occurring verbs", xlab = "Freq")
+
+```
+
+
+
+
+
+Next, I build a word network showing how closely related and used together multi-word phrases are in the document. 
+
+```{r,b,warning=F}
+stats <- keywords_collocation(x = x, 
+                              term = "token", group = c("doc_id", "paragraph_id", "sentence_id"),ngram_max = 5)
+
+## Co-occurrences: How frequent do words occur in the same sentence, in this case only nouns or adjectives
+stats <- cooccurrence(x = subset(x, upos %in% c("NOUN", "ADJ")), 
+                      term = "lemma", group = c("doc_id", "paragraph_id", "sentence_id"))
+## Co-occurrences: How frequent do words follow one another
+stats <- cooccurrence(x = x$lemma, 
+                      relevant = x$upos %in% c("NOUN", "ADJ"))
+## Co-occurrences: How frequent do words follow one another even if we would skip 2 words in between
+stats <- cooccurrence(x = x$lemma, 
+                      relevant = x$upos %in% c("NOUN", "ADJ"), skipgram = 2)
+
+
+#From here we build out a word network showing how closely related and used together multi word phrases are in the document. 
+wordnetwork <- head(stats, 20)
+wordnetwork <- graph_from_data_frame(wordnetwork)
+
+ggraph(wordnetwork, layout = "fr") +
+  geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "red") +
+  geom_node_text(aes(label = name), col = "darkgreen", size = 5) +
+  theme_graph(base_family = "Arial Narrow") +
+  theme(legend.position = "none") +
+  labs(title = "Cooccurrences within 5 words distance", subtitle = "Nouns & Adjective")
+
+```
+
+The words tickle and fight are used together often.
+
+Next, I created a word cloud showing the most common phrases.
+
+```{r,d}
+stats <- textrank_keywords(x$lemma, 
+                           relevant = x$upos %in% c("NOUN", "ADJ"), 
+                           ngram_max = 8, sep = " ")
+stats <- subset(stats$keywords, ngram > 1 & freq >= 3)
+
+wordcloud(words = stats$keyword, freq = stats$freq, max.words = 300)
+```
+
+"Ho ho" and "ho ho ho" are some of the most common phrases.
+
+
+Next, I print out the most common groups of words.
+
+```{r,e}
+stats <- keywords_rake(x = x,
+                       term = "token", group = c("doc_id", "paragraph_id", "sentence_id"),
+                       relevant = x$upos %in% c("NOUN", "ADJ"),
+                       ngram_max = 4)
+head(subset(stats, freq > 3))
+```
+
+Next is some simple noun phrases.
+
+```{r}
+x$phrase_tag <- as_phrasemachine(x$upos, type = "upos")
+stats <- keywords_phrases(x = x$phrase_tag, term = x$token,
+                          pattern = "(A|N)+N(P+D*(A|N)*N)*",
+                          is_regex = TRUE, ngram_max = 4, detailed = FALSE)
+head(subset(stats, ngram > 2))
+```
+
+Lastly, I identified the most common phrases in the dataset to get a feel for the overall document.
+
+```{r,e2,warning=F}
+#
+stats <- merge(x, x,
+               by.x = c("doc_id", "paragraph_id", "sentence_id", "head_token_id"),
+               by.y = c("doc_id", "paragraph_id", "sentence_id", "token_id"),
+               all.x = TRUE, all.y = FALSE,
+               suffixes = c("", "_parent"), sort = FALSE)
+stats <- subset(stats, dep_rel %in% "nsubj" & upos %in% c("NOUN") & upos_parent %in% c("ADJ"))
+stats$term <- paste(stats$lemma_parent, stats$lemma, sep = " ")
+stats <- txt_freq(stats$term)
+
+wordcloud(words = stats$key, freq = stats$freq, min.freq = 3, max.words = 100,
+          random.order = FALSE, colors = brewer.pal(6, "Dark2"))
+
+
+```
+
+
+## Findings and Conclusions 
+
+In conclusion, it is surprisingly hard to analysis this script.NER and sentiment analysis provide simple insights. Though they seem simple to anyone that has seen the movie, the do give those who have not seen the movie some level of familiarity. 
+
+Document summarization seemed to have lots of potential in concept. Unfortunately, it provided quite difficult to implement properly and even then it really only gives you sentences that have words most similar to other sentences. The methods I tried simply do not summarize the document in any meaningful way.
+
+### Future Work
+
+If I had more time, I would investigate why different methods had different results in counting the number of occurrences of certain words. Additionally, I would get document summarization to split sentences properly.

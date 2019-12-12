@@ -42,7 +42,8 @@ pacman::p_load(tm,
                magick,
                tesseract,
                readr,
-               gsubfn)
+               gsubfn,
+               text2vec)
 ```
 
 ## Methodology 
@@ -144,7 +145,7 @@ pacman::p_load(XML,
                rvest,
                stringr)
 
-proj_root   <- find_root(is_rstudio_project)
+proj_root   <- rprojroot::find_root(is_rstudio_project)
 save_folder <- file.path(proj_root,'student_project_folders','oper655_fa2019_hufstetler','Data')
 ```
 ```{r, eval=FALSE}
@@ -202,7 +203,8 @@ text <- scraping_scripts %>%
         str_trim(side = "both")
 substr(text,1,200)
 ```
-It worked so the process is applied to all urls in files. Each file is named based on the season and episode that its contents came from.
+It worked so the process is applied to all urls in files. Each file is named based on the season and episode that its contents came from. 
+
 ```{r, eval=FALSE}
 for(i in files) {
   scraping_scripts <- read_html(i)
@@ -220,6 +222,24 @@ for(i in files) {
 
 
 ```
+
+Analysis of the text showed some strange artifacts in the data. Some episodes in season four had a long string of the form "Tr Tra Tran Trans Transc Transcr Transcri Transcrip Transcript .... EPISODE #x## EPISODE NAME". These were removed and all other instances of the form "EPISODE #x## EPISODE NAME" were also  removed.
+
+```{r, eval = F}
+master_list <- list.files(path = save_folder,
+                          pattern = "s",
+                          full.names = TRUE)
+pattern_ep = "Episode\\s[0-9]{1}x[0-9]{2}\\s+[A-Z-]+\\s+([A-Z]+\\s)?"
+pattern_tr = paste0("Tr\\s+([a-zA-Z\\s]+:)+[a-zA-Z\\s]+", pattern_ep)
+
+for(i in master_list){
+  txt <- readLines(i)
+  txt <- str_replace_all(txt, pattern = pattern_tr, replacement = " ")
+  txt <- str_replace_all(txt, pattern = pattern_ep, replacement = " ")
+  writeLines(txt, con=i)
+}
+```
+
 Organize the data into a tibble by ingesting each episode, extracting the season and episode number, and unnesting all words
 ```{r}
 office_tidy <- tibble::tibble()
@@ -236,7 +256,7 @@ for(i in master_list){
   clean <- tibble::tibble(season = substr(i,nchar(i)-8,nchar(i)-7),
                           subep = substr(i,nchar(i)-5,nchar(i)-4),
                           episode = ep,
-                          text = read_file(i)) %>%
+                          text = readr::read_file(i)) %>%
             tidytext::unnest_tokens(word, text)
   office_tidy <- base::rbind(office_tidy, clean)
 }
@@ -264,7 +284,7 @@ office_nostop <- office_tidy %>%
 # top 10 most common words in each season
 office_tidy %>%
   anti_join(stop_words) %>%
-  group_by(season) %>%
+  group_by(season, subep) %>%
   count(word, sort = TRUE) %>%
   top_n(10) %>%
   ungroup() %>%
@@ -279,14 +299,14 @@ office_tidy %>%
 
 # calculate frequencies and look for deviations
 # calculate percent of word use across all seasons
-office_pct <- office_tidy %>%
-  dplyr::anti_join(stop_words) %>%
+office_pct <- corpus_unnestByWord %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
   dplyr::count(word) %>%
   dplyr::transmute(word, all_words = n / sum(n))
 
-# calculate percent of word use within each novel
-frequency <- office_tidy %>%
-  dplyr::anti_join(stop_words) %>%
+# calculate percent of word use within each season
+frequency <- corpus_unnestByWord %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
   dplyr::count(season, word) %>%
   dplyr::mutate(season_words = n / sum(n)) %>%
   dplyr::left_join(office_pct) %>%
@@ -375,7 +395,7 @@ t2v_itoken <- text2vec::itoken(t2v_tokens,
 (t2v_vocab <- text2vec::create_vocabulary(t2v_itoken,
                                          stopwords = tidytext::stop_words[[1]]))
 
-t2v_dtm = create_dtm(t2v_itoken, hash_vectorizer())
+t2v_dtm = text2vec::create_dtm(t2v_itoken, hash_vectorizer())
 model_tfidf = TfIdf$new()
 dtm_tfidf = model_tfidf$fit_transform(t2v_dtm)
 

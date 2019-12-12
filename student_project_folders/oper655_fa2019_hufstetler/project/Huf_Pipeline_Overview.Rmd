@@ -1,0 +1,563 @@
+---
+title: "OPER 655 Student Project Report"
+author: "Capt Brandon Hufstetler"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output: 
+  html_document:
+    code_folding: 'hide'
+abstract: 'This file walks a user through an implementation of the Huf Pipeline using transcripts from The Office. The pipeline allows a user to seamlessly scrape data from the web and perform some analysis of that data.'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = F,
+                      warning = F, 
+                      comment = NA)
+for(i in c(1:8)){
+  source(base::paste0("./functions/pipeline_0",i,".R"))
+}
+rm(i)
+```
+
+
+# Overview
+## Background
+
+The purpose of this report is to describe a text mining pipeline created by Capt Hufstetler. The *pipeline* concept is to provide users an easily accessible toolset with which to perform text mining analysis and develop insights. It is intended that each link in the pipeline be managed in such a way that data can freely and easily flow between them without the need for additional formatting.
+
+## Pipeline Objectives
+
+The pipeline should be able to ingest text from an online repository of television show transcripts. The ingested text should then be processed into a central format that can be used by the other links of the pipeline. The output links should provide summary statistics, sentiment analysis, document summarization, and visual representations of the data. The outputs should also be easily interpreted by a lay-person.
+
+## Methodology
+
+This pipeline implementation will walk a user through the text mining processes of:
+
+1. Downloading, cleaning, and saving television show transcripts from *https://www.springfieldspringfield.co.uk/*
+2. Importing these text files into a corpus
+3. Tokenizing items from the corpus into a tibble for use with **tidy** package
+4. Casting the tibble into a Document Feature Matrix object for use with **quanteda** package, a Document Term Matrix object for use with **tm** package, a Term Document Matrix object for use with **tm** package, or a sparse matrix
+5. Create summary statistics
+6. Visualizing term-frequency inverse-document frequency
+7. Sentiment analysis
+8. Document Summarization
+
+# Initialization
+The first step in this pipeline is designed to scrape our text from the SpringfieldSpringfield website. It is not required that the text come from this source, but any external text documents must be saved in a folder accessible to R for the rest of the pipeline to function. 
+
+We identify the text to be analyzed and a local directory on the computer in which to store the raw text scraped from the internet. The text to be anlayzed should come from one of the shows found in the springfieldspringfield website. Navigate to the the main page of any of the shows and save the url. For this walkthrough, we'll use the US version of the show **The Office**.
+
+```{r initialize}
+library(dplyr) # for pipe operator to work
+save_folder <- base::file.path(rprojroot::find_root(rprojroot::is_rstudio_project)
+                               ,'student_project_folders'
+                               ,'oper655_fa2019_hufstetler'
+                               ,'project'
+                               ,'Data')
+url  <- 'https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-office-us'
+```
+
+# Pipeline
+
+## Phase I - Scrape the Web
+
+The first phase of the pipeline will scrape the web for the desired scripts, clean the text, and save each episode as a text file in a folder on the computer. The inputs are the desired show's main page's URL and the directory in which to save the scripts. The main page for the show **The Office** is *https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-office-us*. The save folder used here a folder named **Data** in my student project folder. It's ok if **Data** does not exist because the first phase of the pipeline will create it if necessary.
+
+```{r phaseI, eval=FALSE}
+huf.1_txt_from_site(url, save_folder)
+```
+
+## Phase II - Build a Corpus
+
+The second phase of the pipeline ingests every text document found in a directory and combines them into a corpus object. The corpus is just a tibble consisting of a row for every document with columns for the series episode number, the season, the episode within the season, a title, and the text within the document. If you're not using phase I of the pipeline, you'll need to guarantee that each file in the directory is named following the convention **s##e##.txt** where *s* represents the season/book/level 1 ID and *e* represents the episode/chapter/level 2 ID.
+
+```{r phaseII}
+corpus <- huf.2_create_corpus(save_folder)
+str(corpus)
+```
+
+## Phase III - Tokenize
+
+Phase III lets us unnest the corpus by sentence or n-gram. The token option can take the inputs *words*, *sentences*, or *ngrams*. If *ngrams* is chosen, the length of the n-gram must also be specified. The output is a tibble with the same structure as the corpus except the text column is replaced by the unnested tokens. 
+
+By summarizing information about the tokens, it's possible to quickly identify common words to add to the stop words list. The words shown here were found during analysis of later phases and added here. The analysis was then repeated in a recursive manner to further refine insights and filter out noise. **NOTE:** *Tokenizing the data with this command ensures that it integrates with other elements of the pipeline.*
+
+Here we can combine phase III with other packages for some interesting results. First we unnest the corpus using each word as a token. Next we remove all stop words and re-nest the text back together. Finally, we unnest by 4-gram and sort by frequency. Some notable mentions easily recognized by anyone who has seen the show:
+
+```{r phaseIII}
+stop_custom <- tibble::tibble(word = c("click", "uh", "blah", "whoa", 
+                                           "ho", "hey", "bum", "doo", "ha", 
+                                           "olé", "pa", "yeah", "guh", "da",
+                                           "dot", "la", "mm", "hmm", "roo", 
+                                           "ya", "dah", "ah", "aye", "um"))
+
+knitr::kable(
+  (corpus %>% 
+    huf.3_unnest("words") %>%
+    dplyr::anti_join(tidytext::stop_words) %>%
+    dplyr::anti_join(stop_custom) %>%
+    plyr::ddply(plyr::.(episode, 
+                        season, 
+                        subep, 
+                        ep_title), 
+                summarize, 
+                word = paste(word, collapse=" ")) %>%
+    huf.3_unnest("ngrams", 4) %>% 
+    dplyr::count(word, sort = T))[c(1,13,27,41),],
+  caption = "4-grams with stop words omitted with frequency"
+)
+```
+
+## Phase IV Convert
+
+In phase IV, the functionality to convert the corpus to a particular format is added. The formats available in the pipeline are document term matrices (dtm), term document matrices (tdm), document feature matrices (DFM), and sparse matrices. Each of these formats is a variation of the same general idea of representing the tokens in a corpus in a matrix showing how often each token appears in each document in the corpus. The dtm and tdm formats produced here are good for working with the *tm* package and the DFM format is good for working with the *quanteda* package. Here, we'll create one of each.
+
+```{r phaseIV}
+types <- c("dtm", "dfm", "tdm", "sparse")
+for(item in types){
+  print(paste("Convert the corpus to a", item, "structure", sep = " "))
+  print(str(corpus %>% huf.4_corpus2other(item)))
+}
+```
+
+## Phase V Statistics
+
+Phase V of the pipeline allows the user to quickly compute and visualize summary statistics of tokens in the corpus. It has the same inputs as phase II and actually calls phase II to unnest the tokens before performing a simple statistical analysis. The outputs from phase V are:
+
+- Total tokens per episode
+- Tokens sorted by frequency per episode
+- Correlations between episodes
+
+```{r phaseV}
+episode_range = c(44, 52)
+stats <- huf.5_stats(corpus, episode_range)
+
+knitr::kable(stats[[1]][1:5,1:10],
+             caption = "Words per Episode per Season")
+knitr::kable(stats[[2]] %>%
+               dplyr::filter(ep_title %in% corpus$ep_title[corpus$episode %in% episode_range]),
+             caption = "Top 5 Words per Episode")
+knitr::kable(stats[[3]][,1:2],
+             caption = "Correlation Among Episodes")
+```
+
+## Phase VI Visualizing tf-idf
+
+The plots created in phase VI allow a user to visually inspect the commonality of words used in an episode vs the series. Words on the dashed line are used as frequently in an episode as in the entire series. Words below the line are used more frequently in the episode than in the series and words above the line are used less often in an episode than in the series. Looking at Season 4 Episode 1, Meredith breaks her *pelvis* and learns she has *rabies*, Dwight kills Angela's cat *Sprinkles*, and Michael hosts a *race* for the *cure*. All of these tokens stand out in the tf-idf plot as being particularly unique to the episode.
+
+```{r phaseVI}
+huf.6_plot_tfidf(corpus, episode_range = c(1, 7, 44, 52), width = 2, stop_custom)
+```
+
+## Phase VII Sentiment Analysis
+
+In this phase of the pipeline, we calculate the sum of the *bing* sentiments in each of the individual sentences of the corpus. The totals are then aggregated for 4 sentences at a time and plotted for an easy visual of how the sentiment changes during an episode. The user can choose which episodes to plot and the number of plots per row in the output. Here we show the sentiments for the first 12 episodes.
+
+While this does not provide any context about why the sentiment is varying during a particular episode, emotional arcs could be seen in several of the episodes. For example, perhaps in an effort to reset the tone of the show early on, the ending of the season 2 premiere has much higher positivity than previous episodes.
+
+```{r phaseVII}
+corpus %>% huf.7_sentiment(episode_range = c(1, 7, 44, 52), width = 2)
+```
+
+## Phase VIII Document Summarization
+
+In this phase, we get short summaries of each episode using the *textrank* package and compare them to the top ten terms found in a tf-idf table. Pairing these two methods gives the user both a sentence level summary of the episodes and key words that are used more frequently in the episode than throughout the series. To provide such a broad and narrow scope simultaneously, the entire corpus is required to be ingested.
+
+This combination of methods is able to identify the central theme of an episode without losing content from the many other stories occuring with other characters.
+
+### **Season 3 Episode 17** *Business School*
+
+The human created summarization of this episode from wikipedia.com states:
+
+*For extra credit, Ryan invites Michael to his business school as a guest speaker. Michael attempts to make a motivational speech, unaware that Ryan has introduced him as an ineffectual manager of an out of touch company. Meanwhile, a bat is discovered in the office, leading Dwight to lead an attempt to capture it. That night, Pam displays her artwork at an art show, and is disappointed when few of her co-workers attend. Michael soon arrives after giving his speech and, in a moment of genuine kindness, compliments her work and buys her painting of their office building.*
+
+The document summarization output from this phase is spot on with the title. Every sentence has the word *business* and two has *business school*. The tf-idf output picks up on the fact that there was a bat in this episode and leads a user to assume someone was bitten because the term *vampire* was also identified.
+
+Pam's artwork is also caught but with so little context, a user would only know that art is mentioned more often than usual in this episode.
+
+```{r phaseVIIIa}
+  episode <- corpus$episode[corpus$ep_title == "S03E17"]
+  
+
+  document_summary <- corpus %>%
+    huf.8_document_summary(episode, stop_custom)
+  print(document_summary[[1]])
+  print(document_summary[[2]]$word[1:10])
+```
+
+### **Season 4 Episode 1** *Fun Run*
+
+The human create summarization of this episode from wikipedia.com states:
+
+*After Michael hits Meredith with his car in the carpark of Dunder Mifflin Scranton, she learns she is infected with rabies. Angela asks Dwight to care for her sick cat, but Dwight mercy-kills the animal, leading to relationship problems. After being videoed in public by the camera crew, Pam announces that she and Jim are now dating, but they do not share this with their co-workers. Feeling guilty about the incident with Meredith, Michael decides to host "Michael Scott's Dunder Mifflin Scranton Meredith Palmer Memorial Celebrity Rabies Awareness Pro-Am Fun Run Race For The Cure", although his employees are less than enthused. Toby wins the race, and a depressed and dehydrated Michael is finally forgiven by Meredith.*
+
+It's interesting that the document summary of this episode did not identify the actual fun run, but did discover that Dwight had killed Angela's cat, Sprinkles. The document summary leads the user to think the episode was about Meredith being hit by a car and someone or something having rabies, but not Michael.
+
+The tf-idf outputs was able to pick up on the fun run by identifying *5k* and *race*. The combination of these terms with the document summary and the previous document summary, a user may glean that whoever was bit by the bat contracted rabies, that Meredith was hit by a car and broke her pelvis, and that there was a 5k race.
+
+Nothing about Pam and Jim's relationship is noted but that may be because it is such a central theme to the series.
+
+```{r phaseVIIIb}
+  episode <- corpus$episode[corpus$ep_title == "S04E01"]
+  
+  document_summary <- corpus %>%
+    huf.8_document_summary(episode, stop_custom)
+  print(document_summary[[1]])
+  print(document_summary[[2]]$word[1:10])
+```
+
+# Conclusion
+
+The pipeline demonstrated in this report met its goals of ingesting raw data from the web and presenting it in a meaningful way with very little input from a user. The outputs of the pipeline, while limited in scope, provide enough information for a user to develop insights into the texts. 
+
+In preparing this document, the links of the pipeline were iterated over multiple times. After every iteration, new stop words and corruptions in the data were identified or new insights were developed. In applying this pipeline to other data sets, a recursive process should be followed again to tune the pipeline to that data.
+
+It would be interesting to apply this pipeline to other shows in the SpringfieldSpringfield catalog.
+
+# Appendix
+## I
+```{r AppendixI, echo=T}
+###################################
+## Create txt files from scripts ##
+###################################
+
+huf.1_txt_from_site <- function(url, save_directory){
+  library(dplyr)
+  # Create a folder in which to save the scraped text
+  base::dir.create(save_folder)
+  
+  # Identify the root of the URL
+  url_root <- 'https://www.springfieldspringfield.co.uk/'
+  
+  # Extract html/xml content from URL
+  rcurl.txt <- RCurl::getURL(url,
+                             .opts = RCurl::curlOptions(followlocation = TRUE))
+  # Parse html content
+  url_parsed <- XML::htmlParse(rcurl.txt, asText = TRUE)
+  
+  # We need to get the href attributes from
+  # the anchor tags <a> stored on the page
+  attrs <- XML::xpathApply(url_parsed, "//a", XML::xmlAttrs)
+  # Next, we'll split out the hrefs
+  # from the other attributes
+  hrefs <- base::sapply(base::seq_along(attrs), FUN = function(x) attrs[[x]][['href']])
+  # Then, we only want the hrefs for the files
+  # that have a .docx file extension
+  episodes  <- hrefs[base::grep('view',hrefs)]
+  # Construct a list of URL's for each file
+  # by pasting two character strings together
+  files <- base::paste0(url_root, episodes)
+  # Read in the htmls for each file and get rid of additional markings
+  for(i in files) {
+    scraping_scripts <- xml2::read_html(i)
+    
+    text <- scraping_scripts %>%
+      rvest::html_nodes("div.scrolling-script-container") %>%
+      rvest::html_text() %>%
+      stringr::str_replace_all(pattern = "\\s-\\s|\n|\r|\t|\"", replacement = " ") %>%
+      stringr::str_trim(side = "both")
+    
+    fileConn <- base::file(base::paste(save_folder,"/", base::substr(i, nchar(i)-5, nchar(i)),".txt", sep=""))
+    base::writeLines(text, fileConn)
+    base::close(fileConn)
+  }
+  # Some common corruptions were identified for removal
+  master_list <- base::list.files(path = save_folder,
+                                  pattern = "s",
+                                  full.names = TRUE)
+  pattern_ep = "Episode\\s[0-9]{1}x[0-9]{2}\\s+[A-Z-]+\\s+([A-Z]+\\s)?"
+  pattern_tr = base::paste0("Tr\\s+([a-zA-Z\\s]+:)+[a-zA-Z\\s]+", pattern_ep)
+  pattern_corrupt = "Ã¢TÂª"
+  
+  for(i in master_list){
+    txt <- base::readLines(i)
+    txt <- stringr::str_replace_all(txt, pattern = pattern_tr, replacement = " ")
+    txt <- stringr::str_replace_all(txt, pattern = pattern_ep, replacement = " ")
+    txt <- stringr::str_replace_all(txt, pattern = pattern_corrupt, replacement = " ")
+    base::writeLines(txt, con=i)
+  }
+}
+```
+
+## II
+```{r AppendixII, echo=T}
+###########################################
+## Create tidy corpus from all txt files ##
+###########################################
+huf.2_create_corpus <- function(txt_directory){
+  corpus_tidy <- tibble::tibble()
+  
+  # Create List of All Files in Folder
+  master_list <- base::list.files(path = txt_directory,
+                                  pattern = "s",
+                                  full.names = TRUE)
+  ep = 0
+  for(i in master_list){
+    ep = ep + 1
+    clean <- tibble::tibble(episode = ep,
+                            season = base::substr(i,nchar(i)-8,nchar(i)-7),
+                            subep = base::substr(i,nchar(i)-5,nchar(i)-4), 
+                            ep_title = base::paste("S",
+                                                   base::substr(i,nchar(i)-8,nchar(i)-7),
+                                                   "E",
+                                                   base::substr(i,nchar(i)-5,nchar(i)-4), 
+                                                   sep = ""),
+                            word = readr::read_file(i))
+    corpus_tidy <- base::rbind(corpus_tidy, clean)
+  }
+  # Set factor to keep episodes in order
+  corpus_tidy$season <- base::factor(corpus_tidy$season)
+  corpus_tidy$subep <- base::factor(corpus_tidy$subep)
+  return(corpus_tidy)
+}
+```
+
+## III
+```{r AppendixIII, echo=T}
+###########################################
+## Unnest corpus elements ##
+###########################################
+huf.3_unnest <- function(corpus 
+                         ,token = c("ngrams", "words", "sentences")
+                         ,ngram_length){
+  library(dplyr) # for pipe operator
+  switch(token,
+         "ngrams" =
+           corpus_unnested <- corpus %>%
+           tidytext::unnest_tokens(word, word, token = "ngrams", n = ngram_length),
+         "words" = 
+           corpus_unnested <- corpus %>%
+           tidytext::unnest_tokens(word, word, token = "words"),
+         "sentences" = 
+           corpus_unnested <- corpus %>%
+           tidytext::unnest_tokens(word, word, token = "sentences")
+  )
+  return(corpus_unnested)
+}
+
+```
+
+## IV
+```{r AppendixIV, echo=T}
+#################################
+## Cast corpus to other format ##
+#################################
+
+huf.4_corpus2other <- function(corpus, output_type){
+  library(dplyr)
+  # create a dtm from the corpus
+  corpus_dtm <- tm::VectorSource(corpus$word) %>%
+    tm::VCorpus() %>%
+    tm::DocumentTermMatrix(control = base::list(removePunctuation = T,
+                                                removeNumbers = T,
+                                                stopwords = tidytext::stop_words[,2],
+                                                tokenize = 'MC',
+                                                weighting =
+                                                  function(x)
+                                                    tm::weightTfIdf(x, normalize = !F)))
+  # convert to tidy df
+  corpus_tidy_tm <- tidytext::tidy(corpus_dtm)
+  
+  switch(output_type,
+         "dfm" =
+           # cast tidy data to DFM for quanteda package
+           output_object <- corpus_tidy_tm %>%
+           tidytext::cast_dfm(document, term, count),
+         "dtm" =
+           # cast tidy data to DTM for tm package
+           output_object <- corpus_tidy_tm %>%
+           tidytext::cast_dtm(document, term, count),
+         "tdm" = 
+           # cast tidy data to TDM for tm package
+           output_object <- corpus_tidy_tm %>%
+           tidytext::cast_tdm(term, document, count),
+         "sparse" =
+           #cast tidy data to sparce matrix
+           output_object <- corpus_tidy_tm %>%
+           tidytext::cast_sparse(document, term, count)
+  )
+  return(output_object)
+}
+
+```
+
+## V
+```{r AppendixV, echo=T}
+##########################
+## Visualize Statistics ##
+##########################
+
+huf.5_stats <- function(corpus, episode_range){
+  library(dplyr)
+  if(!exists("stop_custom")){
+    stop_custom <- tibble::tibble(word = NA)
+  }
+  
+  # table episodes per season
+  unnested <- corpus %>%
+    huf.3_unnest("words")
+  base::print(knitr::kable(
+    base::table(unnested$season,unnested$subep)
+    ,caption = "Words per Episode per Season")
+  )
+  
+  
+  # show top 2 words from each episode
+  base::print(knitr::kable(
+    (corpus %>% huf.3_unnest("words") %>%
+       group_by(ep_title)%>%
+       dplyr::anti_join(tidytext::stop_words) %>%
+       dplyr::anti_join(stop_custom) %>%
+       dplyr::count(word) %>%
+       group_by(ep_title) %>%
+       dplyr::top_n(n=1))[1:10,]
+    , caption = "Most frequent word from each episode"))
+  
+  # calculate frequencies and look for deviations
+  # calculate percent of word use across all seasons
+  office_pct <- corpus %>%
+    huf.3_unnest("words") %>%
+    dplyr::anti_join(tidytext::stop_words) %>%
+    dplyr::anti_join(stop_custom) %>%
+    dplyr::count(word) %>%
+    dplyr::transmute(word, all_words = n / sum(n))
+  
+  # calculate percent of word use within each season
+  frequency <- corpus %>% 
+    huf.3_unnest("words") %>%
+    dplyr::anti_join(tidytext::stop_words) %>%
+    dplyr::anti_join(stop_custom) %>%
+    dplyr::count(episode, ep_title, word) %>%
+    dplyr::mutate(episode_words = n / sum(n)) %>%
+    dplyr::left_join(office_pct) %>%
+    dplyr::arrange(dplyr::desc(episode_words)) %>%
+    dplyr::ungroup()
+  
+  # Correlation Test
+  base::print(
+    knitr::kable(frequency %>%
+                   dplyr::filter(episode %in% episode_range) %>%
+                   dplyr::group_by(ep_title) %>%
+                   dplyr::summarize(correlation = stats::cor(episode_words, all_words),
+                                    p_value = stats::cor.test(episode_words,
+                                                              all_words)$p.value) %>%
+                   dplyr::arrange(dplyr::desc(correlation))
+                 ,caption = "Correlation between Episodes")
+  )
+}
+```
+
+## VI
+```{r AppendixVI, echo=T}
+huf.6_plot_tfidf <- function(corpus, episode_range, width, stop_custom){
+  library(dplyr)
+  if(!exists("stop_custom")){
+    stop_custom <- tibble::tibble(word = NA)
+  }
+  # calculate frequencies and look for deviations
+  # calculate percent of word use across all seasons
+  series_pct <- corpus %>%
+    huf.3_unnest("words") %>%
+    dplyr::anti_join(tidytext::stop_words) %>%
+    dplyr::anti_join(stop_custom) %>%
+    dplyr::count(word) %>%
+    dplyr::transmute(word, all_words = n / sum(n))
+  
+  # calculate percent of word use within each season
+  frequency <- corpus %>%
+    huf.3_unnest("words") %>%
+    dplyr::anti_join(tidytext::stop_words) %>%
+    dplyr::anti_join(stop_custom) %>%
+    dplyr::count(episode, ep_title, word) %>%
+    dplyr::mutate(episode_words = n / sum(n)) %>%
+    dplyr::left_join(series_pct) %>%
+    dplyr::arrange(dplyr::desc(episode_words)) %>%
+    dplyr::ungroup()
+  
+  # Visualize word freq
+  print(  
+    frequency %>%
+      filter(episode %in% episode_range) %>%
+      ggplot2::ggplot(ggplot2::aes(x = episode_words, 
+                                   y = all_words, 
+                                   color = base::abs(all_words - episode_words))) +
+      ggplot2::geom_abline(color = "gray40", lty = 2) +
+      ggplot2::geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+      ggplot2::geom_text(ggplot2::aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+      ggplot2::scale_x_log10(labels = scales::percent_format()) +
+      ggplot2::scale_y_log10(labels = scales::percent_format()) +
+      ggplot2::scale_color_gradient(limits = c(0, 0.001), 
+                                    low = "darkslategray4", 
+                                    high = "gray75") +
+      ggplot2::facet_wrap(~ ep_title, ncol = 2) +
+      ggplot2::theme(legend.position="none") +
+      ggplot2::labs(y = "Series", x = NULL)
+  )
+}
+```
+
+## VII
+```{r AppendixVII, echo=T}
+########################
+## Sentiment Analysis ##
+########################
+
+huf.7_sentiment <- function(corpus, episode_range, width){
+  library(dplyr) # for pipe operator
+  print(
+    corpus[corpus$episode %in% episode_range,] %>%
+      huf.3_unnest("sentences") %>%
+      dplyr::group_by(ep_title) %>%
+      dplyr::mutate(sentence_number = dplyr::row_number()) %>%
+      dplyr::ungroup() %>%
+      huf.3_unnest("words") %>%
+      dplyr::inner_join(tidytext::get_sentiments("bing")) %>%
+      dplyr::count(episode, ep_title, index = sentence_number %/% 4, sentiment) %>%
+      tidyr::spread(sentiment, n, fill = 0) %>%
+      dplyr::mutate(sentiment = positive - negative) %>%
+      ggplot2::ggplot(ggplot2::aes(index, 
+                                   sentiment, 
+                                   fill = ep_title)) +
+      ggplot2::geom_col(show.legend = F) +
+      ggplot2::facet_wrap(~ep_title, ncol = width, scales = "free_x")
+  )
+}
+
+
+```
+
+## VIII
+```{r AppendixVIII, echo=T}
+huf.8_document_summary <- function(corpus, episode, stop_custom){
+  library(dplyr)
+  if(!exists("stop_custom")){
+    stop_custom <- tibble::tibble(word = NA)
+  }
+  
+  episode_sentences <- corpus[corpus$episode == episode,] %>%
+    huf.3_unnest("sentences") %>%
+    dplyr::mutate(sentence_id = dplyr::row_number()) %>%
+    dplyr::select(sentence_id, word)
+  episode_words <- episode_sentences %>%
+    huf.3_unnest("words") %>%
+    dplyr::anti_join(tidytext::stop_words) %>%
+    dplyr::anti_join(stop_custom)
+  episode_summary <- episode_sentences %>%
+    textrank::textrank_sentences(terminology = episode_words)
+  
+  corpus_words <- corpus %>%
+    huf.3_unnest("words") %>%
+    dplyr::count(episode, ep_title, word, sort = T)
+  total_words <- corpus_words %>%
+    dplyr::group_by(episode) %>%
+    dplyr::summarize(total = sum(n))
+  corpus_words <- dplyr::left_join(corpus_words, total_words) %>%
+    tidytext::bind_tf_idf(word, episode, n) %>%
+    dplyr::select(-total) %>%
+    dplyr::arrange(dplyr::desc(tf_idf))
+  output <- base::list()
+  output[[1]] <- episode_summary
+  output[[2]] <- corpus_words[corpus_words$episode == episode,]
+  return(output)
+}
+```
