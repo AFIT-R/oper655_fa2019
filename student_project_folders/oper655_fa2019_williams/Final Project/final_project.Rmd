@@ -1,0 +1,449 @@
+---
+title: "Final_Project"
+author: "Clarence Williams"
+date: "December 12, 2019"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    css: 'css/style.css'
+    code_folding: hide
+bibliography:  final_project.bib    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, 
+                      comment = NA, 
+                      message = FALSE,
+                      warning = FALSE,
+                      eval = T)
+```
+
+
+
+# Abstract
+This project implements the pipeline developed in class to perform named entity recognition, sentiment analysis and document summarization on three main characters and one minor, albeit important character, in Star War The Force Awakens to determine their role in the film.
+
+
+# Problem Background
+The rapid growth of the volume of text documents available has led to the development of techniques to properly ingest documents with the final goal to allow technology to provide insights of human readable text without an actual human reading the document himself/herself @Allahyari. 
+
+
+In the analysis, the script of Star War Episode VII: The Force Awakens will analyzed to determine key characters in the script, these characters role in the movie and a summary of their dialog and actions in the film.
+
+# Methodology
+The following are the steps taken for the analysis of this script: 
+
+1 - Ingest the text
+  
+  This uses the ingest_text function which can read text, Microsoft Word files, tifs and pdf files. Additionally, functionally was added to allow text to be ingested from a website if the appropriate url and html selector that contains the text has been provided. The code for this function is included below.
+  
+
+```{r}
+#' Module to ingest data from a file
+#'
+#' @description Takes in a file path and returns the text from the document
+#'
+#' @importFrom tesseract ocr
+#' @importFrom pdftools pdf_convert pdf_text
+#' @importFrom tools file_ext
+#' @importFrom qdapTools read_docx
+#' @importFrom antiword antiword
+#' @importFrom magick image_read image_resize image_convert image_trim image_ocr
+#' @importFrom data.table fread
+#' @importFrom readr read_lines
+#' @importFrom quanteda corpus
+#' @importFrom rvest html_text html_nodes
+#' @importFrom xml2 read_html
+#'
+#' @param file_path Character string containing the path to the file 
+#'                  from which the text data is to be extracted
+#' @param pdf_image Boolean denoting if the file is an image, 
+#'                  for use when \code{file_path == 'pdf'}
+#' @param file_type Character string to specify the file type
+#' 
+#' @param text_url Character string of URL where text is location
+#' 
+#' @param container character string to specificy HTML class of container where the text resides
+#'
+#' @example 
+#' \dontrun{
+#' 
+#' oper655_readme <- "https://raw.githubusercontent.com/AFIT-R/oper655_fa2019/master/README.md"
+#' 
+#' Text = ingest_text(oper655_readme,
+#'                    file_type = "txt")
+#' 
+#' }
+#'
+#' @return text data
+ingest_text <-  function(file_path = NULL,
+                         pdf_image = F,
+                         file_type = NULL,
+                         text_url = NULL,
+                         container = NULL){
+  
+  if(!is.null(text_url) & !is.null(container)){
+    #read page html
+    page<- xml2::read_html(text_url) 
+    #extract text from page html using selector
+    text_data <- rvest::html_text(rvest::html_nodes(page, container))
+    
+    return(text_data)
+  }
+  
+  if(is.null(file_type)) file_type <- tools::file_ext(file_path)
+  
+  text_data <- switch(tolower(file_type),
+                      'pdf' = `if`(pdf_image,
+                                   tesseract::ocr(pdftools::pdf_convert(file_path, dpi = 600)),
+                                   pdftools::pdf_text(file_path)),
+                      'docx' = qdapTools::read_docx(file_path),
+                      'doc' = antiword::antiword(file_path),
+                      'txt' = readr::read_lines(file_path),
+                      'csv' = data.table::fread(file_path),
+                      'tif' =, "png" = { magick::image_read(image_file) %>% 
+                                magick::image_resize("2000")   %>%
+                                magick::image_convert(colorspace = 'gray') %>%
+                                magick::image_trim() %>%
+                                magick::image_ocr() })
+  
+  return(text_data)
+  
+}
+
+```
+
+
+  
+2 - Perform Named Entity Recognition (NER)
+  
+  This uses the get_ner function to tokenize the document and extract persons, locations, organizations, products, etc. to identify the most common person enitities 
+
+```{r}
+get_ner <-function(text,...){
+  
+  spacyr::spacy_initialize(model = "en_core_web_sm")
+
+  ner <- spacyr::spacy_parse(text,...)
+
+  spacyr::spacy_finalize()
+  
+  return(ner)
+  
+}
+```
+
+Once a character has been identified the following code extracts the dialog spoken by the character.
+```{r}
+
+get_sw_charlines <- function (character){
+
+  charact_txt <- sw[which(stringr::str_detect(sw, character))]
+  
+  return(charact_txt) 
+}
+
+```
+  
+3 -  Character Analysis
+
+  - Perform Sentiment Analysis on person entities 
+  
+    Determine the emotion behind each common entity's dialog using document-level sentiment classification to determine if the entities are antagonists or protagonists.
+    
+The get_sentimentCloud function display 150 words grouped by postive or negative sentiment with the words sized by occurances.
+    
+
+```{r}
+get_sentimentCloud <- function (text_data){tibble::tibble(text = text_data) %>%
+  unnest_tokens(word, text) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("gray20","gray80"),
+                   max.words = 150)
+}
+```
+   
+  
+  - Perfrom Document Summarization on person entities
+  
+The document summarization implemented in this project uses extractive document summarization to identify the most important and most frequent text within a document and output the sentences which capture the best summary of the document.  These best sentences are taken directly from the document. The code below shows the implementation of the get_summary function which uses the page rank algorithm.
+
+
+```{r}
+get_summary <- function(text, 
+                        n_sentences,...) {
+  
+  top_n = lexRankr::lexRank(text,
+                            #only 1 article; repeat same docid for all of input vector
+                            docId = rep(1, length(text)),
+                            #return 3 sentences to mimick /u/autotldr's output
+                            n = n_sentences,
+                            continuous = TRUE,...)
+
+#reorder the top n sentences to be in order of appearance in article
+order_of_appearance = order(as.integer(gsub("_","",top_n$sentenceId)))
+
+#extract sentences in order of appearance
+ordered_top_n = top_n[order_of_appearance, "sentence"]
+ordered_top_n
+
+return(ordered_top_n)
+
+}
+```
+
+
+
+
+
+## 1 - Ingest the text
+The text for this analysis is ingested from a website using the ingest text function. On the imsdb website, the script resides in a html table tag with the class scrtext. Other scripts on this website reside in same table tag on their respective pages. So, the ingest text function should work for any script on this website.
+
+
+```{r}
+pacman::p_load(tidyr,
+               tidytext,
+               tidyverse,
+               textdata,
+               dplyr,
+               stringr,
+               ggplot2,
+               magrittr,
+               wordcloud,
+               reshape2,
+               monkeylearn,
+               quanteda,
+               spacyr,
+               NLP,
+               LSAfun,
+               xml2,
+               rvest,
+               lexRankr)
+
+fa_text <- ingest_text(text_url = "https://www.imsdb.com/scripts/Star-Wars-The-Force-Awakens.html", container = ".scrtext")
+
+
+```
+
+
+After reading in the text, viewing a subset of the script reveals that character dialog can span multiple lines. This can be problematic if one wants to get the dialog spoken by a particular character due to risk of truncation. 
+
+
+```{r}
+write_lines(fa_text, "fa.txt")
+
+fa_orig <-readLines("fa.txt")
+fa_orig[326:330]
+```
+
+
+To mitigate the potential truncation of character dialog, it is necessary to remove single new lines but keep consecutive newlines to preserve the structure of the script where dialog follows a character’s name that is capitalized. This is accomplished using regular expressions (regex) which places each occurrence of dialog on a separate element of a character vector.
+
+
+
+```{r}
+fa_clean <- stringr::str_replace_all(fa_text, "\r", "")
+fa_clean <- gsub("(?<!\n)\n(?!\n)|\n{3,}", "", fa_clean, perl=TRUE)
+
+
+#stu3 <- str_remove_all(stu2, fixed("\t"))
+write_lines(fa_clean, "sw_fa.txt")
+
+sw <- readLines("sw_fa.txt")
+```
+
+
+After cleaning the data using the regex the same lines now look like the following. 
+
+
+
+```{r}
+sw[171]
+```
+
+
+
+## 2 -  Perform NER
+The person entities returned by NER show that Ray, Finn and Kylo Ren are the most common entities of that type. However, examining the most frequent words in the script reveals that Han should also be a common entity that is a person as well.
+
+
+
+```{r}
+fa_ner2<- get_ner(sw)
+
+fa_ner_extracted <- entity_extract(fa_ner2)
+
+fa_ner_extracted %>%
+  filter(entity_type == "PERSON" ) %>%
+  group_by(entity_type) %>%
+  count(entity) %>%
+  top_n(10) %>%
+  ggplot(aes(x = entity, y = n)) +
+  geom_bar(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Entities that are Persons") +
+  xlab("Persons") +
+  ylab("Mentions")
+```
+
+
+
+```{r}
+
+text_tb <- tibble::tibble(text = fa_clean)
+
+ text_tb %>%
+  tidytext::unnest_tokens(word, text, token = 'words') %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word, sort = TRUE)  %>%
+  top_n(10)
+
+
+
+```
+
+
+
+In this case, NER erroneously labeled Han as NORP which is a Nationality or religious or political group.
+
+
+```{r}
+
+han <- fa_ner_extracted %>%
+  filter(entity == "Han" )
+
+han[1:5, ]
+
+```
+
+
+Lets investigate the top three person entities returned by NER which is Rey, Finn and Klyo  to determine their role in the story.
+
+
+
+
+
+
+
+
+
+
+## 3 - Character Analysis
+
+### Rey
+ 
+Sentiment analysis on Rey reveals that falls, confused, dark and nervously are the most frequent negative emotions she experiences throughout the movie but she also experiences joy as shown by smiles, good, grateful. This is evidence that she may be a protagonist who is put under duress by another character in the film.
+
+Additionally, Resistance is the most negative word but that could be a mistake since the Resistance is a group of people in the film.
+
+
+
+
+```{r}
+rey_txt <- get_sw_charlines("REY")
+
+get_sentimentCloud(rey_txt)
+
+```
+
+
+Summarization of Reys text reveals is a captive at some point in the movie but it is not clear yet if she is a hero or villian in the story. 
+
+
+```{r}
+get_summary(rey_txt,5)
+```
+
+
+
+
+
+
+### Finn
+
+Like Rey, Finn experiences a variety of negative emotions throughout the movie. Again at this point in the analysis, his role is unclear but it is reasonable to conclude that he is put under duress by another character in the film.
+
+
+```{r}
+finn_txt <- get_sw_charlines("FINN")
+
+get_sentimentCloud(finn_txt)
+
+
+```
+
+
+The summarization of Finn's dialog is very similar to Rey's summarization. This means that the two characters could have the same role and are paired up frequently throughout the movie.
+
+
+```{r}
+get_summary(finn_txt,5)
+```
+
+
+### Kylo Ren
+
+There are more negative emotions associated with Kylo Ren than positive which suggest he could be an antagonist.
+
+
+
+
+```{r}
+kylo_txt <- get_sw_charlines("KYLO")
+
+get_sentimentCloud(kylo_txt)
+
+```
+
+
+The third through fifth sentences of the summary of Kylo Ren's text does confirm that he is pitted against Rey in this movie. At this point it is reasonable to conclude that Kylo Ren is the villain in the story who is pitted against Rey and Finn.
+
+
+```{r}
+get_summary(kylo_txt,5)
+```
+
+
+
+### Snoke
+
+Additionally, prior knowledge of the film reveals the Snoke is the main villain despite his limited screen time. Let see if sentiment analysis and document summarization of his dialog backs this claim
+
+
+Sentiment analysis and document summarization on Snoke’s dialog clearly reveals that he is a villain like Kylo Ren. The fifth line of the summarization also reveals that he is possibly a commander since he is giving orders.
+
+
+```{r}
+snoke_txt <- get_sw_charlines("SNOKE")
+
+get_sentimentCloud(snoke_txt)
+
+```
+
+
+
+```{r}
+get_summary(snoke_txt,5)
+```
+
+
+### Wikipedia Summumary
+
+For reference the summarization of the movie from wikipedia can be viewed at the following link.
+
+<a href="https://en.wikipedia.org/wiki/Star_Wars:_The_Force_Awakens#Plot">Star Wars: The Force Awakens Plot</a>
+
+
+# Conclusions
+
+
+Overall, the pipeline was able to successfully ingest the script and perform NER, sentiment analysis and document summarization on the dialog of three of the main characters of the Force Awakens. The summarization of the three main characters’ text is a reasonable approximation of the human generated wikipedia summary. Additional applications of this pipeline are extensive in that rather than watching a 2-hour film or reading a 100-page document, key information can be obtained in minutes. A shortcoming with this approach is that it is unsupervised, which therefore requires human generated analysis to provide confirmation that the machine generated reasonable results. Future work could implement separate supervised approaches for ingesting multiple scripts for summarization and character role classification provided that a known result has been provided.
+
+
+
+
+
+# References

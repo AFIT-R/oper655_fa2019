@@ -1,0 +1,408 @@
+                                                                   A Trainable Document                       Summarizer
+                                                                Julian     Kupiec,       Jan Pedersen      and Francine            Chen
+                                                                                   Xerox Palo Alto Research Center
+                                                                          3333 Coyote Hill Road, Palo Alto, CA 94304
+                                                                            {kupiec,pedersen,fchen} @pare.xerox.com
+      Abstract                                                                                       author-supplied indicative abstract clearly fulfills this objective, but
+                                                                                                      it is hoped that other, more easily computed condensations may also
+                                                                                                      serve.
+            <U+25CF>   To summarize is to reduce in complexity, and hence in length,                               Numerous researchers have addressed automatic document sum-
+                while retaining some of the essential qualities of the original.                     marization (see [10] for an overview). The nominal task of generat-
+                                                                                                      ing a coherent narrative summarizing a document is currently con-
+            <U+25CF>   This paper focusses on document extracts, a particular kind
+                                                                                                      sidered too problematic since it encompasses discourse understand-
+                of computed document summary.
+                                                                                                     ing, abstraction, and language generation [6]. Nonetheless, knowl-
+            <U+25CF>   Document extracts consisting of roughly 20% of the original                          edge intensive methods have had some success in restricted domains
+                cart be as informative as the full text of a document, which                          [11, 5,3,13, 18]. For example, a filled template produced by a mes-
+                suggests that even shorter extracts may be useful indicative                          sage understanding          system can be thought of as a targetted docu-
+                summmies.                                                                            ment summary. A simpler, more generic approach avoids the cen-
+                                                                                                     tral difficulties of natural language processing by redefining the task
+            <U+25CF>   The trends in our results are in agreement with those of Ed-                         to be summary by extraction [7]. That is, the goal is to find a subset
+                mundson who used a subjectively weighted combination                              of of the document that is indicative of its contents, typically by scor-
+                features as opposed to training the feature weights using a cor-                     ing sentences and presenting those with the best scores. These sorts
+                pus.                                                                                 of summaries are not guaranteed to have narrative coherence, yet
+                                                                                                     may be useful for rapid relevance assessment.
+            <U+25CF>   We have developed a trainable summarization                        program     that
+                                                                                                            Document extracts consisting of roughly 20% of the original can
+                is grounded in a sound statistical framework.                      -
+                                                                                                     be as informative        as the full text of a document [9], which suggests
+                                                                                                     that even shorter extracts may be useful indicative summaries. How-
+      Keywords:          summary sentence, original                   documents,        summary
+                                                                                                     ever, other studies [12, 2] suggest that the optimal extract can be
+                pairs, training corpus, document extracts
+                                                                                                     far from unique. Numerous heuristics have been proposed to guide
+                                                                                                     the selection of document extracts [7,4, 17, 14], yet no clear crite-
+      1     Introduction                                                                             rion has been proposed to choose among them. Existing evidence
+                                                                                                      [4] suggests that combinations of individual heuristics have the best
+      To summarize is to reduce in complexity, and hence in length, while                            performance.
+      retaining some of the essential qualities of the original. Titles, key-                               We approach extract selection as a statistical classification prob-
+      words, tables-of-contents               and abstracts might all be considered as               lem. Given a training set of documents with hand-selected docu-
+      forms of summary, however a document summary conventionally                                    ment extracts, develop a classification             function that estimates the
+      refers to an abstract-like condensation of a full-text document. Tra-                          probability a given sentence is included in an extract. New extracts
+      ditionally,     document summaries are provided by the author. This                            can then be generated by ranking sentences according to this proba-
+      paper focusses on document extracts, a particular kind of computed                             bility and selecting a user-specified number of the top scoring ones.
+      document summary.                                                                                     This framework provides a natural evaluation criterion: the clas-
+            Abstracts are sometimes used as full document surrogates, for                            sification success rate or precision. It also offers a direct method for
+      example as the input to text search systems, but they also speed ac-                           finding an optimal combination of extraction selection heuristics, or
+      cess by providing an easily digested intermediate point between a                              features. However, it does require a training corpus of documents
+      document’s title and its full text that is useful for rapid relevance                          with Iabelled extracts, which can be expensive to obtain. We have
+      assessment. It is this second interface-related                    use that is our moti-       acquired such a corpus from Engineering                 Information    Co., a non-
+      vation for automatic document summarization.                         The gord is to gen-       profit   company      providing    abstracts  of technical   srticles to online  in-
+      erate a concise document description that is more revealing than a                             formation      services,   which    will serve as the basis for the experiments
+      title but short enough to be absorbed in a single glance. A traditional                        described      here.
+                                                                                                            The following     sections detail our approach,       describe the training
+Permission         to make      ciigital/lxwd      copies of all or part of tl)is material
+                                                                                                     corpus, present evahration results that rate our document summa-
+without       fee is granted       provided       that the copies are not made or
+distributed       for profit or commerci:il             advant:igc, the ACM copyri@/                 rization method at 42% average precision, and discuss some practi-
+server notice,         the title of the pubhcation             and its d~tc ~ppear, and              cal implementation          issues.
+notice is given that copyright                 is by pernlissi{)n      of the Association       for
+Computing           Machinery,         Inc. (ACN4). Tu copy olherwise,               }? rqublish,
+to post on servers or to re(iislrihutc                  to Iisls, requires     speclhc    permission
+and/or      fee.
+SIGIR’95         Seattle   WA       USA’”     1995    ACM       0-S9791   -7 i 4-6/95/07.$3     .50
+
+                                          Aerospace America                             Manufacturing         Engineering
+                                          American Laboratory                           Metal    Finishing
+                                          Civil Engineering                             Modem       Plastics
+                                          Chemical Engineering Education                Oil and Gas Journal
+                                          Concrete International                        Pulp and Paper International
+                                          IEEE Communications            Magazine       Robotics World
+                                          IEEE Control System                           Scnpta Metallurgic           et Materiala
+                                          Joumrd of Cellulm Plastics                    Sensors
+                                          Journal of Material Science Letters           Water Engineering and Management
+                                          Japanese     Railway     Engineering          Wire Association International ’93
+                                          Machine      Design
+                                                                         Table 1: Journals in Corpus
+2      A Trainable       Summarizer                                                        Fixed-Phrase         Feature:      Sentences containing any of a list of fixed
+                                                                                                    phrases, mostly two words long (e.g., “this letter...”, “In con-
+Extracting      sttmmarizers typically       compute a score for each sen-                          clusion...”      etc.), or occurring immediately          after a section
+tence in a document and then select the highest scoring subset.                                     heading containing a keyword such as “conclusions”,                    “re-
+Ile scoring criteria employed include participation                   in predefine                  sults”, “ summ~”,          and “discussion” are more likely to be in
+semantic roles[l 11, rhetoricrd relations[81, inclusion of phrasal                                  summaries. This features is true for sentences that contain
+index terrns[ 16], document-specific keyword frequencies[7], lo-                                    any of 26 indicator phrases, or that follow section heads that
+cation heuristics 11, and the assessment of sentence similarity                                     contain specific keywords.
+structtrre[ 17, 15]. Methods either assume the document exists in
+isolation, or in the context of a larger collection, which al lows term                    Paragraph         Feature:      This discrete feature records information         for
+weights to depend on corpus statistics[14, 15].                                                     the first ten paragraphs and last five paragraphs in a docu-
+      The precise formulation        of the scoring rule is heuristic and em-                       ment. Sentences in a paragraph are distinguished                   accord-
+pirical in nature. However, if one were given a training corpus of                                  ing to whether they are paragraph-initial,          paragraph-final    (for
+documents with matched extracts, it would be natural to approach                                    paragraphs longer than one sentence) and paragraph-medial
+the problem as one of statistical classification.             This would provide                    (in paragraphs greater than two sentences long).
+a principled method for selecting among potential features, or scor-
+                                                                                           Thematic Word Feature: The most frequent                      content words are
+ing criteria, and for choosing a weighted combination                    of these to
+                                                                                                    defined as thematic words (ties for words with the same fre-
+produce an “optimal”         scoring scheme — optimal in the sense of do-
+                                                                                                    quency are resolved on the basis of word length). A small
+ing the best job possible of predicting the extraction selection per-
+                                                                                                    number of thematic words is selected and each sentence is
+hrrred by human judges given the features and the method of com-
+                                                                                                    scored as a fimction of frequency. This feature is binary, de-
+bination. To pursue this approach, we need to establish the set of
+                                                                                                    pending on whether a sentence is present in the set of high-
+potential features, the classification method, and a training corpus
+                                                                                                    est scoring sentences. Experiments were performed in which
+clf documentiextract       pairs.
+                                                                                                    scaled sentence scores were used as pseudo-probabilities,
+                                                                                                    however this gave inferior performance.
+2!.1       Features
+                                                                                           Uppercase Word Feature:                Proper names are often important, as
+F’aice [101 groups sentence scoring features into seven categories.                                 is explanatory text for acronyms e.g., “... by the ASTM (Amer-
+Frequency-keyword          heuristics use the most common content words                             ican Socie~ for Testing and Materials)”.            This feature is com-
+as indicators of the main themes in the document. Sentences con-                                    puted similarly to the previous one, with the constraints that
+taining these words are scored using functions of their frequency                                   an uppercase thematic word is not sentence-initial             and begins
+counts [4, 19]. The title-keyword           heuristic assumes that important                        with a capital letter. Additionally,       it must occur several times
+sentences contain content words that are present in the title and ma-                               and must not be an abbreviated unit of measurement (e.g., F,
+jor headings of a document. Location heuristics assume that impor-                                  C, Kg, etc.). Sentences in which such words appear first score
+tant sentences lie at the beginning and end of a document, in the first                             twice as much as later occurrences.
+and last sentences of paragraphs [1, 4], and also immediately below
+section headlttgs. Indicator phrases contain words that are likely to                      2.2        Classifier
+accompany indicative or informative summary material (e.g., “This
+Report...”). A related heuristic involves cue words. These may in-                         For each sentences we compute the probability                 it will be included
+clude two sets of “bonus” and “stigma” words [4] which are posi-                           in a summary S given the k features Ff; j =                  1...lc, which can be
+tively   and negatively     correlated   with   summary       sentences.   Example         expressed      using   Bayes’    rule as follows:
+bonus     words   are “greatest”    and “significant”.      Stigma words are ex-
+                                                                                                                                  P(F1,    F2,. . . Fk/S E S)P(.S      E S)
+emplified by “hardly” and “impossible”.                                                     P(s    6slFl,      F2,...     Fk) =
+                                                                                                                                             P(Fl,   Fz, . ..Fk)
+      Through experimentation          we settled on the following       feature set,
+which are all discrete in nature.                                                                Assuming       statistical  independence     of the features:
+Sentence Length Cut-off Feature:                Short sentences tend not to be                                                       ~;=,    HF, IsI=S) P(s          e  S)
+         included in summaries (section headings generally count as                             P(S 6SlF1,         F2, . ..Fk)   =
+         short sentences). Given a threshold            (e.g., 5 words), the fea-                                                               1-1:=1 p(~,)
+         ture is true for all sentences       longer than the threshold, and               P(s <U+25CF> S)        is a constant and P(FJ [s E S) and P(F3) can be esti-
+         false otherwise.                                                                  mated direct] y from the training set by counting occurrences. Note
+                                                                                    69
+
+that since all the features are discrete, we can formulate this equa-         sentence. These were used as a starting point for the manual assign-
+tion in terms of probabilities     rather than likelihoods.  This yields      ment of correspondences made in the second pass. Table 2 shows
+a simple Bayesian classification function that assigns for each s a          the distribution      of the correspondences in the training corpus.
+score which can be used to select sentences for inclusion in a gen-
+erated summary.
+                                                                                              Direct Sentence Matches                 451     79%
+                                                                                              Direct Joins                             19      3%
+3       The  Corpus
+                                                                                              Unmatchable Sentences                    50      9%
+                                                                                              Incomplete Single Sentences              21      4%
+The training corpus provided by Engineering Information employed
+                                                                                              Incomplete Joins                         27      5%
+in our investigation     contains documents without author-supplied
+                                                                                              Total Manual Summary sents =
+abstracts. Abstracts were instead created by professional abstrac-
+ters by reference to the original. There are 188 documentlsummay
+pairs, sampled from 21 publications in the scientific/technical       do-
+                                                                                               Table   2: Distribution    of Correspondences
+main (see Table 1). These summaries are mainly indicative, and
+their average length is three sentences. An example is shown in Fig-
+                                                                                   The table indicates that 79’% of the summary sentences have di-
+ure 1.
+                                                                              rect matches. The 19 direct joins consist of a total of 41 different
+      Documents were received in the form of photocopies which re-
+                                                                              sentences from original documents. For three summary sentences,
+quired scanning and optical character recognition (OCR) to extract
+                                                                              the best matching “sentences” in the original appeared to be the cor-
+their text portions. This process introduced spelling errors and oc-
+                                                                              responding document titles. Nine of the manual summary sentences
+casional omissions of text. The resulting text files were manually
+                                                                              appeared to contain section headings (e.g. in lists). In eight in-
+checked, and either rejected due to excessive OCR errors or cleaned-
+                                                                              stances a sentence in the original document was split up to make
+up. Errors and omissions still remain in the files after cleanup, how-
+                                                                              several sentences in the manual summaries.
+ever they are unlikely to affect results. Particular care was taken
+to ensure that the beginnings and ends of documents were correct,
+as most summary sentences are located at these places. The aver-              4       Evaluation
+age number of sentences per document is 86 (a slightly conserva-
+tive estimate due to the omissions). Each document was “normal-               Since we had insufficient          data to reserve a separate test corpus we
+ized” so that the first line of each file contained the document title.       used a cross-validation        strategy for evaluation. Documents from a
+Text describing author, address etc., between the title and the start of      given journal were selected for testing one at a time, all other docu-
+the document proper was removed, as was the bibliography.         (Tech-      mentkttmmary         pairs were used for training. Results were summed
+niques for dealing with more typical text are described in Section            over journals.       Unmatchable         and incomplete     sentences were ex-
+6). The corresponding originaJ text for Figure 1 is shown in Figure           cluded from both training and testing, yielding a total of 498 unique
+ *                                                                            sentences. We evaluate performance in two ways.
+L.
+      The training strategy outlined in Section 2 assumes that we have             The first evaluation measure is stringent – the fraction of manual
+documentiextract     pairs. However, we have in fact manual summary           summary sentences that were faithfully             reproduced by the summa-
+ sentences that are “inspired” by particular sentences in the original        rizer program. It is thus limited by the drawbacks of text excerpting
+documents. Thus the summarization task we are addressing is to ex-            and the highest performance attainable is the sum of all direct sen-
+tract the same set of sentences from a document that an expert might          tence matches and all direct joins. Refernng to Table 2 this is:
+use to make summary text, either verbatim or with minor modifica-
+tion, preserving content.                                                                451 + 19 = 83%
+                                                                                            568
+ 3.1     Sentence    Matching                                                      A sentence produced           by the summarizer      is defined     as correct
+                                                                              here ifi
+To proceed with training, we need to obtain a correspondence be-
+tween the manual summary sentences and sentences in the original
+                                                                                  1. It has a direct sentence match, and is present in the manual
+document. Sentences from the original documents can be matched
+                                                                                        summary.
+to those in the manual summaries in several ways. A direct sentence
+match occurs when a mamrrd summary sentence could either be ex-                   2. It is in the manual summary as part of a direct join, and all
+tracted verbatim from the original, or with minor modifications,     pre-               other members of the join have also been produced (thus all
+ serving the content (as exemplified      by Figures    1 and 2). When                  the information    in the join is preserved).
+it is obvious that two or more sentences were used from the orig-
+inal to make a summary sentence, a direct join occurs. If it is either             For each test document, the trained summarizer produced the
+obvious or suspected that the expert constructed a summary sen-               same number of sentences as were in the corresponding                       manual
+tence from a general reading (i.e. using no specific sentence from            summary. Of the 568 sentences, 195 direct sentence matches and
+the original) the summary sentence is labelled unmatchable.         Indi-     6 direct joins were correctly identified, for a total of 201 correctly
+vidual summary sentences may also be Iabelled incomplete in two               identified    summary     sentences.     The summarizer     thus replicates    35%
+ situations. The first is when some overlap does exist between a sum-         of the information in the manual summaries. This assumes that only
+mary sentence and one in the original, but the content of the origi-          one “correct” summary exists for a document which is very unlikely
+nal is not preserved in the summary sentence. The second is when              to be the case. Indeed. it has been observed that subjects differ
+the summary sentence includes a sentence from the original docu-              greatly when asked to select summary sentences [2]. In particular.
+ment, but also contains other information that is not covered by a di-        Rath et al. [12] found that extracts selected by four different human
+rect join. Joins may themselves be label led incomplete for the same         judges had only 25% overlap, and for a given judge over time only
+reasons. Examples of these correspondences are shown in the Ap-               55% overlap.
+pendix. The correspondences were produced in two passes. In the                    The second evaluation measure is the fraction of the 498 match-
+first, an automatic alignment program was used to find the best one-          able sentences that were correctly identified by the summarizer (it is
+to-one sentence match in the original documents for each summary
+                                                                          70
+
+              The work undertaken examines the drawability              of steel wire rod with respect to elements that are not intentionally
+              added to steel. Only low carbon steels were selected for experimentation.                       During wire drawing, failure-inducing
+              tensile forces are greatest at the center of the wire. This accounts for the classic appearance of ductile failure with
+              the center of the wire failing in a ductile manner.
+                                                                  Figure 1: A Manual       Summary
+               Paragraph 2: The work undertaken examines the drawability                      of steel wire rod with respect to elements that are
+                        not intentionally    added to steel. The effect of microstmcture          was not of interest to the investigation.              For this
+                        reason, only low carbon steels were selected for experimentation.
+                  .....
+            I
+               Paragraph 4: Once nucleated, these microvoids              grow and coalesce, until the wire can no longer support the draw-
+                        ing load and a break occurs. During wiredrawing,           failure-inducing        tensile forces are greatest at the center of
+                        the wire. This accounts for the classic appearance of ductile failure with the center of the wire failing in a
+                        ductile manner, while the circumference fails last, and in shear.
+                                                          Figure 2: Relevant Paragraphs from Original
+thus theoretically     possible to attain 100% correct). When the sum-                  our COIUUSis about 20 sentences.                    Reference to the table indicates
+marizer outputs the same number of sentences as in corresponding                        perforn&ce          at 84%.
+manual summaries, 211 out of 498 (42%) were correctly identified.
+     The second column in Table 3 shows the sentence-level perfor-
+                                                                                        5      Discussion
+mance for individual        features. In cases where sentences have the
+same probability, they are ranked in document order. Thus, the sen-                     The trends in our results are in agreement with those of Edmund-
+tence length cut-off feature, if used alone, returns the text at the be-                son [4] who used a subjectively weighted combination of features
+ginning of a document, excluding the title and headings.                                as opposed to training the feature weights using a corpus.                              He
+                                                                                        also found that location-based                 heuristics gave best performance.
+                                                                                        His best combination             of heuristics were based on location, title-
+               Feature               Individual         Cumulative
+                                                                                        keywords and cue words. Edmundson also experimented with a
+                                                                                        frequency-keyword            heuristic, omitting it from his preferred selec-
+                                                                                        tion on account of inferior performance.
+                                                                                              Frequency-keyword             features (i.e. the thematic word feature and
+                                                                                        uppercase feature) also gave poorest individual performrmce in our
+           The;atic     Word         101 i20%j           209 ~42%j                      evaluation.        The likely reason is that they select sentences more
+          Uppercase Word         I   100 (20%)           211 (42%)                      evenly throughout a text, but our corpus contains a lot of indicative
+                                                                                        material located at the beginnings and ends. We have however re-
+                                                                                        tained these features in our final system for several reasons. The first
+                     Table 3: Performance       of Features                             is robustness; many text genres do not contain arty of the indicator-
+                                                                                        phrases that are common in the corpus we have used 1. Secondly,
+     The third column in Table 3 shows how performance varies                           as the number of sentences in a summary grows, more dispersed in-
+as features are successively combined together, in descending or-                       formative material tends to be included.
+der of individual       performance.       The best combination      is (para-                As described in Section 3.1, we first used an automatic align-
+graph + fixed-phrase+        sentence-length).    Addition of the frequency-            ment program to obtain correspondences, which were then manu-
+keyword features (thematic and uppercase word features) results in                      ally checked and corrected. We also evaluated performsmce using
+a slight decrease in overall performance.                                               the manually corrected correspondences, but training using only the
+     For a baseline, we compared the summarizer with the strategy of                    correspondences produced by the alignment program. The perfor-
+simply selecting sentences from the beginning of a document (how                        mance was 216 sentences (Lt3~o)                   correct, suggesting that for cor-
+documents are typically displayed and read). This baseline was com-                     pora such ours, summarizers can be trained automatically from doc-
+puted by considering the sentence length cut-off feature alone, which                   ument/summary           pairs without manual intervention.
+ranks sentences in reading order, excluding short fragments, such
+as section headings. When compared to the baseline (which Cm be
+read off the third row of Table 3; 121 sentences correct) using the                     6       Implementation             Issues
+full feature set improves performance by 74% (211 sentences cor-
+                                                                                        Our goal is to provide a summarization                     program that is of general
+rect).
+                                                                                        utility. This requires attention to several issues beyond the training
+     Figure 3 shows the performance of the summarizer (using all
+                                                                                        of features and performance evaluation. The first concerns robust-
+features) as a function of summary size. When generating sum-
+                                                                                        ness (in this regard         multiple     features    have already     been discussed).
+maries that automatically       select 25% of the sentences in the original
+documents, Edmundson cites a sentence-level performance of 44%.                             1 When  tie fixed-phrase   feature  is omitted.  performance  drops from 21 I sentences
+By analogy, 25% of the average document length (86 sentences) in                        (42%)   to 17S (36%)
+                                                                                 71
+
+                                                 100
+                                                   80
+                                                   60
+                                                  40
+                                                  20
+                                                                I        I       J     I        I      I       I
+                                                     0
+                                                         05            10      15     20      25      30      35  40
+                                                                        number      of sentences
+                                                              Fignre3:     Performances.        Summary     Size
+                     Key Phrases:
+                      cold work                  solute atmospheres
+                      solute atoms               test piece
+                      dislocation velocity       dynamic strain aging
+                     Sentence Extracts:
+                      <U+25CF> Drawability     of low carbon steel wire
+                      <U+25CF>  The work undertaken examines the drawability               of steel wire rod with respect to elements that are not inten-
+                         tionrdly added to steel.
+                      <U+25CF>  For this reason, only low carbon steels were selected for experimentation.
+                     <U+25CF>   During   wiredrawing,     failure-inducing     tensile forces are greatest at the center of the wire.
+                      <U+25CF>  This accounts for the classic appearance of ductile failure with the center of the wire failing        in a ductile manner,
+                         while the circumference fails last, and in shear.
+                                                                    Figure 4 Computed         Summary
+As mentioned earlier, documents in the corpus were edited so that                          likely title) are shown in reading order to the user in conjunction
+the title appears first and the text of the document proper immedi-                        with the key phrases of the document (as illustrated in Figure 4).
+ately follows. In practice, both the title (if present) and the begin-                     These key pfiases must contain at least two adjacent words, are pr-
+ning of the main body of text are often preceded by dates, addresses,                      imarily noun phrases, and are presented in frequency order. They
+names. and various other notations. It is advantageous to find the ti-                     are computed based on a frequency anrdysis of word sequences in a
+tle, and the beginning of the main text (performance is sensitive to                       document. To identify them, a stop list composed of articles, prepo-
+the beginning of the main text, by virtue of the paragraph feature).                       sitions, common adverbs, and auxilary verbs is used to break the
+We therefore implemented another set of features specifically to find                      words in a sentence into phrases.
+the start of the main text body. and to isolate a sentence that acts as
+a title, lying between the main text and beginning of the document.                        7      Conclusions
+Briefly, these features include numbers, explicit sentence boundaty
+marks, word case, and paragraph and sentence lengths. For examp-                           We have developed a trainable summarization           program that is
+le, uppercase or word-initial         uppercase letters are often used in ti-              grounded in a sound statistical framework. For summaries that are
+tles, and consecutive sentences ending with explicit punctuation are                       25% of the size of the average test document, it selects 84% of the
+more likely to be in the main text body. Additionally,              if an author-          sentences chosen by professionrds. For smaller summary sizes an
+supplied abstract is present (identified by a heading containing the                      improvement of 74% was observed over simply presenting the be-
+word    afzrtract), then subsequent      paragraphs     are used directly   as the
+                                                                                          ginning of a document. We have also described how extracts can
+summary and no feature-based extraction is attempted.                                     be used with other information    to create a summary useful of rapid
+      The second issue concerns presentation and other forms of sum-                      relevance assessment while browsing.
+mary information.          The highest scoring sentences (including             the
+                                                                                    72
+
+8      Acknowledgments                                                                [14]    G. Salton, J. Alan, and C. Buckley.              Approaches to passage
+                                                                                              retrieval in full text information          systems. In Proceedings of
+We would like to thank Meg Withgott              and John Tukey for their in-                 SIGIR ’93, pages 49-58, June 1993.
+sights into this work. In pmticular, Meg Withgott was responsible
+                                                                                      [15]    G. Salton, J. Allan, C. Buckley, and A. Singhal.                Automatic
+for pioneering this work. We thank Austen Briggs for hand cor-
+                                                                                              analysis, theme generation, and summarization                 of machine-
+recting the OCR data. We are also grateful to Dan Brotsky, Ken
+                                                                                              readable texts. Science, 264(3): 142 1–1426, June 1994.
+Feuetman, Sandy Garcia and Steve Putz for their help and for the
+implementation         of the summarization      program in the XSoft VisuaJ          [16]    C. Schwarz. Content based text handling.               Information    Pro-
+RecallTM product.                                                                             cessing & Management, 26(2):219-226,                1990.
+                                                                                      [17]    E. F. Skorokhod’ko.           Adaptive method of automatic abstract-
+References                                                                                    ing and indexing. In IFIP Congress, Ljubljana,              Yugoslavia 71,
+                                                                                              pages 1179-1182. North Holland, 1972.
+  [1] P. B. Baxendale.        Man-made index for technical literature-an
+        experiment.      IBM J. Res. Develop., 2(4):354-361,           1958.          [18]    J. I. Tait. Generating summaries using a script-based language
+                                                                                              analyzer. In L. Steels and J.A. Campbell, editors, Progress in
+  P] F.R. Chen and M.M. Withgott.               The use of emphasis to auto-                  Ar@cial Intelligence,          pages 312-318. Ellis Horwood, 1985.
+        matically summarize a spoken discourse. In Proceedings of
+        the IEEE Intl. Con$ on Acoust., Speech and Signal Proc., vol-                 [19]    L. C. Tong and S. L. Tan. A statistical approach to automatic
+        ume 1, pages 229-232, March 1992.                                                     text extraction. Asian Library Journal.
+  L]] G. DeJong.          An overview of the FRUMP system. In W.G.                    9     Appendix
+        Lehnert and M. H. Ringle, editors, Strategies for Natural Lan-
+        guage Parsing, pages 149-176, 1982.                                           9.0.1        Direct     Match
+  [q H. P. Edmundson.              New methods in automatic abstracting.              If a summary sentence is identical to a sentence in the original, or
+        Journal     of the ACM, 16(2) :26L285,         April 1969.                    has essentially the same content, the match is defined as a direct
+                                                                                      match. An example match that is not exact but considered to convey
+  [!5] P.S. Jacobs and L. F. Rau. Sciso~ Extracting            information from
+                                                                                      the same content is shown below:
+        on-line     news.    Communications       of the ACM, 33(11):88-97,
+         1990.                                                                        Manual:         This paper identifies the desirable features of an ideal mul-
+                                                                                                tisensory gas monitor and lists the different models currently
+  [6] K. Sparck Jones.           Discourse modelling        for automatic     sum-              available.
+        marizing. Technical Report 29D, Computer Laboratory,                  Uni-
+        versity of Cambridge, 1993.                                                    Original:       The present part lists the desirable features and the dif-
+                                                                                                ferent models of portable, multisensory gas monitors currently
+   [7] H.P. Luhn. The automatic creation of literature             abstracts. IBM               available.
+        J. Res. Develop., 2:159-165,          1959.
+                                                                                       9.0.2       Direct     Join
+   [8]   S. M&e,       E. Itoh, K. One, and K. Sumita.             A full-text re-
+         trieval system with a dynamic abstract generation function. ht                If the content of the manual sentence is represented by two or more
+         W. Bruce Croft and C.J. van Rijsbergen, editors, Proceedings                  sentences in the original,         the latter sentences are noted as joins. For
+         of Seventeenth Annual International          ACM SIGIR Conference             example:
+         on Reseaxh and Development in Information Retrieval, pages
+                                                                                       Manual:        In California, Caltrans has a rolling pavement manage-
+         152-161, July 1994.
+                                                                                                ment program, with continuous collection of data with the aim
+   F)] A. H. Morns, G. M. Kasper, and D. A. Adams. The effects and                              of identifying     roads that require more monitoring and repair.
+         limitations of automated text condensing on reading compre-
+                                                                                       Original (l):        Rather than conducting biennial surveys, Caltrans
+         hension performance.        Information      Systems Researrh, pages
+                                                                                                now has a rolling pavement-management               program, with data
+         17–35, March 1992.
+                                                                                                collected continuously.
+ [10]    C. D. Paice. Constructing         literature abstracts by computer            Original (2): The idea is to pinpoint             the roads that may need more
+         Techniques and prospects. Information            Processing and Man-                    or less monitoring       and repair.
+         agement, 26:171–186, 1990.
+ [11] C. D. Paice and P. A. Jones. The identification                 of important      9.0.3       Incomplete       Matches
+         concepts in highly structured technical papers. In R. Kortlage,
+                                                                                        A sentence in the originrd document is labelled as an incomplete
+         E. Rasmussen, and P. Willett,           editors, Proceedings of Six-
+                                                                                       match if it only partially covers the content of a manual summary
+         teenth Annual International         ACM SIGIR Conference on Re-                sentence, or if a direct match is not clear. It can occur in the context
+         search and Development in Information              Retrieval, pages 69–       of a single sentence or a join. The following exemplifies an incom-
+         78. ACM Press. June 1993.                                                      plete single sentence match:
+ [12]    G. J. Rath, A. Resnick, and T. R. Savage. The formation of                     Manual:        Intergranular    fracture of polycrystalline    IVZSA1 was stud-
+         abstracts by the selection of sentences. American Documen-                              ied at 77K.
+          tation, 12(2): 139–143, April 1961.
+                                                                                        Original:       Before discussing the observed deformation and fracture
+ [13]     U. Reimer and U. Hahn. Text condensation            as knowledge base                  behavior of polycrystalline         IVi3Al at 77K in terms of the ki-
+          abstraction.     In IEEE   Con$    on AI Applications.       pages 338-                netics of the proposed environmental            embrittlement    mecha-
+          344, 1988.                                                                             nism, we should ask whether the low temperature by itself
+                                                                                                 significantly    affects the brittleness of NzsA1.
+                                                                                   73
+
