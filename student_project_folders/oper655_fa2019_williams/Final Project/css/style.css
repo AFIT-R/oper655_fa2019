@@ -1,4 +1,4 @@
-pre {
+﻿pre {
  padding: 15px 0 15px 75px;
  border-style: solid;
  border-top-width: .75px;
@@ -118,4 +118,25 @@ a {
   
   font-size: 12pt;
   font-weight: normal;
+}
+
+.showopt {
+  background-color: #004c93;
+  color: #FFFFFF; 
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle !important;
+  float: right;
+  font-family: sans-serif;
+  border-radius: 8px;
+}
+
+.showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+}
+
+pre.plot {
+  background-color: white !important;
 }

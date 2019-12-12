@@ -8,7 +8,7 @@ output:
   html_document:
     toc: yes
     toc_float: yes
-    css: 'css/hufstetler.css'
+    css: 'css/style.css'
 bibliography:  document_summarization.bib
 
 ---
@@ -28,7 +28,7 @@ This first set of code lays down the foundation for our analysis. The data is im
 ## Overview
 Document summarization's origins can traced back to the 1950's @Luhn . The paper "The automatic creation of literature abstracts", introduced a method to extract sentences from the text using features such as wordand phrase frequency. The goal of the initial research was to summarize scientific documents @Allahyari. 
 
-Document summarization's ultimate goal is to identify the most important and mostfrequent text within a document and ouput those results, capturing the best summary of the document. Document summarization can be categorized as either abstractive or extractive.
+Document summarization's ultimate goal is to identify the most important and most frequent text within a document and ouput those results, capturing the best summary of the document. Document summarization can be categorized as either abstractive or extractive.
 
 Abstractive document summarization uses semantic relationships between text in the original document and uses natural language processing to generate new text to describe the summarization of the document. Abstractive summarization is generally the way that humans create summaries. Abstractive summarizers can be built using ANN.
 
