@@ -20,13 +20,13 @@ of words that are distinct to both of these review types.
 To access the data from in a form that is amenable to `tensorflow` we will use the `tensorflow_datasets` module. This module is included in the `conda` repository and can be installed using the Anaconda Navigator, from within R using
 
 ```{r, eval=FALSE}
-reticulate::conda_install(packages = "tensorflow_datasets")
+reticulate::conda_install(packages = "tensorflow-datasets")
 ```
 
 or from the Anaconda prompt using
 
 ```{asis}
-conda install tensorflow_datasets
+conda install tensorflow-datasets
 ```
 
 A number of data sets have been made available as part of the `tensorflow_datasets` module, these data sets can be viewed from <a target=" " href="https://www.tensorflow.org/datasets/catalog/overview">**this site**</a>.
@@ -34,7 +34,7 @@ A number of data sets have been made available as part of the `tensorflow_datase
 To download the data, we first need to import the module into our working environment 
 
 ```{python}
-import tensorflow_datasets as tfds
+import tensorflow_datasets as tf
 ```
 
 Now, we can load the data using the `load()` method from within the `tensorflow_datasets` module as shown in the chunk below.  Note, that this method will search `data_dir` to check whether an `imdb_reviews` directory already exists.  If this directory is not found it will be created and the data will be downloaded into it and then loaded into the current working environment.  If the directory is found the data will simply be loaded. If `data_dir` is undefined this method will attempt to download the data to a default directory.  In my case, my Virus protection would not allow these new directories/files to be created in a "protected folder".  Therefore, it may be wise to specify a location. Note that this directory may be defined using a relative path. 
@@ -42,7 +42,7 @@ Now, we can load the data using the `load()` method from within the `tensorflow_
 The `with_info = True` argument indicates that the metadata will also be included in the download.  The `as_supervised = True` argument indicated the structure of the returned `tf.data.Dataset`.  If `True` the data will have a 2-tuple structure `(input, label)`, if `False` the data be returned as a dictionary with all the features. The `shuffle_files = False` indicates whether to shuffle the input files -- this argument was added to prevent a warning message that kept popping up for me. 
 
 ```{python}
-imdb, info = tfds.load("imdb_reviews", 
+imdb, info = tf.load("imdb_reviews", 
                         with_info = True, 
                         as_supervised = True,
                         data_dir = "data",
@@ -180,8 +180,8 @@ Now it's time to define our neural network, as shown in the code chunk below.  T
 embedding_dim = 16
 
 model = tf.keras.Sequential([
-  tf.keras.layers.Embedding(vocab_size, 
-                            embedding_dim, 
+  tf.keras.layers.Embedding(vocab_size,
+                            embedding_dim,
                             input_length = max_length),
   tf.keras.layers.Flatten(),
   tf.keras.layers.Dense(6,activation = "relu"),
