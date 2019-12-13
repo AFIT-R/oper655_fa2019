@@ -31,5 +31,5 @@ This tutorial walks through how to perform text analyses using Tensorflow by int
 ```{r tf2, child="tf2.Rmd", eval=TRUE}
 ```
 
-```{r tf3, child="tf3.Rmd", eval=!TRUE}
+```{r tf3, child="tf3.Rmd", eval=TRUE}
 ```

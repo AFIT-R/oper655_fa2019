@@ -4,7 +4,6 @@ output: html_document
 
 ```{r}
 library(reticulate)
-reticulate::conda_python(envname = "r-reticulate")
 ```
 
 Last time, we tokenized the text in a corpus, transforming the words into number sequences wherein the numbers represented the values in a `key : value` pair and the 
@@ -20,7 +19,7 @@ of words that are distinct to both of these review types.
 To access the data from in a form that is amenable to `tensorflow` we will use the `tensorflow_datasets` module. This module is included in the `conda` repository and can be installed using the Anaconda Navigator, from within R using
 
 ```{r, eval=FALSE}
-reticulate::conda_install(packages = "tensorflow_datasets")
+reticulate::conda_install(packages = "tensorflow-datasets")
 ```
 
 or from the Anaconda prompt using
