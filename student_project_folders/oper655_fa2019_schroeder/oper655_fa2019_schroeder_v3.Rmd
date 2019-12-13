@@ -1,0 +1,328 @@
+---
+title: "OPER 655 Student Project Report"
+author: "Maria Schroeder"
+date: "`r format(Sys.Date(), '%d %b %Y')`"
+output: 
+  html_document:
+    code_folding: 'hide'
+
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = F,
+                      warning = F, 
+                      comment = NA)
+```
+
+##Abstract
+This file applies different text mining techniques to John Mulaney's "New in Town".
+
+
+
+## Project Overview/Problem Statement 
+
+This project attempts to analyze the words and actions of John Mulaney's "New in Town". Common words and phrases will be explored and an attempt at summarizing the document will be made. Our goal is to find and explore insights through these methods to see what topics John Mulaney covers in this stand-up special. 
+
+### Installing Loading Required R Packages
+
+The packages used in this analysis are listed below.
+
+```{r message=FALSE, warning=FALSE}
+library(tools)
+library(pacman)
+pacman::p_load(XML,
+               readr,
+               rvest,
+               RCurl,
+               rprojroot,
+               pdftools,
+               antiword,
+               glue,
+               data.table,
+               tidyverse,
+               vroom,
+               magick,
+               tesseract,
+               tm, 
+               here,
+               tau,
+               stringr,
+               tidytext, 
+               RColorBrewer,
+               qdap,
+               qdapRegex,
+               qdapDictionaries,
+               qdapTools,
+               coreNLP,
+               scales,
+               text2vec,
+               SnowballC,
+               DT,
+               quanteda,
+               RWeka,
+               broom,
+               tokenizers,
+               grid,
+               knitr,
+               widyr,
+               textdata,
+               dplyr,
+               ggplot2,
+               magrittr,
+               wordcloud,
+               reshape2,
+               textmineR,
+               LSAfun,
+               igraph,
+               textrank,
+               ggraph,
+               lattice,
+               udpipe,
+               tidyr,
+               saotd)
+pacman::p_load_gh("dgrtwo/drlib",
+                  "trinker/termco", 
+                  "trinker/coreNLPsetup",
+                  "trinker/tagger")
+```
+
+## Methodology 
+
+To approach this problem, the following procedure was used
+  1. Import data
+  2. Clean data and rid of any special characters unneeded
+  3. Manipulate data into different formats (words, sentences)
+  4. Find word frequency
+  5. Document Summarization
+  6. Sentiment Analysis
+  7. Create visuals of the data
+  8. Findings and Conclusions
+For each of these steps, the specific steps and code used will be stated. 
+
+### Data 
+
+The script for John Mulaney's "New in Town" covers all actions and words spoken by John Mulaney. All the descriptions for his actions were either put in square brackets or parentheses. The data used was from 'http://scrapsfromtheloft.com/2017/09/25/john-mulaney-new-in-town-2012-full-transcript/'. The data was pulled from the website and put into a single vector. Since the data was pulled directly from the url, the data still had some html characters in the text such as extra " \ ". There was also some extra text at the bottom of the data from the website that were either ads or links to other article. The following code imports the data and removes the html characters. The text was then all converted to lower case in order to allow for easier word identification. 
+
+```{r} 
+##Get data from URL
+url  <- 'http://scrapsfromtheloft.com/2017/09/25/john-mulaney-new-in-town-2012-full-transcript/'
+rcurl.doc <- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+#this text_block has one single entry of all of the text in a single string
+text_block=XML::xpathSApply(url_parsed, "//div[@class='post-content']", XML::xmlValue)
+
+```
+```{r}
+#Removes symbols from text extraction that are not words
+text_block=str_replace_all(text_block,"\n",replacement = " ")
+text_block=str_replace_all(text_block,"\t",replacement = " ")
+#converts all data to lowercase 
+text_block=tolower(text_block)
+```
+
+Since the text provided comments of the actions of John Mulaney and all these actions were in parentheses or brackets, this information was put into a separate data set for further analysis. Since the actions were already split into sentences, another data frame was made with a single string of all the actions in order to put the information into a form that could be used. Then the information in brackets was removed from the dataset of the speech. This information was then put a dataframe. All punctuation was removed from speech, but only after the text was split into senteces in order to allow us to identify the sentences. 
+
+```{r}
+#Places "actions" (stuff in brackets) into a document
+actions=unlist(str_extract_all(text_block,"\\[.*?\\]")) #takes all brackets
+actions=str_replace_all(actions,"\\[",replacement = "")
+actions=str_replace_all(actions,"\\]",replacement = "")
+actions=actions[1:length(actions)-1] #gets rid of date
+actions2=unlist(str_extract_all(text_block,"\\(.*?\\)")) #takes all parentheses
+actions2=actions2[2:129]#removes "start" and "end" and dates
+actions2=str_replace_all(actions2,"\\(",replacement = "")
+actions2=str_replace_all(actions2,"\\)",replacement = "")
+actions=c(actions,actions2)
+remove(actions2)
+Actions_df=data.frame(act=actions, stringsAsFactors = FALSE)
+action_block=paste(Actions_df$act, collapse = '. ')
+
+#removes all brackets and contents
+text_block=bracketX(text_block,"all")
+DF_block=data.frame(word=text_block, stringsAsFactors = FALSE)
+article_sentences <- tibble(text = text_block) %>%
+  unnest_tokens(sentence, text, token = "sentences") %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, sentence)
+text_block=str_replace_all(text_block, "[[:punct:]]", "")
+
+```
+
+Now, there are two main data sets of a single string: article and action. The article data set consists of the main information from the imported data set, that being the words that John Mulaney speaks. The other data set is that of the actions which was taken from the brackets. Now that we have clean data sets, we can split them into a dataset with the individual sentences and words of each. Note that this information is sometimes converted to a data frame in order to comply with functions used later. The setup used here also uses row numbers as another column for the setup of using a function that requires this specific setup later on. 
+
+```{r}
+#Splits string into one word per row
+text_words=unlist(strsplit(text_block, split = " "))
+#DPLYR only likes data frames
+DF_word <- data.frame(word = text_words, stringsAsFactors = FALSE)
+
+##Set up dataset of just words
+#Article
+article_words <- article_sentences %>%
+  unnest_tokens(word, sentence)
+article_words <- article_words %>%
+  anti_join(stop_words, by = "word")
+
+#Actions--setup datasets of sentences and words
+action_sentences<-tibble(action=Actions_df$act) %>%
+  mutate(sentence_id = row_number()) %>%
+  select(sentence_id, action)
+
+action_words <- action_sentences %>%
+  unnest_tokens(word, action)
+
+action_words <- action_words %>%
+  anti_join(stop_words, by = "word")
+```
+
+
+### Analysis
+ Three different types of analysis were used: Term Frequency, Document Summarization, and Sentiment Analysis. Each technique attempts to answer the question stated above. 
+# Term Frequency
+The first part of this analysis is fairly basic but can provide a lot of insight into what type of document you have and the topics it covers. Since our dataset has a considerable amount of everyday words that do not give insight, those words were removed for this analysis. Since not all common words were included in the stop_words dictionary, a few other words were added in another data set and removed from our main dataset. Note that the word "ill" is never used in the data. Rather the word "I'll" is used but since we removed punctuation and made all letters lower case, it was converted to "ill". 
+```{r}
+#Outputs most common words by count (no filter)
+# DF_word %>% dplyr::count(as.factor(word), sort = TRUE)
+#stop words and other common words that dont provide insight are ommitted
+dumb_words=c("ill","youre","dont","","hey","ive", "didnt", "lot", "yeah", "im", "gonna", "uh", "ha", "theyre", "hes")
+data.frame(word=DF_word[!(DF_word$word%in%stop_words$word | DF_word$word%in%dumb_words),])%>%
+  dplyr::count(word, sort = TRUE)
+```
+These words with higher frequency give a clue of the topics of some of the jokes referenced in the text. For example, one joke discusses a doctor's visit. It is also interesting how the word "york" appears without the word "new". My only thought is that the word "new" may be in the stop_words data frame because it should appear more than york and town considering the two phrases "New York" and "New in Town". 
+
+```{r}
+data.frame(word=action_words$word[!(action_words$word %in%stop_words$word)])%>%
+  dplyr::count(word, sort = TRUE) 
+```
+These results are reassuring because the feature of comedy does not seem to be unnoticed. 
+
+Above, we only considered unigrams. Below a few other options were considered for both the article dataset and action dataset. 
+```{r}
+#Trigram and Quadgram
+#applied because of "new in town"
+trigram<-DF_block %>%
+  unnest_tokens(token, word, token="ngrams", n=3)
+
+trigram %>% dplyr::count(token, sort = TRUE)
+
+##Action
+bigram<-data.frame(word=action_block)%>%
+  unnest_tokens(token, word, token="ngrams", n=2)
+
+bigram %>% dplyr::count(token, sort = TRUE)
+```
+ These trigrams of the article words have a lot of stop words in them, but we can still see a couple phrases that give us some insight. For example, "new in town" is a good thing to see considering the title of the skit. And "in new york" gives an idea of where a lot of these stories take place, which makes sense considering this is where John Mulaney lives. Although most of these trigrams have stop words, the phrasing of them show that John Mulaney tells a lot of stories during his comedy stand-ups. 
+
+The bigram for the action shows us that indeed the words "audience" and "laughter" tend to follow each other. It also reaffirms the idea that it is indeed the audience who is laughing from the stand-up and not John laughing at his own jokes. 
+
+# Document Summarization
+Document summarization is helpful because we'll be able to extract a few sentences that give us insight over the whole document. Since stand-up skits can change topics fairly often, this may not provide the best results in comparison to other types of documents. Two different types of document summarization techniques were used in order to compare insights. The first is the LSA method with the function genericSummary() and the other is a graph-based method with the funciton textrank_sentences().
+```{r}
+##Document Summarization
+#Article
+genericSummary(DF_block$word,3)
+```
+```{r}
+#TextRank
+#Article
+article_summary <- textrank_sentences(data = article_sentences, 
+                                      terminology = article_words)
+article_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+```
+
+What's interesting from these two summaries of the article is that they dont use any of the same sentences. And while this alone may not be very surprising, the sentences they chose are very different. Comparing the two, they all took sentences from different jokes throught the skit. 
+
+```{r}
+#Action
+genericSummary(paste(Actions_df$act, collapse = '. '),3)
+```
+
+```{r}
+#action
+action_summary <- textrank_sentences(data = action_sentences, 
+                                      terminology = action_words)
+action_summary[["sentences"]] %>%
+  arrange(desc(textrank)) %>% 
+  slice(1:3) %>%
+  pull(sentence)
+
+```
+Both hese methods returned different results, but what's more interesting is that neither of them are just "audience laughter" which is fairly common in the dataset. 
+
+# Sentiment Analysis 
+For the sentiment analysis, the NRC dictionaries for words of "joy" and "anger" were imported. The words in the "joy" dictionary we will recognize as positive words and words in the "anger" dictionary we will recognize as negative words. Using these dictionaries, the positive and negative words of the article and action data sets are outputed based on frequency. 
+```{r}
+####Sentiment Analysis####
+nrc_joy <- get_sentiments("nrc") %>%
+  filter(sentiment == "joy")
+nrc_anger <- get_sentiments("nrc") %>%
+  filter(sentiment == "anger")
+
+#article 
+article_words %>%
+  inner_join(nrc_anger) %>%
+  count(word, sort = T)
+
+article_words %>%
+  inner_join(nrc_joy) %>%
+  count(word, sort = T)
+
+#sentiment of actions
+action_words %>%
+  inner_join(nrc_anger) %>%
+  count(word, sort = T)
+
+action_words %>%
+  inner_join(nrc_joy) %>%
+  count(word, sort = T)
+
+```
+For the article words, most of these words are not surprising and show that there is a decent amount of profanity within this stand-up. What's strange is that both the words "lawyer" and "orchestra" are considered negative words. For both the action and article sentiment analysis, the number and frequency of positive words is greater than or equal to the number of negative and frequency of the negative words. This reaffirms that the overall stand-up most likely brings joy to it's listeners.
+Although the negative words definitely give insight into how John Mulaney talks and what he talks about, the positive words are fairly general and do not provide much insight. 
+
+## Findings and Conclusions 
+
+From these different techniques, many insights can be gained. Document Summarization gives a closer look at how the dataset is structured and examples of the jokes told, but other than that it does not summarize the document very well due to the number of different topics that are covered. 
+
+Term frequency gives a better look at the topics covered by John Mulaney. Although the word "people" doesn't necesarrily count as a topic, topics can be implied by other high-frequency terms fairly easily. In the word cloud below you can see the diffent topics covered. The word cloud of the action data set is not provided because there are not more insights gained from the plot. We can, however, know that at least the audience thinks John Mulaney is a good comedian. 
+```{r}
+#Common word plots
+#wordclouds
+data.frame(word=DF_word[!(DF_word$word%in%stop_words$word | DF_word$word%in%dumb_words),])%>%
+  dplyr::count(word, sort = TRUE) %>%
+  with(wordcloud(word, n, max.words = 75))
+```
+
+Sentiment analysis gives more insight into profanity more than anything, but a decent number of negative words are said more in a sarcastic manner so it is difficult to decypher the way negative words are used with just the given frequency. 
+```{r}
+#Sentiment Word Clouds
+article_words%>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 75)
+
+action_words%>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 75)
+```
+Although these word clouds output slightly different results from the analysis, they provide good insight. We can see that John discussing heavy alcoholic drinking as well as Blockbuster (which I'm not quite sure why is a postive word here). In the word cloud from the action data set it is easy to see that a lot of his actions are mocking or pretending or imaginary. 
+
+Overall, from this analysis we can decypher that John discusses Blockbuster, his girlfriend, drinking, and New York. There are definitely more topics that he covers, but from this analysis we can't be as confident as the ones listed. 
+
+### Future Work
+
+Since this document was not created in a way that is able to be split, it would be interesting to compare this script with other scripts of John Mulaney's stand ups to see how his content and approach changes or stays the same. He has quite a few available that would make this possible such as "Kid Gorgeous" and "Comeback Kid". 
+
+Another interesting possibility for future work is to see if it is possible to compare the "funniness" of the jokes. The difficulty with this is that often jokes flow seemlessly into each other, so drawing these lines is an obstacle of its own.
+

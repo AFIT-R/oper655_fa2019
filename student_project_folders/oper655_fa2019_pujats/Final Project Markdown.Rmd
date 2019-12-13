@@ -1,0 +1,716 @@
+---
+title: "OPER 655 Project"
+author: "Trey Pujats"
+date: "11/5/2019"
+output:
+  html_document:
+    code_folding: 'hide'
+---
+
+```{r setup, include=FALSE, warning=F}
+knitr::opts_chunk$set(echo = TRUE)
+
+pacman::p_load(XML,
+               rvest,
+               RCurl,
+               rprojroot,
+               qdapTools,
+               pdftools,
+               antiword,
+               glue,
+               data.table,
+               tidyverse,
+               vroom,
+               antiword,
+               magick,
+               tesseract,
+               tools,
+               readxl,
+               here,
+               tm,
+               text2vec,
+               igraph,
+               textmineR,
+               tidytext,
+               LSAfun,
+               textrank,
+               udpipe,
+               lattice,
+               ggraph,
+               reshape2,
+               wordcloud)
+
+
+```
+
+## Abstract
+
+The purpose of this document is to analyze text using the scripts from season eight of Game of Thrones. The text analysis includes scraping the text from the internet, cleaning the text to include only the text of the cahracters, and analyzing the text to understand key concepts of the Game of Thrones series. The text analysis includes most commonly used words, tfidf, document summarization, sentiment analysis, and extracting key multi word phrases. This will gain clear insight into each episode as well as the season as whole to understand what the plot of the season is. 
+
+## Problem Background
+
+The objective of the project is to inform an individual who has not seen Game of Thrones of the most important and key concepts of the series and season. The overall problem we are trying to solve is to provide an in depth analysis of the series and make this sort of analysis applicable to other movies or televsision series. Identifying the most important analysis techniques will aid in solving this problem. 
+
+
+## Methodology
+
+Reading in the data is the first step in conducting analysis since all text must be imported to conduct the analysis. For this project, I read six scripts individually from https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=game-of-thrones . This website contained each script that I needed to run my analysis and it was relatively clean aside from the removal of some punctual errors, numbers and line breaks. From this step, the data was ready for use and analysis. 
+
+```{r read and clean data, warning=F}
+
+######################################### READ IN DATA (MORE TO BE DONE TO MAKE IT AUTOMATED)
+
+#Intialize Vector to store episode scripts.
+EpisodeScripts<-vector()
+
+# Identify the URL to pull scripts from and follow that location.
+#Parse the text in the docuement. 
+#Read in the exact location of the text within the HTML. This is noted by 'class=scolling-script-container'.
+#Lastly, store the data in a vector for each episode.
+url  <- 'https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=game-of-thrones&episode=s08e01'
+rcurl.doc <- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+#xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+EpisodeScripts[1]<-xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+
+url  <- 'https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=game-of-thrones&episode=s08e02'
+rcurl.doc <- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+#xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+EpisodeScripts[2]<-xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+
+url  <- 'https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=game-of-thrones&episode=s08e03'
+rcurl.doc <- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+#xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+EpisodeScripts[3]<-xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+
+url  <- 'https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=game-of-thrones&episode=s08e04'
+rcurl.doc <- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+#xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+EpisodeScripts[4]<-xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+
+url  <- 'https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=game-of-thrones&episode=s08e05'
+rcurl.doc <- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+#xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+EpisodeScripts[5]<-xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+
+url  <- 'https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=game-of-thrones&episode=s08e06'
+rcurl.doc <- RCurl::getURL(url,
+                           .opts = RCurl::curlOptions(followlocation = TRUE))
+url_parsed <- XML::htmlParse(rcurl.doc, asText = TRUE)
+#xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+EpisodeScripts[6]<-xpathSApply(url_parsed, "//div[@class='scrolling-script-container']", xmlValue)
+
+########################################## CLEAN UP DATA AS BEST I CAN
+
+#Now all of the scripts are loaded in, I cleaned the data by getting rid of certain characters and line breaks.
+#I also needed to get rid of text within brackets and parentheses since the identified the mood of the scene and the characters speaking. 
+#For my analysis, I am just interested in the key themes of the season.
+EpisodeScripts <- stringr::str_replace_all(EpisodeScripts, "<br */>", "")
+EpisodeScripts <- stringr::str_replace_all(EpisodeScripts, "\r", ".")
+EpisodeScripts <- stringr::str_replace_all(EpisodeScripts, "\t", "")
+EpisodeScripts <- stringr::str_replace_all(EpisodeScripts, "\n", "")
+EpisodeScripts <- stringr::str_replace_all(EpisodeScripts, "\"", "")
+EpisodeScripts <- stringr::str_replace_all(EpisodeScripts, "[.]", ".")
+EpisodeScripts <-gsub("\\[[^][]*]", ".", EpisodeScripts)
+EpisodeScripts <-gsub("\\s*\\([^\\)]+\\)",".", EpisodeScripts)
+EpisodeScripts <-gsub('[0-9]+', '', EpisodeScripts)
+
+#Manually typed in each episode name since there are six.
+EpisodeNames<-c("Winterfell",	"A Knight of the Seven Kingdoms","The Long Night","The Last of the Starks",	"The Bells",	"The Iron Throne")
+
+#Binded my Episode names to my data to keep track of the text and episodes. 
+MyData<-EpisodeScripts
+MyData<-cbind(MyData, EpisodeNames)
+colnames(MyData)[1]<-"Text"
+
+
+```
+
+## Document Summarization
+
+This document summarization utilizes LexRank which is similar to Googles' PageRank method for choosing the most important websites to put first when searching for something in Google. LexRank breaks each sentence into a node and edges are created from one node to another. The level of similarity is measured between sentences and assigned to that edge. Not only is the one to one similarity between nodes important, but when scoring one node, it takes into account the overall rank of the other nodes that are connected. It also introduces a dampening factor so that propagation from one node far away, does not greatily increase the similarity rank that only has mutual connections to the node far away. This is important not to inflate the ranks of certain sentences that may not actually be a good representation of the article. 
+
+Document summarization is important because it analyzes sentences or pages to give a quick summary of the document as a whole. It can be very useful but also sometimes misleading. For example, in the Game of Thrones data, we see the top five sentences summarizing each episode and the top 20 summarizing the entire season. Some of the output is useful when it discusses Jaime Lannister dying and other key events. Some while are importatn to the series are not so useful in characterizing a certain episode plot. We see this with sentences such as "Queen Danaerys of House Targaryen". While she is a very important character, it does not explain the episode. Increasing the number of sentences output from the similarity matrix may provide a better representation. For the entire season, I output the top twenty sentences to reveal the underlying plot of the season. This provided good analysis showing that Queen Cersei will die, Jaime Lannister is going to die, someone will be forgiven, there is a lack of trust in the Queen, and so forth. It sets the stage for you to understand what you need to look for in the document. It clearly does not replace actually reading the text though, as you cannot capture clear settings and overarching moments withing the text, just small snippets.
+
+One method, which was not used in this analysis is abstractive document summarization where the text is analyzed and the output is in the form of sentences that have been summarized as if a person summarized them. A machine learning algorithm outputs the summary of the document. This is different from the extractive document summarization that was used in this analysis. Extractive document summarization ranks the sentences within the document you provide and outputs those sentences that it feels best captures the summary.
+
+From this we gain insight into what each episode is about and the entire season. After analyzing both, we notice that many of the sentences from the individual episodes are included in the season summary, which is expected. It also provides other sentences that were not mentioned, so both methods provide good analysis on the overall document 
+
+EPISODE ONE SUMMARY
+```{r Episode One, warning=F}
+
+######################################### DOCUMENT SUMMARIZATION
+
+
+#Each of these blocks of code is the exact same, just repeated over each episode to get the most representative sentences for each.
+#I first choose the episode, then the ID of the episode I am summarizing, then choosing five sentences to return.
+#I then order those sentences to show the most significant our of the rank that is assigned to each sentence.
+#Lastly, I output those sentences to show what the most representative sentences are.
+top_5 = lexRankr::lexRank(MyData[1,1],
+                          #only 1 article; repeat same docid for all of input vector
+                          docId = MyData[1,2],
+                          #return 5 sentences to mimick 
+                          n = 5,
+                          continuous = TRUE)
+
+#reorder the top 5 sentences to be in order of appearance in article
+order_of_appearance = order(as.integer(gsub("_","",top_5$sentenceId)))
+#extract sentences in order of appearance
+ordered_top_5 = top_5[order_of_appearance, "sentence"]
+ordered_top_5
+
+```
+
+
+EPISODE TWO SUMMARY
+```{r Episode Two, warning=F}
+
+top_5 = lexRankr::lexRank(MyData[2,1],
+                          #only 1 article; repeat same docid for all of input vector
+                          docId = rep(1, length(MyData[2,1])),
+                          #return 5 sentences 
+                          n = 5,
+                          continuous = TRUE)
+
+#reorder the top 5 sentences to be in order of appearance in article
+order_of_appearance = order(as.integer(gsub("_","",top_5$sentenceId)))
+#extract sentences in order of appearance
+ordered_top_5 = top_5[order_of_appearance, "sentence"]
+ordered_top_5
+```
+
+EPISODE THREE SUMMARY
+```{r Episode Three, echo=FALSE, warning=F}
+
+top_5 = lexRankr::lexRank(MyData[3,1],
+                          #only 1 article; repeat same docid for all of input vector
+                          docId = rep(1, length(MyData[3,1])),
+                          #return 5 sentences
+                          n = 5,
+                          continuous = TRUE)
+
+#reorder the top 5 sentences to be in order of appearance in article
+order_of_appearance = order(as.integer(gsub("_","",top_5$sentenceId)))
+#extract sentences in order of appearance
+ordered_top_5 = top_5[order_of_appearance, "sentence"]
+ordered_top_5
+
+```
+
+EPISODE FOUR SUMMARY
+```{r Episode Four, warning=F}
+
+top_5 = lexRankr::lexRank(MyData[4,1],
+                          #only 1 article; repeat same docid for all of input vector
+                          docId = rep(1, length(MyData[4,1])),
+                          #return 5 sentences
+                          n = 5,
+                          continuous = TRUE)
+
+#reorder the top 5 sentences to be in order of appearance in article
+order_of_appearance = order(as.integer(gsub("_","",top_5$sentenceId)))
+#extract sentences in order of appearance
+ordered_top_5 = top_5[order_of_appearance, "sentence"]
+ordered_top_5
+```
+
+EPISODE FIVE SUMMARY
+```{r Episode Five, warning=F}
+
+
+top_5 = lexRankr::lexRank(MyData[5,1],
+                          #only 1 article; repeat same docid for all of input vector
+                          docId = rep(1, length(MyData[5,1])),
+                          #return 5 sentences to mimick
+                          n = 5,
+                          continuous = TRUE)
+
+#reorder the top 5 sentences to be in order of appearance in article
+order_of_appearance = order(as.integer(gsub("_","",top_5$sentenceId)))
+#extract sentences in order of appearance
+ordered_top_5 = top_5[order_of_appearance, "sentence"]
+ordered_top_5
+```
+
+EPISODE SIX SUMMARY
+```{r Episode Six, warning=F}
+
+
+top_5 = lexRankr::lexRank(MyData[6,1],
+                          #only 1 article; repeat same docid for all of input vector
+                          docId = rep(1, length(MyData[6,1])),
+                          #return 5 sentences 
+                          n = 5,
+                          continuous = TRUE)
+
+#reorder the top 5 sentences to be in order of appearance in article
+order_of_appearance = order(as.integer(gsub("_","",top_5$sentenceId)))
+#extract sentences in order of appearance
+ordered_top_5 = top_5[order_of_appearance, "sentence"]
+ordered_top_5
+```
+
+
+SEASON SUMMARY
+```{r Season, warning=F}
+
+#This calculates the most important sentences from the entire season.
+top_20 = lexRankr::lexRank(MyData[,1],
+                          #only 1 article; repeat same docid for all of input vector
+                          docId = MyData[,2],
+                          #return 20 sentences to mimick /u/autotldr's output
+                          n = 20,
+                          continuous = TRUE)
+
+#reorder the top 20 sentences to be in order of appearance in article
+order_of_appearance = order(as.integer(gsub("_","",top_20$sentenceId)))
+#extract sentences in order of appearance
+ordered_top_20 = top_20[order_of_appearance, "sentence"]
+ordered_top_20
+
+
+```
+
+
+## Word Count and TFIDF
+
+Identifying common words and term frequencies related to their document frequencies are simple, but important to be able to characterize an episode. From the Game of Thrones text, we see that there are kings, queens, soldiers, lords, archers and soldiers, clearly showing that this may be in a medieval or non-modern society. It also shows which characters are more frequently referenced and therefore which are the most important based on their frequency. Jon, Cersei, Gendry, and Tyrion are all important characters in the text which can be deduced by their frequency. The first plot shows the most common words by episode, giving an idea about which characters play a large role in certain episodes.
+
+```{r word count, warning=F, echo=FALSE}
+
+episodes <- MyData[,1]
+  
+hp_tidy <- tibble::tibble()
+
+for(i in seq_along(EpisodeNames)) {
+  
+  clean <- tibble::tibble(Episode = base::seq_along(episodes[[i]]),
+                          text = episodes[[i]]) %>%
+    tidytext::unnest_tokens(word, text) %>%
+    dplyr::mutate(Episode = EpisodeNames[i]) %>%
+    dplyr::select(Episode, dplyr::everything())
+  
+  hp_tidy <- base::rbind(hp_tidy, clean)
+}
+
+# set factor to keep episodes in order
+hp_tidy$Episode <- base::factor(hp_tidy$Episode, levels = base::rev(EpisodeNames))
+
+#Count overall words in series
+hp_tidy %>%
+  dplyr::count(word, sort = TRUE)%>%
+  anti_join(stop_words)
+
+
+
+# top 10 most common words by epsiode
+hp_tidy %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::group_by(Episode) %>%
+  dplyr::count(word, sort = TRUE) %>%
+  dplyr::top_n(10)
+
+
+#Plotting the top 10 in each episode. Its a lot... Yikes
+hp_tidy %>%
+  anti_join(stop_words) %>%
+  group_by(Episode) %>%
+  count(word, sort = TRUE) %>%
+  top_n(10) %>%
+  ungroup() %>%
+  mutate(book = base::factor(Episode, levels = EpisodeNames),
+         text_order = base::nrow(.):1) %>%
+  ## Pipe output directly to ggplot
+  ggplot(aes(reorder(word, text_order), n, fill = Episode)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ Episode, scales = "free_y") +
+  labs(x = "NULL", y = "Frequency") +
+  coord_flip() +
+  theme(legend.position="none")
+
+
+```
+
+
+
+Next we use the frequency of the words relative to the number of episodes they were mentioned in. Based on the plot below, we see words above and below a line for each episode. The words above the line are common to the entire series and frequent in that episode. The lines below the line have high tfidf values which show they are commonly referenced in that episode, but they do not appear as often throughout the season. The terms below the line can show the significance of a certain episode an help get an idea of what actions take place in that episode. This may be useful when wanting to extract key elements of text that are important but not frequent throuhgout.
+
+
+```{r tfidf by episode, warning=F}
+
+# calculate percent of word use across all episodes
+GOT_pct <- hp_tidy %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(word) %>%
+  dplyr::transmute(word, all_words = n / sum(n))
+
+# calculate percent of word use within each novel
+frequency <- hp_tidy %>%
+  dplyr::anti_join(stop_words) %>%
+  dplyr::count(Episode, word) %>%
+  dplyr::mutate(Episode_words = n / sum(n)) %>%
+  dplyr::left_join(GOT_pct) %>%
+  dplyr::arrange(dplyr::desc(Episode_words)) %>%
+  dplyr::ungroup()
+
+
+#Plotting the frequency of words in a novel.
+#Above the line means the word is used a lot across each episodes
+#Below the line means it was used a lot, but only in that specific episode.
+ggplot(frequency, 
+       aes(x = Episode_words, 
+           y = all_words, 
+           color = abs(all_words - Episode_words))) +
+  geom_abline(color = "gray40", lty = 2) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = scales::percent_format()) +
+  scale_y_log10(labels = scales::percent_format()) +
+  scale_color_gradient(limits = c(0, 0.001), 
+                       low = "darkslategray4", 
+                       high = "gray75") +
+  facet_wrap(~ Episode, ncol = 2) +
+  theme(legend.position="none") +
+  labs(y = "GOT Series", x = NULL)
+
+```
+
+
+More analysis into term frequeny inverse document frequency shows the highest tfidf values for the entire season as oppose to the individual episode and ranking them against one another. Personally I do not gain much insight from this other than being able to see the words a little more clearly ranked next to one another to see how their tfidf values compare.
+
+```{tfidf for entire season, warning=F, echo=FALSE}
+
+frequency %>%
+  dplyr::group_by(Episode) %>%
+  dplyr::summarize(correlation = stats::cor(Episode_words, all_words),
+                   p_value = stats::cor.test(Episode_words,
+                                             all_words)$p.value)
+
+
+hp_dtm <- tm::VectorSource(EpisodeNames) %>%
+  tm::VCorpus() %>%
+  tm::DocumentTermMatrix(control = base::list(removePunctuation = TRUE,
+                                              removeNumbers = TRUE,
+                                              stopwords = tidytext::stop_words[,2],
+                                              tokenize = 'MC',
+                                              weighting =
+                                                function(x)
+                                                  weightTfIdf(x, normalize =
+                                                                !FALSE)))
+
+tm::inspect(hp_dtm)
+terms <- tm::Terms(hp_dtm)
+utils::head(terms, 50)
+
+(hp_tidy_tm <- tidytext::tidy(hp_dtm))
+
+tt_funcs <- base::ls(base::getNamespace("tidytext"), 
+                     all.names = TRUE)
+
+base::grep(pattern = '^tidy.', tt_funcs, value = T)
+
+# cast tidy data to a DFM object 
+# for use with the quanteda package
+hp_tidy_tm %>%
+  cast_dfm(term, document, count)
+
+hp_tidy_tm %>%
+  cast_dtm(term, document, count)
+
+
+
+t2v_tokens = EpisodeNames   %>% 
+  tolower %>% 
+  tokenizers::tokenize_words()
+
+t2v_itoken = text2vec::itoken(t2v_tokens, 
+                              progressbar = FALSE)
+
+(t2v_vocab = text2vec::create_vocabulary(t2v_itoken,
+                                         stopwords = tidytext::stop_words[[1]]))
+t2v_dtm = create_dtm(t2v_itoken, hash_vectorizer())
+model_tfidf = TfIdf$new()
+dtm_tfidf = model_tfidf$fit_transform(t2v_dtm)
+
+
+episode_words <- hp_tidy %>%
+  count(Episode, word, sort = TRUE) %>%
+  dplyr::anti_join(stop_words) %>%
+  ungroup()
+
+series_words <- episode_words %>%
+  group_by(Episode) %>%
+  summarise(total = sum(n))
+
+episode_words <- left_join(episode_words, series_words)
+
+episode_words
+
+
+
+
+episode_words %>%
+  mutate(ratio = n / total) %>%
+  ggplot(aes(ratio, fill = Episode)) +
+  geom_histogram(show.legend = FALSE) +
+  scale_x_log10() +
+  facet_wrap(~ Episode, ncol = 2)
+
+
+episode_words <- episode_words %>%
+  bind_tf_idf(word, Episode, n)
+
+episode_words
+
+episode_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf))
+
+episode_words %>%
+  dplyr::arrange(dplyr::desc(tf_idf)) %>%
+  dplyr::mutate(word = base::factor(word, levels = base::rev(base::unique(word))),
+                Episode = base::factor(Episode, levels = EpisodeNames)) %>% 
+  dplyr::group_by(Episode) %>%
+  dplyr::top_n(15, wt = tf_idf) %>%
+  dplyr::ungroup() %>%
+  ggplot(aes(word, tf_idf, fill = Episode)) +
+  geom_bar(stat = "identity", alpha = .8, show.legend = FALSE) +
+  labs(title = "Highest tf-idf words in GOT",
+       x = NULL, y = "tf-idf") +
+  #facet_wrap(~Episode, ncol = 2, scales = "free") +
+  coord_flip()
+```
+
+
+For some reason this image wouldnt load in markdown, but it would load in a normal script. I then saved it and put it in the markdown using knitr.
+```{r Apply Image}
+knitr::include_graphics("C:/Users/treyp/OneDrive/Documents/OPER 655 - Text Mining/oper655_fa2019/student_project_folders/oper655_fa2019_pujats/Rplot.png")
+```
+
+
+
+
+
+## Phrases and Multi-Word Identification
+
+More important than key words can be key phrases, as some words are used in conjuntion with one another. For example, seeing Cersei as a common word may be important but seeing Queen Cersei adds more to the understanding of the text. For the individual that has not seen Game of Thrones, it is much more helpful to see Queen Cersei to recognize the type of person Cersei is and also which Queen the episode is discussing. First we do parts of speech tagging on the entire season using 'udpipe', which is a function found online that matches your text to the particular parts of speech. I then plot the most occuring nouns to get an idea on how well the function worked as well as seeing the most commonly used single word nouns were.
+
+
+```{r Parts of Speech Tagging, warning=F}
+
+## First step: Take the English udpipe model and annotate the text.
+ud_model <- udpipe_download_model(language = "english")
+ud_model <- udpipe_load_model(ud_model$file_model)
+x <- udpipe_annotate(ud_model, x = MyData[,1])
+x <- as.data.frame(x)
+
+
+#Lemma is just the column of all of the words in the document
+#Here we simply show the frequency of the words.
+stats <- subset(x, upos %in% "NOUN")
+stats <- txt_freq(x = stats$lemma)
+stats$key <- factor(stats$key, levels = rev(stats$key))
+barchart(key ~ freq, data = head(stats, 30), col = "blue", main = "Most occurring nouns", xlab = "Freq")
+
+
+
+
+```
+
+
+We then build on that to see which bigrams occur most often in the text. We do this by taking a count of how often certain words are next to each other, in the same sentence, and only a few words apart. We call these cooccurences and take a count of how often we see each event take place. This is ouput here showing that we often see gate soldier, last time, Valyrian Steel, and other common phrases together. These are then plotted in the wordnetwork to show which bigrams occur in the series. The closer words are to one another shows that they are more likely to be seen as a cooccurrence. Also, the darker the line is from one word to another shows that this cooccurrence appears more often than the ones with lighter lines. This will give you an idea as to which are more commonly used in the season. The wordcloud also shows the same information, but in a more readable fashion as shown below. It plots out the most common phrases and the larger the phrase, the more frequent the cooccurence.
+
+```{r Bigrams,  warning=F}
+
+#Next we may want to look at expressions, since singular words can be misleading out of context. Allowing for expressions could give a better 
+#sense of what the document is about. We check for concurrences where the two words are directly next to each other,
+#in the same sentence, or a few words away from each other. 
+
+
+## Collocation (words following one another)
+stats <- keywords_collocation(x = x, 
+                              term = "token", group = c("doc_id", "paragraph_id", "sentence_id"),
+                              ngram_max = 4)
+## Co-occurrences: How frequent do words occur in the same sentence, in this case only nouns or adjectives
+stats <- cooccurrence(x = subset(x, upos %in% c("NOUN", "ADJ")), 
+                      term = "lemma", group = c("doc_id", "paragraph_id", "sentence_id"))
+## Co-occurrences: How frequent do words follow one another
+stats <- cooccurrence(x = x$lemma, 
+                      relevant = x$upos %in% c("NOUN", "ADJ"))
+## Co-occurrences: How frequent do words follow one another even if we would skip 2 words in between
+stats <- cooccurrence(x = x$lemma, 
+                      relevant = x$upos %in% c("NOUN", "ADJ"), skipgram = 2)
+
+
+#From here we build out a word network showing how closely related and used together multi word phrases are in the document. 
+wordnetwork <- head(stats, 30)
+wordnetwork <- graph_from_data_frame(wordnetwork)
+ggraph(wordnetwork, layout = "fr") +
+  geom_edge_link(aes(width = cooc, edge_alpha = cooc), edge_colour = "pink") +
+  geom_node_text(aes(label = name), col = "darkgreen", size = 4) +
+  theme_graph(base_family = "Arial Narrow") +
+  theme(legend.position = "none") +
+  labs(title = "Cooccurrences within 3 words distance", subtitle = "Nouns & Adjective")
+
+
+#Text ranking is another useful tool to understand the document. 
+#This is very similar to determining the highest rank of sentences in document summarization, but this is applied to multiword expressions instead.
+#The word cloud shows the most frequently occuring phrases, only the top 200 expressions.
+stats <- textrank_keywords(x$lemma, 
+                           relevant = x$upos %in% c("NOUN", "ADJ"), 
+                           ngram_max = 8, sep = " ")
+stats <- subset(stats$keywords, ngram > 1 & freq >= 2)
+wordcloud(words = stats$keyword, freq = stats$freq, max.words = 50)
+
+```
+
+
+
+Next we apply RAKE which is rapid automatic keyword extraction. It uses the same frequency of cooccurences but instead of listing the highest cooccurences, it also uses the inverse document frequency to see which are most common to specific episodes. In this case we see the Golden Company with the highest RAKE value, so it was mentioned a lot in one episode but not often beyond that episode. It is the same idea as tfidf but for multiword phrases as well.
+
+```{r RAKE,  warning=F}
+#Rapid automatic keyword extraction (RAKE) is very similar to text ranking but it also adds an element of tfidf to its calculations.
+#It still ranks the expressions based on how many times it occurs with other words vs the frequency of occurences in the document.
+stats <- keywords_rake(x = x, 
+                       term = "token", group = c("doc_id", "paragraph_id", "sentence_id"),
+                       relevant = x$upos %in% c("NOUN", "ADJ"),
+                       ngram_max = 4)
+head(subset(stats, freq > 3),10)
+```
+
+
+Next we look even further beyond bigrams and into full phrases such as "Ser Brienne of Tarth" which is useful to see that Brienne is a knight and she is from Tarth. This extends beyond the knowledge of bigrams by providing more information. Unfortunately for this series, we do not gain much insight from it,  but it could be applied to other datasets and have highly influential results compared to unigrams or bigrams.
+
+```{r Phrase Identification, echo=FALSE}
+## Simple noun phrases (a adjective+noun, pre/postposition, optional determiner and another adjective+noun)
+x$phrase_tag <- as_phrasemachine(x$upos, type = "upos")
+stats <- keywords_phrases(x = x$phrase_tag, term = x$token, 
+                          pattern = "(A|N)+N(P+D*(A|N)*N)*", 
+                          is_regex = TRUE, ngram_max = 4, detailed = FALSE)
+head(subset(stats, ngram > 2),10)
+```
+
+Lastly, for multiword phrases we create a word cloud of the most common bigrams as a simple way to provide more information. This differs from the previous one since these occur directly next to each other, not within a specified range. In this case, it is more restrictive and chooses the most two most commonly together words.
+
+```{r Bigram Wordcloud,  warning=F}
+#Lastly, we identify the most common phrases in the dataset to get a feel for the overall docuement.
+stats <- merge(x, x, 
+               by.x = c("doc_id", "paragraph_id", "sentence_id", "head_token_id"),
+               by.y = c("doc_id", "paragraph_id", "sentence_id", "token_id"),
+               all.x = TRUE, all.y = FALSE, 
+               suffixes = c("", "_parent"), sort = FALSE)
+stats <- subset(stats, dep_rel %in% "nsubj" & upos %in% c("NOUN") & upos_parent %in% c("ADJ"))
+stats$term <- paste(stats$lemma_parent, stats$lemma, sep = " ")
+stats <- txt_freq(stats$term)
+wordcloud(words = stats$key, freq = stats$freq, min.freq = 3, max.words = 100,
+          random.order = FALSE, colors = brewer.pal(6, "Dark2"))
+```
+
+
+## Sentiment Analysis
+
+Sentiment analysis is beneficial to understand the mood of a book, series, episode, or any document. Analyzing sentiment analysis can show which episodes are happier, compared to one another.The final plot is the wordcloud which shows the words in the series and their association to a positive or negative feeling. The positive words are shown in blue while the negative words are shown in red. These strictly show the extreme emotions in the series as oppose to strictly the most common words. Another takeaway is that the larger words represent how often the word is used, so if the red words are larger than the blue, then you can most deduce that one episode is more negative than another. 
+
+
+EPISODE ONE
+```{r Sentiment Analysis, warning=F}
+
+raw_tb <- tibble::tibble(text = MyData[,1], Episode = MyData[,2])
+
+word_vect = raw_tb %>% tidytext::unnest_tokens(word, text, token = 'words')
+text=as_tibble(word_vect)
+rm(raw_tb,word_vect)
+head(text)
+
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  filter(Episode == "Winterfell")%>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 40)
+```
+
+EPISODE TWO
+```{r Sentiment Analysis2, warning=F}
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  filter(Episode == "A Knight of the Seven Kingdoms")%>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 40)
+```
+
+
+EPISODE THREE
+```{r Sentiment Analysis3, warning=F}
+
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  filter(Episode == "The Long Night")%>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 40)
+
+```
+
+EPISODE FOUR
+```{r Sentiment Analysis4, warning=F}
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  filter(Episode == "The Last of the Starks")%>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 40)
+
+```
+
+
+EPISODE FIVE
+```{r Sentiment Analysis5, warning=F}
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  filter(Episode == "The Bells")%>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 40)
+```
+
+
+EPISODE SIX
+```{r Sentiment Analysis6, warning=F}
+
+text %>%
+  inner_join(get_sentiments("bing")) %>%
+  filter(Episode == "The Iron Throne")%>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("red","blue"),
+                   max.words = 40)
+
+
+
+```
+
+
+
+## Findings and Conclusion
+
+The findings in this report summarize the episodes of season eight of Game of Thrones and the series as a whole. From this analysis, we found the most common characters as Danaerys, Jon, Cersei, Tyrion, Gendry, and many more. The setting is likely to be in a medieval period with soldiers, kings, queens, knights and more. The plot of the series tends to revolve around the Queen as there are multiple queens throughout (Danaerys and Cersei). The Queen is also murdered along with other individuals such as Jaime Lannister. It seems as though there is a struggle for power and plotting to overthrow the Queen. In the last episode it seems like Queen Cersei was killed since the summary mentions there is no king or queen anymore. This pretty well characterizes the last season of Game of Thrones and did well to explain the text. It accomplished the objective of just being an informative analysis to tell a story. The depth of it is questionable, but I believe that with more data, it would be a much more useful tool to provide summarization of Game of Thrones. Including the other seasons would be very useful and build on the depth. Small text such as movies may not be as useful since you cannot compare scene to scene as easily as episode to episode, but it could still be useful to see common phrases. Looking forward, the data should include all episodes of Game of Thrones across the eight seasons. Also, including named entity recognition would be useful to tag what certain entities not only as parts of speech but specific identification tags to better tell the story.
+
+
+
+
+
